@@ -12,7 +12,8 @@ function [fn,Yn]= sg_newton(Y)
     global SGParameters;
     gradtol = SGParameters.gradtol;
     ftol = SGParameters.ftol;
-
+    maxiter=300;
+    
     if (SGParameters.verbose)
 	global SGdata;
 	SGdata=[];
@@ -30,7 +31,7 @@ function [fn,Yn]= sg_newton(Y)
 	disp(sprintf('%d\t%e\t%e\t%9d\t%s',N,mag,f,'none'));
     end
 
-    while (mag>geps) | (abs(oldf/f-1)>feps)
+    while ((mag>geps) | (abs(oldf/f-1)>feps)) && (N < maxiter)
 	N= N+1;
 
 	gradsat = (mag<=geps);

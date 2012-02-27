@@ -1,8 +1,8 @@
 %% startv
-% Starting value for the envelope subspace
+% Starting value for the envelope subspace.
 
 %% Usage
-% function Wguess=startv(X,Y,u)
+% Wguess=startv(X,Y,u)
 %
 % Input
 %
@@ -30,7 +30,8 @@
 % and use the final set as our starting value. 
 
 %% Reference
-% The algorithm is implemented based on Section 3.5 of Su and Cook (2011).
+% The codes is implemented based on the algorithm in Section 3.5 of Su and 
+% Cook (2011).
 
 function Wguess=startv(X,Y,u)
 
@@ -52,14 +53,14 @@ betfm=betfm';
 [V2 D]=eig(sigY);
 V=[V1 V2];
 
-crit=nchoosek(r,u);
+crit=nchoosek(2*r,u);
 
 if crit<=50
 %if u==1
 %     setaux(Y,X,0,r,V,D);
 %     Ys=zeros(crit+5,r,u);
     Ys=zeros(crit,r,u);
-    [Ys(1:crit,:,:) ind]=get_combeig(V,r,u);
+    [Ys(1:crit,:,:) ind]=get_combeig(V,2*r,u);
 %     Ys(crit+1,:,:) = getSIR(u,r);
 %     Ys(crit+2,:,:) = getSAVE(u,r);
 %     Ys(crit+3,:,:) = getDR(u,r);

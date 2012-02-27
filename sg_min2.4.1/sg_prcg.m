@@ -9,10 +9,12 @@ function [fn,Yn]= sg_prcg(Y)
 %	Y is expected to satisfy Y'*Y = I.
 %	Yn will satisfy Yn'*Yn = I.
 % role	high level algorithm, Polak-Ribiere Method
+
     global SGParameters;
     gradtol = SGParameters.gradtol;
     ftol = SGParameters.ftol;
     dim = SGParameters.dimension;
+    maxiter=300;
 
     if (SGParameters.verbose)
 	global SGdata;
@@ -32,7 +34,7 @@ function [fn,Yn]= sg_prcg(Y)
     end
 
     reset = 1;
-    while (mag>geps) | (abs(oldf/f-1)>feps) | reset
+    while ((mag>geps) | (abs(oldf/f-1)>feps) | reset) && (N < maxiter)
 	N= N+1;
 
 	gradsat = (mag<=geps);

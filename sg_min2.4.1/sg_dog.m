@@ -14,6 +14,7 @@ function [fn,Yn]= sg_DOG(Y)
     global SGParameters;
     gradtol = SGParameters.gradtol;
     ftol = SGParameters.ftol;
+    maxiter=300;
 
     if (SGParameters.verbose)
 	global SGdata;
@@ -33,7 +34,7 @@ function [fn,Yn]= sg_DOG(Y)
     end
 
     delta = mag; delta_max = mag/sqrt(eps); delta_min = mag*sqrt(eps);
-    while (mag>geps) | (abs(oldf/f-1)>feps)
+    while ((mag>geps) | (abs(oldf/f-1)>feps)) && (N < maxiter)
 	N= N+1;
 
 	gradsat = (mag<=geps);

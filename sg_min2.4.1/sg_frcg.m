@@ -13,7 +13,8 @@ function [fn,Yn]= sg_frcg(Y)
     gradtol = SGParameters.gradtol;
     ftol = SGParameters.ftol;
     dim = SGParameters.dimension;
-
+    maxiter=300;
+    
     if (SGParameters.verbose)
 	global SGdata;
 	SGdata=[];
@@ -32,7 +33,7 @@ function [fn,Yn]= sg_frcg(Y)
     end
 
     reset=1;
-    while (mag>geps) | (abs(oldf/f-1)>feps) | reset
+    while ((mag>geps) | (abs(oldf/f-1)>feps) | reset) && (N < maxiter)
 	N= N+1;
 
 	gradsat = (mag<=geps);

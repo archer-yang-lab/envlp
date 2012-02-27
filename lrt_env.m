@@ -1,17 +1,47 @@
+%% lrt_env
+% Select the dimension of the envelope subspace using likelihood ratio
+% testing.
+
+%% Usage
+% u=lrt_env(Y,X,alpha)
+%
+% Input
+%
+% * X: Predictors. An n by p matrix, p is the number of predictors. The
+% predictors can be univariate or multivariate, discrete or continuous.
+% * Y: Multivariate responses. An n by r matrix, r is the number of
+% responses and n is number of observations. The responses must be 
+% continuous variables.
+% * alpha: Significance level for testing.  A real number between 0 and 1,
+% often taken at 0.05 or 0.01.
+%
+% Output
+%
+% * u: Dimension of the envelope. An integer between 0 and r.
+
+%% Description
+% This function implements the likelihood ratio testing procedure to select
+% the dimension of the envelope subspace, with prespecified significance 
+% level $$\alpha$.  
+
+
+
+
 function u=lrt_env(Y,X,alpha)
 
 [n r]=size(Y);
 p=size(X,2);
 
-[beta Sigma Gamma Gamma0 eta Omega Omega0 alpha f0 ratio]=env(X,Y,r);
+stat0=env(X,Y,r);
 
 
 for i=0:r
     i
-        [beta Sigma Gamma Gamma0 eta Omega Omega0 alpha f ratio]=env(X,Y,i);
-        chic = -2*(f-f0);
+        stat=env(X,Y,i);
+        chic = -2*(stat.l-stat0.l)
+        df=stat0.np-stat.np;
         
-        if (chi2cdf(chic,p*(r-i)) < (1-alpha))
+        if (chi2cdf(chic,df) < (1-alpha))
             u=i;
             break;
         end

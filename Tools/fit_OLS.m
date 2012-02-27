@@ -1,5 +1,5 @@
 %% fit_OLS
-% Multivariate linear regression 
+% Multivariate linear regression. 
 
 %% Usage
 % [beta_OLS Sigma_OLS]=fit_OLS(X,Y)

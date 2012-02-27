@@ -1,3 +1,28 @@
+%% Expan
+% Compute the expansion matrix of dimension r.
+
+%% Usage
+% E = Expan(r)
+%
+% Input
+%
+% * r: Dimension of the expansion matrix.  A positive integer.
+% 
+% Output
+%
+% * E: Expansion matrix of dimension r.  E is an r^2 by r(r+1)/2 matrix.
+ 
+%% Description
+% 
+% The contraction and expansion matrices are links between the "vec" 
+% operator and "vech"operator: for an r by r symmetric matrix A, 
+% vech(A)=Contr(r)vec(A), and vec(A)=Expan(r)vech(A).  
+% The "vec" operator stacks the matrix A into an r^2 by 1 vector
+% columnwise.  The "vech" operator stacks the lower triangle or the upper
+% triangle of a symmetric matrix into an r(r+1)/2 vector. For more details
+% of "vec", "vech", contraction and expansion matrix, refer to Henderson
+% and Searle (1979).
+
 function E = Expan(r)
 
 % For future reference, the (i,j)th (j>=i) element of a matrix A, corresponds to
