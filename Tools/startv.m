@@ -1,19 +1,41 @@
+%% startv
+% Starting value for the envelope subspace
+
+%% Usage
+% function Wguess=startv(X,Y,u)
+%
+% Input
+%
+% * X: Predictors. An n by p matrix, p is the number of predictors. 
+% * Y: Multivariate responses. An n by r matrix, r is the number of
+% responses and n is number of observations.  
+% * u: Dimension of the envelope. An integer between 1 and r-1.
+%
+% Output
+%
+% * Wguess: The initial estimate of the orthogonal basis of the envelope
+% subspace. An r by u orthogonal matrix.
+
+%% Description
+% We compute the eigenvectors for the covariance matrices of Y and the 
+% estimated errors, and get 2r vectors.  Then we get all the combinations 
+% of u vectors out of the 2r vectors. If the number of 2r choose u is 
+% small(<=50), we search over all the combinations and find out the one 
+% that minimizes the objective function F. If that number is large, then we
+% do it iteratively: we pick up any u eigenvectors, fix all of them except 
+% the first one. Then we search over all the vectors orthogonal to the 
+% fixed ones, and record the one that minimizes F. Next, we fix the first 
+% u eigenvectors again but this time search for second one, then we record 
+% the vector. This goes on and on until the last one. We do it for 5 rounds 
+% and use the final set as our starting value. 
+
+%% Reference
+% The algorithm is implemented based on Section 3.5 of Su and Cook (2011).
+
 function Wguess=startv(X,Y,u)
 
-%----- Get initial value for envelope model, using the algorithm in partial envelope paper --------
-%----- Here we only use the MLE of beta since we assume that the dimension
-%for outer envelope is r.
-%----- if all the combination of r choose u is small(<=20), we find out 
-%the combination that minimizes F, if that number is large, then we do it 
-%iteratively: we pick up the first u eigenvalues of Sigma_est, fix all of 
-%them except the first one and then search for the first one that minimizes 
-%F, then we record that vector and fix all of them except the second, 
-%search for the second and record the vector, that goes on and on until the 
-%last one. We do it for 5 rounds and use the final set as our starting 
-%value. 
 
-
-global sigres;
+% global sigres;
 global FParameters;
 % sigma = FParameters.sigma;
 % sigmag = FParameters.sigmag;
@@ -23,9 +45,12 @@ r=size(Y,2);
 
 XC=center(X);
 YC=center(Y);
+sigY=cov(Y,1);
 [betfm sigres]=fit_OLS(X,Y);
 betfm=betfm';
-[V D]=eig(sigres);
+[V1 D]=eig(sigres);
+[V2 D]=eig(sigY);
+V=[V1 V2];
 
 crit=nchoosek(r,u);
 
