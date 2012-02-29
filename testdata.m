@@ -1,7 +1,7 @@
 % Generate data
 n=100;
 r=10;
-u=1;
+u=2;
 p=2;
 
 X=rand(n,p);
@@ -12,7 +12,7 @@ G0=GG(:,u+1:end);
 sigma=1;
 sigma0=5;
 ita=rand(u,p);
-bet=G*ita;
+bet=2*G*ita;
 Sigma=G*G'*sigma^2+G0*G0'*sigma0^2;
 epsil=mvnrnd(zeros(1,r),Sigma,n);
 Y=X*bet'+epsil;
@@ -32,6 +32,9 @@ u=aic_env(Y,X)
 
 
 
-% load wheatprotein.txt
-% X=wheatprotein(:,8);
-% Y=wheatprotein(:,1:6);
+load wheatprotein.txt
+X=wheatprotein(:,8);
+Y=wheatprotein(:,1:6);
+u=lrt_env(Y,X,alpha)
+u=bic_env(Y,X)
+u=aic_env(Y,X)

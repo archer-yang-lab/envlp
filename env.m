@@ -2,8 +2,7 @@
 % Fit the envelope model.
 
 %% Usage
-% [beta Sigma Gamma Gamma0 eta Omega Omega0 alpha l
-% ratio]=env(X,Y,u)
+% stat=env(X,Y,u)
 %
 % Input
 %
@@ -39,6 +38,8 @@
 % * stat.ratio: The asymptotic standard error ratio of the stanard multivariate 
 % linear regression estimator over the envelope estimator, for each element 
 % in $$\beta$.  An r by p matrix.
+% * stat.np: The number of parameters in the envelope model.  A positive
+% integer.
 
 %% Description
 % This function fits the envelope model to the responses and predictors,
@@ -106,7 +107,6 @@ if u>0 && u<r
     Sigma1=Gamma*Omega*Gamma';
     Sigma2=Gamma0*Omega0*Gamma0';
     Sigma=Sigma1+Sigma2;
-    stat.l=-n*r/2*(1+log(2*pi))-n/2*(l+log(prod(eigtem(eigtem>0))));
 
     %---compute asymptotic variance and get the ratios---
     asyfm=kron(inv(cov(X,1)),Sigma);
@@ -121,7 +121,7 @@ if u>0 && u<r
     stat.Omega0=Omega0;
     stat.alpha=alpha;
     stat.np=r+u*p+r*(r+1)/2;
-    
+    stat.l=-n*r/2*(1+log(2*pi))-n/2*(l+log(prod(eigtem(eigtem>0))));
     
 elseif u==0
     

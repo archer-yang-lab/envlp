@@ -35,15 +35,18 @@ p=size(X,2);
 stat0=env(X,Y,r);
 
 
-for i=0:r
+for i=0:r-1
     i
         stat=env(X,Y,i);
-        chic = -2*(stat.l-stat0.l)
+        chisq = -2*(stat.l-stat0.l)
         df=stat0.np-stat.np;
         
-        if (chi2cdf(chic,df) < (1-alpha))
+        if (chi2cdf(chisq,df) < (1-alpha))
             u=i;
             break;
         end
 end
 
+if (i== r-1) && chi2cdf(chisq,df) > (1-alpha)
+    u=r;
+end
