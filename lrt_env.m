@@ -3,7 +3,7 @@
 % testing.
 
 %% Usage
-% u=lrt_env(Y,X,alpha)
+% u=lrt_env(X,Y,alpha)
 %
 % Input
 %
@@ -27,7 +27,7 @@
 
 
 
-function u=lrt_env(Y,X,alpha)
+function u=lrt_env(X,Y,alpha)
 
 [n r]=size(Y);
 p=size(X,2);
@@ -36,9 +36,9 @@ stat0=env(X,Y,r);
 
 
 for i=0:r-1
-    i
+%     i
         stat=env(X,Y,i);
-        chisq = -2*(stat.l-stat0.l)
+        chisq = -2*(stat.l-stat0.l);
         df=stat0.np-stat.np;
         
         if (chi2cdf(chisq,df) < (1-alpha))

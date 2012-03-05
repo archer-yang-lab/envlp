@@ -3,15 +3,15 @@
 % criterion.
 
 %% Usage
-% u=bic_env(Y,X)
+% u=bic_env(X,Y)
 %
 % Input
 %
-% * X: Predictors. An n by p matrix, p is the number of predictors. The
-% predictors can be univariate or multivariate, discrete or continuous.
+% * X: Predictors. An n by p matrix, p is the number of predictors and n 
+% is the number of observations. The predictors can be univariate or 
+% multivariate, discrete or continuous.
 % * Y: Multivariate responses. An n by r matrix, r is the number of
-% responses and n is number of observations. The responses must be 
-% continuous variables.
+% responses. The responses must be continuous variables.
 %
 % Output
 %
@@ -21,10 +21,9 @@
 % This function implements the Bayesian information criteria (BIC) to select
 % the dimension of the envelope subspace.  
 
-function u=bic_env(Y,X)
+function u=bic_env(X,Y)
 
 [n r]=size(Y);
-p=size(X,2);
     
 stat=env(X,Y,r);
 ic=-2*stat.l+log(n)*stat.np;

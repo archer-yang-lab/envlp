@@ -3,7 +3,7 @@
 % criterion.
 
 %% Usage
-% u=aic_env(Y,X)
+% u=aic_env(X,Y)
 %
 % Input
 %
@@ -21,10 +21,9 @@
 % This function implements the Akaike information criteria (AIC) to select
 % the dimension of the envelope subspace.  
 
-function u=aic_env(Y,X)
+function u=aic_env(X,Y)
 
 [n r]=size(Y);
-p=size(X,2);
     
 stat=env(X,Y,r);
 ic=-2*stat.l+2*stat.np;
