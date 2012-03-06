@@ -96,7 +96,7 @@ if u>0 && u<r
 
     %---Compute \Gamma using sg_min---
 
-    init=startv(X,Y,u);
+    init=get_Init(X,Y,u,dataParameter);
     [l Gamma]=sg_min(init,'prcg','quiet');
 
 

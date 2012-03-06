@@ -2,7 +2,7 @@
 % Starting value for the envelope subspace.
 
 %% Usage
-% Wguess=startv(X,Y,u)
+% WInit=get_Init(X,Y,u,dataParameter)
 %
 % Input
 %
@@ -13,7 +13,7 @@
 %
 % Output
 %
-% * Wguess: The initial estimate of the orthogonal basis of the envelope
+% * WInit: The initial estimate of the orthogonal basis of the envelope
 % subspace. An r by u orthogonal matrix.
 
 %% Description
@@ -33,23 +33,25 @@
 % The codes is implemented based on the algorithm in Section 3.5 of Su and 
 % Cook (2011).
 
-function Wguess=startv(X,Y,u)
+function WInit=get_Init(X,Y,u,dataParameter)
 
 
 % global sigres;
-global FParameters;
+% global FParameters;
 % sigma = FParameters.sigma;
 % sigmag = FParameters.sigmag;
 
-r=size(Y,2);
-[n p]=size(X);
+n=dataParameter.n;
+p=dataParameter.p;
+r=dataParameter.r;
+XC=dataParameter.XC;
+YC=dataParameter.YC;
+sigY=dataParameter.sigY;
+sigRes=dataParameter.sigRes;
+betaOLS=dataParameter.betaOLS;
 
-XC=center(X);
-YC=center(Y);
-sigY=cov(Y,1);
-[betfm sigres]=fit_OLS(X,Y);
-betfm=betfm';
-[V1 D]=eig(sigres);
+
+[V1 D]=eig(sigRes);
 [V2 D]=eig(sigY);
 V=[V1 V2];
 
@@ -81,7 +83,7 @@ if crit<=50
 
     % the Y given the minimum value is our guess
     Wguess=reshape(Ys(minIndex,:,:),m,nn);
-    bini=Wguess*pinv(Wguess'*Wguess)*Wguess'*betfm';
+    bini=Wguess*pinv(Wguess'*Wguess)*Wguess'*betaOLS;
     sigini=(YC-XC*bini')'*(YC-XC*bini')/n;
         
 
@@ -98,7 +100,7 @@ if crit<=50
     
     [Ul S V]=svd(spini);
     [Ss In]=sort(diag(S(1:rk,1:rk)),'descend');
-    Wguess=Ul(:,1:u);
+    WInit=Ul(:,1:u);
 
 else
     
@@ -125,7 +127,7 @@ else
     end % end for rep=1:3
 
     Wguess=V(:,initset(1:u));
-    bini=Wguess*pinv(Wguess'*Wguess)*Wguess'*betfm';
+    bini=Wguess*pinv(Wguess'*Wguess)*Wguess'*betaOLS;
     sigini=(YC-XC*bini')'*(YC-XC*bini')/n;
         
 
@@ -142,7 +144,7 @@ else
     
     [Ul S V]=svd(spini);
     [Ss In]=sort(diag(S(1:rk,1:rk)),'descend');
-    Wguess=Ul(:,1:u);
+    WInit=Ul(:,1:u);
     
 end
 
