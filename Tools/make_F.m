@@ -1,4 +1,4 @@
-function f = make_F(fun_method_handle,FParameters)
+function F = make_F(fun_method_handle,FParameters)
 %
 % f = F(fun_handle,FParameters)
 %
@@ -12,7 +12,7 @@ function f = make_F(fun_method_handle,FParameters)
 %   W: argument for computing the derivative.
 % =========================================================================
 
-f = @tmp;
+F = @tmp;
     function fval = tmp(W,varargin)
         fval = fun_method_handle(W,FParameters,varargin{:});
     end

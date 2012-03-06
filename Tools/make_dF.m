@@ -12,8 +12,8 @@ function dF = make_dF(dfun_method_handle,FParameters)
 %   W: argument for computing the derivative.
 % =========================================================================
 dF = @tmp;
-    function diffval = tmp(W)
-        diffval = dfun_method_handle(W,FParameters);
+    function dfval = tmp(W)
+        dfval = dfun_method_handle(W,FParameters);
     end
 end
 
