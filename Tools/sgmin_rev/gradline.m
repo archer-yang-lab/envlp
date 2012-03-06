@@ -11,3 +11,4 @@ function mg = gradline(dF,t,Y,H)
 	Y = move(Y,H,t);
 	g = grad(dF,Y);
 	mg = ip(Y,g,g); 
+    
