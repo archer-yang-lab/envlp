@@ -14,6 +14,8 @@ function [fn,Yn]= sg_frcg(F,dF,Y)
     ftol = SGParameters.ftol;
     dim = SGParameters.dimension;
     maxiter = SGParameters.maxiter;
+    Fline = make_Fline(F);
+    dFline = make_dFline(dF);
     
     if (SGParameters.verbose)
 	global SGdata;
@@ -50,9 +52,9 @@ function [fn,Yn]= sg_frcg(F,dF,Y)
 	Hessdr = dgrad(Y,dr); drHdr = ip(Y,dr,Hessdr);
 	cga = abs(gdr/drHdr);
 	if (fsat)
-		cgb = fzero('dFline',[0,2*cga],[],Y,dr);
+		cgb = fzero(dFline,[0,2*cga],[],Y,dr);
 	else
-		cgb = fminbnd('Fline',-cga,cga,[],Y,dr);
+		cgb = fminbnd(Fline,-cga,cga,[],Y,dr);
 	end
 
 	[Ya,dra] = move(Y,dr,cga);
