@@ -70,15 +70,18 @@ global sigY;
 global sigres;
 
 %---preparation---
-[n p]=size(X);
-r=size(Y,2);
-XC=center(X);
-YC=center(Y);
+dataParameter=make_parameter(X,Y);
 
-sigX=cov(X,1);
-sigY=cov(Y,1);
+n=dataParameter.n;
+p=dataParameter.p;
+r=dataParameter.r;
+mX=dataParameter.mX;
+mY=dataParameter.mY;
+sigX=dataParameter.sigX;
+sigY=dataParameter.sigY;
+sigRes=dataParameter.sigRes;
+betaOLS=dataParameter.betaOLS;
 
-[beta_OLS sigres]=fit_OLS(X,Y);
 eigtem=eig(sigY);
 
 
@@ -99,17 +102,17 @@ if u>0 && u<r
 
     %---Compute the rest of the parameters based on \Gamma---
     Gamma0=grams(nulbasis(Gamma'));
-    beta=Gamma*Gamma'*beta_OLS;
-    alpha=mean(Y)'-beta*mean(X)';
+    beta=Gamma*Gamma'*betaOLS;
+    alpha=mY-beta*mX;
     eta=Gamma'*beta;
-    Omega=Gamma'*sigres*Gamma;
+    Omega=Gamma'*sigRes*Gamma;
     Omega0=Gamma0'*sigY*Gamma0;
     Sigma1=Gamma*Omega*Gamma';
     Sigma2=Gamma0*Omega0*Gamma0';
     Sigma=Sigma1+Sigma2;
 
     %---compute asymptotic variance and get the ratios---
-    asyfm=kron(inv(cov(X,1)),Sigma);
+    asyfm=kron(inv(sigX),Sigma);
     temp=kron(eta*sigX*eta',inv(Omega0))+kron(Omega,inv(Omega0))+kron(inv(Omega),Omega0)-2*kron(eye(u),eye(r-u));
     asyem=kron(inv(sigX),Sigma1)+kron(eta',Gamma0)*inv(temp)*kron(eta,Gamma0');
     stat.ratio=reshape(sqrt(diag(asyfm)./diag(asyem)),r,p);
@@ -136,7 +139,7 @@ elseif u==0
     stat.eta=[];
     stat.Omega=[];
     stat.Omega0=sigY;
-    stat.alpha=mean(Y)';
+    stat.alpha=mY;
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;
@@ -145,15 +148,15 @@ elseif u==0
 elseif u==r
     
     
-    stat.beta=beta_OLS;
-    stat.Sigma=sigres;
+    stat.beta=betaOLS;
+    stat.Sigma=sigRes;
     stat.Gamma=eye(r);
     stat.Gamma0=[];
-    stat.eta=beta_OLS;
-    stat.Omega=sigres;
+    stat.eta=betaOLS;
+    stat.Omega=sigRes;
     stat.Omega0=[];
-    stat.alpha=mean(Y)'-beta_OLS*mean(X)';
-    eigtem=eig(sigres);
+    stat.alpha=mY-betaOLS*mX;
+    eigtem=eig(sigRes);
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;
