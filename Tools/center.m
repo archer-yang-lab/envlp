@@ -17,6 +17,12 @@
 % This function centerizes a matrix or a vector, by substracting each
 % column by its column mean.
 
+%% Example
+%
+% a = [1 2 3; 4 5 6];
+%
+% center(a)
+
 function XC = center(X);
 
 n = size(X,1);

@@ -17,7 +17,7 @@
 
 %% Description
 % In a multivariate linear model, Y and X follows the following
-% relationship: Y=\alpha+\beta X+\varepsilon, where $$\varepsilon$
+% relationship: $$Y=\alpha+\beta X+\varepsilon$, where $$\varepsilon$
 % contains the errors.  This function performs the ordinary least squares
 % fit to the inputs, and returns the estimates of $$\beta$ and the
 % covariance matrix of $$\varepsilon$.
