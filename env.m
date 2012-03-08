@@ -66,8 +66,6 @@ function stat=env(X,Y,u)
 % the same length.
 
 
-global sigY;
-global sigres;
 
 %---preparation---
 dataParameter=make_parameter(X,Y);
@@ -84,6 +82,9 @@ betaOLS=dataParameter.betaOLS;
 
 eigtem=eig(sigY);
 
+F = make_F(@F4epfc,dataParameter);
+dF = make_dF(@dF4epfc,dataParameter);
+
 
 % With different u, the model will be different.  When u=0, X and Y are
 % uncorrelated, so it should be fitted differently.  When u=r, the envelope
@@ -97,7 +98,7 @@ if u>0 && u<r
     %---Compute \Gamma using sg_min---
 
     init=get_Init(X,Y,u,dataParameter);
-    [l Gamma]=sg_min(init,'prcg','quiet');
+    [l Gamma]=sg_min(F,dF,init,'prcg','quiet');
 
 
     %---Compute the rest of the parameters based on \Gamma---
