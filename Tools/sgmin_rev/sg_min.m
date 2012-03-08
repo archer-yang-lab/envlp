@@ -119,7 +119,7 @@ function [fn,Yn] = sg_min(F,dF,Y0,varargin)
 	if (partarg)
 		SGParameters.partition = part;
 	else
-		SGParameters.partition = partition(Y0);
+		SGParameters.partition = partition(dF,Y0);
 	end
 
 	SGParameters.dimension = dimension(Y0);
