@@ -18,12 +18,12 @@
 %  using maximum likelihood estimation. This function is the derivative of
 %  the objective function.
 
-function df = dF(R)
+function df = dF4env(R,dataParameter)
 
-global sigY;
-global sigres;
+sigRes=dataParameter.sigRes;
+sigY=dataParameter.sigY;
 
-a=sigres*R*inv(R'*sigres*R);
+a=sigRes*R*inv(R'*sigRes*R);
 
 temp=inv(sigY);
 

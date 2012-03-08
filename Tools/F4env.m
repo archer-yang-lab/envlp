@@ -18,12 +18,12 @@
 %  using maximum likelihood estimation. The columns of the semi-orthogonal 
 % matrix that minimizes this function span the estimated envelope subspace.
 
-function f = F(R)
+function f = F4env(R,dataParameter)
 
-global sigY;
-global sigres;
+sigRes=dataParameter.sigRes;
+sigY=dataParameter.sigY;
 
-eigtem=eig(R'*sigres*R);
+eigtem=eig(R'*sigRes*R);
 a=log(prod(eigtem(eigtem>0)));
 
 eigtem0=eig(R'*inv(sigY)*R);
