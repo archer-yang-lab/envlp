@@ -33,7 +33,7 @@
 % The codes is implemented based on the algorithm in Section 3.5 of Su and 
 % Cook (2011).
 
-function WInit=get_Init(X,Y,u,dataParameter)
+function WInit=get_Init(F,X,Y,u,dataParameter)
 
 
 % global sigres;

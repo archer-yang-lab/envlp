@@ -82,8 +82,8 @@ betaOLS=dataParameter.betaOLS;
 
 eigtem=eig(sigY);
 
-F = make_F(@F4epfc,dataParameter);
-dF = make_dF(@dF4epfc,dataParameter);
+F = make_F(@F4env,dataParameter);
+dF = make_dF(@dF4env,dataParameter);
 
 
 % With different u, the model will be different.  When u=0, X and Y are
@@ -97,7 +97,7 @@ if u>0 && u<r
 
     %---Compute \Gamma using sg_min---
 
-    init=get_Init(X,Y,u,dataParameter);
+    init=get_Init(F,X,Y,u,dataParameter);
     [l Gamma]=sg_min(F,dF,init,'prcg','quiet');
 
 
