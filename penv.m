@@ -1,3 +1,70 @@
+%% penv
+% Fit the partial envelope model.
+
+%% Usage
+% stat=penv(X1,X2,Y,u)
+%
+% Input
+%
+% * X1: Predictors of main interst. An n by p1 matrix, n is the number of 
+% observations, and p1 is the number of main predictors. The
+% predictors can be univariate or multivariate, discrete or continuous.
+% * X2: Covariates, or predictors not of main interest.  An n by p2 matrix,
+% p2 is the number of covariates.  The covariates can be univariate or 
+% multivariate, discrete or continuous.
+% * Y: Multivariate responses. An n by r matrix, r is the number of
+% responses and n is number of observations. The responses must be 
+% continuous variables, and r should be strictly greater than p1.
+% * u: Dimension of the partial envelope. An integer between 0 and r.
+%
+% Output
+% 
+% stat: A list that contains the maximum likelihood estimators and some
+% statistics.
+% 
+% * stat.beta1: The partial envelope estimator of $$\beta_1$, which is the
+% regression coefficients for X1. An r by p1 matrix.
+% * stat.beta2: The partial envelope estimator of $$\beta_2$, which is the
+% regression coefficients for X2. An r by p2 matrix.
+% * stat.Sigma: The partial envelope estimator of the error covariance 
+% matrix.  An r by r matrix.
+% * stat.Gamma: The orthogonal basis of the partial envelope subspace. An r by u
+% semi-orthogonal matrix.
+% * stat.Gamma0: The orthogonal basis of the complement of the partial envelope
+% subspace.  An r by r-u semi-orthogonal matrix.
+% * stat.eta: The coordinates of $$\beta_1$ with respect to Gamma. An u by
+% p1 matrix.
+% * stat.Omega: The coordinates of Sigma with respect to Gamma. An u by u
+% matrix.
+% * stat.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u
+% matrix.
+% * stat.alpha: The estimated intercept in the partial envelope model.  An r by 1
+% vector.
+% * stat.l: The maximized log likelihood function.  A real number.
+% * stat.ratio: The asymptotic standard error ratio of the stanard multivariate 
+% linear regression estimator over the partial envelope estimator, for each element 
+% in $$\beta_1$.  An r by p1 matrix.
+% * stat.np: The number of parameters in the envelope model.  A positive
+% integer.
+
+%% Description
+% This function fits the partial envelope model to the responses Y and
+% predictors X1 and X2, using the maximum likehood estimation.  When the dimension of the
+% envelope is between 1 and r-1, we implemented the algorithm in Su and
+% Cook (2011).  When the dimension is r, then the partial envelope model degenerates
+% to the standard multivariate linear regression with Y as the responses and
+% both X1 and X2 as predictors.  When the dimension is 0, X1 and Y are 
+% uncorrelated, and the fitting is the standard multivariate linear
+% regression with Y as the responses and X2 as the predictors.
+
+%% References
+% 
+% * The codes is implemented based on the algorithm in Section 3.2 of Su
+% and Cook (2012).
+% * The Grassmann manifold optimization step calls the package sg_min 2.4.1
+% by Ross Lippert (http://web.mit.edu/~ripper/www.sgmin.html).
+
+
 function stat=penv(X1,X2,Y,u)
 
 %---preparation---
