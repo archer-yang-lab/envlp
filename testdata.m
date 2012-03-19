@@ -1,3 +1,4 @@
+% -----Test envelope model-----
 % Generate data
 n=100;
 r=10;
@@ -42,6 +43,7 @@ u=bic_env(Y,X)
 u=aic_env(Y,X)
 stat=env(X,Y,u);
 
+%-----Test partial envelope model-----
 
 load T7-7.dat
 Y=T7_7(:,1:4);
@@ -66,3 +68,35 @@ X1=X(:,1);
 X2=X(:,2:3);
 u=lrt_penv(X1,X2,Y,0.01)
 stat=penv(X1,X2,Y,u)
+
+
+%-----Test inner envelope model-----
+
+
+rand('state',11);
+randn('state',11);
+r=10;
+p=8;
+d=5;
+n=200;
+C1=grams(rand(r,r));
+Gamma1=C1(:,1:d);
+Gamma0=C1(:,d+1:end);
+D=diag([1 5 10 50 100 500 1000 5000 10000 50000]);
+Sigma=Gamma1*D(1:d,1:d)*Gamma1'+Gamma0*D(d+1:end,d+1:end)*Gamma0';
+Mean=zeros(r,1);
+eta1=[eye(d) zeros(d,p-d)]';
+eta2=[zeros(p-d,d) randn(p-d,p-d)]';
+
+B=grams(rand(r-d,p-d));
+bet=Gamma1*eta1'+Gamma0*B*eta2';
+
+mu=rand(r,1);
+
+X=floor(rand(n,p)*2)*100;
+for i=1:n
+    Y(i,:)=mu'+(bet*X(i,:)')'+mvnrnd(Mean,Sigma);
+end
+            
+stat=ienv(X,Y,d);
+           
