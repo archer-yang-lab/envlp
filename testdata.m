@@ -99,4 +99,7 @@ for i=1:n
 end
             
 stat=ienv(X,Y,d);
-           
+subspace(stat.Gamma1,Gamma1)
+
+alpha=0.01;
+d=lrt_ienv(X,Y,alpha);           

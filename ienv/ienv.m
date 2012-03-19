@@ -64,7 +64,7 @@ else
     eigtem=eig(sigRes);
     
     F = make_F(@F4ienv,dataParameter);
-    dF = make_dF(@dFienv,dataParameter);
+    dF = make_dF(@dF4ienv,dataParameter);
     
     init=get_Init(F,X,Y,u,dataParameter);
     [l Gamma1]=sg_min(F,dF,init,'prcg','quiet');
@@ -82,7 +82,7 @@ else
     [Vt Lambdat]=eig(temp1*temp2*temp1);
     [Lambda ind]=sort(diag(Lambdat),'descend');
     V=Vt(:,ind);
-    K=diag([zeros(1,p-u),Lambda(p-u+1:end)]);
+    K=diag([zeros(1,p-u),Lambda(p-u+1:end)']);
     Omega0=Gamma0'*sigRes*Gamma0+temp3*V*K*V'*temp3;
     
     [Vtmp Dtmp]=eig(inv(Omega0));
@@ -128,7 +128,7 @@ else
 
     insigma=inv(Sigma);
     J=zeros(p*r+(r+1)*r/2,p*r+(r+1)*r/2);
-    J(1:p*r,1:p*r)=kron(Sx,insigma);
+    J(1:p*r,1:p*r)=kron(sigX,insigma);
     J(p*r+1:end,p*r+1:end)=Expan(r)'*kron(insigma,insigma)*Expan(r)/2;
     asyv=H*pinv(H'*J*H)*H';
     asyim=asyv(r*p,r*p);
