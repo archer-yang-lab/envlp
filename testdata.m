@@ -102,4 +102,6 @@ stat=ienv(X,Y,d);
 subspace(stat.Gamma1,Gamma1)
 
 alpha=0.01;
-d=lrt_ienv(X,Y,alpha);           
+d=lrt_ienv(X,Y,alpha);
+d=aic_ienv(X,Y);
+d=bic_ienv(X,Y);

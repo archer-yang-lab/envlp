@@ -89,7 +89,7 @@ if u>p && u<r
     
 elseif u==r
     
-    temp=env(X,Y,p);
+    temp=env(X,Y,r);
     stat.beta=temp.beta;
     stat.Sigma=temp.Sigma;
     stat.Gamma1=temp.Gamma;
