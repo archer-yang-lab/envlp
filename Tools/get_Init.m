@@ -101,6 +101,10 @@ if crit<=50
     [Ul S V]=svd(spini);
     [Ss In]=sort(diag(S(1:rk,1:rk)),'descend');
     WInit=Ul(:,1:u);
+    
+    if (F(Wguess)<F(WInit))
+        WInit=Wguess;
+    end
 
 else
     
@@ -111,7 +115,7 @@ else
     
     for rep=1:5
         for i=1:u+3
-            for j=1:r
+            for j=1:2*r
                 if sum(j ==initset(2:u))==0
                     initset(1)=j;
                     temp=F(V(:,initset(1:u)));
@@ -120,7 +124,7 @@ else
                         iniValue = temp;
                     end
                 end
-            end %for j=1:r
+            end %for j=1:2*r
             initset(1:u) = initset(2:(u+1));
             initset(u+1)=initset(1);
         end % end for i=1:u
@@ -145,6 +149,10 @@ else
     [Ul S V]=svd(spini);
     [Ss In]=sort(diag(S(1:rk,1:rk)),'descend');
     WInit=Ul(:,1:u);
+    
+    if (F(Wguess)<F(WInit))
+        WInit=Wguess;
+    end
     
 end
 

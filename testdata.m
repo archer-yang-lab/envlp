@@ -77,7 +77,7 @@ rand('state',11);
 randn('state',11);
 r=10;
 p=8;
-d=5;
+d=2;
 n=200;
 C1=grams(rand(r,r));
 Gamma1=C1(:,1:d);
@@ -89,7 +89,7 @@ eta1=[eye(d) zeros(d,p-d)]';
 eta2=[zeros(p-d,d) randn(p-d,p-d)]';
 
 B=grams(rand(r-d,p-d));
-bet=Gamma1*eta1'+Gamma0*B*eta2';
+bet=(Gamma1*eta1'+Gamma0*B*eta2');
 
 mu=rand(r,1);
 

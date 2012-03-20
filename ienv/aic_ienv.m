@@ -1,6 +1,7 @@
 function u=aic_ienv(X,Y)
 
 [n r]=size(Y);
+p=size(X,2);
     
 stat=env(X,Y,r);
 ic=-2*stat.l+2*stat.np;
