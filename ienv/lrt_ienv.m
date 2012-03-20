@@ -1,4 +1,29 @@
+%% lrt_ienv
+% Select the dimension of the inner envelope subspace using likelihood
+% ratio testing.
 
+%% Usage
+% u=lrt_ienv(X,Y,alpha)
+%
+% Input
+%
+% * X: Predictors. An n by p matrix, p is the number of predictors. The
+% predictors can be univariate or multivariate, discrete or continuous.
+% * Y: Multivariate responses. An n by r matrix, r is the number of
+% responses and n is number of observations. The responses must be 
+% continuous variables.
+% * alpha: Significance level for testing.  A real number between 0 and 1,
+% often taken at 0.05 or 0.01.
+%
+% Output
+%
+% * u: Dimension of the inner envelope. An integer between 0 and p or equal
+% to r.
+
+%% Description
+% This function implements the likelihood ratio testing procedure to select
+% the dimension of the inner envelope subspace, with prespecified significance 
+% level $$\alpha$.
 
 
 

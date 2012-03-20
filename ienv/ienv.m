@@ -1,3 +1,66 @@
+%% ienv
+% Fit the inner envelope model.
+
+%% Usage
+% stat=ienv(X,Y,u)
+%
+% Input
+%
+% * X: Predictors. An n by p matrix, p is the number of predictors. The
+% predictors can be univariate or multivariate, discrete or continuous.
+% * Y: Multivariate responses. An n by r matrix, r is the number of
+% responses and n is number of observations. The responses must be 
+% continuous variables, and r should be strictly greater than p.
+% * u: Dimension of the inner envelope. An integer between 0 and p or equal
+% to r.
+%
+% Output
+% 
+% stat: A list that contains the maximum likelihood estimators and some
+% statistics.
+% 
+% * stat.beta: The envelope estimator of the regression coefficients $$\beta$. 
+% An r by p matrix.
+% * stat.Sigma: The envelope estimator of the error covariance matrix.  An r by
+% r matrix.
+% * stat.Gamma1: The orthogonal basis of the inner envelope subspace. An r by u
+% semi-orthogonal matrix.
+% * stat.Gamma0: The orthogonal basis of the complement of the inner envelope
+% subspace.  An r by r-u semi-orthogonal matrix.
+% * stat.eta1: The transpose of the coordinates of $$\beta$ with respect to
+% Gamma1. An p by u matrix.
+% * stat.B: An (r-u) by (p-u) semi-orthogonal matrix, so that (Gamma,
+% Gamma0*B) spans $$\beta$.
+% * stat.eta2: The transpose of the coordinates of $$\beta$ with respect to
+% Gamma0. An p by (p-u) matrix.
+% * stat.Omega: The coordinates of Sigma with respect to Gamma1. An u by u
+% matrix.
+% * stat.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u
+% matrix.
+% * stat.alpha: The estimated intercept in the inner envelope model.  An r by 1
+% vector.
+% * stat.l: The maximized log likelihood function.  A real number.
+% * stat.ratio: The asymptotic standard error ratio of the stanard multivariate 
+% linear regression estimator over the inner envelope estimator, for each element 
+% in $$\beta$.  An r by p matrix.
+% * stat.np: The number of parameters in the inner envelope model.  A positive
+% integer.
+
+%% Description
+% This function fits the inner envelope model to the responses and predictors,
+% using the maximum likehood estimation.  When the dimension of the
+% envelope is between 1 and p-1, we implemented the algorithm in Su and
+% Cook (2012).  When the dimension is p, then the inner envelope model degenerates
+% to the standard multivariate linear regression.  When the dimension is 0,
+% it means that X and Y are uncorrelated, and the fitting is different.
+
+%% References
+% 
+% * The codes is implemented based on the algorithm in Su and Cook (2012).
+% * The Grassmann manifold optimization step calls the package sg_min 2.4.1
+% by Ross Lippert (http://web.mit.edu/~ripper/www.sgmin.html).
+
+
 function stat=ienv(X,Y,u)
 
 
