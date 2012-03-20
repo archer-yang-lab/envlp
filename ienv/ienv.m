@@ -202,7 +202,7 @@ else
     H(1:p*r,1:p*u)=kron(eye(p),Gamma1);
     H(1:p*r,p*u+1:p*p)=kron(eye(p),Gamma0*B);
     H(1:p*r,p*p+1:p*p+(p-u)*(r-p))=kron(eta2,Gamma0*B0);
-    H(1:p*r,p*p+(p-u)*(r-p)+1:p*p+(p-u)*(r-p)+r*u)=kron(eta1,eye(r))-Kpd_right(kron(eta2*B'*Gamma0',Gamma1),r,u);
+    H(1:p*r,p*p+(p-u)*(r-p)+1:p*p+(p-u)*(r-p)+r*u)=kron(eta1,eye(r))-kron(eta2*B'*Gamma0',Gamma1)*Kpd(r,u);
     H(p*r+1:end,p*p+(p-u)*(r-p)+1:p*p+(p-u)*(r-p)+r*u)=2*Contr(r)*(kron(Gamma1*Omega1,eye(r))-kron(Gamma1,Gamma0*Omega0*Gamma0'));
     H(p*r+1:end,p*p+(p-u)*(r-p)+r*u+1:p*p+(p-u)*(r-p)+r*u+u*(u+1)/2)=Contr(r)*kron(Gamma1,Gamma1)*Expan(u);
     H(p*r+1:end,p*p+(p-u)*(r-p)+r*u+u*(u+1)/2+1:end)=Contr(r)*kron(Gamma0,Gamma0)*Expan(r-u);
