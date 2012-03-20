@@ -1,3 +1,25 @@
+%% dF4ienv
+% First derivative of the objective funtion for computing the inner envelope
+% subspace.
+
+%% Usage
+% f = dF4ienv(R,dataParameter)
+% 
+% Input
+%
+% * R: An r by u semi-orthogonal matrix, 0<u<=p.
+% * dataParameter: A structure that contains the statistics calculated form
+% the data.
+%
+% Output
+%
+% * dF: The first derivative of the objective function for computing the
+% inner envelope subspace.  An r by u matrix.
+
+%% Description
+%
+% This first derivative of F4ienv obtained by matrix calculus calculations.
+
 function df = dF4ienv(R,dataParameter)
 
 [r u]=size(R);
