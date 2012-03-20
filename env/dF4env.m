@@ -1,12 +1,15 @@
-%% dF
-% The derivative of the objective funtion for computing the envelope subspace
+%% dF4env
+% The first derivative of the objective funtion for computing the envelope
+% subspace.
 
 %% Usage
-% df = dF ( R )
+% df = dF4env(R,dataParameter)
 % 
 % Input
 %
 % * R: An r by u semi orthogonal matrix, 0<u<=r.
+% * dataParameter: A structure that contains the statistics calculated form
+% the data.
 %
 % Output
 %
