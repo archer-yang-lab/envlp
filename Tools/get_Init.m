@@ -1,4 +1,4 @@
-%% startv
+%% WInit
 % Starting value for the envelope subspace.
 
 %% Usage
@@ -10,6 +10,8 @@
 % * Y: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations.  
 % * u: Dimension of the envelope. An integer between 1 and r-1.
+% * dataParameter: A list containing commonly used statistics computed from
+% the data.
 %
 % Output
 %
@@ -82,8 +84,8 @@ if crit<=50
     end
 
     % the Y given the minimum value is our guess
-    Wguess=reshape(Ys(minIndex,:,:),m,nn);
-    bini=Wguess*pinv(Wguess'*Wguess)*Wguess'*betaOLS;
+    Wguess1=reshape(Ys(minIndex,:,:),m,nn);
+    bini=Wguess1*pinv(Wguess1'*Wguess1)*Wguess1'*betaOLS;
     sigini=(YC-XC*bini')'*(YC-XC*bini')/n;
         
 
@@ -100,10 +102,12 @@ if crit<=50
     
     [Ul S V]=svd(spini);
     [Ss In]=sort(diag(S(1:rk,1:rk)),'descend');
-    WInit=Ul(:,1:u);
+    Wguess2=Ul(:,1:u);
     
-    if (F(Wguess)<F(WInit))
-        WInit=Wguess;
+    if (F(Wguess1)<F(Wguess2))
+        WInit=Wguess1;
+    else 
+        WInit=Wguess2;
     end
 
 else
@@ -130,8 +134,8 @@ else
         end % end for i=1:u
     end % end for rep=1:3
 
-    Wguess=V(:,initset(1:u));
-    bini=Wguess*pinv(Wguess'*Wguess)*Wguess'*betaOLS;
+    Wguess1=V(:,initset(1:u));
+    bini=Wguess1*pinv(Wguess1'*Wguess1)*Wguess1'*betaOLS;
     sigini=(YC-XC*bini')'*(YC-XC*bini')/n;
         
 
@@ -148,10 +152,12 @@ else
     
     [Ul S V]=svd(spini);
     [Ss In]=sort(diag(S(1:rk,1:rk)),'descend');
-    WInit=Ul(:,1:u);
+    Wguess2=Ul(:,1:u);
     
-    if (F(Wguess)<F(WInit))
-        WInit=Wguess;
+    if (F(Wguess1)<F(Wguess2))
+        WInit=Wguess1;
+    else
+        Winit=Wguess2;
     end
     
 end
