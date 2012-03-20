@@ -14,8 +14,8 @@ p=dataParameter.p;
     R0=grams(nulbasis(R'));
     temp1=inv(R0'*sigRes*R0);
     temp2=R0'*sigFit*R0;
-    dzdg0=kron(eye(r-u),temp1*R0'*sigFit)+Kpd(kron(temp1,R0'*sigFit),r-u,r-u)-kron(temp2*temp1,temp1*R0'*sigRes)-Kpd(kron(temp1,temp2*temp1*R0'*sigRes),r-u,r-u);
-    dg0dg1=-Kpd_right(kron(R0',R),r,u);
+    dzdg0=kron(eye(r-u),temp1*R0'*sigFit)+Kpd(r-u,r-u)*kron(temp1,R0'*sigFit)-kron(temp2*temp1,temp1*R0'*sigRes)-Kpd(r-u,r-u)*kron(temp1,temp2*temp1*R0'*sigRes);
+    dg0dg1=-kron(R0',R)*Kpd(r,u);
     
     [V0 D0]=eig(temp1);
     MultiPlier=V0*diag(sqrt(diag(D0)))*V0';
