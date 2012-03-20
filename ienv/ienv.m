@@ -33,7 +33,7 @@
 % Gamma0*B) spans $$\beta$.
 % * stat.eta2: The transpose of the coordinates of $$\beta$ with respect to
 % Gamma0. An p by (p-u) matrix.
-% * stat.Omega: The coordinates of Sigma with respect to Gamma1. An u by u
+% * stat.Omega1: The coordinates of Sigma with respect to Gamma1. An u by u
 % matrix.
 % * stat.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u
 % matrix.
@@ -83,9 +83,27 @@ if r<=p
     
 end
 
-if u>p
+if u>p && u<r
     
-    error('The dimension of the inner envelope subspace cannot be greater than p.');
+    error('Invalid dimension for the inner envelope subspace.');
+    
+elseif u==r
+    
+    temp=env(X,Y,p);
+    stat.beta=temp.beta;
+    stat.Sigma=temp.Sigma;
+    stat.Gamma1=temp.Gamma;
+    stat.Gamma0=temp.Gamma0;
+    stat.B=[];
+    stat.eta1=temp.eta';
+    stat.eta2=[];
+    stat.Omega1=temp.Omega;
+    stat.Omega0=temp.Omega0;
+    stat.alpha=temp.alpha;
+    stat.l=temp.l;
+    stat.np=temp.np;
+    stat.ratio=temp.ratio;
+    
 
 elseif u==p
     

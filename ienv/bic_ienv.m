@@ -28,7 +28,7 @@ function u=bic_ienv(X,Y)
 [n r]=size(Y);
 p=size(X,2);
     
-stat=env(X,Y,r);
+stat=ienv(X,Y,r);
 ic=-2*stat.l+log(n)*stat.np;
 u=r;
 

@@ -33,7 +33,7 @@ function u=lrt_ienv(X,Y,alpha)
 [n r]=size(Y);
 p=size(X,2);
 
-stat0=env(X,Y,r);
+stat0=ienv(X,Y,r);
 
 
 for i=1:(p+1)
