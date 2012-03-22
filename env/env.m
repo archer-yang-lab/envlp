@@ -35,7 +35,7 @@
 % * stat.alpha: The estimated intercept in the envelope model.  An r by 1
 % vector.
 % * stat.l: The maximized log likelihood function.  A real number.
-% * stat.ratio: The asymptotic standard error ratio of the stanard multivariate 
+% * stat.ratio: The asymptotic standard error ratio of the standard multivariate 
 % linear regression estimator over the envelope estimator, for each element 
 % in $$\beta$.  An r by p matrix.
 % * stat.np: The number of parameters in the envelope model.  A positive
