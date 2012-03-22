@@ -1,5 +1,5 @@
 %% F4env
-% Objective funtion for computing the envelope subspace
+% Objective funtion for computing the envelope subspace.
 
 %% Usage
 % f = F4env(R,dataParameter)
@@ -16,7 +16,7 @@
 
 %% Description
 %
-% The objective function is derived in Section 4.3 in Cook et al. (2010) by
+% The objective function is derived in Section 4.3 of Cook et al. (2010)
 %  using maximum likelihood estimation. The columns of the semi-orthogonal 
 % matrix that minimizes this function span the estimated envelope subspace.
 

@@ -1,3 +1,66 @@
+%% senv
+% Fit the scaled envelope model.
+
+%% Usage
+% stat=senv(X,Y,u)
+%
+% Input
+%
+% * X: Predictors. An n by p matrix, p is the number of predictors. The
+% predictors can be univariate or multivariate, discrete or continuous.
+% * Y: Multivariate responses. An n by r matrix, r is the number of
+% responses and n is number of observations. The responses must be 
+% continuous variables, and r should be strictly greater than p.
+% * u: Dimension of the envelope. An integer between 0 and r.
+%
+% Output
+% 
+% stat: A list that contains the maximum likelihood estimators and some
+% statistics.
+% 
+% * stat.beta: The scaled envelope estimator of the regression coefficients
+% $$\beta$. An r by p matrix.
+% * stat.Sigma: The scaled envelope estimator of the error covariance
+% matrix.  An r by r matrix.
+% * stat.Lambda: The matrix of estimated scales. An r by r diagonal matrix
+% with the first diagonal element equal to 1 and other diagonal elements
+% being positive.
+% * stat.Gamma: The orthogonal basis of the envelope subspace. An r by u
+% semi-orthogonal matrix.
+% * stat.Gamma0: The orthogonal basis of the complement of the envelope
+% subspace.  An r by r-u semi-orthogonal matrix.
+% * stat.eta: The coordinates of $$\beta$ with respect to Gamma. An u by p
+% matrix.
+% * stat.Omega: The coordinates of Sigma with respect to Gamma. An u by u
+% matrix.
+% * stat.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u
+% matrix.
+% * stat.alpha: The estimated intercept in the scaled envelope model.  An r
+% by 1 vector.
+% * stat.l: The maximized log likelihood function.  A real number.
+% * stat.ratio: The asymptotic standard error ratio of the standard
+% multivariate linear regression estimator over the scaled envelope
+% estimator, for each element in $$\beta$.  An r by p matrix.
+% * stat.np: The number of parameters in the scaled envelope model.  A
+% positive integer.
+
+%% Description
+% This function fits the scaled envelope model to the responses and predictors,
+% using the maximum likehood estimation.  When the dimension of the
+% envelope is between 1 and r-1, we implemented the algorithm in Cook and
+% Su (2012).  When the dimension is r, then the scaled envelope model 
+% degenerates to the standard multivariate linear regression.  When the
+% dimension is 0, it means that X and Y are uncorrelated, and the fitting
+% is different.
+
+%% References
+% 
+% * The codes is implemented based on the algorithm in Section 4.1 of Cook 
+% and Su (2012).
+% * The Grassmann manifold optimization step calls the package sg_min 2.4.1
+% by Ross Lippert (http://web.mit.edu/~ripper/www.sgmin.html).
+
+
 function stat=senv(X,Y,u)
 
 
