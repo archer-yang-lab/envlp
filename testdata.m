@@ -105,3 +105,31 @@ alpha=0.01;
 d=lrt_ienv(X,Y,alpha);
 d=aic_ienv(X,Y);
 d=bic_ienv(X,Y);
+
+
+%-----Test the scaled envelope model-----
+r=10;
+u=5;
+p=5;
+n=300;
+sigma1=.5;
+sigma2=sqrt(5);
+Gamma=grams(rand(r,u));
+Gamma0=grams(nulbasis(Gamma'));
+bet=Gamma*randn(u,p)*2;
+Sigmao=sigma1^2*Gamma*Gamma'+sigma2^2*Gamma0*Gamma0';
+Mean=zeros(r,1);
+X=randn(n,p)*5;
+
+Z=zeros(n,r);
+for i=1:n
+    Z(i,:)=X(i,:)*bet'+mvnrnd(Mean,Sigmao);
+end
+
+seq=0:0.5:4.5;
+D=diag(2.^seq);
+Y=Z*D;
+stat=senv(X,Y,u);
+subspace(stat.Gamma,Gamma)
+u=aic_senv(X,Y)
+u=bic_senv(X,Y)
