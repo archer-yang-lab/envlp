@@ -133,3 +133,46 @@ stat=senv(X,Y,u);
 subspace(stat.Gamma,Gamma)
 u=aic_senv(X,Y)
 u=bic_senv(X,Y)
+
+
+
+
+%-----Test the heteroscedastic envelope model-----
+sigma11=1;
+sigma12=5;
+sigma2=10;
+p=2;
+r=10;
+u=2;
+n=200;
+
+Mean=zeros(r,1);
+C1=grams(rand(r,r));
+Gamma=C1(:,1:u);
+Gamma0=C1(:,u+1:end);
+Sigma1=sigma11^2*Gamma*Gamma'+sigma2^2*Gamma0*Gamma0';
+Sigma2=sigma12^2*Gamma*Gamma'+sigma2^2*Gamma0*Gamma0';
+
+eta=randn(u,1)*5;
+bet=Gamma*eta;
+
+mu=zeros(r,1);
+
+Y=zeros(n,r);
+X=ones(n,1);
+X(1:n/2)=-1;
+
+for i=1:n/2
+    Y(i,:)=mu'+mvnrnd(Mean,Sigma1);
+    Y(n/2+i,:)=mu'+bet'*2+mvnrnd(Mean,Sigma2);
+end
+stat=henv(X,Y,0)
+stat=henv(X,Y,p)
+stat=henv(X,Y,u)
+
+subspace(stat.Gamma,Gamma)
+u=aic_henv(X,Y)
+u=bic_henv(X,Y)
+u=lrt_henv(X,Y,0.01)
+
+
