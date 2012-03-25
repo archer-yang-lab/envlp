@@ -1,14 +1,14 @@
-%% lrt_env
+%% lrt_henv
 % Select the dimension of the envelope subspace using likelihood ratio
-% testing.
+% testing for the heteroscedastic envelope model.
 
 %% Usage
-% u=lrt_env(X,Y,alpha)
+% u=lrt_henv(X,Y,alpha)
 %
 % Input
 %
-% * X: Predictors. An n by p matrix, p is the number of predictors. The
-% predictors can be univariate or multivariate, discrete or continuous.
+% * X: Group indicators. An n by p matrix, p is the number of groups. X can
+% only take p different values, one for each group.
 % * Y: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
 % continuous variables.
@@ -21,22 +21,20 @@
 
 %% Description
 % This function implements the likelihood ratio testing procedure to select
-% the dimension of the envelope subspace, with prespecified significance 
-% level $$\alpha$.  
+% the dimension of the envelope subspace in heteroscedastic envelope model,
+% with prespecified significance level $$\alpha$. 
 
 
-
-
-function u=lrt_env(X,Y,alpha)
+function u=lrt_henv(X,Y,alpha)
 
 [n r]=size(Y);
 
-stat0=env(X,Y,r);
+stat0=henv(X,Y,r);
 
 
 for i=0:r-1
-%     i
-        stat=env(X,Y,i);
+
+        stat=henv(X,Y,i);
         chisq = -2*(stat.l-stat0.l);
         df=stat0.np-stat.np;
         
