@@ -49,6 +49,8 @@
 % * stat.l: The maximized log likelihood function.  A real number.
 % * stat.np: The number of parameters in the heteroscedastic envelope
 % model.  A positive integer.
+% * stat.asyHenv: The asymptotic standard errors for elements in $$beta$
+% under the heteroscedastic envelope model. An r by p matrix.
 % * stat.ratio: The asymptotic standard error ratio of the standard multivariate 
 % linear regression estimator over the heteroscedastic envelope estimator.
 % An r by p matrix, the (i, j)th element in stat.ratio is the elementwise standard
@@ -112,6 +114,7 @@ if u==0
     stat.Omega0=Omega0;
     stat.l=l;
     stat.np=(r-u)+u*(r-u+p)+p*u*(u+1)/2+(r-u)*(r-u+1)/2;
+    stat.asyHenv=[];
     stat.ratio=ones(r,p);    
     
     
@@ -140,6 +143,31 @@ elseif u==r
         end
     end
     
+    fracN=ng/n;
+    J=zeros(p*r+p*r*(r+1)/2);
+    for i=1:p-1
+        for j=1:p-1
+
+            J((i-1)*r+1:i*r,(j-1)*r+1:j*r)=fracN(j)*fracN(i)/fracN(p)*inv(Sigma(:,:,p));
+        end
+        J((i-1)*r+1:i*r,(i-1)*r+1:i*r)=fracN(i)*inv(Sigma(:,:,i))+fracN(i)^2/fracN(p)*inv(Sigma(:,:,p));
+    end
+    for i=1:p
+        J(r*(p-1)+1+(i-1)*r*(r+1)/2:r*(p-1)+i*r*(r+1)/2,r*(p-1)+1+(i-1)*r*(r+1)/2:r*(p-1)+i*r*(r+1)/2)=0.5*fracN(i)*Expan(r)'*kron(inv(Sigma(:,:,i)),inv(Sigma(:,:,i)))*Expan(r);
+    end
+    J(r+1:end,r+1:end)=J(1:(p-1)*r+p*r*(r+1)/2,1:(p-1)*r+p*r*(r+1)/2);
+    J(1:r,:)=0;
+    J(r+1:end,1:r)=0;
+    for i=1:p
+        J(1:r,1:r)=J(1:r,1:r)+fracN(i)*inv(Sigma(:,:,i));
+    end
+    for i=1:p-1
+        J(1:r,i*r+1:(i+1)*r)=fracN(i)*(inv(Sigma(:,:,p))-inv(Sigma(:,:,i)));
+        J(i*r+1:(i+1)*r,1:r)=J(1:r,i*r+1:(i+1)*r);
+    end
+    temp=inv(J);
+    asyFm=sqrt(diag(temp(1:r*p,1:r*p)));
+    
     stat.mu=mu;
     stat.mug=mug;
     stat.Yfit=Yfit;
@@ -152,6 +180,7 @@ elseif u==r
     stat.Omega0=Omega0;
     stat.l=l;
     stat.np=(r-u)+u*(r-u+p)+p*u*(u+1)/2+(r-u)*(r-u+1)/2;
+    stat.asyHenv=reshape(asyFm,r,p);
     stat.ratio=ones(r,p);
     
 else
@@ -209,7 +238,7 @@ else
         J(i*r+1:(i+1)*r,1:r)=J(1:r,i*r+1:(i+1)*r);
     end
     temp=inv(J);
-    asyFm=sqrt(diag(temp(1:r*p,1:r*p)));
+    asyFm=reshape(sqrt(diag(temp(1:r*p,1:r*p))),r,p);
     
     H=zeros(p*r+p*r*(r+1)/2,r+u*(r+p-1-u)+p*u*(u+1)/2+(r-u)*(r-u+1)/2);
     for i=1:p-1
@@ -226,7 +255,7 @@ else
     H(r+1:end,1:r)=0;
     H(1:r,1:r)=eye(r);
     temp=H*inv(H'*J*H)*H';
-    asyHenv=sqrt(diag(temp(1:r*p,1:r*p)));
+    asyHenv=reshape(sqrt(diag(temp(1:r*p,1:r*p))),r,p);
 
     stat.mu=mu;
     stat.mug=mug;
@@ -240,6 +269,7 @@ else
     stat.Omega0=Omega0;
     stat.np=(r-u)+u*(r-u+p)+p*u*(u+1)/2+(r-u)*(r-u+1)/2;
     stat.l=-n*r/2*(1+log(2*pi))-n/2*(l+log(prod(eigtem(eigtem>0))));   
+    stat.asyHenv=asyHenv;
     stat.ratio=asyFm./asyHenv;
     
 end

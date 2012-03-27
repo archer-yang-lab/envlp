@@ -41,6 +41,8 @@
 % * stat.alpha: The estimated intercept in the partial envelope model.  An r by 1
 % vector.
 % * stat.l: The maximized log likelihood function.  A real number.
+% * stat.asyPenv: Asymptotic standard error for elements in $$\beta$ under
+% the partial envelope model.  An r by p1 matrix.
 % * stat.ratio: The asymptotic standard error ratio of the stanard multivariate 
 % linear regression estimator over the partial envelope estimator, for each element 
 % in $$\beta_1$.  An r by p1 matrix.
@@ -127,10 +129,15 @@ if u>0 && u<r
     
     %---compute asymptotic variance and get the ratios---
     Sig1G2=SX1-SX12*inv(SX2)*SX12';
-    asyfm=kron(inv(Sig1G2),Sigma);
+    asyFm=kron(inv(Sig1G2),Sigma);
+    asyFm=reshape(sqrt(diag(asyFm)),r,p1);
+    
     temp=kron(eta*Sig1G2*eta',inv(Omega0))+kron(Omega,inv(Omega0))+kron(inv(Omega),Omega0)-2*kron(eye(u),eye(r-u));
-    asypm=kron(inv(Sig1G2),Sigma1)+kron(eta',Gamma0)*inv(temp)*kron(eta,Gamma0');
-    stat.ratio=reshape(sqrt(diag(asyfm)./diag(asypm)),r,p1);
+    asyPenv=kron(inv(Sig1G2),Sigma1)+kron(eta',Gamma0)*inv(temp)*kron(eta,Gamma0');
+    asyPenv=reshape(sqrt(diag(asyPenv)),r,p1);
+    
+    stat.asyPenv=asyPenv;
+    stat.ratio=asyFm./asyPenv;
 
     
 elseif u==0
@@ -148,6 +155,7 @@ elseif u==0
     stat.Omega0=Sigma;
     stat.alpha=mean(Y)'-beta2*mean(X2)';
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    stat.asyPenv=[];
     stat.ratio=ones(r,p1);
     stat.np=r+u*p1+r*p2+r*(r+1)/2;
     
@@ -157,6 +165,10 @@ elseif u==r
     X=[X1 X2];
     [beta Sigma]=fit_OLS(X,Y);
     eigtem=eig(Sigma);
+    sigX=cov(X,1);
+    asyFm=kron(inv(sigX),Sigma);
+    asyFm=reshape(sqrt(diag(asyFm(1:r*p1,1:r*p1))),r,p1);
+    
     
     stat.beta1=beta(:,1:p1);
     stat.beta2=beta(:,p1+1:end);
@@ -168,6 +180,7 @@ elseif u==r
     stat.Omega0=[];
     stat.alpha=mean(Y)'-beta*mean(X)';
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    stat.asyPenv=asyFm;
     stat.ratio=ones(r,p1);
     stat.np=r+u*p1+r*p2+r*(r+1)/2;
     
