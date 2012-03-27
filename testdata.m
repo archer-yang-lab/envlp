@@ -34,6 +34,9 @@ u=aic_env(Y,X)
 
 
 
+bootse=bstrp_OLS(X,Y,B)
+bootse=bstrp_env(X,Y,B,u)
+
 load wheatprotein.txt
 X=wheatprotein(:,8);
 Y=wheatprotein(:,1:6);
@@ -53,6 +56,8 @@ X2=X(:,1:2);
 u=lrt_env(Y,X,0.01);
 stat=env(X,Y,u);
 stat=penv(X1,X2,Y,1)
+
+bootse=bstrp_penv(X1,X2,Y,B,u)
 
 X1=X(:,3);
 X2=X(:,1:2);
@@ -106,6 +111,8 @@ d=lrt_ienv(X,Y,alpha);
 d=aic_ienv(X,Y);
 d=bic_ienv(X,Y);
 
+B=200;
+bootse=bstrp_ienv(X,Y,B,d)
 
 %-----Test the scaled envelope model-----
 r=10;
@@ -134,8 +141,8 @@ subspace(stat.Gamma,Gamma)
 u=aic_senv(X,Y)
 u=bic_senv(X,Y)
 
-
-
+B=5;
+bootse=bstrp_senv(X,Y,B,u)
 
 %-----Test the heteroscedastic envelope model-----
 sigma11=1;
@@ -166,8 +173,12 @@ for i=1:n/2
     Y(i,:)=mu'+mvnrnd(Mean,Sigma1);
     Y(n/2+i,:)=mu'+bet'*2+mvnrnd(Mean,Sigma2);
 end
+
+B=10;
+bootse=bstrp_henv(X,Y,B,u);
+
 stat=henv(X,Y,0)
-stat=henv(X,Y,p)
+stat=henv(X,Y,r)
 stat=henv(X,Y,u)
 
 subspace(stat.Gamma,Gamma)
