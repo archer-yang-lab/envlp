@@ -36,8 +36,10 @@ end
 
 dataParameter.n=n;
 dataParameter.ng=ng;
+dataParameter.ncum=ncum;
 dataParameter.p=p;
 dataParameter.r=r;
+dataParameter.ind=ind;
 dataParameter.mY=mean(Y)';
 dataParameter.mYg=mYg;
 dataParameter.sigY=cov(Y,1);

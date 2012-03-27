@@ -23,6 +23,10 @@
 % * stat.mug: The heteroscedastic envelope estimator of the group mean. A r
 % by p matrix, the ith column of the matrix contains the mean for the ith
 % group.
+% * stat.Yfit: A n by r matrix, the ith row gives the group mean of the
+% group that the ith observation belongs to.  As X is just a group
+% indicator, and is not ordinal, stat.mug alone does not tell which
+% group corresponds to which group mean.
 % * stat.Gamma: The orthogonal basis of the envelope subspace. An r by u
 % semi-orthogonal matrix.
 % * stat.Gamma0: The orthogonal basis of the complement of the envelope
@@ -75,10 +79,12 @@ p=dataParameter.p;
 r=dataParameter.r;
 n=dataParameter.n;
 ng=dataParameter.ng;
+ncum=dataParameter.ncum;
 mY=dataParameter.mY;
 mYg=dataParameter.mYg;
 sigRes=dataParameter.sigRes;
 sigY=dataParameter.sigY;
+ind=dataParameter.ind;
 
 if u==0
     
@@ -96,6 +102,7 @@ if u==0
     
     stat.mu=mu;
     stat.mug=mug;
+    stat.Yfit=zeros(n,r);
     stat.Gamma=Gamma;
     stat.Gamma0=Gamma0;
     stat.beta=beta;
@@ -124,9 +131,18 @@ elseif u==r
         eigtem = eig(sigRes(:,:,i));
         l=l-ng(i)/2*log(prod(eigtem(eigtem>0)));
     end
+    Yfit=zeros(n,r);
+    for i=1:p
+        if i>1
+            Yfit(ind(ncum(i-1)+1:ncum(i)),:)=ones(ng(i),1)*mug(:,i)';
+        else
+            Yfit(ind(1:ncum(1)),:)=ones(ng(1),1)*mug(:,1)';
+        end
+    end
     
     stat.mu=mu;
     stat.mug=mug;
+    stat.Yfit=Yfit;
     stat.Gamma=Gamma;
     stat.Gamma0=Gamma0;
     stat.beta=beta;
@@ -159,6 +175,15 @@ else
     for i=1:p
         Omega(:,:,i)=Gamma'*sigRes(:,:,i)*Gamma;
         Sigma(:,:,i)=Gamma*Omega(:,:,i)*Gamma'+Gamma0*Omega0*Gamma0';
+    end
+    
+    Yfit=zeros(n,r);
+    for i=1:p
+        if i>1
+            Yfit(ind(ncum(i-1)+1:ncum(i)),:)=ones(ng(i),1)*mug(:,i)';
+        else
+            Yfit(ind(1:ncum(1)),:)=ones(ng(1),1)*mug(:,1)';
+        end
     end
 
     fracN=ng/n;
@@ -205,6 +230,7 @@ else
 
     stat.mu=mu;
     stat.mug=mug;
+    stat.Yfit=Yfit;
     stat.Gamma=Gamma;
     stat.Gamma0=Gamma0;
     stat.beta=beta;
