@@ -35,11 +35,14 @@
 % * stat.alpha: The estimated intercept in the envelope model.  An r by 1
 % vector.
 % * stat.l: The maximized log likelihood function.  A real number.
+% * stat.asyEnv: Asymptotic standard error for elements in $$\beta$ under
+% the envelope model.  An r by p matrix.
 % * stat.ratio: The asymptotic standard error ratio of the standard multivariate 
 % linear regression estimator over the envelope estimator, for each element 
 % in $$\beta$.  An r by p matrix.
 % * stat.np: The number of parameters in the envelope model.  A positive
 % integer.
+
 
 %% Description
 % This function fits the envelope model to the responses and predictors,
@@ -113,10 +116,12 @@ if u>0 && u<r
     Sigma=Sigma1+Sigma2;
 
     %---compute asymptotic variance and get the ratios---
-    asyfm=kron(inv(sigX),Sigma);
+    asyFm=kron(inv(sigX),Sigma);
+    asyFm=reshape(sqrt(diag(asyFm)),r,p);
     temp=kron(eta*sigX*eta',inv(Omega0))+kron(Omega,inv(Omega0))+kron(inv(Omega),Omega0)-2*kron(eye(u),eye(r-u));
-    asyem=kron(inv(sigX),Sigma1)+kron(eta',Gamma0)*inv(temp)*kron(eta,Gamma0');
-    stat.ratio=reshape(sqrt(diag(asyfm)./diag(asyem)),r,p);
+    asyEnv=kron(inv(sigX),Sigma1)+kron(eta',Gamma0)*inv(temp)*kron(eta,Gamma0');
+    asyEnv=reshape(sqrt(diag(asyEnv)),r,p);
+    
     
     stat.beta=beta;
     stat.Sigma=Sigma;
@@ -126,11 +131,13 @@ if u>0 && u<r
     stat.Omega=Omega;
     stat.Omega0=Omega0;
     stat.alpha=alpha;
-    stat.np=r+u*p+r*(r+1)/2;
     stat.l=-n*r/2*(1+log(2*pi))-n/2*(l+log(prod(eigtem(eigtem>0))));
+    stat.asyEnv=asyEnv;
+    stat.ratio=asyFm./asyEnv;
+    stat.np=r+u*p+r*(r+1)/2;
+    
     
 elseif u==0
-    
     
     
     stat.beta=zeros(r,p);
@@ -142,12 +149,16 @@ elseif u==0
     stat.Omega0=sigY;
     stat.alpha=mY;
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    stat.asyEnv=[];
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;
     
 
 elseif u==r
     
+ 
+    asyFm=kron(inv(sigX),sigRes);
+    asyFm=reshape(sqrt(diag(asyFm)),r,p);
     
     stat.beta=betaOLS;
     stat.Sigma=sigRes;
@@ -159,8 +170,10 @@ elseif u==r
     stat.alpha=mY-betaOLS*mX;
     eigtem=eig(sigRes);
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    stat.asyEnv=asyFm;
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;
+    
     
 end
     

@@ -40,6 +40,8 @@
 % * stat.alpha: The estimated intercept in the inner envelope model.  An r by 1
 % vector.
 % * stat.l: The maximized log likelihood function.  A real number.
+% * stat.asyIenv: Asymptotic standard error for elements in $$\beta$ under
+% the inner envelope model.  An r by p matrix.
 % * stat.ratio: The asymptotic standard error ratio of the stanard multivariate 
 % linear regression estimator over the inner envelope estimator, for each element 
 % in $$\beta$.  An r by p matrix.
@@ -102,6 +104,7 @@ elseif u==r
     stat.alpha=temp.alpha;
     stat.l=temp.l;
     stat.np=temp.np;
+    stat.asyIenv=temp.asyEnv;
     stat.ratio=temp.ratio;
     
 
@@ -120,6 +123,7 @@ elseif u==p
     stat.alpha=temp.alpha;
     stat.l=temp.l;
     stat.np=temp.np;
+    stat.asyIenv=temp.asyEnv;
     stat.ratio=temp.ratio;
     
 elseif u==0
@@ -136,6 +140,7 @@ elseif u==0
     stat.Omega0=sigY;
     stat.alpha=mY;
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    stat.asyIenv=[];
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;    
 
@@ -192,7 +197,8 @@ else
     
     %-----Compute asymptotic variance for inner envelope model-----
     %-----Standard Model-----
-    asyfm=kron(inv(sigX),Sigma);
+    asyFm=kron(inv(sigX),Sigma);
+    asyFm=reshape(sqrt(diag(asyFm)),r,p);
     
     %-----Inner Envelope Model-----
     B0=grams(nulbasis(B'));
@@ -212,8 +218,11 @@ else
     J(1:p*r,1:p*r)=kron(sigX,insigma);
     J(p*r+1:end,p*r+1:end)=Expan(r)'*kron(insigma,insigma)*Expan(r)/2;
     asyv=H*pinv(H'*J*H)*H';
-    asyim=asyv(r*p,r*p);
-    stat.ratio=reshape(sqrt(diag(asyfm)./diag(asyim)),r,p);
+    asyIenv=asyv(r*p,r*p);
+    asyIenv=reshape(sqrt(diag(asyIenv)),r,p);    
+    
+    stat.asyIenv=asyIenv;
+    stat.ratio=asyFm./asyIenv;
     
 end
 

@@ -38,6 +38,8 @@
 % * stat.alpha: The estimated intercept in the scaled envelope model.  An r
 % by 1 vector.
 % * stat.l: The maximized log likelihood function.  A real number.
+% * stat.asySenv: Asymptotic standard error for elements in $$\beta$ under
+% the scaled envelope model.  An r by p matrix.
 % * stat.ratio: The asymptotic standard error ratio of the standard
 % multivariate linear regression estimator over the scaled envelope
 % estimator, for each element in $$\beta$.  An r by p matrix.
@@ -89,10 +91,14 @@ if u==0
     stat.Omega0=sigY;
     stat.alpha=mY;
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    stat.asySenv=[];
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;  
     
 elseif u==r
+    
+    asyFm=kron(inv(sigX),sigRes);
+    asyFm=reshape(sqrt(diag(asyFm)),r,p);
     
     eigtem=eig(sigRes);
     
@@ -106,6 +112,7 @@ elseif u==r
     stat.Omega0=[];
     stat.alpha=mY-betaOLS*mX;
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    stat.asySenv=asyFm;
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;
     
@@ -161,7 +168,8 @@ else
     stat.l=-n*r/2*(1+log(2*pi))-n/2*(l+log(prod(eigtem(eigtem>0))));
     
    %---compute asymptotic variance and get the ratios---
-    asyfm=kron(inv(sigX),Sigma);
+    asyFm=kron(inv(sigX),Sigma);
+    asyFm=reshape(sqrt(diag(asyFm)),r,p);
     insigma=inv(Sigma);
         
     J=zeros(p*r+(r+1)*r/2,p*r+(r+1)*r/2);
@@ -179,7 +187,9 @@ else
     H(p*r+1:end,r+u*(r-u+p):r-1+u*(r-u+p)+u*(u+1)/2)=Contr(r)*kron(Lambda*Gamma,Lambda*Gamma)*Expan(u);
     H(p*r+1:end,r+u*(r-u+p)+u*(u+1)/2:end)=Contr(r)*kron(Lambda*Gamma0,Lambda*Gamma0)*Expan(r-u);
 
-    asyvar=H*inv(H'*J*H)*H';    
-    stat.ratio=reshape(sqrt(diag(asyfm)./diag(asyvar(1:r*p,1:r*p))),r,p);
+    asyvar=H*inv(H'*J*H)*H'; 
+    asySenv=reshape(sqrt(diag(asyvar(1:r*p,1:r*p))),r,p);
+    stat.asySenv=asySenv;
+    stat.ratio=asyFm./asySenv;
     
 end
