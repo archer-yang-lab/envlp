@@ -218,7 +218,7 @@ else
     J(1:p*r,1:p*r)=kron(sigX,insigma);
     J(p*r+1:end,p*r+1:end)=Expan(r)'*kron(insigma,insigma)*Expan(r)/2;
     asyv=H*pinv(H'*J*H)*H';
-    asyIenv=asyv(r*p,r*p);
+    asyIenv=asyv(1:r*p,1:r*p);
     asyIenv=reshape(sqrt(diag(asyIenv)),r,p);    
     
     stat.asyIenv=asyIenv;
