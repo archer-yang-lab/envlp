@@ -39,7 +39,8 @@
 % by 1 vector.
 % * stat.l: The maximized log likelihood function.  A real number.
 % * stat.asySenv: Asymptotic standard error for elements in $$\beta$ under
-% the scaled envelope model.  An r by p matrix.
+% the scaled envelope model.  An r by p matrix.  The standard errors returned are
+% asymptotic, for actual standard errors, multiply by 1/sqrt(n).
 % * stat.ratio: The asymptotic standard error ratio of the standard
 % multivariate linear regression estimator over the scaled envelope
 % estimator, for each element in $$\beta$.  An r by p matrix.

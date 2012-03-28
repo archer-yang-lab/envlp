@@ -36,7 +36,8 @@
 % vector.
 % * stat.l: The maximized log likelihood function.  A real number.
 % * stat.asyEnv: Asymptotic standard error for elements in $$\beta$ under
-% the envelope model.  An r by p matrix.
+% the envelope model.  An r by p matrix.  The standard errors returned are
+% asymptotic, for actual standard errors, multiply by 1/sqrt(n).
 % * stat.ratio: The asymptotic standard error ratio of the standard multivariate 
 % linear regression estimator over the envelope estimator, for each element 
 % in $$\beta$.  An r by p matrix.
@@ -59,14 +60,23 @@
 % * The Grassmann manifold optimization step calls the package sg_min 2.4.1
 % by Ross Lippert (http://web.mit.edu/~ripper/www.sgmin.html).
 
+%% Example
+%
+% The following codes will reconstruct the results in the wheat protein data
+% example in Cook et al. (2010).
+%
+% load wheatprotein.txt
+% X=wheatprotein(:,8);
+% Y=wheatprotein(:,1:6);
+% alpha=0.01;
+% u=lrt_env(Y,X,alpha)
+% stat=env(X,Y,u)
+% stat.Omega
+% eig(stat.Omega0)
+% stat.ratio
 
 function stat=env(X,Y,u)
 
-
-% To Yi: 1) We need to do check something, e.g., if Y is discrete, the model cannot
-% handle that, but I do not know how to check that either.  There are some
-% other checks: u must be an interger between 0 and r, X and Y must have
-% the same length.
 
 
 

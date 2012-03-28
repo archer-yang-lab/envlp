@@ -22,6 +22,14 @@
 % This function computes the bootstrap standard errors for the regression
 % coefficients in the inner envelope model by bootstrapping the residuals. 
 
+%% Example
+%
+% load irisf.mat
+% 
+% u=bic_ienv(X,Y)
+% B=100;
+% bootse=bstrp_ienv(X,Y,B,u)
+
 function bootse=bstrp_ienv(X,Y,B,u)
 
 

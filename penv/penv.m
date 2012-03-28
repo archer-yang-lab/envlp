@@ -42,7 +42,8 @@
 % vector.
 % * stat.l: The maximized log likelihood function.  A real number.
 % * stat.asyPenv: Asymptotic standard error for elements in $$\beta$ under
-% the partial envelope model.  An r by p1 matrix.
+% the partial envelope model.  An r by p1 matrix.  The standard errors returned are
+% asymptotic, for actual standard errors, multiply by 1/sqrt(n).
 % * stat.ratio: The asymptotic standard error ratio of the stanard multivariate 
 % linear regression estimator over the partial envelope estimator, for each element 
 % in $$\beta_1$.  An r by p1 matrix.
@@ -66,6 +67,21 @@
 % * The Grassmann manifold optimization step calls the package sg_min 2.4.1
 % by Ross Lippert (http://web.mit.edu/~ripper/www.sgmin.html).
 
+%% Example
+% 
+% The following codes reconstruct the results in Su and Cook (2012).
+% 
+% load T7-7.dat
+% Y=T7_7(:,1:4);
+% X=T7_7(:,5:7);
+% X1=X(:,3);
+% X2=X(:,1:2);
+% alpha=0.01;
+% u=lrt_penv(X1,X2,Y,alpha)
+% stat=penv(X1,X2,Y,u)
+% stat.Omega
+% eig(stat.Omega0)
+% stat.ratio
 
 function stat=penv(X1,X2,Y,u)
 

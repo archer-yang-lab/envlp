@@ -41,7 +41,8 @@
 % vector.
 % * stat.l: The maximized log likelihood function.  A real number.
 % * stat.asyIenv: Asymptotic standard error for elements in $$\beta$ under
-% the inner envelope model.  An r by p matrix.
+% the inner envelope model.  An r by p matrix.  The standard errors returned are
+% asymptotic, for actual standard errors, multiply by 1/sqrt(n).
 % * stat.ratio: The asymptotic standard error ratio of the stanard multivariate 
 % linear regression estimator over the inner envelope estimator, for each element 
 % in $$\beta$.  An r by p matrix.
@@ -62,6 +63,17 @@
 % * The Grassmann manifold optimization step calls the package sg_min 2.4.1
 % by Ross Lippert (http://web.mit.edu/~ripper/www.sgmin.html).
 
+%% Example
+%
+% The following codes gives the results of the Fisher's iris data example
+% in Su and Cook (2012).
+% 
+% load irisf.mat
+% 
+% u=bic_env(X,Y)
+% d=bic_ienv(X,Y)
+% stat=ienv(X,Y,d)
+% 1-1./stat.ratio
 
 function stat=ienv(X,Y,u)
 

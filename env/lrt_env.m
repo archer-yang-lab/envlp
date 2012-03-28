@@ -24,7 +24,12 @@
 % the dimension of the envelope subspace, with prespecified significance 
 % level $$\alpha$.  
 
-
+%% Example
+% load wheatprotein.txt
+% X=wheatprotein(:,8);
+% Y=wheatprotein(:,1:6);
+% alpha=0.01;
+% u=lrt_env(Y,X,alpha)
 
 
 function u=lrt_env(X,Y,alpha)

@@ -22,6 +22,15 @@
 % This function computes the bootstrap standard errors for the regression
 % coefficients in the envelope model by bootstrapping the residuals. 
 
+%% Example
+% load wheatprotein.txt
+% X=wheatprotein(:,8);
+% Y=wheatprotein(:,1:6);
+% alpha=0.01;
+% u=lrt_env(Y,X,alpha)
+% B=100;
+% bootse=bstrp_env(X,Y,B,u)
+
 function bootse=bstrp_env(X,Y,B,u)
 
 

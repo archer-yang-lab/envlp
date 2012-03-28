@@ -24,6 +24,14 @@
 % This function implements the Akaike information criteria (AIC) to select
 % the dimension of the partial envelope subspace.  
 
+%% Example
+% load T7-7.dat
+% Y=T7_7(:,1:4);
+% X=T7_7(:,5:7);
+% X1=X(:,3);
+% X2=X(:,1:2);
+% u=aic_penv(X1,X2,Y)
+
 function u=aic_penv(X1,X2,Y)
 
 [n r]=size(Y);

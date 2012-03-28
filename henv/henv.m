@@ -50,7 +50,8 @@
 % * stat.np: The number of parameters in the heteroscedastic envelope
 % model.  A positive integer.
 % * stat.asyHenv: The asymptotic standard errors for elements in $$beta$
-% under the heteroscedastic envelope model. An r by p matrix.
+% under the heteroscedastic envelope model. An r by p matrix.  The standard errors returned are
+% asymptotic, for actual standard errors, multiply by 1/sqrt(n).
 % * stat.ratio: The asymptotic standard error ratio of the standard multivariate 
 % linear regression estimator over the heteroscedastic envelope estimator.
 % An r by p matrix, the (i, j)th element in stat.ratio is the elementwise standard

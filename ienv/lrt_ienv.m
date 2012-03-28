@@ -25,7 +25,12 @@
 % the dimension of the inner envelope subspace, with prespecified significance 
 % level $$\alpha$.
 
-
+%% Example
+%
+% load irisf.mat
+% 
+% alpha=0.01;
+% u=lrt_ienv(X,Y,alpha)
 
 
 function u=lrt_ienv(X,Y,alpha)
