@@ -27,6 +27,17 @@
 % This function computes the bootstrap standard errors for the regression
 % coefficients in the partial envelope model by bootstrapping the residuals. 
 
+%% Example
+% load T7-7.dat
+% Y=T7_7(:,1:4);
+% X=T7_7(:,5:7);
+% X1=X(:,3);
+% X2=X(:,1:2);
+% alpha=0.01;
+% u=lrt_penv(X1,X2,Y,alpha)
+% B=100;
+% bootse=bstrp_penv(X1,X2,Y,B,u)
+
 function bootse=bstrp_penv(X1,X2,Y,B,u)
 
 

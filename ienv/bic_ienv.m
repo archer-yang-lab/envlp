@@ -22,6 +22,10 @@
 % This function implements the Bayesian information criteria (BIC) to select
 % the dimension of the inner envelope subspace. 
 
+%% Example
+%
+% load irisf.mat
+% u=bic_ienv(X,Y)
 
 function u=bic_ienv(X,Y)
 

@@ -42,9 +42,14 @@ X=wheatprotein(:,8);
 Y=wheatprotein(:,1:6);
 alpha=0.01;
 u=lrt_env(Y,X,alpha)
+stat=env(X,Y,u);
+stat.Omega
+eig(stat.Omega0)
+stat.ratio
+
 u=bic_env(Y,X)
 u=aic_env(Y,X)
-stat=env(X,Y,u);
+
 
 %-----Test partial envelope model-----
 
@@ -53,6 +58,8 @@ Y=T7_7(:,1:4);
 X=T7_7(:,5:7);
 X1=X(:,3);
 X2=X(:,1:2);
+alpha=0.01;
+u=lrt_penv(X1,X2,Y,alpha)
 u=lrt_env(Y,X,0.01);
 stat=env(X,Y,u);
 stat=penv(X1,X2,Y,1)
@@ -114,6 +121,14 @@ d=bic_ienv(X,Y);
 B=200;
 bootse=bstrp_ienv(X,Y,B,d)
 
+
+load irisf.mat
+
+alpha=0.01;
+u=bic_env(X,Y)
+d=bic_ienv(X,Y)
+stat=ienv(X,Y,d)
+1-1./stat.ratio
 %-----Test the scaled envelope model-----
 r=10;
 u=5;
@@ -187,3 +202,12 @@ u=bic_henv(X,Y)
 u=lrt_henv(X,Y,0.01)
 
 
+% Waterstrider example
+load waterstrider.mat
+Y=log(Yu);
+X=X([31:90 121:150],[2 3]);
+X(61:90,:)=-1;
+Y=Y([31:90 121:150],:);
+k=3;
+[n r]=size(Y);
+u=lrt_henv(X,Y,0.01)

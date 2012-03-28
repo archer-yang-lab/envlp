@@ -22,6 +22,11 @@
 % This function implements the Akaike information criteria (AIC) to select
 % the dimension of the inner envelope subspace. 
 
+%% Example
+%
+% load irisf.mat
+% u=aic_ienv(X,Y)
+
 function u=aic_ienv(X,Y)
 
 [n r]=size(Y);

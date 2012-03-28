@@ -26,6 +26,15 @@
 % the dimension of the partial envelope subspace, with prespecified 
 % significance level $$\alpha$.  
 
+%% Example
+% load T7-7.dat
+% Y=T7_7(:,1:4);
+% X=T7_7(:,5:7);
+% X1=X(:,3);
+% X2=X(:,1:2);
+% alpha=0.01;
+% u=lrt_penv(X1,X2,Y,alpha)
+
 function u=lrt_penv(X1,X2,Y,alpha)
 
 [n r]=size(Y);

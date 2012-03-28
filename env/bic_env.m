@@ -21,6 +21,12 @@
 % This function implements the Bayesian information criteria (BIC) to select
 % the dimension of the envelope subspace.  
 
+%% Example
+% load wheatprotein.txt
+% X=wheatprotein(:,8);
+% Y=wheatprotein(:,1:6);
+% u=bic_env(X,Y)
+
 function u=bic_env(X,Y)
 
 [n r]=size(Y);
