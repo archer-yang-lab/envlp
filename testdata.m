@@ -41,14 +41,14 @@ load wheatprotein.txt
 X=wheatprotein(:,8);
 Y=wheatprotein(:,1:6);
 alpha=0.01;
-u=lrt_env(Y,X,alpha)
+u=lrt_env(X,Y,alpha)
 stat=env(X,Y,u);
 stat.Omega
 eig(stat.Omega0)
 stat.ratio
 
-u=bic_env(Y,X)
-u=aic_env(Y,X)
+u=bic_env(X,Y)
+u=aic_env(X,Y)
 
 
 %-----Test partial envelope model-----
@@ -159,6 +159,17 @@ u=bic_senv(X,Y)
 B=5;
 bootse=bstrp_senv(X,Y,B,u)
 
+
+load('T9-12.txt')
+Y=T9_12(:,4:7);
+X=T9_12(:,1:3);
+u=bic_env(X,Y)
+stat=env(X,Y,u);
+1-1./stat.ratio
+u=bic_senv(X,Y)
+stat=senv(X,Y,u);
+stat.Lambda
+1-1./stat.ratio
 %-----Test the heteroscedastic envelope model-----
 sigma11=1;
 sigma12=5;

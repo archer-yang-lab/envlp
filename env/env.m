@@ -69,7 +69,7 @@
 % X=wheatprotein(:,8);
 % Y=wheatprotein(:,1:6);
 % alpha=0.01;
-% u=lrt_env(Y,X,alpha)
+% u=lrt_env(X,Y,alpha)
 % stat=env(X,Y,u)
 % stat.Omega
 % eig(stat.Omega0)
