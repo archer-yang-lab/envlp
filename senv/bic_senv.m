@@ -21,6 +21,12 @@
 % This function implements the Bayesian information criteria (BIC) to select
 % the dimension of the scaled envelope subspace. 
 
+%% Example
+%
+% load('T9-12.txt')
+% Y=T9_12(:,4:7);
+% X=T9_12(:,1:3);
+% u=bic_senv(X,Y)
 
 function u=bic_senv(X,Y)
 
@@ -32,8 +38,10 @@ u=r;
 
 
 for i=0:r-1
-%     i
+
         stat=senv(X,Y,i);
+        stat.l
+        stat.np
         temp=-2*stat.l+log(n)*stat.np;
         if (temp<ic)
            u=i;
