@@ -22,6 +22,16 @@
 % This function computes the bootstrap standard errors for the regression
 % coefficients in the scaled envelope model by bootstrapping the residuals. 
 
+%% Example
+%
+% load('T9-12.txt')
+% Y=T9_12(:,4:7);
+% X=T9_12(:,1:3);
+% 
+% u=bic_ienv(X,Y)
+% B=20;
+% bootse=bstrp_senv(X,Y,B,u)
+
 function bootse=bstrp_senv(X,Y,B,u)
 
 

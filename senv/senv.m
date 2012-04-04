@@ -63,6 +63,19 @@
 % * The Grassmann manifold optimization step calls the package sg_min 2.4.1
 % by Ross Lippert (http://web.mit.edu/~ripper/www.sgmin.html).
 
+%% Example
+%
+% load('T9-12.txt')
+% Y=T9_12(:,4:7);
+% X=T9_12(:,1:3);
+% u=bic_env(X,Y)
+% stat=env(X,Y,u);
+% 1-1./stat.ratio
+% u=bic_senv(X,Y)
+% stat=senv(X,Y,u);
+% stat.Lambda
+% 1-1./stat.ratio
+
 
 function stat=senv(X,Y,u)
 
@@ -133,16 +146,16 @@ else
 
         Lambda=diag([1 d]);
         dataParameter.Lambda=Lambda;  
-        
-        [d l2(i)]=fminsearch(@(d) objfun(d,Gamma,dataParameter), d);
-        
-        if (i>1) && (abs(l2(i)-l2(i-1))<epsilon*abs(l2(i)))
-            break;
-        end
-        
+     
         F = make_F(@F4senv,dataParameter);
         dF = make_dF(@dF4senv,dataParameter); 
         [l Gamma]=sg_min(F,dF,Gamma,'prcg','quiet');
+        
+        [d l2(i)]=fminsearch(@(d) objfun(d,Gamma,dataParameter), d);
+         
+        if (i>1) && (abs(l2(i)-l2(i-1))<epsilon*abs(l2(i)))
+            break;
+        end
     
     end
     

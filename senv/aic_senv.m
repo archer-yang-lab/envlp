@@ -21,6 +21,12 @@
 % This function implements the Akaike information criteria (AIC) to select
 % the dimension of the scaled envelope subspace. 
 
+%% Example
+%
+% load('T9-12.txt')
+% Y=T9_12(:,4:7);
+% X=T9_12(:,1:3);
+% u=aic_senv(X,Y)
 
 function u=aic_senv(X,Y)
 
