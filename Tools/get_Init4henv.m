@@ -13,16 +13,16 @@ for i=1:p
     tmp=tmp+ng(i)/n*sigRes(:,:,i);
 end
 
-[V1 D]=eig(tmp);
-[V2 D]=eig(sigY);
-V=[V1 V2];
+[V D]=eig(tmp);
+% [V2 D]=eig(sigY);
+% V=[V1 V2];
 
-crit=nchoosek(2*r,u);
+crit=nchoosek(r,u);
 
-if crit<=50
+if crit<=20
 
     Ys=zeros(crit,r,u);
-    [Ys(1:crit,:,:) ind]=get_combeig(V,2*r,u);
+    [Ys(1:crit,:,:) ind]=get_combeig(V,r,u);
     imax = size(Ys,1);
     m = size(Ys,2);
     nn = size(Ys,3);
@@ -48,9 +48,9 @@ else
     initset(u+1)=1;
     iniValue = F(V(:,initset(1:u)));
     
-    for rep=1:5
+    for rep=1:3
         for i=1:u+3
-            for j=1:2*r
+            for j=1:r
                 if sum(j ==initset(2:u))==0
                     initset(1)=j;
                     temp=F(V(:,initset(1:u)));
