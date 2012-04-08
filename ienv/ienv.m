@@ -78,7 +78,7 @@
 function stat=ienv(X,Y,u)
 
 
-dataParameter=make_parameter(X,Y);
+dataParameter=make_parameter(X,Y,'ienv');
 n=dataParameter.n;
 p=dataParameter.p;
 r=dataParameter.r;
@@ -88,6 +88,7 @@ mX=dataParameter.mX;
 mY=dataParameter.mY;
 sigX=dataParameter.sigX;
 sigY=dataParameter.sigY;
+sigFit=dataParameter.sigFit;
 sigRes=dataParameter.sigRes;
 betaOLS=dataParameter.betaOLS;
 
@@ -158,7 +159,6 @@ elseif u==0
 
 else 
     
-    sigFit=sigY-sigRes;
     eigtem=eig(sigRes);
     
     F = make_F(@F4ienv,dataParameter);

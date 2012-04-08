@@ -81,7 +81,7 @@ function stat=env(X,Y,u)
 
 
 %---preparation---
-dataParameter=make_parameter(X,Y);
+dataParameter=make_parameter(X,Y,'env');
 
 n=dataParameter.n;
 p=dataParameter.p;

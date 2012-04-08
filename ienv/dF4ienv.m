@@ -26,7 +26,7 @@ function df = dF4ienv(R,dataParameter)
 
 sigRes=dataParameter.sigRes;
 sigY=dataParameter.sigY;
-sigFit=sigY-sigRes;
+sigFit=dataParameter.sigFit;
 p=dataParameter.p;
 
     
