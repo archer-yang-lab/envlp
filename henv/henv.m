@@ -76,7 +76,7 @@
 
 function stat=henv(X,Y,u)
 
-dataParameter=make_parameter4henv(X,Y);
+dataParameter=make_parameter(X,Y,'henv');
 
 p=dataParameter.p;
 r=dataParameter.r;

@@ -83,7 +83,7 @@
 function stat=senv(X,Y,u)
 
 
-dataParameter=make_parameter(X,Y);
+dataParameter=make_parameter(X,Y,'senv');
 n=dataParameter.n;
 p=dataParameter.p;
 r=dataParameter.r;

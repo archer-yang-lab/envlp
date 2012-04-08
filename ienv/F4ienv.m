@@ -27,7 +27,7 @@ u=size(R,2);
 
 sigRes=dataParameter.sigRes;
 sigY=dataParameter.sigY;
-sigFit=sigY-sigRes;
+sigFit=dataParameter.sigFit;
 p=dataParameter.p;
 
 

@@ -222,3 +222,5 @@ Y=Y([31:90 121:150],:);
 k=3;
 [n r]=size(Y);
 u=lrt_henv(X,Y,0.01)
+stat=henv(X,Y,u)
+
