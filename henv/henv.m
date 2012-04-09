@@ -73,6 +73,15 @@
 % * The Grassmann manifold optimization step calls the package sg_min 2.4.1
 % by Ross Lippert (http://web.mit.edu/~ripper/www.sgmin.html).
 
+%% Example
+%
+% The following codes produce the results of the waterstrider example in Su
+% and Cook (2011).
+% 
+% load waterstrider.mat
+% u=lrt_henv(X,Y,0.01)
+% stat=henv(X,Y,u)
+% stat.ratio
 
 function stat=henv(X,Y,u)
 

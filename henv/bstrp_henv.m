@@ -23,9 +23,17 @@
 % This function computes the bootstrap standard errors for the regression
 % coefficients in the heteroscedastic envelope model by bootstrapping the residuals. 
 
+%% Example
+%
+% load waterstrider.mat
+% 
+% u=lrt_henv(X,Y,0.01)
+% B=100;
+% bootse=bstrp_henv(X,Y,B,u)
+
 function bootse=bstrp_henv(X,Y,B,u)
 
-dataParameter=make_parameter4henv(X,Y);
+dataParameter=make_parameter(X,Y,'henv');
 p=dataParameter.p;
 r=dataParameter.r;
 n=dataParameter.n;

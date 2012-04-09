@@ -65,8 +65,8 @@
 
 %% Example
 %
-% The following codes produce the results of the first example in Cook and
-% Su (2012).
+% The following codes produce the results of the test and performance
+% example in Cook and Su (2012).
 % 
 % load('T9-12.txt')
 % Y=T9_12(:,4:7);

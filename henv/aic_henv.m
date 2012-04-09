@@ -21,6 +21,11 @@
 % This function implements the Akaike information criteria (AIC) to select
 % the dimension of the envelope subspace for the heteroscedastic envelope model. 
 
+%% Example
+% 
+% load waterstrider.mat
+% u=aic_henv(X,Y)
+
 function u=aic_henv(X,Y)
 
 [n r]=size(Y);
