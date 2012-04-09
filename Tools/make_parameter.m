@@ -1,3 +1,67 @@
+%% make_parameter
+% Compute summary statistics from the data.
+
+%% Usage
+% dataParameter=make_parameter(X,Y,method)
+%
+% Input
+%
+% * X: Predictors. An n by p matrix, p is the number of predictors. The
+% predictors can be univariate or multivariate, discrete or continuous.
+% * Y: Multivariate responses. An n by r matrix, r is the number of
+% responses and n is number of observations. The responses must be 
+% continuous variables, and r should be strictly greater than p.
+% * method: A string of characters indicating which member of the envelope
+% family to be used, the choices can be 'env', 'ienv', 'henv' or 'senv'.  
+%
+% Output
+% 
+% dataParameter: A list that contains summary statistics computed from the
+% data.  The output list can vary from method to method.
+% 
+% * dataParameter.n: The number of observations in the data.  A positive
+% integer.  
+% * dataParameter.ng: A p by 1 vector containing the number of observations
+% in each group.  p is the number of groups.  Only for 'henv'.
+% * dataParameter.ncum: A p by 1 vector containing the total number of
+% observations till this group.  Only for 'henv'.
+% * dataParameter.ind: An n by 1 vector indicating the sequence of the
+% observations after sorted by groups.
+% * dataParameter.p: The number of predictors or number of groups for
+% 'henv'.  A positive integer.
+% * dataParameter.r: The number of responses.  A positive integer.
+% * dataParameter.XC: Centered predictors.  An n by p matrix with the ith
+% row being the ith observation of X subtracted by the mean of X.  Only for
+% 'env' and 'ienv'.
+% * dataParameter.YC: Centered responses.  An n by r matrix with the ith
+% row being the ith observation of Y subtracted by the mean of Y.  Only for
+% 'env' and 'ienv'.
+% * dataParameter.mX: The mean of predictors.  A p by 1 vector.  For all
+% method except 'henv'.
+% * dataParameter.mY: The mean of responses.  An r by 1 vector.
+% * dataParameter.mYg: An r by p matrix with the ith column being the
+% sample mean of the ith group.
+% * dataParameter.sigX: The sample covariance matrix of X.  A p by p
+% matrix.
+% * dataParameter.sigY: The sample covariance matrix of Y.  An r by r
+% matrix.
+% * dataParameter.sigRes: For 'env', 'senv', 'ienv': The sample covariance
+% matrix of the residuals from the ordinary least squares regression of Y
+% on X.  An r by r matrix. For 'henv', an r by r by p three dimensional
+% matrix with the ith depth is the ith sample covariance matrix for the ith
+% group.
+% * dataParameter.sigFit: The sample covariance matrix of the fitted value 
+% from the ordinary least squares regression of Y on X.  An r by r matrix.
+% Only for method 'ienv'.
+% * dataParameter.betaOLS: The regression coefficients from the ordinary
+% least squares regression of Y on X.  An r by p matrix.  For all method
+% except 'henv'.
+
+%% Description
+% This function computes statistics that will be used frequently in the
+% estimation for each method.
+
+
 function dataParameter=make_parameter(X,Y,method)
 
 if (strcmp(method,'env'))
