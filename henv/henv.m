@@ -167,7 +167,11 @@ elseif u==r
         J(i*r+1:(i+1)*r,1:r)=J(1:r,i*r+1:(i+1)*r);
     end
     temp=inv(J);
-    asyFm=sqrt(diag(temp(1:r*p,1:r*p)));
+    tempA=kron(ones(1,p-1),eye(r));
+    varGroupp=tempA*temp(r+1:r*p,r+1:r*p)*tempA';
+    asyFm=zeros(r,p);
+    asyFm(:,1:p-1)=reshape(sqrt(diag(temp(r+1:r*p,r+1:r*p))),r,p-1);
+    asyFm(:,p)=sqrt(diag(varGroupp));
     
     stat.mu=mu;
     stat.mug=mug;
@@ -181,7 +185,7 @@ elseif u==r
     stat.Omega0=Omega0;
     stat.l=l;
     stat.np=(r-u)+u*(r-u+p)+p*u*(u+1)/2+(r-u)*(r-u+1)/2;
-    stat.asyHenv=reshape(asyFm,r,p);
+    stat.asyHenv=asyFm;
     stat.ratio=ones(r,p);
     
 else
@@ -256,8 +260,13 @@ else
     H(r+1:end,1:r)=0;
     H(1:r,1:r)=eye(r);
     temp=H*inv(H'*J*H)*H';
-    asyHenv=reshape(sqrt(diag(temp(1:r*p,1:r*p))),r,p);
-
+    tempA=kron(ones(1,p-1),eye(r));
+    varGroupp=tempA*temp(r+1:r*p,r+1:r*p)*tempA';
+    asyHenv=zeros(r,p);
+    asyHenv(:,1:p-1)=reshape(sqrt(diag(temp(r+1:r*p,r+1:r*p))),r,p-1);
+    asyHenv(:,p)=sqrt(diag(varGroupp));
+    
+    
     stat.mu=mu;
     stat.mug=mug;
     stat.Yfit=Yfit;
