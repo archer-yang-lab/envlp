@@ -69,7 +69,8 @@
 
 %% Example
 % 
-% The following codes reconstruct the results in Su and Cook (2012).
+% The following codes reconstruct the results of the paper and fiber
+% example in Su and Cook (2012).
 % 
 % load T7-7.dat
 % Y=T7_7(:,1:4);
