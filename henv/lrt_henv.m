@@ -24,6 +24,10 @@
 % the dimension of the envelope subspace in heteroscedastic envelope model,
 % with prespecified significance level $$\alpha$. 
 
+%% Example
+% 
+% load waterstrider.mat
+% u=lrt_henv(X,Y,0.01)
 
 function u=lrt_henv(X,Y,alpha)
 

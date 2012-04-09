@@ -215,12 +215,7 @@ u=lrt_henv(X,Y,0.01)
 
 % Waterstrider example
 load waterstrider.mat
-Y=log(Yu);
-X=X([31:90 121:150],[2 3]);
-X(61:90,:)=-1;
-Y=Y([31:90 121:150],:);
-k=3;
 [n r]=size(Y);
 u=lrt_henv(X,Y,0.01)
 stat=henv(X,Y,u)
-
+stat.ratio

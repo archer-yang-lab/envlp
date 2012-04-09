@@ -21,6 +21,11 @@
 % This function implements the Bayesian information criteria (BIC) to select
 % the dimension of the envelope subspace for the heteroscedastic envelope model. 
 
+%% Example
+% 
+% load waterstrider.mat
+% u=bic_henv(X,Y)
+
 function u=bic_henv(X,Y)
 
 [n r]=size(Y);
