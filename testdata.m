@@ -28,9 +28,9 @@ norm(beta_OLS-bet)
 subspace(stat.Gamma,G)
 
 alpha=0.01;
-u=lrt_env(Y,X,alpha)
-u=bic_env(Y,X)
-u=aic_env(Y,X)
+u=lrt_env(X,Y,alpha)
+u=bic_env(X,Y)
+u=aic_env(X,Y)
 
 
 
@@ -60,7 +60,7 @@ X1=X(:,3);
 X2=X(:,1:2);
 alpha=0.01;
 u=lrt_penv(X1,X2,Y,alpha)
-u=lrt_env(Y,X,0.01);
+u=lrt_env(X,Y,0.01);
 stat=env(X,Y,u);
 stat=penv(X1,X2,Y,1)
 
