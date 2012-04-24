@@ -20,6 +20,13 @@
 % This function computes the bootstrap standard errors for the regression
 % coefficients in ordinary least squares by bootstrapping the residuals.  
 
+%% Example
+%
+% load wheatprotein.txt
+% X=wheatprotein(:,8);
+% Y=wheatprotein(:,1:6);
+% bootse=bstrp_OLS(X,Y,200)
+
 function bootse=bstrp_OLS(X,Y,B)
 
 stat=fit_OLS(X,Y);

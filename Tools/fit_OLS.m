@@ -25,6 +25,12 @@
 % fit to the inputs, and returns the estimates of $$\beta$ and the
 % covariance matrix of $$\varepsilon$.
 
+%% Example
+%
+% load wheatprotein.txt
+% X=wheatprotein(:,8);
+% Y=wheatprotein(:,1:6);
+% stat=stat=fit_OLS(X,Y)
 
 function stat=fit_OLS(X,Y)
 
