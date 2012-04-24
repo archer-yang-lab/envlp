@@ -42,6 +42,9 @@ bootse=bstrp_env(X,Y,B,u)
 load wheatprotein.txt
 X=wheatprotein(:,8);
 Y=wheatprotein(:,1:6);
+bootse=bstrp_OLS(X,Y,200)
+
+
 alpha=0.01;
 u=lrt_env(X,Y,alpha)
 stat=env(X,Y,u);
@@ -66,7 +69,6 @@ u=lrt_env(X,Y,0.01);
 stat=env(X,Y,u);
 stat=penv(X1,X2,Y,1)
 
-bootse=bstrp_OLS(X,Y,200)
 
 B=200;
 bootse=bstrp_penv(X1,X2,Y,B,u)

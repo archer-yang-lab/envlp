@@ -40,8 +40,6 @@ u=r;
 for i=0:r-1
 
         stat=senv(X,Y,i);
-        stat.l
-        stat.np
         temp=-2*stat.l+log(n)*stat.np;
         if (temp<ic)
            u=i;
