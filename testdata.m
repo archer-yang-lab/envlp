@@ -23,7 +23,9 @@ stat=env(X,Y,u);
 eig(stat.Omega)
 eig(stat.Omega0)
 norm(stat.beta-bet)
-[beta_OLS sigres]=fit_OLS(X,Y);
+stat=fit_OLS(X,Y);
+stat.betaOLS=beta_OLS;
+stat.SigmaOLS=sigres;
 norm(beta_OLS-bet)
 subspace(stat.Gamma,G)
 
@@ -64,6 +66,9 @@ u=lrt_env(X,Y,0.01);
 stat=env(X,Y,u);
 stat=penv(X1,X2,Y,1)
 
+bootse=bstrp_OLS(X,Y,200)
+
+B=200;
 bootse=bstrp_penv(X1,X2,Y,B,u)
 
 X1=X(:,3);

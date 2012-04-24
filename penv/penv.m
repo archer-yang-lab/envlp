@@ -159,7 +159,9 @@ if u>0 && u<r
     
 elseif u==0
     
-    [beta2 Sigma]=fit_OLS(X2,Y);
+    temp=fit_OLS(X2,Y);
+    beta2=temp.betaOLS;
+    Sigma=temp.SigmaOLS;
     eigtem=eig(Sigma);
     
     stat.beta1=zeros(r,p1);
@@ -180,7 +182,9 @@ elseif u==0
 elseif u==r
     
     X=[X1 X2];
-    [beta Sigma]=fit_OLS(X,Y);
+    temp=fit_OLS(X,Y);
+    beta=temp.betaOLS;
+    Sigma=temp.SigmaOLS;
     eigtem=eig(Sigma);
     sigX=cov(X,1);
     asyFm=kron(inv(sigX),Sigma);

@@ -22,13 +22,12 @@
 
 function bootse=bstrp_OLS(X,Y,B)
 
-dataParameter=make_parameter(X,Y);
-n=dataParameter.n;
-p=dataParameter.p;
-r=dataParameter.r;
-mY=dataParameter.mY;
-XC=dataParameter.XC;
-betaOLS=dataParameter.betaOLS;
+stat=fit_OLS(X,Y);
+[n p]=size(X);
+r=size(Y,2);
+mY=mean(Y)';
+XC=center(X);
+betaOLS=stat.betaOLS;
 
 Yfit=ones(n,1)*mY'+XC*betaOLS';
 resi=Y-Yfit;
@@ -39,8 +38,8 @@ for i=1:B
     
     bootresi=resi(randsample(1:n,n,true),:);
     Yboot=Yfit+bootresi;
-    [betaBoot sigBoot]=fit_OLS(X,Yboot);
-    bootBeta(i,:)=reshape(betaBoot,1,r*p);
+    statBoot=fit_OLS(X,Yboot);
+    bootBeta(i,:)=reshape(statBoot.betaOLS,1,r*p);
     
 end
 
