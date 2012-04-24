@@ -2,7 +2,7 @@
 % Multivariate linear regression. 
 
 %% Usage
-% [betaOLS SigmaOLS]=fit_OLS(X,Y)
+% stat=fit_OLS(X,Y)
 %
 % Input
 %
@@ -12,8 +12,11 @@
 %
 % Output
 %
-% * betaOLS: An r by p matrix containing estimate of the regression coefficients $$\beta$.
-% * SigmaOLS: An r by r matrix containing estimate of the error covariance matrix.
+% stat: A list that contains the maximum likelihood estimators of
+% regression coefficients and error covariance matrix. 
+% 
+% * stat.betaOLS: An r by p matrix containing estimate of the regression coefficients $$\beta$.
+% * stat.SigmaOLS: An r by r matrix containing estimate of the error covariance matrix.
 
 %% Description
 % In a multivariate linear model, Y and X follows the following
@@ -23,11 +26,11 @@
 % covariance matrix of $$\varepsilon$.
 
 
-function [betaOLS SigmaOLS]=fit_OLS(X,Y)
+function stat=fit_OLS(X,Y)
 
 n=length(X);
 XC=center(X);
 YC=center(Y);
 PX=XC*inv(XC'*XC)*XC';
-betaOLS=YC'*XC*inv(XC'*XC);
-SigmaOLS=YC'*(eye(n)-PX)*YC/n;
+stat.betaOLS=YC'*XC*inv(XC'*XC);
+stat.SigmaOLS=YC'*(eye(n)-PX)*YC/n;
