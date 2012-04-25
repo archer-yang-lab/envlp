@@ -8,7 +8,7 @@
 % Input
 %
 % * R: An r by u semi orthogonal matrix, 0<u<=r.
-% * dataParameter: A structure that contains the statistics calculated form
+% * dataParameter: A structure that contains the statistics calculated from
 % the data.
 %
 % Output
