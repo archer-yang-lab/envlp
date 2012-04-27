@@ -1,5 +1,5 @@
 %% lrt_xenv
-
+% 
 % Use likelihood ratio testing to select the dimension of the envelope
 % subspace for the reduction on X.
 

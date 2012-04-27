@@ -1,4 +1,5 @@
 %% bic_xenv
+% 
 % Use Bayesian information criterion to select the dimension of the envelope
 % subspace for the reduction on X.
 
