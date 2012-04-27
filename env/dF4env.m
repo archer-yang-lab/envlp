@@ -13,7 +13,8 @@
 %
 % Output
 %
-% * df: An r by u containing the value of the derivative function evaluated at R.
+% * df: An r by u matrix containing the value of the derivative function
+% evaluated at R.
 
 %% Description
 %
