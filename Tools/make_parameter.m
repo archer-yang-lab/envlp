@@ -12,7 +12,8 @@
 % responses and n is number of observations. The responses must be 
 % continuous variables, and r should be strictly greater than p.
 % * method: A string of characters indicating which member of the envelope
-% family to be used, the choices can be 'env', 'ienv', 'henv' or 'senv'.  
+% family to be used, the choices can be 'env', 'ienv', 'henv', 'senv' or
+% 'xenv'.
 %
 % Output
 % 
@@ -182,7 +183,26 @@ elseif (strcmp(method,'henv'))
     dataParameter.sigY=cov(Y,1);
     dataParameter.sigRes=sigRes;
     
+elseif (strcmp(method,'xenv'))
     
+    [n p]=size(X);
+    r=size(Y,2);
+    XC=center(X);
+    YC=center(Y);
+    sigX=cov(X,1);
+    sigXY=XC'*YC/n;
+    sigY=cov(Y,1);
+    
+    dataParameter.n=n;
+    dataParameter.p=p;
+    dataParameter.r=r;
+    dataParameter.mX=mean(X)';
+    dataParameter.mY=mean(Y)';
+    dataParameter.sigX=sigX;
+    dataParameter.sigY=sigY;
+    dataParameter.sigXY=sigXY;
+    dataParameter.sigXcY=sigX-sigXY*inv(sigY)*sigXY';
+    dataParameter.invSigX=inv(sigX);
 
 end
 

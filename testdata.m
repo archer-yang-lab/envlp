@@ -226,3 +226,26 @@ load waterstrider.mat
 u=lrt_henv(X,Y,0.01)
 stat=henv(X,Y,u)
 stat.ratio
+
+
+% Test xenv
+load wheatprotein.txt
+X=wheatprotein(:,1:6);
+Y=wheatprotein(:,7);
+stat=xenv(X,Y,0);
+
+p=size(X,2);
+stat=xenv(X,Y,p);
+
+% When u=p, the envelope model reduces to the ordinary least squares
+% regression
+
+temp=fit_OLS(X,Y);
+temp.SigmaOLS
+stat.sigYcX
+temp.betaOLS'
+stat.beta
+
+stat=xenv(X,Y,1);
+u=aic_xenv(X,Y)
+u=bic_xenv(X,Y)
