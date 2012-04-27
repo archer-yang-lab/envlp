@@ -2661,6 +2661,355 @@ stat.Lambda\\
 
 
 
+\newpage
+
+
+
+\part{xenv}
+
+\section*{aic\_xenv}
+
+\begin{par}
+Use Akaike information criterion to select the dimension of the envelope subspace for the reduction on X.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Usage
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Usage}
+
+\begin{par}
+u=aic\_xenv(X,Y)
+\end{par} \vspace{1em}
+\begin{par}
+Input
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item X: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
+   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{itemize}
+\begin{par}
+Output
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item u: Dimension of the envelope. An integer between 0 and p.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements the Akaike information criteria (AIC) to select the dimension of the envelope subspace for the reduction on X.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+\begin{par}
+load wheatprotein.txt \\
+X=wheatprotein(:,1:6); \\
+Y=wheatprotein(:,7); \\
+u=aic\_xenv(X,Y)
+\end{par} \vspace{1em}
+
+\newpage
+
+\section{bic\_xenv}
+
+\begin{par}
+Use Bayesian information criterion to select the dimension of the envelope subspace for the reduction on X.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Usage
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Usage}
+
+\begin{par}
+u=bic\_xenv(X,Y)
+\end{par} \vspace{1em}
+\begin{par}
+Input
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item X: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
+   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{itemize}
+\begin{par}
+Output
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item u: Dimension of the envelope. An integer between 0 and p.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements the Bayesian information criteria (BIC) to select the dimension of the envelope subspace for the reduction on X.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+\begin{par}
+load wheatprotein.txt \\
+X=wheatprotein(:,1:6); \\
+Y=wheatprotein(:,7); \\
+u=bic\_xenv(X,Y)
+\end{par} \vspace{1em}
+
+\newpage
+
+\section{bstrp\_xenv}
+
+\begin{par}
+Compute bootstrap standard error of the envelope model for the reduction on X.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Usage
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Usage}
+
+\begin{par}
+bootse=bstrp\_xenv(X,Y,B,u)
+\end{par} \vspace{1em}
+\begin{par}
+Input
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item X: Predictors, an n by p matrix, p is the number of predictors.  The predictors can be univariate or multivariate, discrete or continuous.
+   \item Y: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
+   \item B: Number of boostrap samples.  A positive integer.
+   \item u: Dimension of the envelope subspace.  A positive integer between 0 and p.
+\end{itemize}
+\begin{par}
+Output
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item bootse: The standard error for elements in $\beta$ computed by bootstrap.  An p by r matrix.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function computes the bootstrap standard errors for the regression coefficients in the envelope model by bootstrapping the residuals. The envelope model here is for the reduction on X.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+\begin{par}
+load wheatprotein.txt \\
+X=wheatprotein(:,1:6); \\
+Y=wheatprotein(:,7); \\
+alpha=0.01; \\
+u=lrt\_xenv(Y,X,alpha) \\
+B=100; \\
+bootse=bstrp\_xenv(X,Y,B,u)
+\end{par}\vspace{1em}
+
+\newpage
+    
+\section{lrt\_xenv}
+
+\begin{par}
+Use likelihood ratio testing to select the dimension of the envelope subspace for the reduction on X.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Usage
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Usage}
+
+\begin{par}
+u=lrt\_xenv(X,Y,alpha)
+\end{par} \vspace{1em}
+\begin{par}
+Input
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item X: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
+   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+   \item alpha: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
+\end{itemize}
+\begin{par}
+Output
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item u: Dimension of the envelope. An integer between 0 and p.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements the likelihood ratio testing procedure to select the dimension of the envelope subspace for the reduction on X, with pre-specified significance level $\alpha$.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+\begin{par}
+load wheatprotein.txt \\
+X=wheatprotein(:,1:6); \\
+Y=wheatprotein(:,7); \\
+u=lrt\_xenv(X,Y,0.01)
+\end{par} \vspace{1em}
+
+
+\newpage
+
+
+    
+\section{xenv}
+\begin{par}
+Fit the envelope model for the reduction on X.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Usage
+   \item Description
+   \item References
+   \item Example
+\end{itemize}
+
+
+\subsection*{Usage}
+
+\begin{par}
+stat=xenv(X,Y,u)
+\end{par} \vspace{1em}
+\begin{par}
+Input
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item X: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
+   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
+   \item u: Dimension of the envelope. An integer between 0 and p.
+\end{itemize}
+\begin{par}
+Output
+\end{par} \vspace{1em}
+\begin{par}
+stat: A list that contains the maximum likelihood estimators and some statistics.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item stat.beta: The envelope estimator of the regression coefficients $\beta$. An p by r matrix.
+   \item stat.SigX: The envelope estimator of the covariance matrix of X, $\Sigma_X$.  A p by p matrix.
+   \item stat.Gamma: The orthogonal basis of the envelope subspace. An p by u semi-orthogonal matrix.
+   \item stat.Gamma0: The orthogonal basis of the complement of the envelope subspace.  An p by p-u semi-orthogonal matrix.
+   \item stat.eta: The coordinates of $\beta$ with respect to Gamma. An u by r matrix.
+   \item stat.Omega: The coordinates of $\Sigma_X$ with respect to Gamma. An u by u matrix.
+   \item stat.Omega0: The coordinates of $\Sigma_X$ with respect to Gamma0. An p-u by p-u matrix.
+   \item stat.mu: The estimated intercept.  An r by 1 vector.
+   \item stat.sigYcX: The estimated conditional covariance matrix of Y given X. An r by r matrix.
+   \item stat.l: The maximized log likelihood function.  A real number.
+   \item stat.asyEnv: Asymptotic standard error for elements in $\beta$ under the envelope model.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
+   \item stat.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the envelope estimator, for each element in $\beta$.  An p by r matrix.
+   \item stat.np: The number of parameters in the envelope model.  A positive integer.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function fits the envelope model to the responses and predictors, using the maximum likehood estimation.  When the dimension of the envelope is between 1 and r-1, we implemented the algorithm in Cook et al. (2010).  When the dimension is r, then the envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
+\end{par} \vspace{1em}
+
+
+\subsection*{References}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item The codes is implemented based on the algorithm in Section 4.5.1 of Cook et al (2012).
+   \item The Grassmann manifold optimization step calls the package sg\_min 2.4.1 by Ross Lippert (\begin{verbatim}http://web.mit.edu/~ripper/www.sgmin.html)\end{verbatim}.
+\end{itemize}
+
+
+\subsection*{Example}
+
+\begin{par}
+load wheatprotein.txt \\
+X=wheatprotein(:,1:6); \\
+Y=wheatprotein(:,7); \\
+stat=xenv(X,Y,0);\\
+\end{par} 
+\vspace{1em}
+\begin{par}
+p=size(X,2); \\
+stat=xenv(X,Y,p);\\
+\end{par} 
+\vspace{1em}
+\begin{par}
+\% When u=p, the envelope model reduces to the ordinary least squares \% regression
+\end{par} 
+\vspace{1em}
+\begin{par}
+temp=fit\_OLS(X,Y); \\
+temp.SigmaOLS \\
+stat.sigYcX \\
+temp.betaOLS' \\
+stat.beta\\
+\end{par} 
+\vspace{1em}
+\begin{par}
+stat=xenv(X,Y,5);\\
+\end{par} 
+\vspace{1em}
+\begin{par}
+\%  To compare with the results obtained by Partial Least Squares, use the  command 
+\end{par} 
+\vspace{1em}
+\begin{par}
+ [XL,YL,XS,YS,BETA,PCTVAR,MSE,stats] = plsregress(X,Y,5);\\
+ stat.beta\\
+ stat.mu\\
+ BETA\\
+\end{par} \vspace{1em}
 
 
 
