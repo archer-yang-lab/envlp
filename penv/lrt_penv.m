@@ -3,7 +3,7 @@
 % ratio testing.
 
 %% Usage
-% u=lrt_penv(X1,X2,Y,alpha)
+% u=lrt_penv(X1,X2,Y,alpha,opts)
 %
 % Input
 %
@@ -16,6 +16,9 @@
 % responses. The responses must be continuous variables.
 % * alpha: Significance level for testing.  A real number between 0 and 1,
 % often taken at 0.05 or 0.01.
+% * opts: A list containing the optional input parameter. If one or several (even all) 
+% fields are not defined, the default settings (see make_opts documentation) 
+% are used. 
 %
 % Output
 %
@@ -35,16 +38,22 @@
 % alpha=0.01;
 % u=lrt_penv(X1,X2,Y,alpha)
 
-function u=lrt_penv(X1,X2,Y,alpha)
+function u=lrt_penv(X1,X2,Y,alpha,opts)
+
+if (nargin < 4)
+    error('Inputs: X1, X2, Y and alpha should be specified!');
+elseif (nargin==4)
+    opts=[];
+end
 
 [n r]=size(Y);
 
-stat0=penv(X1,X2,Y,r);
+stat0=penv(X1,X2,Y,r,opts);
 
 
 for i=0:r-1
-%     i
-        stat=penv(X1,X2,Y,i);
+
+        stat=penv(X1,X2,Y,i,opts);
         chisq = -2*(stat.l-stat0.l);
         df=stat0.np-stat.np;
         
@@ -52,6 +61,7 @@ for i=0:r-1
             u=i;
             break;
         end
+        
 end
 
 if (i== r-1) && chi2cdf(chisq,df) > (1-alpha)

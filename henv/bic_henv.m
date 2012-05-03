@@ -3,7 +3,7 @@
 % criterion for the heteroscedastic envelope model.
 
 %% Usage
-% u=bic_henv(X,Y)
+% u=bic_henv(X,Y,opts)
 %
 % Input
 %
@@ -12,6 +12,9 @@
 % * Y: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
 % continuous variables.
+% * opts: A list containing the optional input parameter. If one or several (even all) 
+% fields are not defined, the default settings (see make_opts documentation) 
+% are used. 
 %
 % Output
 %
@@ -26,21 +29,28 @@
 % load waterstrider.mat
 % u=bic_henv(X,Y)
 
-function u=bic_henv(X,Y)
+function u=bic_henv(X,Y,opts)
+
+if (nargin < 2)
+    error('Inputs: X, Y should be specified!');
+elseif (nargin==2)
+    opts=[];
+end
 
 [n r]=size(Y);
     
-stat=henv(X,Y,r);
+stat=henv(X,Y,r,opts);
 ic=-2*stat.l+log(n)*stat.np;
 u=r;
 
 
 for i=0:r-1
 
-        stat=henv(X,Y,i);
+        stat=henv(X,Y,i,opts);
         temp=-2*stat.l+log(n)*stat.np;
         if (temp<ic)
            u=i;
            ic=temp;
         end
+        
 end

@@ -2,7 +2,7 @@
 % Fit the scaled envelope model.
 
 %% Usage
-% stat=senv(X,Y,u)
+% stat=senv(X,Y,u,opts)
 %
 % Input
 %
@@ -12,6 +12,9 @@
 % responses and n is number of observations. The responses must be 
 % continuous variables, and r should be strictly greater than p.
 % * u: Dimension of the envelope. An integer between 0 and r.
+% * opts: A list containing the optional input parameter. If one or several (even all) 
+% fields are not defined, the default settings (see make_opts documentation) 
+% are used.  
 %
 % Output
 % 
@@ -80,9 +83,47 @@
 % 1-1./stat.ratio
 
 
-function stat=senv(X,Y,u)
+function stat=senv(X,Y,u,opts)
 
+%% Verify and initialize the parameters
+%%
+if (nargin < 3)
+    error('Inputs: X, Y and u should be specified!');
+elseif (nargin==3)
+    opts=[];
+end
 
+[n,p]=size(X);
+[n1,r]=size(Y);
+
+if (n ~= n1)
+    error('The number of observations in X and Y should be equal!');
+end
+
+if (p >= r)
+    error('Number of predictors should be less than number of response! Please use ordinary least squares.');
+end
+
+u = floor(u);
+if (u < 0 || u > r)
+    error('u should be an integer between [0, r]!');
+end
+
+opts=make_opts(opts);
+
+if isfield(opts,'init')
+    [r2,u2]=size(opts.init);
+
+    if (r ~= r2 || u ~= u2)
+        error('The size of the initial value should be r by u!');
+    end
+
+    if (rank(opts.init) < u2)
+        error('The initial value should be full rank!');
+    end
+end
+
+%---preparation---
 dataParameter=make_parameter(X,Y,'senv');
 n=dataParameter.n;
 p=dataParameter.p;
@@ -135,11 +176,20 @@ elseif u==r
     
 else
 
+    maxIter=opts.maxIter;
+	ftol=opts.ftol;
+	gradtol=opts.gradtol;
+	if (opts.verbose==0) 
+        verbose='quiet';
+    else
+        verbose='verbose';
+    end
+    
     ite=1000;
     epsilon=1e-9; 
     l2=zeros(1,ite);
     
-    init=env(X,Y,u);
+    init=env(X,Y,u,opts);
     Gamma=init.Gamma;
     d=ones(1,r-1);
 
@@ -152,7 +202,7 @@ else
      
         F = make_F(@F4senv,dataParameter);
         dF = make_dF(@dF4senv,dataParameter); 
-        [l Gamma]=sg_min(F,dF,Gamma,'prcg','quiet');
+        [l Gamma]=sg_min(F,dF,Gamma,maxIter,'prcg',verbose,ftol,gradtol);
         
         [d l2(i)]=fminsearch(@(d) objfun(d,Gamma,dataParameter), d);
          

@@ -2,7 +2,7 @@
 % Fit the partial envelope model.
 
 %% Usage
-% stat=penv(X1,X2,Y,u)
+% stat=penv(X1,X2,Y,u,opts)
 %
 % Input
 %
@@ -16,6 +16,9 @@
 % responses and n is number of observations. The responses must be 
 % continuous variables, and r should be strictly greater than p1.
 % * u: Dimension of the partial envelope. An integer between 0 and r.
+% * opts: A list containing the optional input parameter. If one or several (even all) 
+% fields are not defined, the default settings (see make_opts documentation) 
+% are used.  
 %
 % Output
 % 
@@ -84,12 +87,49 @@
 % eig(stat.Omega0)
 % stat.ratio
 
-function stat=penv(X1,X2,Y,u)
+function stat=penv(X1,X2,Y,u,opts)
+
+%% Verify and initialize the parameters
+%%
+if (nargin < 4)
+    error('Inputs: X1, X2, Y and u should be specified!');
+elseif (nargin==4)
+    opts=[];
+end
+
+[n,p1]=size(X1);
+[n2,p2]=size(X2);
+[n1,r]=size(Y);
+
+if (n ~= n1||n2 ~= n1)
+    error('The number of observations in X1, X2 and Y should be equal!');
+end
+
+if (p1 >= r)
+    error('When the number of responses is less than the number of main predictors, the partial envelope model cannot be applied.');
+end
+
+u = floor(u);
+if (u < 0 || u > r)
+    error('u should be an integer between [0, r]!');
+end
+
+opts=make_opts(opts);
+
+if isfield(opts,'init')
+    [r2,u2]=size(opts.init);
+
+    if (r ~= r2 || u ~= u2)
+        error('The size of the initial value should be r by u!');
+    end
+
+    if (rank(opts.init) < u2)
+        error('The initial value should be full rank!');
+    end
+end
 
 %---preparation---
-[n p1]=size(X1);
-p2=size(X2,2);
-r=size(Y,2);
+
 
 X1C=center(X1);
 X2C=center(X2);
@@ -115,7 +155,7 @@ if u>0 && u<r
 
     %---Call env to compute most of the components in output---
 
-    temp=env(R12,RY2,u);
+    temp=env(R12,RY2,u,opts);
     beta1=temp.beta;
     
     Gamma=temp.Gamma;

@@ -1,5 +1,6 @@
 % -----Test envelope model-----
 % Generate data
+
 n=100;
 r=10;
 u=2;
