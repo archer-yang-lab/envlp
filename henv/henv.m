@@ -2,7 +2,7 @@
 % Fit the heteroscedastic envelope model.
 
 %% Usage
-% stat=henv(X,Y,u)
+% stat=henv(X,Y,u,opts)
 %
 % Input
 %
@@ -12,6 +12,9 @@
 % responses and n is number of observations. The responses must be 
 % continuous variables, and r should be strictly greater than p.
 % * u: Dimension of the envelope. An integer between 0 and r.
+% * opts: A list containing the optional input parameter. If one or several (even all) 
+% fields are not defined, the default settings (see make_opts documentation) 
+% are used. 
 %
 % Output
 % 
@@ -83,7 +86,44 @@
 % stat=henv(X,Y,u)
 % stat.ratio
 
-function stat=henv(X,Y,u)
+function stat=henv(X,Y,u,opts)
+
+if (nargin < 3)
+    error('Inputs: X, Y and u should be specified!');
+elseif (nargin==3)
+    opts=[];
+end
+
+[n,p]=size(X);
+[n1,r]=size(Y);
+
+if (n ~= n1)
+    error('The number of observations in X and Y should be equal!');
+end
+
+if (p > r)
+    error('When the number of responses is less than the number of groups, the heteroscedastic envelope model cannot be applied.');
+end
+
+u = floor(u);
+if (u < 0 || u > r)
+    error('u should be an integer between [0, r]!');
+end
+
+opts=make_opts(opts);
+
+if isfield(opts,'init')
+    [r2,u2]=size(opts.init);
+
+    if (r ~= r2 || u ~= u2)
+        error('The size of the initial value should be r by u!');
+    end
+
+    if (rank(opts.init) < u2)
+        error('The initial value should be full rank!');
+    end
+end
+
 
 dataParameter=make_parameter(X,Y,'henv');
 
@@ -205,8 +245,22 @@ else
     F = make_F(@F4henv,dataParameter);
     dF = make_dF(@dF4henv,dataParameter);
     
-    init=get_Init4henv(F,X,Y,u,dataParameter);
-    [l Gamma]=sg_min(F,dF,init,'prcg','quiet');
+    maxIter=opts.maxIter;
+	ftol=opts.ftol;
+	gradtol=opts.gradtol;
+	if (opts.verbose==0) 
+        verbose='quiet';
+    else
+        verbose='verbose';
+    end
+    if ~isfield(opts,'init') 
+        init=get_Init4henv(F,X,Y,u,dataParameter);
+    else
+        init=opts.init;
+    end
+    
+    
+    [l Gamma]=sg_min(F,dF,init,maxIter,'prcg',verbose,ftol,gradtol);
 
     Gamma0=grams(nulbasis(Gamma'));
     Omega0=Gamma0'*sigY*Gamma0;

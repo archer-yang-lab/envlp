@@ -2,7 +2,7 @@
 % Fit the inner envelope model.
 
 %% Usage
-% stat=ienv(X,Y,u)
+% stat=ienv(X,Y,u,opts)
 %
 % Input
 %
@@ -13,6 +13,9 @@
 % continuous variables, and r should be strictly greater than p.
 % * u: Dimension of the inner envelope. An integer between 0 and p or equal
 % to r.
+% * opts: The optional input parameter. If one or several (even all) 
+% fields are not defined, the default settings (see make_opts documentation) 
+% are used.
 %
 % Output
 % 
@@ -75,8 +78,43 @@
 % stat=ienv(X,Y,d)
 % 1-1./stat.ratio
 
-function stat=ienv(X,Y,u)
+function stat=ienv(X,Y,u,opts)
 
+if (nargin < 3)
+    error('Inputs: X, Y and u should be specified!');
+elseif (nargin==3)
+    opts=[];
+end
+
+[n,p]=size(X);
+[n1,r]=size(Y);
+
+if (n ~= n1)
+    error('The number of observations in X and Y should be equal!');
+end
+
+if (p >= r)
+    error('When the number of responses is less than the number of predictors, the inner envelope model cannot be applied.');
+end
+
+u = floor(u);
+if (u < 0 || u > p)
+    error('u should be an integer in [0, p]!');
+end
+
+opts=make_opts(opts);
+
+if isfield(opts,'init')
+    [r2,u2]=size(opts.init);
+
+    if (r ~= r2 || u ~= u2)
+        error('The size of the initial value should be r by u!');
+    end
+
+    if (rank(opts.init) < u2)
+        error('The initial value should be full rank!');
+    end
+end
 
 dataParameter=make_parameter(X,Y,'ienv');
 n=dataParameter.n;
@@ -92,38 +130,9 @@ sigFit=dataParameter.sigFit;
 sigRes=dataParameter.sigRes;
 betaOLS=dataParameter.betaOLS;
 
-if r<=p
+if u==p
     
-    error('When the number of responses is less than the number of predictors, the inner envelope model cannot be applied.');
-    
-end
-
-if u>p && u<r
-    
-    error('Invalid dimension for the inner envelope subspace.');
-    
-elseif u==r
-    
-    temp=env(X,Y,r);
-    stat.beta=temp.beta;
-    stat.Sigma=temp.Sigma;
-    stat.Gamma1=temp.Gamma;
-    stat.Gamma0=temp.Gamma0;
-    stat.B=[];
-    stat.eta1=temp.eta';
-    stat.eta2=[];
-    stat.Omega1=temp.Omega;
-    stat.Omega0=temp.Omega0;
-    stat.alpha=temp.alpha;
-    stat.l=temp.l;
-    stat.np=temp.np;
-    stat.asyIenv=temp.asyEnv;
-    stat.ratio=temp.ratio;
-    
-
-elseif u==p
-    
-    temp=env(X,Y,p);
+    temp=env(X,Y,p,opts);
     stat.beta=temp.beta;
     stat.Sigma=temp.Sigma;
     stat.Gamma1=temp.Gamma;
@@ -163,9 +172,22 @@ else
     
     F = make_F(@F4ienv,dataParameter);
     dF = make_dF(@dF4ienv,dataParameter);
+
+    maxIter=opts.maxIter;
+	ftol=opts.ftol;
+	gradtol=opts.gradtol;
+	if (opts.verbose==0) 
+        verbose='quiet';
+    else
+        verbose='verbose';
+    end
+    if ~isfield(opts,'init') 
+        init=get_Init(F,X,Y,u,dataParameter);
+    else
+        init=opts.init;
+    end
     
-    init=get_Init(F,X,Y,u,dataParameter);
-    [l Gamma1]=sg_min(F,dF,init,'prcg','quiet');
+    [l Gamma1]=sg_min(F,dF,init,maxIter,'prcg',verbose,ftol,gradtol);
     
     
     

@@ -4,7 +4,7 @@
 % subspace for the reduction on X.
 
 %% Usage
-% u=bic_xenv(X,Y)
+% u=bic_xenv(X,Y,opts)
 %
 % Input
 %
@@ -13,6 +13,9 @@
 % * Y: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
 % continuous variables.
+% * opts: A list containing the optional input parameter. If one or several (even all) 
+% fields are not defined, the default settings (see make_opts documentation) 
+% are used.
 %
 % Output
 %
@@ -29,21 +32,28 @@
 % Y=wheatprotein(:,7);
 % u=bic_xenv(X,Y)
 
-function u=bic_xenv(X,Y)
+function u=bic_xenv(X,Y,opts)
+
+if (nargin < 2)
+    error('Inputs: X, Y should be specified!');
+elseif (nargin==2)
+    opts=[];
+end
 
 [n p]=size(X);
     
-stat=xenv(X,Y,p);
+stat=xenv(X,Y,p,opts);
 ic=-2*stat.l+log(n)*stat.np;
 u=p;
 
 
 for i=0:p-1
-%     i
-        stat=xenv(X,Y,i);
+
+        stat=xenv(X,Y,i,opts);
         temp=-2*stat.l+2*stat.np;
         if (temp<ic)
            u=i;
            ic=temp;
         end
+        
 end

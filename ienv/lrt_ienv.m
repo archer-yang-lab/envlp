@@ -3,7 +3,7 @@
 % ratio testing.
 
 %% Usage
-% u=lrt_ienv(X,Y,alpha)
+% u=lrt_ienv(X,Y,alpha,opts)
 %
 % Input
 %
@@ -14,6 +14,9 @@
 % continuous variables.
 % * alpha: Significance level for testing.  A real number between 0 and 1,
 % often taken at 0.05 or 0.01.
+% * opts: The optional input parameter. If one or several (even all) 
+% fields are not defined, the default settings (see make_opts documentation) 
+% are used.
 %
 % Output
 %
@@ -33,17 +36,23 @@
 % u=lrt_ienv(X,Y,alpha)
 
 
-function u=lrt_ienv(X,Y,alpha)
+function u=lrt_ienv(X,Y,alpha,opts)
+
+if (nargin < 3)
+    error('Inputs: X, Y and alpha should be specified!');
+elseif (nargin==3)
+    opts=[];
+end
 
 [n r]=size(Y);
 p=size(X,2);
 
-stat0=ienv(X,Y,r);
+stat0=env(X,Y,r,opts);
 
 
 for i=1:(p+1)
-%     i
-        stat=ienv(X,Y,p+1-i);
+
+        stat=ienv(X,Y,p+1-i,opts);
         chisq = -2*(stat.l-stat0.l);
         df=stat0.np-stat.np;
         
@@ -51,6 +60,7 @@ for i=1:(p+1)
             u=p+1-i;
             break;
         end
+        
 end
 
 if (i== p+1) && chi2cdf(chisq,df) > (1-alpha)

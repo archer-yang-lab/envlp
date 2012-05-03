@@ -2,7 +2,7 @@
 % Compute bootstrap standard error for the heteroscedastic envelope model. 
 
 %% Usage
-% bootse=bstrp_henv(X,Y,B,u)
+% bootse=bstrp_henv(X,Y,u,B,opts)
 %
 % Input
 %
@@ -10,9 +10,12 @@
 % only take p different values, one for each group.
 % * Y: Multivariate responses, an n by r matrix, r is the number of
 % responses and n is number of observations.  The responses must be continuous variables.
-% * B: Number of boostrap samples.  A positive integer.
 % * u: Dimension of the envelope subspace.  A positive integer between 0 and
 % r.
+% * B: Number of boostrap samples.  A positive integer.
+% * opts: A list containing the optional input parameter. If one or several (even all) 
+% fields are not defined, the default settings (see make_opts documentation) 
+% are used. 
 %
 % Output
 %
@@ -29,9 +32,15 @@
 % 
 % u=lrt_henv(X,Y,0.01)
 % B=100;
-% bootse=bstrp_henv(X,Y,B,u)
+% bootse=bstrp_henv(X,Y,u,B)
 
-function bootse=bstrp_henv(X,Y,B,u)
+function bootse=bstrp_henv(X,Y,u,B,opts)
+
+if (nargin < 4)
+    error('Inputs: X, Y, u and B should be specified!');
+elseif (nargin==4)
+    opts=[];
+end
 
 dataParameter=make_parameter(X,Y,'henv');
 p=dataParameter.p;
@@ -41,7 +50,7 @@ ng=dataParameter.ng;
 ncum=dataParameter.ncum;
 ind=dataParameter.ind;
 
-stat=henv(X,Y,u);
+stat=henv(X,Y,u,opts);
 
 Yfit=stat.Yfit;
 resi=Y-Yfit;
@@ -59,7 +68,7 @@ for i=1:B
         end
     end
     Yboot=Yfit+bootresi;
-    temp=henv(X,Yboot,u);
+    temp=henv(X,Yboot,u,opts);
     bootBeta(i,:)=reshape(temp.beta,1,r*p);
     
 end

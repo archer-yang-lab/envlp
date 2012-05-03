@@ -2,7 +2,7 @@
 % Fit the envelope model for the reduction on X.
 
 %% Usage
-% stat=xenv(X,Y,u)
+% stat=xenv(X,Y,u,opts)
 %
 % Input
 %
@@ -12,6 +12,9 @@
 % responses and n is number of observations. The responses must be 
 % continuous variables, and r should be strictly greater than p.
 % * u: Dimension of the envelope. An integer between 0 and p.
+% * opts: A list containing the optional input parameter. If one or several (even all) 
+% fields are not defined, the default settings (see make_opts documentation) 
+% are used.
 %
 % Output
 % 
@@ -89,8 +92,43 @@
 % % stat.mu
 % % BETA
 
-function stat=xenv(X,Y,u)
+function stat=xenv(X,Y,u,opts)
 
+if (nargin < 3)
+    error('Inputs: X, Y and u should be specified!');
+elseif (nargin==3)
+    opts=[];
+end
+
+[n,p]=size(X);
+[n1,r]=size(Y);
+
+if (n ~= n1)
+    error('The number of observations in X and Y should be equal!');
+end
+
+if (r >= p)
+    error('When the number of predictors is less than the number of responses, the envelope model for reduction on X cannot be applied.');
+end
+
+u = floor(u);
+if (u < 0 || u > p)
+    error('u should be an integer between [0, p]!');
+end
+
+opts=make_opts(opts);
+
+if isfield(opts,'init')
+    [r2,u2]=size(opts.init);
+
+    if (r ~= r2 || u ~= u2)
+        error('The size of the initial value should be r by u!');
+    end
+
+    if (rank(opts.init) < u2)
+        error('The initial value should be full rank!');
+    end
+end
 
 %---preparation---
 dataParameter=make_parameter(X,Y,'xenv');
@@ -119,11 +157,28 @@ if u>0 && u<p
     %---Compute \Gamma using sg_min---
     tempParameter=make_parameter(Y,X,'env');
     tempF = make_F(@F4env,tempParameter);
-    init=get_Init(tempF,Y,X,u,tempParameter);
+    
+    
+    maxIter=opts.maxIter;
+	ftol=opts.ftol;
+	gradtol=opts.gradtol;
+	if (opts.verbose==0) 
+        verbose='quiet';
+    else
+        verbose='verbose';
+    end
+    if ~isfield(opts,'init') 
+        init=get_Init(tempF,Y,X,u,tempParameter);
+    else
+        init=opts.init;
+    end
+    
     
     F = make_F(@F4xenv,dataParameter);
     dF = make_dF(@dF4xenv,dataParameter);
-    [l Gamma]=sg_min(F,dF,init,'prcg','quiet');
+
+    [l Gamma]=sg_min(F,dF,init,maxIter,'prcg',verbose,ftol,gradtol);
+
 
 
     %---Compute the rest of the parameters based on \Gamma---

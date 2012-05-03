@@ -1,4 +1,4 @@
-function [fn,Yn] = sg_min(F,dF,Y0,varargin)
+function [fn,Yn] = sg_min(F,dF,Y0,maxIter,varargin)
 % SG_MIN	Stiefel/Grassmann minimization meant for template use.
 %
 %	[fn,Yn] = SG_MIN(Y0) minimizes F(Y) where F is
@@ -43,7 +43,7 @@ function [fn,Yn] = sg_min(F,dF,Y0,varargin)
 	nas = length(varargin);
 	metarg = 0; rcarg = 0; partarg = 0; ftolarg = 0; gradtolarg = 0;
 	mdarg = 0; motarg = 0;
-    iterarg = 0; verbarg = 0;
+%     iterarg = 0; verbarg = 0;
 	for j=1:nas,
 		if (ischar(varargin{j}))
 			if (strcmp(lower(varargin{j}),'approximate'))
@@ -76,10 +76,11 @@ function [fn,Yn] = sg_min(F,dF,Y0,varargin)
 		elseif (iscell(varargin{j}))
 			part = varargin{j}; partarg=1;
 		elseif (isnumeric(varargin{j}))
-            if isinZ(varargin{j}),
-                SGParameters.maxiter = varargin{j};
-                iterarg = 1;
-            else
+            
+%             if varargin{j}==floor(varargin{j})
+%                 SGParameters.maxiter = varargin{j};
+%                 iterarg = 1;
+%             else
                 if (ftolarg)
                     SGParameters.gradtol = varargin{j}(1); 
 				    gradtolarg=1;
@@ -87,7 +88,7 @@ function [fn,Yn] = sg_min(F,dF,Y0,varargin)
                     SGParameters.ftol = varargin{j}(1);
                     ftolarg=1;
                 end
-			end
+% 			end
 		end
 	end
 % SGParamters.complex = 0 for real and 1 for complex.
@@ -123,14 +124,15 @@ function [fn,Yn] = sg_min(F,dF,Y0,varargin)
 	end
 
 	SGParameters.dimension = dimension(Y0);
+    SGParameters.maxiter = maxIter;
 % Set default max number of iterations
-    if (~iterarg)
-        SGParameters.maxiter = 300;
-    end
+%     if (~iterarg)
+%         SGParameters.maxiter = 300;
+%     end
 % No verbose outputs for default
-    if (~verbarg)
-        SGParameters.verbose = 0;
-    end
+%     if (~verbarg)
+%         SGParameters.verbose = 0;
+%     end
 
 % ======================================================    
 	if (SGParameters.Mode == 3)
