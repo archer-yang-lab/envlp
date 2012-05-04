@@ -6,19 +6,29 @@
 %
 % Input
 %
-% * X1: Predictors of main interst. An n by p1 matrix, n is the number of 
+% X1: Predictors of main interst. An n by p1 matrix, n is the number of 
 % observations, and p1 is the number of main predictors. The
 % predictors can be univariate or multivariate, discrete or continuous.
-% * X2: Covariates, or predictors not of main interest.  An n by p2 matrix,
+%
+% X2: Covariates, or predictors not of main interest.  An n by p2 matrix,
 % p2 is the number of covariates.  The covariates can be univariate or 
 % multivariate, discrete or continuous.
-% * Y: Multivariate responses. An n by r matrix, r is the number of
+%
+% Y: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
 % continuous variables, and r should be strictly greater than p1.
-% * u: Dimension of the partial envelope. An integer between 0 and r.
-% * opts: A list containing the optional input parameter. If one or several (even all) 
-% fields are not defined, the default settings (see make_opts documentation) 
-% are used.  
+%
+% u: Dimension of the partial envelope. An integer between 0 and r.
+%
+% opts: A list containing the optional input parameter, to control the
+% iterations in sg_min. If one or several (even all) fields are not
+% defined, the default settings are used.
+% 
+% * opts.maxIter: Maximum number of iterations.  Default value: 300.
+% * opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
+% * opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+% * opts.verbose: Flag for print out output, logical 0 or 1. Default value:
+% 0.
 %
 % Output
 % 
@@ -89,8 +99,8 @@
 
 function stat=penv(X1,X2,Y,u,opts)
 
-%% Verify and initialize the parameters
-%%
+% Verify and initialize the parameters
+
 if (nargin < 4)
     error('Inputs: X1, X2, Y and u should be specified!');
 elseif (nargin==4)
