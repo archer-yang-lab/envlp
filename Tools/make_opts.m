@@ -1,44 +1,39 @@
+%% make_opts
+% Make optional input parameters for running the sg_min package.
+
+%% Usage
+% opts = make_opts(opts)
+%
+% Input 
+%
+% A list containing optional input parameter for sg_min.m specified by users.  One or several (even all)
+% fields could be empty.
+%
+% * opts.maxIter: Maximum number of iterations.  Default value: 300.
+% * opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
+% * opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+% * opts.verbose: Flag for print out output, logical 0 or 1. Default value: 0.
+%
+% Output:
+% 
+% A list containing optional input parameter for sg_min.m, specified by
+% users or the default values are used.
+%
+% * opts.maxIter: Maximum number of iterations.  Default value: 300.
+% * opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
+% * opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+% * opts.verbose: Flag for print out output, logical 0 or 1. Default value: 0.
+
+%% Description
+% The sg_min function has some optional input parameters that control the
+% iteration process.  These parameters include maximum number of iteration,
+% tolerance parameters for convergence of the objective function F and the 
+% derivative of the objective function dF, and the print out of the iteration
+% process.  The user can set one or all of parameters, if not, default
+% values will be used.
+% 
+
 function opts = make_opts(opts)
-
-% Options for Envelope method
-%
-% Notice:
-% If one or several (even all) fields are empty, make_opts shall assign the
-% default settings.
-%
-% If some fields of opts have been defined, make_opts shall check the fields
-% for possible errors.
-%
-%
-% Table of Options.  * * indicates default value.
-%
-%% FIELD            DESCRIPTION
-%
-% .init             .init specifies the initial r * u matrix.  
-%                       *0* => no intial value defined.
-%
-%
-% .maxIter          Maximum number of iterations.
-%                       *300*
-%
-% .ftol             Tolerance parameter for F.
-%                       *1e-10*
-%
-% .gradtol            Tolerance parameter for dF.
-%                       *1e-7*
-%
-%
-%
-% .verbose          Flag for print out output.
-%
-%
-%
-%
-
-% if ~isfield(opts,'init')
-%     opts.init=[];
-% end
-
 
 
 if isfield(opts,'maxIter')
