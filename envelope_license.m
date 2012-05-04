@@ -6,8 +6,8 @@
 % ========
 % 
 % This document refers to all Matlab scripts and documentation (referred
-% to collectively here as "the software") contained in the "utils toolbox"
-% by Alexander Petrov 1999-2006, http://alexpetrov.com/softw/utils/
+% to collectively here as "the software") contained in the "envelope toolbox"
+% by Dennis Cook, Zhihua Su and Yi Yang 2012.
 % 
 % The software is freely available and freely redistributable, according
 % to the conditions of the Gnu General Public License (below). You may not
@@ -29,7 +29,7 @@
 % or suggested changes, particularly of any useful changes you may have
 % made to your own copy of the software.
 % 
-% Alex Petrov, December 2006
+% Dennis Cook, Zhihua Su and Yi Yang, May 2012
 % 
 % ==============================================================================
 % 
