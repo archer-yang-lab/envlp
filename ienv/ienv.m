@@ -63,6 +63,8 @@
 % in $$\beta$.  An r by p matrix.
 % * stat.np: The number of parameters in the inner envelope model.  A positive
 % integer.
+% * stat.n: The number of observations in the data.  A positive
+% integer.
 
 %% Description
 % This function fits the inner envelope model to the responses and predictors,
@@ -160,6 +162,7 @@ if u==p
     stat.covMatrix=temp.covMatrix;
     stat.asyIenv=temp.asyEnv;
     stat.ratio=temp.ratio;
+    stat.n=n;
     
 elseif u==0
     
@@ -178,7 +181,8 @@ elseif u==0
     stat.covMatrix=[];
     stat.asyIenv=[];
     stat.ratio=ones(r,p);
-    stat.np=r+u*p+r*(r+1)/2;    
+    stat.np=r+u*p+r*(r+1)/2;  
+    stat.n=n;
 
 else 
     
@@ -272,6 +276,7 @@ else
     stat.covMatrix=covMatrix;
     stat.asyIenv=asyIenv;
     stat.ratio=asyFm./asyIenv;
+    stat.n=n;
     
 end
 

@@ -74,7 +74,8 @@
 % linear regression estimator over the heteroscedastic envelope estimator.
 % An r by p matrix, the (i, j)th element in stat.ratio is the elementwise standard
 % error ratio for the ith element in the jth group mean effect.
-
+% * stat.n: The number of observations in the data.  A positive
+% integer.
 
 %% Description
 % This function fits the heteroscedatic envelope model to the responses and predictors,
@@ -184,6 +185,7 @@ if u==0
     stat.covMatrix=Sigma;
     stat.asyHenv=[];
     stat.ratio=ones(r,p);    
+    stat.n=n;
     
     
 elseif u==r
@@ -262,6 +264,7 @@ elseif u==r
     stat.covMatrix=covMatrix;
     stat.asyHenv=asyFm;
     stat.ratio=ones(r,p);
+    stat.n=n;
     
 else
     
@@ -378,5 +381,6 @@ else
     stat.covMatrix=covMatrix;
     stat.asyHenv=asyHenv;
     stat.ratio=asyFm./asyHenv;
+    stat.n=n;
     
 end

@@ -57,6 +57,8 @@
 % in $$\beta$.  An r by p matrix.
 % * stat.np: The number of parameters in the envelope model.  A positive
 % integer.
+% * stat.n: The number of observations in the data.  A positive
+% integer.
 
 
 %% Description
@@ -208,7 +210,7 @@ if u>0 && u<r
     stat.asyEnv=asyEnv;
     stat.ratio=asyFm./asyEnv;
     stat.np=r+u*p+r*(r+1)/2;
-    
+    stat.n=n;
     
 elseif u==0
     
@@ -226,7 +228,7 @@ elseif u==0
     stat.asyEnv=[];
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;
-    
+    stat.n=n;    
 
 elseif u==r
     
@@ -248,7 +250,7 @@ elseif u==r
     stat.asyEnv=asyFm;
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;
-    
+    stat.n=n;    
     
 end
     
