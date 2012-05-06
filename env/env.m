@@ -46,7 +46,10 @@
 % * stat.alpha: The estimated intercept in the envelope model.  An r by 1
 % vector.
 % * stat.l: The maximized log likelihood function.  A real number.
-% * stat.asyEnv: Asymptotic standard error for elements in $$\beta$ under
+% * stat.covMatrix: The asymptotic covariance of vec($$\beta$).  An rp by
+% rp matrix.  The covariance matrix returned are asymptotic.  For the
+% actual standard errors, multiply by 1/n.
+% * stat.asyEnv: The asymptotic standard error for elements in $$\beta$ under
 % the envelope model.  An r by p matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1/sqrt(n).
 % * stat.ratio: The asymptotic standard error ratio of the standard multivariate 
@@ -75,7 +78,7 @@
 %
 % The following codes will reconstruct the results in the wheat protein data
 % example in Cook et al. (2010).
-%
+% 
 % load wheatprotein.txt
 % X=wheatprotein(:,8);
 % Y=wheatprotein(:,1:6);
@@ -188,8 +191,8 @@ if u>0 && u<r
     asyFm=kron(inv(sigX),Sigma);
     asyFm=reshape(sqrt(diag(asyFm)),r,p);
     temp=kron(eta*sigX*eta',inv(Omega0))+kron(Omega,inv(Omega0))+kron(inv(Omega),Omega0)-2*kron(eye(u),eye(r-u));
-    asyEnv=kron(inv(sigX),Sigma1)+kron(eta',Gamma0)*inv(temp)*kron(eta,Gamma0');
-    asyEnv=reshape(sqrt(diag(asyEnv)),r,p);
+    covMatrix=kron(inv(sigX),Sigma1)+kron(eta',Gamma0)*inv(temp)*kron(eta,Gamma0');
+    asyEnv=reshape(sqrt(diag(covMatrix)),r,p);
     
     
     stat.beta=beta;
@@ -201,6 +204,7 @@ if u>0 && u<r
     stat.Omega0=Omega0;
     stat.alpha=alpha;
     stat.l=-n*r/2*(1+log(2*pi))-n/2*(l+log(prod(eigtem(eigtem>0))));
+    stat.covMatrix=covMatrix;
     stat.asyEnv=asyEnv;
     stat.ratio=asyFm./asyEnv;
     stat.np=r+u*p+r*(r+1)/2;
@@ -218,6 +222,7 @@ elseif u==0
     stat.Omega0=sigY;
     stat.alpha=mY;
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    stat.covMatrix=[];
     stat.asyEnv=[];
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;
@@ -226,8 +231,8 @@ elseif u==0
 elseif u==r
     
  
-    asyFm=kron(inv(sigX),sigRes);
-    asyFm=reshape(sqrt(diag(asyFm)),r,p);
+    covMatrix=kron(inv(sigX),sigRes);
+    asyFm=reshape(sqrt(diag(covMatrix)),r,p);
     
     stat.beta=betaOLS;
     stat.Sigma=sigRes;
@@ -239,6 +244,7 @@ elseif u==r
     stat.alpha=mY-betaOLS*mX;
     eigtem=eig(sigRes);
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    stat.covMatrix=covMatrix;
     stat.asyEnv=asyFm;
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;

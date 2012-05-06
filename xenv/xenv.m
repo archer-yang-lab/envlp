@@ -48,7 +48,10 @@
 % * stat.sigYcX: The estimated conditional covariance matrix of Y given X.
 % An r by r matrix.
 % * stat.l: The maximized log likelihood function.  A real number.
-% * stat.asyEnv: Asymptotic standard error for elements in $$\beta$ under
+% * stat.covMatrix: The asymptotic covariance of vec($$\beta$).  An pr by
+% pr matrix.  The covariance matrix returned are asymptotic.  For the
+% actual standard errors, multiply by 1/n.
+% * stat.asyXenv: Asymptotic standard error for elements in $$\beta$ under
 % the envelope model.  An r by p matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1/sqrt(n).
 % * stat.ratio: The asymptotic standard error ratio of the standard multivariate 
@@ -206,8 +209,8 @@ if u>0 && u<p
     asyFm=kron(sigYcX,inv(SigX));
     asyFm=reshape(sqrt(diag(asyFm)),p,r);
     temp=kron(eta*inv(sigYcX)*eta',Omega0)+kron(Omega,inv(Omega0))+kron(inv(Omega),Omega0)-2*kron(eye(u),eye(p-u));
-    asyEnv=kron(sigYcX,Gamma*inv(Omega)*Gamma')+kron(eta',Gamma0)*inv(temp)*kron(eta,Gamma0');
-    asyEnv=reshape(sqrt(diag(asyEnv)),p,r);
+    covMatrix=kron(sigYcX,Gamma*inv(Omega)*Gamma')+kron(eta',Gamma0)*inv(temp)*kron(eta,Gamma0');
+    asyEnv=reshape(sqrt(diag(covMatrix)),p,r);
     
 
     stat.beta=beta;
@@ -220,7 +223,8 @@ if u>0 && u<p
     stat.mu=mu;
     stat.sigYcX=sigYcX;
     stat.l=-n*(p+r)/2*log(2*pi)-n/2*(log(prod(eigtem(eigtem>0)))+log(prod(eigtem2(eigtem2>0))))-1/2*trace(X*invSigX*X')-1/2*trace((Y-ones(n,1)*mu'-X*beta)*inv(sigYcX)*(Y-ones(n,1)*mu'-X*beta)');
-    stat.asyEnv=asyEnv;
+    stat.covMatrix=covMatrix;
+    stat.asyXenv=asyEnv;
     stat.ratio=asyFm./asyEnv;
     stat.np=r+u*r+p*(p+1)/2+r*(r+1)/2;
     
@@ -240,7 +244,8 @@ elseif u==0
     stat.mu=mu;
     stat.sigYcX=sigY;
     stat.l=-n*(p+r)/2*log(2*pi)-n/2*(log(prod(eigtem(eigtem>0)))+log(prod(eigtem3(eigtem3>0))))-1/2*trace(X*invSigX*X')-1/2*trace((Y-ones(n,1)*mu')*inv(sigY)*(Y-ones(n,1)*mu')');
-    stat.asyEnv=[];
+    stat.covMatrix=[];
+    stat.asyXenv=[];
     stat.ratio=ones(p,r);
     stat.np=r+p*(p+1)/2+r*(r+1)/2;
     
@@ -249,8 +254,8 @@ elseif u==p
     
     temp=fit_OLS(X,Y);
  
-    asyFm=kron(sigYcX,invSigX);
-    asyFm=reshape(sqrt(diag(asyFm)),p,r);
+    covMatrix=kron(sigYcX,invSigX);
+    asyFm=reshape(sqrt(diag(covMatrix)),p,r);
     beta=temp.betaOLS';
     mu=mY-beta'*mX;
     eigtem=eig(sigX);
@@ -266,7 +271,8 @@ elseif u==p
     stat.mu=mu;
     stat.sigYcX=sigYcX;
     stat.l=-n*(p+r)/2*log(2*pi)-n/2*(log(prod(eigtem(eigtem>0)))+log(prod(eigtem2(eigtem2>0))))-1/2*trace(X*invSigX*X')-1/2*trace((Y-ones(n,1)*mu'-X*beta)*inv(sigYcX)*(Y-ones(n,1)*mu'-X*beta)');
-    stat.asyEnv=asyFm;
+    stat.covMatrix=covMatrix;
+    stat.asyXenv=asyFm;
     stat.ratio=ones(p,r);
     stat.np=r+(p+r)*(p+r+1)/2;
     

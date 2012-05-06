@@ -52,6 +52,9 @@
 % * stat.alpha: The estimated intercept in the inner envelope model.  An r by 1
 % vector.
 % * stat.l: The maximized log likelihood function.  A real number.
+% * stat.covMatrix: The asymptotic covariance of vec($$\beta$).  An rp by
+% rp matrix.  The covariance matrix returned are asymptotic.  For the
+% actual standard errors, multiply by 1/n.
 % * stat.asyIenv: Asymptotic standard error for elements in $$\beta$ under
 % the inner envelope model.  An r by p matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1/sqrt(n).
@@ -154,6 +157,7 @@ if u==p
     stat.alpha=temp.alpha;
     stat.l=temp.l;
     stat.np=temp.np;
+    stat.covMatrix=temp.covMatrix;
     stat.asyIenv=temp.asyEnv;
     stat.ratio=temp.ratio;
     
@@ -171,6 +175,7 @@ elseif u==0
     stat.Omega0=sigY;
     stat.alpha=mY;
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    stat.covMatrix=[];
     stat.asyIenv=[];
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;    
@@ -261,9 +266,10 @@ else
     J(1:p*r,1:p*r)=kron(sigX,insigma);
     J(p*r+1:end,p*r+1:end)=Expan(r)'*kron(insigma,insigma)*Expan(r)/2;
     asyv=H*pinv(H'*J*H)*H';
-    asyIenv=asyv(1:r*p,1:r*p);
-    asyIenv=reshape(sqrt(diag(asyIenv)),r,p);    
+    covMatrix=asyv(1:r*p,1:r*p);
+    asyIenv=reshape(sqrt(diag(covMatrix)),r,p);    
     
+    stat.covMatrix=covMatrix;
     stat.asyIenv=asyIenv;
     stat.ratio=asyFm./asyIenv;
     

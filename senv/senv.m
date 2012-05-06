@@ -50,6 +50,9 @@
 % * stat.alpha: The estimated intercept in the scaled envelope model.  An r
 % by 1 vector.
 % * stat.l: The maximized log likelihood function.  A real number.
+% * stat.covMatrix: The asymptotic covariance of vec($$\beta$).  An rp by
+% rp matrix.  The covariance matrix returned are asymptotic.  For the
+% actual standard errors, multiply by 1/n.
 % * stat.asySenv: Asymptotic standard error for elements in $$\beta$ under
 % the scaled envelope model.  An r by p matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1/sqrt(n).
@@ -158,14 +161,15 @@ if u==0
     stat.Omega0=sigY;
     stat.alpha=mY;
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    stat.covMatrix=[];
     stat.asySenv=[];
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;  
     
 elseif u==r
     
-    asyFm=kron(inv(sigX),sigRes);
-    asyFm=reshape(sqrt(diag(asyFm)),r,p);
+    covMatrix=kron(inv(sigX),sigRes);
+    asyFm=reshape(sqrt(diag(covMatrix)),r,p);
     
     eigtem=eig(sigRes);
     
@@ -179,6 +183,7 @@ elseif u==r
     stat.Omega0=[];
     stat.alpha=mY-betaOLS*mX;
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    stat.covMatrix=covMatrix;
     stat.asySenv=asyFm;
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;
@@ -264,7 +269,9 @@ else
     H(p*r+1:end,r+u*(r-u+p)+u*(u+1)/2:end)=Contr(r)*kron(Lambda*Gamma0,Lambda*Gamma0)*Expan(r-u);
 
     asyvar=H*inv(H'*J*H)*H'; 
-    asySenv=reshape(sqrt(diag(asyvar(1:r*p,1:r*p))),r,p);
+    covMatrix=asyvar(1:r*p,1:r*p);
+    asySenv=reshape(sqrt(diag(covMatrix)),r,p);
+    stat.covMatrix=covMatrix;
     stat.asySenv=asySenv;
     stat.ratio=asyFm./asySenv;
     
