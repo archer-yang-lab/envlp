@@ -2,7 +2,7 @@
 % The first derivative of the objective funtion for computing the envelope
 % subspace for the reduction on X.
 
-%% Usage
+%% Syntax
 % df = dF4xenv(R,dataParameter)
 % 
 % Input

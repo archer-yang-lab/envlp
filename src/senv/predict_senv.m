@@ -1,7 +1,7 @@
 %% predict_senv
 % Perform estimation or prediction under the scaled envelope model.
 
-%% Usage
+%% Syntax
 % predOutput=predict_senv(stat,Xnew,infType)
 % predOutput=predict_senv(stat,Xnew,infType,opts)
 %

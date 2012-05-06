@@ -2,7 +2,8 @@
 % Select the dimension of the envelope subspace using Akaike information
 % criterion.
 
-%% Usage
+%% Syntax
+% u=aic_env(X,Y)
 % u=aic_env(X,Y,opts)
 %
 % Input

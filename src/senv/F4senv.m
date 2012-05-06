@@ -2,7 +2,7 @@
 % Objective funtion for computing the envelope subspace in scaled envelope
 % model.
 
-%% Usage
+%% Syntax
 % f = F4senv(R,dataParameter)
 % 
 % Input

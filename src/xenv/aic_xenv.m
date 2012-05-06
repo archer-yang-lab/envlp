@@ -2,7 +2,8 @@
 % Use Akaike information criterion to select the dimension of the envelope
 % subspace for the reduction on X.
 
-%% Usage
+%% Syntax
+% u=aic_xenv(X,Y)
 % u=aic_xenv(X,Y,opts)
 %
 % Input

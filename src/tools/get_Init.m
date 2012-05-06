@@ -1,7 +1,7 @@
 %% WInit
 % Starting value for the envelope subspace.
 
-%% Usage
+%% Syntax
 % WInit=get_Init(X,Y,u,dataParameter)
 %
 % Input

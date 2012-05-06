@@ -2,7 +2,8 @@
 % Select the dimension of the inner envelope subspace using likelihood
 % ratio testing.
 
-%% Usage
+%% Syntax
+% u=lrt_ienv(X,Y,alpha)
 % u=lrt_ienv(X,Y,alpha,opts)
 %
 % Input

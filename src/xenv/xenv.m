@@ -1,7 +1,8 @@
 %% xenv
 % Fit the envelope model for the reduction on X.
 
-%% Usage
+%% Syntax
+% stat=xenv(X,Y,u)
 % stat=xenv(X,Y,u,opts)
 %
 % Input

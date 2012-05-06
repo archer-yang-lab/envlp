@@ -2,7 +2,8 @@
 % Select the dimension of the scaled envelope subspace using Bayesian
 % information criterion.
 
-%% Usage
+%% Syntax
+% u=bic_senv(X,Y)
 % u=bic_senv(X,Y,opts)
 %
 % Input

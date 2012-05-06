@@ -2,7 +2,8 @@
 % Select the dimension of the envelope subspace using likelihood ratio
 % testing.
 
-%% Usage
+%% Syntax
+% u=lrt_env(X,Y,alpha)
 % u=lrt_env(X,Y,alpha,opts)
 %
 % Input

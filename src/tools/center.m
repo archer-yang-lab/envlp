@@ -1,7 +1,7 @@
 %% center
 % Substract the mean of each column
 
-%% Usage
+%% Syntax
 % XC = center(X)
 %
 % Input

@@ -1,7 +1,8 @@
 %% ienv
 % Fit the inner envelope model.
 
-%% Usage
+%% Syntax
+% stat=ienv(X,Y,u)
 % stat=ienv(X,Y,u,opts)
 %
 % Input

@@ -1,7 +1,7 @@
 %% objfun
 % Objective funtion for computing the scales in the scaled envelope model.
 
-%% Usage
+%% Syntax
 % f = objfun(d,Gamma,dataParameter)
 % 
 % Input

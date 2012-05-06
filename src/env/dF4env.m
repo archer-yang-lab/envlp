@@ -2,7 +2,7 @@
 % The first derivative of the objective funtion for computing the envelope
 % subspace.
 
-%% Usage
+%% Syntax
 % df = dF4env(R,dataParameter)
 % 
 % Input

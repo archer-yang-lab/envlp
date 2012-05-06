@@ -1,7 +1,7 @@
 %% predict_penv
 % Perform estimation or prediction under the partial envelope model.
 
-%% Usage
+%% Syntax
 % predOutput=predict_penv(stat,Xnew,infType)
 % predOutput=predict_penv(stat,Xnew,infType,opts)
 %

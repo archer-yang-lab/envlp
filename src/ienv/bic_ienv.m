@@ -2,7 +2,8 @@
 % Select the dimension of the inner envelope subspace using Bayesian
 % information criterion.
 
-%% Usage
+%% Syntax
+% u=bic_ienv(X,Y)
 % u=bic_ienv(X,Y,opts)
 %
 % Input

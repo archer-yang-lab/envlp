@@ -1,7 +1,7 @@
 %% Lmatrix
 % Extract the 2nd to the last diagonal element of a matrix into a vector.
 
-%% Usage
+%% Syntax
 % L=Lmatrix(r)
 %
 % Input

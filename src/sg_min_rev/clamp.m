@@ -3,7 +3,7 @@ function [nY,nD] = clamp(Y,D)
 %		accumulate during covariant operations that detroy the
 %		orthogonality conditions.
 %
-%	Usages:
+%	Syntaxs:
 %	nY = CLAMP(Y)
 %	nD = CLAMP(Y,D)
 %	[nY,nD] = CLAMP(Y,D)

@@ -1,7 +1,7 @@
 %% Expan
 % Compute the expansion matrix of dimension r.
 
-%% Usage
+%% Syntax
 % E = Expan(r)
 %
 % Input

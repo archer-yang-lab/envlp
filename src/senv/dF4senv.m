@@ -2,7 +2,7 @@
 % First derivative of the objective funtion for computing the envelope
 % subspace in the scaled envelope model.
 
-%% Usage
+%% Syntax
 % f = dF4senv(R,dataParameter)
 % 
 % Input

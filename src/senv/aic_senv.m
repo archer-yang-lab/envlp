@@ -2,7 +2,8 @@
 % Select the dimension of the scaled envelope subspace using Akaike
 % information criterion.
 
-%% Usage
+%% Syntax
+% u=aic_senv(X,Y)
 % u=aic_senv(X,Y,opts)
 %
 % Input

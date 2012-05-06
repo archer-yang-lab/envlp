@@ -1,7 +1,8 @@
 %% penv
 % Fit the partial envelope model.
 
-%% Usage
+%% Syntax
+% stat = penv(X1,X2,Y,u)
 % stat = penv(X1,X2,Y,u,opts)
 %
 % Input

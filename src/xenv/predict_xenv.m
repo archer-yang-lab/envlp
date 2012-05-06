@@ -2,7 +2,7 @@
 % Perform estimation or prediction under the envelope model for the
 % reduction on X.
 
-%% Usage
+%% Syntax
 % predOutput=predict_xenv(stat,Xnew,infType)
 % predOutput=predict_xenv(stat,Xnew,infType,opts)
 %

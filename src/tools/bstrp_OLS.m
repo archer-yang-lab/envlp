@@ -1,7 +1,7 @@
 %% bstrp_OLS
 % Compute bootstrap standard error for ordinary least squares. 
 
-%% Usage
+%% Syntax
 % bootse=bstrp_OLS(X,Y,B)
 %
 % Input

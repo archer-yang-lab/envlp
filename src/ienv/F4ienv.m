@@ -1,7 +1,7 @@
 %% F4ienv
 % Objective funtion for computing the inner envelope subspace
 
-%% Usage
+%% Syntax
 % f = F4ienv(R,dataParameter)
 % 
 % Input

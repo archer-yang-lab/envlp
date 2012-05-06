@@ -1,7 +1,8 @@
 %% bstrp_penv
 % Compute bootstrap standard error for the partial envelope model. 
 
-%% Usage
+%% Syntax
+% bootse=bstrp_penv(X1,X2,Y,u,B)
 % bootse=bstrp_penv(X1,X2,Y,u,B,opts)
 %
 % Input

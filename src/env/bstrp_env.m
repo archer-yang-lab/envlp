@@ -1,7 +1,8 @@
 %% bstrp_env
 % Compute bootstrap standard error for the envelope model. 
 
-%% Usage
+%% Syntax
+% bootse=bstrp_env(X,Y,u,B)
 % bootse=bstrp_env(X,Y,u,B,opts)
 %
 % Input
