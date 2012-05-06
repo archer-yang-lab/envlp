@@ -3,7 +3,7 @@ function  install_envelope
 %INSTALL_ENVELOPE -- Add various envelope utilities to the MATLAB path
 %
 %  * SG_MIN Ver 2.4.1
-%  * SG_MIN Ver 2.4.1 Modified Components
+%  * SG_MIN Ver 2.4.1 (Modified Components)
 %  * Envelope Module
 %  * Envelope Module for Predictor Reduction
 %  * Heteroscedastic Envelope Module
@@ -62,7 +62,7 @@ end
 
 fprintf('\nThis script will install the following utilities to the Matlab path.\n') ;
 fprintf(' * SG_MIN Ver 2.4.1\n') ;
-fprintf(' * SG_MIN Ver 2.4.1 Modified Components\n') ;
+fprintf(' * SG_MIN Ver 2.4.1 (Modified Components)\n') ;
 fprintf(' * Envelope Module\n') ;
 fprintf(' * Envelope Module for Predictor Reduction\n') ;
 fprintf(' * Heteroscedastic Envelope Module\n') ;
@@ -86,39 +86,39 @@ end
 %-- Path name -- edit this if necessary
 envelope_path = fileparts(which('install_envelope')) ;  % e.g. '/work/envelope'
 
-s = fullfile(envelope_path,'sg_min') ;
+s = fullfile(envelope_path,'/src/sg_min') ;
 addpath(s) ;
 fprintf('\nSG_MIN Ver 2.4.1 added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'sg_min_rev') ;
+s = fullfile(envelope_path,'/src/sg_min_rev') ;
 addpath(s) ;
-fprintf('SG_MIN Ver 2.4.1 Modified Components added to the path: %s\n\n',s) ;
+fprintf('SG_MIN Ver 2.4.1 (Modified Components) added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'env') ;
+s = fullfile(envelope_path,'/src/env') ;
 addpath(s) ;
 fprintf('Envelope Module added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'xenv') ;
+s = fullfile(envelope_path,'/src/xenv') ;
 addpath(s) ;
 fprintf('Envelope Module for Predictor Reduction added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'henv') ;
+s = fullfile(envelope_path,'/src/henv') ;
 addpath(s) ;
 fprintf('Heteroscedastic Envelope Module added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'ienv') ;
+s = fullfile(envelope_path,'/src/ienv') ;
 addpath(s) ;
 fprintf('Inner Envelope Module added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'penv') ;
+s = fullfile(envelope_path,'/src/penv') ;
 addpath(s) ;
 fprintf('Partial Envelope Module added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'senv') ;
+s = fullfile(envelope_path,'/src/senv') ;
 addpath(s) ;
 fprintf('Scaled Envelope Module added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'tools') ;
+s = fullfile(envelope_path,'/src/tools') ;
 addpath(s) ;
 fprintf('Auxiliary Tools added to the path: %s\n\n',s) ;
 
@@ -130,6 +130,9 @@ s = fullfile(envelope_path,'doc') ;
 addpath(s) ;
 fprintf('Documentation added to the path: %s\n\n',s) ;
 
+s = fullfile(envelope_path,'examples') ;
+addpath(s) ;
+fprintf('Examples files added to the path: %s\n\n',s) ;
 
 %-- Save and finish
 if (which('savepath'))
