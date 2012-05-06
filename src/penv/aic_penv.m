@@ -2,7 +2,8 @@
 % Select the dimension of the partial envelope subspace using Akaike information
 % criterion.
 
-%% Usage
+%% Syntax
+% u=aic_penv(X1,X2,Y)
 % u=aic_penv(X1,X2,Y,opts)
 %
 % Input

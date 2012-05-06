@@ -1,7 +1,8 @@
 %% bstrp_henv
 % Compute bootstrap standard error for the heteroscedastic envelope model. 
 
-%% Usage
+%% Syntax
+% bootse=bstrp_henv(X,Y,u,B)
 % bootse=bstrp_henv(X,Y,u,B,opts)
 %
 % Input

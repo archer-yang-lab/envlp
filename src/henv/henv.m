@@ -1,7 +1,8 @@
 %% henv
 % Fit the heteroscedastic envelope model.
 
-%% Usage
+%% Syntax
+% stat=henv(X,Y,u)
 % stat=henv(X,Y,u,opts)
 %
 % Input

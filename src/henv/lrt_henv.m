@@ -2,7 +2,8 @@
 % Select the dimension of the envelope subspace using likelihood ratio
 % testing for the heteroscedastic envelope model.
 
-%% Usage
+%% Syntax
+% u=lrt_henv(X,Y,alpha)
 % u=lrt_henv(X,Y,alpha,opts)
 %
 % Input

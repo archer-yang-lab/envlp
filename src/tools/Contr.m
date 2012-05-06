@@ -1,7 +1,7 @@
 %% Contr
 % Compute the contraction matrix of dimension r.
 
-%% Usage
+%% Syntax
 % C = Contr(r)
 %
 % Input

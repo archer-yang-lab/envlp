@@ -1,7 +1,8 @@
 %% bstrp_senv
 % Compute bootstrap standard error for the scaled envelope model. 
 
-%% Usage
+%% Syntax
+% bootse=bstrp_senv(X,Y,u,B)
 % bootse=bstrp_senv(X,Y,u,B,opts)
 %
 % Input

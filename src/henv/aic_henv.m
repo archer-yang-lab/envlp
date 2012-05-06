@@ -2,7 +2,8 @@
 % Select the dimension of the envelope subspace using Akaike information
 % criterion for the heteroscedastic envelope model.
 
-%% Usage
+%% Syntax
+% u=aic_henv(X,Y)
 % u=aic_henv(X,Y,opts)
 %
 % Input

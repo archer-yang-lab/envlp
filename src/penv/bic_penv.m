@@ -2,7 +2,8 @@
 % Select the dimension of the partial envelope subspace using Bayesian information
 % criterion.
 
-%% Usage
+%% Syntax
+% u=bic_penv(X1,X2,Y)
 % u=bic_penv(X1,X2,Y,opts)
 %
 % Input

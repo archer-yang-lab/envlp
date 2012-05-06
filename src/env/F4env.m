@@ -1,7 +1,7 @@
 %% F4env
 % Objective funtion for computing the envelope subspace.
 
-%% Usage
+%% Syntax
 % f = F4env(R,dataParameter)
 % 
 % Input

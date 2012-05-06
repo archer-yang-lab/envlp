@@ -1,7 +1,8 @@
 %% env
 % Fit the envelope model.
 
-%% Usage
+%% Syntax
+% stat=env(X,Y,u)
 % stat=env(X,Y,u,opts)
 %
 % Input

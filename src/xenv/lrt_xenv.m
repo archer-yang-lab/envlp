@@ -3,7 +3,8 @@
 % Use likelihood ratio testing to select the dimension of the envelope
 % subspace for the reduction on X.
 
-%% Usage
+%% Syntax
+% u=lrt_xenv(X,Y,alpha)
 % u=lrt_xenv(X,Y,alpha,opts)
 %
 % Input

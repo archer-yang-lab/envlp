@@ -1,7 +1,8 @@
 %% senv
 % Fit the scaled envelope model.
 
-%% Usage
+%% Syntax
+% stat=senv(X,Y,u)
 % stat=senv(X,Y,u,opts)
 %
 % Input

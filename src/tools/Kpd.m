@@ -1,7 +1,7 @@
 %% Kpd
 % Compute the communication matrix Kpd.
 
-%% Usage
+%% Syntax
 % k=Kpd(p,d)
 %
 % Input

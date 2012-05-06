@@ -1,7 +1,7 @@
 %% predict_env
 % Perform estimation or prediction under the envelope model.
 
-%% Usage
+%% Syntax
 % predOutput=predict_env(stat,Xnew,infType)
 % predOutput=predict_env(stat,Xnew,infType,opts)
 %

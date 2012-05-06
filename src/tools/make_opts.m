@@ -1,7 +1,7 @@
 %% make_opts
 % Make optional input parameters for running the sg_min package.
 
-%% Usage
+%% Syntax
 % opts = make_opts(opts)
 %
 % Input 

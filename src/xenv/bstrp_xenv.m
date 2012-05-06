@@ -1,7 +1,8 @@
 %% bstrp_xenv
 % Compute bootstrap standard error of the envelope model for the reduction on X. 
 
-%% Usage
+%% Syntax
+% bootse=bstrp_xenv(X,Y,u,B)
 % bootse=bstrp_xenv(X,Y,u,B,opts)
 %
 % Input

@@ -2,7 +2,8 @@
 % Select the dimension of the partial envelope subspace using likelihood 
 % ratio testing.
 
-%% Usage
+%% Syntax
+% u=lrt_penv(X1,X2,Y,alpha)
 % u=lrt_penv(X1,X2,Y,alpha,opts)
 %
 % Input

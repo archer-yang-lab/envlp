@@ -2,7 +2,8 @@
 % Select the dimension of the envelope subspace using Bayesian information
 % criterion for the heteroscedastic envelope model.
 
-%% Usage
+%% Syntax
+% u=bic_henv(X,Y)
 % u=bic_henv(X,Y,opts)
 %
 % Input

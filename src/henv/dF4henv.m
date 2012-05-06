@@ -2,7 +2,7 @@
 % The first derivative of the objective funtion for computing the envelope
 % subspace in the heteroscedastic envelope model.
 
-%% Usage
+%% Syntax
 % df = dF4henv(R,dataParameter)
 % 
 % Input

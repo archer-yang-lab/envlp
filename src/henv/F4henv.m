@@ -2,7 +2,7 @@
 % Objective funtion for computing the envelope subspace in heteroscedastic
 % envelope model.
 
-%% Usage
+%% Syntax
 % f = F4henv(R,dataParameter)
 % 
 % Input

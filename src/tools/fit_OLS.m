@@ -1,7 +1,7 @@
 %% fit_OLS
 % Multivariate linear regression. 
 
-%% Usage
+%% Syntax
 % stat=fit_OLS(X,Y)
 %
 % Input

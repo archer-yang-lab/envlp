@@ -2,7 +2,7 @@
 % Objective funtion for computing the envelope subspace for the reduction
 % on X.
 
-%% Usage
+%% Syntax
 % f = F4xenv(R,dataParameter)
 % 
 % Input

@@ -2,7 +2,7 @@
 % First derivative of the objective funtion for computing the inner envelope
 % subspace.
 
-%% Usage
+%% Syntax
 % f = dF4ienv(R,dataParameter)
 % 
 % Input

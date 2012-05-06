@@ -1,7 +1,7 @@
 %% make_parameter
 % Compute summary statistics from the data.
 
-%% Usage
+%% Syntax
 % dataParameter=make_parameter(X,Y,method)
 %
 % Input
