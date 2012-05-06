@@ -65,6 +65,8 @@
 % in $$\beta_1$.  An r by p1 matrix.
 % * stat.np: The number of parameters in the envelope model.  A positive
 % integer.
+% * stat.n: The number of observations in the data.  A positive
+% integer.
 
 %% Description
 % This function fits the partial envelope model to the responses Y and
@@ -209,7 +211,7 @@ if u>0 && u<r
     stat.covMatrix=covMatrix;
     stat.asyPenv=asyPenv;
     stat.ratio=asyFm./asyPenv;
-
+    stat.n=n;
     
 elseif u==0
     
@@ -232,7 +234,7 @@ elseif u==0
     stat.asyPenv=[];
     stat.ratio=ones(r,p1);
     stat.np=r+u*p1+r*p2+r*(r+1)/2;
-    
+    stat.n=n;    
 
 elseif u==r
     
@@ -261,6 +263,7 @@ elseif u==r
     stat.asyPenv=asyFm;
     stat.ratio=ones(r,p1);
     stat.np=r+u*p1+r*p2+r*(r+1)/2;
+    stat.n=n;
     
 end
     

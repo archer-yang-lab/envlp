@@ -61,6 +61,8 @@
 % estimator, for each element in $$\beta$.  An r by p matrix.
 % * stat.np: The number of parameters in the scaled envelope model.  A
 % positive integer.
+% * stat.n: The number of observations in the data.  A positive
+% integer.
 
 %% Description
 % This function fits the scaled envelope model to the responses and predictors,
@@ -165,6 +167,7 @@ if u==0
     stat.asySenv=[];
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;  
+    stat.n=n;
     
 elseif u==r
     
@@ -187,6 +190,7 @@ elseif u==r
     stat.asySenv=asyFm;
     stat.ratio=ones(r,p);
     stat.np=r+u*p+r*(r+1)/2;
+    stat.n=n;
     
 else
 
@@ -274,5 +278,6 @@ else
     stat.covMatrix=covMatrix;
     stat.asySenv=asySenv;
     stat.ratio=asyFm./asySenv;
+    stat.n=n;
     
 end

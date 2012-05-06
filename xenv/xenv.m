@@ -59,7 +59,8 @@
 % in $$\beta$.  An p by r matrix.
 % * stat.np: The number of parameters in the envelope model.  A positive
 % integer.
-
+% * stat.n: The number of observations in the data.  A positive
+% integer.
 
 %% Description
 % This function fits the envelope model to the responses and predictors,
@@ -227,7 +228,7 @@ if u>0 && u<p
     stat.asyXenv=asyEnv;
     stat.ratio=asyFm./asyEnv;
     stat.np=r+u*r+p*(p+1)/2+r*(r+1)/2;
-    
+    stat.n=n;    
     
 elseif u==0
     
@@ -248,7 +249,7 @@ elseif u==0
     stat.asyXenv=[];
     stat.ratio=ones(p,r);
     stat.np=r+p*(p+1)/2+r*(r+1)/2;
-    
+    stat.n=n;    
 
 elseif u==p
     
@@ -275,7 +276,7 @@ elseif u==p
     stat.asyXenv=asyFm;
     stat.ratio=ones(p,r);
     stat.np=r+(p+r)*(p+r+1)/2;
-    
+    stat.n=n;    
     
 end
     
