@@ -64,8 +64,8 @@
 % * stat.l: The maximized log likelihood function.  A real number.
 % * stat.np: The number of parameters in the heteroscedastic envelope
 % model.  A positive integer.
-% * stat.covMatrix: The asymptotic covariance of vec($$\beta$).  An rp by
-% rp matrix.  The covariance matrix returned are asymptotic.  For the
+% * stat.covMatrix: The asymptotic covariance of ($$\mu$', vec($$\beta$')'.  An r(p+1) by
+% r(p+1) matrix.  The covariance matrix returned are asymptotic.  For the
 % actual standard errors, multiply by 1/n.
 % * stat.asyHenv: The asymptotic standard errors for elements in $$beta$
 % under the heteroscedastic envelope model. An r by p matrix.  The standard errors returned are
@@ -181,7 +181,7 @@ if u==0
     stat.Omega0=Omega0;
     stat.l=l;
     stat.np=(r-u)+u*(r-u+p)+p*u*(u+1)/2+(r-u)*(r-u+1)/2;
-    stat.covMatrix=[];
+    stat.covMatrix=Sigma;
     stat.asyHenv=[];
     stat.ratio=ones(r,p);    
     
@@ -236,14 +236,16 @@ elseif u==r
     temp=inv(J);
     tempA=kron(ones(1,p-1),eye(r));
     varGroupp=tempA*temp(r+1:r*p,r+1:r*p)*tempA';
-    covMatrix=zeros(r*p,r*p);
-    covMatrix(1:r*(p-1),1:r*(p-1))=temp(r+1:r*p,r+1:r*p);
-    covMatrix(r*(p-1)+1:r*p,r*(p-1)+1:r*p)=varGroupp;
+    covMatrix=zeros(r*(p+1),r*(p+1));
+    covMatrix(1:r*p,1:r*p)=temp(1:r*p,1:r*p);
+    covMatrix(r*p+1:r*(p+1),r*p+1:r*(p+1))=varGroupp;
     for i=1:p-1
-        covMatrix(r*(p-1)+1:r*p,(i-1)*r+1:i*r)=-tempA*temp(r+1:r*p,i*r+1:(i+1)*r);
+        covMatrix(r*p+1:r*(p+1),i*r+1:(i+1)*r)=-tempA*temp(r+1:r*p,i*r+1:(i+1)*r);
     end
-    covMatrix(1:(p-1)*r,r*(p-1)+1:r*p)=covMatrix(r*(p-1)+1:r*p,1:(p-1)*r)';
-    asyFm=reshape(sqrt(diag(covMatrix)),r,p);
+    covMatrix(r+1:p*r,r*p+1:r*(p+1))=covMatrix(r*p+1:r*(p+1),r+1:p*r)';
+    covMatrix(r*p+1:r*(p+1),1:r)=-tempA*temp(r+1:r*p,1:r);
+    covMatrix(1:r,r*p+1:r*(p+1))=covMatrix(r*p+1:r*(p+1),1:r)';
+    asyFm=reshape(sqrt(diag(covMatrix(r+1:end,r+1:end))),r,p);
     
     stat.mu=mu;
     stat.mug=mug;
@@ -349,15 +351,16 @@ else
     temp=H*inv(H'*J*H)*H';
     tempA=kron(ones(1,p-1),eye(r));
     varGroupp=tempA*temp(r+1:r*p,r+1:r*p)*tempA';
-    covMatrix=zeros(r*p,r*p);
-    covMatrix(1:r*(p-1),1:r*(p-1))=temp(r+1:r*p,r+1:r*p);
-    covMatrix(r*(p-1)+1:r*p,r*(p-1)+1:r*p)=varGroupp;
+    covMatrix=zeros(r*(p+1),r*(p+1));
+    covMatrix(1:r*p,1:r*p)=temp(1:r*p,1:r*p);
+    covMatrix(r*p+1:r*(p+1),r*p+1:r*(p+1))=varGroupp;
     for i=1:p-1
-        covMatrix(r*(p-1)+1:r*p,(i-1)*r+1:i*r)=-tempA*temp(r+1:r*p,i*r+1:(i+1)*r);
+        covMatrix(r*p+1:r*(p+1),i*r+1:(i+1)*r)=-tempA*temp(r+1:r*p,i*r+1:(i+1)*r);
     end
-    covMatrix(1:(p-1)*r,r*(p-1)+1:r*p)=covMatrix(r*(p-1)+1:r*p,1:(p-1)*r)';
-    asyHenv=reshape(sqrt(diag(covMatrix)),r,p);
-    
+    covMatrix(r+1:p*r,r*p+1:r*(p+1))=covMatrix(r*p+1:r*(p+1),r+1:p*r)';
+    covMatrix(r*p+1:r*(p+1),1:r)=-tempA*temp(r+1:r*p,1:r);
+    covMatrix(1:r,r*p+1:r*(p+1))=covMatrix(r*p+1:r*(p+1),1:r)';
+    asyHenv=reshape(sqrt(diag(covMatrix(r+1:end,r+1:end))),r,p);
     
     
     stat.mu=mu;
