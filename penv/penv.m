@@ -54,7 +54,10 @@
 % * stat.alpha: The estimated intercept in the partial envelope model.  An r by 1
 % vector.
 % * stat.l: The maximized log likelihood function.  A real number.
-% * stat.asyPenv: Asymptotic standard error for elements in $$\beta$ under
+% * stat.covMatrix: The asymptotic covariance of vec($$\beta_1$).  An rp1 by
+% rp1 matrix.  The covariance matrix returned are asymptotic.  For the
+% actual standard errors, multiply by 1/n.
+% * stat.asyPenv: Asymptotic standard error for elements in $$\beta_1$ under
 % the partial envelope model.  An r by p1 matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1/sqrt(n).
 % * stat.ratio: The asymptotic standard error ratio of the stanard multivariate 
@@ -200,9 +203,10 @@ if u>0 && u<r
     asyFm=reshape(sqrt(diag(asyFm)),r,p1);
     
     temp=kron(eta*Sig1G2*eta',inv(Omega0))+kron(Omega,inv(Omega0))+kron(inv(Omega),Omega0)-2*kron(eye(u),eye(r-u));
-    asyPenv=kron(inv(Sig1G2),Sigma1)+kron(eta',Gamma0)*inv(temp)*kron(eta,Gamma0');
-    asyPenv=reshape(sqrt(diag(asyPenv)),r,p1);
+    covMatrix=kron(inv(Sig1G2),Sigma1)+kron(eta',Gamma0)*inv(temp)*kron(eta,Gamma0');
+    asyPenv=reshape(sqrt(diag(covMatrix)),r,p1);
     
+    stat.covMatrix=covMatrix;
     stat.asyPenv=asyPenv;
     stat.ratio=asyFm./asyPenv;
 
@@ -224,6 +228,7 @@ elseif u==0
     stat.Omega0=Sigma;
     stat.alpha=mean(Y)'-beta2*mean(X2)';
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    stat.covMatrix=[];
     stat.asyPenv=[];
     stat.ratio=ones(r,p1);
     stat.np=r+u*p1+r*p2+r*(r+1)/2;
@@ -237,8 +242,9 @@ elseif u==r
     Sigma=temp.SigmaOLS;
     eigtem=eig(Sigma);
     sigX=cov(X,1);
-    asyFm=kron(inv(sigX),Sigma);
-    asyFm=reshape(sqrt(diag(asyFm(1:r*p1,1:r*p1))),r,p1);
+    tempasy=kron(inv(sigX),Sigma);
+    covMatrix=tempasy(1:r*p1,1:r*p1);
+    asyFm=reshape(sqrt(diag(covMatrix)),r,p1);
     
     
     stat.beta1=beta(:,1:p1);
@@ -251,6 +257,7 @@ elseif u==r
     stat.Omega0=[];
     stat.alpha=mean(Y)'-beta*mean(X)';
     stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    stat.covMatrix=covMatrix;
     stat.asyPenv=asyFm;
     stat.ratio=ones(r,p1);
     stat.np=r+u*p1+r*p2+r*(r+1)/2;
