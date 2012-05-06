@@ -66,7 +66,7 @@
 % This function fits the envelope model to the responses and predictors,
 % using the maximum likehood estimation.  When the dimension of the
 % envelope is between 1 and r-1, we implemented the algorithm in Cook et
-% al. (2010).  When the dimension is r, then the envelope model degenerates
+% al. (2012).  When the dimension is r, then the envelope model degenerates
 % to the standard multivariate linear regression.  When the dimension is 0,
 % it means that X and Y are uncorrelated, and the fitting is different.
 
