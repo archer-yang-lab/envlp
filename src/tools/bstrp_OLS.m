@@ -2,7 +2,7 @@
 % Compute bootstrap standard error for ordinary least squares. 
 
 %% Syntax
-% bootse=bstrp_OLS(X,Y,B)
+% bootse = bstrp_OLS(X, Y, B)
 %
 % Input
 %
@@ -23,31 +23,31 @@
 %% Example
 %
 % load wheatprotein.txt
-% X=wheatprotein(:,8);
-% Y=wheatprotein(:,1:6);
-% bootse=bstrp_OLS(X,Y,200)
+% X=wheatprotein(:, 8);
+% Y=wheatprotein(:, 1:6);
+% bootse=bstrp_OLS(X, Y, 200)
 
-function bootse=bstrp_OLS(X,Y,B)
+function bootse = bstrp_OLS(X, Y, B)
 
-ModelOutput=fit_OLS(X,Y);
-[n p]=size(X);
-r=size(Y,2);
-mY=mean(Y)';
-XC=center(X);
-betaOLS=ModelOutput.betaOLS;
+ModelOutput = fit_OLS(X, Y);
+[n p] = size(X);
+r = size(Y, 2);
+mY = mean(Y)';
+XC = center(X);
+betaOLS = ModelOutput.betaOLS;
 
-Yfit=ones(n,1)*mY'+XC*betaOLS';
-resi=Y-Yfit;
+Yfit = ones(n, 1) * mY' + XC * betaOLS';
+resi = Y - Yfit;
 
-bootBeta=zeros(B,r*p);
+bootBeta = zeros(B, r * p);
 
-for i=1:B
+for i = 1 : B
     
-    bootresi=resi(randsample(1:n,n,true),:);
-    Yboot=Yfit+bootresi;
-    statBoot=fit_OLS(X,Yboot);
-    bootBeta(i,:)=reshape(statBoot.betaOLS,1,r*p);
+    bootresi = resi(randsample(1 : n, n, true), :);
+    Yboot = Yfit + bootresi;
+    statBoot = fit_OLS(X, Yboot);
+    bootBeta(i,:) = reshape(statBoot.betaOLS, 1, r * p);
     
 end
 
-bootse=reshape(sqrt(diag(cov(bootBeta,1))),r,p);
+bootse = reshape(sqrt(diag(cov(bootBeta, 1))), r, p);
