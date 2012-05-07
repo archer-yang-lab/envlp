@@ -25,8 +25,8 @@ eig(ModelOutput.Omega)
 eig(ModelOutput.Omega0)
 norm(ModelOutput.beta-bet)
 ModelOutput=fit_OLS(X,Y);
-ModelOutput.betaOLS=beta_OLS;
-ModelOutput.SigmaOLS=sigres;
+beta_OLS=ModelOutput.betaOLS;
+sigres=ModelOutput.SigmaOLS;
 norm(beta_OLS-bet)
 subspace(ModelOutput.Gamma,G)
 
