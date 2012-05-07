@@ -2,8 +2,8 @@
 % Fit the heteroscedastic envelope model.
 
 %% Syntax
-% stat=henv(X,Y,u)
-% stat=henv(X,Y,u,opts)
+% stat = henv(X, Y, u)
+% stat = henv(X, Y, u, opts)
 %
 % Input
 %
@@ -101,26 +101,26 @@
 % and Cook (2011).
 % 
 % load waterstrider.mat
-% u=lrt_henv(X,Y,0.01)
-% stat=henv(X,Y,u)
+% u = lrt_henv(X, Y, 0.01)
+% stat = henv(X, Y, u)
 % stat.ratio
 
-function stat=henv(X,Y,u,opts)
+function stat = henv(X, Y, u, opts)
 
-if (nargin < 3)
+if nargin < 3
     error('Inputs: X, Y and u should be specified!');
-elseif (nargin==3)
-    opts=[];
+elseif nargin == 3
+    opts = [];
 end
 
-n=size(X,1);
-[n1,r]=size(Y);
+n = size(X, 1);
+[n1, r] = size(Y);
 
-if (n ~= n1)
+if n ~= n1
     error('The number of observations in X and Y should be equal!');
 end
 
-p=size(unique(X,'rows'),1);
+p = size(unique(X, 'rows'), 1);
 
 if (p > r)
     error('When the number of responses is less than the number of groups, the heteroscedastic envelope model cannot be applied.');
@@ -131,10 +131,10 @@ if (u < 0 || u > r)
     error('u should be an integer between [0, r]!');
 end
 
-opts=make_opts(opts);
+opts = make_opts(opts);
 
-if isfield(opts,'init')
-    [r2,u2]=size(opts.init);
+if isfield(opts, 'init')
+    [r2, u2] = size(opts.init);
 
     if (r ~= r2 || u ~= u2)
         error('The size of the initial value should be r by u!');
@@ -146,88 +146,88 @@ if isfield(opts,'init')
 end
 
 
-dataParameter=make_parameter(X,Y,'henv');
+dataParameter = make_parameter(X, Y, 'henv');
 
-p=dataParameter.p;
-r=dataParameter.r;
-n=dataParameter.n;
-ng=dataParameter.ng;
-ncum=dataParameter.ncum;
-mY=dataParameter.mY;
-mYg=dataParameter.mYg;
-sigRes=dataParameter.sigRes;
-sigY=dataParameter.sigY;
-ind=dataParameter.ind;
+p = dataParameter.p;
+r = dataParameter.r;
+n = dataParameter.n;
+ng = dataParameter.ng;
+ncum = dataParameter.ncum;
+mY = dataParameter.mY;
+mYg = dataParameter.mYg;
+sigRes = dataParameter.sigRes;
+sigY = dataParameter.sigY;
+ind = dataParameter.ind;
 
-if u==0
+if u == 0
     
-    Gamma=[];
-    Gamma0=eye(r);
-    Sigma=sigY;
-    mu=mY;
-    mug=mY*ones(1,p);
-    beta=zeros(r,p);
-    eta=[];
-    Omega=[];
-    Omega0=sigY;
+    Gamma = [];
+    Gamma0 = eye(r);
+    Sigma = sigY;
+    mu = mY;
+    mug = mY * ones(1, p);
+    beta = zeros(r, p);
+    eta = [];
+    Omega = [];
+    Omega0 = sigY;
     eigtem = eig(sigY);
-    l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
     
-    stat.mu=mu;
-    stat.mug=mug;
-    stat.Yfit=zeros(n,r);
-    stat.Gamma=Gamma;
-    stat.Gamma0=Gamma0;
-    stat.beta=beta;
-    stat.groupInd=sortrows(unique(X,'rows'));
-    stat.Sigma=Sigma;
-    stat.eta=eta;
-    stat.Omega=Omega;
-    stat.Omega0=Omega0;
-    stat.l=l;
-    stat.np=(r-u)+u*(r-u+p)+p*u*(u+1)/2+(r-u)*(r-u+1)/2;
-    stat.covMatrix=Sigma;
-    stat.asyHenv=[];
-    stat.ratio=ones(r,p);    
-    stat.ng=ng;
+    stat.mu = mu;
+    stat.mug = mug;
+    stat.Yfit = zeros(n, r);
+    stat.Gamma = Gamma;
+    stat.Gamma0 = Gamma0;
+    stat.beta = beta;
+    stat.groupInd = sortrows(unique(X, 'rows'));
+    stat.Sigma = Sigma;
+    stat.eta = eta;
+    stat.Omega = Omega;
+    stat.Omega0 = Omega0;
+    stat.l = l;
+    stat.np = (r - u) + u * (r - u + p) + p * u * (u + 1) / 2 + (r - u) * (r - u + 1) / 2;
+    stat.covMatrix = Sigma;
+    stat.asyHenv = [];
+    stat.ratio = ones(r, p);    
+    stat.ng = ng;
     
+elseif u == r
     
-elseif u==r
-    
-    Gamma=eye(r);
-    Gamma0=[];
-    Sigma=sigRes;
-    mu=mY;
-    mug=mYg;
-    beta=mug-mu*ones(1,p);
-    eta=beta;
-    Omega=sigRes;
-    Omega0=[];
-    l=-n*r/2*(1+log(2*pi));
-    for i=1:p
-        eigtem = eig(sigRes(:,:,i));
-        l=l-ng(i)/2*log(prod(eigtem(eigtem>0)));
+    Gamma = eye(r);
+    Gamma0 = [];
+    Sigma = sigRes;
+    mu = mY;
+    mug = mYg;
+    beta = mug - mu * ones(1, p);
+    eta = beta;
+    Omega = sigRes;
+    Omega0 = [];
+    l = - n * r / 2 * (1 + log(2 * pi));
+    for i = 1 : p
+        eigtem = eig(sigRes(:, :, i));
+        l = l - ng(i) / 2 * log(prod(eigtem(eigtem > 0)));
     end
-    Yfit=zeros(n,r);
-    for i=1:p
-        if i>1
-            Yfit(ind(ncum(i-1)+1:ncum(i)),:)=ones(ng(i),1)*mug(:,i)';
+    Yfit = zeros(n, r);
+    for i = 1 : p
+        if i > 1
+            Yfit(ind(ncum(i - 1) + 1 : ncum(i)), :) = ones(ng(i), 1) * mug(:, i)';
         else
-            Yfit(ind(1:ncum(1)),:)=ones(ng(1),1)*mug(:,1)';
+            Yfit(ind(1 : ncum(1)), :) = ones(ng(1), 1) * mug(:, 1)';
         end
     end
     
-    fracN=ng/n;
-    J=zeros(p*r+p*r*(r+1)/2);
-    for i=1:p-1
-        for j=1:p-1
-
-            J((i-1)*r+1:i*r,(j-1)*r+1:j*r)=fracN(j)*fracN(i)/fracN(p)*inv(Sigma(:,:,p));
+    fracN = ng / n;
+    J = zeros(p * r + p * r * (r + 1) / 2);
+    for i = 1 : p - 1
+        for j = 1 : p - 1
+            J((i - 1) * r + 1 : i * r, (j - 1) * r + 1 : j * r) 
+				= fracN(j) * fracN(i) / fracN(p) * inv(Sigma(:, :, p));
         end
-        J((i-1)*r+1:i*r,(i-1)*r+1:i*r)=fracN(i)*inv(Sigma(:,:,i))+fracN(i)^2/fracN(p)*inv(Sigma(:,:,p));
+        J((i - 1) * r + 1 : i * r, (i - 1) * r + 1 : i * r) 
+			= fracN(i) * inv(Sigma(:, :, i)) + fracN(i) ^ 2 / fracN(p) * inv(Sigma(:, :, p));
     end
-    for i=1:p
-        J(r*(p-1)+1+(i-1)*r*(r+1)/2:r*(p-1)+i*r*(r+1)/2,r*(p-1)+1+(i-1)*r*(r+1)/2:r*(p-1)+i*r*(r+1)/2)=0.5*fracN(i)*Expan(r)'*kron(inv(Sigma(:,:,i)),inv(Sigma(:,:,i)))*Expan(r);
+    for i = 1 : p
+        J(r * (p - 1) + 1 + (i - 1) * r * (r + 1) / 2 : r * (p - 1) + i * r * (r + 1) / 2, r * (p - 1)+1+(i-1)*r*(r+1)/2:r*(p-1)+i*r*(r+1)/2)=0.5*fracN(i)*Expan(r)'*kron(inv(Sigma(:,:,i)),inv(Sigma(:,:,i)))*Expan(r);
     end
     J(r+1:end,r+1:end)=J(1:(p-1)*r+p*r*(r+1)/2,1:(p-1)*r+p*r*(r+1)/2);
     J(1:r,:)=0;
@@ -369,7 +369,6 @@ else
     covMatrix(r*p+1:r*(p+1),1:r)=-tempA*temp(r+1:r*p,1:r);
     covMatrix(1:r,r*p+1:r*(p+1))=covMatrix(r*p+1:r*(p+1),1:r)';
     asyHenv=reshape(sqrt(diag(covMatrix(r+1:end,r+1:end))),r,p);
-    
     
     stat.mu=mu;
     stat.mug=mug;

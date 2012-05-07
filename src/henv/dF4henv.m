@@ -3,7 +3,7 @@
 % subspace in the heteroscedastic envelope model.
 
 %% Syntax
-% df = dF4henv(R,dataParameter)
+% df = dF4henv(R, dataParameter)
 % 
 % Input
 %
@@ -21,21 +21,21 @@
 %  using maximum likelihood estimation. This function is the derivative of
 %  the objective function.
 
-function df = dF4henv(R,dataParameter)
+function df = dF4henv(R, dataParameter)
 
-p=dataParameter.p;
-n=dataParameter.n;
-ng=dataParameter.ng;
-sigRes=dataParameter.sigRes;
-sigY=dataParameter.sigY;
+p = dataParameter.p;
+n = dataParameter.n;
+ng = dataParameter.ng;
+sigRes = dataParameter.sigRes;
+sigY = dataParameter.sigY;
 
-df=zeros(size(R));
+df = zeros(size(R));
 
-for i=1:p
-    a = 2*ng(i)/n*sigRes(:,:,i)*R*inv(R'*sigRes(:,:,i)*R);
-    df=df+a;
+for i = 1 : p
+    a = 2 * ng(i) / n * sigRes(:, :, i) * R * inv(R' * sigRes(:, :, i) * R);
+    df = df + a;
 end
 
-b = 2*inv(sigY)*R*inv(R'*inv(sigY)*R);
+b = 2 * inv(sigY) * R * inv(R' * inv(sigY) * R);
 
-df=df+b;
+df = df + b;

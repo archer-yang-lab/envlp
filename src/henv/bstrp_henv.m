@@ -2,8 +2,8 @@
 % Compute bootstrap standard error for the heteroscedastic envelope model. 
 
 %% Syntax
-% bootse=bstrp_henv(X,Y,u,B)
-% bootse=bstrp_henv(X,Y,u,B,opts)
+% bootse = bstrp_henv(X, Y, u, B)
+% bootse = bstrp_henv(X, Y, u, B, opts)
 %
 % Input
 %
@@ -31,47 +31,46 @@
 %
 % load waterstrider.mat
 % 
-% u=lrt_henv(X,Y,0.01)
-% B=100;
-% bootse=bstrp_henv(X,Y,u,B)
+% u = lrt_henv(X, Y, 0.01)
+% B = 100;
+% bootse = bstrp_henv(X, Y, u, B)
 
-function bootse=bstrp_henv(X,Y,u,B,opts)
+function bootse = bstrp_henv(X, Y, u, B, opts)
 
-if (nargin < 4)
+if nargin < 4
     error('Inputs: X, Y, u and B should be specified!');
-elseif (nargin==4)
-    opts=[];
+elseif nargin == 4
+    opts = [];
 end
 
-dataParameter=make_parameter(X,Y,'henv');
-p=dataParameter.p;
-r=dataParameter.r;
-n=dataParameter.n;
-ng=dataParameter.ng;
-ncum=dataParameter.ncum;
-ind=dataParameter.ind;
+dataParameter = make_parameter(X, Y, 'henv');
+p = dataParameter.p;
+r = dataParameter.r;
+n = dataParameter.n;
+ng = dataParameter.ng;
+ncum = dataParameter.ncum;
+ind = dataParameter.ind;
 
-stat=henv(X,Y,u,opts);
+stat = henv(X, Y, u, opts);
 
-Yfit=stat.Yfit;
-resi=Y-Yfit;
+Yfit = stat.Yfit;
+resi = Y - Yfit;
 
-bootresi=zeros(n,r);
-bootBeta=zeros(B,r*p);
+bootresi = zeros(n, r);
+bootBeta = zeros(B, r * p);
 
-for i=1:B
-    
-    for j=1:p
-        if j>1
-            bootresi(ind(ncum(j-1)+1:ncum(j)),:)=resi(randsample(ind(ncum(j-1)+1:ncum(j)),ng(j),true),:);   
+for i = 1 : B
+    for j = 1 : p
+        if j > 1
+            bootresi(ind(ncum(j - 1) + 1 : ncum(j)), :) = 
+				resi(randsample(ind(ncum(j - 1) + 1 : ncum(j)), ng(j), true), :);   
         else
-            bootresi(ind(1:ncum(1)),:)=resi(randsample(ind(1:ng(1)),ng(1),true),:);
+            bootresi(ind(1 : ncum(1)), :) = resi(randsample(ind(1 : ng(1)), ng(1), true), :);
         end
     end
-    Yboot=Yfit+bootresi;
-    temp=henv(X,Yboot,u,opts);
-    bootBeta(i,:)=reshape(temp.beta,1,r*p);
-    
+    Yboot = Yfit + bootresi;
+    temp = henv(X, Yboot, u, opts);
+    bootBeta(i,:) = reshape(temp.beta, 1, r * p);
 end
 
-bootse=reshape(sqrt(diag(cov(bootBeta,1))),r,p);
+bootse = reshape(sqrt(diag(cov(bootBeta, 1))), r, p);

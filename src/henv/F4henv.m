@@ -3,7 +3,7 @@
 % envelope model.
 
 %% Syntax
-% f = F4henv(R,dataParameter)
+% f = F4henv(R, dataParameter)
 % 
 % Input
 %
@@ -23,23 +23,22 @@
 % matrix that minimizes this function span the estimated envelope subspace
 % in the heteroscedastic envelope model.
 
-function f = F4henv(R,dataParameter)
+function f = F4henv(R, dataParameter)
 
-p=dataParameter.p;
-n=dataParameter.n;
-ng=dataParameter.ng;
-sigRes=dataParameter.sigRes;
-sigY=dataParameter.sigY;
+p = dataParameter.p;
+n = dataParameter.n;
+ng = dataParameter.ng;
+sigRes = dataParameter.sigRes;
+sigY = dataParameter.sigY;
 
-f=0;
-for i=1:p
-    eigtem = eig(R' * sigRes(:,:,i) * R);
-    a = log(prod(eigtem(eigtem>0)));
-    f = f+ng(i)/n*a;  
+f = 0;
+for i = 1 : p
+    eigtem = eig(R' * sigRes(:, :, i) * R);
+    a = log(prod(eigtem(eigtem > 0)));
+    f = f + ng(i) / n * a;  
 end
 
+eigtem0 = eig(R' * inv(sigY) * R);
+b = log(prod(eigtem0(eigtem0 > 0)));
 
-eigtem0=eig(R'*inv(sigY)*R);
-b=log(prod(eigtem0(eigtem0>0)));
-
-f=f+b;
+f = f + b;
