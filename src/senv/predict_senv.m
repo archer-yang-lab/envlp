@@ -2,12 +2,12 @@
 % Perform estimation or prediction under the scaled envelope model.
 
 %% Syntax
-% predOutput=predict_senv(stat,Xnew,infType)
-% predOutput=predict_senv(stat,Xnew,infType,opts)
+% predOutput=predict_senv(ModelOutput,Xnew,infType)
+% predOutput=predict_senv(ModelOutput,Xnew,infType,opts)
 %
 % Input
 %
-% stat: A list containing the maximum likelihood estimators and other
+% ModelOutput: A list containing the maximum likelihood estimators and other
 % statistics inherted from senv.
 % 
 % Xnew: The value of X with which to estimate or predict Y.  A p by 1
@@ -49,17 +49,17 @@
 % Y=T9_12(:,4:7);
 % X=T9_12(:,1:3);
 % u=bic_env(X,Y)
-% stat=env(X,Y,u);
+% ModelOutput=env(X,Y,u);
 % Xnew=X(1,:)';
-% predOutput=predict_senv(stat,Xnew,'estimation')
+% predOutput=predict_senv(ModelOutput,Xnew,'estimation')
 % predOutput.value  % Compare the fitted value with the data
 % Y(1,:)'
-% predOutput=predict_senv(stat,Xnew,'prediction')
+% predOutput=predict_senv(ModelOutput,Xnew,'prediction')
 
-function predOutput=predict_senv(stat,Xnew,infType,opts)
+function predOutput=predict_senv(ModelOutput,Xnew,infType,opts)
 
 if (nargin < 3)
-    error('Inputs: stat,Xnew and infType should be specified!');
+    error('Inputs: ModelOutput,Xnew and infType should be specified!');
 elseif (nargin==3)
     opts=[];
 end
@@ -68,25 +68,25 @@ if (~strcmp(infType,'estimation'))&&(~strcmp(infType,'prediction'))
     error('Inference type can only be estimation or prediction.');
 end
 
-[r,p]=size(stat.beta);
+[r,p]=size(ModelOutput.beta);
 [s1 s2]=size(Xnew);
 
 if s1~=p ||s2~=1
     error('Xnew must be a p by 1 vector');
 end
 
-n=stat.n;
+n=ModelOutput.n;
 
 if (strcmp(infType,'estimation'))
     
-    predOutput.value=stat.alpha+stat.beta*Xnew;
-    predOutput.covMatrix=stat.Sigma/n+kron(Xnew',eye(r))*stat.covMatrix*kron(Xnew,eye(r))/n;
+    predOutput.value=ModelOutput.alpha+ModelOutput.beta*Xnew;
+    predOutput.covMatrix=ModelOutput.Sigma/n+kron(Xnew',eye(r))*ModelOutput.covMatrix*kron(Xnew,eye(r))/n;
     predOutput.SE=sqrt(diag(predOutput.covMatrix));
     
 elseif (strcmp(infType,'prediction'))
     
-    predOutput.value=stat.alpha+stat.beta*Xnew;
-    predOutput.covMatrix=(1+1/n)*stat.Sigma+kron(Xnew',eye(r))*stat.covMatrix*kron(Xnew,eye(r))/n;
+    predOutput.value=ModelOutput.alpha+ModelOutput.beta*Xnew;
+    predOutput.covMatrix=(1+1/n)*ModelOutput.Sigma+kron(Xnew',eye(r))*ModelOutput.covMatrix*kron(Xnew,eye(r))/n;
     predOutput.SE=sqrt(diag(predOutput.covMatrix));
     
 end

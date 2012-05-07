@@ -48,14 +48,14 @@ end
 [n r]=size(Y);
 p=size(X,2);
 
-stat0=env(X,Y,r,opts);
+ModelOutput0=env(X,Y,r,opts);
 
 
 for i=1:(p+1)
 
-        stat=ienv(X,Y,p+1-i,opts);
-        chisq = -2*(stat.l-stat0.l);
-        df=stat0.np-stat.np;
+        ModelOutput=ienv(X,Y,p+1-i,opts);
+        chisq = -2*(ModelOutput.l-ModelOutput0.l);
+        df=ModelOutput0.np-ModelOutput.np;
         
         if (chi2cdf(chisq,df) < (1-alpha))
             u=p+1-i;

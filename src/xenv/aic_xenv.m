@@ -42,15 +42,15 @@ end
 
 [n p]=size(X);
     
-stat=xenv(X,Y,p,opts);
-ic=-2*stat.l+2*stat.np;
+ModelOutput=xenv(X,Y,p,opts);
+ic=-2*ModelOutput.l+2*ModelOutput.np;
 u=p;
 
 
 for i=0:p-1
 
-        stat=xenv(X,Y,i,opts);
-        temp=-2*stat.l+2*stat.np;
+        ModelOutput=xenv(X,Y,i,opts);
+        temp=-2*ModelOutput.l+2*ModelOutput.np;
         if (temp<ic)
            u=i;
            ic=temp;

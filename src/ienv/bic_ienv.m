@@ -42,15 +42,15 @@ end
 [n r]=size(Y);
 p=size(X,2);
     
-stat=env(X,Y,r,opts);
-ic=-2*stat.l+log(n)*stat.np;
+ModelOutput=env(X,Y,r,opts);
+ic=-2*ModelOutput.l+log(n)*ModelOutput.np;
 u=r;
 
 
 for i=0:p
 %     i
-        stat=ienv(X,Y,i,opts);
-        temp=-2*stat.l+log(n)*stat.np;
+        ModelOutput=ienv(X,Y,i,opts);
+        temp=-2*ModelOutput.l+log(n)*ModelOutput.np;
         if (temp<ic)
            u=i;
            ic=temp;

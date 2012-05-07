@@ -2,12 +2,12 @@
 % Perform estimation or prediction under the heteroscedastic envelope model.
 
 %% Syntax
-% predOutput=predict_henv(stat,Xnew,infType)
-% predOutput=predict_henv(stat,Xnew,infType,opts)
+% predOutput=predict_henv(ModelOutput,Xnew,infType)
+% predOutput=predict_henv(ModelOutput,Xnew,infType,opts)
 %
 % Input
 %
-% stat: A list containing the maximum likelihood estimators and other
+% ModelOutput: A list containing the maximum likelihood estimators and other
 % statistics inherted from ienv.
 % 
 % Xnew: A group indicator.  It must be a column vector, whose transpose is
@@ -47,19 +47,19 @@
 %
 % load waterstrider.mat
 % u=lrt_henv(X,Y,0.01);
-% stat=henv(X,Y,u);
-% stat.groupInd
-% stat.mug
+% ModelOutput=henv(X,Y,u);
+% ModelOutput.groupInd
+% ModelOutput.mug
 % Xnew=X(1,:)'
-% predOutput=predict_henv(stat,Xnew,'estimation')
+% predOutput=predict_henv(ModelOutput,Xnew,'estimation')
 % predOutput.value  
-% predOutput=predict_henv(stat,Xnew,'prediction')
+% predOutput=predict_henv(ModelOutput,Xnew,'prediction')
 
 
-function predOutput=predict_henv(stat,Xnew,infType,opts)
+function predOutput=predict_henv(ModelOutput,Xnew,infType,opts)
 
 if (nargin < 3)
-    error('Inputs: stat,Xnew and infType should be specified!');
+    error('Inputs: ModelOutput,Xnew and infType should be specified!');
 elseif (nargin==3)
     opts=[];
 end
@@ -68,27 +68,27 @@ if (~strcmp(infType,'estimation'))&&(~strcmp(infType,'prediction'))
     error('Inference type can only be estimation or prediction.');
 end
 
-[tmp iX iG]=intersect(Xnew',stat.groupInd,'rows');
+[tmp iX iG]=intersect(Xnew',ModelOutput.groupInd,'rows');
 if size(tmp,1)==0
     error('Xnew should be the same with one of the group indicators.')
 end
 
-[r u]=size(stat.Gamma);
-ng=stat.ng;
+[r u]=size(ModelOutput.Gamma);
+ng=ModelOutput.ng;
 n=sum(ng);
 
 if u == 0
     
     if (strcmp(infType,'estimation'))
         
-        predOutput.value=stat.mu;
-        predOutput.covMatrix=stat.covMatrix(1:r)/n;
+        predOutput.value=ModelOutput.mu;
+        predOutput.covMatrix=ModelOutput.covMatrix(1:r)/n;
         predOutput.SE=sqrt(diag(predOutput.covMatrix));
         
     elseif (strcmp(infType,'prediction'))
         
-        predOutput.value=stat.mug(:,iG);
-        predOutput.covMatrix=stat.covMatrix(1:r)/n+stat.Sigma(:,:,iG);
+        predOutput.value=ModelOutput.mug(:,iG);
+        predOutput.covMatrix=ModelOutput.covMatrix(1:r)/n+ModelOutput.Sigma(:,:,iG);
         predOutput.SE=sqrt(diag(predOutput.covMatrix));
     
     end
@@ -97,14 +97,14 @@ else
     
     if (strcmp(infType,'estimation'))
         
-        predOutput.value=stat.mug(:,iG);
-        predOutput.covMatrix=(stat.covMatrix(1:r,1:r)+stat.covMatrix(iG*r+1:(iG+1)*r,iG*r+1:(iG+1)*r)+stat.covMatrix(1:r,iG*r+1:(iG+1)*r)+stat.covMatrix(iG*r+1:(iG+1)*r,1:r))/ng(iG);
+        predOutput.value=ModelOutput.mug(:,iG);
+        predOutput.covMatrix=(ModelOutput.covMatrix(1:r,1:r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(1:r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,1:r))/ng(iG);
         predOutput.SE=sqrt(diag(predOutput.covMatrix));
             
     elseif (strcmp(infType,'prediction'))
         
-        predOutput.value=stat.mug(:,iG);
-        predOutput.covMatrix=(stat.covMatrix(1:r,1:r)+stat.covMatrix(iG*r+1:(iG+1)*r,iG*r+1:(iG+1)*r)+stat.covMatrix(1:r,iG*r+1:(iG+1)*r)+stat.covMatrix(iG*r+1:(iG+1)*r,1:r))/ng(iG)+stat.Sigma(:,:,iG);
+        predOutput.value=ModelOutput.mug(:,iG);
+        predOutput.covMatrix=(ModelOutput.covMatrix(1:r,1:r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(1:r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,1:r))/ng(iG)+ModelOutput.Sigma(:,:,iG);
         predOutput.SE=sqrt(diag(predOutput.covMatrix));
     
         

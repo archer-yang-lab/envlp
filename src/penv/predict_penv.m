@@ -2,12 +2,12 @@
 % Perform estimation or prediction under the partial envelope model.
 
 %% Syntax
-% predOutput=predict_penv(stat,Xnew,infType)
-% predOutput=predict_penv(stat,Xnew,infType,opts)
+% predOutput=predict_penv(ModelOutput,Xnew,infType)
+% predOutput=predict_penv(ModelOutput,Xnew,infType,opts)
 %
 % Input
 %
-% stat: A list containing the maximum likelihood estimators and other
+% ModelOutput: A list containing the maximum likelihood estimators and other
 % statistics inherted from penv.
 % 
 % Xnew: A list containing the value of X1 and X2 with which to estimate or
@@ -55,18 +55,18 @@
 % X2 = X(:,1:2);
 % alpha = 0.01;
 % u = lrt_penv(X1,X2,Y,alpha)
-% stat = penv(X1,X2,Y,u)
+% ModelOutput = penv(X1,X2,Y,u)
 % Xnew.X1=X1(1,:)';
 % Xnew.X2=X2(1,:)';
-% predOutput=predict_penv(stat,Xnew,'estimation')
+% predOutput=predict_penv(ModelOutput,Xnew,'estimation')
 % predOutput.value  % Compare the fitted value with the data
 % Y(1,:)'
-% predOutput=predict_penv(stat,Xnew,'prediction')
+% predOutput=predict_penv(ModelOutput,Xnew,'prediction')
 
-function predOutput=predict_penv(stat,Xnew,infType,opts)
+function predOutput=predict_penv(ModelOutput,Xnew,infType,opts)
 
 if (nargin < 3)
-    error('Inputs: stat,Xnew and infType should be specified!');
+    error('Inputs: ModelOutput,Xnew and infType should be specified!');
 elseif (nargin==3)
     opts=[];
 end
@@ -75,8 +75,8 @@ if (~strcmp(infType,'estimation'))&&(~strcmp(infType,'prediction'))
     error('Inference type can only be estimation or prediction.');
 end
 
-[r,p1]=size(stat.beta1);
-p2=size(stat.beta2,2);
+[r,p1]=size(ModelOutput.beta1);
+p2=size(ModelOutput.beta2,2);
 
 [s1 s2]=size(Xnew.X1);
 if s1~=p1 ||s2~=1
@@ -88,20 +88,20 @@ if s1~=p2 ||s2~=1
     error('Xnew.X2 must be a p2 by 1 vector');
 end
 
-n=stat.n;
+n=ModelOutput.n;
 
 if (strcmp(infType,'estimation'))
     
-    predOutput.value=stat.alpha+stat.beta1*Xnew.X1+stat.beta2*Xnew.X2;
+    predOutput.value=ModelOutput.alpha+ModelOutput.beta1*Xnew.X1+ModelOutput.beta2*Xnew.X2;
     X=[Xnew.X2' Xnew.X1']';
-    predOutput.covMatrix=stat.Sigma/n+kron(X',eye(r))*stat.covMatrix*kron(X,eye(r))/n;
+    predOutput.covMatrix=ModelOutput.Sigma/n+kron(X',eye(r))*ModelOutput.covMatrix*kron(X,eye(r))/n;
     predOutput.SE=sqrt(diag(predOutput.covMatrix));
     
 elseif (strcmp(infType,'prediction'))
     
-    predOutput.value=stat.alpha+stat.beta1*Xnew.X1+stat.beta2*Xnew.X2;
+    predOutput.value=ModelOutput.alpha+ModelOutput.beta1*Xnew.X1+ModelOutput.beta2*Xnew.X2;
     X=[Xnew.X2' Xnew.X1']';
-    predOutput.covMatrix=(1+1/n)*stat.Sigma+kron(X',eye(r))*stat.covMatrix*kron(X,eye(r))/n;
+    predOutput.covMatrix=(1+1/n)*ModelOutput.Sigma+kron(X',eye(r))*ModelOutput.covMatrix*kron(X,eye(r))/n;
     predOutput.SE=sqrt(diag(predOutput.covMatrix));
     
 end

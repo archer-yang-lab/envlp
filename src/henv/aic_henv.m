@@ -40,15 +40,15 @@ end
 
 [n r]=size(Y);
     
-stat=henv(X,Y,r,opts);
-ic=-2*stat.l+2*stat.np;
+ModelOutput=henv(X,Y,r,opts);
+ic=-2*ModelOutput.l+2*ModelOutput.np;
 u=r;
 
 
 for i=0:r-1
 
-        stat=henv(X,Y,i,opts);
-        temp=-2*stat.l+2*stat.np;
+        ModelOutput=henv(X,Y,i,opts);
+        temp=-2*ModelOutput.l+2*ModelOutput.np;
         if (temp<ic)
            u=i;
            ic=temp;

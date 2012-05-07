@@ -2,8 +2,8 @@
 % Fit the partial envelope model.
 
 %% Syntax
-% stat = penv(X1,X2,Y,u)
-% stat = penv(X1,X2,Y,u,opts)
+% ModelOutput = penv(X1,X2,Y,u)
+% ModelOutput = penv(X1,X2,Y,u,opts)
 %
 % Input
 %
@@ -33,40 +33,40 @@
 %
 % Output
 % 
-% stat: A list that contains the maximum likelihood estimators and some
+% ModelOutput: A list that contains the maximum likelihood estimators and some
 % statistics.
 % 
-% * stat.beta1: The partial envelope estimator of $$\beta_1$, which is the
+% * ModelOutput.beta1: The partial envelope estimator of $$\beta_1$, which is the
 % regression coefficients for X1. An r by p1 matrix.
-% * stat.beta2: The partial envelope estimator of $$\beta_2$, which is the
+% * ModelOutput.beta2: The partial envelope estimator of $$\beta_2$, which is the
 % regression coefficients for X2. An r by p2 matrix.
-% * stat.Sigma: The partial envelope estimator of the error covariance 
+% * ModelOutput.Sigma: The partial envelope estimator of the error covariance 
 % matrix.  An r by r matrix.
-% * stat.Gamma: The orthogonal basis of the partial envelope subspace. An r by u
+% * ModelOutput.Gamma: The orthogonal basis of the partial envelope subspace. An r by u
 % semi-orthogonal matrix.
-% * stat.Gamma0: The orthogonal basis of the complement of the partial envelope
+% * ModelOutput.Gamma0: The orthogonal basis of the complement of the partial envelope
 % subspace.  An r by r-u semi-orthogonal matrix.
-% * stat.eta: The coordinates of $$\beta_1$ with respect to Gamma. An u by
+% * ModelOutput.eta: The coordinates of $$\beta_1$ with respect to Gamma. An u by
 % p1 matrix.
-% * stat.Omega: The coordinates of Sigma with respect to Gamma. An u by u
+% * ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u
 % matrix.
-% * stat.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u
+% * ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u
 % matrix.
-% * stat.alpha: The estimated intercept in the partial envelope model.  An r by 1
+% * ModelOutput.alpha: The estimated intercept in the partial envelope model.  An r by 1
 % vector.
-% * stat.l: The maximized log likelihood function.  A real number.
-% * stat.covMatrix: The asymptotic covariance of (vec($$\beta_2$)', vec($$\beta_1$)')'.  An rp by
+% * ModelOutput.l: The maximized log likelihood function.  A real number.
+% * ModelOutput.covMatrix: The asymptotic covariance of (vec($$\beta_2$)', vec($$\beta_1$)')'.  An rp by
 % rp matrix.  The covariance matrix returned are asymptotic.  For the
 % actual standard errors, multiply by 1/n.
-% * stat.asyPenv: Asymptotic standard error for elements in $$\beta_1$ under
+% * ModelOutput.asyPenv: Asymptotic standard error for elements in $$\beta_1$ under
 % the partial envelope model.  An r by p1 matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1/sqrt(n).
-% * stat.ratio: The asymptotic standard error ratio of the stanard multivariate 
+% * ModelOutput.ratio: The asymptotic standard error ratio of the stanard multivariate 
 % linear regression estimator over the partial envelope estimator, for each element 
 % in $$\beta_1$.  An r by p1 matrix.
-% * stat.np: The number of parameters in the envelope model.  A positive
+% * ModelOutput.np: The number of parameters in the envelope model.  A positive
 % integer.
-% * stat.n: The number of observations in the data.  A positive
+% * ModelOutput.n: The number of observations in the data.  A positive
 % integer.
 
 %% Description
@@ -98,12 +98,12 @@
 % X2 = X(:,1:2);
 % alpha = 0.01;
 % u = lrt_penv(X1,X2,Y,alpha)
-% stat = penv(X1,X2,Y,u)
-% stat.Omega
-% eig(stat.Omega0)
-% stat.ratio
+% ModelOutput = penv(X1,X2,Y,u)
+% ModelOutput.Omega
+% eig(ModelOutput.Omega0)
+% ModelOutput.ratio
 
-function stat = penv(X1,X2,Y,u,opts)
+function ModelOutput = penv(X1,X2,Y,u,opts)
 
 % Verify and initialize the parameters
 
@@ -183,22 +183,22 @@ if u>0 && u<r
     Sigma = temp.Sigma;
     
     
-    stat.beta1 = beta1;
-    stat.Gamma = Gamma;
-    stat.eta = eta;
-    stat.Omega = Omega;
-    stat.Omega0 = Omega0;
-    stat.Sigma = Sigma;
-    stat.l = temp.l; 
+    ModelOutput.beta1 = beta1;
+    ModelOutput.Gamma = Gamma;
+    ModelOutput.eta = eta;
+    ModelOutput.Omega = Omega;
+    ModelOutput.Omega0 = Omega0;
+    ModelOutput.Sigma = Sigma;
+    ModelOutput.l = temp.l; 
     
 
     %---Compute the rest in output---
     beta2 = (YC-X1C*beta1')'*X2C*inv(X2C'*X2C);
     alpha = mean(Y)'-beta1*mean(X1)'-beta2*mean(X2)';
     
-    stat.beta2 = beta2;    
-    stat.alpha = alpha;
-    stat.np = r+u*p1+r*p2+r*(r+1)/2;
+    ModelOutput.beta2 = beta2;    
+    ModelOutput.alpha = alpha;
+    ModelOutput.np = r+u*p1+r*p2+r*(r+1)/2;
     
     %---compute asymptotic variance and get the ratios---
     Sig1G2 = SX1-SX12*inv(SX2)*SX12';
@@ -227,10 +227,10 @@ if u>0 && u<r
     covMatrix = H*inv(H'*J*H)*H';
     covMatrix = covMatrix(1:r*p,1:r*p);
     
-    stat.covMatrix = covMatrix;
-    stat.asyPenv = asyPenv;
-    stat.ratio = asyFm./asyPenv;
-    stat.n = n;
+    ModelOutput.covMatrix = covMatrix;
+    ModelOutput.asyPenv = asyPenv;
+    ModelOutput.ratio = asyFm./asyPenv;
+    ModelOutput.n = n;
     
 elseif u==0
     
@@ -239,21 +239,21 @@ elseif u==0
     Sigma = temp.SigmaOLS;
     eigtem = eig(Sigma);
     
-    stat.beta1 = zeros(r,p1);
-    stat.beta2 = beta2;
-    stat.Sigma = Sigma;
-    stat.eta = [];
-    stat.Gamma = [];
-    stat.Gamma0 = eye(r);
-    stat.Omega = [];
-    stat.Omega0 = Sigma;
-    stat.alpha = mean(Y)'-beta2*mean(X2)';
-    stat.l = -n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
-    stat.covMatrix = [];
-    stat.asyPenv = [];
-    stat.ratio = ones(r,p1);
-    stat.np = r+u*p1+r*p2+r*(r+1)/2;
-    stat.n = n;    
+    ModelOutput.beta1 = zeros(r,p1);
+    ModelOutput.beta2 = beta2;
+    ModelOutput.Sigma = Sigma;
+    ModelOutput.eta = [];
+    ModelOutput.Gamma = [];
+    ModelOutput.Gamma0 = eye(r);
+    ModelOutput.Omega = [];
+    ModelOutput.Omega0 = Sigma;
+    ModelOutput.alpha = mean(Y)'-beta2*mean(X2)';
+    ModelOutput.l = -n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    ModelOutput.covMatrix = [];
+    ModelOutput.asyPenv = [];
+    ModelOutput.ratio = ones(r,p1);
+    ModelOutput.np = r+u*p1+r*p2+r*(r+1)/2;
+    ModelOutput.n = n;    
 
 elseif u==r
     
@@ -268,21 +268,21 @@ elseif u==r
     asyFm = reshape(sqrt(diag(covMatrix)),r,p1);
     
     
-    stat.beta1 = beta(:,1:p1);
-    stat.beta2 = beta(:,p1+1:end);
-    stat.Sigma = Sigma;
-    stat.eta = beta(:,1:p1);
-    stat.Gamma = eye(r);
-    stat.Gamma0 = [];
-    stat.Omega = Sigma;
-    stat.Omega0 = [];
-    stat.alpha = mean(Y)'-beta*mean(X)';
-    stat.l = -n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
-    stat.covMatrix = covMatrix;
-    stat.asyPenv = asyFm;
-    stat.ratio = ones(r,p1);
-    stat.np = r+u*p1+r*p2+r*(r+1)/2;
-    stat.n = n;
+    ModelOutput.beta1 = beta(:,1:p1);
+    ModelOutput.beta2 = beta(:,p1+1:end);
+    ModelOutput.Sigma = Sigma;
+    ModelOutput.eta = beta(:,1:p1);
+    ModelOutput.Gamma = eye(r);
+    ModelOutput.Gamma0 = [];
+    ModelOutput.Omega = Sigma;
+    ModelOutput.Omega0 = [];
+    ModelOutput.alpha = mean(Y)'-beta*mean(X)';
+    ModelOutput.l = -n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    ModelOutput.covMatrix = covMatrix;
+    ModelOutput.asyPenv = asyFm;
+    ModelOutput.ratio = ones(r,p1);
+    ModelOutput.np = r+u*p1+r*p2+r*(r+1)/2;
+    ModelOutput.n = n;
     
 end
     

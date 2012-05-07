@@ -36,15 +36,15 @@ function u=bic_senv(X,Y,opts)
 
 [n r]=size(Y);
     
-stat=senv(X,Y,r,opts);
-ic=-2*stat.l+log(n)*stat.np;
+ModelOutput=senv(X,Y,r,opts);
+ic=-2*ModelOutput.l+log(n)*ModelOutput.np;
 u=r;
 
 
 for i=0:r-1
 
-        stat=senv(X,Y,i,opts);
-        temp=-2*stat.l+log(n)*stat.np;
+        ModelOutput=senv(X,Y,i,opts);
+        temp=-2*ModelOutput.l+log(n)*ModelOutput.np;
         if (temp<ic)
            u=i;
            ic=temp;

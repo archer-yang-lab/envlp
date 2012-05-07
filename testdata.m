@@ -20,15 +20,15 @@ epsil=mvnrnd(zeros(1,r),Sigma,n);
 Y=X*bet'+epsil;
 
 % Fit and check
-stat=env(X,Y,u);
-eig(stat.Omega)
-eig(stat.Omega0)
-norm(stat.beta-bet)
-stat=fit_OLS(X,Y);
-stat.betaOLS=beta_OLS;
-stat.SigmaOLS=sigres;
+ModelOutput=env(X,Y,u);
+eig(ModelOutput.Omega)
+eig(ModelOutput.Omega0)
+norm(ModelOutput.beta-bet)
+ModelOutput=fit_OLS(X,Y);
+ModelOutput.betaOLS=beta_OLS;
+ModelOutput.SigmaOLS=sigres;
 norm(beta_OLS-bet)
-subspace(stat.Gamma,G)
+subspace(ModelOutput.Gamma,G)
 
 alpha=0.01;
 u=lrt_env(X,Y,alpha)
@@ -48,10 +48,10 @@ bootse=bstrp_OLS(X,Y,200)
 
 alpha=0.01;
 u=lrt_env(X,Y,alpha)
-stat=env(X,Y,u);
-stat.Omega
-eig(stat.Omega0)
-stat.ratio
+ModelOutput=env(X,Y,u);
+ModelOutput.Omega
+eig(ModelOutput.Omega0)
+ModelOutput.ratio
 
 u=bic_env(X,Y)
 u=aic_env(X,Y)
@@ -67,8 +67,8 @@ X2=X(:,1:2);
 alpha=0.01;
 u=lrt_penv(X1,X2,Y,alpha)
 u=lrt_env(X,Y,0.01);
-stat=env(X,Y,u);
-stat=penv(X1,X2,Y,1)
+ModelOutput=env(X,Y,u);
+ModelOutput=penv(X1,X2,Y,1)
 
 
 B=200;
@@ -77,17 +77,17 @@ bootse=bstrp_penv(X1,X2,Y,B,u)
 X1=X(:,3);
 X2=X(:,1:2);
 u=lrt_penv(X1,X2,Y,0.01)
-stat=penv(X1,X2,Y,u)
+ModelOutput=penv(X1,X2,Y,u)
 
 X1=X(:,2);
 X2=X(:,[1 3]);
 u=lrt_penv(X1,X2,Y,0.01)
-stat=penv(X1,X2,Y,u)
+ModelOutput=penv(X1,X2,Y,u)
 
 X1=X(:,1);
 X2=X(:,2:3);
 u=lrt_penv(X1,X2,Y,0.01)
-stat=penv(X1,X2,Y,u)
+ModelOutput=penv(X1,X2,Y,u)
 
 
 %-----Test inner envelope model-----
@@ -118,8 +118,8 @@ for i=1:n
     Y(i,:)=mu'+(bet*X(i,:)')'+mvnrnd(Mean,Sigma);
 end
             
-stat=ienv(X,Y,d);
-subspace(stat.Gamma1,Gamma1)
+ModelOutput=ienv(X,Y,d);
+subspace(ModelOutput.Gamma1,Gamma1)
 
 alpha=0.01;
 d=lrt_ienv(X,Y,alpha);
@@ -135,8 +135,8 @@ load irisf.mat
 alpha=0.01;
 u=bic_env(X,Y)
 d=bic_ienv(X,Y)
-stat=ienv(X,Y,d)
-1-1./stat.ratio
+ModelOutput=ienv(X,Y,d)
+1-1./ModelOutput.ratio
 %-----Test the scaled envelope model-----
 r=10;
 u=5;
@@ -159,8 +159,8 @@ end
 seq=0:0.5:4.5;
 D=diag(2.^seq);
 Y=Z*D;
-stat=senv(X,Y,u);
-subspace(stat.Gamma,Gamma)
+ModelOutput=senv(X,Y,u);
+subspace(ModelOutput.Gamma,Gamma)
 u=aic_senv(X,Y)
 u=bic_senv(X,Y)
 
@@ -172,12 +172,12 @@ load('T9-12.txt')
 Y=T9_12(:,4:7);
 X=T9_12(:,1:3);
 u=bic_env(X,Y)
-stat=env(X,Y,u);
-1-1./stat.ratio
+ModelOutput=env(X,Y,u);
+1-1./ModelOutput.ratio
 u=bic_senv(X,Y)
-stat=senv(X,Y,u);
-stat.Lambda
-1-1./stat.ratio
+ModelOutput=senv(X,Y,u);
+ModelOutput.Lambda
+1-1./ModelOutput.ratio
 %-----Test the heteroscedastic envelope model-----
 sigma11=1;
 sigma12=5;
@@ -211,11 +211,11 @@ end
 B=10;
 bootse=bstrp_henv(X,Y,B,u);
 
-stat=henv(X,Y,0)
-stat=henv(X,Y,r)
-stat=henv(X,Y,u)
+ModelOutput=henv(X,Y,0)
+ModelOutput=henv(X,Y,r)
+ModelOutput=henv(X,Y,u)
 
-subspace(stat.Gamma,Gamma)
+subspace(ModelOutput.Gamma,Gamma)
 u=aic_henv(X,Y)
 u=bic_henv(X,Y)
 u=lrt_henv(X,Y,0.01)
@@ -225,28 +225,28 @@ u=lrt_henv(X,Y,0.01)
 load waterstrider.mat
 [n r]=size(Y);
 u=lrt_henv(X,Y,0.01)
-stat=henv(X,Y,u)
-stat.ratio
+ModelOutput=henv(X,Y,u)
+ModelOutput.ratio
 
 
 % Test xenv
 load wheatprotein.txt
 X=wheatprotein(:,1:6);
 Y=wheatprotein(:,7);
-stat=xenv(X,Y,0);
+ModelOutput=xenv(X,Y,0);
 
 p=size(X,2);
-stat=xenv(X,Y,p);
+ModelOutput=xenv(X,Y,p);
 
 % When u=p, the envelope model reduces to the ordinary least squares
 % regression
 
 temp=fit_OLS(X,Y);
 temp.SigmaOLS
-stat.sigYcX
+ModelOutput.sigYcX
 temp.betaOLS'
-stat.beta
+ModelOutput.beta
 
-stat=xenv(X,Y,1);
+ModelOutput=xenv(X,Y,1);
 u=aic_xenv(X,Y)
 u=bic_xenv(X,Y)

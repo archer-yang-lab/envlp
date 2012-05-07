@@ -49,9 +49,9 @@ end
 [n r]=size(Y);
 p=size(X,2);
 
-stat=xenv(X,Y,u,opts);
+ModelOutput=xenv(X,Y,u,opts);
 
-Yfit=ones(n,1)*stat.mu'+X*stat.beta;
+Yfit=ones(n,1)*ModelOutput.mu'+X*ModelOutput.beta;
 resi=Y-Yfit;
 
 bootBeta=zeros(B,p*r);
