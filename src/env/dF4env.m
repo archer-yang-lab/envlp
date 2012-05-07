@@ -3,7 +3,7 @@
 % subspace.
 
 %% Syntax
-% df = dF4env(R,dataParameter)
+% df = dF4env(R, dataParameter)
 % 
 % Input
 %
@@ -22,15 +22,15 @@
 %  using maximum likelihood estimation. This function is the derivative of
 %  the objective function.
 
-function df = dF4env(R,dataParameter)
+function df = dF4env(R, dataParameter)
 
-sigRes=dataParameter.sigRes;
-sigY=dataParameter.sigY;
+sigRes = dataParameter.sigRes;
+sigY = dataParameter.sigY;
 
-a=2*sigRes*R*inv(R'*sigRes*R);
+a = 2 * sigRes * R * inv(R' * sigRes * R);
 
-temp=inv(sigY);
+temp = inv(sigY);
 
-b=2*temp*R*inv(R'*temp*R);
+b = 2 * temp * R * inv(R' * temp * R);
 
-df=a+b;
+df = a + b;

@@ -3,8 +3,8 @@
 % testing.
 
 %% Syntax
-% u=lrt_env(X,Y,alpha)
-% u=lrt_env(X,Y,alpha,opts)
+% u = lrt_env(X, Y, alpha)
+% u = lrt_env(X, Y, alpha, opts)
 %
 % Input
 %
@@ -30,38 +30,34 @@
 
 %% Example
 % load wheatprotein.txt
-% X=wheatprotein(:,8);
-% Y=wheatprotein(:,1:6);
-% alpha=0.01;
-% u=lrt_env(X,Y,alpha)
+% X = wheatprotein(:, 8);
+% Y = wheatprotein(:, 1:6);
+% alpha = 0.01;
+% u = lrt_env(X, Y, alpha)
 
 
-function u=lrt_env(X,Y,alpha,opts)
+function u = lrt_env(X, Y, alpha, opts)
 
-if (nargin < 3)
+if nargin < 3
     error('Inputs: X, Y and alpha should be specified!');
-elseif (nargin==3)
-    opts=[];
+elseif nargin == 3
+    opts = [];
 end
 
-[n r]=size(Y);
+[n r] = size(Y);
 
-stat0=env(X,Y,r,opts);
+stat0 = env(X, Y, r, opts);
 
-
-for i=0:r-1
-
-        stat=env(X,Y,i,opts);
-        chisq = -2*(stat.l-stat0.l);
-        df=stat0.np-stat.np;
-        
-        if (chi2cdf(chisq,df) < (1-alpha))
-            u=i;
-            break;
-        end
-        
+for i = 0 : r-1
+	stat = env(X, Y, i, opts);
+	chisq = - 2 * (stat.l - stat0.l);
+	df = stat0.np - stat.np;
+	if (chi2cdf(chisq, df) < (1 - alpha))
+	    u = i;
+	    break;
+	end
 end
 
-if (i== r-1) && chi2cdf(chisq,df) > (1-alpha)
-    u=r;
+if i == r-1 && chi2cdf(chisq, df) > (1 - alpha)
+    u = r;
 end
