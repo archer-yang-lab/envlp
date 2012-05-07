@@ -3,8 +3,8 @@
 % criterion for the heteroscedastic envelope model.
 
 %% Syntax
-% u=bic_henv(X,Y)
-% u=bic_henv(X,Y,opts)
+% u = bic_henv(X, Y)
+% u = bic_henv(X, Y, opts)
 %
 % Input
 %
@@ -28,30 +28,28 @@
 %% Example
 % 
 % load waterstrider.mat
-% u=bic_henv(X,Y)
+% u = bic_henv(X, Y)
 
-function u=bic_henv(X,Y,opts)
+function u = bic_henv(X, Y, opts)
 
-if (nargin < 2)
+if nargin < 2
     error('Inputs: X, Y should be specified!');
-elseif (nargin==2)
-    opts=[];
+elseif nargin == 2
+    opts = [];
 end
 
-[n r]=size(Y);
+[n r] = size(Y);
     
-stat=henv(X,Y,r,opts);
-ic=-2*stat.l+log(n)*stat.np;
-u=r;
+stat = henv(X, Y, r, opts);
+ic = - 2 * stat.l + log(n) * stat.np;
+u = r;
 
 
-for i=0:r-1
-
-        stat=henv(X,Y,i,opts);
-        temp=-2*stat.l+log(n)*stat.np;
-        if (temp<ic)
-           u=i;
-           ic=temp;
-        end
-        
+for i = 0 : r - 1
+	stat = henv(X, Y, i, opts);
+	temp = - 2 * stat.l + log(n) * stat.np;
+	if temp < ic
+	   u = i;
+	   ic = temp;
+	end
 end
