@@ -2,7 +2,7 @@
 % Multivariate linear regression. 
 
 %% Syntax
-% stat=fit_OLS(X,Y)
+% ModelOutput=fit_OLS(X,Y)
 %
 % Input
 %
@@ -12,11 +12,13 @@
 %
 % Output
 %
-% stat: A list that contains the maximum likelihood estimators of
+% ModelOutput: A list that contains the maximum likelihood estimators of
 % regression coefficients and error covariance matrix. 
 % 
-% * stat.betaOLS: An r by p matrix containing estimate of the regression coefficients $$\beta$.
-% * stat.SigmaOLS: An r by r matrix containing estimate of the error covariance matrix.
+% * ModelOutput.betaOLS: An r by p matrix containing estimate of the regression coefficients $$\beta$.
+% * ModelOutput.SigmaOLS: An r by r matrix containing estimate of the error covariance matrix.
+% * ModelOutput.alpha: An r by 1 vector containing estimate of the intercept.
+% * ModelOutput.n: The number of observations in the data.  A positive integer.
 
 %% Description
 % In a multivariate linear model, Y and X follows the following
@@ -30,13 +32,17 @@
 % load wheatprotein.txt
 % X=wheatprotein(:,8);
 % Y=wheatprotein(:,1:6);
-% stat=stat=fit_OLS(X,Y)
+% ModelOutput=fit_OLS(X,Y)
 
-function stat=fit_OLS(X,Y)
+function ModelOutput=fit_OLS(X,Y)
 
 n=length(X);
 XC=center(X);
 YC=center(Y);
+mY=mean(Y)';
+mX=mean(X)';
 PX=XC*inv(XC'*XC)*XC';
-stat.betaOLS=YC'*XC*inv(XC'*XC);
-stat.SigmaOLS=YC'*(eye(n)-PX)*YC/n;
+ModelOutput.betaOLS=YC'*XC*inv(XC'*XC);
+ModelOutput.SigmaOLS=YC'*(eye(n)-PX)*YC/n;
+ModelOutput.alpha=mY-ModelOutput.betaOLS*mX;
+ModelOutput.n=n;

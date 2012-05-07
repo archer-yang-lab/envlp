@@ -2,8 +2,8 @@
 % Fit the heteroscedastic envelope model.
 
 %% Syntax
-% stat = henv(X, Y, u)
-% stat = henv(X, Y, u, opts)
+% ModelOutput = henv(X, Y, u)
+% ModelOutput = henv(X, Y, u, opts)
 %
 % Input
 %
@@ -31,54 +31,54 @@
 %
 % Output
 % 
-% stat: A list that contains the maximum likelihood estimators and some
+% ModelOutput: A list that contains the maximum likelihood estimators and some
 % statistics.
 % 
-% * stat.mu: The heteroscedastic envelope estimator of the grand mean. A r
+% * ModelOutput.mu: The heteroscedastic envelope estimator of the grand mean. A r
 % by 1 vector.
-% * stat.mug: The heteroscedastic envelope estimator of the group mean. A r
+% * ModelOutput.mug: The heteroscedastic envelope estimator of the group mean. A r
 % by p matrix, the ith column of the matrix contains the mean for the ith
 % group.
-% * stat.Yfit: A n by r matrix, the ith row gives the group mean of the
+% * ModelOutput.Yfit: A n by r matrix, the ith row gives the group mean of the
 % group that the ith observation belongs to.  As X is just a group
-% indicator, and is not ordinal, stat.mug alone does not tell which
+% indicator, and is not ordinal, ModelOutput.mug alone does not tell which
 % group corresponds to which group mean.
-% * stat.Gamma: The orthogonal basis of the envelope subspace. An r by u
+% * ModelOutput.Gamma: The orthogonal basis of the envelope subspace. An r by u
 % semi-orthogonal matrix.
-% * stat.Gamma0: The orthogonal basis of the complement of the envelope
+% * ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope
 % subspace.  An r by r-u semi-orthogonal matrix.
-% * stat.beta: The heteroscedastic envelope estimator of the group main
+% * ModelOutput.beta: The heteroscedastic envelope estimator of the group main
 % effect. An r by p matrix, the ith column of the matrix contains the
 % main effect for the ith group.
-% * stat.groupInd: A matrix containing the unique values of group
+% * ModelOutput.groupInd: A matrix containing the unique values of group
 % indicators. The matrix has p rows.  The group mean of the ith row is
-% stored in the ith column of stat.mug.
-% * stat.Sigma: The heteroscedastic envelope estimator of the error
+% stored in the ith column of ModelOutput.mug.
+% * ModelOutput.Sigma: The heteroscedastic envelope estimator of the error
 % covariance matrix.  A three dimensional matrix with dimension r, r and p,
-% stat.Sigma(:,:,i) contains the estimated covariance matrix for the ith
+% ModelOutput.Sigma(:,:,i) contains the estimated covariance matrix for the ith
 % group.
-% * stat.eta: The coordinates of $$\beta$ with respect to Gamma. An u by p
+% * ModelOutput.eta: The coordinates of $$\beta$ with respect to Gamma. An u by p
 % matrix, the ith column contains the coordinates of the main effect of the
 % ith group with respect to Gamma.
-% * stat.Omega: The coordinates of Sigma with respect to Gamma. An u by u
-% by p matrix, stat.Omega(:,:,i) contains the coordinates of the covariance
+% * ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u
+% by p matrix, ModelOutput.Omega(:,:,i) contains the coordinates of the covariance
 % matrix of the ith group with respect to Gamma.
-% * stat.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u
+% * ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u
 % matrix.
-% * stat.l: The maximized log likelihood function.  A real number.
-% * stat.np: The number of parameters in the heteroscedastic envelope
+% * ModelOutput.l: The maximized log likelihood function.  A real number.
+% * ModelOutput.np: The number of parameters in the heteroscedastic envelope
 % model.  A positive integer.
-% * stat.covMatrix: The asymptotic covariance of ($$\mu$', vec($$\beta$')'.  An r(p+1) by
+% * ModelOutput.covMatrix: The asymptotic covariance of ($$\mu$', vec($$\beta$')'.  An r(p+1) by
 % r(p+1) matrix.  The covariance matrix returned are asymptotic.  For the
 % actual standard errors, multiply by 1/n.
-% * stat.asyHenv: The asymptotic standard errors for elements in $$beta$
+% * ModelOutput.asyHenv: The asymptotic standard errors for elements in $$beta$
 % under the heteroscedastic envelope model. An r by p matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1/sqrt(n).
-% * stat.ratio: The asymptotic standard error ratio of the standard multivariate 
+% * ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate 
 % linear regression estimator over the heteroscedastic envelope estimator.
-% An r by p matrix, the (i, j)th element in stat.ratio is the elementwise standard
+% An r by p matrix, the (i, j)th element in ModelOutput.ratio is the elementwise standard
 % error ratio for the ith element in the jth group mean effect.
-% * stat.ng: The number of observations in each group.  A p by 1 vector.
+% * ModelOutput.ng: The number of observations in each group.  A p by 1 vector.
 
 %% Description
 % This function fits the heteroscedatic envelope model to the responses and predictors,
@@ -102,10 +102,10 @@
 % 
 % load waterstrider.mat
 % u = lrt_henv(X, Y, 0.01)
-% stat = henv(X, Y, u)
-% stat.ratio
+% ModelOutput = henv(X, Y, u)
+% ModelOutput.ratio
 
-function stat = henv(X, Y, u, opts)
+function ModelOutput = henv(X, Y, u, opts)
 
 if nargin < 3
     error('Inputs: X, Y and u should be specified!');
@@ -173,23 +173,23 @@ if u == 0
     eigtem = eig(sigY);
     l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
     
-    stat.mu = mu;
-    stat.mug = mug;
-    stat.Yfit = zeros(n, r);
-    stat.Gamma = Gamma;
-    stat.Gamma0 = Gamma0;
-    stat.beta = beta;
-    stat.groupInd = sortrows(unique(X, 'rows'));
-    stat.Sigma = Sigma;
-    stat.eta = eta;
-    stat.Omega = Omega;
-    stat.Omega0 = Omega0;
-    stat.l = l;
-    stat.np = (r - u) + u * (r - u + p) + p * u * (u + 1) / 2 + (r - u) * (r - u + 1) / 2;
-    stat.covMatrix = Sigma;
-    stat.asyHenv = [];
-    stat.ratio = ones(r, p);    
-    stat.ng = ng;
+    ModelOutput.mu = mu;
+    ModelOutput.mug = mug;
+    ModelOutput.Yfit = zeros(n, r);
+    ModelOutput.Gamma = Gamma;
+    ModelOutput.Gamma0 = Gamma0;
+    ModelOutput.beta = beta;
+    ModelOutput.groupInd = sortrows(unique(X, 'rows'));
+    ModelOutput.Sigma = Sigma;
+    ModelOutput.eta = eta;
+    ModelOutput.Omega = Omega;
+    ModelOutput.Omega0 = Omega0;
+    ModelOutput.l = l;
+    ModelOutput.np = (r - u) + u * (r - u + p) + p * u * (u + 1) / 2 + (r - u) * (r - u + 1) / 2;
+    ModelOutput.covMatrix = Sigma;
+    ModelOutput.asyHenv = [];
+    ModelOutput.ratio = ones(r, p);    
+    ModelOutput.ng = ng;
     
 elseif u == r
     
@@ -253,23 +253,23 @@ elseif u == r
     covMatrix(1:r,r*p+1:r*(p+1))=covMatrix(r*p+1:r*(p+1),1:r)';
     asyFm=reshape(sqrt(diag(covMatrix(r+1:end,r+1:end))),r,p);
     
-    stat.mu=mu;
-    stat.mug=mug;
-    stat.Yfit=Yfit;
-    stat.Gamma=Gamma;
-    stat.Gamma0=Gamma0;
-    stat.beta=beta;
-    stat.groupInd=sortrows(unique(X,'rows'));
-    stat.Sigma=Sigma;
-    stat.eta=eta;
-    stat.Omega=Omega;
-    stat.Omega0=Omega0;
-    stat.l=l;
-    stat.np=(r-u)+u*(r-u+p)+p*u*(u+1)/2+(r-u)*(r-u+1)/2;
-    stat.covMatrix=covMatrix;
-    stat.asyHenv=asyFm;
-    stat.ratio=ones(r,p);
-    stat.ng=ng;
+    ModelOutput.mu=mu;
+    ModelOutput.mug=mug;
+    ModelOutput.Yfit=Yfit;
+    ModelOutput.Gamma=Gamma;
+    ModelOutput.Gamma0=Gamma0;
+    ModelOutput.beta=beta;
+    ModelOutput.groupInd=sortrows(unique(X,'rows'));
+    ModelOutput.Sigma=Sigma;
+    ModelOutput.eta=eta;
+    ModelOutput.Omega=Omega;
+    ModelOutput.Omega0=Omega0;
+    ModelOutput.l=l;
+    ModelOutput.np=(r-u)+u*(r-u+p)+p*u*(u+1)/2+(r-u)*(r-u+1)/2;
+    ModelOutput.covMatrix=covMatrix;
+    ModelOutput.asyHenv=asyFm;
+    ModelOutput.ratio=ones(r,p);
+    ModelOutput.ng=ng;
     
 else
     
@@ -370,22 +370,22 @@ else
     covMatrix(1:r,r*p+1:r*(p+1))=covMatrix(r*p+1:r*(p+1),1:r)';
     asyHenv=reshape(sqrt(diag(covMatrix(r+1:end,r+1:end))),r,p);
     
-    stat.mu=mu;
-    stat.mug=mug;
-    stat.Yfit=Yfit;
-    stat.Gamma=Gamma;
-    stat.Gamma0=Gamma0;
-    stat.beta=beta;
-    stat.groupInd=sortrows(unique(X,'rows'));
-    stat.Sigma=Sigma;
-    stat.eta=eta;
-    stat.Omega=Omega;
-    stat.Omega0=Omega0;
-    stat.np=(r-u)+u*(r-u+p)+p*u*(u+1)/2+(r-u)*(r-u+1)/2;
-    stat.l=-n*r/2*(1+log(2*pi))-n/2*(l+log(prod(eigtem(eigtem>0))));   
-    stat.covMatrix=covMatrix;
-    stat.asyHenv=asyHenv;
-    stat.ratio=asyFm./asyHenv;
-    stat.ng=ng;
+    ModelOutput.mu=mu;
+    ModelOutput.mug=mug;
+    ModelOutput.Yfit=Yfit;
+    ModelOutput.Gamma=Gamma;
+    ModelOutput.Gamma0=Gamma0;
+    ModelOutput.beta=beta;
+    ModelOutput.groupInd=sortrows(unique(X,'rows'));
+    ModelOutput.Sigma=Sigma;
+    ModelOutput.eta=eta;
+    ModelOutput.Omega=Omega;
+    ModelOutput.Omega0=Omega0;
+    ModelOutput.np=(r-u)+u*(r-u+p)+p*u*(u+1)/2+(r-u)*(r-u+1)/2;
+    ModelOutput.l=-n*r/2*(1+log(2*pi))-n/2*(l+log(prod(eigtem(eigtem>0))));   
+    ModelOutput.covMatrix=covMatrix;
+    ModelOutput.asyHenv=asyHenv;
+    ModelOutput.ratio=asyFm./asyHenv;
+    ModelOutput.ng=ng;
     
 end

@@ -46,14 +46,14 @@ end
 
 [n p]=size(X);
 
-stat0=xenv(X,Y,p,opts);
+ModelOutput0=xenv(X,Y,p,opts);
 
 
 for i=0:p-1
 
-        stat=xenv(X,Y,i,opts);
-        chisq = -2*(stat.l-stat0.l);
-        df=stat0.np-stat.np;
+        ModelOutput=xenv(X,Y,i,opts);
+        chisq = -2*(ModelOutput.l-ModelOutput0.l);
+        df=ModelOutput0.np-ModelOutput.np;
         
         if (chi2cdf(chisq,df) < (1-alpha))
             u=i;

@@ -41,13 +41,13 @@ end
 
 [n r] = size(Y);
     
-stat = env(X, Y, r, opts);
-ic = - 2 * stat.l + log(n) * stat.np;
+ModelOutput = env(X, Y, r, opts);
+ic = - 2 * ModelOutput.l + log(n) * ModelOutput.np;
 u = r;
 
 for i = 0 : r-1
-	stat = env(X, Y, i, opts);
-	temp = - 2 * stat.l + log(n) * stat.np;
+	ModelOutput = env(X, Y, i, opts);
+	temp = - 2 * ModelOutput.l + log(n) * ModelOutput.np;
 	if temp < ic
 	   u = i;
 	   ic = temp;

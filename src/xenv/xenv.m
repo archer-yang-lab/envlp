@@ -2,8 +2,8 @@
 % Fit the envelope model for the reduction on X.
 
 %% Syntax
-% stat=xenv(X,Y,u)
-% stat=xenv(X,Y,u,opts)
+% ModelOutput=xenv(X,Y,u)
+% ModelOutput=xenv(X,Y,u,opts)
 %
 % Input
 %
@@ -28,39 +28,39 @@
 %
 % Output
 % 
-% stat: A list that contains the maximum likelihood estimators and some
+% ModelOutput: A list that contains the maximum likelihood estimators and some
 % statistics.
 % 
-% * stat.beta: The envelope estimator of the regression coefficients $$\beta$. 
+% * ModelOutput.beta: The envelope estimator of the regression coefficients $$\beta$. 
 % An p by r matrix.
-% * stat.SigX: The envelope estimator of the covariance matrix of X, $$\Sigma_X$.  A p by
+% * ModelOutput.SigX: The envelope estimator of the covariance matrix of X, $$\Sigma_X$.  A p by
 % p matrix.
-% * stat.Gamma: The orthogonal basis of the envelope subspace. An p by u
+% * ModelOutput.Gamma: The orthogonal basis of the envelope subspace. An p by u
 % semi-orthogonal matrix.
-% * stat.Gamma0: The orthogonal basis of the complement of the envelope
+% * ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope
 % subspace.  An p by p-u semi-orthogonal matrix.
-% * stat.eta: The coordinates of $$\beta$ with respect to Gamma. An u by r
+% * ModelOutput.eta: The coordinates of $$\beta$ with respect to Gamma. An u by r
 % matrix.
-% * stat.Omega: The coordinates of $$\Sigma_X$ with respect to Gamma. An u by u
+% * ModelOutput.Omega: The coordinates of $$\Sigma_X$ with respect to Gamma. An u by u
 % matrix.
-% * stat.Omega0: The coordinates of $$\Sigma_X$ with respect to Gamma0. An p-u by p-u
+% * ModelOutput.Omega0: The coordinates of $$\Sigma_X$ with respect to Gamma0. An p-u by p-u
 % matrix.
-% * stat.mu: The estimated intercept.  An r by 1 vector.
-% * stat.sigYcX: The estimated conditional covariance matrix of Y given X.
+% * ModelOutput.mu: The estimated intercept.  An r by 1 vector.
+% * ModelOutput.sigYcX: The estimated conditional covariance matrix of Y given X.
 % An r by r matrix.
-% * stat.l: The maximized log likelihood function.  A real number.
-% * stat.covMatrix: The asymptotic covariance of vec($$\beta$).  An pr by
+% * ModelOutput.l: The maximized log likelihood function.  A real number.
+% * ModelOutput.covMatrix: The asymptotic covariance of vec($$\beta$).  An pr by
 % pr matrix.  The covariance matrix returned are asymptotic.  For the
 % actual standard errors, multiply by 1/n.
-% * stat.asyXenv: Asymptotic standard error for elements in $$\beta$ under
+% * ModelOutput.asyXenv: Asymptotic standard error for elements in $$\beta$ under
 % the envelope model.  An r by p matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1/sqrt(n).
-% * stat.ratio: The asymptotic standard error ratio of the standard multivariate 
+% * ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate 
 % linear regression estimator over the envelope estimator, for each element 
 % in $$\beta$.  An p by r matrix.
-% * stat.np: The number of parameters in the envelope model.  A positive
+% * ModelOutput.np: The number of parameters in the envelope model.  A positive
 % integer.
-% * stat.n: The number of observations in the data.  A positive
+% * ModelOutput.n: The number of observations in the data.  A positive
 % integer.
 
 %% Description
@@ -83,30 +83,30 @@
 % load wheatprotein.txt
 % X=wheatprotein(:,1:6);
 % Y=wheatprotein(:,7);
-% stat=xenv(X,Y,0);
+% ModelOutput=xenv(X,Y,0);
 % 
 % p=size(X,2);
-% stat=xenv(X,Y,p);
+% ModelOutput=xenv(X,Y,p);
 % 
 % % When u=p, the envelope model reduces to the ordinary least squares
 % % regression
 % 
 % temp=fit_OLS(X,Y);
 % temp.SigmaOLS
-% stat.sigYcX
+% ModelOutput.sigYcX
 % temp.betaOLS'
-% stat.beta
+% ModelOutput.beta
 % 
-% stat=xenv(X,Y,5);
+% ModelOutput=xenv(X,Y,5);
 % 
 % %  To compare with the results obtained by Partial Least Squares, use the
 % %  command 
 % % [XL,YL,XS,YS,BETA,PCTVAR,MSE,stats] = plsregress(X,Y,5);
-% % stat.beta
-% % stat.mu
+% % ModelOutput.beta
+% % ModelOutput.mu
 % % BETA
 
-function stat=xenv(X,Y,u,opts)
+function ModelOutput=xenv(X,Y,u,opts)
 
 if (nargin < 3)
     error('Inputs: X, Y and u should be specified!');
@@ -215,42 +215,42 @@ if u>0 && u<p
     asyEnv=reshape(sqrt(diag(covMatrix)),p,r);
     
 
-    stat.beta=beta;
-    stat.SigX=SigX;
-    stat.Gamma=Gamma;
-    stat.Gamma0=Gamma0;
-    stat.eta=eta;
-    stat.Omega=Omega;
-    stat.Omega0=Omega0;
-    stat.mu=mu;
-    stat.sigYcX=sigYcX;
-    stat.l=-n*(p+r)/2*log(2*pi)-n/2*(log(prod(eigtem(eigtem>0)))+log(prod(eigtem2(eigtem2>0))))-1/2*trace(X*invSigX*X')-1/2*trace((Y-ones(n,1)*mu'-X*beta)*inv(sigYcX)*(Y-ones(n,1)*mu'-X*beta)');
-    stat.covMatrix=covMatrix;
-    stat.asyXenv=asyEnv;
-    stat.ratio=asyFm./asyEnv;
-    stat.np=r+u*r+p*(p+1)/2+r*(r+1)/2;
-    stat.n=n;    
+    ModelOutput.beta=beta;
+    ModelOutput.SigX=SigX;
+    ModelOutput.Gamma=Gamma;
+    ModelOutput.Gamma0=Gamma0;
+    ModelOutput.eta=eta;
+    ModelOutput.Omega=Omega;
+    ModelOutput.Omega0=Omega0;
+    ModelOutput.mu=mu;
+    ModelOutput.sigYcX=sigYcX;
+    ModelOutput.l=-n*(p+r)/2*log(2*pi)-n/2*(log(prod(eigtem(eigtem>0)))+log(prod(eigtem2(eigtem2>0))))-1/2*trace(X*invSigX*X')-1/2*trace((Y-ones(n,1)*mu'-X*beta)*inv(sigYcX)*(Y-ones(n,1)*mu'-X*beta)');
+    ModelOutput.covMatrix=covMatrix;
+    ModelOutput.asyXenv=asyEnv;
+    ModelOutput.ratio=asyFm./asyEnv;
+    ModelOutput.np=r+u*r+p*(p+1)/2+r*(r+1)/2;
+    ModelOutput.n=n;    
     
 elseif u==0
     
     mu=mY;
     eigtem=eig(sigX);
     eigtem3=eig(sigY);    
-    stat.beta=zeros(p,r);
-    stat.SigX=sigX;
-    stat.Gamma=[];
-    stat.Gamma0=eye(p);
-    stat.eta=[];
-    stat.Omega=[];
-    stat.Omega0=sigX;
-    stat.mu=mu;
-    stat.sigYcX=sigY;
-    stat.l=-n*(p+r)/2*log(2*pi)-n/2*(log(prod(eigtem(eigtem>0)))+log(prod(eigtem3(eigtem3>0))))-1/2*trace(X*invSigX*X')-1/2*trace((Y-ones(n,1)*mu')*inv(sigY)*(Y-ones(n,1)*mu')');
-    stat.covMatrix=[];
-    stat.asyXenv=[];
-    stat.ratio=ones(p,r);
-    stat.np=r+p*(p+1)/2+r*(r+1)/2;
-    stat.n=n;    
+    ModelOutput.beta=zeros(p,r);
+    ModelOutput.SigX=sigX;
+    ModelOutput.Gamma=[];
+    ModelOutput.Gamma0=eye(p);
+    ModelOutput.eta=[];
+    ModelOutput.Omega=[];
+    ModelOutput.Omega0=sigX;
+    ModelOutput.mu=mu;
+    ModelOutput.sigYcX=sigY;
+    ModelOutput.l=-n*(p+r)/2*log(2*pi)-n/2*(log(prod(eigtem(eigtem>0)))+log(prod(eigtem3(eigtem3>0))))-1/2*trace(X*invSigX*X')-1/2*trace((Y-ones(n,1)*mu')*inv(sigY)*(Y-ones(n,1)*mu')');
+    ModelOutput.covMatrix=[];
+    ModelOutput.asyXenv=[];
+    ModelOutput.ratio=ones(p,r);
+    ModelOutput.np=r+p*(p+1)/2+r*(r+1)/2;
+    ModelOutput.n=n;    
 
 elseif u==p
     
@@ -263,21 +263,21 @@ elseif u==p
     eigtem=eig(sigX);
     eigtem2=eig(sigYcX);
     
-    stat.beta=beta;
-    stat.SigX=sigX;
-    stat.Gamma=eye(p);
-    stat.Gamma0=[];
-    stat.eta=beta;
-    stat.Omega=sigX;
-    stat.Omega0=[];
-    stat.mu=mu;
-    stat.sigYcX=sigYcX;
-    stat.l=-n*(p+r)/2*log(2*pi)-n/2*(log(prod(eigtem(eigtem>0)))+log(prod(eigtem2(eigtem2>0))))-1/2*trace(X*invSigX*X')-1/2*trace((Y-ones(n,1)*mu'-X*beta)*inv(sigYcX)*(Y-ones(n,1)*mu'-X*beta)');
-    stat.covMatrix=covMatrix;
-    stat.asyXenv=asyFm;
-    stat.ratio=ones(p,r);
-    stat.np=r+(p+r)*(p+r+1)/2;
-    stat.n=n;    
+    ModelOutput.beta=beta;
+    ModelOutput.SigX=sigX;
+    ModelOutput.Gamma=eye(p);
+    ModelOutput.Gamma0=[];
+    ModelOutput.eta=beta;
+    ModelOutput.Omega=sigX;
+    ModelOutput.Omega0=[];
+    ModelOutput.mu=mu;
+    ModelOutput.sigYcX=sigYcX;
+    ModelOutput.l=-n*(p+r)/2*log(2*pi)-n/2*(log(prod(eigtem(eigtem>0)))+log(prod(eigtem2(eigtem2>0))))-1/2*trace(X*invSigX*X')-1/2*trace((Y-ones(n,1)*mu'-X*beta)*inv(sigYcX)*(Y-ones(n,1)*mu'-X*beta)');
+    ModelOutput.covMatrix=covMatrix;
+    ModelOutput.asyXenv=asyFm;
+    ModelOutput.ratio=ones(p,r);
+    ModelOutput.np=r+(p+r)*(p+r+1)/2;
+    ModelOutput.n=n;    
     
 end
     

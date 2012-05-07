@@ -54,9 +54,9 @@ end
 [n r]=size(Y);
 p1=size(X1,2);
 
-stat=penv(X1,X2,Y,u,opts);
+ModelOutput=penv(X1,X2,Y,u,opts);
 
-Yfit=ones(n,1)*stat.alpha'+X1*stat.beta1'+X2*stat.beta2';
+Yfit=ones(n,1)*ModelOutput.alpha'+X1*ModelOutput.beta1'+X2*ModelOutput.beta2';
 resi=Y-Yfit;
 
 bootBeta1=zeros(B,r*p1);

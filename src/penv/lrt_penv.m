@@ -49,14 +49,14 @@ end
 
 [n r]=size(Y);
 
-stat0=penv(X1,X2,Y,r,opts);
+ModelOutput0=penv(X1,X2,Y,r,opts);
 
 
 for i=0:r-1
 
-        stat=penv(X1,X2,Y,i,opts);
-        chisq = -2*(stat.l-stat0.l);
-        df=stat0.np-stat.np;
+        ModelOutput=penv(X1,X2,Y,i,opts);
+        chisq = -2*(ModelOutput.l-ModelOutput0.l);
+        df=ModelOutput0.np-ModelOutput.np;
         
         if (chi2cdf(chisq,df) < (1-alpha))
             u=i;

@@ -29,12 +29,12 @@
 
 function bootse=bstrp_OLS(X,Y,B)
 
-stat=fit_OLS(X,Y);
+ModelOutput=fit_OLS(X,Y);
 [n p]=size(X);
 r=size(Y,2);
 mY=mean(Y)';
 XC=center(X);
-betaOLS=stat.betaOLS;
+betaOLS=ModelOutput.betaOLS;
 
 Yfit=ones(n,1)*mY'+XC*betaOLS';
 resi=Y-Yfit;

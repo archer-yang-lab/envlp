@@ -51,9 +51,9 @@ ng = dataParameter.ng;
 ncum = dataParameter.ncum;
 ind = dataParameter.ind;
 
-stat = henv(X, Y, u, opts);
+ModelOutput = henv(X, Y, u, opts);
 
-Yfit = stat.Yfit;
+Yfit = ModelOutput.Yfit;
 resi = Y - Yfit;
 
 bootresi = zeros(n, r);

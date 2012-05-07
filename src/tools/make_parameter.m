@@ -73,7 +73,7 @@ if (strcmp(method,'env'))
 
     XC=center(X);
     YC=center(Y);
-    stat=fit_OLS(X,Y);
+    ModelOutput=fit_OLS(X,Y);
 
     dataParameter.n=n;
     dataParameter.p=p;
@@ -84,8 +84,8 @@ if (strcmp(method,'env'))
     dataParameter.mY=mean(Y)';
     dataParameter.sigX=cov(X,1);
     dataParameter.sigY=cov(Y,1);
-    dataParameter.sigRes=stat.SigmaOLS;
-    dataParameter.betaOLS=stat.betaOLS;
+    dataParameter.sigRes=ModelOutput.SigmaOLS;
+    dataParameter.betaOLS=ModelOutput.betaOLS;
    
     
 elseif (strcmp(method,'senv'))
@@ -96,7 +96,7 @@ elseif (strcmp(method,'senv'))
 
     XC=center(X);
     YC=center(Y);
-    stat=fit_OLS(X,Y);
+    ModelOutput=fit_OLS(X,Y);
 
     dataParameter.n=n;
     dataParameter.p=p;
@@ -105,8 +105,8 @@ elseif (strcmp(method,'senv'))
     dataParameter.mY=mean(Y)';
     dataParameter.sigX=cov(X,1);
     dataParameter.sigY=cov(Y,1);
-    dataParameter.sigRes=stat.SigmaOLS;
-    dataParameter.betaOLS=stat.betaOLS;
+    dataParameter.sigRes=ModelOutput.SigmaOLS;
+    dataParameter.betaOLS=ModelOutput.betaOLS;
     
     
 elseif (strcmp(method,'ienv'))
@@ -117,9 +117,9 @@ elseif (strcmp(method,'ienv'))
 
     XC=center(X);
     YC=center(Y);
-    stat=fit_OLS(X,Y);
+    ModelOutput=fit_OLS(X,Y);
     sigY=cov(Y,1);
-    sigFit=sigY-stat.SigmaOLS;
+    sigFit=sigY-ModelOutput.SigmaOLS;
 
     dataParameter.n=n;
     dataParameter.p=p;
@@ -130,9 +130,9 @@ elseif (strcmp(method,'ienv'))
     dataParameter.mY=mean(Y)';
     dataParameter.sigX=cov(X,1);
     dataParameter.sigY=sigY;
-    dataParameter.sigRes=stat.SigmaOLS;
+    dataParameter.sigRes=ModelOutput.SigmaOLS;
     dataParameter.sigFit=sigFit;
-    dataParameter.betaOLS=stat.betaOLS;
+    dataParameter.betaOLS=ModelOutput.betaOLS;
     
     
 elseif (strcmp(method,'henv'))

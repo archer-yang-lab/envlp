@@ -2,8 +2,8 @@
 % Fit the inner envelope model.
 
 %% Syntax
-% stat=ienv(X,Y,u)
-% stat=ienv(X,Y,u,opts)
+% ModelOutput=ienv(X,Y,u)
+% ModelOutput=ienv(X,Y,u,opts)
 %
 % Input
 %
@@ -29,42 +29,42 @@
 %
 % Output
 % 
-% stat: A list that contains the maximum likelihood estimators and some
+% ModelOutput: A list that contains the maximum likelihood estimators and some
 % statistics.
 % 
-% * stat.beta: The envelope estimator of the regression coefficients $$\beta$. 
+% * ModelOutput.beta: The envelope estimator of the regression coefficients $$\beta$. 
 % An r by p matrix.
-% * stat.Sigma: The envelope estimator of the error covariance matrix.  An r by
+% * ModelOutput.Sigma: The envelope estimator of the error covariance matrix.  An r by
 % r matrix.
-% * stat.Gamma1: The orthogonal basis of the inner envelope subspace. An r by u
+% * ModelOutput.Gamma1: The orthogonal basis of the inner envelope subspace. An r by u
 % semi-orthogonal matrix.
-% * stat.Gamma0: The orthogonal basis of the complement of the inner envelope
+% * ModelOutput.Gamma0: The orthogonal basis of the complement of the inner envelope
 % subspace.  An r by r-u semi-orthogonal matrix.
-% * stat.eta1: The transpose of the coordinates of $$\beta$ with respect to
+% * ModelOutput.eta1: The transpose of the coordinates of $$\beta$ with respect to
 % Gamma1. An p by u matrix.
-% * stat.B: An (r-u) by (p-u) semi-orthogonal matrix, so that (Gamma,
+% * ModelOutput.B: An (r-u) by (p-u) semi-orthogonal matrix, so that (Gamma,
 % Gamma0*B) spans $$\beta$.
-% * stat.eta2: The transpose of the coordinates of $$\beta$ with respect to
+% * ModelOutput.eta2: The transpose of the coordinates of $$\beta$ with respect to
 % Gamma0. An p by (p-u) matrix.
-% * stat.Omega1: The coordinates of Sigma with respect to Gamma1. An u by u
+% * ModelOutput.Omega1: The coordinates of Sigma with respect to Gamma1. An u by u
 % matrix.
-% * stat.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u
+% * ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u
 % matrix.
-% * stat.alpha: The estimated intercept in the inner envelope model.  An r by 1
+% * ModelOutput.alpha: The estimated intercept in the inner envelope model.  An r by 1
 % vector.
-% * stat.l: The maximized log likelihood function.  A real number.
-% * stat.covMatrix: The asymptotic covariance of vec($$\beta$).  An rp by
+% * ModelOutput.l: The maximized log likelihood function.  A real number.
+% * ModelOutput.covMatrix: The asymptotic covariance of vec($$\beta$).  An rp by
 % rp matrix.  The covariance matrix returned are asymptotic.  For the
 % actual standard errors, multiply by 1/n.
-% * stat.asyIenv: Asymptotic standard error for elements in $$\beta$ under
+% * ModelOutput.asyIenv: Asymptotic standard error for elements in $$\beta$ under
 % the inner envelope model.  An r by p matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1/sqrt(n).
-% * stat.ratio: The asymptotic standard error ratio of the stanard multivariate 
+% * ModelOutput.ratio: The asymptotic standard error ratio of the stanard multivariate 
 % linear regression estimator over the inner envelope estimator, for each element 
 % in $$\beta$.  An r by p matrix.
-% * stat.np: The number of parameters in the inner envelope model.  A positive
+% * ModelOutput.np: The number of parameters in the inner envelope model.  A positive
 % integer.
-% * stat.n: The number of observations in the data.  A positive
+% * ModelOutput.n: The number of observations in the data.  A positive
 % integer.
 
 %% Description
@@ -90,10 +90,10 @@
 % 
 % u=bic_env(X,Y)
 % d=bic_ienv(X,Y)
-% stat=ienv(X,Y,d)
-% 1-1./stat.ratio
+% ModelOutput=ienv(X,Y,d)
+% 1-1./ModelOutput.ratio
 
-function stat=ienv(X,Y,u,opts)
+function ModelOutput=ienv(X,Y,u,opts)
 
 if (nargin < 3)
     error('Inputs: X, Y and u should be specified!');
@@ -148,42 +148,42 @@ betaOLS=dataParameter.betaOLS;
 if u==p
     
     temp=env(X,Y,p,opts);
-    stat.beta=temp.beta;
-    stat.Sigma=temp.Sigma;
-    stat.Gamma1=temp.Gamma;
-    stat.Gamma0=temp.Gamma0;
-    stat.B=[];
-    stat.eta1=temp.eta';
-    stat.eta2=[];
-    stat.Omega1=temp.Omega;
-    stat.Omega0=temp.Omega0;
-    stat.alpha=temp.alpha;
-    stat.l=temp.l;
-    stat.np=temp.np;
-    stat.covMatrix=temp.covMatrix;
-    stat.asyIenv=temp.asyEnv;
-    stat.ratio=temp.ratio;
-    stat.n=n;
+    ModelOutput.beta=temp.beta;
+    ModelOutput.Sigma=temp.Sigma;
+    ModelOutput.Gamma1=temp.Gamma;
+    ModelOutput.Gamma0=temp.Gamma0;
+    ModelOutput.B=[];
+    ModelOutput.eta1=temp.eta';
+    ModelOutput.eta2=[];
+    ModelOutput.Omega1=temp.Omega;
+    ModelOutput.Omega0=temp.Omega0;
+    ModelOutput.alpha=temp.alpha;
+    ModelOutput.l=temp.l;
+    ModelOutput.np=temp.np;
+    ModelOutput.covMatrix=temp.covMatrix;
+    ModelOutput.asyIenv=temp.asyEnv;
+    ModelOutput.ratio=temp.ratio;
+    ModelOutput.n=n;
     
 elseif u==0
     
     eigtem=eig(sigY);
-    stat.beta=zeros(r,p);
-    stat.Sigma=sigY;
-    stat.Gamma1=[];
-    stat.Gamma0=eye(r);
-    stat.B=eye(r);
-    stat.eta1=[];
-    stat.eta2=[];
-    stat.Omega=[];
-    stat.Omega0=sigY;
-    stat.alpha=mY;
-    stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
-    stat.covMatrix=[];
-    stat.asyIenv=[];
-    stat.ratio=ones(r,p);
-    stat.np=r+u*p+r*(r+1)/2;  
-    stat.n=n;
+    ModelOutput.beta=zeros(r,p);
+    ModelOutput.Sigma=sigY;
+    ModelOutput.Gamma1=[];
+    ModelOutput.Gamma0=eye(r);
+    ModelOutput.B=eye(r);
+    ModelOutput.eta1=[];
+    ModelOutput.eta2=[];
+    ModelOutput.Omega=[];
+    ModelOutput.Omega0=sigY;
+    ModelOutput.alpha=mY;
+    ModelOutput.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
+    ModelOutput.covMatrix=[];
+    ModelOutput.asyIenv=[];
+    ModelOutput.ratio=ones(r,p);
+    ModelOutput.np=r+u*p+r*(r+1)/2;  
+    ModelOutput.n=n;
 
 else 
     
@@ -234,18 +234,18 @@ else
     Sigma=Gamma1*Omega1*Gamma1'+Gamma0*Omega0*Gamma0';
     alpha=mY-beta*mX;
     
-    stat.beta=beta;
-    stat.Sigma=Sigma;
-    stat.Gamma1=Gamma1;
-    stat.Gamma0=Gamma0;
-    stat.B=B;
-    stat.eta1=eta1;
-    stat.eta2=eta2;
-    stat.Omega1=Omega1;
-    stat.Omega0=Omega0;
-    stat.alpha=alpha;
-    stat.np=p^2+(p-u)*(r-p)+r*(r+1)/2;
-    stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)))-n/2*l;
+    ModelOutput.beta=beta;
+    ModelOutput.Sigma=Sigma;
+    ModelOutput.Gamma1=Gamma1;
+    ModelOutput.Gamma0=Gamma0;
+    ModelOutput.B=B;
+    ModelOutput.eta1=eta1;
+    ModelOutput.eta2=eta2;
+    ModelOutput.Omega1=Omega1;
+    ModelOutput.Omega0=Omega0;
+    ModelOutput.alpha=alpha;
+    ModelOutput.np=p^2+(p-u)*(r-p)+r*(r+1)/2;
+    ModelOutput.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)))-n/2*l;
     
     
     %-----Compute asymptotic variance for inner envelope model-----
@@ -274,10 +274,10 @@ else
     covMatrix=asyv(1:r*p,1:r*p);
     asyIenv=reshape(sqrt(diag(covMatrix)),r,p);    
     
-    stat.covMatrix=covMatrix;
-    stat.asyIenv=asyIenv;
-    stat.ratio=asyFm./asyIenv;
-    stat.n=n;
+    ModelOutput.covMatrix=covMatrix;
+    ModelOutput.asyIenv=asyIenv;
+    ModelOutput.ratio=asyFm./asyIenv;
+    ModelOutput.n=n;
     
 end
 
