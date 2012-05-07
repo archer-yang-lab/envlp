@@ -2,7 +2,7 @@
 % Starting value for the envelope subspace.
 
 %% Syntax
-% WInit=get_Init(X,Y,u,dataParameter)
+% WInit=get_Init(X,Y,u,DataParameter)
 %
 % Input
 %
@@ -10,7 +10,7 @@
 % * Y: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations.  
 % * u: Dimension of the envelope. An integer between 1 and r-1.
-% * dataParameter: A list containing commonly used statistics computed from
+% * DataParameter: A list containing commonly used statistics computed from
 % the data.
 %
 % Output
@@ -35,7 +35,7 @@
 % The codes is implemented based on the algorithm in Section 3.5 of Su and 
 % Cook (2011).
 
-function WInit=get_Init(F,X,Y,u,dataParameter)
+function WInit=get_Init(F,X,Y,u,DataParameter)
 
 
 % global sigres;
@@ -43,14 +43,14 @@ function WInit=get_Init(F,X,Y,u,dataParameter)
 % sigma = FParameters.sigma;
 % sigmag = FParameters.sigmag;
 
-n=dataParameter.n;
-p=dataParameter.p;
-r=dataParameter.r;
-XC=dataParameter.XC;
-YC=dataParameter.YC;
-sigY=dataParameter.sigY;
-sigRes=dataParameter.sigRes;
-betaOLS=dataParameter.betaOLS;
+n=DataParameter.n;
+p=DataParameter.p;
+r=DataParameter.r;
+XC=DataParameter.XC;
+YC=DataParameter.YC;
+sigY=DataParameter.sigY;
+sigRes=DataParameter.sigRes;
+betaOLS=DataParameter.betaOLS;
 
 
 [V1 D]=eig(sigRes);

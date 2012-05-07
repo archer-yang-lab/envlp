@@ -3,12 +3,12 @@
 % subspace in the heteroscedastic envelope model.
 
 %% Syntax
-% df = dF4henv(R, dataParameter)
+% df = dF4henv(R, DataParameter)
 % 
 % Input
 %
 % * R: An r by u semi orthogonal matrix, 0<u<=r.
-% * dataParameter: A structure that contains the statistics calculated from
+% * DataParameter: A structure that contains the statistics calculated from
 % the data.
 %
 % Output
@@ -21,13 +21,13 @@
 %  using maximum likelihood estimation. This function is the derivative of
 %  the objective function.
 
-function df = dF4henv(R, dataParameter)
+function df = dF4henv(R, DataParameter)
 
-p = dataParameter.p;
-n = dataParameter.n;
-ng = dataParameter.ng;
-sigRes = dataParameter.sigRes;
-sigY = dataParameter.sigY;
+p = DataParameter.p;
+n = DataParameter.n;
+ng = DataParameter.ng;
+sigRes = DataParameter.sigRes;
+sigY = DataParameter.sigY;
 
 df = zeros(size(R));
 

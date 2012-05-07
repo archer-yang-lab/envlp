@@ -305,7 +305,7 @@ Starting value for the envelope subspace.
 \subsection*{Usage}
 
 \begin{par}
-WInit=get\_Init(X,Y,u,dataParameter)
+WInit=get\_Init(X,Y,u,DataParameter)
 \end{par} \vspace{1em}
 \begin{par}
 Input
@@ -315,7 +315,7 @@ Input
    \item X: Predictors. An n by p matrix, p is the number of predictors.
    \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations.
    \item u: Dimension of the envelope. An integer between 1 and r-1.
-   \item dataParameter: A list containing commonly used statistics computed from the data.
+   \item DataParameter: A list containing commonly used statistics computed from the data.
 \end{itemize}
 \begin{par}
 Output
@@ -464,7 +464,7 @@ Compute summary statistics from the data.
 \subsection*{Usage}
 
 \begin{par}
-dataParameter=make\_parameter(X,Y,method)
+DataParameter=make\_parameter(X,Y,method)
 \end{par} \vspace{1em}
 \begin{par}
 Input
@@ -479,26 +479,26 @@ Input
 Output
 \end{par} \vspace{1em}
 \begin{par}
-dataParameter: A list that contains summary statistics computed from the data.  The output list can vary from method to method.
+DataParameter: A list that contains summary statistics computed from the data.  The output list can vary from method to method.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item dataParameter.n: The number of observations in the data.  A positive integer.
-   \item dataParameter.ng: A p by 1 vector containing the number of observations in each group.  p is the number of groups.  Only for 'henv'.
-   \item dataParameter.ncum: A p by 1 vector containing the total number of observations till this group.  Only for 'henv'.
-   \item dataParameter.ind: An n by 1 vector indicating the sequence of the observations after sorted by groups.
-   \item dataParameter.p: The number of predictors or number of groups for 'henv'.  A positive integer.
-   \item dataParameter.r: The number of responses.  A positive integer.
-   \item dataParameter.XC: Centered predictors.  An n by p matrix with the ith row being the ith observation of X subtracted by the mean of X.  Only for 'env' and 'ienv'.
-   \item dataParameter.YC: Centered responses.  An n by r matrix with the ith row being the ith observation of Y subtracted by the mean of Y.  Only for 'env' and 'ienv'.
-   \item dataParameter.mX: The mean of predictors.  A p by 1 vector.  For all method except 'henv'.
-   \item dataParameter.mY: The mean of responses.  An r by 1 vector.
-   \item dataParameter.mYg: An r by p matrix with the ith column being the sample mean of the ith group.
-   \item dataParameter.sigX: The sample covariance matrix of X.  A p by p matrix.
-   \item dataParameter.sigY: The sample covariance matrix of Y.  An r by r matrix.
-   \item dataParameter.sigRes: For 'env', 'senv', 'ienv': The sample covariance matrix of the residuals from the ordinary least squares regression of Y on X.  An r by r matrix. For 'henv', an r by r by p three dimensional matrix with the ith depth is the ith sample covariance matrix for the ith group.
-   \item dataParameter.sigFit: The sample covariance matrix of the fitted value from the ordinary least squares regression of Y on X.  An r by r matrix. Only for method 'ienv'.
-   \item dataParameter.betaOLS: The regression coefficients from the ordinary least squares regression of Y on X.  An r by p matrix.  For all method except 'henv'.
+   \item DataParameter.n: The number of observations in the data.  A positive integer.
+   \item DataParameter.ng: A p by 1 vector containing the number of observations in each group.  p is the number of groups.  Only for 'henv'.
+   \item DataParameter.ncum: A p by 1 vector containing the total number of observations till this group.  Only for 'henv'.
+   \item DataParameter.ind: An n by 1 vector indicating the sequence of the observations after sorted by groups.
+   \item DataParameter.p: The number of predictors or number of groups for 'henv'.  A positive integer.
+   \item DataParameter.r: The number of responses.  A positive integer.
+   \item DataParameter.XC: Centered predictors.  An n by p matrix with the ith row being the ith observation of X subtracted by the mean of X.  Only for 'env' and 'ienv'.
+   \item DataParameter.YC: Centered responses.  An n by r matrix with the ith row being the ith observation of Y subtracted by the mean of Y.  Only for 'env' and 'ienv'.
+   \item DataParameter.mX: The mean of predictors.  A p by 1 vector.  For all method except 'henv'.
+   \item DataParameter.mY: The mean of responses.  An r by 1 vector.
+   \item DataParameter.mYg: An r by p matrix with the ith column being the sample mean of the ith group.
+   \item DataParameter.sigX: The sample covariance matrix of X.  A p by p matrix.
+   \item DataParameter.sigY: The sample covariance matrix of Y.  An r by r matrix.
+   \item DataParameter.sigRes: For 'env', 'senv', 'ienv': The sample covariance matrix of the residuals from the ordinary least squares regression of Y on X.  An r by r matrix. For 'henv', an r by r by p three dimensional matrix with the ith depth is the ith sample covariance matrix for the ith group.
+   \item DataParameter.sigFit: The sample covariance matrix of the fitted value from the ordinary least squares regression of Y on X.  An r by r matrix. Only for method 'ienv'.
+   \item DataParameter.betaOLS: The regression coefficients from the ordinary least squares regression of Y on X.  An r by p matrix.  For all method except 'henv'.
 \end{itemize}
 
 
@@ -717,7 +717,7 @@ The first derivative of the objective funtion for computing the envelope subspac
 \subsection*{Usage}
 
 \begin{par}
-df = dF4env(R,dataParameter)
+df = dF4env(R,DataParameter)
 \end{par} \vspace{1em}
 \begin{par}
 Input
@@ -725,7 +725,7 @@ Input
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
    \item R: An r by u semi orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}=r.
-   \item dataParameter: A structure that contains the statistics calculated form the data.
+   \item DataParameter: A structure that contains the statistics calculated form the data.
 \end{itemize}
 \begin{par}
 Output
@@ -859,7 +859,7 @@ Objective funtion for computing the envelope subspace.
 \subsection*{Usage}
 
 \begin{par}
-f = F4env(R,dataParameter)
+f = F4env(R,DataParameter)
 \end{par} \vspace{1em}
 \begin{par}
 Input
@@ -867,7 +867,7 @@ Input
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
    \item R: An r by u semi orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}=r.
-   \item dataParameter: A structure that contains the statistics calculated form the data.
+   \item DataParameter: A structure that contains the statistics calculated form the data.
 \end{itemize}
 \begin{par}
 Output
@@ -1150,7 +1150,7 @@ The first derivative of the objective funtion for computing the envelope subspac
 \subsection*{Usage}
 
 \begin{par}
-df = dF4henv(R,dataParameter)
+df = dF4henv(R,DataParameter)
 \end{par} \vspace{1em}
 \begin{par}
 Input
@@ -1158,7 +1158,7 @@ Input
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
    \item R: An r by u semi orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}=r.
-   \item dataParameter: A structure that contains the statistics calculated form the data.
+   \item DataParameter: A structure that contains the statistics calculated form the data.
 \end{itemize}
 \begin{par}
 Output
@@ -1201,7 +1201,7 @@ Objective funtion for computing the envelope subspace in heteroscedastic envelop
 \subsection*{Usage}
 
 \begin{par}
-f = F4henv(R,dataParameter)
+f = F4henv(R,DataParameter)
 \end{par} \vspace{1em}
 \begin{par}
 Input
@@ -1209,7 +1209,7 @@ Input
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
    \item R: An r by u semi orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}=r.
-   \item dataParameter: A structure that contains the statistics calculated form the data.
+   \item DataParameter: A structure that contains the statistics calculated form the data.
 \end{itemize}
 \begin{par}
 Output
@@ -1605,7 +1605,7 @@ First derivative of the objective funtion for computing the inner envelope subsp
 \subsection*{Usage}
 
 \begin{par}
-f = dF4ienv(R,dataParameter)
+f = dF4ienv(R,DataParameter)
 \end{par} \vspace{1em}
 \begin{par}
 Input
@@ -1613,7 +1613,7 @@ Input
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
    \item R: An r by u semi-orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}=p.
-   \item dataParameter: A structure that contains the statistics calculated form the data.
+   \item DataParameter: A structure that contains the statistics calculated form the data.
 \end{itemize}
 \begin{par}
 Output
@@ -1658,7 +1658,7 @@ Objective funtion for computing the inner envelope subspace
 \subsection*{Usage}
 
 \begin{par}
-f = F4ienv(R,dataParameter)
+f = F4ienv(R,DataParameter)
 \end{par} \vspace{1em}
 \begin{par}
 Input
@@ -1666,7 +1666,7 @@ Input
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
    \item R: An r by u semi orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}=p.
-   \item dataParameter: A structure that contains the statistics calculated form the data.
+   \item DataParameter: A structure that contains the statistics calculated form the data.
 \end{itemize}
 \begin{par}
 Output
@@ -2434,7 +2434,7 @@ First derivative of the objective funtion for computing the envelope subspace in
 \subsection*{Usage}
 
 \begin{par}
-f = dF4senv(R,dataParameter)
+f = dF4senv(R,DataParameter)
 \end{par} \vspace{1em}
 \begin{par}
 Input
@@ -2442,7 +2442,7 @@ Input
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
    \item R: An r by u semi-orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}=p.
-   \item dataParameter: A structure that contains the statistics calculated form the data.
+   \item DataParameter: A structure that contains the statistics calculated form the data.
 \end{itemize}
 \begin{par}
 Output
@@ -2484,7 +2484,7 @@ Objective funtion for computing the envelope subspace in scaled envelope model.
 \subsection*{Usage}
 
 \begin{par}
-f = F4senv(R,dataParameter)
+f = F4senv(R,DataParameter)
 \end{par} \vspace{1em}
 \begin{par}
 Input
@@ -2492,7 +2492,7 @@ Input
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
    \item R: An r by u semi orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}r.
-   \item dataParameter: A structure that contains the statistics calculated form the data.
+   \item DataParameter: A structure that contains the statistics calculated form the data.
 \end{itemize}
 \begin{par}
 Output
@@ -2535,7 +2535,7 @@ Objective funtion for computing the scales in the scaled envelope model.
 \subsection*{Usage}
 
 \begin{par}
-f = objfun(d,Gamma,dataParameter)
+f = objfun(d,Gamma,DataParameter)
 \end{par} \vspace{1em}
 \begin{par}
 Input
@@ -2544,7 +2544,7 @@ Input
 \setlength{\itemsep}{-1ex}
    \item d: An r-1 dimensional column vector containing the scales for the 2nd to the rth responses.  All the entries in d are positive.
    \item Gamma: A r by u semi-orthogomal matrix that spans the envelope subspace or the estimated envelope subspace.
-   \item dataParameter: A structure that contains the statistics calculated form the data.
+   \item DataParameter: A structure that contains the statistics calculated form the data.
 \end{itemize}
 \begin{par}
 Output

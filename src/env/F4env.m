@@ -2,12 +2,12 @@
 % Objective funtion for computing the envelope subspace.
 
 %% Syntax
-% f = F4env(R, dataParameter)
+% f = F4env(R, DataParameter)
 % 
 % Input
 %
 % * R: An r by u semi orthogonal matrix, 0<u<=r.
-% * dataParameter: A structure that contains the statistics calculated from
+% * DataParameter: A structure that contains the statistics calculated from
 % the data.
 %
 % Output
@@ -20,10 +20,10 @@
 %  using maximum likelihood estimation. The columns of the semi-orthogonal 
 % matrix that minimizes this function span the estimated envelope subspace.
 
-function f = F4env(R, dataParameter)
+function f = F4env(R, DataParameter)
 
-sigRes = dataParameter.sigRes;
-sigY = dataParameter.sigY;
+sigRes = DataParameter.sigRes;
+sigY = DataParameter.sigY;
 
 eigtem = eig(R' * sigRes * R);
 a = log(prod(eigtem(eigtem > 0)));

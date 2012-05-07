@@ -3,7 +3,7 @@
 
 %% Syntax
 % bootse=bstrp_xenv(X,Y,u,B)
-% bootse=bstrp_xenv(X,Y,u,B,opts)
+% bootse=bstrp_xenv(X,Y,u,B,Opts)
 %
 % Input
 %
@@ -14,7 +14,7 @@
 % * u: Dimension of the envelope subspace.  A positive integer between 0
 % and p.
 % * B: Number of boostrap samples.  A positive integer.
-% * opts: A list containing the optional input parameter. If one or several (even all) 
+% * Opts: A list containing the optional input parameter. If one or several (even all) 
 % fields are not defined, the default settings (see make_opts documentation) 
 % are used.
 %
@@ -38,18 +38,18 @@
 % B=100;
 % bootse=bstrp_xenv(X,Y,u,B)
 
-function bootse=bstrp_xenv(X,Y,u,B,opts)
+function bootse=bstrp_xenv(X,Y,u,B,Opts)
 
 if (nargin < 4)
     error('Inputs: X, Y, u and B should be specified!');
 elseif (nargin==4)
-    opts=[];
+    Opts=[];
 end
 
 [n r]=size(Y);
 p=size(X,2);
 
-ModelOutput=xenv(X,Y,u,opts);
+ModelOutput=xenv(X,Y,u,Opts);
 
 Yfit=ones(n,1)*ModelOutput.mu'+X*ModelOutput.beta;
 resi=Y-Yfit;
@@ -60,7 +60,7 @@ for i=1:B
     
     bootresi=resi(randsample(1:n,n,true),:);
     Yboot=Yfit+bootresi;
-    temp=xenv(X,Yboot,u,opts);
+    temp=xenv(X,Yboot,u,Opts);
     bootBeta(i,:)=reshape(temp.beta,1,p*r);
     
 end

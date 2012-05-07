@@ -2,7 +2,7 @@
 % Compute summary statistics from the data.
 
 %% Syntax
-% dataParameter=make_parameter(X,Y,method)
+% DataParameter=make_parameter(X,Y,method)
 %
 % Input
 %
@@ -17,44 +17,44 @@
 %
 % Output
 % 
-% dataParameter: A list that contains summary statistics computed from the
+% DataParameter: A list that contains summary statistics computed from the
 % data.  The output list can vary from method to method.
 % 
-% * dataParameter.n: The number of observations in the data.  A positive
+% * DataParameter.n: The number of observations in the data.  A positive
 % integer.  
-% * dataParameter.ng: A p by 1 vector containing the number of observations
+% * DataParameter.ng: A p by 1 vector containing the number of observations
 % in each group.  p is the number of groups.  Only for 'henv'.
-% * dataParameter.ncum: A p by 1 vector containing the total number of
+% * DataParameter.ncum: A p by 1 vector containing the total number of
 % observations till this group.  Only for 'henv'.
-% * dataParameter.ind: An n by 1 vector indicating the sequence of the
+% * DataParameter.ind: An n by 1 vector indicating the sequence of the
 % observations after sorted by groups.
-% * dataParameter.p: The number of predictors or number of groups for
+% * DataParameter.p: The number of predictors or number of groups for
 % 'henv'.  A positive integer.
-% * dataParameter.r: The number of responses.  A positive integer.
-% * dataParameter.XC: Centered predictors.  An n by p matrix with the ith
+% * DataParameter.r: The number of responses.  A positive integer.
+% * DataParameter.XC: Centered predictors.  An n by p matrix with the ith
 % row being the ith observation of X subtracted by the mean of X.  Only for
 % 'env' and 'ienv'.
-% * dataParameter.YC: Centered responses.  An n by r matrix with the ith
+% * DataParameter.YC: Centered responses.  An n by r matrix with the ith
 % row being the ith observation of Y subtracted by the mean of Y.  Only for
 % 'env' and 'ienv'.
-% * dataParameter.mX: The mean of predictors.  A p by 1 vector.  For all
+% * DataParameter.mX: The mean of predictors.  A p by 1 vector.  For all
 % method except 'henv'.
-% * dataParameter.mY: The mean of responses.  An r by 1 vector.
-% * dataParameter.mYg: An r by p matrix with the ith column being the
+% * DataParameter.mY: The mean of responses.  An r by 1 vector.
+% * DataParameter.mYg: An r by p matrix with the ith column being the
 % sample mean of the ith group.
-% * dataParameter.sigX: The sample covariance matrix of X.  A p by p
+% * DataParameter.sigX: The sample covariance matrix of X.  A p by p
 % matrix.
-% * dataParameter.sigY: The sample covariance matrix of Y.  An r by r
+% * DataParameter.sigY: The sample covariance matrix of Y.  An r by r
 % matrix.
-% * dataParameter.sigRes: For 'env', 'senv', 'ienv': The sample covariance
+% * DataParameter.sigRes: For 'env', 'senv', 'ienv': The sample covariance
 % matrix of the residuals from the ordinary least squares regression of Y
 % on X.  An r by r matrix. For 'henv', an r by r by p three dimensional
 % matrix with the ith depth is the ith sample covariance matrix for the ith
 % group.
-% * dataParameter.sigFit: The sample covariance matrix of the fitted value 
+% * DataParameter.sigFit: The sample covariance matrix of the fitted value 
 % from the ordinary least squares regression of Y on X.  An r by r matrix.
 % Only for method 'ienv'.
-% * dataParameter.betaOLS: The regression coefficients from the ordinary
+% * DataParameter.betaOLS: The regression coefficients from the ordinary
 % least squares regression of Y on X.  An r by p matrix.  For all method
 % except 'henv'.
 
@@ -63,7 +63,7 @@
 % estimation for each method.
 
 
-function dataParameter=make_parameter(X,Y,method)
+function DataParameter=make_parameter(X,Y,method)
 
 if (strcmp(method,'env'))
     
@@ -75,17 +75,17 @@ if (strcmp(method,'env'))
     YC=center(Y);
     ModelOutput=fit_OLS(X,Y);
 
-    dataParameter.n=n;
-    dataParameter.p=p;
-    dataParameter.r=r;
-    dataParameter.XC=XC;
-    dataParameter.YC=YC;
-    dataParameter.mX=mean(X)';
-    dataParameter.mY=mean(Y)';
-    dataParameter.sigX=cov(X,1);
-    dataParameter.sigY=cov(Y,1);
-    dataParameter.sigRes=ModelOutput.SigmaOLS;
-    dataParameter.betaOLS=ModelOutput.betaOLS;
+    DataParameter.n=n;
+    DataParameter.p=p;
+    DataParameter.r=r;
+    DataParameter.XC=XC;
+    DataParameter.YC=YC;
+    DataParameter.mX=mean(X)';
+    DataParameter.mY=mean(Y)';
+    DataParameter.sigX=cov(X,1);
+    DataParameter.sigY=cov(Y,1);
+    DataParameter.sigRes=ModelOutput.SigmaOLS;
+    DataParameter.betaOLS=ModelOutput.betaOLS;
    
     
 elseif (strcmp(method,'senv'))
@@ -98,15 +98,15 @@ elseif (strcmp(method,'senv'))
     YC=center(Y);
     ModelOutput=fit_OLS(X,Y);
 
-    dataParameter.n=n;
-    dataParameter.p=p;
-    dataParameter.r=r;
-    dataParameter.mX=mean(X)';
-    dataParameter.mY=mean(Y)';
-    dataParameter.sigX=cov(X,1);
-    dataParameter.sigY=cov(Y,1);
-    dataParameter.sigRes=ModelOutput.SigmaOLS;
-    dataParameter.betaOLS=ModelOutput.betaOLS;
+    DataParameter.n=n;
+    DataParameter.p=p;
+    DataParameter.r=r;
+    DataParameter.mX=mean(X)';
+    DataParameter.mY=mean(Y)';
+    DataParameter.sigX=cov(X,1);
+    DataParameter.sigY=cov(Y,1);
+    DataParameter.sigRes=ModelOutput.SigmaOLS;
+    DataParameter.betaOLS=ModelOutput.betaOLS;
     
     
 elseif (strcmp(method,'ienv'))
@@ -121,18 +121,18 @@ elseif (strcmp(method,'ienv'))
     sigY=cov(Y,1);
     sigFit=sigY-ModelOutput.SigmaOLS;
 
-    dataParameter.n=n;
-    dataParameter.p=p;
-    dataParameter.r=r;
-    dataParameter.XC=XC;
-    dataParameter.YC=YC;
-    dataParameter.mX=mean(X)';
-    dataParameter.mY=mean(Y)';
-    dataParameter.sigX=cov(X,1);
-    dataParameter.sigY=sigY;
-    dataParameter.sigRes=ModelOutput.SigmaOLS;
-    dataParameter.sigFit=sigFit;
-    dataParameter.betaOLS=ModelOutput.betaOLS;
+    DataParameter.n=n;
+    DataParameter.p=p;
+    DataParameter.r=r;
+    DataParameter.XC=XC;
+    DataParameter.YC=YC;
+    DataParameter.mX=mean(X)';
+    DataParameter.mY=mean(Y)';
+    DataParameter.sigX=cov(X,1);
+    DataParameter.sigY=sigY;
+    DataParameter.sigRes=ModelOutput.SigmaOLS;
+    DataParameter.sigFit=sigFit;
+    DataParameter.betaOLS=ModelOutput.betaOLS;
     
     
 elseif (strcmp(method,'henv'))
@@ -172,16 +172,16 @@ elseif (strcmp(method,'henv'))
 
 
 
-    dataParameter.n=n;
-    dataParameter.ng=ng;
-    dataParameter.ncum=ncum;
-    dataParameter.p=p;
-    dataParameter.r=r;
-    dataParameter.ind=ind;
-    dataParameter.mY=mean(Y)';
-    dataParameter.mYg=mYg;
-    dataParameter.sigY=cov(Y,1);
-    dataParameter.sigRes=sigRes;
+    DataParameter.n=n;
+    DataParameter.ng=ng;
+    DataParameter.ncum=ncum;
+    DataParameter.p=p;
+    DataParameter.r=r;
+    DataParameter.ind=ind;
+    DataParameter.mY=mean(Y)';
+    DataParameter.mYg=mYg;
+    DataParameter.sigY=cov(Y,1);
+    DataParameter.sigRes=sigRes;
     
 elseif (strcmp(method,'xenv'))
     
@@ -193,16 +193,16 @@ elseif (strcmp(method,'xenv'))
     sigXY=XC'*YC/n;
     sigY=cov(Y,1);
     
-    dataParameter.n=n;
-    dataParameter.p=p;
-    dataParameter.r=r;
-    dataParameter.mX=mean(X)';
-    dataParameter.mY=mean(Y)';
-    dataParameter.sigX=sigX;
-    dataParameter.sigY=sigY;
-    dataParameter.sigXY=sigXY;
-    dataParameter.sigXcY=sigX-sigXY*inv(sigY)*sigXY';
-    dataParameter.invSigX=inv(sigX);
+    DataParameter.n=n;
+    DataParameter.p=p;
+    DataParameter.r=r;
+    DataParameter.mX=mean(X)';
+    DataParameter.mY=mean(Y)';
+    DataParameter.sigX=sigX;
+    DataParameter.sigY=sigY;
+    DataParameter.sigXY=sigXY;
+    DataParameter.sigXcY=sigX-sigXY*inv(sigY)*sigXY';
+    DataParameter.invSigX=inv(sigX);
 
 end
 

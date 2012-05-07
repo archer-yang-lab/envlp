@@ -3,12 +3,12 @@
 % on X.
 
 %% Syntax
-% f = F4xenv(R,dataParameter)
+% f = F4xenv(R,DataParameter)
 % 
 % Input
 %
 % * R: An r by u semi orthogonal matrix, 0<u<=p.
-% * dataParameter: A structure that contains the statistics calculated from
+% * DataParameter: A structure that contains the statistics calculated from
 % the data.
 %
 % Output
@@ -21,11 +21,11 @@
 %  using maximum likelihood estimation. The columns of the semi-orthogonal 
 % matrix that minimizes this function span the estimated envelope subspace.
 
-function f = F4xenv(R,dataParameter)
+function f = F4xenv(R,DataParameter)
 
-sigXcY=dataParameter.sigXcY;
-sigX=dataParameter.sigX;
-invSigX=dataParameter.invSigX;
+sigXcY=DataParameter.sigXcY;
+sigX=DataParameter.sigX;
+invSigX=DataParameter.invSigX;
 
 eigtem=eig(R'*sigXcY*R);
 a=log(prod(eigtem(eigtem>0)));

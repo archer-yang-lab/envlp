@@ -3,12 +3,12 @@
 % envelope model.
 
 %% Syntax
-% f = F4henv(R, dataParameter)
+% f = F4henv(R, DataParameter)
 % 
 % Input
 %
 % * R: An r by u semi orthogonal matrix, 0<u<=r.
-% * dataParameter: A structure that contains the statistics calculated from
+% * DataParameter: A structure that contains the statistics calculated from
 % the data.
 %
 % Output
@@ -23,13 +23,13 @@
 % matrix that minimizes this function span the estimated envelope subspace
 % in the heteroscedastic envelope model.
 
-function f = F4henv(R, dataParameter)
+function f = F4henv(R, DataParameter)
 
-p = dataParameter.p;
-n = dataParameter.n;
-ng = dataParameter.ng;
-sigRes = dataParameter.sigRes;
-sigY = dataParameter.sigY;
+p = DataParameter.p;
+n = DataParameter.n;
+ng = DataParameter.ng;
+sigRes = DataParameter.sigRes;
+sigY = DataParameter.sigY;
 
 f = 0;
 for i = 1 : p

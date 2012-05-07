@@ -3,12 +3,12 @@
 % model.
 
 %% Syntax
-% f = F4senv(R,dataParameter)
+% f = F4senv(R,DataParameter)
 % 
 % Input
 %
 % * R: An r by u semi orthogonal matrix, 0<u<r.
-% * dataParameter: A structure that contains the statistics calculated from
+% * DataParameter: A structure that contains the statistics calculated from
 % the data.
 %
 % Output
@@ -23,11 +23,11 @@
 % matrix that minimizes this function span the estimated envelope subspace.
 
 
-function f = F4senv(R,dataParameter)
+function f = F4senv(R,DataParameter)
 
-sigRes=dataParameter.sigRes;
-sigY=dataParameter.sigY;
-Lambda=dataParameter.Lambda;
+sigRes=DataParameter.sigRes;
+sigY=DataParameter.sigY;
+Lambda=DataParameter.Lambda;
 
 
 eigtem=eig(R'*inv(Lambda)*sigRes*inv(Lambda)*R);

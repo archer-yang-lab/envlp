@@ -4,7 +4,7 @@
 
 %% Syntax
 % u = bic_henv(X, Y)
-% u = bic_henv(X, Y, opts)
+% u = bic_henv(X, Y, Opts)
 %
 % Input
 %
@@ -13,7 +13,7 @@
 % * Y: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
 % continuous variables.
-% * opts: A list containing the optional input parameter. If one or several (even all) 
+% * Opts: A list containing the optional input parameter. If one or several (even all) 
 % fields are not defined, the default settings (see make_opts documentation) 
 % are used. 
 %
@@ -30,23 +30,23 @@
 % load waterstrider.mat
 % u = bic_henv(X, Y)
 
-function u = bic_henv(X, Y, opts)
+function u = bic_henv(X, Y, Opts)
 
 if nargin < 2
     error('Inputs: X, Y should be specified!');
 elseif nargin == 2
-    opts = [];
+    Opts = [];
 end
 
 [n r] = size(Y);
     
-ModelOutput = henv(X, Y, r, opts);
+ModelOutput = henv(X, Y, r, Opts);
 ic = - 2 * ModelOutput.l + log(n) * ModelOutput.np;
 u = r;
 
 
 for i = 0 : r - 1
-	ModelOutput = henv(X, Y, i, opts);
+	ModelOutput = henv(X, Y, i, Opts);
 	temp = - 2 * ModelOutput.l + log(n) * ModelOutput.np;
 	if temp < ic
 	   u = i;

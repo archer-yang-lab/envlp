@@ -4,7 +4,7 @@
 
 %% Syntax
 % u = aic_env(X, Y)
-% u = aic_env(X, Y, opts)
+% u = aic_env(X, Y, Opts)
 %
 % Input
 %
@@ -13,7 +13,7 @@
 % * Y: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
 % continuous variables.
-% * opts: A list containing the optional input parameter. If one or several (even all) 
+% * Opts: A list containing the optional input parameter. If one or several (even all) 
 % fields are not defined, the default settings (see make_opts documentation) 
 % are used. 
 %
@@ -31,22 +31,22 @@
 % Y = wheatprotein(:, 1:6);
 % u = aic_env(X, Y)
 
-function u = aic_env(X, Y, opts)
+function u = aic_env(X, Y, Opts)
 
 if nargin < 2
     error('Inputs: X, Y should be specified!');
 elseif nargin == 2
-    opts = [];
+    Opts = [];
 end
 
 [n r] = size(Y);
     
-ModelOutput = env(X, Y, r, opts);
+ModelOutput = env(X, Y, r, Opts);
 ic = - 2 * ModelOutput.l + 2 * ModelOutput.np;
 u = r;
 
 for i = 0 : r-1
-	ModelOutput = env(X, Y, i, opts);
+	ModelOutput = env(X, Y, i, Opts);
 	temp = -2 * ModelOutput.l + 2 * ModelOutput.np;
 	if (temp < ic)
 	   u = i;

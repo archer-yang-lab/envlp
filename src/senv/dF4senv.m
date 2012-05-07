@@ -3,12 +3,12 @@
 % subspace in the scaled envelope model.
 
 %% Syntax
-% f = dF4senv(R,dataParameter)
+% f = dF4senv(R,DataParameter)
 % 
 % Input
 %
 % * R: An r by u semi-orthogonal matrix, 0<u<=p.
-% * dataParameter: A structure that contains the statistics calculated from
+% * DataParameter: A structure that contains the statistics calculated from
 % the data.
 %
 % Output
@@ -20,11 +20,11 @@
 %
 % This first derivative of F4senv obtained by matrix calculus calculations.
 
-function df = dF4senv(R,dataParameter)
+function df = dF4senv(R,DataParameter)
 
-sigRes=dataParameter.sigRes;
-sigY=dataParameter.sigY;
-Lambda=dataParameter.Lambda;
+sigRes=DataParameter.sigRes;
+sigY=DataParameter.sigY;
+Lambda=DataParameter.Lambda;
 
 a=2*inv(Lambda)*sigRes*inv(Lambda)*R*inv(R'*inv(Lambda)*sigRes*inv(Lambda)*R);
 

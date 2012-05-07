@@ -2,27 +2,27 @@
 % Make optional input parameters for running the sg_min package.
 
 %% Syntax
-% opts = make_opts(opts)
+% Opts = make_opts(Opts)
 %
 % Input 
 %
 % A list containing optional input parameter for sg_min.m specified by users.  One or several (even all)
 % fields could be empty.
 %
-% * opts.maxIter: Maximum number of iterations.  Default value: 300.
-% * opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
-% * opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * opts.verbose: Flag for print out output, logical 0 or 1. Default value: 0.
+% * Opts.maxIter: Maximum number of iterations.  Default value: 300.
+% * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
+% * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+% * Opts.verbose: Flag for print out output, logical 0 or 1. Default value: 0.
 %
 % Output:
 % 
 % A list containing optional input parameter for sg_min.m, specified by
 % users or the default values are used.
 %
-% * opts.maxIter: Maximum number of iterations.  Default value: 300.
-% * opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
-% * opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * opts.verbose: Flag for print out output, logical 0 or 1. Default value: 0.
+% * Opts.maxIter: Maximum number of iterations.  Default value: 300.
+% * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
+% * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+% * Opts.verbose: Flag for print out output, logical 0 or 1. Default value: 0.
 
 %% Description
 % The sg_min function has some optional input parameters that control the
@@ -33,29 +33,29 @@
 % values will be used.
 % 
 
-function opts = make_opts(opts)
+function Opts = make_opts(Opts)
 
 
-if isfield(opts,'maxIter')
-    if (opts.maxIter<1)
-        opts.maxIter=300;
+if isfield(Opts,'maxIter')
+    if (Opts.maxIter<1)
+        Opts.maxIter=300;
     end
 else
-    opts.maxIter=300;
+    Opts.maxIter=300;
 end
 
-if ~isfield(opts,'ftol')
-    opts.ftol=1e-10;
+if ~isfield(Opts,'ftol')
+    Opts.ftol=1e-10;
 end
 
-if ~isfield(opts,'gradtol')
-    opts.gradtol=1e-7;
+if ~isfield(Opts,'gradtol')
+    Opts.gradtol=1e-7;
 end
 
-if isfield(opts,'verbose')
-    if (opts.verbose~=1)
-        opts.verbose=0;
+if isfield(Opts,'verbose')
+    if (Opts.verbose~=1)
+        Opts.verbose=0;
     end
 else
-    opts.verbose=0;
+    Opts.verbose=0;
 end
