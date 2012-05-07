@@ -25,7 +25,7 @@
 
 function XC = center(X);
 
-n = size(X,1);
+n = size(X, 1);
 
-XC=X-ones(n,1)*mean(X);
+XC = X - ones(n, 1) * mean(X);
 
