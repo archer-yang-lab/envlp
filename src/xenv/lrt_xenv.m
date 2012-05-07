@@ -5,7 +5,7 @@
 
 %% Syntax
 % u=lrt_xenv(X,Y,alpha)
-% u=lrt_xenv(X,Y,alpha,opts)
+% u=lrt_xenv(X,Y,alpha,Opts)
 %
 % Input
 %
@@ -16,7 +16,7 @@
 % continuous variables.
 % * alpha: Significance level for testing.  A real number between 0 and 1,
 % often taken at 0.05 or 0.01.
-% * opts: A list containing the optional input parameter. If one or several (even all) 
+% * Opts: A list containing the optional input parameter. If one or several (even all) 
 % fields are not defined, the default settings (see make_opts documentation) 
 % are used.
 %
@@ -36,22 +36,22 @@
 % Y=wheatprotein(:,7);
 % u=lrt_xenv(X,Y,0.01)
 
-function u=lrt_xenv(X,Y,alpha,opts)
+function u=lrt_xenv(X,Y,alpha,Opts)
 
 if (nargin < 3)
     error('Inputs: X, Y and alpha should be specified!');
 elseif (nargin==3)
-    opts=[];
+    Opts=[];
 end
 
 [n p]=size(X);
 
-ModelOutput0=xenv(X,Y,p,opts);
+ModelOutput0=xenv(X,Y,p,Opts);
 
 
 for i=0:p-1
 
-        ModelOutput=xenv(X,Y,i,opts);
+        ModelOutput=xenv(X,Y,i,Opts);
         chisq = -2*(ModelOutput.l-ModelOutput0.l);
         df=ModelOutput0.np-ModelOutput.np;
         

@@ -3,7 +3,7 @@
 
 %% Syntax
 % bootse=bstrp_penv(X1,X2,Y,u,B)
-% bootse=bstrp_penv(X1,X2,Y,u,B,opts)
+% bootse=bstrp_penv(X1,X2,Y,u,B,Opts)
 %
 % Input
 %
@@ -18,7 +18,7 @@
 % * B: Number of boostrap samples.  A positive integer.
 % * u: Dimension of the partial envelope subspace.  A positive integer between 0 and
 % r.
-% * opts: A list containing the optional input parameter. If one or several (even all) 
+% * Opts: A list containing the optional input parameter. If one or several (even all) 
 % fields are not defined, the default settings (see make_opts documentation) 
 % are used.
 %
@@ -42,19 +42,19 @@
 % B=100;
 % bootse=bstrp_penv(X1,X2,Y,u,B)
 
-function bootse=bstrp_penv(X1,X2,Y,u,B,opts)
+function bootse=bstrp_penv(X1,X2,Y,u,B,Opts)
 
 if (nargin < 4)
     error('Inputs: X1, X2, Y, u and B should be specified!');
 elseif (nargin==4)
-    opts=[];
+    Opts=[];
 end
 
 
 [n r]=size(Y);
 p1=size(X1,2);
 
-ModelOutput=penv(X1,X2,Y,u,opts);
+ModelOutput=penv(X1,X2,Y,u,Opts);
 
 Yfit=ones(n,1)*ModelOutput.alpha'+X1*ModelOutput.beta1'+X2*ModelOutput.beta2';
 resi=Y-Yfit;
@@ -65,7 +65,7 @@ for i=1:B
     
     bootresi=resi(randsample(1:n,n,true),:);
     Yboot=Yfit+bootresi;
-    temp=penv(X1,X2,Yboot,u,opts);
+    temp=penv(X1,X2,Yboot,u,Opts);
     bootBeta1(i,:)=reshape(temp.beta1,1,r*p1);
     
 end

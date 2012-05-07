@@ -3,12 +3,12 @@
 % subspace.
 
 %% Syntax
-% df = dF4env(R, dataParameter)
+% df = dF4env(R, DataParameter)
 % 
 % Input
 %
 % * R: An r by u semi orthogonal matrix, 0<u<=r.
-% * dataParameter: A structure that contains the statistics calculated from
+% * DataParameter: A structure that contains the statistics calculated from
 % the data.
 %
 % Output
@@ -22,10 +22,10 @@
 %  using maximum likelihood estimation. This function is the derivative of
 %  the objective function.
 
-function df = dF4env(R, dataParameter)
+function df = dF4env(R, DataParameter)
 
-sigRes = dataParameter.sigRes;
-sigY = dataParameter.sigY;
+sigRes = DataParameter.sigRes;
+sigY = DataParameter.sigY;
 
 a = 2 * sigRes * R * inv(R' * sigRes * R);
 

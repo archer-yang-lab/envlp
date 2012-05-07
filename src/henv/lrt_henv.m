@@ -4,7 +4,7 @@
 
 %% Syntax
 % u=lrt_henv(X,Y,alpha)
-% u=lrt_henv(X,Y,alpha,opts)
+% u=lrt_henv(X,Y,alpha,Opts)
 %
 % Input
 %
@@ -15,7 +15,7 @@
 % continuous variables.
 % * alpha: Significance level for testing.  A real number between 0 and 1,
 % often taken at 0.05 or 0.01.
-% * opts: A list containing the optional input parameter. If one or several (even all) 
+% * Opts: A list containing the optional input parameter. If one or several (even all) 
 % fields are not defined, the default settings (see make_opts documentation) 
 % are used. 
 %
@@ -33,22 +33,22 @@
 % load waterstrider.mat
 % u=lrt_henv(X,Y,0.01)
 
-function u=lrt_henv(X,Y,alpha,opts)
+function u=lrt_henv(X,Y,alpha,Opts)
 
 if (nargin < 3)
     error('Inputs: X, Y and alpha should be specified!');
 elseif (nargin==3)
-    opts=[];
+    Opts=[];
 end
 
 [n r]=size(Y);
 
-ModelOutput0=henv(X,Y,r,opts);
+ModelOutput0=henv(X,Y,r,Opts);
 
 
 for i=0:r-1
 
-        ModelOutput=henv(X,Y,i,opts);
+        ModelOutput=henv(X,Y,i,Opts);
         chisq = -2*(ModelOutput.l-ModelOutput0.l);
         df=ModelOutput0.np-ModelOutput.np;
         

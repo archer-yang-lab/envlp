@@ -3,7 +3,7 @@
 
 %% Syntax
 % bootse=bstrp_ienv(X,Y,u,B)
-% bootse=bstrp_ienv(X,Y,u,B,opts)
+% bootse=bstrp_ienv(X,Y,u,B,Opts)
 %
 % Input
 %
@@ -31,18 +31,18 @@
 % B=100;
 % bootse=bstrp_ienv(X,Y,u,B)
 
-function bootse=bstrp_ienv(X,Y,u,B,opts)
+function bootse=bstrp_ienv(X,Y,u,B,Opts)
 
 if (nargin < 4)
     error('Inputs: X, Y, B and u should be specified!');
 elseif (nargin==4)
-    opts=[];
+    Opts=[];
 end
 
 [n r]=size(Y);
 p=size(X,2);
 
-ModelOutput=ienv(X,Y,u,opts);
+ModelOutput=ienv(X,Y,u,Opts);
 
 Yfit=ones(n,1)*ModelOutput.alpha'+X*ModelOutput.beta';
 resi=Y-Yfit;
@@ -53,7 +53,7 @@ for i=1:B
     
     bootresi=resi(randsample(1:n,n,true),:);
     Yboot=Yfit+bootresi;
-    temp=ienv(X,Yboot,u,opts);
+    temp=ienv(X,Yboot,u,Opts);
     bootBeta(i,:)=reshape(temp.beta,1,r*p);
     
 end

@@ -3,7 +3,7 @@
 
 %% Syntax
 % ModelOutput=ienv(X,Y,u)
-% ModelOutput=ienv(X,Y,u,opts)
+% ModelOutput=ienv(X,Y,u,Opts)
 %
 % Input
 %
@@ -17,14 +17,14 @@
 % u: Dimension of the inner envelope. An integer between 0 and p or equal
 % to r.
 %
-% opts: A list containing the optional input parameter, to control the
+% Opts: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
 % 
-% * opts.maxIter: Maximum number of iterations.  Default value: 300.
-% * opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
-% * opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * opts.verbose: Flag for print out output, logical 0 or 1. Default value:
+% * Opts.maxIter: Maximum number of iterations.  Default value: 300.
+% * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
+% * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+% * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
 % 0.
 %
 % Output
@@ -93,12 +93,12 @@
 % ModelOutput=ienv(X,Y,d)
 % 1-1./ModelOutput.ratio
 
-function ModelOutput=ienv(X,Y,u,opts)
+function ModelOutput=ienv(X,Y,u,Opts)
 
 if (nargin < 3)
     error('Inputs: X, Y and u should be specified!');
 elseif (nargin==3)
-    opts=[];
+    Opts=[];
 end
 
 [n,p]=size(X);
@@ -117,37 +117,37 @@ if (u < 0 || u > p)
     error('u should be an integer in [0, p]!');
 end
 
-opts=make_opts(opts);
+Opts=make_opts(Opts);
 
-if isfield(opts,'init')
-    [r2,u2]=size(opts.init);
+if isfield(Opts,'init')
+    [r2,u2]=size(Opts.init);
 
     if (r ~= r2 || u ~= u2)
         error('The size of the initial value should be r by u!');
     end
 
-    if (rank(opts.init) < u2)
+    if (rank(Opts.init) < u2)
         error('The initial value should be full rank!');
     end
 end
 
-dataParameter=make_parameter(X,Y,'ienv');
-n=dataParameter.n;
-p=dataParameter.p;
-r=dataParameter.r;
-XC=dataParameter.XC;
-YC=dataParameter.YC;
-mX=dataParameter.mX;
-mY=dataParameter.mY;
-sigX=dataParameter.sigX;
-sigY=dataParameter.sigY;
-sigFit=dataParameter.sigFit;
-sigRes=dataParameter.sigRes;
-betaOLS=dataParameter.betaOLS;
+DataParameter=make_parameter(X,Y,'ienv');
+n=DataParameter.n;
+p=DataParameter.p;
+r=DataParameter.r;
+XC=DataParameter.XC;
+YC=DataParameter.YC;
+mX=DataParameter.mX;
+mY=DataParameter.mY;
+sigX=DataParameter.sigX;
+sigY=DataParameter.sigY;
+sigFit=DataParameter.sigFit;
+sigRes=DataParameter.sigRes;
+betaOLS=DataParameter.betaOLS;
 
 if u==p
     
-    temp=env(X,Y,p,opts);
+    temp=env(X,Y,p,Opts);
     ModelOutput.beta=temp.beta;
     ModelOutput.Sigma=temp.Sigma;
     ModelOutput.Gamma1=temp.Gamma;
@@ -189,21 +189,21 @@ else
     
     eigtem=eig(sigRes);
     
-    F = make_F(@F4ienv,dataParameter);
-    dF = make_dF(@dF4ienv,dataParameter);
+    F = make_F(@F4ienv,DataParameter);
+    dF = make_dF(@dF4ienv,DataParameter);
 
-    maxIter=opts.maxIter;
-	ftol=opts.ftol;
-	gradtol=opts.gradtol;
-	if (opts.verbose==0) 
+    maxIter=Opts.maxIter;
+	ftol=Opts.ftol;
+	gradtol=Opts.gradtol;
+	if (Opts.verbose==0) 
         verbose='quiet';
     else
         verbose='verbose';
     end
-    if ~isfield(opts,'init') 
-        init=get_Init(F,X,Y,u,dataParameter);
+    if ~isfield(Opts,'init') 
+        init=get_Init(F,X,Y,u,DataParameter);
     else
-        init=opts.init;
+        init=Opts.init;
     end
     
     [l Gamma1]=sg_min(F,dF,init,maxIter,'prcg',verbose,ftol,gradtol);

@@ -3,7 +3,7 @@
 
 %% Syntax
 % ModelOutput=senv(X,Y,u)
-% ModelOutput=senv(X,Y,u,opts)
+% ModelOutput=senv(X,Y,u,Opts)
 %
 % Input
 %
@@ -16,14 +16,14 @@
 %
 % u: Dimension of the envelope. An integer between 0 and r.
 %
-% opts: A list containing the optional input parameter, to control the
+% Opts: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
 % 
-% * opts.maxIter: Maximum number of iterations.  Default value: 300.
-% * opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
-% * opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * opts.verbose: Flag for print out output, logical 0 or 1. Default value:
+% * Opts.maxIter: Maximum number of iterations.  Default value: 300.
+% * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
+% * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+% * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
 % 0. 
 %
 % Output
@@ -98,14 +98,14 @@
 % 1-1./ModelOutput.ratio
 
 
-function ModelOutput=senv(X,Y,u,opts)
+function ModelOutput=senv(X,Y,u,Opts)
 
 % Verify and initialize the parameters
 %
 if (nargin < 3)
     error('Inputs: X, Y and u should be specified!');
 elseif (nargin==3)
-    opts=[];
+    Opts=[];
 end
 
 [n,p]=size(X);
@@ -124,31 +124,31 @@ if (u < 0 || u > r)
     error('u should be an integer between [0, r]!');
 end
 
-opts=make_opts(opts);
+Opts=make_opts(Opts);
 
-if isfield(opts,'init')
-    [r2,u2]=size(opts.init);
+if isfield(Opts,'init')
+    [r2,u2]=size(Opts.init);
 
     if (r ~= r2 || u ~= u2)
         error('The size of the initial value should be r by u!');
     end
 
-    if (rank(opts.init) < u2)
+    if (rank(Opts.init) < u2)
         error('The initial value should be full rank!');
     end
 end
 
 %---preparation---
-dataParameter=make_parameter(X,Y,'senv');
-n=dataParameter.n;
-p=dataParameter.p;
-r=dataParameter.r;
-mX=dataParameter.mX;
-mY=dataParameter.mY;
-sigX=dataParameter.sigX;
-sigY=dataParameter.sigY;
-sigRes=dataParameter.sigRes;
-betaOLS=dataParameter.betaOLS;
+DataParameter=make_parameter(X,Y,'senv');
+n=DataParameter.n;
+p=DataParameter.p;
+r=DataParameter.r;
+mX=DataParameter.mX;
+mY=DataParameter.mY;
+sigX=DataParameter.sigX;
+sigY=DataParameter.sigY;
+sigRes=DataParameter.sigRes;
+betaOLS=DataParameter.betaOLS;
 
 if u==0
     
@@ -195,10 +195,10 @@ elseif u==r
     
 else
 
-    maxIter=opts.maxIter;
-	ftol=opts.ftol;
-	gradtol=opts.gradtol;
-	if (opts.verbose==0) 
+    maxIter=Opts.maxIter;
+	ftol=Opts.ftol;
+	gradtol=Opts.gradtol;
+	if (Opts.verbose==0) 
         verbose='quiet';
     else
         verbose='verbose';
@@ -208,7 +208,7 @@ else
     epsilon=1e-9; 
     l2=zeros(1,ite);
     
-    init=env(X,Y,u,opts);
+    init=env(X,Y,u,Opts);
     Gamma=init.Gamma;
     d=ones(1,r-1);
 
@@ -217,13 +217,13 @@ else
     for i=1:ite
 
         Lambda=diag([1 d]);
-        dataParameter.Lambda=Lambda;  
+        DataParameter.Lambda=Lambda;  
      
-        F = make_F(@F4senv,dataParameter);
-        dF = make_dF(@dF4senv,dataParameter); 
+        F = make_F(@F4senv,DataParameter);
+        dF = make_dF(@dF4senv,DataParameter); 
         [l Gamma]=sg_min(F,dF,Gamma,maxIter,'prcg',verbose,ftol,gradtol);
         
-        [d l2(i)]=fminsearch(@(d) objfun(d,Gamma,dataParameter), d);
+        [d l2(i)]=fminsearch(@(d) objfun(d,Gamma,DataParameter), d);
          
         if (i>1) && (abs(l2(i)-l2(i-1))<epsilon*abs(l2(i)))
             break;

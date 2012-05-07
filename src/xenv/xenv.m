@@ -3,7 +3,7 @@
 
 %% Syntax
 % ModelOutput=xenv(X,Y,u)
-% ModelOutput=xenv(X,Y,u,opts)
+% ModelOutput=xenv(X,Y,u,Opts)
 %
 % Input
 %
@@ -16,14 +16,14 @@
 %
 % u: Dimension of the envelope. An integer between 0 and p.
 %
-% opts: A list containing the optional input parameter, to control the
+% Opts: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
 % 
-% * opts.maxIter: Maximum number of iterations.  Default value: 300.
-% * opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
-% * opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * opts.verbose: Flag for print out output, logical 0 or 1. Default value:
+% * Opts.maxIter: Maximum number of iterations.  Default value: 300.
+% * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
+% * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+% * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
 % 0. 
 %
 % Output
@@ -106,12 +106,12 @@
 % % ModelOutput.mu
 % % BETA
 
-function ModelOutput=xenv(X,Y,u,opts)
+function ModelOutput=xenv(X,Y,u,Opts)
 
 if (nargin < 3)
     error('Inputs: X, Y and u should be specified!');
 elseif (nargin==3)
-    opts=[];
+    Opts=[];
 end
 
 [n,p]=size(X);
@@ -130,32 +130,32 @@ if (u < 0 || u > p)
     error('u should be an integer between [0, p]!');
 end
 
-opts=make_opts(opts);
+Opts=make_opts(Opts);
 
-if isfield(opts,'init')
-    [r2,u2]=size(opts.init);
+if isfield(Opts,'init')
+    [r2,u2]=size(Opts.init);
 
     if (r ~= r2 || u ~= u2)
         error('The size of the initial value should be r by u!');
     end
 
-    if (rank(opts.init) < u2)
+    if (rank(Opts.init) < u2)
         error('The initial value should be full rank!');
     end
 end
 
 %---preparation---
-dataParameter=make_parameter(X,Y,'xenv');
+DataParameter=make_parameter(X,Y,'xenv');
 
-n=dataParameter.n;
-p=dataParameter.p;
-r=dataParameter.r;
-mX=dataParameter.mX;
-mY=dataParameter.mY;
-sigX=dataParameter.sigX; % Standard estimator of \Sigma_X
-sigXY=dataParameter.sigXY;
-sigY=dataParameter.sigY;
-invSigX=dataParameter.invSigX;
+n=DataParameter.n;
+p=DataParameter.p;
+r=DataParameter.r;
+mX=DataParameter.mX;
+mY=DataParameter.mY;
+sigX=DataParameter.sigX; % Standard estimator of \Sigma_X
+sigXY=DataParameter.sigXY;
+sigY=DataParameter.sigY;
+invSigX=DataParameter.invSigX;
 
 sigYcX=sigY-sigXY'*invSigX*sigXY;
 
@@ -173,23 +173,23 @@ if u>0 && u<p
     tempF = make_F(@F4env,tempParameter);
     
     
-    maxIter=opts.maxIter;
-	ftol=opts.ftol;
-	gradtol=opts.gradtol;
-	if (opts.verbose==0) 
+    maxIter=Opts.maxIter;
+	ftol=Opts.ftol;
+	gradtol=Opts.gradtol;
+	if (Opts.verbose==0) 
         verbose='quiet';
     else
         verbose='verbose';
     end
-    if ~isfield(opts,'init') 
+    if ~isfield(Opts,'init') 
         init=get_Init(tempF,Y,X,u,tempParameter);
     else
-        init=opts.init;
+        init=Opts.init;
     end
     
     
-    F = make_F(@F4xenv,dataParameter);
-    dF = make_dF(@dF4xenv,dataParameter);
+    F = make_F(@F4xenv,DataParameter);
+    dF = make_dF(@dF4xenv,DataParameter);
 
     [l Gamma]=sg_min(F,dF,init,maxIter,'prcg',verbose,ftol,gradtol);
 

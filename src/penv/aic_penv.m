@@ -4,7 +4,7 @@
 
 %% Syntax
 % u=aic_penv(X1,X2,Y)
-% u=aic_penv(X1,X2,Y,opts)
+% u=aic_penv(X1,X2,Y,Opts)
 %
 % Input
 %
@@ -16,7 +16,7 @@
 % * Y: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
 % continuous variables.
-% * opts: A list containing the optional input parameter. If one or several (even all) 
+% * Opts: A list containing the optional input parameter. If one or several (even all) 
 % fields are not defined, the default settings (see make_opts documentation) 
 % are used. 
 %
@@ -36,24 +36,24 @@
 % X2=X(:,1:2);
 % u=aic_penv(X1,X2,Y)
 
-function u=aic_penv(X1,X2,Y,opts)
+function u=aic_penv(X1,X2,Y,Opts)
 
 if (nargin < 3)
     error('Inputs: X1, X2 and Y should be specified!');
 elseif (nargin==3)
-    opts=[];
+    Opts=[];
 end
 
 [n r]=size(Y);
     
-ModelOutput=penv(X1,X2,Y,r,opts);
+ModelOutput=penv(X1,X2,Y,r,Opts);
 ic=-2*ModelOutput.l+2*ModelOutput.np;
 u=r;
 
 
 for i=0:r-1
 
-        ModelOutput=penv(X1,X2,Y,i,opts);
+        ModelOutput=penv(X1,X2,Y,i,Opts);
         temp=-2*ModelOutput.l+2*ModelOutput.np;
         if (temp<ic)
            u=i;

@@ -3,12 +3,12 @@
 % subspace.
 
 %% Syntax
-% f = dF4ienv(R,dataParameter)
+% f = dF4ienv(R,DataParameter)
 % 
 % Input
 %
 % * R: An r by u semi-orthogonal matrix, 0<u<=p.
-% * dataParameter: A structure that contains the statistics calculated from
+% * DataParameter: A structure that contains the statistics calculated from
 % the data.
 %
 % Output
@@ -20,14 +20,14 @@
 %
 % This first derivative of F4ienv obtained by matrix calculus calculations.
 
-function df = dF4ienv(R,dataParameter)
+function df = dF4ienv(R,DataParameter)
 
 [r u]=size(R);
 
-sigRes=dataParameter.sigRes;
-sigY=dataParameter.sigY;
-sigFit=dataParameter.sigFit;
-p=dataParameter.p;
+sigRes=DataParameter.sigRes;
+sigY=DataParameter.sigY;
+sigFit=DataParameter.sigFit;
+p=DataParameter.p;
 
     
     temp=inv(sigRes);

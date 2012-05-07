@@ -2,7 +2,7 @@
 % Objective funtion for computing the scales in the scaled envelope model.
 
 %% Syntax
-% f = objfun(d,Gamma,dataParameter)
+% f = objfun(d,Gamma,DataParameter)
 % 
 % Input
 %
@@ -10,7 +10,7 @@
 % to the rth responses.  All the entries in d are positive.
 % * Gamma: A r by u semi-orthogomal matrix that spans the envelope subspace
 % or the estimated envelope subspace.
-% * dataParameter: A structure that contains the statistics calculated form
+% * DataParameter: A structure that contains the statistics calculated form
 % the data.
 %
 % Output
@@ -22,11 +22,11 @@
 % The objective function is derived in Section 4.1 of Su and Cook (2012)
 %  using maximum likelihood estimation. 
 
-function f=objfun(d,Gamma,dataParameter)
+function f=objfun(d,Gamma,DataParameter)
 
-n=dataParameter.n;
-sigY=dataParameter.sigY;
-sigRes=dataParameter.sigRes;
+n=DataParameter.n;
+sigY=DataParameter.sigY;
+sigRes=DataParameter.sigRes;
 
 
 

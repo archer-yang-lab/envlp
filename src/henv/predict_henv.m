@@ -2,8 +2,8 @@
 % Perform estimation or prediction under the heteroscedastic envelope model.
 
 %% Syntax
-% predOutput=predict_henv(ModelOutput,Xnew,infType)
-% predOutput=predict_henv(ModelOutput,Xnew,infType,opts)
+% PredictOutput=predict_henv(ModelOutput,Xnew,infType)
+% PredictOutput=predict_henv(ModelOutput,Xnew,infType,Opts)
 %
 % Input
 %
@@ -16,25 +16,25 @@
 % infType: A string of characters indicting the inference type,
 % the choices can be 'estimation' or 'prediction'.
 %
-% opts: A list containing the optional input parameter, to control the
+% Opts: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
 % 
-% * opts.maxIter: Maximum number of iterations.  Default value: 300.
-% * opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
-% * opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * opts.verbose: Flag for print out output, logical 0 or 1. Default value:
+% * Opts.maxIter: Maximum number of iterations.  Default value: 300.
+% * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
+% * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+% * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
 % 0.
 % 
 % Output
 %
-% predOutput: A list containing the results of the inference.
+% PredictOutput: A list containing the results of the inference.
 %
-% * predOutput.value: The fitted value or the prediction value evaluated at
+% * PredictOutput.value: The fitted value or the prediction value evaluated at
 % Xnew. An r by 1 vector.
-% * predOutput.covMatrix: The covariance matrix of predOutput.value. An r by r
+% * PredictOutput.covMatrix: The covariance matrix of PredictOutput.value. An r by r
 % matrix.
-% * predOutput.SE: The standard error of elements in predOutput.value. An r
+% * PredictOutput.SE: The standard error of elements in PredictOutput.value. An r
 % by 1 vector. 
 
 %% Description
@@ -51,17 +51,17 @@
 % ModelOutput.groupInd
 % ModelOutput.mug
 % Xnew=X(1,:)'
-% predOutput=predict_henv(ModelOutput,Xnew,'estimation')
-% predOutput.value  
-% predOutput=predict_henv(ModelOutput,Xnew,'prediction')
+% PredictOutput=predict_henv(ModelOutput,Xnew,'estimation')
+% PredictOutput.value  
+% PredictOutput=predict_henv(ModelOutput,Xnew,'prediction')
 
 
-function predOutput=predict_henv(ModelOutput,Xnew,infType,opts)
+function PredictOutput=predict_henv(ModelOutput,Xnew,infType,Opts)
 
 if (nargin < 3)
     error('Inputs: ModelOutput,Xnew and infType should be specified!');
 elseif (nargin==3)
-    opts=[];
+    Opts=[];
 end
 
 if (~strcmp(infType,'estimation'))&&(~strcmp(infType,'prediction'))
@@ -81,15 +81,15 @@ if u == 0
     
     if (strcmp(infType,'estimation'))
         
-        predOutput.value=ModelOutput.mu;
-        predOutput.covMatrix=ModelOutput.covMatrix(1:r)/n;
-        predOutput.SE=sqrt(diag(predOutput.covMatrix));
+        PredictOutput.value=ModelOutput.mu;
+        PredictOutput.covMatrix=ModelOutput.covMatrix(1:r)/n;
+        PredictOutput.SE=sqrt(diag(PredictOutput.covMatrix));
         
     elseif (strcmp(infType,'prediction'))
         
-        predOutput.value=ModelOutput.mug(:,iG);
-        predOutput.covMatrix=ModelOutput.covMatrix(1:r)/n+ModelOutput.Sigma(:,:,iG);
-        predOutput.SE=sqrt(diag(predOutput.covMatrix));
+        PredictOutput.value=ModelOutput.mug(:,iG);
+        PredictOutput.covMatrix=ModelOutput.covMatrix(1:r)/n+ModelOutput.Sigma(:,:,iG);
+        PredictOutput.SE=sqrt(diag(PredictOutput.covMatrix));
     
     end
        
@@ -97,15 +97,15 @@ else
     
     if (strcmp(infType,'estimation'))
         
-        predOutput.value=ModelOutput.mug(:,iG);
-        predOutput.covMatrix=(ModelOutput.covMatrix(1:r,1:r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(1:r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,1:r))/ng(iG);
-        predOutput.SE=sqrt(diag(predOutput.covMatrix));
+        PredictOutput.value=ModelOutput.mug(:,iG);
+        PredictOutput.covMatrix=(ModelOutput.covMatrix(1:r,1:r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(1:r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,1:r))/ng(iG);
+        PredictOutput.SE=sqrt(diag(PredictOutput.covMatrix));
             
     elseif (strcmp(infType,'prediction'))
         
-        predOutput.value=ModelOutput.mug(:,iG);
-        predOutput.covMatrix=(ModelOutput.covMatrix(1:r,1:r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(1:r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,1:r))/ng(iG)+ModelOutput.Sigma(:,:,iG);
-        predOutput.SE=sqrt(diag(predOutput.covMatrix));
+        PredictOutput.value=ModelOutput.mug(:,iG);
+        PredictOutput.covMatrix=(ModelOutput.covMatrix(1:r,1:r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(1:r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,1:r))/ng(iG)+ModelOutput.Sigma(:,:,iG);
+        PredictOutput.SE=sqrt(diag(PredictOutput.covMatrix));
     
         
     end

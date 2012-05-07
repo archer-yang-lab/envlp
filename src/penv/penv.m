@@ -3,7 +3,7 @@
 
 %% Syntax
 % ModelOutput = penv(X1,X2,Y,u)
-% ModelOutput = penv(X1,X2,Y,u,opts)
+% ModelOutput = penv(X1,X2,Y,u,Opts)
 %
 % Input
 %
@@ -21,14 +21,14 @@
 %
 % u: Dimension of the partial envelope. An integer between 0 and r.
 %
-% opts: A list containing the optional input parameter, to control the
+% Opts: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
 % 
-% * opts.maxIter: Maximum number of iterations.  Default value: 300.
-% * opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
-% * opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * opts.verbose: Flag for print out output, logical 0 or 1. Default value:
+% * Opts.maxIter: Maximum number of iterations.  Default value: 300.
+% * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
+% * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+% * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
 % 0.
 %
 % Output
@@ -103,14 +103,14 @@
 % eig(ModelOutput.Omega0)
 % ModelOutput.ratio
 
-function ModelOutput = penv(X1,X2,Y,u,opts)
+function ModelOutput = penv(X1,X2,Y,u,Opts)
 
 % Verify and initialize the parameters
 
 if (nargin < 4)
     error('Inputs: X1, X2, Y and u should be specified!');
 elseif (nargin==4)
-    opts = [];
+    Opts = [];
 end
 
 [n,p1] = size(X1);
@@ -130,16 +130,16 @@ if (u < 0 || u > r)
     error('u should be an integer between [0, r]!');
 end
 
-opts = make_opts(opts);
+Opts = make_opts(Opts);
 
-if isfield(opts,'init')
-    [r2,u2] = size(opts.init);
+if isfield(Opts,'init')
+    [r2,u2] = size(Opts.init);
 
     if (r ~= r2 || u ~= u2)
         error('The size of the initial value should be r by u!');
     end
 
-    if (rank(opts.init) < u2)
+    if (rank(Opts.init) < u2)
         error('The initial value should be full rank!');
     end
 end
@@ -171,7 +171,7 @@ if u>0 && u<r
 
     %---Call env to compute most of the components in output---
 
-    temp = env(R12,RY2,u,opts);
+    temp = env(R12,RY2,u,Opts);
     beta1 = temp.beta;
     
     Gamma = temp.Gamma;

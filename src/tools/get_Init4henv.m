@@ -1,12 +1,12 @@
-function WInit=get_Init4henv(F,X,Y,u,dataParameter)
+function WInit=get_Init4henv(F,X,Y,u,DataParameter)
 
 
-n=dataParameter.n;
-ng=dataParameter.ng;
-p=dataParameter.p;
-r=dataParameter.r;
-sigY=dataParameter.sigY;
-sigRes=dataParameter.sigRes;
+n=DataParameter.n;
+ng=DataParameter.ng;
+p=DataParameter.p;
+r=DataParameter.r;
+sigY=DataParameter.sigY;
+sigRes=DataParameter.sigRes;
 
 tmp=zeros(r,r);
 for i=1:p

@@ -3,7 +3,7 @@
 
 %% Syntax
 % bootse = bstrp_henv(X, Y, u, B)
-% bootse = bstrp_henv(X, Y, u, B, opts)
+% bootse = bstrp_henv(X, Y, u, B, Opts)
 %
 % Input
 %
@@ -14,7 +14,7 @@
 % * u: Dimension of the envelope subspace.  A positive integer between 0 and
 % r.
 % * B: Number of boostrap samples.  A positive integer.
-% * opts: A list containing the optional input parameter. If one or several (even all) 
+% * Opts: A list containing the optional input parameter. If one or several (even all) 
 % fields are not defined, the default settings (see make_opts documentation) 
 % are used. 
 %
@@ -35,23 +35,23 @@
 % B = 100;
 % bootse = bstrp_henv(X, Y, u, B)
 
-function bootse = bstrp_henv(X, Y, u, B, opts)
+function bootse = bstrp_henv(X, Y, u, B, Opts)
 
 if nargin < 4
     error('Inputs: X, Y, u and B should be specified!');
 elseif nargin == 4
-    opts = [];
+    Opts = [];
 end
 
-dataParameter = make_parameter(X, Y, 'henv');
-p = dataParameter.p;
-r = dataParameter.r;
-n = dataParameter.n;
-ng = dataParameter.ng;
-ncum = dataParameter.ncum;
-ind = dataParameter.ind;
+DataParameter = make_parameter(X, Y, 'henv');
+p = DataParameter.p;
+r = DataParameter.r;
+n = DataParameter.n;
+ng = DataParameter.ng;
+ncum = DataParameter.ncum;
+ind = DataParameter.ind;
 
-ModelOutput = henv(X, Y, u, opts);
+ModelOutput = henv(X, Y, u, Opts);
 
 Yfit = ModelOutput.Yfit;
 resi = Y - Yfit;
@@ -69,7 +69,7 @@ for i = 1 : B
         end
     end
     Yboot = Yfit + bootresi;
-    temp = henv(X, Yboot, u, opts);
+    temp = henv(X, Yboot, u, Opts);
     bootBeta(i,:) = reshape(temp.beta, 1, r * p);
 end
 

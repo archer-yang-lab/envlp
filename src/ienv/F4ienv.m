@@ -2,12 +2,12 @@
 % Objective funtion for computing the inner envelope subspace
 
 %% Syntax
-% f = F4ienv(R,dataParameter)
+% f = F4ienv(R,DataParameter)
 % 
 % Input
 %
 % * R: An r by u semi orthogonal matrix, 0<u<=p.
-% * dataParameter: A structure that contains the statistics calculated from
+% * DataParameter: A structure that contains the statistics calculated from
 % the data.
 %
 % Output
@@ -21,14 +21,14 @@
 % matrix that minimizes this function span the estimated inner envelope subspace.
 
 
-function f = F4ienv(R,dataParameter)
+function f = F4ienv(R,DataParameter)
 
 u=size(R,2);
 
-sigRes=dataParameter.sigRes;
-sigY=dataParameter.sigY;
-sigFit=dataParameter.sigFit;
-p=dataParameter.p;
+sigRes=DataParameter.sigRes;
+sigY=DataParameter.sigY;
+sigFit=DataParameter.sigFit;
+p=DataParameter.p;
 
 
 
