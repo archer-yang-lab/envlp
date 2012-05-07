@@ -2,8 +2,8 @@
 % Fit the envelope model.
 
 %% Syntax
-% stat=env(X,Y,u)
-% stat=env(X,Y,u,opts)
+% stat = env(X, Y, u)
+% stat = env(X, Y, u, opts)
 %
 % Input
 %
@@ -83,73 +83,70 @@
 % example in Cook et al. (2010).
 % 
 % load wheatprotein.txt
-% X=wheatprotein(:,8);
-% Y=wheatprotein(:,1:6);
-% alpha=0.01;
-% u=lrt_env(X,Y,alpha)
-% stat=env(X,Y,u)
+% X = wheatprotein(:, 8);
+% Y = wheatprotein(:, 1:6);
+% alpha = 0.01;
+% u = lrt_env(X, Y, alpha)
+% stat = env(X, Y, u)
 % stat.Omega
 % eig(stat.Omega0)
 % stat.ratio
 
-function stat=env(X,Y,u,opts)
+function stat = env(X, Y, u, opts)
 
 % Verify and initialize the parameters
 %
-if (nargin < 3)
+if nargin < 3
     error('Inputs: X, Y and u should be specified!');
-elseif (nargin==3)
-    opts=[];
+elseif nargin == 3
+    opts = [];
 end
 
-[n,p]=size(X);
-[n1,r]=size(Y);
+[n, p] = size(X);
+[n1, r] = size(Y);
 
-if (n ~= n1)
+if n ~= n1
     error('The number of observations in X and Y should be equal!');
 end
 
-if (p >= r)
+if p >= r
     error('When the number of responses is less than the number of predictors, the envelope model cannot be applied.');
 end
 
 u = floor(u);
-if (u < 0 || u > r)
+if u < 0 || u > r
     error('u should be an integer between [0, r]!');
 end
 
-opts=make_opts(opts);
+opts = make_opts(opts);
 
-if isfield(opts,'init')
-    [r2,u2]=size(opts.init);
-
-    if (r ~= r2 || u ~= u2)
+if isfield(opts, 'init')
+    [r2, u2] = size(opts.init);
+    if r ~= r2 || u ~= u2
         error('The size of the initial value should be r by u!');
     end
-
-    if (rank(opts.init) < u2)
+    if rank(opts.init) < u2
         error('The initial value should be full rank!');
     end
 end
 
-
 %---preparation---
-dataParameter=make_parameter(X,Y,'env');
+dataParameter = make_parameter(X, Y, 'env');
 
-n=dataParameter.n;
-p=dataParameter.p;
-r=dataParameter.r;
-mX=dataParameter.mX;
-mY=dataParameter.mY;
-sigX=dataParameter.sigX;
-sigY=dataParameter.sigY;
-sigRes=dataParameter.sigRes;
-betaOLS=dataParameter.betaOLS;
+n = dataParameter.n;
+p = dataParameter.p;
+r = dataParameter.r;
+mX = dataParameter.mX;
+mY = dataParameter.mY;
+sigX = dataParameter.sigX;
+sigY = dataParameter.sigY;
+sigRes = dataParameter.sigRes;
+betaOLS = dataParameter.betaOLS;
 
-eigtem=eig(sigY);
+eigtem = eig(sigY);
 
-F = make_F(@F4env,dataParameter);
-dF = make_dF(@dF4env,dataParameter);
+F = make_F(@F4env, dataParameter);
+dF = make_dF(@dF4env, dataParameter);
 
 
 % With different u, the model will be different.  When u=0, X and Y are
@@ -158,100 +155,95 @@ dF = make_dF(@dF4env,dataParameter);
 % differently.
 
 
-if u>0 && u<r
-
-
+if u > 0 && u < r
     %---Compute \Gamma using sg_min---
-    maxIter=opts.maxIter;
-	ftol=opts.ftol;
-	gradtol=opts.gradtol;
-	if (opts.verbose==0) 
-        verbose='quiet';
+    maxIter = opts.maxIter;
+	ftol = opts.ftol;
+	gradtol = opts.gradtol;
+	if opts.verbose == 0 
+        verbose = 'quiet';
     else
-        verbose='verbose';
+        verbose = 'verbose';
     end
-    if ~isfield(opts,'init') 
-        init=get_Init(F,X,Y,u,dataParameter);
+    if ~isfield(opts, 'init') 
+        init = get_Init(F, X, Y, u, dataParameter);
     else
-        init=opts.init;
+        init = opts.init;
     end
 
-    [l Gamma]=sg_min(F,dF,init,maxIter,'prcg',verbose,ftol,gradtol);
-
+    [l Gamma] = sg_min(F, dF, init, maxIter, 'prcg', verbose, ftol, gradtol);
 
     %---Compute the rest of the parameters based on \Gamma---
-    Gamma0=grams(nulbasis(Gamma'));
-    beta=Gamma*Gamma'*betaOLS;
-    alpha=mY-beta*mX;
-    eta=Gamma'*beta;
-    Omega=Gamma'*sigRes*Gamma;
-    Omega0=Gamma0'*sigY*Gamma0;
-    Sigma1=Gamma*Omega*Gamma';
-    Sigma2=Gamma0*Omega0*Gamma0';
-    Sigma=Sigma1+Sigma2;
+    Gamma0 = grams(nulbasis(Gamma'));
+    beta = Gamma * Gamma' * betaOLS;
+    alpha = mY - beta * mX;
+    eta = Gamma' * beta;
+    Omega = Gamma' * sigRes * Gamma;
+    Omega0 = Gamma0' * sigY * Gamma0;
+    Sigma1 = Gamma * Omega * Gamma';
+    Sigma2 = Gamma0 * Omega0 * Gamma0';
+    Sigma = Sigma1 + Sigma2;
 
     %---compute asymptotic variance and get the ratios---
-    asyFm=kron(inv(sigX),Sigma);
-    asyFm=reshape(sqrt(diag(asyFm)),r,p);
-    temp=kron(eta*sigX*eta',inv(Omega0))+kron(Omega,inv(Omega0))+kron(inv(Omega),Omega0)-2*kron(eye(u),eye(r-u));
-    covMatrix=kron(inv(sigX),Sigma1)+kron(eta',Gamma0)*inv(temp)*kron(eta,Gamma0');
-    asyEnv=reshape(sqrt(diag(covMatrix)),r,p);
+    asyFm = kron(inv(sigX), Sigma);
+    asyFm = reshape(sqrt(diag(asyFm)), r, p);
+    temp = kron(eta * sigX * eta', inv(Omega0)) 
+		 + kron(Omega, inv(Omega0)) + kron(inv(Omega), Omega0) - 2 * kron(eye(u), eye(r - u));
+    covMatrix = kron(inv(sigX), Sigma1) + kron(eta', Gamma0) * inv(temp) * kron(eta, Gamma0');
+    asyEnv = reshape(sqrt(diag(covMatrix)), r, p);
     
+    stat.beta = beta;
+    stat.Sigma = Sigma;
+    stat.Gamma = Gamma;
+    stat.Gamma0 = Gamma0;
+    stat.eta = eta;
+    stat.Omega = Omega;
+    stat.Omega0 = Omega0;
+    stat.alpha = alpha;
+    stat.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * (l + log(prod(eigtem(eigtem > 0))));
+    stat.covMatrix = covMatrix;
+    stat.asyEnv = asyEnv;
+    stat.ratio = asyFm./asyEnv;
+    stat.np = r + u * p + r * (r + 1) / 2;
+    stat.n = n;
     
-    stat.beta=beta;
-    stat.Sigma=Sigma;
-    stat.Gamma=Gamma;
-    stat.Gamma0=Gamma0;
-    stat.eta=eta;
-    stat.Omega=Omega;
-    stat.Omega0=Omega0;
-    stat.alpha=alpha;
-    stat.l=-n*r/2*(1+log(2*pi))-n/2*(l+log(prod(eigtem(eigtem>0))));
-    stat.covMatrix=covMatrix;
-    stat.asyEnv=asyEnv;
-    stat.ratio=asyFm./asyEnv;
-    stat.np=r+u*p+r*(r+1)/2;
-    stat.n=n;
+elseif u == 0
     
-elseif u==0
-    
-    
-    stat.beta=zeros(r,p);
-    stat.Sigma=sigY;
-    stat.Gamma=[];
-    stat.Gamma0=eye(r);
-    stat.eta=[];
-    stat.Omega=[];
-    stat.Omega0=sigY;
-    stat.alpha=mY;
-    stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
-    stat.covMatrix=[];
-    stat.asyEnv=[];
-    stat.ratio=ones(r,p);
-    stat.np=r+u*p+r*(r+1)/2;
-    stat.n=n;    
+    stat.beta = zeros(r, p);
+    stat.Sigma = sigY;
+    stat.Gamma = [];
+    stat.Gamma0 = eye(r);
+    stat.eta = [];
+    stat.Omega = [];
+    stat.Omega0 = sigY;
+    stat.alpha = mY;
+    stat.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
+    stat.covMatrix = [];
+    stat.asyEnv = [];
+    stat.ratio = ones(r, p);
+    stat.np = r + u * p + r * (r + 1) / 2;
+    stat.n = n;    
 
-elseif u==r
+elseif u == r
     
- 
-    covMatrix=kron(inv(sigX),sigRes);
-    asyFm=reshape(sqrt(diag(covMatrix)),r,p);
+    covMatrix = kron(inv(sigX), sigRes);
+    asyFm = reshape(sqrt(diag(covMatrix)), r, p);
     
-    stat.beta=betaOLS;
-    stat.Sigma=sigRes;
-    stat.Gamma=eye(r);
-    stat.Gamma0=[];
-    stat.eta=betaOLS;
-    stat.Omega=sigRes;
-    stat.Omega0=[];
-    stat.alpha=mY-betaOLS*mX;
-    eigtem=eig(sigRes);
-    stat.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
-    stat.covMatrix=covMatrix;
-    stat.asyEnv=asyFm;
-    stat.ratio=ones(r,p);
-    stat.np=r+u*p+r*(r+1)/2;
-    stat.n=n;    
+    stat.beta = betaOLS;
+    stat.Sigma = sigRes;
+    stat.Gamma = eye(r);
+    stat.Gamma0 = [];
+    stat.eta = betaOLS;
+    stat.Omega = sigRes;
+    stat.Omega0 = [];
+    stat.alpha = mY - betaOLS * mX;
+    eigtem = eig(sigRes);
+    stat.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
+    stat.covMatrix = covMatrix;
+    stat.asyEnv = asyFm;
+    stat.ratio = ones(r, p);
+    stat.np = r + u * p + r * (r + 1) / 2;
+    stat.n = n;    
     
 end
     

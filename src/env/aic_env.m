@@ -3,8 +3,8 @@
 % criterion.
 
 %% Syntax
-% u=aic_env(X,Y)
-% u=aic_env(X,Y,opts)
+% u = aic_env(X, Y)
+% u = aic_env(X, Y, opts)
 %
 % Input
 %
@@ -27,33 +27,29 @@
 
 %% Example
 % load wheatprotein.txt
-% X=wheatprotein(:,8);
-% Y=wheatprotein(:,1:6);
-% u=aic_env(X,Y)
+% X = wheatprotein(:, 8);
+% Y = wheatprotein(:, 1:6);
+% u = aic_env(X, Y)
 
-function u=aic_env(X,Y,opts)
+function u = aic_env(X, Y, opts)
 
-if (nargin < 2)
+if nargin < 2
     error('Inputs: X, Y should be specified!');
-elseif (nargin==2)
-    opts=[];
+elseif nargin == 2
+    opts = [];
 end
 
-[n r]=size(Y);
+[n r] = size(Y);
     
-stat=env(X,Y,r,opts);
-ic=-2*stat.l+2*stat.np;
-u=r;
+stat = env(X, Y, r, opts);
+ic = - 2 * stat.l + 2 * stat.np;
+u = r;
 
-
-for i=0:r-1
-    
-        stat=env(X,Y,i,opts);
-        temp=-2*stat.l+2*stat.np;
-        
-        if (temp<ic)
-           u=i;
-           ic=temp;
-        end
-        
+for i = 0 : r-1
+	stat = env(X, Y, i, opts);
+	temp = -2 * stat.l + 2 * stat.np;
+	if (temp < ic)
+	   u = i;
+	   ic = temp;
+	end
 end
