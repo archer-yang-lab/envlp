@@ -2,7 +2,7 @@
 % Multivariate linear regression. 
 
 %% Syntax
-% ModelOutput=fit_OLS(X,Y)
+% ModelOutput = fit_OLS(X, Y)
 %
 % Input
 %
@@ -30,19 +30,19 @@
 %% Example
 %
 % load wheatprotein.txt
-% X=wheatprotein(:,8);
-% Y=wheatprotein(:,1:6);
-% ModelOutput=fit_OLS(X,Y)
+% X = wheatprotein(:, 8);
+% Y = wheatprotein(:, 1 : 6);
+% ModelOutput = fit_OLS(X, Y)
 
-function ModelOutput=fit_OLS(X,Y)
+function ModelOutput = fit_OLS(X, Y)
 
-n=length(X);
-XC=center(X);
-YC=center(Y);
-mY=mean(Y)';
-mX=mean(X)';
-PX=XC*inv(XC'*XC)*XC';
-ModelOutput.betaOLS=YC'*XC*inv(XC'*XC);
-ModelOutput.SigmaOLS=YC'*(eye(n)-PX)*YC/n;
-ModelOutput.alpha=mY-ModelOutput.betaOLS*mX;
-ModelOutput.n=n;
+n = length(X);
+XC = center(X);
+YC = center(Y);
+mY = mean(Y)';
+mX = mean(X)';
+PX = XC * inv(XC' * XC) * XC';
+ModelOutput.betaOLS = YC' * XC * inv(XC' * XC);
+ModelOutput.SigmaOLS = YC' * (eye(n) - PX) * YC / n;
+ModelOutput.alpha = mY - ModelOutput.betaOLS * mX;
+ModelOutput.n = n;

@@ -36,26 +36,26 @@
 function Opts = make_opts(Opts)
 
 
-if isfield(Opts,'maxIter')
-    if (Opts.maxIter<1)
-        Opts.maxIter=300;
+if isfield(Opts, 'maxIter')
+    if (Opts.maxIter < 1)
+        Opts.maxIter = 300;
     end
 else
-    Opts.maxIter=300;
+    Opts.maxIter = 300;
 end
 
-if ~isfield(Opts,'ftol')
-    Opts.ftol=1e-10;
+if ~isfield(Opts, 'ftol')
+    Opts.ftol = 1e-10;
 end
 
-if ~isfield(Opts,'gradtol')
-    Opts.gradtol=1e-7;
+if ~isfield(Opts, 'gradtol')
+    Opts.gradtol = 1e-7;
 end
 
-if isfield(Opts,'verbose')
-    if (Opts.verbose~=1)
-        Opts.verbose=0;
+if isfield(Opts, 'verbose')
+    if (Opts.verbose ~= 1)
+        Opts.verbose = 0;
     end
 else
-    Opts.verbose=0;
+    Opts.verbose = 0;
 end
