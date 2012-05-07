@@ -47,9 +47,12 @@
 % semi-orthogonal matrix.
 % * stat.Gamma0: The orthogonal basis of the complement of the envelope
 % subspace.  An r by r-u semi-orthogonal matrix.
-% * stat.beta: The heteroscedastic envelope estimator of the group mean
+% * stat.beta: The heteroscedastic envelope estimator of the group main
 % effect. An r by p matrix, the ith column of the matrix contains the
 % main effect for the ith group.
+% * stat.groupInd: A matrix containing the unique values of group
+% indicators. The matrix has p rows.  The group mean of the ith row is
+% stored in the ith column of stat.mug.
 % * stat.Sigma: The heteroscedastic envelope estimator of the error
 % covariance matrix.  A three dimensional matrix with dimension r, r and p,
 % stat.Sigma(:,:,i) contains the estimated covariance matrix for the ith
@@ -75,8 +78,7 @@
 % linear regression estimator over the heteroscedastic envelope estimator.
 % An r by p matrix, the (i, j)th element in stat.ratio is the elementwise standard
 % error ratio for the ith element in the jth group mean effect.
-% * stat.n: The number of observations in the data.  A positive
-% integer.
+% * stat.ng: The number of observations in each group.  A p by 1 vector.
 
 %% Description
 % This function fits the heteroscedatic envelope model to the responses and predictors,
@@ -177,6 +179,7 @@ if u==0
     stat.Gamma=Gamma;
     stat.Gamma0=Gamma0;
     stat.beta=beta;
+    stat.groupInd=sortrows(unique(X,'rows'));
     stat.Sigma=Sigma;
     stat.eta=eta;
     stat.Omega=Omega;
@@ -186,7 +189,7 @@ if u==0
     stat.covMatrix=Sigma;
     stat.asyHenv=[];
     stat.ratio=ones(r,p);    
-    stat.n=n;
+    stat.ng=ng;
     
     
 elseif u==r
@@ -256,6 +259,7 @@ elseif u==r
     stat.Gamma=Gamma;
     stat.Gamma0=Gamma0;
     stat.beta=beta;
+    stat.groupInd=sortrows(unique(X,'rows'));
     stat.Sigma=Sigma;
     stat.eta=eta;
     stat.Omega=Omega;
@@ -265,7 +269,7 @@ elseif u==r
     stat.covMatrix=covMatrix;
     stat.asyHenv=asyFm;
     stat.ratio=ones(r,p);
-    stat.n=n;
+    stat.ng=ng;
     
 else
     
@@ -373,6 +377,7 @@ else
     stat.Gamma=Gamma;
     stat.Gamma0=Gamma0;
     stat.beta=beta;
+    stat.groupInd=sortrows(unique(X,'rows'));
     stat.Sigma=Sigma;
     stat.eta=eta;
     stat.Omega=Omega;
@@ -382,6 +387,6 @@ else
     stat.covMatrix=covMatrix;
     stat.asyHenv=asyHenv;
     stat.ratio=asyFm./asyHenv;
-    stat.n=n;
+    stat.ng=ng;
     
 end
