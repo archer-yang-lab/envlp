@@ -3,11 +3,11 @@
 % subspace for the reduction on X.
 
 %% Syntax
-% df = dF4xenv(R,DataParameter)
+% df = dF4xenv(R, DataParameter)
 % 
 % Input
 %
-% * R: An r by u semi orthogonal matrix, 0<u<=p.
+% * R: An r by u semi orthogonal matrix, 0 < u <= p.
 % * DataParameter: A structure that contains the statistics calculated from
 % the data.
 %
@@ -22,14 +22,14 @@
 %  using maximum likelihood estimation. This function is the derivative of
 %  the objective function.
 
-function df = dF4xenv(R,DataParameter)
+function df = dF4xenv(R, DataParameter)
 
-sigXcY=DataParameter.sigXcY;
-sigX=DataParameter.sigX;
-invSigX=DataParameter.invSigX;
+sigXcY = DataParameter.sigXcY;
+sigX = DataParameter.sigX;
+invSigX = DataParameter.invSigX;
 
-a=2*sigXcY*R*inv(R'*sigXcY*R);
+a = 2 * sigXcY * R * inv(R' * sigXcY * R);
 
-b=2*invSigX*R*inv(R'*invSigX*R);
+b = 2 * invSigX * R * inv(R' * invSigX * R);
 
-df=a+b;
+df = a + b;
