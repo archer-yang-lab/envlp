@@ -31,7 +31,7 @@
 % X = wheatprotein(:, 8);
 % Y = wheatprotein(:, 1:6);
 % alpha = 0.01;
-% u = lrt_env(Y, X, alpha)
+% u = lrt_env(X, Y, alpha)
 % B = 100;
 % bootse = bstrp_env(X, Y, u, B)
 
