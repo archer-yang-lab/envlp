@@ -47,7 +47,7 @@
 % by 1 vector. 
 
 %% Description
-% This function evaluates the model, could be 'env', 'henv', 'ienv', 'penv', 
+% This function evaluates the user-specified model, could be 'env', 'henv', 'ienv', 'penv', 
 % 'senv' or 'xenv', at new value Xnew.  It can
 % perform estimation: find the fitted value when X = Xnew, or prediction:
 % predict Y when X = Xnew.  The covariance matrix and the standard errors are

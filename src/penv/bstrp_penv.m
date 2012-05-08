@@ -18,10 +18,10 @@
 % Y: Multivariate responses, an n by r matrix, r is the number of
 % responses and n is number of observations.  The responses must be continuous variables.
 % 
-% B: Number of boostrap samples.  A positive integer.
-% 
 % u: Dimension of the partial envelope subspace.  A positive integer between 0 and
 % r.
+% 
+% B: Number of boostrap samples.  A positive integer.
 % 
 % Opts: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
