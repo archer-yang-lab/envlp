@@ -3,8 +3,8 @@
 % information criterion.
 
 %% Syntax
-% u=aic_ienv(X,Y)
-% u=aic_ienv(X,Y,Opts)
+% u = aic_ienv(X, Y)
+% u = aic_ienv(X, Y, Opts)
 %
 % Input
 %
@@ -29,31 +29,32 @@
 %% Example
 %
 % load irisf.mat
-% u=aic_ienv(X,Y)
+% u = aic_ienv(X, Y)
 
-function u=aic_ienv(X,Y,Opts)
+function u = aic_ienv(X, Y, Opts)
 
-if (nargin < 2)
+if nargin < 2
     error('Inputs: X, Y should be specified!');
-elseif (nargin==2)
-    Opts=[];
+elseif nargin == 2
+    Opts = [];
 end
 
-[n r]=size(Y);
-p=size(X,2);
+[n r] = size(Y);
+p = size(X, 2);
     
-ModelOutput=env(X,Y,r,Opts);
-ic=-2*ModelOutput.l+2*ModelOutput.np;
-u=r;
+ModelOutput = env(X, Y, r, Opts);
+ic = - 2 * ModelOutput.l + 2 * ModelOutput.np;
+u = r;
 
 
-for i=0:p
+for i = 0 : p
 
-        ModelOutput=ienv(X,Y,i,Opts);
-        temp=-2*ModelOutput.l+2*ModelOutput.np;
-        if (temp<ic)
-           u=i;
-           ic=temp;
+        ModelOutput = ienv(X, Y, i, Opts);
+        temp = - 2 * ModelOutput.l + 2 * ModelOutput.np;
+        
+        if temp < ic
+           u = i;
+           ic = temp;
         end
         
 end

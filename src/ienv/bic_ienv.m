@@ -3,8 +3,8 @@
 % information criterion.
 
 %% Syntax
-% u=bic_ienv(X,Y)
-% u=bic_ienv(X,Y,Opts)
+% u = bic_ienv(X, Y)
+% u = bic_ienv(X, Y, Opts)
 %
 % Input
 %
@@ -29,30 +29,31 @@
 %% Example
 %
 % load irisf.mat
-% u=bic_ienv(X,Y)
+% u = bic_ienv(X, Y)
 
-function u=bic_ienv(X,Y,Opts)
+function u = bic_ienv(X, Y, Opts)
 
-if (nargin < 2)
+if nargin < 2
     error('Inputs: X, Y should be specified!');
-elseif (nargin==2)
-    Opts=[];
+elseif nargin == 2
+    Opts = [];
 end
 
-[n r]=size(Y);
-p=size(X,2);
+[n r] = size(Y);
+p = size(X, 2);
     
-ModelOutput=env(X,Y,r,Opts);
-ic=-2*ModelOutput.l+log(n)*ModelOutput.np;
-u=r;
+ModelOutput = env(X, Y, r, Opts);
+ic = - 2 * ModelOutput.l + log(n) * ModelOutput.np;
+u = r;
 
 
-for i=0:p
-%     i
-        ModelOutput=ienv(X,Y,i,Opts);
-        temp=-2*ModelOutput.l+log(n)*ModelOutput.np;
-        if (temp<ic)
-           u=i;
-           ic=temp;
+for i = 0 : p
+
+        ModelOutput = ienv(X, Y, i, Opts);
+        temp = - 2 * ModelOutput.l + log(n) * ModelOutput.np;
+        
+        if temp < ic
+           u = i;
+           ic = temp;
         end
 end
