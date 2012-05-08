@@ -27,4 +27,4 @@ freecol = 1:n;
 freecol(pivcol) = [];
 N = zeros(n, n - r);
 N(freecol, : ) = eye(n - r);
-N(pivcol, : ) = -R(1 : r, freecol);
+N(pivcol, : ) = - R(1 : r, freecol);
