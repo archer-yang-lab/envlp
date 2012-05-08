@@ -2,18 +2,18 @@
 % Fit the partial envelope model.
 
 %% Syntax
-% ModelOutput = penv(X1,X2,Y,u)
-% ModelOutput = penv(X1,X2,Y,u,Opts)
+% ModelOutput = penv(X, Y, u)
+% ModelOutput = penv(X, Y, u, Opts)
 %
 % Input
 %
-% X1: Predictors of main interst. An n by p1 matrix, n is the number of 
+% X: A list containing the value of X1 and X2.
+% 
+% * X.X1: Predictors of main interst. An n by p1 matrix, n is the number of 
 % observations, and p1 is the number of main predictors. The
 % predictors can be univariate or multivariate, discrete or continuous.
-%
-% X2: Covariates, or predictors not of main interest.  An n by p2 matrix,
-% p2 is the number of covariates.  The covariates can be univariate or 
-% multivariate, discrete or continuous.
+% * X.X2: Covariates, or predictors not of main interest.  An n by p2 matrix,
+% p2 is the number of covariates.
 %
 % Y: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
@@ -93,25 +93,28 @@
 % 
 % load T7-7.dat
 % Y = T7_7(:,1:4);
-% X = T7_7(:,5:7);
-% X1 = X(:,3);
-% X2 = X(:,1:2);
+% Xtemp = T7_7(:,5:7);
+% X.X1 = Xtemp(:,3);
+% X.X2 = Xtemp(:,1:2);
 % alpha = 0.01;
-% u = lrt_penv(X1,X2,Y,alpha)
-% ModelOutput = penv(X1,X2,Y,u)
+% u = lrt_penv(X,Y,alpha)
+% ModelOutput = penv(X,Y,u)
 % ModelOutput.Omega
 % eig(ModelOutput.Omega0)
 % ModelOutput.ratio
 
-function ModelOutput = penv(X1,X2,Y,u,Opts)
+function ModelOutput = penv(X,Y,u,Opts)
 
 % Verify and initialize the parameters
 
-if (nargin < 4)
-    error('Inputs: X1, X2, Y and u should be specified!');
-elseif (nargin==4)
+if (nargin < 3)
+    error('Inputs: X, Y and u should be specified!');
+elseif (nargin == 3)
     Opts = [];
 end
+
+X1 = X.X1;
+X2 = X.X2;
 
 [n,p1] = size(X1);
 [n2,p2] = size(X2);
