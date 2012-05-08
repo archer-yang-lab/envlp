@@ -50,14 +50,14 @@
 %
 % load T7-7.dat
 % Y = T7_7(:, 1 : 4);
-% X = T7_7(:, 5 : 7);
-% X1 = X(:, 3);
-% X2 = X(:, 1 : 2);
+% Xtemp = T7_7(:, 5 : 7);
+% X.X1 = Xtemp(:, 3);
+% X.X2 = Xtemp(:, 1 : 2);
 % alpha = 0.01;
-% u = lrt_penv(X1, X2, Y, alpha)
-% ModelOutput = penv(X1, X2, Y, u)
-% Xnew.X1 = X1(1, :)';
-% Xnew.X2 = X2(1, :)';
+% u = lrt_penv(X, Y, alpha)
+% ModelOutput = penv(X, Y, u)
+% Xnew.X1 = X.X1(1, :)';
+% Xnew.X2 = X.X2(1, :)';
 % PredictOutput = predict_penv(ModelOutput, Xnew, 'estimation')
 % PredictOutput.value  % Compare the fitted value with the data
 % Y(1, :)'

@@ -1,5 +1,7 @@
 %% modelselectlrt
-%
+% Select the dimension for the envelope family using likelihood ratio
+% testing procedure.
+
 %% Syntax
 % u = modelselectlrt(X, Y, alpha, modelType)
 % u = modelselectlrt(X, Y, alpha, modelType, Opts)
@@ -7,14 +9,18 @@
 % Input
 %
 % X: Predictors.   The predictors can be univariate or multivariate, 
-% discrete or continuous.  For model type for method 'env', 'henv', 'ienv', 
-% and 'xenv'. X is an n by p matrix, p is the number of
-% predictors. For model type 'penv', X is  A list containing the value of X1 and X2.
+% discrete or continuous.  
 % 
-% * X.X1: Predictors of main interst. An n by p1 matrix, n is the number of 
+% For model type for method 'env', 'henv', 'ienv', 
+% and 'xenv'. X is an n by p matrix, p is the number of
+% predictors. 
+% 
+% For model type 'penv', X is  A list containing the value of X1 and X2.
+% 
+% * X.X1 (only for 'penv'): Predictors of main interst. An n by p1 matrix, n is the number of 
 % observations, and p1 is the number of main predictors. The
 % predictors can be univariate or multivariate, discrete or continuous.
-% * X.X2: Covariates, or predictors not of main interest.  An n by p2 matrix,
+% * X.X2 (only for 'penv'): Covariates, or predictors not of main interest.  An n by p2 matrix,
 % p2 is the number of covariates.
 %
 % Y: Multivariate responses. An n by r matrix, r is the number of
@@ -23,6 +29,9 @@
 %
 % alpha: Significance level for testing.  A real number between 0 and 1,
 % often taken at 0.05 or 0.01.
+% 
+% modelType: A string characters indicting the model, choices can be 'env',
+% 'henv', 'ienv', 'penv' and 'xenv'.
 % 
 % Opts: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
@@ -52,6 +61,7 @@
 % alpha = 0.01;
 % modelType = 'env';
 % u = modelselectlrt(X, Y, alpha, modelType)
+% 
 % load T7-7.dat
 % Y = T7_7(:, 1 : 4);
 % Xtemp = T7_7(:, 5 : 7);
