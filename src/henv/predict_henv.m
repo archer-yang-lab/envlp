@@ -2,8 +2,8 @@
 % Perform estimation or prediction under the heteroscedastic envelope model.
 
 %% Syntax
-% PredictOutput=predict_henv(ModelOutput,Xnew,infType)
-% PredictOutput=predict_henv(ModelOutput,Xnew,infType,Opts)
+% PredictOutput = predict_henv(ModelOutput, Xnew, infType)
+% PredictOutput = predict_henv(ModelOutput, Xnew, infType, Opts)
 %
 % Input
 %
@@ -46,66 +46,76 @@
 %% Example
 %
 % load waterstrider.mat
-% u=lrt_henv(X,Y,0.01);
-% ModelOutput=henv(X,Y,u);
+% u = lrt_henv(X, Y, 0.01);
+% ModelOutput = henv(X, Y, u);
 % ModelOutput.groupInd
 % ModelOutput.mug
-% Xnew=X(1,:)'
-% PredictOutput=predict_henv(ModelOutput,Xnew,'estimation')
+% Xnew = X(1, :)'
+% PredictOutput = predict_henv(ModelOutput, Xnew, 'estimation')
 % PredictOutput.value  
-% PredictOutput=predict_henv(ModelOutput,Xnew,'prediction')
+% PredictOutput = predict_henv(ModelOutput, Xnew, 'prediction')
 
 
-function PredictOutput=predict_henv(ModelOutput,Xnew,infType,Opts)
+function PredictOutput = predict_henv(ModelOutput, Xnew, infType, Opts)
 
-if (nargin < 3)
-    error('Inputs: ModelOutput,Xnew and infType should be specified!');
-elseif (nargin==3)
-    Opts=[];
+if nargin < 3
+    error('Inputs: ModelOutput, Xnew and infType should be specified!');
+elseif nargin == 3
+    Opts = [];
 end
 
-if (~strcmp(infType,'estimation'))&&(~strcmp(infType,'prediction'))
+if ~strcmp(infType, 'estimation') && ~strcmp(infType, 'prediction')
     error('Inference type can only be estimation or prediction.');
 end
 
-[tmp iX iG]=intersect(Xnew',ModelOutput.groupInd,'rows');
-if size(tmp,1)==0
+[tmp iX iG] = intersect(Xnew', ModelOutput.groupInd, 'rows');
+if size(tmp, 1)==0
     error('Xnew should be the same with one of the group indicators.')
 end
 
-[r u]=size(ModelOutput.Gamma);
-ng=ModelOutput.ng;
-n=sum(ng);
+[r u] = size(ModelOutput.Gamma);
+ng = ModelOutput.ng;
+n = sum(ng);
 
 if u == 0
     
-    if (strcmp(infType,'estimation'))
+    if strcmp(infType, 'estimation')
         
-        PredictOutput.value=ModelOutput.mu;
-        PredictOutput.covMatrix=ModelOutput.covMatrix(1:r)/n;
-        PredictOutput.SE=sqrt(diag(PredictOutput.covMatrix));
+        PredictOutput.value = ModelOutput.mu;
+        PredictOutput.covMatrix = ModelOutput.covMatrix(1:r) / n;
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
         
-    elseif (strcmp(infType,'prediction'))
+    elseif strcmp(infType, 'prediction')
         
-        PredictOutput.value=ModelOutput.mug(:,iG);
-        PredictOutput.covMatrix=ModelOutput.covMatrix(1:r)/n+ModelOutput.Sigma(:,:,iG);
-        PredictOutput.SE=sqrt(diag(PredictOutput.covMatrix));
+        PredictOutput.value = ModelOutput.mug(:, iG);
+        PredictOutput.covMatrix = ModelOutput.covMatrix(1:r) / n + ModelOutput.Sigma(:, :, iG);
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
     
     end
        
 else
     
-    if (strcmp(infType,'estimation'))
-        
-        PredictOutput.value=ModelOutput.mug(:,iG);
-        PredictOutput.covMatrix=(ModelOutput.covMatrix(1:r,1:r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(1:r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,1:r))/ng(iG);
-        PredictOutput.SE=sqrt(diag(PredictOutput.covMatrix));
+    temp1 = iG * r + 1;
+    temp2 = (iG + 1) * r;
+    
+    if strcmp(infType, 'estimation')
+                
+        PredictOutput.value = ModelOutput.mug(:, iG);
+        PredictOutput.covMatrix = (ModelOutput.covMatrix(1 : r, 1 : r) ...
+            + ModelOutput.covMatrix(temp1 : temp2, temp1 : temp2) ...
+            + ModelOutput.covMatrix(1 : r, temp1 : temp2) ...
+            + ModelOutput.covMatrix(temp1 : temp2, 1 : r)) / ng(iG);
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
             
-    elseif (strcmp(infType,'prediction'))
+    elseif strcmp(infType, 'prediction')
         
-        PredictOutput.value=ModelOutput.mug(:,iG);
-        PredictOutput.covMatrix=(ModelOutput.covMatrix(1:r,1:r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(1:r,iG*r+1:(iG+1)*r)+ModelOutput.covMatrix(iG*r+1:(iG+1)*r,1:r))/ng(iG)+ModelOutput.Sigma(:,:,iG);
-        PredictOutput.SE=sqrt(diag(PredictOutput.covMatrix));
+        PredictOutput.value = ModelOutput.mug(:, iG);
+        PredictOutput.covMatrix = (ModelOutput.covMatrix(1 : r, 1 : r) ...
+            + ModelOutput.covMatrix(temp1 : temp2, temp1 : temp2) ...
+            + ModelOutput.covMatrix(1 : r, temp1 : temp2) ...
+            + ModelOutput.covMatrix(temp1 : temp2, 1 : r)) / ng(iG) ...
+            + ModelOutput.Sigma(:, :, iG);
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
     
         
     end

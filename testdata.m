@@ -36,9 +36,9 @@ u=bic_env(X,Y)
 u=aic_env(X,Y)
 
 
-
+B=200;
 bootse=bstrp_OLS(X,Y,B)
-bootse=bstrp_env(X,Y,B,u)
+bootse=bstrp_env(X,Y,u,B)
 
 load wheatprotein.txt
 X=wheatprotein(:,8);
@@ -72,7 +72,7 @@ ModelOutput=penv(X1,X2,Y,1)
 
 
 B=200;
-bootse=bstrp_penv(X1,X2,Y,B,u)
+bootse=bstrp_penv(X1,X2,Y,u,B)
 
 X1=X(:,3);
 X2=X(:,1:2);
@@ -127,7 +127,7 @@ d=aic_ienv(X,Y);
 d=bic_ienv(X,Y);
 
 B=200;
-bootse=bstrp_ienv(X,Y,B,d)
+bootse=bstrp_ienv(X,Y,d,B)
 
 
 load irisf.mat
@@ -165,7 +165,7 @@ u=aic_senv(X,Y)
 u=bic_senv(X,Y)
 
 B=5;
-bootse=bstrp_senv(X,Y,B,u)
+bootse=bstrp_senv(X,Y,u,B)
 
 
 load('T9-12.txt')

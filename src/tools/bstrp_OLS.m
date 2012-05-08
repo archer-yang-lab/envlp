@@ -24,7 +24,7 @@
 %
 % load wheatprotein.txt
 % X=wheatprotein(:, 8);
-% Y=wheatprotein(:, 1:6);
+% Y=wheatprotein(:, 1 : 6);
 % bootse=bstrp_OLS(X, Y, 200)
 
 function bootse = bstrp_OLS(X, Y, B)
