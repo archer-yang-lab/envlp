@@ -3,8 +3,8 @@
 % ratio testing.
 
 %% Syntax
-% u=lrt_ienv(X,Y,alpha)
-% u=lrt_ienv(X,Y,alpha,Opts)
+% u = lrt_ienv(X, Y, alpha)
+% u = lrt_ienv(X, Y, alpha, Opts)
 %
 % Input
 %
@@ -33,38 +33,38 @@
 %
 % load irisf.mat
 % 
-% alpha=0.01;
-% u=lrt_ienv(X,Y,alpha)
+% alpha = 0.01;
+% u = lrt_ienv(X, Y, alpha)
 
 
-function u=lrt_ienv(X,Y,alpha,Opts)
+function u = lrt_ienv(X, Y, alpha, Opts)
 
-if (nargin < 3)
+if nargin < 3
     error('Inputs: X, Y and alpha should be specified!');
-elseif (nargin==3)
-    Opts=[];
+elseif nargin == 3
+    Opts = [];
 end
 
-[n r]=size(Y);
-p=size(X,2);
+[n r] = size(Y);
+p = size(X, 2);
 
-ModelOutput0=env(X,Y,r,Opts);
+ModelOutput0 = env(X, Y, r, Opts);
 
 
-for i=1:(p+1)
+for i = 1 : (p + 1)
 
-        ModelOutput=ienv(X,Y,p+1-i,Opts);
-        chisq = -2*(ModelOutput.l-ModelOutput0.l);
-        df=ModelOutput0.np-ModelOutput.np;
+        ModelOutput = ienv(X, Y, p + 1 - i, Opts);
+        chisq = - 2 * (ModelOutput.l - ModelOutput0.l);
+        df = ModelOutput0.np - ModelOutput.np;
         
-        if (chi2cdf(chisq,df) < (1-alpha))
-            u=p+1-i;
+        if chi2cdf(chisq, df) < (1 - alpha)
+            u = p + 1 - i;
             break;
         end
         
 end
 
-if (i== p+1) && chi2cdf(chisq,df) > (1-alpha)
-    u=r;
+if i == p + 1 && chi2cdf(chisq, df) > (1 - alpha)
+    u = r;
     warning('No inner envelope model is selected, fit with the standard multivariate linear model.');
 end
