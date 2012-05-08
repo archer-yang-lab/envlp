@@ -2,8 +2,8 @@
 % Perform estimation or prediction under the inner envelope model.
 
 %% Syntax
-% PredictOutput=predict_ienv(ModelOutput,Xnew,infType)
-% PredictOutput=predict_ienv(ModelOutput,Xnew,infType,Opts)
+% PredictOutput = predict_ienv(ModelOutput, Xnew, infType)
+% PredictOutput = predict_ienv(ModelOutput, Xnew, infType, Opts)
 %
 % Input
 %
@@ -39,53 +39,73 @@
 
 %% Description
 % This function evaluates the inner envelope model at new value Xnew.  It can
-% perform estimation: find the fitted value when X=Xnew, or prediction:
-% predict Y when X=Xnew.  The covariance matrix and the standard errors are
+% perform estimation: find the fitted value when X = Xnew, or prediction:
+% predict Y when X = Xnew.  The covariance matrix and the standard errors are
 % also provided.
 
 %% Example
 %
 % load irisf.mat
-% d=bic_ienv(X,Y);
-% ModelOutput=ienv(X,Y,d);
-% Xnew=X(1,:)';
-% PredictOutput=predict_ienv(ModelOutput,Xnew,'estimation')
+% d = bic_ienv(X, Y);
+% ModelOutput = ienv(X, Y, d);
+% Xnew = X(1, :)';
+% PredictOutput = predict_ienv(ModelOutput, Xnew, 'estimation')
 % PredictOutput.value  % Compare the fitted value with the data
-% Y(1,:)'
-% PredictOutput=predict_ienv(ModelOutput,Xnew,'prediction')
+% Y(1, :)'
+% PredictOutput = predict_ienv(ModelOutput, Xnew, 'prediction')
 
 
-function PredictOutput=predict_ienv(ModelOutput,Xnew,infType,Opts)
+function PredictOutput = predict_ienv(ModelOutput, Xnew, infType, Opts)
 
-if (nargin < 3)
-    error('Inputs: ModelOutput,Xnew and infType should be specified!');
-elseif (nargin==3)
-    Opts=[];
+if nargin < 3
+    error('Inputs: ModelOutput, Xnew and infType should be specified!');
+elseif nargin == 3
+    Opts = [];
 end
 
-if (~strcmp(infType,'estimation'))&&(~strcmp(infType,'prediction'))
+if ~strcmp(infType, 'estimation') && ~strcmp(infType, 'prediction')
     error('Inference type can only be estimation or prediction.');
 end
 
-[r,p]=size(ModelOutput.beta);
-[s1 s2]=size(Xnew);
+[r p] = size(ModelOutput.beta);
+[s1 s2] = size(Xnew);
 
 if s1~=p ||s2~=1
     error('Xnew must be a p by 1 vector');
 end
 
-n=ModelOutput.n;
+n = ModelOutput.n;
+u = size(ModelOutput.Gamma1, 2);
 
-if (strcmp(infType,'estimation'))
+if u == 0
     
-    PredictOutput.value=ModelOutput.alpha+ModelOutput.beta*Xnew;
-    PredictOutput.covMatrix=ModelOutput.Sigma/n+kron(Xnew',eye(r))*ModelOutput.covMatrix*kron(Xnew,eye(r))/n;
-    PredictOutput.SE=sqrt(diag(PredictOutput.covMatrix));
+    if strcmp(infType, 'estimation')
+        
+        PredictOutput.value = ModelOutput.alpha;
+        PredictOutput.covMatrix = ModelOutput.Sigma / n;
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
+        
+    elseif strcmp(infType, 'prediction')
+        
+        PredictOutput.value = ModelOutput.alpha;
+        PredictOutput.covMatrix = (1 + 1 / n) * ModelOutput.Sigma;
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
+        
+    end
     
-elseif (strcmp(infType,'prediction'))
+else
     
-    PredictOutput.value=ModelOutput.alpha+ModelOutput.beta*Xnew;
-    PredictOutput.covMatrix=(1+1/n)*ModelOutput.Sigma+kron(Xnew',eye(r))*ModelOutput.covMatrix*kron(Xnew,eye(r))/n;
-    PredictOutput.SE=sqrt(diag(PredictOutput.covMatrix));    
-    
+    if strcmp(infType, 'estimation')
+        
+        PredictOutput.value = ModelOutput.alpha + ModelOutput.beta * Xnew;
+        PredictOutput.covMatrix = ModelOutput.Sigma / n + kron(Xnew', eye(r)) * ModelOutput.covMatrix * kron(Xnew, eye(r)) / n;
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
+        
+    elseif strcmp(infType, 'prediction')
+        
+        PredictOutput.value = ModelOutput.alpha + ModelOutput.beta * Xnew;
+        PredictOutput.covMatrix = (1 + 1 / n) * ModelOutput.Sigma + kron(Xnew', eye(r)) * ModelOutput.covMatrix * kron(Xnew, eye(r)) / n;
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
+        
+    end
 end

@@ -187,7 +187,7 @@ if u > 0 && u < r
     %---compute asymptotic variance and get the ratios---
     asyFm = kron(inv(sigX), Sigma);
     asyFm = reshape(sqrt(diag(asyFm)), r, p);
-    temp = kron(eta * sigX * eta', inv(Omega0));
+    temp = kron(eta * sigX * eta', inv(Omega0))...
 		 + kron(Omega, inv(Omega0)) + kron(inv(Omega), Omega0) - 2 * kron(eye(u), eye(r - u));
     covMatrix = kron(inv(sigX), Sigma1) + kron(eta', Gamma0) * inv(temp) * kron(eta, Gamma0');
     asyEnv = reshape(sqrt(diag(covMatrix)), r, p);

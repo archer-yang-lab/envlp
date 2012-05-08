@@ -3,8 +3,8 @@
 % reduction on X.
 
 %% Syntax
-% PredictOutput=predict_xenv(ModelOutput,Xnew,infType)
-% PredictOutput=predict_xenv(ModelOutput,Xnew,infType,Opts)
+% PredictOutput = predict_xenv(ModelOutput, Xnew, infType)
+% PredictOutput = predict_xenv(ModelOutput, Xnew, infType, Opts)
 %
 % Input
 %
@@ -40,53 +40,76 @@
 
 %% Description
 % This function evaluates the envelope model for the reduction on X at new value Xnew.  It can
-% perform estimation: find the fitted value when X=Xnew, or prediction:
-% predict Y when X=Xnew.  The covariance matrix and the standard errors are
+% perform estimation: find the fitted value when X = Xnew, or prediction:
+% predict Y when X = Xnew.  The covariance matrix and the standard errors are
 % also provided.
 
 %% Example
 % load wheatprotein.txt
-% X=wheatprotein(:,1:6);
-% Y=wheatprotein(:,7);
-% u=bic_xenv(X,Y)
-% ModelOutput=xenv(X,Y,u);
-% Xnew=X(1,:)';
-% PredictOutput=predict_xenv(ModelOutput,Xnew,'estimation')
+% X = wheatprotein(:, 1 : 6);
+% Y = wheatprotein(:, 7);
+% u = bic_xenv(X, Y)
+% ModelOutput = xenv(X, Y, u);
+% Xnew = X(1, :)';
+% PredictOutput = predict_xenv(ModelOutput, Xnew, 'estimation')
 % PredictOutput.value  % Compare the fitted value with the data
-% Y(1,:)'
-% PredictOutput=predict_senv(ModelOutput,Xnew,'prediction')
+% Y(1, :)'
+% PredictOutput = predict_senv(ModelOutput, Xnew, 'prediction')
 
-function PredictOutput=predict_xenv(ModelOutput,Xnew,infType,Opts)
+function PredictOutput = predict_xenv(ModelOutput, Xnew, infType, Opts)
 
-if (nargin < 3)
-    error('Inputs: ModelOutput,Xnew and infType should be specified!');
-elseif (nargin==3)
-    Opts=[];
+if nargin < 3
+    error('Inputs: ModelOutput, Xnew and infType should be specified!');
+elseif nargin == 3
+    Opts = [];
 end
 
-if (~strcmp(infType,'estimation'))&&(~strcmp(infType,'prediction'))
+if ~strcmp(infType, 'estimation') && ~strcmp(infType, 'prediction')
     error('Inference type can only be estimation or prediction.');
 end
 
-[p,r]=size(ModelOutput.beta);
-[s1 s2]=size(Xnew);
+[p r] = size(ModelOutput.beta);
+[s1 s2] = size(Xnew);
 
-if s1~=p ||s2~=1
+if s1 ~= p || s2 ~= 1
     error('Xnew must be a p by 1 vector');
 end
 
-n=ModelOutput.n;
+n = ModelOutput.n;
+u = size(ModelOutput.Gamma, 2);
 
-if (strcmp(infType,'estimation'))
+if u == 0
     
-    PredictOutput.value=ModelOutput.mu+ModelOutput.beta'*Xnew;
-    PredictOutput.covMatrix=ModelOutput.sigYcX/n+kron(eye(r),Xnew')*ModelOutput.covMatrix*kron(eye(r),Xnew)/n;
-    PredictOutput.SE=sqrt(diag(PredictOutput.covMatrix));
+    if strcmp(infType, 'estimation')
+        
+        PredictOutput.value = ModelOutput.mu;
+        PredictOutput.covMatrix = ModelOutput.sigYcX / n;
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
+        
+    elseif strcmp(infType, 'prediction')
+        
+        PredictOutput.value = ModelOutput.mu;
+        PredictOutput.covMatrix = (1 + 1 / n) * ModelOutput.sigYcX;
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
+        
+    end
     
-elseif (strcmp(infType,'prediction'))
+else
     
-    PredictOutput.value=ModelOutput.mu+ModelOutput.beta'*Xnew;
-    PredictOutput.covMatrix=(1+1/n)*ModelOutput.sigYcX+kron(eye(r),Xnew')*ModelOutput.covMatrix*kron(eye(r),Xnew)/n;
-    PredictOutput.SE=sqrt(diag(PredictOutput.covMatrix));
+    if strcmp(infType, 'estimation')
+        
+        PredictOutput.value = ModelOutput.mu + ModelOutput.beta' * Xnew;
+        PredictOutput.covMatrix = ModelOutput.sigYcX / n ...
+            + kron(eye(r), Xnew') * ModelOutput.covMatrix * kron(eye(r), Xnew) / n;
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
+        
+    elseif strcmp(infType, 'prediction')
+        
+        PredictOutput.value = ModelOutput.mu + ModelOutput.beta' * Xnew;
+        PredictOutput.covMatrix = (1 + 1 / n) * ModelOutput.sigYcX ...
+            + kron(eye(r), Xnew') * ModelOutput.covMatrix * kron(eye(r), Xnew) / n;
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
+        
+    end
     
 end

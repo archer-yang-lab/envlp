@@ -2,8 +2,8 @@
 % Perform estimation or prediction under the partial envelope model.
 
 %% Syntax
-% PredictOutput=predict_penv(ModelOutput,Xnew,infType)
-% PredictOutput=predict_penv(ModelOutput,Xnew,infType,Opts)
+% PredictOutput = predict_penv(ModelOutput, Xnew, infType)
+% PredictOutput = predict_penv(ModelOutput, Xnew, infType, Opts)
 %
 % Input
 %
@@ -42,66 +42,91 @@
 
 %% Description
 % This function evaluates the envelope model at new value Xnew.  It can
-% perform estimation: find the fitted value when X=Xnew, or prediction:
-% predict Y when X=Xnew.  The covariance matrix and the standard errors are
+% perform estimation: find the fitted value when X = Xnew, or prediction:
+% predict Y when X = Xnew.  The covariance matrix and the standard errors are
 % also provided.
 
 %% Example
 %
 % load T7-7.dat
-% Y = T7_7(:,1:4);
-% X = T7_7(:,5:7);
-% X1 = X(:,3);
-% X2 = X(:,1:2);
+% Y = T7_7(:, 1 : 4);
+% X = T7_7(:, 5 : 7);
+% X1 = X(:, 3);
+% X2 = X(:, 1 : 2);
 % alpha = 0.01;
-% u = lrt_penv(X1,X2,Y,alpha)
-% ModelOutput = penv(X1,X2,Y,u)
-% Xnew.X1=X1(1,:)';
-% Xnew.X2=X2(1,:)';
-% PredictOutput=predict_penv(ModelOutput,Xnew,'estimation')
+% u = lrt_penv(X1, X2, Y, alpha)
+% ModelOutput = penv(X1, X2, Y, u)
+% Xnew.X1 = X1(1, :)';
+% Xnew.X2 = X2(1, :)';
+% PredictOutput = predict_penv(ModelOutput, Xnew, 'estimation')
 % PredictOutput.value  % Compare the fitted value with the data
-% Y(1,:)'
-% PredictOutput=predict_penv(ModelOutput,Xnew,'prediction')
+% Y(1, :)'
+% PredictOutput = predict_penv(ModelOutput, Xnew, 'prediction')
 
-function PredictOutput=predict_penv(ModelOutput,Xnew,infType,Opts)
+function PredictOutput = predict_penv(ModelOutput, Xnew, infType, Opts)
 
-if (nargin < 3)
-    error('Inputs: ModelOutput,Xnew and infType should be specified!');
-elseif (nargin==3)
-    Opts=[];
+if nargin < 3
+    error('Inputs: ModelOutput, Xnew and infType should be specified!');
+elseif nargin == 3
+    Opts = [];
 end
 
-if (~strcmp(infType,'estimation'))&&(~strcmp(infType,'prediction'))
+if ~strcmp(infType, 'estimation') && ~strcmp(infType, 'prediction')
     error('Inference type can only be estimation or prediction.');
 end
 
-[r,p1]=size(ModelOutput.beta1);
-p2=size(ModelOutput.beta2,2);
+[r p1] = size(ModelOutput.beta1);
+p2 = size(ModelOutput.beta2, 2);
 
-[s1 s2]=size(Xnew.X1);
-if s1~=p1 ||s2~=1
+[s1 s2] = size(Xnew.X1);
+if s1 ~= p1 || s2 ~= 1
     error('Xnew.X1 must be a p1 by 1 vector');
 end
 
-[s1 s2]=size(Xnew.X2);
-if s1~=p2 ||s2~=1
+[s1 s2] = size(Xnew.X2);
+if s1 ~= p2 || s2 ~= 1
     error('Xnew.X2 must be a p2 by 1 vector');
 end
 
-n=ModelOutput.n;
+n = ModelOutput.n;
+u = size(ModelOutput.Gamma, 2);
 
-if (strcmp(infType,'estimation'))
+if u == 0
     
-    PredictOutput.value=ModelOutput.alpha+ModelOutput.beta1*Xnew.X1+ModelOutput.beta2*Xnew.X2;
-    X=[Xnew.X2' Xnew.X1']';
-    PredictOutput.covMatrix=ModelOutput.Sigma/n+kron(X',eye(r))*ModelOutput.covMatrix*kron(X,eye(r))/n;
-    PredictOutput.SE=sqrt(diag(PredictOutput.covMatrix));
+    if strcmp(infType, 'estimation')
+        
+        PredictOutput.value = ModelOutput.alpha;
+        PredictOutput.covMatrix = ModelOutput.Sigma / n;
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
+        
+    elseif strcmp(infType, 'prediction')
+        
+        PredictOutput.value = ModelOutput.alpha;
+        PredictOutput.covMatrix = (1 + 1 / n) * ModelOutput.Sigma;
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
+        
+    end
     
-elseif (strcmp(infType,'prediction'))
+else
     
-    PredictOutput.value=ModelOutput.alpha+ModelOutput.beta1*Xnew.X1+ModelOutput.beta2*Xnew.X2;
-    X=[Xnew.X2' Xnew.X1']';
-    PredictOutput.covMatrix=(1+1/n)*ModelOutput.Sigma+kron(X',eye(r))*ModelOutput.covMatrix*kron(X,eye(r))/n;
-    PredictOutput.SE=sqrt(diag(PredictOutput.covMatrix));
-    
+    if strcmp(infType, 'estimation')
+        
+        PredictOutput.value = ModelOutput.alpha + ModelOutput.beta1 * Xnew.X1 ...
+            + ModelOutput.beta2 * Xnew.X2;
+        X = [Xnew.X2' Xnew.X1']';
+        PredictOutput.covMatrix = ModelOutput.Sigma / n ...
+            + kron(X', eye(r)) * ModelOutput.covMatrix * kron(X, eye(r)) / n;
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
+        
+    elseif strcmp(infType, 'prediction')
+        
+        PredictOutput.value = ModelOutput.alpha + ModelOutput.beta1 * Xnew.X1 ...
+            + ModelOutput.beta2 * Xnew.X2;
+        X = [Xnew.X2' Xnew.X1']';
+        PredictOutput.covMatrix = (1 + 1 / n) * ModelOutput.Sigma ...
+            + kron(X', eye(r)) * ModelOutput.covMatrix * kron(X, eye(r)) / n;
+        PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
+        
+    end
+
 end

@@ -220,11 +220,11 @@ elseif u == r
     J = zeros(p * r + p * r * (r + 1) / 2);
     for i = 1 : p - 1
         for j = 1 : p - 1
-            J((i - 1) * r + 1 : i * r, (j - 1) * r + 1 : j * r) 
-				= fracN(j) * fracN(i) / fracN(p) * inv(Sigma(:, :, p));
+            J((i - 1) * r + 1 : i * r, (j - 1) * r + 1 : j * r)...
+                = fracN(j) * fracN(i) / fracN(p) * inv(Sigma(:, :, p));
         end
-        J((i - 1) * r + 1 : i * r, (i - 1) * r + 1 : i * r) 
-			= fracN(i) * inv(Sigma(:, :, i)) + fracN(i) ^ 2 / fracN(p) * inv(Sigma(:, :, p));
+        J((i - 1) * r + 1 : i * r, (i - 1) * r + 1 : i * r)...
+                = fracN(i) * inv(Sigma(:, :, i)) + fracN(i) ^ 2 / fracN(p) * inv(Sigma(:, :, p));
     end
     for i = 1 : p
         J(r * (p - 1) + 1 + (i - 1) * r * (r + 1) / 2 : r * (p - 1) + i * r * (r + 1) / 2, r * (p - 1)+1+(i-1)*r*(r+1)/2:r*(p-1)+i*r*(r+1)/2)=0.5*fracN(i)*Expan(r)'*kron(inv(Sigma(:,:,i)),inv(Sigma(:,:,i)))*Expan(r);
