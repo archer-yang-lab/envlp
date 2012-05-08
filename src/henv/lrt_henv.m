@@ -3,8 +3,8 @@
 % testing for the heteroscedastic envelope model.
 
 %% Syntax
-% u=lrt_henv(X,Y,alpha)
-% u=lrt_henv(X,Y,alpha,Opts)
+% u = lrt_henv(X, Y, alpha)
+% u = lrt_henv(X, Y, alpha, Opts)
 %
 % Input
 %
@@ -31,34 +31,34 @@
 %% Example
 % 
 % load waterstrider.mat
-% u=lrt_henv(X,Y,0.01)
+% u = lrt_henv(X, Y, 0.01)
 
-function u=lrt_henv(X,Y,alpha,Opts)
+function u = lrt_henv(X, Y, alpha, Opts)
 
 if (nargin < 3)
     error('Inputs: X, Y and alpha should be specified!');
-elseif (nargin==3)
-    Opts=[];
+elseif (nargin == 3)
+    Opts = [];
 end
 
-[n r]=size(Y);
+[n r] = size(Y);
 
-ModelOutput0=henv(X,Y,r,Opts);
+ModelOutput0 = henv(X, Y, r, Opts);
 
 
-for i=0:r-1
+for i = 0 : r - 1
 
-        ModelOutput=henv(X,Y,i,Opts);
-        chisq = -2*(ModelOutput.l-ModelOutput0.l);
-        df=ModelOutput0.np-ModelOutput.np;
+        ModelOutput = henv(X, Y, i, Opts);
+        chisq = - 2 * (ModelOutput.l - ModelOutput0.l);
+        df = ModelOutput0.np - ModelOutput.np;
         
-        if (chi2cdf(chisq,df) < (1-alpha))
-            u=i;
+        if (chi2cdf(chisq, df) < (1 - alpha))
+            u = i;
             break;
         end
         
 end
 
-if (i== r-1) && chi2cdf(chisq,df) > (1-alpha)
-    u=r;
+if (i == r - 1) && chi2cdf(chisq, df) > (1 - alpha)
+    u = r;
 end
