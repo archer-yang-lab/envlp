@@ -1,17 +1,17 @@
-%% testcoefficient_env
+%% testcoefficient_ienv
 % 
 %  This function tests the null hypothesis $$L\beta R = A$ versus the
 %  alternative hypothesis $$L\beta R\neqA$, where $$\beta$ is estimated under
-%  the envelope model.
+%  the inner envelope model.
 
 %% Syntax
-% TestOutput = testcoefficient_env(ModelOutput) 
-% TestOutput = testcoefficient_env(ModelOutput, TestInput)
+% TestOutput = testcoefficient_ienv(ModelOutput) 
+% TestOutput = testcoefficient_ienv(ModelOutput, TestInput)
 % 
 % Input
 % 
 % ModelOutput: A list containing the maximum likelihood estimators and other
-% statistics inherted from env.
+% statistics inherted from ienv.
 % 
 % TestInput: A list that specifies the null hypothesis, including L, R, and
 % A.  If not provided by the user, default values will be used.
@@ -38,7 +38,7 @@
 
 %% Description
 % This function tests for hypothesis $$H_0: L\beta R = A$, versus $$H_\alpha:
-% L\beta R\neq A$.  The $$\beta$ is estimated by the envelope model.  If
+% L\beta R\neq A$.  The $$\beta$ is estimated by the inner envelope model.  If
 % the user does not specify the values for L, R and A, then the test is
 % equivalent to the standard F test on if $$\beta = 0$.  The test statistics
 % used is (vec $$(L\beta R - A)$ $$\hat{\Sigma}^{-1}$ vec $$(L\beta R - A)^{T}$,
@@ -46,18 +46,16 @@
 % freedom d1 * d2. 
 
 %% Example
-% load wheatprotein.txt
-% X = wheatprotein(:, 8);
-% Y = wheatprotein(:, 1:6);
-% alpha = 0.01;
-% u = lrt_env(X, Y, alpha)
-% ModelOutput = env(X, Y, u)
-% TestOutout = testcoefficient_env(ModelOutput);
-% ModelOutput2 = fit_OLS(X, Y)
-% TestInput.A = ModelOutput2.betaOLS;
-% TestOutout = testcoefficient_env(ModelOutput, TestInput); 
+% load irisf.mat
+% d = bic_ienv(X,Y)
+% ModelOutput = ienv(X,Y,d)
+% TestOutout = testcoefficient_ienv(ModelOutput);
+% TestInput.L = rand(2, 4);
+% TestInput.R = rand(2, 1);
+% TestInput.A = zeros(2, 1);
+% TestOutout = testcoefficient_ienv(ModelOutput, TestInput); 
 
-function TestOutput = testcoefficient_env(ModelOutput, TestInput)
+function TestOutput = testcoefficient_ienv(ModelOutput, TestInput)
 
 if nargin < 1
     
