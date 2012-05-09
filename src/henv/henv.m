@@ -190,7 +190,7 @@ if u == 0
     ModelOutput.covMatrix = Sigma;
     ModelOutput.asyHenv = [];
     ModelOutput.ratio = ones(r, p);    
-    ModelOutput.ng = ng;
+    ModelOutput.ng = ng';
     
 elseif u == r
     
@@ -276,7 +276,7 @@ elseif u == r
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyHenv = asyFm;
     ModelOutput.ratio = ones(r, p);
-    ModelOutput.ng = ng;
+    ModelOutput.ng = ng';
     
 else
     
@@ -407,6 +407,6 @@ else
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyHenv = asyHenv;
     ModelOutput.ratio = asyFm ./ asyHenv;
-    ModelOutput.ng = ng;
+    ModelOutput.ng = ng';
     
 end

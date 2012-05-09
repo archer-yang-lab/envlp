@@ -1,7 +1,7 @@
 %% testcoefficient_senv
 % 
-%  This function tests the null hypothesis $$L\beta R = A$ versus the
-%  alternative hypothesis $$L\beta R\neqA$, where $$\beta$ is estimated under
+%  This function tests the null hypothesis L * beta * R = A versus the
+%  alternative hypothesis L * beta * R ~= A, where beta is estimated under
 %  the scaled envelope model.
 
 %% Syntax
@@ -49,11 +49,11 @@
 % load('T9-12.txt')
 % Y = T9_12(:,4:7);
 % X = T9_12(:,1:3);
-% r = size(Y, 2);
-% p = size(X, 2);
 % u = bic_senv(X,Y)
 % ModelOutput = senv(X,Y,u);
 % TestOutout = testcoefficient_senv(ModelOutput);
+% r = size(Y, 2);
+% p = size(X, 2);
 % TestInput.L = rand(2, r);
 % TestInput.R = rand(p, 1);
 % TestInput.A = zeros(2, 1);
@@ -101,7 +101,7 @@ elseif nargin == 2
     if isfield(TestInput, 'A')
         [As1 As2] = size(TestInput.A);
         if As1 ~= Ls1 || As2 ~= Rs2
-            error('The size of A should be the same as L\beta R.')
+            error('The size of A should be the same as L * beta * R.')
         end
     else
         TestInput.A = zeros(Ls1, Rs2);
@@ -116,7 +116,7 @@ beta = ModelOutput.beta;
 covMatrix = ModelOutput.covMatrix;
 n = ModelOutput.n;
 
-Sigma = kron(R', L) * ModelOutput.covMatrix * kron(R, L') / n;
+Sigma = kron(R', L) * covMatrix * kron(R, L') / n;
 temp = reshape(L * beta * R - A, 1, Ls1 * Rs2);
 
 testStatistic = temp * inv(Sigma) * temp';
@@ -130,5 +130,5 @@ TestOutput.pValue = pValue;
 
 fprintf('\n Test Hypothesis     Test Statistics    Degrees of Freedom     P-value\n') ;
 fprintf('----------------------------------------------------------------------\n') ;
-fprintf('%s %18.3f   %15d  %17.4f\n', ' L\beta R = A', testStatistic, df, pValue);
+fprintf('%s %13.3f   %15d  %19.4f\n', 'L * beta * R = A', testStatistic, df, pValue);
 fprintf('----------------------------------------------------------------------\n') ;
