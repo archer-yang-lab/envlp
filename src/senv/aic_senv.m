@@ -3,8 +3,8 @@
 % information criterion.
 
 %% Syntax
-% u=aic_senv(X,Y)
-% u=aic_senv(X,Y,Opts)
+% u = aic_senv(X, Y)
+% u = aic_senv(X, Y, Opts)
 %
 % Input
 %
@@ -36,11 +36,11 @@
 %% Example
 %
 % load('T9-12.txt')
-% Y=T9_12(:,4:7);
-% X=T9_12(:,1:3);
-% u=aic_senv(X,Y)
+% Y = T9_12(:, 4 : 7);
+% X = T9_12(:, 1 : 3);
+% u = aic_senv(X, Y)
 
-function u=aic_senv(X,Y,Opts)
+function u = aic_senv(X, Y, Opts)
 
 if nargin < 2
     error('Inputs: X and Y should be specified!');
@@ -48,20 +48,21 @@ elseif nargin == 2
     Opts = [];
 end
 
-[n r]=size(Y);
+[n r] = size(Y);
     
-ModelOutput=senv(X,Y,r,Opts);
-ic=-2*ModelOutput.l+2*ModelOutput.np;
-u=r;
+ModelOutput = senv(X, Y, r, Opts);
+ic = - 2 * ModelOutput.l + 2 * ModelOutput.np;
+u = r;
 
 
-for i=0:r-1
+for i = 0 : r - 1
 
-        ModelOutput=senv(X,Y,i,Opts);
-        temp=-2*ModelOutput.l+2*ModelOutput.np;
-        if (temp<ic)
-           u=i;
-           ic=temp;
+        ModelOutput = senv(X, Y, i, Opts);
+        temp = - 2 * ModelOutput.l + 2 * ModelOutput.np;
+        
+        if temp < ic
+           u = i;
+           ic = temp;
         end
         
 end
