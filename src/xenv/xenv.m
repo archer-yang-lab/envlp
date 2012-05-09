@@ -275,7 +275,7 @@ elseif u == p
     ModelOutput.mu = mu;
     ModelOutput.sigYcX = sigYcX;
     ModelOutput.l = - n * (p + r) / 2 * log(2 * pi) - n / 2 * (log(prod(eigtem(eigtem > 0)))  ...
-    	+ log(prod(eigtem2(eigtem2 > 0)))) - 1 / 2 * trace(X * invSigX * X') 
+    	+ log(prod(eigtem2(eigtem2 > 0)))) - 1 / 2 * trace(X * invSigX * X') ...
 		- 1 / 2 * trace((Y - ones(n, 1) * mu' - X * beta) * inv(sigYcX) * (Y - ones(n, 1) * mu' - X * beta)');
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyXenv = asyFm;
