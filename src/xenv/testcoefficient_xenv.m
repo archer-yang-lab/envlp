@@ -1,27 +1,27 @@
-%% testcoefficient_env
+%% testcoefficient_xenv
 % 
 %  This function tests the null hypothesis $$L\beta R = A$ versus the
 %  alternative hypothesis $$L\beta R\neqA$, where $$\beta$ is estimated under
-%  the envelope model.
+%  the envelope model for the reduction on X.
 
 %% Syntax
-% TestOutput = testcoefficient_env(ModelOutput) 
-% TestOutput = testcoefficient_env(ModelOutput, TestInput)
+% TestOutput = testcoefficient_xenv(ModelOutput) 
+% TestOutput = testcoefficient_xenv(ModelOutput, TestInput)
 % 
 % Input
 % 
 % ModelOutput: A list containing the maximum likelihood estimators and other
-% statistics inherted from env.
+% statistics inherted from xenv.
 % 
 % TestInput: A list that specifies the null hypothesis, including L, R, and
 % A.  If not provided by the user, default values will be used.
 %
 % * TestInput.L: The matrix multiplied to $$\beta$ on the left.  It is a d1
-% by r matrix, while d1 is less than or equal to r.  Default value:
-% identity matrix $$I_r$.
-% * TestInput.R: The matrix multiplied to $$\beta$ on the right.  It is a p
-% by d2 matrix, while d2 is less than or equal to p.  Default value:
+% by p matrix, while d1 is less than or equal to p.  Default value:
 % identity matrix $$I_p$.
+% * TestInput.R: The matrix multiplied to $$\beta$ on the right.  It is a r
+% by d2 matrix, while d2 is less than or equal to r.  Default value:
+% identity matrix $$I_r$.
 % * TestInput.A: The matrix on the right handside of the equation.  It is a
 % d1 by d2 matrix.  Default value: d1 by d2 zero matrix.
 % 
@@ -38,7 +38,7 @@
 
 %% Description
 % This function tests for hypothesis $$H_0: L\beta R = A$, versus $$H_\alpha:
-% L\beta R\neq A$.  The $$\beta$ is estimated by the envelope model.  If
+% L\beta R\neq A$.  The $$\beta$ is estimated by the envelope model for the reduction on X.  If
 % the user does not specify the values for L, R and A, then the test is
 % equivalent to the standard F test on if $$\beta = 0$.  The test statistics
 % used is (vec $$(L\beta R - A)$ $$\hat{\Sigma}^{-1}$ vec $$(L\beta R - A)^{T}$,
@@ -47,17 +47,18 @@
 
 %% Example
 % load wheatprotein.txt
-% X = wheatprotein(:, 8);
-% Y = wheatprotein(:, 1:6);
-% alpha = 0.01;
-% u = lrt_env(X, Y, alpha)
-% ModelOutput = env(X, Y, u)
-% TestOutout = testcoefficient_env(ModelOutput);
-% ModelOutput2 = fit_OLS(X, Y)
-% TestInput.A = ModelOutput2.betaOLS;
-% TestOutout = testcoefficient_env(ModelOutput, TestInput); 
+% X=wheatprotein(:,1:6);
+% Y=wheatprotein(:,7);
+% ModelOutput=xenv(X,Y,5);
+% TestOutout = testcoefficient_xenv(ModelOutput);
+% r = size(Y, 2);
+% p = size(X, 2);
+% TestInput.L = rand(2, p);
+% TestInput.R = rand(r, 1);
+% TestInput.A = zeros(2, 1);
+% TestOutout = testcoefficient_xenv(ModelOutput, TestInput); 
 
-function TestOutput = testcoefficient_env(ModelOutput, TestInput)
+function TestOutput = testcoefficient_xenv(ModelOutput, TestInput)
 
 if nargin < 1
     
@@ -65,35 +66,35 @@ if nargin < 1
 
 elseif nargin == 1
     
-    [r p] = size(ModelOutput.beta);
-    TestInput.L = eye(r);
-    TestInput.R = eye(p);
-    TestInput.A = zeros(r, p);
-    Ls1 = r;
-    Rs2 = p;
+    [p r] = size(ModelOutput.beta);
+    TestInput.L = eye(p);
+    TestInput.R = eye(r);
+    TestInput.A = zeros(p, r);
+    Ls1 = p;
+    Rs2 = r;
     
 elseif nargin == 2
     
-    [r p] = size(ModelOutput.beta);
+    [p r] = size(ModelOutput.beta);
     
     if isfield(TestInput, 'L')
         [Ls1 Ls2] = size(TestInput.L);
-        if Ls1 > r || Ls2 ~= r
+        if Ls1 > p || Ls2 ~= p
             error('The size of L is not supported.')
         end
     else
-        TestInput.L = eye(r);
-        Ls1 = r;
+        TestInput.L = eye(p);
+        Ls1 = p;
     end
     
     if isfield(TestInput, 'R')
         [Rs1 Rs2] = size(TestInput.R);
-        if Rs1 ~= p || Rs2 > p
+        if Rs1 ~= r || Rs2 > r
             error('The size of R is not supported.')
         end
     else
-        TestInput.R = eye(p);
-        Rs2 = p;
+        TestInput.R = eye(r);
+        Rs2 = r;
     end
     
     if isfield(TestInput, 'A')
