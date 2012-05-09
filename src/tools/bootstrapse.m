@@ -1,9 +1,9 @@
-%% bstrp
+%% bootstrapse
 % Perform boostrap to estimate actual standard erros for models in the envelope family.
 %
 %% Syntax
-% bootse = bstrp(X, Y, u, B, modelType)
-% bootse = bstrp(X, Y, u, B, modelType, Opts)
+% bootse = bootstrapse(X, Y, u, B, modelType)
+% bootse = bootstrapse(X, Y, u, B, modelType, Opts)
 % 
 % Input
 %
@@ -64,7 +64,7 @@
 % u = lrt_env(X, Y, alpha)
 % B = 100;
 % modelType = 'env';
-% bootse = bstrp(X, Y, u, B, modelType)
+% bootse = bootstrapse(X, Y, u, B, modelType)
 % 
 % load T7-7.dat
 % Y = T7_7(:, 1 : 4);
@@ -75,10 +75,10 @@
 % u = lrt_penv(X, Y, alpha);
 % B = 100;
 % modelType = 'penv';
-% bootse = bstrp(X, Y, u, B, modelType)
+% bootse = bootstrapse(X, Y, u, B, modelType)
 
 
-function bootse = bstrp(X, Y, u, B, modelType, Opts)
+function bootse = bootstrapse(X, Y, u, B, modelType, Opts)
 
 % Verify and initialize the parameters
 %

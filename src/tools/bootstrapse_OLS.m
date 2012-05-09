@@ -1,8 +1,8 @@
-%% bstrp_OLS
+%% bootstrapse_OLS
 % Compute bootstrap standard error for ordinary least squares. 
 
 %% Syntax
-% bootse = bstrp_OLS(X, Y, B)
+% bootse = bootstrapse_OLS(X, Y, B)
 %
 % Input
 %
@@ -23,11 +23,11 @@
 %% Example
 %
 % load wheatprotein.txt
-% X=wheatprotein(:, 8);
-% Y=wheatprotein(:, 1 : 6);
-% bootse=bstrp_OLS(X, Y, 200)
+% X = wheatprotein(:, 8);
+% Y = wheatprotein(:, 1 : 6);
+% bootse = bootstrapse_OLS(X, Y, 200)
 
-function bootse = bstrp_OLS(X, Y, B)
+function bootse = bootstrapse_OLS(X, Y, B)
 
 ModelOutput = fit_OLS(X, Y);
 [n p] = size(X);
