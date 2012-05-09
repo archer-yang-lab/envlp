@@ -12,7 +12,7 @@
 %
 % Output
 %
-% * dF: The generic derivative function fo the objective function for computing the inner envelope subspace.
+% * dF: The generic derivative function of the objective function for computing the envelope subspace.
 %
 
 %% Description
@@ -20,8 +20,8 @@
 % Generic function to generate the derivative function of the objective function F. 
 % The function first sets a handle to the specific model function and fixes the data 
 % parameters from the sample needed for its computation. The handle fixed with those 
-% parameters is then evaluated at a given value for argument W. A generic objective
-% function F is returned.
+% parameters is then evaluated at a given value for argument W. A generic derivative 
+% function dF is returned.
 
 function dF = make_dF(dfun_method_handle, FParameters)
 

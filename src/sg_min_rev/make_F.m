@@ -12,7 +12,7 @@
 %
 % Output
 %
-% * F: The generic objective function for computing the inner envelope subspace.
+% * F: The generic objective function for computing the envelope subspace.
 %
 
 %% Description
