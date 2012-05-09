@@ -2,8 +2,8 @@
 % Compute bootstrap standard error of the envelope model for the reduction on X. 
 
 %% Syntax
-% bootse=bstrp_xenv(X,Y,u,B)
-% bootse=bstrp_xenv(X,Y,u,B,Opts)
+% bootse = bstrp_xenv(X, Y, u, B)
+% bootse = bstrp_xenv(X, Y, u, B, Opts)
 %
 % Input
 %
@@ -31,38 +31,38 @@
 %% Example
 %
 % load wheatprotein.txt
-% X=wheatprotein(:,1:6);
-% Y=wheatprotein(:,7);
-% alpha=0.01;
-% u=lrt_xenv(Y,X,alpha)
-% B=100;
-% bootse=bstrp_xenv(X,Y,u,B)
+% X = wheatprotein(:, 1 : 6);
+% Y = wheatprotein(:, 7);
+% alpha = 0.01;
+% u = lrt_xenv(Y, X, alpha)
+% B = 100;
+% bootse = bstrp_xenv(X, Y, u, B)
 
-function bootse=bstrp_xenv(X,Y,u,B,Opts)
+function bootse = bstrp_xenv(X, Y, u, B, Opts)
 
 if (nargin < 4)
     error('Inputs: X, Y, u and B should be specified!');
-elseif (nargin==4)
-    Opts=[];
+elseif (nargin == 4)
+    Opts = [];
 end
 
-[n r]=size(Y);
-p=size(X,2);
+[n r] = size(Y);
+p = size(X, 2);
 
-ModelOutput=xenv(X,Y,u,Opts);
+ModelOutput = xenv(X, Y, u, Opts);
 
-Yfit=ones(n,1)*ModelOutput.mu'+X*ModelOutput.beta;
-resi=Y-Yfit;
+Yfit = ones(n, 1) * ModelOutput.mu' + X * ModelOutput.beta;
+resi = Y - Yfit;
 
-bootBeta=zeros(B,p*r);
+bootBeta = zeros(B, p * r);
 
-for i=1:B
+for i = 1 : B
     
-    bootresi=resi(randsample(1:n,n,true),:);
-    Yboot=Yfit+bootresi;
-    temp=xenv(X,Yboot,u,Opts);
-    bootBeta(i,:)=reshape(temp.beta,1,p*r);
+    bootresi = resi(randsample(1 : n, n, true), :);
+    Yboot = Yfit + bootresi;
+    temp = xenv(X, Yboot, u, Opts);
+    bootBeta(i, :) = reshape(temp.beta, 1, p * r);
     
 end
 
-bootse=reshape(sqrt(diag(cov(bootBeta,1))),p,r);
+bootse = reshape(sqrt(diag(cov(bootBeta, 1))), p, r);
