@@ -31,6 +31,6 @@ eigtem = eig(R' * sigXcY * R);
 a = log(prod(eigtem(eigtem>0)));
 
 eigtem0 = eig(R' * invSigX * R);
-b = log(prod(eigtem0(eigtem0>0)));
+b = log(prod(eigtem0(eigtem0 > 0)));
 
 f = a + b;

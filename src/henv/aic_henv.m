@@ -3,8 +3,8 @@
 % criterion for the heteroscedastic envelope model.
 
 %% Syntax
-% u=aic_henv(X,Y)
-% u=aic_henv(X,Y,Opts)
+% u = aic_henv(X, Y)
+% u = aic_henv(X, Y, Opts)
 %
 % Input
 %
@@ -28,30 +28,30 @@
 %% Example
 % 
 % load waterstrider.mat
-% u=aic_henv(X,Y)
+% u = aic_henv(X, Y)
 
-function u=aic_henv(X,Y,Opts)
+function u = aic_henv(X, Y, Opts)
 
 if (nargin < 2)
     error('Inputs: X, Y should be specified!');
-elseif (nargin==2)
-    Opts=[];
+elseif (nargin == 2)
+    Opts = [];
 end
 
-[n r]=size(Y);
+[n r] = size(Y);
     
-ModelOutput=henv(X,Y,r,Opts);
-ic=-2*ModelOutput.l+2*ModelOutput.np;
-u=r;
+ModelOutput = henv(X, Y, r, Opts);
+ic = - 2 * ModelOutput.l + 2 * ModelOutput.np;
+u = r;
 
 
-for i=0:r-1
+for i = 0 : r - 1
 
-        ModelOutput=henv(X,Y,i,Opts);
-        temp=-2*ModelOutput.l+2*ModelOutput.np;
-        if (temp<ic)
-           u=i;
-           ic=temp;
+        ModelOutput = henv(X, Y, i, Opts);
+        temp = - 2 * ModelOutput.l + 2 * ModelOutput.np;
+        if (temp < ic)
+           u = i;
+           ic = temp;
         end
         
 end
