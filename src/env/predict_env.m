@@ -36,6 +36,7 @@
 % matrix.
 % * PredictOutput.SE: The standard error of elements in PredictOutput.value.  An r
 % by 1 vector. 
+
 %% Description
 % This function evaluates the envelope model at new value Xnew.  It can
 % perform estimation: find the fitted value when X = Xnew, or prediction:

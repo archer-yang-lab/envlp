@@ -122,13 +122,13 @@ end
 
 p = size(unique(X, 'rows'), 1);
 
-if (p > r)
+if p > r
     error(['When the number of responses is less than the number of ' ...
 			'groups, the heteroscedastic envelope model cannot be applied.']);
 end
 
 u = floor(u);
-if (u < 0 || u > r)
+if u < 0 || u > r
     error('u should be an integer between [0, r]!');
 end
 
@@ -137,11 +137,11 @@ Opts = make_opts(Opts);
 if isfield(Opts, 'init')
     [r2, u2] = size(Opts.init);
 
-    if (r ~= r2 || u ~= u2)
+    if r ~= r2 || u ~= u2
         error('The size of the initial value should be r by u!');
     end
 
-    if (rank(Opts.init) < u2)
+    if rank(Opts.init) < u2
         error('The initial value should be full rank!');
     end
 end
