@@ -10,7 +10,8 @@ function  install_envelope
 %  * Inner Envelope Module
 %  * Partial Envelope Module
 %  * Scaled Envelope Module
-%  * Auxiliary Tools
+%  * Post-pocessing Tools
+%  * Auxiliary Functions
 %  * Example Data
 %  * Documentation
 %
@@ -120,7 +121,11 @@ fprintf('Scaled Envelope Module added to the path: %s\n\n',s) ;
 
 s = fullfile(envelope_path,'/src/tools') ;
 addpath(s) ;
-fprintf('Auxiliary Tools added to the path: %s\n\n',s) ;
+fprintf('Post-pocessing Tools added to the path: %s\n\n',s) ;
+
+s = fullfile(envelope_path,'/src/auxiliary') ;
+addpath(s) ;
+fprintf('Auxiliary functions added to the path: %s\n\n',s) ;
 
 s = fullfile(envelope_path,'data') ;
 addpath(s) ;
