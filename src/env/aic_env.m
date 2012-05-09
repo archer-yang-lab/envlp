@@ -39,13 +39,20 @@ elseif nargin == 2
     Opts = [];
 end
 
+Opts = make_opts(Opts);
+printFlag = Opts.verbose;
+Opts.verbose = 0;
+
 [n r] = size(Y);
     
 ModelOutput = env(X, Y, r, Opts);
 ic = - 2 * ModelOutput.l + 2 * ModelOutput.np;
 u = r;
 
-for i = 0 : r-1
+for i = 0 : r - 1
+	if printFlag == 1 
+		fprintf(['\n current dimension ' int2str(i)]);
+	end
 	ModelOutput = env(X, Y, i, Opts);
 	temp = -2 * ModelOutput.l + 2 * ModelOutput.np;
 	if (temp < ic)
