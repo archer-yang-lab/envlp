@@ -2,8 +2,8 @@
 % Fit the scaled envelope model.
 
 %% Syntax
-% ModelOutput=senv(X,Y,u)
-% ModelOutput=senv(X,Y,u,Opts)
+% ModelOutput = senv(X, Y, u)
+% ModelOutput = senv(X, Y, u, Opts)
 %
 % Input
 %
@@ -41,22 +41,22 @@
 % * ModelOutput.Gamma: The orthogonal basis of the envelope subspace. An r by u
 % semi-orthogonal matrix.
 % * ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope
-% subspace.  An r by r-u semi-orthogonal matrix.
+% subspace.  An r by r - u semi-orthogonal matrix.
 % * ModelOutput.eta: The coordinates of $$\beta$ with respect to Gamma. An u by p
 % matrix.
 % * ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u
 % matrix.
-% * ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u
+% * ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r - u by r - u
 % matrix.
 % * ModelOutput.alpha: The estimated intercept in the scaled envelope model.  An r
 % by 1 vector.
 % * ModelOutput.l: The maximized log likelihood function.  A real number.
 % * ModelOutput.covMatrix: The asymptotic covariance of vec($$\beta$).  An rp by
 % rp matrix.  The covariance matrix returned are asymptotic.  For the
-% actual standard errors, multiply by 1/n.
+% actual standard errors, multiply by 1 / n.
 % * ModelOutput.asySenv: Asymptotic standard error for elements in $$\beta$ under
 % the scaled envelope model.  An r by p matrix.  The standard errors returned are
-% asymptotic, for actual standard errors, multiply by 1/sqrt(n).
+% asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
 % * ModelOutput.ratio: The asymptotic standard error ratio of the standard
 % multivariate linear regression estimator over the scaled envelope
 % estimator, for each element in $$\beta$.  An r by p matrix.
@@ -68,7 +68,7 @@
 %% Description
 % This function fits the scaled envelope model to the responses and predictors,
 % using the maximum likehood estimation.  When the dimension of the
-% envelope is between 1 and r-1, we implemented the algorithm in Cook and
+% envelope is between 1 and r - 1, we implemented the algorithm in Cook and
 % Su (2012).  When the dimension is r, then the scaled envelope model 
 % degenerates to the standard multivariate linear regression.  When the
 % dimension is 0, it means that X and Y are uncorrelated, and the fitting
@@ -87,198 +87,208 @@
 % example in Cook and Su (2012).
 % 
 % load('T9-12.txt')
-% Y=T9_12(:,4:7);
-% X=T9_12(:,1:3);
-% u=bic_env(X,Y)
-% ModelOutput=env(X,Y,u);
-% 1-1./ModelOutput.ratio
-% u=bic_senv(X,Y)
-% ModelOutput=senv(X,Y,u);
+% Y = T9_12(:, 4 : 7);
+% X = T9_12(:, 1 : 3);
+% u = bic_env(X, Y)
+% ModelOutput = env(X, Y, u);
+% 1 - 1 ./ ModelOutput.ratio
+% u = bic_senv(X, Y)
+% ModelOutput = senv(X, Y, u);
 % ModelOutput.Lambda
-% 1-1./ModelOutput.ratio
+% 1 - 1 ./ ModelOutput.ratio
 
 
-function ModelOutput=senv(X,Y,u,Opts)
+function ModelOutput = senv(X, Y, u, Opts)
 
 % Verify and initialize the parameters
 %
-if (nargin < 3)
+if nargin < 3
     error('Inputs: X, Y and u should be specified!');
-elseif (nargin==3)
-    Opts=[];
+elseif nargin == 3
+    Opts = [];
 end
 
-[n,p]=size(X);
-[n1,r]=size(Y);
+[n p] = size(X);
+[n1 r] = size(Y);
 
-if (n ~= n1)
+if n ~= n1
     error('The number of observations in X and Y should be equal!');
 end
 
-if (p >= r)
-    error('Number of predictors should be less than number of response! Please use ordinary least squares.');
+if p >= r
+    error(['Number of predictors should be less than number of response!' ...
+        '  Please use ordinary least squares.']);
 end
 
 u = floor(u);
-if (u < 0 || u > r)
+if u < 0 || u > r
     error('u should be an integer between [0, r]!');
 end
 
-Opts=make_opts(Opts);
+Opts = make_opts(Opts);
 
-if isfield(Opts,'init')
-    [r2,u2]=size(Opts.init);
+if isfield(Opts, 'init')
+    [r2 u2] = size(Opts.init);
 
-    if (r ~= r2 || u ~= u2)
+    if r ~= r2 || u ~= u2
         error('The size of the initial value should be r by u!');
     end
 
-    if (rank(Opts.init) < u2)
+    if rank(Opts.init) < u2
         error('The initial value should be full rank!');
     end
 end
 
 %---preparation---
-DataParameter=make_parameter(X,Y,'senv');
-n=DataParameter.n;
-p=DataParameter.p;
-r=DataParameter.r;
-mX=DataParameter.mX;
-mY=DataParameter.mY;
-sigX=DataParameter.sigX;
-sigY=DataParameter.sigY;
-sigRes=DataParameter.sigRes;
-betaOLS=DataParameter.betaOLS;
+DataParameter = make_parameter(X, Y, 'senv');
+n = DataParameter.n;
+p = DataParameter.p;
+r = DataParameter.r;
+mX = DataParameter.mX;
+mY = DataParameter.mY;
+sigX = DataParameter.sigX;
+sigY = DataParameter.sigY;
+sigRes = DataParameter.sigRes;
+betaOLS = DataParameter.betaOLS;
 
-if u==0
+if u == 0
     
-    eigtem=eig(sigY);
+    eigtem = eig(sigY);
     
-    ModelOutput.beta=zeros(r,p);
-    ModelOutput.Sigma=sigY;
-    ModelOutput.Lambda=eye(r);
-    ModelOutput.Gamma=[];
-    ModelOutput.Gamma0=eye(r);
-    ModelOutput.eta=[];
-    ModelOutput.Omega=[];
-    ModelOutput.Omega0=sigY;
-    ModelOutput.alpha=mY;
-    ModelOutput.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
-    ModelOutput.covMatrix=[];
-    ModelOutput.asySenv=[];
-    ModelOutput.ratio=ones(r,p);
-    ModelOutput.np=r+u*p+r*(r+1)/2;  
-    ModelOutput.n=n;
+    ModelOutput.beta = zeros(r, p);
+    ModelOutput.Sigma = sigY;
+    ModelOutput.Lambda = eye(r);
+    ModelOutput.Gamma = [];
+    ModelOutput.Gamma0 = eye(r);
+    ModelOutput.eta = [];
+    ModelOutput.Omega = [];
+    ModelOutput.Omega0 = sigY;
+    ModelOutput.alpha = mY;
+    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
+    ModelOutput.covMatrix = [];
+    ModelOutput.asySenv = [];
+    ModelOutput.ratio = ones(r, p);
+    ModelOutput.np = r + u * p + r * (r + 1) / 2;  
+    ModelOutput.n = n;
     
-elseif u==r
+elseif u == r
     
-    covMatrix=kron(inv(sigX),sigRes);
-    asyFm=reshape(sqrt(diag(covMatrix)),r,p);
+    covMatrix = kron(inv(sigX), sigRes);
+    asyFm = reshape(sqrt(diag(covMatrix)), r, p);
     
-    eigtem=eig(sigRes);
+    eigtem = eig(sigRes);
     
-    ModelOutput.beta=betaOLS;
-    ModelOutput.Sigma=sigRes;
-    ModelOutput.Lambda=eye(r);
-    ModelOutput.Gamma=eye(r);
-    ModelOutput.Gamma0=[];
-    ModelOutput.eta=betaOLS;
-    ModelOutput.Omega=sigRes;
-    ModelOutput.Omega0=[];
-    ModelOutput.alpha=mY-betaOLS*mX;
-    ModelOutput.l=-n*r/2*(1+log(2*pi))-n/2*log(prod(eigtem(eigtem>0)));
-    ModelOutput.covMatrix=covMatrix;
-    ModelOutput.asySenv=asyFm;
-    ModelOutput.ratio=ones(r,p);
-    ModelOutput.np=r+u*p+r*(r+1)/2;
-    ModelOutput.n=n;
+    ModelOutput.beta = betaOLS;
+    ModelOutput.Sigma = sigRes;
+    ModelOutput.Lambda = eye(r);
+    ModelOutput.Gamma = eye(r);
+    ModelOutput.Gamma0 = [];
+    ModelOutput.eta = betaOLS;
+    ModelOutput.Omega = sigRes;
+    ModelOutput.Omega0 = [];
+    ModelOutput.alpha = mY - betaOLS * mX;
+    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
+    ModelOutput.covMatrix = covMatrix;
+    ModelOutput.asySenv = asyFm;
+    ModelOutput.ratio = ones(r, p);
+    ModelOutput.np = r + u * p + r * (r + 1) / 2;
+    ModelOutput.n = n;
     
 else
 
-    maxIter=Opts.maxIter;
-	ftol=Opts.ftol;
-	gradtol=Opts.gradtol;
-	if (Opts.verbose==0) 
-        verbose='quiet';
+    maxIter = Opts.maxIter;
+	ftol = Opts.ftol;
+	gradtol = Opts.gradtol;
+	if (Opts.verbose == 0) 
+        verbose = 'quiet';
     else
-        verbose='verbose';
+        verbose = 'verbose';
     end
     
-    ite=1000;
-    epsilon=1e-9; 
-    l2=zeros(1,ite);
+    ite = 1000;
+    epsilon = 1e-9; 
+    l2 = zeros(1, ite);
     
-    init=env(X,Y,u,Opts);
-    Gamma=init.Gamma;
-    d=ones(1,r-1);
+    init = env(X, Y, u, Opts);
+    Gamma = init.Gamma;
+    d = ones(1, r - 1);
 
     
     
-    for i=1:ite
+    for i = 1 : ite
 
-        Lambda=diag([1 d]);
-        DataParameter.Lambda=Lambda;  
+        Lambda = diag([1 d]);
+        DataParameter.Lambda = Lambda;  
      
-        F = make_F(@F4senv,DataParameter);
-        dF = make_dF(@dF4senv,DataParameter); 
-        [l Gamma]=sg_min(F,dF,Gamma,maxIter,'prcg',verbose,ftol,gradtol);
+        F = make_F(@F4senv, DataParameter);
+        dF = make_dF(@dF4senv, DataParameter); 
+        [l Gamma] = sg_min(F, dF, Gamma, maxIter, 'prcg', verbose, ftol, gradtol);
         
-        [d l2(i)]=fminsearch(@(d) objfun(d,Gamma,DataParameter), d);
+        [d l2(i)] = fminsearch(@(d) objfun(d, Gamma, DataParameter),  d);
          
-        if (i>1) && (abs(l2(i)-l2(i-1))<epsilon*abs(l2(i)))
+        if i > 1 && abs(l2(i) - l2(i - 1)) < epsilon * abs(l2(i))
             break;
         end
     
     end
     
-    Lambda=diag([1 d]);
-    Gamma0=grams(nulbasis(Gamma'));
-    eta=Gamma'*inv(Lambda)*betaOLS;
-    beta=Lambda*Gamma*eta;
-    Omega=Gamma'*inv(Lambda)*sigRes*inv(Lambda)*Gamma;
-    Omega0=Gamma0'*inv(Lambda)*sigY*inv(Lambda)*Gamma0;    
-    Sigma=Lambda*(Gamma*Omega*Gamma'+Gamma0*Omega0*Gamma0')*Lambda;
+    Lambda = diag([1 d]);
+    Gamma0 = grams(nulbasis(Gamma'));
+    eta = Gamma' * inv(Lambda) * betaOLS;
+    beta = Lambda * Gamma * eta;
+    Omega = Gamma' * inv(Lambda) * sigRes * inv(Lambda) * Gamma;
+    Omega0 = Gamma0' * inv(Lambda) * sigY * inv(Lambda) * Gamma0;    
+    Sigma = Lambda * (Gamma * Omega * Gamma' + Gamma0 * Omega0 * Gamma0') * Lambda;
 
-    eigtem=eig(sigY);
+    eigtem = eig(sigY);
     
-    ModelOutput.beta=beta;
-    ModelOutput.Sigma=Sigma;
-    ModelOutput.Lambda=Lambda;
-    ModelOutput.Gamma=Gamma;
-    ModelOutput.Gamma0=Gamma0;
-    ModelOutput.eta=eta;
-    ModelOutput.Omega=Omega;
-    ModelOutput.Omega0=Omega0;    
-    ModelOutput.alpha=mY-beta*mX;
-    ModelOutput.np=init.np+r-1;
-    ModelOutput.l=-n*r/2*(1+log(2*pi))-n/2*(l+log(prod(eigtem(eigtem>0))));
+    ModelOutput.beta = beta;
+    ModelOutput.Sigma = Sigma;
+    ModelOutput.Lambda = Lambda;
+    ModelOutput.Gamma = Gamma;
+    ModelOutput.Gamma0 = Gamma0;
+    ModelOutput.eta = eta;
+    ModelOutput.Omega = Omega;
+    ModelOutput.Omega0 = Omega0;    
+    ModelOutput.alpha = mY - beta * mX;
+    ModelOutput.np = init.np + r - 1;
+    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * (l + log(prod(eigtem(eigtem > 0))));
     
    %---compute asymptotic variance and get the ratios---
-    asyFm=kron(inv(sigX),Sigma);
-    asyFm=reshape(sqrt(diag(asyFm)),r,p);
-    insigma=inv(Sigma);
-        
-    J=zeros(p*r+(r+1)*r/2,p*r+(r+1)*r/2);
-    J(1:p*r,1:p*r)=kron(sigX,insigma);
-    J(p*r+1:end,p*r+1:end)=Expan(r)'*kron(insigma,insigma)*Expan(r)/2;
+    asyFm = kron(inv(sigX), Sigma);
+    asyFm = reshape(sqrt(diag(asyFm)), r, p);
+    insigma = inv(Sigma);
     
-    H=zeros(p*r+(r+1)*r/2,r-1+p*u+r*(r+1)/2);
+    sep1 = p * r;
+    J = zeros(p * r + (r + 1) * r / 2, p * r + (r + 1) * r / 2);
+    J(1 : sep1, 1 : sep1) = kron(sigX, insigma);
+    J(sep1 + 1 : end, sep1 + 1 : end) = Expan(r)' * kron(insigma, insigma) * Expan(r) / 2;
+    
+    sep2 = r - 1;
+    sep3 = r - 1 + p * u;
+    sep4 = r - 1 + u * (r - u + p);
+    sep5 = r - 1 + u * (r - u + p) + u * (u + 1) / 2;
+    H = zeros(p * r + (r + 1) * r / 2, r - 1 + p * u + r * (r + 1) / 2);
 
-    H(1:p*r,1:r-1)=kron(eta'*Gamma',eye(r))*Lmatrix(r);
-    H(1:p*r,r:r-1+p*u)=kron(eye(p),Lambda*Gamma);
-    H(1:p*r,r+p*u:r-1+u*(r-u+p))=kron(eta',Lambda*Gamma0);
+    H(1 : sep1, 1 : sep2) = kron(eta' * Gamma', eye(r)) * Lmatrix(r);
+    H(1 : sep1, sep2 + 1 : sep3) = kron(eye(p), Lambda * Gamma);
+    H(1 : sep1, sep3 + 1 : sep4) = kron(eta', Lambda * Gamma0);
 
-    H(p*r+1:end,1:r-1)=Contr(r)*(kron(Lambda*Gamma*Omega*Gamma',eye(r))+kron(eye(r),Lambda*Gamma*Omega*Gamma'))*Lmatrix(r)+Contr(r)*(kron(Lambda*Gamma0*Omega0*Gamma0',eye(r))+kron(eye(r),Lambda*Gamma0*Omega0*Gamma0'))*Lmatrix(r);
-    H(p*r+1:end,r+p*u:r-1+u*(r-u+p))=2*Contr(r)*(kron(Lambda*Gamma*Omega,Lambda*Gamma0)-kron(Lambda*Gamma,Lambda*Gamma0*Omega0));
-    H(p*r+1:end,r+u*(r-u+p):r-1+u*(r-u+p)+u*(u+1)/2)=Contr(r)*kron(Lambda*Gamma,Lambda*Gamma)*Expan(u);
-    H(p*r+1:end,r+u*(r-u+p)+u*(u+1)/2:end)=Contr(r)*kron(Lambda*Gamma0,Lambda*Gamma0)*Expan(r-u);
+    H(sep1 + 1 : end, 1 : sep2) = Contr(r) * (kron(Lambda * Gamma * Omega * Gamma', eye(r)) ...
+        + kron(eye(r), Lambda * Gamma * Omega * Gamma')) * Lmatrix(r) ...
+        + Contr(r) * (kron(Lambda * Gamma0 * Omega0 * Gamma0', eye(r)) ...
+        + kron(eye(r), Lambda * Gamma0 * Omega0 * Gamma0')) * Lmatrix(r);
+    H(sep1 + 1 : end, sep3 + 1 : sep4) = 2 * Contr(r) * (kron(Lambda * Gamma * Omega, Lambda * Gamma0) ...
+        - kron(Lambda * Gamma, Lambda * Gamma0 * Omega0));
+    H(sep1 + 1 : end,  sep4 + 1 : sep5) = Contr(r) * kron(Lambda * Gamma,  Lambda * Gamma) * Expan(u);
+    H(sep1 + 1 : end,  sep5 + 1 : end) = Contr(r) * kron(Lambda * Gamma0,  Lambda * Gamma0) * Expan(r - u);
 
-    asyvar=H*inv(H'*J*H)*H'; 
-    covMatrix=asyvar(1:r*p,1:r*p);
-    asySenv=reshape(sqrt(diag(covMatrix)),r,p);
-    ModelOutput.covMatrix=covMatrix;
-    ModelOutput.asySenv=asySenv;
-    ModelOutput.ratio=asyFm./asySenv;
-    ModelOutput.n=n;
+    asyvar = H * inv(H' * J * H) * H'; 
+    covMatrix = asyvar(1 : r * p, 1 : r * p);
+    asySenv = reshape(sqrt(diag(covMatrix)), r, p);
+    ModelOutput.covMatrix = covMatrix;
+    ModelOutput.asySenv = asySenv;
+    ModelOutput.ratio = asyFm ./ asySenv;
+    ModelOutput.n = n;
     
 end
