@@ -250,3 +250,76 @@ ModelOutput.beta
 ModelOutput=xenv(X,Y,1);
 u=aic_xenv(X,Y)
 u=bic_xenv(X,Y)
+
+
+load wheatprotein.txt
+X = wheatprotein(:, 8);
+Y = wheatprotein(:, 1:6);
+alpha = 0.01;
+u = lrt_env(X, Y, alpha)
+ModelOutput = env(X, Y, u)
+TestOutout = testcoefficient_env(ModelOutput);
+TestInput.L=rand(7,6);
+TestOutout = testcoefficient_env(ModelOutput,TestInput);
+TestInput.L=rand(5,6);
+TestInput.A=rand(5,1);
+TestOutout = testcoefficient_env(ModelOutput,TestInput);
+
+
+n=100;
+r=10;
+u=2;
+p=2;
+
+X=rand(n,p);
+GG=rand(r,r);
+GG=grams(GG);
+G=GG(:,1:u);
+G0=GG(:,u+1:end);
+sigma=1;
+sigma0=5;
+ita=rand(u,p);
+bet=G*ita*10;
+Sigma=G*G'*sigma^2+G0*G0'*sigma0^2;
+epsil=mvnrnd(zeros(1,r),Sigma,n);
+Y=X*bet'+epsil;
+
+% Fit and check
+ModelOutput=env(X,Y,u);
+TestInput.A=bet;
+TestOutout = testcoefficient_env(ModelOutput,TestInput);
+
+
+randn('state',1)
+rand('state',1)
+n=1000;
+r=10;
+u=2;
+p=2;
+
+X=rand(n,p);
+GG=rand(r,r);
+GG=grams(GG);
+G=GG(:,1:u);
+G0=GG(:,u+1:end);
+sigma=1;
+sigma0=5;
+ita=rand(u,p);
+bet=G*ita*10;
+Sigma=G*G'*sigma^2+G0*G0'*sigma0^2;
+results=zeros(100,1);
+TestInput.A=bet;
+for count=1:100
+    epsil=mvnrnd(zeros(1,r),Sigma,n);
+    Y=X*bet'+epsil;
+    % Fit and check
+    ModelOutput=env(X,Y,u);
+    TestOutput = testcoefficient_env(ModelOutput,TestInput);
+    results(count)=TestOutput.testStatistic;
+end
+
+results=sort(results);
+chisqrandnumber = sort(chi2rnd(r*p,[100 1]));
+plot(chisqrandnumber(1:100),results(1:100),chisqrandnumber(1:100),chisqrandnumber(1:100),'r--')
+xlabel('sorted chi-square random numbers')
+ylabel('test statistics')
