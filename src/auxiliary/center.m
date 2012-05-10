@@ -4,11 +4,11 @@
 %% Syntax
 % XC = center(X)
 %
-% Input
+%% Input
 %
 % * X: A matrix or a column vector. 
 %
-% Output
+%% Output
 %
 % * XC: A matrix or a column vector with the mean for each column equal to
 % 0.

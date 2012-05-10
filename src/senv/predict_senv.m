@@ -5,7 +5,7 @@
 % PredictOutput = predict_senv(ModelOutput, Xnew, infType)
 % PredictOutput = predict_senv(ModelOutput, Xnew, infType, Opts)
 %
-% Input
+%% Input
 %
 % ModelOutput: A list containing the maximum likelihood estimators and other
 % statistics inherted from senv.
@@ -26,7 +26,7 @@
 % * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
 % 0.
 % 
-% Output
+%% Output
 %
 % PredictOutput: A list containing the results of the inference.
 %

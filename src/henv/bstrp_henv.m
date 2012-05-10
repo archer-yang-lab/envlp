@@ -5,7 +5,7 @@
 % bootse = bstrp_henv(X, Y, u, B)
 % bootse = bstrp_henv(X, Y, u, B, Opts)
 %
-% Input
+%% Input
 %
 % * X: Group indicators. An n by p matrix, p is the number of groups. X can
 % only take p different values, one for each group.
@@ -18,7 +18,7 @@
 % fields are not defined, the default settings (see make_opts documentation) 
 % are used. 
 %
-% Output
+%% Output
 %
 % * bootse: The standard error for elements in $$\beta$ computed by
 % bootstrap.  An r by p matrix.

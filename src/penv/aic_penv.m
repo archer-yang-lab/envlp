@@ -6,7 +6,7 @@
 % u = aic_penv(X, Y)
 % u = aic_penv(X, Y, Opts)
 %
-% Input
+%% Input
 %
 % X: A list containing the value of X1 and X2.
 % 
@@ -30,7 +30,7 @@
 % * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
 % 0.
 %
-% Output
+%% Output
 %
 % * u: Dimension of the envelope. An integer between 0 and r.
 

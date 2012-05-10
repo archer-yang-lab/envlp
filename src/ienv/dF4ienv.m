@@ -5,13 +5,13 @@
 %% Syntax
 % f = dF4ienv(R, DataParameter)
 % 
-% Input
+%% Input
 %
 % * R: An r by u semi-orthogonal matrix, 0 < u <= p.
 % * DataParameter: A structure that contains the statistics calculated from
 % the data.
 %
-% Output
+%% Output
 %
 % * dF: The first derivative of the objective function for computing the
 % inner envelope subspace.  An r by u matrix.

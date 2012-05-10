@@ -8,7 +8,7 @@
 % TestOutput = testcoefficient_senv(ModelOutput) 
 % TestOutput = testcoefficient_senv(ModelOutput, TestInput)
 % 
-% Input
+%% Input
 % 
 % ModelOutput: A list containing the maximum likelihood estimators and other
 % statistics inherted from senv.
@@ -25,7 +25,7 @@
 % * TestInput.A: The matrix on the right handside of the equation.  It is a
 % d1 by d2 matrix.  Default value: d1 by d2 zero matrix.
 % 
-% Output
+%% Output
 % 
 % TestOutput: A list containing test statistics, degrees of freedom for the
 % reference chi-squared distribution, and the p-value.  At the same time, a

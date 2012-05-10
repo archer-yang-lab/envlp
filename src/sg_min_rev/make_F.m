@@ -4,13 +4,13 @@
 %% Syntax
 % F = make_F(fun_method_handle, FParameters)
 % 
-% Input
+%% Input
 %
 % * fun_method_handle: A specific model objective function.
 % * FParameters: A structure that contains data parameters as input for
 % the function fun_method_handle.
 %
-% Output
+%% Output
 %
 % * F: The generic objective function for computing the envelope subspace.
 %

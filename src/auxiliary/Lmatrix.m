@@ -4,12 +4,12 @@
 %% Syntax
 % L = Lmatrix(r)
 %
-% Input
+%% Input
 %
 % * r: The dimension of the matrix being extracted.  The matrix should be
 % an r by r matrix.
 %
-% Output
+%% Output
 %
 % * L: An r - 1 dimensional vector that contains all the diagonal elements
 % but the first one of the matrix.

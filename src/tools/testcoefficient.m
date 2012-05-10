@@ -8,7 +8,7 @@
 % TestOutput = testcoefficient(ModelOutput, modelType) 
 % TestOutput = testcoefficient(ModelOutput, modelType, TestInput)
 % 
-% Input
+%% Input
 % 
 % ModelOutput: A list containing the model outputs from fitting the models.
 % 
@@ -29,7 +29,7 @@
 % * TestInput.A: The matrix on the right handside of the equation.  Default value will be
 % set if the user does not specify.
 % 
-% Output
+%% Output
 % 
 % TestOutput: A list containing test statistics, degrees of freedom for the
 % reference chi-squared distribution, and the p-value.  At the same time, a

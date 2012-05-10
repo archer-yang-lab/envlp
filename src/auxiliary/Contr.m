@@ -4,11 +4,11 @@
 %% Syntax
 % C = Contr(r)
 %
-% Input
+%% Input
 %
 % * r: Dimension of the contraction matrix.  A positive integer.
 % 
-% Output
+%% Output
 %
 % * C: Contraction matrix of dimension r.  C is an r(r+1)/2 by r^2 matrix.
  

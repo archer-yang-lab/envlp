@@ -4,7 +4,7 @@
 %% Syntax
 % DataParameter=make_parameter(X,Y,method)
 %
-% Input
+%% Input
 %
 % * X: Predictors. An n by p matrix, p is the number of predictors. The
 % predictors can be univariate or multivariate, discrete or continuous.
@@ -15,7 +15,7 @@
 % family to be used, the choices can be 'env', 'ienv', 'henv', 'senv' or
 % 'xenv'.
 %
-% Output
+%% Output
 % 
 % DataParameter: A list that contains summary statistics computed from the
 % data.  The output list can vary from method to method.

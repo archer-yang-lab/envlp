@@ -4,7 +4,7 @@
 %% Syntax
 % Opts = make_opts(Opts)
 %
-% Input 
+%% Input 
 %
 % A list containing optional input parameter for sg_min.m specified by users.  One or several (even all)
 % fields could be empty.
@@ -14,7 +14,7 @@
 % * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
 % * Opts.verbose: Flag for print out output, logical 0 or 1. Default value: 0.
 %
-% Output:
+%% Output:
 % 
 % A list containing optional input parameter for sg_min.m, specified by
 % users or the default values are used.

@@ -6,7 +6,7 @@
 % u = bic_henv(X, Y)
 % u = bic_henv(X, Y, Opts)
 %
-% Input
+%% Input
 %
 % * X: Group indicators. An n by p matrix, p is the number of groups. X can
 % only take p different values, one for each group.
@@ -17,7 +17,7 @@
 % fields are not defined, the default settings (see make_opts documentation) 
 % are used. 
 %
-% Output
+%% Output
 %
 % * u: Dimension of the envelope. An integer between 0 and r.
 
