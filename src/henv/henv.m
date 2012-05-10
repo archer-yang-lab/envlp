@@ -2,36 +2,36 @@
 % Fit the heteroscedastic envelope model.
 
 %% Syntax
-% ModelOutput = henv(X, Y, u)
-% ModelOutput = henv(X, Y, u, Opts)
+%         ModelOutput = henv(X, Y, u)
+%         ModelOutput = henv(X, Y, u, Opts)
 %
 %% Input
 %
-% X: Group indicators. A matrix with n rows.  X can only have p unique
+% *X*: Group indicators. A matrix with n rows.  X can only have p unique
 %  rows, where p is the number of groups. For example, if there 
-% are two groups, X can only have 2 different kinds of rows, such as (0,1)
-% and (1,0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not
+% are two groups, X can only have 2 different kinds of rows, such as (0, 1)
+% and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not
 % restricted, as long as X only has p unique rows.
 %
-% Y: Multivariate responses. An n by r matrix, r is the number of
+% *Y*: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
 % continuous variables, and r should be strictly greater than p.
 %
-% u: Dimension of the envelope. An integer between 0 and r.
+% *u*: Dimension of the envelope. An integer between 0 and r.
 %
-% Opts: A list containing the optional input parameter, to control the
+% *Opts*: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
 % 
 % * Opts.maxIter: Maximum number of iterations.  Default value: 300.
 % * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
 % * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
-% 0.
+% * Opts.verbose: Flag for print out Grassmann manifold optimization 
+% process, logical 0 or 1. Default value: 0.
 %
 %% Output
 % 
-% ModelOutput: A list that contains the maximum likelihood estimators and some
+% *ModelOutput*: A list that contains the maximum likelihood estimators and some
 % statistics.
 % 
 % * ModelOutput.mu: The heteroscedastic envelope estimator of the grand mean. A r
@@ -55,25 +55,25 @@
 % stored in the ith column of ModelOutput.mug.
 % * ModelOutput.Sigma: The heteroscedastic envelope estimator of the error
 % covariance matrix.  A three dimensional matrix with dimension r, r and p,
-% ModelOutput.Sigma(:,:,i) contains the estimated covariance matrix for the ith
+% ModelOutput.Sigma(:, :, i) contains the estimated covariance matrix for the ith
 % group.
 % * ModelOutput.eta: The coordinates of $$\beta$ with respect to Gamma. An u by p
 % matrix, the ith column contains the coordinates of the main effect of the
 % ith group with respect to Gamma.
 % * ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u
-% by p matrix, ModelOutput.Omega(:,:,i) contains the coordinates of the covariance
+% by p matrix, ModelOutput.Omega(:, :, i) contains the coordinates of the covariance
 % matrix of the ith group with respect to Gamma.
-% * ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u
+% * ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r - u by r - u
 % matrix.
 % * ModelOutput.l: The maximized log likelihood function.  A real number.
 % * ModelOutput.np: The number of parameters in the heteroscedastic envelope
 % model.  A positive integer.
-% * ModelOutput.covMatrix: The asymptotic covariance of ($$\mu$', vec($$\beta$')'.  An r(p+1) by
-% r(p+1) matrix.  The covariance matrix returned are asymptotic.  For the
-% actual standard errors, multiply by 1/n.
-% * ModelOutput.asyHenv: The asymptotic standard errors for elements in $$beta$
+% * ModelOutput.covMatrix: The asymptotic covariance of ($$\mu$', vec($$\beta$')'.  An r(p + 1) by
+% r(p + 1) matrix.  The covariance matrix returned are asymptotic.  For the
+% actual standard errors, multiply by 1 / n.
+% * ModelOutput.asyHenv: The asymptotic standard errors for elements in $$\beta$
 % under the heteroscedastic envelope model. An r by p matrix.  The standard errors returned are
-% asymptotic, for actual standard errors, multiply by 1/sqrt(n).
+% asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
 % * ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate 
 % linear regression estimator over the heteroscedastic envelope estimator.
 % An r by p matrix, the (i, j)th element in ModelOutput.ratio is the elementwise standard
@@ -100,10 +100,10 @@
 % The following codes produce the results of the waterstrider example in Su
 % and Cook (2011).
 % 
-% load waterstrider.mat
-% u = lrt_henv(X, Y, 0.01)
-% ModelOutput = henv(X, Y, u)
-% ModelOutput.ratio
+%         load waterstrider.mat
+%         u = lrt_henv(X, Y, 0.01)
+%         ModelOutput = henv(X, Y, u)
+%         ModelOutput.ratio
 
 function ModelOutput = henv(X, Y, u, Opts)
 

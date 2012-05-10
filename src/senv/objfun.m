@@ -2,20 +2,22 @@
 % Objective funtion for computing the scales in the scaled envelope model.
 
 %% Syntax
-% f = objfun(d, Gamma, DataParameter)
+%         f = objfun(d, Gamma, DataParameter)
 % 
 %% Input
 %
-% * d: An r - 1 dimensional column vector containing the scales for the 2nd
+% *d*: An r - 1 dimensional column vector containing the scales for the 2nd
 % to the rth responses.  All the entries in d are positive.
-% * Gamma: A r by u semi-orthogomal matrix that spans the envelope subspace
+% 
+% *Gamma*: A r by u semi-orthogomal matrix that spans the envelope subspace
 % or the estimated envelope subspace.
-% * DataParameter: A structure that contains the statistics calculated form
+% 
+% *DataParameter*: A structure that contains the statistics calculated form
 % the data.
 %
 %% Output
 %
-% * f: A scalar containing the value of the objective function evaluated at d.
+% *f*: A scalar containing the value of the objective function evaluated at d.
 
 %% Description
 %

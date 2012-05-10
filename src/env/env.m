@@ -2,32 +2,33 @@
 % Fit the envelope model.
 
 %% Syntax
-% ModelOutput = env(X, Y, u)
-% ModelOutput = env(X, Y, u, Opts)
+%         ModelOutput = env(X, Y, u)
+%         ModelOutput = env(X, Y, u, Opts)
 %
 %% Input
 %
-% X: Predictors. An n by p matrix, p is the number of predictors. The
+% *X*: Predictors. An n by p matrix, p is the number of predictors. The
 % predictors can be univariate or multivariate, discrete or continuous.
 % 
-% Y: Multivariate responses. An n by r matrix, r is the number of
+% *Y*: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
 % continuous variables, and r should be strictly greater than p.
 % 
-% u: Dimension of the envelope. An integer between 0 and r.
+% *u*: Dimension of the envelope. An integer between 0 and r.
 % 
-% Opts: A list containing the optional input parameter, to control the
+% *Opts*: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
 % 
 % * Opts.maxIter: Maximum number of iterations.  Default value: 300.
 % * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
 % * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * Opts.verbose: Flag for print out output, logical 0 or 1. Default value: 0.
+% * Opts.verbose: Flag for print out Grassmann manifold optimization 
+% process, logical 0 or 1. Default value: 0.
 %
 %% Output
 % 
-% ModelOutput: A list that contains the maximum likelihood estimators and some
+% *ModelOutput*: A list that contains the maximum likelihood estimators and some
 % statistics.
 % 
 % * ModelOutput.beta: The envelope estimator of the regression coefficients $$\beta$. 
@@ -82,15 +83,15 @@
 % The following codes will reconstruct the results in the wheat protein data
 % example in Cook et al. (2010).
 % 
-% load wheatprotein.txt
-% X = wheatprotein(:, 8);
-% Y = wheatprotein(:, 1:6);
-% alpha = 0.01;
-% u = lrt_env(X, Y, alpha)
-% ModelOutput = env(X, Y, u)
-% ModelOutput.Omega
-% eig(ModelOutput.Omega0)
-% ModelOutput.ratio
+%         load wheatprotein.txt
+%         X = wheatprotein(:, 8);
+%         Y = wheatprotein(:, 1:6);
+%         alpha = 0.01;
+%         u = lrt_env(X, Y, alpha)
+%         ModelOutput = env(X, Y, u)
+%         ModelOutput.Omega
+%         eig(ModelOutput.Omega0)
+%         ModelOutput.ratio
 
 function ModelOutput = env(X, Y, u, Opts)
 

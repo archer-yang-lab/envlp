@@ -5,15 +5,15 @@
 %  the envelope model for the reduction on X.
 
 %% Syntax
-% TestOutput = testcoefficient_xenv(ModelOutput) 
-% TestOutput = testcoefficient_xenv(ModelOutput, TestInput)
+%         TestOutput = testcoefficient_xenv(ModelOutput) 
+%         TestOutput = testcoefficient_xenv(ModelOutput, TestInput)
 % 
 %% Input
 % 
-% ModelOutput: A list containing the maximum likelihood estimators and other
+% *ModelOutput*: A list containing the maximum likelihood estimators and other
 % statistics inherted from xenv.
 % 
-% TestInput: A list that specifies the null hypothesis, including L, R, and
+% *TestInput*: A list that specifies the null hypothesis, including L, R, and
 % A.  If not provided by the user, default values will be used.
 %
 % * TestInput.L: The matrix multiplied to $$\beta$ on the left.  It is a d1
@@ -27,7 +27,7 @@
 % 
 %% Output
 % 
-% TestOutput: A list containing test statistics, degrees of freedom for the
+% *TestOutput*: A list containing test statistics, degrees of freedom for the
 % reference chi-squared distribution, and the p-value.  At the same time, a
 % table is printed out.
 % 
@@ -41,22 +41,22 @@
 % L\beta R\neq A$.  The $$\beta$ is estimated by the envelope model for the reduction on X.  If
 % the user does not specify the values for L, R and A, then the test is
 % equivalent to the standard F test on if $$\beta = 0$.  The test statistics
-% used is (vec $$(L\beta R - A)$ $$\hat{\Sigma}^{-1}$ vec $$(L\beta R - A)^{T}$,
+% used is vec $$(L\beta R - A)$ $$\hat{\Sigma}^{-1}$ vec $$(L\beta R - A)^{T}$,
 % and the reference distribution is chi-squared distribution with degrees of
 % freedom d1 * d2. 
 
 %% Example
-% load wheatprotein.txt
-% X=wheatprotein(:,1:6);
-% Y=wheatprotein(:,7);
-% ModelOutput=xenv(X,Y,5);
-% TestOutout = testcoefficient_xenv(ModelOutput);
-% r = size(Y, 2);
-% p = size(X, 2);
-% TestInput.L = rand(2, p);
-% TestInput.R = rand(r, 1);
-% TestInput.A = zeros(2, 1);
-% TestOutout = testcoefficient_xenv(ModelOutput, TestInput); 
+%         load wheatprotein.txt
+%         X=wheatprotein(:,1:6);
+%         Y=wheatprotein(:,7);
+%         ModelOutput=xenv(X,Y,5);
+%         TestOutout = testcoefficient_xenv(ModelOutput);
+%         r = size(Y, 2);
+%         p = size(X, 2);
+%         TestInput.L = rand(2, p);
+%         TestInput.R = rand(r, 1);
+%         TestInput.A = zeros(2, 1);
+%         TestOutout = testcoefficient_xenv(ModelOutput, TestInput); 
 
 function TestOutput = testcoefficient_xenv(ModelOutput, TestInput)
 

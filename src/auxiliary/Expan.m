@@ -2,15 +2,15 @@
 % Compute the expansion matrix of dimension r.
 
 %% Syntax
-% E = Expan(r)
+%         E = Expan(r)
 %
 %% Input
 %
-% * r: Dimension of the expansion matrix.  A positive integer.
+% *r*: Dimension of the expansion matrix.  A positive integer.
 % 
 %% Output
 %
-% * E: Expansion matrix of dimension r.  E is an r ^ 2 by r(r + 1) / 2 matrix.
+% *E*: Expansion matrix of dimension r.  E is an r ^ 2 by r(r + 1) / 2 matrix.
  
 %% Description
 % 

@@ -2,17 +2,19 @@
 % Multivariate linear regression. 
 
 %% Syntax
-% ModelOutput = fit_OLS(X, Y)
+%         ModelOutput = fit_OLS(X, Y)
 %
 %% Input
 %
-% * X: Predictors, an n by p matrix, p is the number of predictors.  The predictors can be univariate or multivariate, discrete or continuous.
-% * Y: Multivariate responses, an n by r matrix, r is the number of
+% *X*: Predictors, an n by p matrix, p is the number of predictors.  The
+% predictors can be univariate or multivariate, discrete or continuous. 
+% 
+% *Y*: Multivariate responses, an n by r matrix, r is the number of
 % responses and n is number of observations.  The responses must be continuous variables.
 %
 %% Output
 %
-% ModelOutput: A list that contains the maximum likelihood estimators of
+% *ModelOutput*: A list that contains the maximum likelihood estimators of
 % regression coefficients and error covariance matrix. 
 % 
 % * ModelOutput.betaOLS: An r by p matrix containing estimate of the regression coefficients $$\beta$.
@@ -29,10 +31,10 @@
 
 %% Example
 %
-% load wheatprotein.txt
-% X = wheatprotein(:, 8);
-% Y = wheatprotein(:, 1 : 6);
-% ModelOutput = fit_OLS(X, Y)
+%         load wheatprotein.txt
+%         X = wheatprotein(:, 8);
+%         Y = wheatprotein(:, 1 : 6);
+%         ModelOutput = fit_OLS(X, Y)
 
 function ModelOutput = fit_OLS(X, Y)
 

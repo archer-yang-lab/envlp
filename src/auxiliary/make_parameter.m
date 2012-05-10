@@ -2,22 +2,24 @@
 % Compute summary statistics from the data.
 
 %% Syntax
-% DataParameter=make_parameter(X,Y,method)
+%         DataParameter=make_parameter(X,Y,method)
 %
 %% Input
 %
-% * X: Predictors. An n by p matrix, p is the number of predictors. The
+% *X*: Predictors. An n by p matrix, p is the number of predictors. The
 % predictors can be univariate or multivariate, discrete or continuous.
-% * Y: Multivariate responses. An n by r matrix, r is the number of
+% 
+% *Y*: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
 % continuous variables, and r should be strictly greater than p.
-% * method: A string of characters indicating which member of the envelope
+% 
+% *method*: A string of characters indicating which member of the envelope
 % family to be used, the choices can be 'env', 'ienv', 'henv', 'senv' or
 % 'xenv'.
 %
 %% Output
 % 
-% DataParameter: A list that contains summary statistics computed from the
+% *DataParameter*: A list that contains summary statistics computed from the
 % data.  The output list can vary from method to method.
 % 
 % * DataParameter.n: The number of observations in the data.  A positive

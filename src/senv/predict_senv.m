@@ -2,33 +2,22 @@
 % Perform estimation or prediction under the scaled envelope model.
 
 %% Syntax
-% PredictOutput = predict_senv(ModelOutput, Xnew, infType)
-% PredictOutput = predict_senv(ModelOutput, Xnew, infType, Opts)
+%         PredictOutput = predict_senv(ModelOutput, Xnew, infType)
 %
 %% Input
 %
-% ModelOutput: A list containing the maximum likelihood estimators and other
+% *ModelOutput*: A list containing the maximum likelihood estimators and other
 % statistics inherted from senv.
 % 
-% Xnew: The value of X with which to estimate or predict Y.  A p by 1
+% *Xnew*: The value of X with which to estimate or predict Y.  A p by 1
 % vector.
 % 
-% infType: A string of characters indicting the inference type,
+% *infType*: A string of characters indicting the inference type,
 % the choices can be 'estimation' or 'prediction'.
-%
-% Opts: A list containing the optional input parameter, to control the
-% iterations in sg_min. If one or several (even all) fields are not
-% defined, the default settings are used.
-% 
-% * Opts.maxIter: Maximum number of iterations.  Default value: 300.
-% * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
-% * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
-% 0.
 % 
 %% Output
 %
-% PredictOutput: A list containing the results of the inference.
+% *PredictOutput*: A list containing the results of the inference.
 %
 % * PredictOutput.value: The fitted value or the prediction value evaluated at
 % Xnew. An r by 1 vector.
@@ -45,23 +34,21 @@
 
 %% Example
 %
-% load('T9-12.txt')
-% Y = T9_12(:, 4 : 7);
-% X = T9_12(:, 1 : 3);
-% u = bic_env(X, Y)
-% ModelOutput = env(X, Y, u);
-% Xnew = X(1, :)';
-% PredictOutput = predict_senv(ModelOutput, Xnew, 'estimation')
-% PredictOutput.value  % Compare the fitted value with the data
-% Y(1, :)'
-% PredictOutput = predict_senv(ModelOutput, Xnew, 'prediction')
+%         load('T9-12.txt')
+%         Y = T9_12(:, 4 : 7);
+%         X = T9_12(:, 1 : 3);
+%         u = bic_env(X, Y)
+%         ModelOutput = env(X, Y, u);
+%         Xnew = X(1, :)';
+%         PredictOutput = predict_senv(ModelOutput, Xnew, 'estimation')
+%         PredictOutput.value  % Compare the fitted value with the data
+%         Y(1, :)'
+%         PredictOutput = predict_senv(ModelOutput, Xnew, 'prediction')
 
-function PredictOutput = predict_senv(ModelOutput, Xnew, infType, Opts)
+function PredictOutput = predict_senv(ModelOutput, Xnew, infType)
 
 if nargin < 3
     error('Inputs: ModelOutput, Xnew and infType should be specified!');
-elseif nargin == 3
-    Opts = [];
 end
 
 if ~strcmp(infType, 'estimation') && ~strcmp(infType, 'prediction')

@@ -1,3 +1,48 @@
+%% get_Init4henv
+% Starting value for the heteroscedastic envelope subspace.
+
+%% Syntax
+%         WInit = get_Init4henv(F, X, Y, u, DataParameter)
+
+%% Input
+%
+% *F*: Objective function to get the heteroscedastic envelope subspace.
+% 
+% *X*: Group indicators. A matrix with n rows.  X can only have p unique
+%  rows, where p is the number of groups. For example, if there 
+% are two groups, X can only have 2 different kinds of rows, such as (0, 1)
+% and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not
+% restricted, as long as X only has p unique rows.
+% 
+% *Y*: Multivariate responses. An n by r matrix, r is the number of
+% responses and n is number of observations.  
+% 
+% *u*: Dimension of the envelope. An integer between 1 and r - 1.
+% 
+% *DataParameter*: A list containing commonly used statistics computed from
+% the data.
+%
+%% Output
+%
+% *WInit*: The initial estimate of the orthogonal basis of the heteroscedastic envelope
+% subspace. An r by u orthogonal matrix.
+
+%% Description
+% We compute the eigenvectors for the estimated errors, and get r vectors.  Then we get all the combinations 
+% of u vectors out of the r vectors. If the number of r choose u is 
+% small(<=50), we search over all the combinations and find out the one 
+% that minimizes the objective function F. If that number is large, then we
+% do it iteratively: we pick up any u eigenvectors, fix all of them except 
+% the first one. Then we search over all the vectors orthogonal to the 
+% fixed ones, and record the one that minimizes F. Next, we fix the first 
+% u eigenvectors again but this time search for second one, then we record 
+% the vector. This goes on and on until the last one. We do it for 3 rounds 
+% and use the final set as our starting value. 
+
+%% Reference
+% The codes is implemented based on the algorithm in Section 3.5 of Su and 
+% Cook (2011).
+
 function WInit = get_Init4henv(F, X, Y, u, DataParameter)
 
 n = DataParameter.n;

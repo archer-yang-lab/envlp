@@ -2,12 +2,12 @@
 % Fit the partial envelope model.
 
 %% Syntax
-% ModelOutput = penv(X, Y, u)
-% ModelOutput = penv(X, Y, u, Opts)
+%         ModelOutput = penv(X, Y, u)
+%         ModelOutput = penv(X, Y, u, Opts)
 %
 %% Input
 %
-% X: A list containing the value of X1 and X2.
+% *X*: A list containing the value of X1 and X2.
 % 
 % * X.X1: Predictors of main interst. An n by p1 matrix, n is the number of 
 % observations, and p1 is the number of main predictors. The
@@ -15,25 +15,25 @@
 % * X.X2: Covariates, or predictors not of main interest.  An n by p2 matrix,
 % p2 is the number of covariates.
 %
-% Y: Multivariate responses. An n by r matrix, r is the number of
+% *Y*: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
 % continuous variables, and r should be strictly greater than p1.
 %
-% u: Dimension of the partial envelope. An integer between 0 and r.
+% *u*: Dimension of the partial envelope. An integer between 0 and r.
 %
-% Opts: A list containing the optional input parameter, to control the
+% *Opts*: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
 % 
 % * Opts.maxIter: Maximum number of iterations.  Default value: 300.
 % * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
 % * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
-% 0.
+% * Opts.verbose: Flag for print out Grassmann manifold optimization 
+% process, logical 0 or 1. Default value: 0.
 %
 %% Output
 % 
-% ModelOutput: A list that contains the maximum likelihood estimators and some
+% *ModelOutput*: A list that contains the maximum likelihood estimators and some
 % statistics.
 % 
 % * ModelOutput.beta1: The partial envelope estimator of $$\beta_1$, which is the
@@ -91,17 +91,17 @@
 % The following codes reconstruct the results of the paper and fiber
 % example in Su and Cook (2012).
 % 
-% load T7-7.dat
-% Y = T7_7(:, 1 : 4);
-% Xtemp = T7_7(:, 5 : 7);
-% X.X1 = Xtemp(:, 3);
-% X.X2 = Xtemp(:, 1 : 2);
-% alpha = 0.01;
-% u = lrt_penv(X, Y, alpha)
-% ModelOutput = penv(X, Y, u)
-% ModelOutput.Omega
-% eig(ModelOutput.Omega0)
-% ModelOutput.ratio
+%         load T7-7.dat
+%         Y = T7_7(:, 1 : 4);
+%         Xtemp = T7_7(:, 5 : 7);
+%         X.X1 = Xtemp(:, 3);
+%         X.X2 = Xtemp(:, 1 : 2);
+%         alpha = 0.01;
+%         u = lrt_penv(X, Y, alpha)
+%         ModelOutput = penv(X, Y, u)
+%         ModelOutput.Omega
+%         eig(ModelOutput.Omega0)
+%         ModelOutput.ratio
 
 function ModelOutput = penv(X, Y, u, Opts)
 

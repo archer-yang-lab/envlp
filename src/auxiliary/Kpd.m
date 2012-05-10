@@ -2,16 +2,16 @@
 % Compute the communication matrix Kpd.
 
 %% Syntax
-% k = Kpd(p, d)
+%         k = Kpd(p, d)
 %
 %% Input
 %
-% * p and d are two positive integers represent the dimension parameters
+% *p*, *d*: two positive integers represent the dimension parameters
 % for the communication matrix.
 %
 %% Output
 %
-% * k: The communication matrix Kpd. An p * d by p * d matrix.
+% *k*: The communication matrix Kpd. An p * d by p * d matrix.
 
 %% Description
 % For a p by d matrix A, vec(A') = Kpd * vec(A), and Kpd is called a

@@ -3,17 +3,18 @@
 % subspace in the scaled envelope model.
 
 %% Syntax
-% f = dF4senv(R, DataParameter)
+%         df = dF4senv(R, DataParameter)
 % 
 %% Input
 %
-% * R: An r by u semi-orthogonal matrix, 0 < u <= p.
-% * DataParameter: A structure that contains the statistics calculated from
+% *R*: An r by u semi-orthogonal matrix, 0 < u <= r.
+% 
+% *DataParameter*: A structure that contains the statistics calculated from
 % the data.
 %
 %% Output
 %
-% * dF: The first derivative of the objective function for computing the
+% *dF*: The first derivative of the objective function for computing the
 %  envelope subspace.  An r by u matrix.
 
 %% Description
