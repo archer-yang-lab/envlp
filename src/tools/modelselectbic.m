@@ -3,12 +3,12 @@
 % criteria.
 
 %% Syntax
-% u = modelselectbic(X, Y, modelType)
-% u = modelselectbic(X, Y, modelType, Opts)
+%         u = modelselectbic(X, Y, modelType)
+%         u = modelselectbic(X, Y, modelType, Opts)
 % 
 %% Input
 %
-% X: Predictors.  The predictors can be univariate or multivariate, 
+% *X*: Predictors.  The predictors can be univariate or multivariate, 
 % discrete or continuous.  
 % 
 % For model type for method 'env', 'henv', 'ienv',
@@ -23,26 +23,26 @@
 % * X.X2 (only for 'penv'): Covariates, or predictors not of main interest.  An n by p2 matrix,
 % p2 is the number of covariates.
 %
-% Y: Multivariate responses. An n by r matrix, r is the number of
+% *Y*: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
 % continuous variables.
 % 
-% modelType: A string characters indicting the model, choices can be 'env',
+% *modelType*: A string characters indicting the model, choices can be 'env',
 % 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
 % 
-% Opts: A list containing the optional input parameter, to control the
+% *Opts*: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
 % 
 % * Opts.maxIter: Maximum number of iterations.  Default value: 300.
 % * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
 % * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
-% 0.
+% * Opts.verbose: Flag for print out dimension selection process, 
+% logical 0 or 1. Default value: 0.
 %
 %% Output
 %
-% u: Dimension of the envelope. An integer between 0 and r.
+% *u*: Dimension of the envelope. An integer between 0 and r.
 
 %% Description
 % This function implements the Bayesian information criteria (BIC) to select
@@ -50,19 +50,19 @@
 % ' senv', and 'xenv'.
 
 %% Example
-% load wheatprotein.txt
-% X = wheatprotein(:, 8);
-% Y = wheatprotein(:, 1 : 6);
-% modelType = 'env';
-% u = modelselectbic(X, Y, modelType)
+%         load wheatprotein.txt
+%         X = wheatprotein(:, 8);
+%         Y = wheatprotein(:, 1 : 6);
+%         modelType = 'env';
+%         u = modelselectbic(X, Y, modelType)
 % 
-% load T7-7.dat
-% Y = T7_7(:, 1 : 4);
-% Xtemp = T7_7(:, 5 : 7);
-% X.X1 = Xtemp(:, 3);
-% X.X2 = Xtemp(:, 1 : 2);
-% modelType = 'penv';
-% u = modelselectbic(X, Y, modelType)
+%         load T7-7.dat
+%         Y = T7_7(:, 1 : 4);
+%         Xtemp = T7_7(:, 5 : 7);
+%         X.X1 = Xtemp(:, 3);
+%         X.X2 = Xtemp(:, 1 : 2);
+%         modelType = 'penv';
+%         u = modelselectbic(X, Y, modelType)
 
 function u = modelselectbic(X, Y, modelType, Opts)
 

@@ -2,21 +2,21 @@
 % Make optional input parameters for running the sg_min package.
 
 %% Syntax
-% Opts = make_opts(Opts)
+%         Opts = make_opts(Opts)
 %
 %% Input 
 %
-% A list containing optional input parameter for sg_min.m specified by users.  One or several (even all)
-% fields could be empty.
+% *Opts*: A list containing optional input parameter for sg_min.m specified
+% by users.  One or several (even all) fields could be empty.
 %
-% * Opts.maxIter: Maximum number of iterations.  Default value: 300.
-% * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
-% * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * Opts.verbose: Flag for print out output, logical 0 or 1. Default value: 0.
+% * Opts.maxIter: Maximum number of iterations.
+% * Opts.ftol: Tolerance parameter for F.  
+% * Opts.gradtol: Tolerance parameter for dF.  
+% * Opts.verbose: Flag for print out output, logical 0 or 1. 
 %
 %% Output:
 % 
-% A list containing optional input parameter for sg_min.m, specified by
+% *Opts*: A list containing optional input parameter for sg_min.m, specified by
 % users or the default values are used.
 %
 % * Opts.maxIter: Maximum number of iterations.  Default value: 300.

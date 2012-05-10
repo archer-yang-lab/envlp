@@ -2,17 +2,18 @@
 % Objective funtion for computing the envelope subspace.
 
 %% Syntax
-% f = F4env(R, DataParameter)
+%         f = F4env(R, DataParameter)
 % 
 %% Input
 %
-% * R: An r by u semi orthogonal matrix, 0 < u <= r.
-% * DataParameter: A structure that contains the statistics calculated from
+% *R*: An r by u semi orthogonal matrix, 0 < u <= r.
+% 
+% *DataParameter*: A structure that contains the statistics calculated from
 % the data.
 %
 %% Output
 %
-% * f: A scalar containing the value of the objective function evaluated at R.
+% *f*: A scalar containing the value of the objective function evaluated at R.
 
 %% Description
 %

@@ -2,16 +2,16 @@
 % Extract the 2nd to the last diagonal element of a matrix into a vector.
 
 %% Syntax
-% L = Lmatrix(r)
+%         L = Lmatrix(r)
 %
 %% Input
 %
-% * r: The dimension of the matrix being extracted.  The matrix should be
+% *r*: The dimension of the matrix being extracted.  The matrix should be
 % an r by r matrix.
 %
 %% Output
 %
-% * L: An r - 1 dimensional vector that contains all the diagonal elements
+% *L*: An r - 1 dimensional vector that contains all the diagonal elements
 % but the first one of the matrix.
 
 %% Description

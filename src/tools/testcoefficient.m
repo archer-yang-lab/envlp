@@ -5,17 +5,17 @@
 %  the model in the envelope family.
 
 %% Syntax
-% TestOutput = testcoefficient(ModelOutput, modelType) 
-% TestOutput = testcoefficient(ModelOutput, modelType, TestInput)
+%         TestOutput = testcoefficient(ModelOutput, modelType) 
+%         TestOutput = testcoefficient(ModelOutput, modelType, TestInput)
 % 
 %% Input
 % 
-% ModelOutput: A list containing the model outputs from fitting the models.
+% *ModelOutput*: A list containing the model outputs from fitting the models.
 % 
-% modelType: A string characters indicting the model, choices can be 'env',
+% *modelType*: A string characters indicting the model, choices can be 'env',
 % 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
 % 
-% TestInput: A list that specifies the null hypothesis, including L, R, and
+% *TestInput*: A list that specifies the null hypothesis, including L, R, and
 % A.  If not provided by the user, default values will be used.
 %
 % * TestInput.L: The matrix multiplied to $$\beta$ on the left.  According 
@@ -31,7 +31,7 @@
 % 
 %% Output
 % 
-% TestOutput: A list containing test statistics, degrees of freedom for the
+% *TestOutput*: A list containing test statistics, degrees of freedom for the
 % reference chi-squared distribution, and the p-value.  At the same time, a
 % table is printed out.
 % 
@@ -46,35 +46,35 @@
 % the user does not specify the values for L, R and A, then the test is
 % equivalent to the standard F test on if $$\beta = 0$ (for 'env', 'ienv', 
 % % 'penv', 'senv' and 'xenv'), or if the group main effects are all zeros 
-% (for 'henv').  The test statistics used is (vec $$(L\beta R - A)$
+% (for 'henv').  The test statistics used is vec $$(L\beta R - A)$
 % $$\hat{\Sigma}^{-1}$ vec $$(L\beta R - A)^{T}$, and the reference
 % distribution is chi-squared distribution with degrees of freedom the same
 % as the length of vec(A).
 
 %% Example
-% load wheatprotein.txt
-% X = wheatprotein(:, 8);
-% Y = wheatprotein(:, 1:6);
-% alpha = 0.01;
-% u = lrt_env(X, Y, alpha)
-% ModelOutput = env(X, Y, u)
-% modelType = 'env';
-% TestOutout = testcoefficient(ModelOutput, modelType);
+%         load wheatprotein.txt
+%         X = wheatprotein(:, 8);
+%         Y = wheatprotein(:, 1:6);
+%         alpha = 0.01;
+%         u = lrt_env(X, Y, alpha)
+%         ModelOutput = env(X, Y, u)
+%         modelType = 'env';
+%         TestOutout = testcoefficient(ModelOutput, modelType);
 % 
-% load T7-7.dat
-% Y = T7_7(:, 1 : 4);
-% Xtemp = T7_7(:, 5 : 7);
-% X.X1 = Xtemp(:, 3);
-% X.X2 = Xtemp(:, 1 : 2);
-% alpha = 0.01;
-% u = lrt_penv(X, Y, alpha)
-% ModelOutput = penv(X, Y, u)
-% r = size(Y, 2);
-% p1 = size(X.X1, 2);
-% TestInput.L = rand(2, r);
-% TestInput.R = rand(p1, 1);
-% TestInput.A = zeros(2, 1);
-% TestOutout = testcoefficient_penv(ModelOutput, TestInput); 
+%         load T7-7.dat
+%         Y = T7_7(:, 1 : 4);
+%         Xtemp = T7_7(:, 5 : 7);
+%         X.X1 = Xtemp(:, 3);
+%         X.X2 = Xtemp(:, 1 : 2);
+%         alpha = 0.01;
+%         u = lrt_penv(X, Y, alpha)
+%         ModelOutput = penv(X, Y, u)
+%         r = size(Y, 2);
+%         p1 = size(X.X1, 2);
+%         TestInput.L = rand(2, r);
+%         TestInput.R = rand(p1, 1);
+%         TestInput.A = zeros(2, 1);
+%         TestOutout = testcoefficient_penv(ModelOutput, TestInput); 
 
 function TestOutput = testcoefficient(ModelOutput, modelType, TestInput)
 

@@ -2,33 +2,33 @@
 % Fit the scaled envelope model.
 
 %% Syntax
-% ModelOutput = senv(X, Y, u)
-% ModelOutput = senv(X, Y, u, Opts)
+%         ModelOutput = senv(X, Y, u)
+%         ModelOutput = senv(X, Y, u, Opts)
 %
 %% Input
 %
-% X: Predictors. An n by p matrix, p is the number of predictors. The
+% *X*: Predictors. An n by p matrix, p is the number of predictors. The
 % predictors can be univariate or multivariate, discrete or continuous.
 %
-% Y: Multivariate responses. An n by r matrix, r is the number of
+% *Y*: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
 % continuous variables, and r should be strictly greater than p.
 %
-% u: Dimension of the envelope. An integer between 0 and r.
+% *u*: Dimension of the envelope. An integer between 0 and r.
 %
-% Opts: A list containing the optional input parameter, to control the
+% *Opts*: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
 % 
 % * Opts.maxIter: Maximum number of iterations.  Default value: 300.
 % * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
 % * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
-% 0. 
+% * Opts.verbose: Flag for print out number of iterations, logical 0 or 1.
+% Default value: 0. 
 %
 %% Output
 % 
-% ModelOutput: A list that contains the maximum likelihood estimators and some
+% *ModelOutput*: A list that contains the maximum likelihood estimators and some
 % statistics.
 % 
 % * ModelOutput.beta: The scaled envelope estimator of the regression coefficients
@@ -86,16 +86,16 @@
 % The following codes produce the results of the test and performance
 % example in Cook and Su (2012).
 % 
-% load('T9-12.txt')
-% Y = T9_12(:, 4 : 7);
-% X = T9_12(:, 1 : 3);
-% u = bic_env(X, Y)
-% ModelOutput = env(X, Y, u);
-% 1 - 1 ./ ModelOutput.ratio
-% u = bic_senv(X, Y)
-% ModelOutput = senv(X, Y, u);
-% ModelOutput.Lambda
-% 1 - 1 ./ ModelOutput.ratio
+%         load('T9-12.txt')
+%         Y = T9_12(:, 4 : 7);
+%         X = T9_12(:, 1 : 3);
+%         u = bic_env(X, Y)
+%         ModelOutput = env(X, Y, u);
+%         1 - 1 ./ ModelOutput.ratio
+%         u = bic_senv(X, Y)
+%         ModelOutput = senv(X, Y, u);
+%         ModelOutput.Lambda
+%         1 - 1 ./ ModelOutput.ratio
 
 
 function ModelOutput = senv(X, Y, u, Opts)
@@ -126,6 +126,8 @@ if u < 0 || u > r
 end
 
 Opts = make_opts(Opts);
+printFlag = Opts.verbose;
+Opts.verbose = 0;
 
 if isfield(Opts, 'init')
     [r2 u2] = size(Opts.init);
@@ -216,20 +218,24 @@ else
     
     
     for i = 1 : ite
-
+        
+        if printFlag == 1
+            fprintf(['Current number of iterations ' int2str(i) '\n']);
+        end
+        
         Lambda = diag([1 d]);
-        DataParameter.Lambda = Lambda;  
-     
+        DataParameter.Lambda = Lambda;
+        
         F = make_F(@F4senv, DataParameter);
-        dF = make_dF(@dF4senv, DataParameter); 
+        dF = make_dF(@dF4senv, DataParameter);
         [l Gamma] = sg_min(F, dF, Gamma, maxIter, 'prcg', verbose, ftol, gradtol);
         
         [d l2(i)] = fminsearch(@(d) objfun(d, Gamma, DataParameter),  d);
-         
+        
         if i > 1 && abs(l2(i) - l2(i - 1)) < epsilon * abs(l2(i))
             break;
         end
-    
+        
     end
     
     Lambda = diag([1 d]);
@@ -237,9 +243,9 @@ else
     eta = Gamma' * inv(Lambda) * betaOLS;
     beta = Lambda * Gamma * eta;
     Omega = Gamma' * inv(Lambda) * sigRes * inv(Lambda) * Gamma;
-    Omega0 = Gamma0' * inv(Lambda) * sigY * inv(Lambda) * Gamma0;    
+    Omega0 = Gamma0' * inv(Lambda) * sigY * inv(Lambda) * Gamma0;
     Sigma = Lambda * (Gamma * Omega * Gamma' + Gamma0 * Omega0 * Gamma0') * Lambda;
-
+    
     eigtem = eig(sigY);
     
     ModelOutput.beta = beta;
@@ -249,12 +255,12 @@ else
     ModelOutput.Gamma0 = Gamma0;
     ModelOutput.eta = eta;
     ModelOutput.Omega = Omega;
-    ModelOutput.Omega0 = Omega0;    
+    ModelOutput.Omega0 = Omega0;
     ModelOutput.alpha = mY - beta * mX;
     ModelOutput.np = init.np + r - 1;
     ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * (l + log(prod(eigtem(eigtem > 0))));
     
-   %---compute asymptotic variance and get the ratios---
+    %---compute asymptotic variance and get the ratios---
     asyFm = kron(inv(sigX), Sigma);
     asyFm = reshape(sqrt(diag(asyFm)), r, p);
     insigma = inv(Sigma);
@@ -269,11 +275,11 @@ else
     sep4 = r - 1 + u * (r - u + p);
     sep5 = r - 1 + u * (r - u + p) + u * (u + 1) / 2;
     H = zeros(p * r + (r + 1) * r / 2, r - 1 + p * u + r * (r + 1) / 2);
-
+    
     H(1 : sep1, 1 : sep2) = kron(eta' * Gamma', eye(r)) * Lmatrix(r);
     H(1 : sep1, sep2 + 1 : sep3) = kron(eye(p), Lambda * Gamma);
     H(1 : sep1, sep3 + 1 : sep4) = kron(eta', Lambda * Gamma0);
-
+    
     H(sep1 + 1 : end, 1 : sep2) = Contr(r) * (kron(Lambda * Gamma * Omega * Gamma', eye(r)) ...
         + kron(eye(r), Lambda * Gamma * Omega * Gamma')) * Lmatrix(r) ...
         + Contr(r) * (kron(Lambda * Gamma0 * Omega0 * Gamma0', eye(r)) ...
@@ -282,8 +288,8 @@ else
         - kron(Lambda * Gamma, Lambda * Gamma0 * Omega0));
     H(sep1 + 1 : end,  sep4 + 1 : sep5) = Contr(r) * kron(Lambda * Gamma,  Lambda * Gamma) * Expan(u);
     H(sep1 + 1 : end,  sep5 + 1 : end) = Contr(r) * kron(Lambda * Gamma0,  Lambda * Gamma0) * Expan(r - u);
-
-    asyvar = H * inv(H' * J * H) * H'; 
+    
+    asyvar = H * inv(H' * J * H) * H';
     covMatrix = asyvar(1 : r * p, 1 : r * p);
     asySenv = reshape(sqrt(diag(covMatrix)), r, p);
     ModelOutput.covMatrix = covMatrix;

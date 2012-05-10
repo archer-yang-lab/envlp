@@ -5,15 +5,15 @@
 %  the heteroscedastic envelope model.
 
 %% Syntax
-% TestOutput = testcoefficient_henv(ModelOutput) 
-% TestOutput = testcoefficient_henv(ModelOutput, TestInput)
+%         TestOutput = testcoefficient_henv(ModelOutput) 
+%         TestOutput = testcoefficient_henv(ModelOutput, TestInput)
 % 
 %% Input
 % 
-% ModelOutput: A list containing the maximum likelihood estimators and other
+% *ModelOutput*: A list containing the maximum likelihood estimators and other
 % statistics inherted from henv.
 % 
-% TestInput: A list that specifies the null hypothesis, including L, R, and
+% *TestInput*: A list that specifies the null hypothesis, including L, R, and
 % A.  If not provided by the user, default values will be used.
 %
 % * TestInput.L: The matrix multiplied to $$\beta$ on the left.  It is a d1
@@ -28,7 +28,7 @@
 % 
 %% Output
 % 
-% TestOutput: A list containing test statistics, degrees of freedom for the
+% *TestOutput*: A list containing test statistics, degrees of freedom for the
 % reference chi-squared distribution, and the p-value.  At the same time, a
 % table is printed out.
 % 
@@ -42,21 +42,21 @@
 % L\beta R\neq A$.  The $$\beta$ is estimated by the heteroscedastic envelope model.  If
 % the user does not specify the values for L, R and A, then the test is
 % equivalent to the standard F test on if all the main group effects are 0.  The test statistics
-% used is (vec $$(L\beta R - A)$ $$\hat{\Sigma}^{-1}$ vec $$(L\beta R - A)^{T}$,
+% used is vec $$(L\beta R - A)$ $$\hat{\Sigma}^{-1}$ vec $$(L\beta R - A)^{T}$,
 % and the reference distribution is chi-squared distribution with degrees of
 % freedom d1 * d2. 
 
 %% Example
-% load waterstrider.mat
-% u = lrt_henv(X, Y, 0.01)
-% ModelOutput = henv(X, Y, u)
-% TestOutout = testcoefficient_henv(ModelOutput);
-% r = size(Y, 2);
-% p = size(ModelOutput.beta, 2);
-% TestInput.L = rand(2, r);
-% TestInput.R = rand(p, 1);
-% TestInput.A = zeros(2, 1);
-% TestOutout = testcoefficient_henv(ModelOutput, TestInput); 
+%         load waterstrider.mat
+%         u = lrt_henv(X, Y, 0.01)
+%         ModelOutput = henv(X, Y, u)
+%         TestOutout = testcoefficient_henv(ModelOutput);
+%         r = size(Y, 2);
+%         p = size(ModelOutput.beta, 2);
+%         TestInput.L = rand(2, r);
+%         TestInput.R = rand(p, 1);
+%         TestInput.A = zeros(2, 1);
+%         TestOutout = testcoefficient_henv(ModelOutput, TestInput); 
 
 function TestOutput = testcoefficient_henv(ModelOutput, TestInput)
 

@@ -2,33 +2,33 @@
 % Fit the envelope model for the reduction on X.
 
 %% Syntax
-% ModelOutput = xenv(X, Y, u)
-% ModelOutput = xenv(X, Y, u, Opts)
+%         ModelOutput = xenv(X, Y, u)
+%         ModelOutput = xenv(X, Y, u, Opts)
 %
 %% Input
 %
-% X: Predictors. An n by p matrix, p is the number of predictors. The
+% *X*: Predictors. An n by p matrix, p is the number of predictors. The
 % predictors can be univariate or multivariate, discrete or continuous.
 %
-% Y: Multivariate responses. An n by r matrix, r is the number of
+% *Y*: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
 % continuous variables, and r should be strictly greater than p.
 %
-% u: Dimension of the envelope. An integer between 0 and p.
+% *u*: Dimension of the envelope. An integer between 0 and p.
 %
-% Opts: A list containing the optional input parameter, to control the
+% *Opts*: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
 % 
 % * Opts.maxIter: Maximum number of iterations.  Default value: 300.
 % * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
 % * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
-% 0. 
+% * Opts.verbose: Flag for print out Grassmann manifold optimization 
+% process, logical 0 or 1. Default value: 0.
 %
 %% Output
 % 
-% ModelOutput: A list that contains the maximum likelihood estimators and some
+% *ModelOutput*: A list that contains the maximum likelihood estimators and some
 % statistics.
 % 
 % * ModelOutput.beta: The envelope estimator of the regression coefficients $$\beta$. 
@@ -80,31 +80,31 @@
 
 %% Example
 %
-% load wheatprotein.txt
-% X = wheatprotein(:, 1 : 6);
-% Y = wheatprotein(:, 7);
-% ModelOutput = xenv(X, Y, 0);
+%         load wheatprotein.txt
+%         X = wheatprotein(:, 1 : 6);
+%         Y = wheatprotein(:, 7);
+%         ModelOutput = xenv(X, Y, 0);
 % 
-% p = size(X, 2);
-% ModelOutput = xenv(X, Y, p);
+%         p = size(X, 2);
+%         ModelOutput = xenv(X, Y, p);
 % 
-% % When u = p, the envelope model reduces to the ordinary least squares
-% % regression
+%         % When u = p, the envelope model reduces to the ordinary least squares
+%         % regression
 % 
-% temp = fit_OLS(X, Y);
-% temp.SigmaOLS
-% ModelOutput.sigYcX
-% temp.betaOLS'
-% ModelOutput.beta
+%         temp = fit_OLS(X, Y);
+%         temp.SigmaOLS
+%         ModelOutput.sigYcX
+%         temp.betaOLS'
+%         ModelOutput.beta
 % 
-% ModelOutput = xenv(X, Y, 5);
+%         ModelOutput = xenv(X, Y, 5);
 % 
-% %  To compare with the results obtained by Partial Least Squares, use the
-% %  command 
-% % [XL, YL, XS, YS, BETA, PCTVAR, MSE, stats] = plsregress(X,Y,5);
-% % ModelOutput.beta
-% % ModelOutput.mu
-% % BETA
+%         %  To compare with the results obtained by Partial Least Squares, use the
+%         %  command 
+%         % [XL, YL, XS, YS, BETA, PCTVAR, MSE, stats] = plsregress(X,Y,5);
+%         % ModelOutput.beta
+%         % ModelOutput.mu
+%         % BETA
 
 function ModelOutput = xenv(X, Y, u, Opts)
 
