@@ -4,7 +4,7 @@
 %% Syntax
 % WInit = get_Init(X, Y, u, DataParameter)
 %
-% Input
+%% Input
 %
 % * X: Predictors. An n by p matrix, p is the number of predictors. 
 % * Y: Multivariate responses. An n by r matrix, r is the number of
@@ -13,7 +13,7 @@
 % * DataParameter: A list containing commonly used statistics computed from
 % the data.
 %
-% Output
+%% Output
 %
 % * WInit: The initial estimate of the orthogonal basis of the envelope
 % subspace. An r by u orthogonal matrix.

@@ -4,13 +4,13 @@
 %% Syntax
 % dF = make_dF(dfun_method_handle, FParameters)
 % 
-% Input
+%% Input
 %
 % * dfun_method_handle: A specific model derivative function of the objective function.
 % * FParameters: A structure that contains data parameters as input for
 % the function dfun_method_handle.
 %
-% Output
+%% Output
 %
 % * dF: The generic derivative function of the objective function for computing the envelope subspace.
 %

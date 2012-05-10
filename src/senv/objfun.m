@@ -4,7 +4,7 @@
 %% Syntax
 % f = objfun(d, Gamma, DataParameter)
 % 
-% Input
+%% Input
 %
 % * d: An r - 1 dimensional column vector containing the scales for the 2nd
 % to the rth responses.  All the entries in d are positive.
@@ -13,7 +13,7 @@
 % * DataParameter: A structure that contains the statistics calculated form
 % the data.
 %
-% Output
+%% Output
 %
 % * f: A scalar containing the value of the objective function evaluated at d.
 

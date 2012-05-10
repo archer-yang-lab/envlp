@@ -5,7 +5,7 @@
 % ModelOutput = henv(X, Y, u)
 % ModelOutput = henv(X, Y, u, Opts)
 %
-% Input
+%% Input
 %
 % X: Group indicators. A matrix with n rows.  X can only have p unique
 %  rows, where p is the number of groups. For example, if there 
@@ -29,7 +29,7 @@
 % * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
 % 0.
 %
-% Output
+%% Output
 % 
 % ModelOutput: A list that contains the maximum likelihood estimators and some
 % statistics.

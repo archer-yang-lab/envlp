@@ -6,7 +6,7 @@
 % u = bic_ienv(X, Y)
 % u = bic_ienv(X, Y, Opts)
 %
-% Input
+%% Input
 %
 % * X: Predictors. An n by p matrix, p is the number of predictors and n 
 % is the number of observations. The predictors can be univariate or 
@@ -17,7 +17,7 @@
 % fields are not defined, the default settings (see make_opts documentation) 
 % are used.
 %
-% Output
+%% Output
 %
 % * u: Dimension of the inner envelope. An integer between 0 and p or equal
 % to r.

@@ -5,13 +5,13 @@
 %% Syntax
 % f = F4henv(R, DataParameter)
 % 
-% Input
+%% Input
 %
 % * R: An r by u semi orthogonal matrix, 0<u<=r.
 % * DataParameter: A structure that contains the statistics calculated from
 % the data.
 %
-% Output
+%% Output
 %
 % * f: A scalar containing the value of the objective function evaluated at
 % R.

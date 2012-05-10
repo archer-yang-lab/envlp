@@ -5,7 +5,7 @@
 % bootse = bstrp_penv(X, Y, u, B)
 % bootse = bstrp_penv(X, Y, u, B, Opts)
 %
-% Input
+%% Input
 %
 % X: A list containing the value of X1 and X2.
 % 
@@ -33,7 +33,7 @@
 % * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
 % 0.
 %
-% Output
+%% Output
 %
 % bootse: The standard error for elements in $$\beta_1$ computed by
 % bootstrap.  An r by p1 matrix.

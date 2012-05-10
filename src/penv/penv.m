@@ -5,7 +5,7 @@
 % ModelOutput = penv(X, Y, u)
 % ModelOutput = penv(X, Y, u, Opts)
 %
-% Input
+%% Input
 %
 % X: A list containing the value of X1 and X2.
 % 
@@ -31,7 +31,7 @@
 % * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
 % 0.
 %
-% Output
+%% Output
 % 
 % ModelOutput: A list that contains the maximum likelihood estimators and some
 % statistics.

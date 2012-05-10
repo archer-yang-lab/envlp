@@ -4,12 +4,12 @@
 %% Syntax
 % k = Kpd(p, d)
 %
-% Input
+%% Input
 %
 % * p and d are two positive integers represent the dimension parameters
 % for the communication matrix.
 %
-% Output
+%% Output
 %
 % * k: The communication matrix Kpd. An p * d by p * d matrix.
 

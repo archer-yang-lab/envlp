@@ -5,7 +5,7 @@
 % bootse = bootstrapse(X, Y, u, B, modelType)
 % bootse = bootstrapse(X, Y, u, B, modelType, Opts)
 % 
-% Input
+%% Input
 %
 % X: Predictors.   The predictors can be univariate or multivariate, 
 % discrete or continuous.  
@@ -44,7 +44,7 @@
 % * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
 % 0.
 %
-% Output
+%% Output
 %
 % bootse: For 'env', 'henv', 'ienv', 'senv' and 'xenv', an r by p matrix 
 % containing the standard errors for elements in $$\beta$ computed by

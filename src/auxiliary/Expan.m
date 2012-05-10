@@ -4,11 +4,11 @@
 %% Syntax
 % E = Expan(r)
 %
-% Input
+%% Input
 %
 % * r: Dimension of the expansion matrix.  A positive integer.
 % 
-% Output
+%% Output
 %
 % * E: Expansion matrix of dimension r.  E is an r ^ 2 by r(r + 1) / 2 matrix.
  

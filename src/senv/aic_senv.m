@@ -6,7 +6,7 @@
 % u = aic_senv(X, Y)
 % u = aic_senv(X, Y, Opts)
 %
-% Input
+%% Input
 %
 % X: Predictors. An n by p matrix, p is the number of predictors and n 
 % is the number of observations. The predictors can be univariate or 
@@ -25,7 +25,7 @@
 % * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
 % 0. 
 %
-% Output
+%% Output
 %
 % u: Dimension of the inner envelope. An integer between 0 and r.
 % 

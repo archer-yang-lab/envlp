@@ -5,7 +5,7 @@
 % bootse = bstrp_xenv(X, Y, u, B)
 % bootse = bstrp_xenv(X, Y, u, B, Opts)
 %
-% Input
+%% Input
 %
 % * X: Predictors, an n by p matrix, p is the number of predictors.  The
 % predictors can be univariate or multivariate, discrete or continuous.
@@ -18,7 +18,7 @@
 % fields are not defined, the default settings (see make_opts documentation) 
 % are used.
 %
-% Output
+%% Output
 %
 % * bootse: The standard error for elements in $$\beta$ computed by
 % bootstrap.  An p by r matrix.

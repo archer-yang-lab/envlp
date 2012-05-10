@@ -6,7 +6,7 @@
 % u = modelselectlrt(X, Y, alpha, modelType)
 % u = modelselectlrt(X, Y, alpha, modelType, Opts)
 % 
-% Input
+%% Input
 %
 % X: Predictors.   The predictors can be univariate or multivariate, 
 % discrete or continuous.  
@@ -43,7 +43,7 @@
 % * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
 % 0.
 %
-% Output
+%% Output
 %
 % u: Dimension of the envelope. An integer between 0 and r.
 

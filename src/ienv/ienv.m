@@ -5,7 +5,7 @@
 % ModelOutput = ienv(X, Y, u)
 % ModelOutput = ienv(X, Y, u, Opts)
 %
-% Input
+%% Input
 %
 % X: Predictors. An n by p matrix, p is the number of predictors. The
 % predictors can be univariate or multivariate, discrete or continuous.
@@ -27,7 +27,7 @@
 % * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
 % 0.
 %
-% Output
+%% Output
 % 
 % ModelOutput: A list that contains the maximum likelihood estimators and some
 % statistics.

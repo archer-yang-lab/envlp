@@ -5,7 +5,7 @@
 % PredictOutput = prediction(ModelOutput, Xnew, infType, modelType)
 % PredictOutput = prediction(ModelOutput, Xnew, infType, modelType, Opts)
 % 
-% Input
+%% Input
 %
 % ModelOutput: A list containing the model outputs from fitting the models.
 %
@@ -35,7 +35,7 @@
 % * Opts.verbose: Flag for print out output, logical 0 or 1. Default value:
 % 0.
 %
-% Output
+%% Output
 %
 % PredictOutput: A list containing the results of the inference.
 %
