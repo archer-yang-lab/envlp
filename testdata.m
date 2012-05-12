@@ -59,9 +59,9 @@ u=aic_env(X,Y)
 
 %-----Test partial envelope model-----
 
-load T7-7.dat
-Y=T7_7(:,1:4);
-X=T7_7(:,5:7);
+load fiberpaper.dat
+Y=fiberpaper(:,1:4);
+X=fiberpaper(:,5:7);
 X1=X(:,3);
 X2=X(:,1:2);
 alpha=0.01;

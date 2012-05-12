@@ -66,9 +66,9 @@
 %         modelType = 'env';
 %         bootse = bootstrapse(X, Y, u, B, modelType)
 % 
-%         load T7-7.dat
-%         Y = T7_7(:, 1 : 4);
-%         Xtemp = T7_7(:, 5 : 7);
+%         load fiberpaper.dat
+%         Y = fiberpaper(:, 1 : 4);
+%         Xtemp = fiberpaper(:, 5 : 7);
 %         X.X1 = Xtemp(:, 3);
 %         X.X2 = Xtemp(:, 1 : 2);
 %         alpha = 0.01;
