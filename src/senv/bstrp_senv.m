@@ -39,9 +39,9 @@
 
 %% Example
 %
-%         load('T9-12.txt')
-%         Y = T9_12(:, 4 : 7);
-%         X = T9_12(:, 1 : 3);
+%         load('sales.txt')
+%         Y = sales(:, 4 : 7);
+%         X = sales(:, 1 : 3);
 % 
 %         u = bic_ienv(X, Y)
 %         B = 20;

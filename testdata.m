@@ -168,9 +168,9 @@ B=5;
 bootse=bstrp_senv(X,Y,u,B)
 
 
-load('T9-12.txt')
-Y=T9_12(:,4:7);
-X=T9_12(:,1:3);
+load('sales.txt')
+Y=sales(:,4:7);
+X=sales(:,1:3);
 u=bic_env(X,Y)
 ModelOutput=env(X,Y,u);
 1-1./ModelOutput.ratio

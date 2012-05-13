@@ -2276,7 +2276,7 @@ This function implements the Akaike information criteria (AIC) to select the dim
 \subsection*{Example}
 
 \begin{par}
-load('T9-12.txt')\\
+load('sales.txt')\\
 Y=T9\_12(:,4:7);\\
 X=T9\_12(:,1:3);\\
 u=aic\_senv(X,Y)
@@ -2339,7 +2339,7 @@ This function implements the Bayesian information criteria (BIC) to select the d
 \subsection*{Example}
 
 \begin{par}
-load('T9-12.txt')\\
+load('sales.txt')\\
 Y=T9\_12(:,4:7);\\
 X=T9\_12(:,1:3);\\
 u=bic\_senv(X,Y)
@@ -2401,7 +2401,7 @@ This function computes the bootstrap standard errors for the regression coeffici
 \subsection*{Example}
 
 \begin{par}
-load('T9-12.txt')\\
+load('sales.txt')\\
 Y=T9\_12(:,4:7);\\
 X=T9\_12(:,1:3);\\
 u=bic\_ienv(X,Y)\\
@@ -2647,7 +2647,7 @@ This function fits the scaled envelope model to the responses and predictors, us
 The following codes produce the results of the test and performance
 example in Cook and Su (2012). \vspace{1em}
 
-load('T9-12.txt')\\
+load('sales.txt')\\
 Y=T9\_12(:,4:7);\\
 X=T9\_12(:,1:3);\\
 u=bic\_env(X,Y)\\

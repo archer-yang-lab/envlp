@@ -47,10 +47,12 @@
 %         X = wheatprotein(:, 8);
 %         Y = wheatprotein(:, 1:6);
 %         modelType = 'env';
-%         u =  modelselectbic(X, Y, modelType)
+%         u =  modelselectbic(X, Y, modelType);
 %         ModelOutput = env(X, Y, u);
 %         Xnew = X(2, :)';
 %         PredictOutput = predict_env(ModelOutput, Xnew, 'estimation')
+%         PredictOutput.value
+%         Y(2, :)'
 % 
 %         load fiberpaper.dat
 %         Y = fiberpaper(:, 1 : 4);
@@ -58,11 +60,12 @@
 %         X.X1 = Xtemp(:, 3);
 %         X.X2 = Xtemp(:, 1 : 2);
 %         modelType = 'penv';
-%         u =  modelselectbic(X, Y, modelType)
+%         u =  modelselectbic(X, Y, modelType);
 %         ModelOutput = penv(X, Y, u)
 %         Xnew.X1 = X.X1(1, :)';
 %         Xnew.X2 = X.X2(1, :)';
 %         PredictOutput = predict_penv(ModelOutput, Xnew, 'estimation')
+%         PredictOutput.SE
 % 
 
 function PredictOutput = prediction(ModelOutput, Xnew, infType, modelType)
