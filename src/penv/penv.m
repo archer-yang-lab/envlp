@@ -184,24 +184,9 @@ if u > 0 && u < r
     Omega0 = temp.Omega0;
     Sigma1 = Gamma * Omega * Gamma';
     Sigma = temp.Sigma;
-    
-    
-    ModelOutput.beta1 = beta1;
-    ModelOutput.Gamma = Gamma;
-    ModelOutput.eta = eta;
-    ModelOutput.Omega = Omega;
-    ModelOutput.Omega0 = Omega0;
-    ModelOutput.Sigma = Sigma;
-    ModelOutput.l = temp.l; 
-    
-
-    %---Compute the rest in output---
     beta2 = (YC - X1C * beta1')' * X2C * inv(X2C' * X2C);
     alpha = mean(Y)' - beta1 * mean(X1)' - beta2 * mean(X2)';
     
-    ModelOutput.beta2 = beta2;    
-    ModelOutput.alpha = alpha;
-    ModelOutput.np = r + u * p1 + r * p2 + r * (r + 1) / 2;
     
     %---compute asymptotic variance and get the ratios---
     Sig1G2 = SX1 - SX12 * inv(SX2) * SX12';
@@ -240,6 +225,16 @@ if u > 0 && u < r
     covMatrix = H * inv(H' * J * H) * H';
     covMatrix = covMatrix(1 : r * p, 1 : r * p);
     
+    ModelOutput.beta1 = beta1;
+    ModelOutput.beta2 = beta2;    
+    ModelOutput.alpha = alpha;
+    ModelOutput.Gamma = Gamma;
+    ModelOutput.eta = eta;
+    ModelOutput.Omega = Omega;
+    ModelOutput.Omega0 = Omega0;
+    ModelOutput.Sigma = Sigma;
+    ModelOutput.l = temp.l; 
+    ModelOutput.np = r + u * p1 + r * p2 + r * (r + 1) / 2;
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyPenv = asyPenv;
     ModelOutput.ratio = asyFm ./ asyPenv;
