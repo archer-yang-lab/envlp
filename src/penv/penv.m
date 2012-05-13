@@ -186,7 +186,7 @@ if u > 0 && u < r
     Sigma = temp.Sigma;
     beta2 = (YC - X1C * beta1')' * X2C * inv(X2C' * X2C);
     alpha = mean(Y)' - beta1 * mean(X1)' - beta2 * mean(X2)';
-    
+    maxl = temp.l;
     
     %---compute asymptotic variance and get the ratios---
     Sig1G2 = SX1 - SX12 * inv(SX2) * SX12';
@@ -233,7 +233,7 @@ if u > 0 && u < r
     ModelOutput.Omega = Omega;
     ModelOutput.Omega0 = Omega0;
     ModelOutput.Sigma = Sigma;
-    ModelOutput.l = temp.l; 
+    ModelOutput.l = maxl; 
     ModelOutput.np = r + u * p1 + r * p2 + r * (r + 1) / 2;
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyPenv = asyPenv;
