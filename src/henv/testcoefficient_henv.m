@@ -32,7 +32,7 @@
 % reference chi-squared distribution, and the p-value.  At the same time, a
 % table is printed out.
 % 
-% * TestOutput.testStatistic: The test statistics. A real number. 
+% * TestOutput.chisqStatistic: The test statistics. A real number. 
 % * TestOutput.df: The degrees of freedom of the reference chi-squared
 % distribution.  A positive integer.
 % * TestOutput.pValue: p-value of the test.  A real number in [0, 1].
@@ -48,8 +48,8 @@
 
 %% Example
 %         load waterstrider.mat
-%         u = lrt_henv(X, Y, 0.01)
-%         ModelOutput = henv(X, Y, u)
+%         u = lrt_henv(X, Y, 0.01);
+%         ModelOutput = henv(X, Y, u);
 %         TestOutout = testcoefficient_henv(ModelOutput);
 %         r = size(Y, 2);
 %         p = size(ModelOutput.beta, 2);
@@ -119,16 +119,16 @@ multiplier = diag(kron(1./sqrt(ng), ones(r, 1)));
 Sigma = kron(R', L) * multiplier * covMatrix * multiplier * kron(R, L');
 temp = reshape(L * beta * R - A, 1, Ls1 * Rs2);
 
-testStatistic = temp * inv(Sigma) * temp';
+chisqStatistic = temp * inv(Sigma) * temp';
 df = Ls1 * Rs2;
-pValue = 1 - chi2cdf(testStatistic, df);
+pValue = 1 - chi2cdf(chisqStatistic, df);
 
-TestOutput.testStatistic = testStatistic;
+TestOutput.chisqStatistic = chisqStatistic;
 TestOutput.df = df;
 TestOutput.pValue = pValue;
 
 
-fprintf('\nTest Hypothesis     Test Statistics    Degrees of Freedom     P-value\n') ;
+fprintf('\nTest Hypothesis     Chisq Statistic    DF     P-value\n') ;
 fprintf('----------------------------------------------------------------------\n') ;
-fprintf('%s %13.3f   %15d  %19.4f\n', 'L * beta * R = A', testStatistic, df, pValue);
+fprintf('%s %15.3f   %6d  %10.4f\n', 'L * beta * R = A', chisqStatistic, df, pValue);
 fprintf('----------------------------------------------------------------------\n') ;

@@ -31,7 +31,7 @@
 % reference chi-squared distribution, and the p-value.  At the same time, a
 % table is printed out.
 % 
-% * TestOutput.testStatistic: The test statistics. A real number. 
+% * TestOutput.chisqStatistic: The test statistics. A real number. 
 % * TestOutput.df: The degrees of freedom of the reference chi-squared
 % distribution.  A positive integer.
 % * TestOutput.pValue: p-value of the test.  A real number in [0, 1].
@@ -118,16 +118,16 @@ n = ModelOutput.n;
 Sigma = kron(R', L) * covMatrix * kron(R, L') / n;
 temp = reshape(L * beta * R - A, 1, Ls1 * Rs2);
 
-testStatistic = temp * inv(Sigma) * temp';
+chisqStatistic = temp * inv(Sigma) * temp';
 df = Ls1 * Rs2;
-pValue = 1 - chi2cdf(testStatistic, df);
+pValue = 1 - chi2cdf(chisqStatistic, df);
 
-TestOutput.testStatistic = testStatistic;
+TestOutput.chisqStatistic = chisqStatistic;
 TestOutput.df = df;
 TestOutput.pValue = pValue;
 
 
-fprintf('\n Test Hypothesis     Test Statistics    Degrees of Freedom     P-value\n') ;
+fprintf('\n Test Hypothesis     Chisq Statistic    DF     P-value\n') ;
 fprintf('----------------------------------------------------------------------\n') ;
-fprintf('%s %13.3f   %15d  %19.4f\n', 'L * beta * R = A', testStatistic, df, pValue);
+fprintf('%s %15.3f   %6d  %10.4f\n', 'L * beta * R = A', chisqStatistic, df, pValue);
 fprintf('----------------------------------------------------------------------\n') ;
