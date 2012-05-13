@@ -315,7 +315,7 @@ for count=1:100
     % Fit and check
     ModelOutput=env(X,Y,u);
     TestOutput = testcoefficient_env(ModelOutput,TestInput);
-    results(count)=TestOutput.testStatistic;
+    results(count)=TestOutput.chisqStatistic;
 end
 
 results=sort(results);

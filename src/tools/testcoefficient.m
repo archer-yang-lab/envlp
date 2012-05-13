@@ -35,7 +35,7 @@
 % reference chi-squared distribution, and the p-value.  At the same time, a
 % table is printed out.
 % 
-% * TestOutput.testStatistic: The test statistics. A real number. 
+% * TestOutput.chisqStatistic: The test statistics. A real number. 
 % * TestOutput.df: The degrees of freedom of the reference chi-squared
 % distribution.  A positive integer.
 % * TestOutput.pValue: p-value of the test.  A real number in [0, 1].
