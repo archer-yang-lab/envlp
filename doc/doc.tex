@@ -829,8 +829,6 @@ L * beta * R = A          12.598        2      0.0018
 
 \part{env}
     
-
- 
 \section{aic\_env}
 
 \begin{par}
@@ -841,32 +839,46 @@ Select the dimension of the envelope subspace using Akaike information criterion
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = aic_env(X, Y)
+       u = aic_env(X, Y, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-u=aic\_env(X,Y)
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item u: Dimension of the envelope. An integer between 0 and r.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -878,17 +890,22 @@ This function implements the Akaike information criteria (AIC) to select the dim
 
 \subsection*{Example}
 
-\begin{par}
-load wheatprotein.txt \\
-X=wheatprotein(:,8); \\
-Y=wheatprotein(:,1:6); \\
-u=aic\_env(X,Y)
-\end{par} \vspace{1em}
 
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1:6);
+       u = aic_env(X, Y)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+u =
+
+     1
+
+\end{verbatim} \color{black}
+    
+ 
 
 \newpage
-
-
 
 \section{bic\_env}
 
@@ -900,32 +917,46 @@ Select the dimension of the envelope subspace using Bayesian information criteri
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = bic_env(X, Y)
+       u = bic_env(X, Y, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-u=bic\_env(X,Y)
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is the number of observations. The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors. An n by p matrix, p is the number of predictors and n is the number of observations. The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses. The responses must be continuous variables.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item u: Dimension of the envelope. An integer between 0 and r.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -934,22 +965,25 @@ Output
 This function implements the Bayesian information criteria (BIC) to select the dimension of the envelope subspace.
 \end{par} \vspace{1em}
 
+
 \subsection*{Example}
 
-\begin{par}
-load wheatprotein.txt \\
-X=wheatprotein(:,8); \\
-Y=wheatprotein(:,1:6); \\
-u=bic\_env(X,Y)
-\end{par} \vspace{1em}
 
-\newpage
-
-
-
-
-   
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1:6);
+       u = bic_env(X, Y)\end{verbatim}
     
+        \color{lightgray} \begin{verbatim}
+u =
+
+     1
+
+\end{verbatim} \color{black}
+ 
+ 
+ \newpage
+
 \section{bstrp\_env}
 
 \begin{par}
@@ -960,34 +994,52 @@ Compute bootstrap standard error for the envelope model.
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       bootse = bstrp_env(X, Y, u, B)
+       bootse = bstrp_env(X, Y, u, B, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-bootse=bstrp\_env(X,Y,B,u)
+\textbf{X}: Predictors, an n by p matrix, p is the number of predictors.  The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope subspace.  A positive integer between 0 and r.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{B}: Number of bootstrap samples.  A positive integer.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors, an n by p matrix, p is the number of predictors.  The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
-   \item B: Number of boostrap samples.  A positive integer.
-   \item u: Dimension of the envelope subspace.  A positive integer between 0 and r.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{bootse}: The standard error for elements in $\beta$ computed by bootstrap.  An r by p matrix.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item bootse: The standard error for elements in $\beta$ computed by bootstrap.  An r by p matrix.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -999,58 +1051,78 @@ This function computes the bootstrap standard errors for the regression coeffici
 
 \subsection*{Example}
 
-\begin{par}
-load wheatprotein.txt\\
-X=wheatprotein(:,8);\\
-Y=wheatprotein(:,1:6);\\
-alpha=0.01;\\
-u=lrt\_env(Y,X,alpha)\\
-B=100;\\
-bootse=bstrp\_env(X,Y,B,u)\\
-\end{par} \vspace{1em}
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1:6);
+       alpha = 0.01;
+       u = lrt_env(X, Y, alpha)
+\end{verbatim} \color{black}
+\color{lightgray} \begin{verbatim}
+u =
+
+     1
+\end{verbatim} \color{black}
+        \begin{verbatim}
+       B = 100;
+       bootse = bstrp_env(X, Y, u, B)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+
+bootse =
+
+    0.2893
+    0.4260
+    0.3523
+    0.5628
+    0.1675
+    0.6192
+
+\end{verbatim} \color{black}
+    
 
 
 \newpage
 
 
-
-
-    
 \section{dF4env}
 
 \begin{par}
-The first derivative of the objective funtion for computing the envelope subspace.
+The first derivative of the objective function for computing the envelope subspace.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       df = dF4env(R, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-df = dF4env(R,DataParameter)
+\textbf{R}: An r by u semi orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}=r.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{DataParameter}: A structure that contains the statistics calculated from the data.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item R: An r by u semi orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}=r.
-   \item DataParameter: A structure that contains the statistics calculated form the data.
-\end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{df}: An r by u matrix containing the value of the derivative function evaluated at R.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item df: An r by u containing the value of the derivative function evaluated at R.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -1058,7 +1130,6 @@ Output
 \begin{par}
 The objective function is derived in Section 4.3 in Cook et al. (2010) by  using maximum likelihood estimation. This function is the derivative of  the objective function.
 \end{par} \vspace{1em}
-
 
 
 \newpage
@@ -1075,64 +1146,83 @@ Fit the envelope model.
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item References
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       ModelOutput = env(X, Y, u)
+       ModelOutput = env(X, Y, u, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-stat=env(X,Y,u)
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
-   \item u: Dimension of the envelope. An integer between 0 and r.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
-\end{par} \vspace{1em}
-\begin{par}
-stat: A list that contains the maximum likelihood estimators and some statistics.
+\textbf{ModelOutput}: A list that contains the maximum likelihood estimators and some statistics.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item stat.beta: The envelope estimator of the regression coefficients $\beta$. An r by p matrix.
-   \item stat.Sigma: The envelope estimator of the error covariance matrix.  An r by r matrix.
-   \item stat.Gamma: The orthogonal basis of the envelope subspace. An r by u semi-orthogonal matrix.
-   \item stat.Gamma0: The orthogonal basis of the complement of the envelope subspace.  An r by r-u semi-orthogonal matrix.
-   \item stat.eta: The coordinates of $\beta$ with respect to Gamma. An u by p matrix.
-   \item stat.Omega: The coordinates of Sigma with respect to Gamma. An u by u matrix.
-   \item stat.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u matrix.
-   \item stat.alpha: The estimated intercept in the envelope model.  An r by 1 vector.
-   \item stat.l: The maximized log likelihood function.  A real number.
-   \item stat.asyEnv: Asymptotic standard error for elements in $\beta$ under the envelope model.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
-   \item stat.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the envelope estimator, for each element in $\beta$.  An r by p matrix.
-   \item stat.np: The number of parameters in the envelope model.  A positive integer.
+   \item ModelOutput.beta: The envelope estimator of the regression coefficients $\beta$. An r by p matrix.
+   \item ModelOutput.Sigma: The envelope estimator of the error covariance matrix.  An r by r matrix.
+   \item ModelOutput.Gamma: The orthogonal basis of the envelope subspace. An r by u semi-orthogonal matrix.
+   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  An r by r-u semi-orthogonal matrix.
+   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. An u by p matrix.
+   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u matrix.
+   \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u matrix.
+   \item ModelOutput.alpha: The estimated intercept in the envelope model.  An r by 1 vector.
+   \item ModelOutput.l: The maximized log likelihood function.  A real number.
+   \item ModelOutput.covMatrix: The asymptotic covariance of vec($\beta$).  An rp by rp matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1/n.
+   \item ModelOutput.asyEnv: The asymptotic standard error for elements in $\beta$ under the envelope model.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
+   \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the envelope estimator, for each element in $\beta$.  An r by p matrix.
+   \item ModelOutput.np: The number of parameters in the envelope model.  A positive integer.
+   \item ModelOutput.n: The number of observations in the data.  A positive integer.
 \end{itemize}
 
 
 \subsection*{Description}
 
 \begin{par}
-This function fits the envelope model to the responses and predictors, using the maximum likehood estimation.  When the dimension of the envelope is between 1 and r-1, we implemented the algorithm in Cook et al. (2010).  When the dimension is r, then the envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
+This function fits the envelope model to the responses and predictors, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and r-1, we implemented the algorithm in Cook et al. (2010).  When the dimension is r, then the envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
 \end{par} \vspace{1em}
 
 
 \subsection*{References}
 
-\begin{itemize}
+\begin{enumerate}
 \setlength{\itemsep}{-1ex}
    \item The codes is implemented based on the algorithm in Section 4.3 of Cook et al (2010).
    \item The Grassmann manifold optimization step calls the package sg\_min 2.4.1 by Ross Lippert (http://web.mit.edu/$\sim$ripper/www.sgmin.html).
-\end{itemize}
+\end{enumerate}
 
 
 \subsection*{Example}
@@ -1140,59 +1230,124 @@ This function fits the envelope model to the responses and predictors, using the
 \begin{par}
 The following codes will reconstruct the results in the wheat protein data example in Cook et al. (2010).
 \end{par} \vspace{1em}
-\begin{par}
-load wheatprotein.txt \\
-X=wheatprotein(:,8); \\
-Y=wheatprotein(:,1:6);\\
- alpha=0.01; \\
- u=lrt\_env(Y,X,alpha) \\
- stat=env(X,Y,u) \\
- stat.Omega\\
-  eig(stat.Omega0)\\
-   stat.ratio
-\end{par} \vspace{1em}
 
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1:6);
+       alpha = 0.01;
+       u = lrt_env(X, Y, alpha)
+\end{verbatim}    
+        \color{lightgray} \begin{verbatim}
+u =
 
+     1
+\end{verbatim} \color{black}
+       \begin{verbatim}
+       ModelOutput = env(X, Y, u)
+\end{verbatim}    
+
+        \color{lightgray} \begin{verbatim}
+
+ModelOutput = 
+
+         beta: [6x1 double]
+        Sigma: [6x6 double]
+        Gamma: [6x1 double]
+       Gamma0: [6x5 double]
+          eta: 8.5647
+        Omega: 7.8762
+       Omega0: [5x5 double]
+        alpha: [6x1 double]
+            l: -850.7592
+    covMatrix: [6x6 double]
+       asyEnv: [6x1 double]
+        ratio: [6x1 double]
+           np: 28
+            n: 50
+\end{verbatim} \color{black}
+\begin{verbatim}
+       ModelOutput.Omega
+       \end{verbatim}
+
+        \color{lightgray} \begin{verbatim}
+
+ans =
+
+    7.8762
+\end{verbatim} \color{black}
+\begin{verbatim}
+       eig(ModelOutput.Omega0)
+       \end{verbatim}
+        \color{lightgray} \begin{verbatim}
+
+ans =
+
+   1.0e+03 *
+
+    6.5166
+    0.2083
+    0.0201
+    0.0004
+    0.0003
+
+\end{verbatim} \color{black}
+\begin{verbatim}
+       ModelOutput.ratio
+       \end{verbatim}
+        \color{lightgray} \begin{verbatim}
+
+ans =
+
+   28.0945
+   18.4326
+   23.6384
+   16.3211
+   65.8245
+    6.4668
+
+\end{verbatim} \color{black}
 
 \newpage
-
 
 
 \section{F4env}
 
 \begin{par}
-Objective funtion for computing the envelope subspace.
+Objective function for computing the envelope subspace.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       f = F4env(R, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-f = F4env(R,DataParameter)
+\textbf{R}: An r by u semi orthogonal matrix, 0 \ensuremath{<} u \ensuremath{<}= r.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{DataParameter}: A structure that contains the statistics calculated from the data.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item R: An r by u semi orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}=r.
-   \item DataParameter: A structure that contains the statistics calculated form the data.
-\end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{f}: A scalar containing the value of the objective function evaluated at R.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item f: A scalar containing the value of the objective function evaluated at R.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -1201,14 +1356,8 @@ Output
 The objective function is derived in Section 4.3 of Cook et al. (2010)  using maximum likelihood estimation. The columns of the semi-orthogonal matrix that minimizes this function span the estimated envelope subspace.
 \end{par} \vspace{1em}
 
-
-
 \newpage
 
-
-
-
-    
 \section{lrt\_env}
 
 \begin{par}
@@ -1219,55 +1368,304 @@ Select the dimension of the envelope subspace using likelihood ratio testing.
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = lrt_env(X, Y, alpha)
+       u = lrt_env(X, Y, alpha, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-u=lrt\_env(X,Y,alpha)
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{alpha}: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
-   \item alpha: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements the likelihood ratio testing procedure to select the dimension of the envelope subspace, with pre-specified significance level $\alpha$.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1:6);
+       alpha = 0.01;
+       u = lrt_env(X, Y, alpha)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+u =
+
+     1
+
+\end{verbatim} \color{black}
+    
+\newpage
+
+
+\section{predict\_env}
+
+\begin{par}
+Perform estimation or prediction under the envelope model.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       PredictOutput = predict_env(ModelOutput, Xnew, infType)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{ModelOutput}: A list containing the maximum likelihood estimators and other statistics inherited from env.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Xnew}: The value of X with which to estimate or predict Y.  A p by 1 vector.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{PredictOutput}: A list containing the results of the inference.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item u: Dimension of the envelope. An integer between 0 and r.
+   \item PredictOutput.value: The fitted value or the prediction value evaluated at Xnew. An r by 1 vector.
+   \item PredictOutput.covMatrix: The covariance matrix of PredictOutput.value. An r by r matrix.
+   \item PredictOutput.SE: The standard error of elements in PredictOutput.value.  An r by 1 vector.
 \end{itemize}
 
 
 \subsection*{Description}
 
 \begin{par}
-This function implements the likelihood ratio testing procedure to select the dimension of the envelope subspace, with prespecified significance level $\alpha$.
+This function evaluates the envelope model at new value Xnew.  It can perform estimation: find the fitted value when X = Xnew, or prediction: predict Y when X = Xnew.  The covariance matrix and the standard errors are also provided.
 \end{par} \vspace{1em}
 
 
 \subsection*{Example}
 
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1:6);
+       alpha = 0.01;
+       u = lrt_env(X, Y, alpha);
+       ModelOutput = env(X, Y, u);
+       Xnew = X(2, :)';
+       PredictOutput = predict_env(ModelOutput, Xnew, 'estimation')
+       [PredictOutput.value, Y(1, :)']  % Compare the fitted value with the data
+       PredictOutput.SE
+       \end{verbatim}
+        \color{lightgray} \begin{verbatim}
+PredictOutput = 
+
+        value: [6x1 double]
+    covMatrix: [6x6 double]
+           SE: [6x1 double]
+
+
+ans =
+
+  474.7135  468.0000
+  127.4740  123.0000
+  251.2044  246.0000
+  380.8280  374.0000
+  380.9473  386.0000
+   -6.3287  -11.0000
+
+
+ans =
+
+    4.8892
+    4.0227
+    4.3237
+    4.7470
+    6.8186
+    2.6948
+\end{verbatim} \color{black}
+       \begin{verbatim}
+       PredictOutput = predict_env(ModelOutput, Xnew, 'prediction')
+       PredictOutput.SE\end{verbatim}
+            \color{lightgray} \begin{verbatim}
+PredictOutput = 
+
+        value: [6x1 double]
+    covMatrix: [6x6 double]
+           SE: [6x1 double]
+
+
+ans =
+
+  474.7135
+  127.4740
+  251.2044
+  380.8280
+  380.9473
+   -6.3287
+
+
+ans =
+
+   34.9161
+   28.7280
+   30.8775
+   33.9006
+   48.6945
+   19.2448
+\end{verbatim} \color{black}
+ 
+\newpage
+
+
+\section{testcoefficient\_env}
+
+
+\begin{verbatim}This function tests the null hypothesis L * beta * R = A versus the
+alternative hypothesis L * beta * R ~= A, where beta is estimated under
+the envelope model.\end{verbatim}
+    
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       TestOutput = testcoefficient_env(ModelOutput)
+       TestOutput = testcoefficient_env(ModelOutput, TestInput)\end{verbatim}
+    
+
+\subsection*{Input}
+
 \begin{par}
-load wheatprotein.txt \\
-X=wheatprotein(:,8); \\
-Y=wheatprotein(:,1:6); \\
-alpha=0.01; \\
-u=lrt\_env(Y,X,alpha)
+\textbf{ModelOutput}: A list containing the maximum likelihood estimators and other statistics inherited from env.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{TestInput}: A list that specifies the null hypothesis, including L, R, and A.  If not provided by the user, default values will be used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestInput.L: The matrix multiplied to $\beta$ on the left.  It is a d1 by r matrix, while d1 is less than or equal to r.  Default value: identity matrix $I_r$.
+   \item TestInput.R: The matrix multiplied to $\beta$ on the right.  It is a p by d2 matrix, while d2 is less than or equal to p.  Default value: identity matrix $I_p$.
+   \item TestInput.A: The matrix on the right hand side of the equation.  It is a d1 by d2 matrix.  Default value: d1 by d2 zero matrix.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, and the p-value.  At the same time, a table is printed out.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestOutput.chisqStatistic: The test statistics. A real number.
+   \item TestOutput.df: The degrees of freedom of the reference chi-squared distribution.  A positive integer.
+   \item TestOutput.pValue: p-value of the test.  A real number in [0, 1].
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$.  The test statistics used is vec $(L\beta R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\beta R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
 \end{par} \vspace{1em}
 
 
-\newpage
+\subsection*{Example}
 
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1:6);
+       alpha = 0.01;
+       u = lrt_env(X, Y, alpha);
+       ModelOutput = env(X, Y, u);
+       TestOutout = testcoefficient_env(ModelOutput);
+       \end{verbatim}
+        \color{lightgray} \begin{verbatim}
+ Test Hypothesis     Chisq Statistic    DF     P-value
+----------------------------------------------------------------------
+L * beta * R = A         116.230        6      0.0000
+----------------------------------------------------------------------
+\end{verbatim} \color{black}       
+\begin{verbatim}
+       r = size(Y, 2);
+       p = size(X, 2);
+       TestInput.L = rand(2, r);
+       TestInput.R = rand(p, 1);
+       TestInput.A = zeros(2, 1);
+       TestOutout = testcoefficient_senv(ModelOutput, TestInput);\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+ Test Hypothesis     Chisq Statistic    DF     P-value
+----------------------------------------------------------------------
+L * beta * R = A          61.344        2      0.0000
+----------------------------------------------------------------------
+\end{verbatim} \color{black}
+    
+\newpage
 
 \part{henv}
 

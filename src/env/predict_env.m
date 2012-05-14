@@ -7,7 +7,7 @@
 %% Input
 %
 % *ModelOutput*: A list containing the maximum likelihood estimators and other
-% statistics inherted from env.
+% statistics inherited from env.
 % 
 % *Xnew*: The value of X with which to estimate or predict Y.  A p by 1
 % vector.
@@ -42,9 +42,11 @@
 %         ModelOutput = env(X, Y, u);
 %         Xnew = X(2, :)';
 %         PredictOutput = predict_env(ModelOutput, Xnew, 'estimation')
-%         PredictOutput.value  % Compare the fitted value with the data
-%         Y(1, :)'
+%         [PredictOutput.value, Y(1, :)']  % Compare the fitted value with the data
+%         PredictOutput.SE
 %         PredictOutput = predict_env(ModelOutput, Xnew, 'prediction')
+%         PredictOutput.value
+%         PredictOutput.SE
 
 function PredictOutput = predict_env(ModelOutput, Xnew, infType)
 
