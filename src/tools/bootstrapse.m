@@ -1,5 +1,5 @@
 %% bootstrapse
-% Perform boostrap to estimate actual standard erros for models in the envelope family.
+% Perform bootstrap to estimate actual standard errors for models in the envelope family.
 %
 %% Syntax
 %         bootse = bootstrapse(X, Y, u, B, modelType)
@@ -16,7 +16,7 @@
 % 
 % For model type 'penv', X is  A list containing the value of X1 and X2.
 % 
-% * X.X1 (only for 'penv'): Predictors of main interst. An n by p1 matrix, n is the number of 
+% * X.X1 (only for 'penv'): Predictors of main interest. An n by p1 matrix, n is the number of 
 % observations, and p1 is the number of main predictors. The
 % predictors can be univariate or multivariate, discrete or continuous.
 % * X.X2 (only for 'penv'): Covariates, or predictors not of main interest.  An n by p2 matrix,
@@ -29,7 +29,7 @@
 % *u*: Dimension of the envelope subspace. The legitimate range of u depends
 % on the model specified. 
 % 
-% *B*: Number of boostrap samples.  A positive integer.
+% *B*: Number of bootstrap samples.  A positive integer.
 % 
 % *modelType*: A string characters indicting the model, choices can be 'env',
 % 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
@@ -61,7 +61,7 @@
 %         X = wheatprotein(:, 8);
 %         Y = wheatprotein(:, 1:6);
 %         alpha = 0.01;
-%         u = lrt_env(X, Y, alpha)
+%         u = lrt_env(X, Y, alpha);
 %         B = 100;
 %         modelType = 'env';
 %         bootse = bootstrapse(X, Y, u, B, modelType)

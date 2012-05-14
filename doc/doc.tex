@@ -31,9 +31,137 @@
 \newpage
 
 
-\part{Tools}
+\part{tools}
+
+\section{bootstrapse}
+
+\begin{par}
+Perform bootstrap to estimate actual standard errors for models in the envelope family.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       bootse = bootstrapse(X, Y, u, B, modelType)
+       bootse = bootstrapse(X, Y, u, B, modelType, Opts)\end{verbatim}
     
-\section{bstrp\_OLS}
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors.   The predictors can be univariate or multivariate, discrete or continuous.
+\end{par} \vspace{1em}
+\begin{par}
+For model type for method 'env', 'henv', 'ienv', ' senv', and 'xenv'. X is an n by p matrix, p is the number of predictors.
+\end{par} \vspace{1em}
+\begin{par}
+For model type 'penv', X is  A list containing the value of X1 and X2.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item X.X1 (only for 'penv'): Predictors of main interest. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
+   \item X.X2 (only for 'penv'): Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.
+\end{itemize}
+\begin{par}
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope subspace. The legitimate range of u depends on the model specified.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{B}: Number of bootstrap samples.  A positive integer.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{modelType}: A string characters indicting the model, choices can be 'env', 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+bootse: For 'env', 'henv', 'ienv', 'senv' and 'xenv', an r by p matrix containing the standard errors for elements in $\beta$ computed by bootstrap.  For 'penv', an r by p1 matrix containing the standard errors for $\beta_1$ computed by bootstrap.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function computes the bootstrap standard errors for the regression coefficients or for partial envelope model, the main regression coefficients in the specified model by bootstrapping the residuals.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1:6);
+       alpha = 0.01;
+       u = lrt_env(X, Y, alpha);
+       B = 100;
+       modelType = 'env';
+       bootse = bootstrapse(X, Y, u, B, modelType)\end{verbatim}
+        \color{lightgray} \begin{verbatim}
+bootse =
+
+    0.2896
+    0.4352
+    0.3189
+    0.5735
+    0.2543
+    0.5840
+\end{verbatim} \color{black}
+    
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       Xtemp = fiberpaper(:, 5 : 7);
+       X.X1 = Xtemp(:, 3);
+       X.X2 = Xtemp(:, 1 : 2);
+       alpha = 0.01;
+       u = lrt_penv(X, Y, alpha);
+       B = 100;
+       modelType = 'penv';
+       bootse = bootstrapse(X, Y, u, B, modelType)\end{verbatim}
+    
+
+        \color{lightgray} \begin{verbatim}
+
+
+bootse =
+
+    0.0027
+    0.0012
+    0.0020
+    0.0009
+
+\end{verbatim} \color{black}
+    
+
+\newpage
+
+\section{bootstrapse\_OLS}
 
 \begin{par}
 Compute bootstrap standard error for ordinary least squares.
@@ -43,32 +171,45 @@ Compute bootstrap standard error for ordinary least squares.
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
+   \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       bootse = bootstrapse_OLS(X, Y, B)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-bootse=bstrp\_OLS(X,Y,B)
+\textbf{X}: Predictors, an n by p matrix, p is the number of predictors.  The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{B}: Number of bootstrap samples.  A positive integer.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter. If not defined, the default setting is used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors, an n by p matrix, p is the number of predictors.  The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
-   \item B: Number of boostrap samples.  A positive integer.
+   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{bootse}: The standard error for elements in $\beta$ computed by bootstrap.  An r by p matrix.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item bootse: The standard error for elements in $\beta$ computed by bootstrap.  An r by p matrix.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -77,438 +218,614 @@ Output
 This function computes the bootstrap standard errors for the regression coefficients in ordinary least squares by bootstrapping the residuals.
 \end{par} \vspace{1em}
 
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1 : 6);
+       bootse = bootstrapse_OLS(X, Y, 200)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+bootse =
+
+   10.2168
+    8.3940
+    9.0503
+    9.9677
+   14.5822
+    5.5874
+
+\end{verbatim} \color{black}
+
 \newpage
-
-
-\section{center}
+    
+\section{modelselectaic}
 
 \begin{par}
-Substract the mean of each column
+Select the dimension for the envelope family using Akaike information criteria.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = modelselectaic(X, Y, modelType)
+       u = modelselectaic(X, Y, modelType, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-XC = center(X)
+\textbf{X}: Predictors.   The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+For model type for method 'env', 'henv', 'ienv', ' senv', and 'xenv'. X is an n by p matrix, p is the number of predictors.
+\end{par} \vspace{1em}
+\begin{par}
+For model type 'penv', X is  A list containing the value of X1 and X2.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: A matrix or a column vector.
+   \item X.X1 (only for 'penv'): Predictors of main interest. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
+   \item X.X2 (only for 'penv'): Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.
 \end{itemize}
 \begin{par}
-Output
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{modelType}: A string characters indicting the model, choices can be 'env', 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item XC: A matrix or a column vector with the mean for each column equal to 0.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
 
 
 \subsection*{Description}
 
 \begin{par}
-This function centerizes a matrix or a vector, by substracting each column by its column mean.
+This function implements the Akaike information criteria (AIC) to select the dimension of the envelope subspace for method 'env', 'henv', 'ienv', 'penv', ' senv', and 'xenv'.
 \end{par} \vspace{1em}
 
 
 \subsection*{Example}
 
-\begin{par}
-a = [1 2 3; 4 5 6];
-\end{par} \vspace{1em}
-\begin{par}
-center(a)
-\end{par} \vspace{1em}
 
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1 : 6);
+       modelType = 'env';
+       u = modelselectaic(X, Y, modelType)\end{verbatim}
+\color{lightgray}\begin{verbatim}
+u =
 
+     1
+
+\end{verbatim}  \color{black}
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       Xtemp = fiberpaper(:, 5 : 7);
+       X.X1 = Xtemp(:, 3);
+       X.X2 = Xtemp(:, 1 : 2);
+       modelType = 'penv';
+       u = modelselectaic(X, Y, modelType)\end{verbatim}
+    
+
+\color{lightgray}\begin{verbatim}
+u =
+
+     3
+
+\end{verbatim} \color{black}
+    
 \newpage
 
 
-    
-\section{Contr}
+\section{modelselectbic}
 
 \begin{par}
-Compute the contraction matrix of dimension r.
+Select the dimension for the envelope family using Bayesian information criteria.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
+   \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = modelselectbic(X, Y, modelType)
+       u = modelselectbic(X, Y, modelType, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-C = Contr(r)
+\textbf{X}: Predictors.  The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+For model type for method 'env', 'henv', 'ienv', ' senv', and 'xenv'. X is an n by p matrix, p is the number of predictors.
+\end{par} \vspace{1em}
+\begin{par}
+For model type 'penv', X is  A list containing the value of X1 and X2.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item r: Dimension of the contraction matrix.  A positive integer.
+   \item X.X1 (only for 'penv'): Predictors of main interest. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
+   \item X.X2 (only for 'penv'): Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.
 \end{itemize}
 \begin{par}
-Output
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{modelType}: A string characters indicting the model, choices can be 'env', 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item C: Contraction matrix of dimension r.  C is an r(r+1)/2 by r\^{}2 matrix.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
 
 
 \subsection*{Description}
 
 \begin{par}
-The contraction and expansion matrices are links between the "vec" operator and "vech"operator: for an r by r symmetric matrix A, vech(A)=Contr(r)vec(A), and vec(A)=Expan(r)vech(A). The "vec" operator stacks the matrix A into an r\^{}2 by 1 vector columnwise.  The "vech" operator stacks the lower triangle or the upper triangle of a symmetric matrix into an r(r+1)/2 vector. For more details of "vec", "vech", contraction and expansion matrix, refer to Henderson and Searle (1979).
+This function implements the Bayesian information criteria (BIC) to select the dimension of the envelope subspace for method 'env', 'henv', 'ienv', 'penv', ' senv', and 'xenv'.
 \end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1 : 6);
+       modelType = 'env';
+       u = modelselectbic(X, Y, modelType)\end{verbatim}
+        \color{lightgray} \begin{verbatim}
+u =
+
+     1
+
+\end{verbatim} \color{black}    
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       Xtemp = fiberpaper(:, 5 : 7);
+       X.X1 = Xtemp(:, 3);
+       X.X2 = Xtemp(:, 1 : 2);
+       modelType = 'penv';
+       u = modelselectbic(X, Y, modelType)\end{verbatim}
+    
+
+   \color{lightgray} \begin{verbatim}
+
+u =
+
+     1
+
+\end{verbatim} \color{black}
+    
+
+\newpage
+
+
+    
+\section{modelselectlrt}
+
+\begin{par}
+Select the dimension for the envelope family using likelihood ratio testing procedure.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = modelselectlrt(X, Y, alpha, modelType)
+       u = modelselectlrt(X, Y, alpha, modelType, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors.   The predictors can be univariate or multivariate, discrete or continuous.
+\end{par} \vspace{1em}
+\begin{par}
+For model type for method 'env', 'henv', 'ienv', and 'xenv'. X is an n by p matrix, p is the number of predictors.
+\end{par} \vspace{1em}
+\begin{par}
+For model type 'penv', X is  A list containing the value of X1 and X2.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item X.X1 (only for 'penv'): Predictors of main interest. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
+   \item X.X2 (only for 'penv'): Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.
+\end{itemize}
+\begin{par}
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{alpha}: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{modelType}: A string characters indicting the model, choices can be 'env', 'henv', 'ienv', 'penv' and 'xenv'.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements the likelihood ratio testing procedure to select the dimension of the envelope subspace for method 'env', 'henv', 'ienv', 'penv', and 'xenv'.  The likelihood ratio resting procedure does not support 'senv', because the scaled envelope models are not nested with the standard model.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1 : 6);
+       alpha = 0.01;
+       modelType = 'env';
+       u = modelselectlrt(X, Y, alpha, modelType)\end{verbatim}
+            \color{lightgray} \begin{verbatim}
+u =
+
+     1
+\end{verbatim} \color{black}
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       Xtemp = fiberpaper(:, 5 : 7);
+       X.X1 = Xtemp(:, 3);
+       X.X2 = Xtemp(:, 1 : 2);
+       alpha = 0.01;
+       modelType = 'penv';
+       u = modelselectlrt(X, Y, alpha, modelType)\end{verbatim}
+    
+
+
+        \color{lightgray} \begin{verbatim}
+
+
+u =
+
+     1
+
+\end{verbatim} \color{black}
+    
 
 
 
 
 \newpage
 
+\section{prediction}
+
+\begin{par}
+Perform estimation or prediction for models in the envelope family.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
 
 
+\subsection*{Syntax}
+
+
+\begin{verbatim}       PredictOutput = prediction(ModelOutput, Xnew, infType, modelType)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{ModelOutput}: A list containing the model outputs from fitting the models.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Xnew}: The value of X with which to estimate or predict Y.
+\end{par} \vspace{1em}
+\begin{par}
+For 'env', 'henv', 'ienv', 'senv' and 'xenv', it is a p by 1 vector.
+\end{par} \vspace{1em}
+\begin{par}
+For 'penv', it is a list containing the value of X1 and X2.
+\end{par} \vspace{1em}
+
+\begin{verbatim}* Xnew.X1 (only for 'penv'): A p1 by 1 vector containing the value of X1.
+* Xnew.X2 (only for 'penv'): A p2 by 1 vector containing the value of X2.\end{verbatim}
+    \begin{par}
+\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{modelType}: A string characters indicting the model, choices can be 'env', 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{PredictOutput}: A list containing the results of the inference.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item PredictOutput.value: The fitted value or the prediction value evaluated at Xnew. An r by 1 vector.
+   \item PredictOutput.covMatrix: The covariance matrix of PredictOutput.value. An r by r matrix.
+   \item PredictOutput.SE: The standard error of elements in PredictOutput.value. An r by 1 vector.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function evaluates the user-specified model, could be 'env', 'henv', 'ienv', 'penv', 'senv' or 'xenv', at new value Xnew.  It can perform estimation: find the fitted value when X = Xnew, or prediction: predict Y when X = Xnew.  The covariance matrix and the standard errors are also provided.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1:6);
+       modelType = 'env';
+       u =  modelselectbic(X, Y, modelType);
+       ModelOutput = env(X, Y, u);
+       Xnew = X(2, :)';
+       PredictOutput = predict_env(ModelOutput, Xnew, 'estimation')
+       [PredictOutput.value, Y(2, :)'] % Compare the fitted value with
+       the observed value\end{verbatim}
+             \color{lightgray} \begin{verbatim}
+
+PredictOutput = 
+
+        value: [6x1 double]
+    covMatrix: [6x6 double]
+           SE: [6x1 double]
+
+
+ans =
+
+  474.7135  458.0000
+  127.4740  112.0000
+  251.2044  236.0000
+  380.8280  368.0000
+  380.9473  383.0000
+   -6.3287  -15.0000
+
+\end{verbatim} \color{black}
+    
+   
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       Xtemp = fiberpaper(:, 5 : 7);
+       X.X1 = Xtemp(:, 3);
+       X.X2 = Xtemp(:, 1 : 2);
+       modelType = 'penv';
+       u =  modelselectbic(X, Y, modelType);
+       ModelOutput = penv(X, Y, u);
+       Xnew.X1 = X.X1(1, :)';
+       Xnew.X2 = X.X2(1, :)';
+       PredictOutput = predict_penv(ModelOutput, Xnew, 'estimation')
+       PredictOutput.SE\end{verbatim}
+    
+
+        \color{lightgray} \begin{verbatim}
+
+
+PredictOutput = 
+
+        value: [4x1 double]
+    covMatrix: [4x4 double]
+           SE: [4x1 double]
+
+
+ans =
+
+    1.4680
+    0.4234
+    0.7145
+    0.3161
+
+\end{verbatim} \color{black}
  
     
-\section{Expan}
-
-\begin{par}
-Compute the expansion matrix of dimension r.
-\end{par} \vspace{1em}
-
-\subsection*{Contents}
-
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item Usage
-   \item Description
-\end{itemize}
-
-
-\subsection*{Usage}
-
-\begin{par}
-E = Expan(r)
-\end{par} \vspace{1em}
-\begin{par}
-Input
-\end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item r: Dimension of the expansion matrix.  A positive integer.
-\end{itemize}
-\begin{par}
-Output
-\end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item E: Expansion matrix of dimension r.  E is an r\^{}2 by r(r+1)/2 matrix.
-\end{itemize}
-
-
-\subsection*{Description}
-
-\begin{par}
-The contraction and expansion matrices are links between the "vec" operator and "vech"operator: for an r by r symmetric matrix A, vech(A)=Contr(r)vec(A), and vec(A)=Expan(r)vech(A). The "vec" operator stacks the matrix A into an r\^{}2 by 1 vector columnwise.  The "vech" operator stacks the lower triangle or the upper triangle of a symmetric matrix into an r(r+1)/2 vector. For more details of "vec", "vech", contraction and expansion matrix, refer to Henderson and Searle (1979).
-\end{par} \vspace{1em}
-
-
 \newpage
 
+\section{testcoefficient}
 
 
+\begin{verbatim}This function tests the null hypothesis L * beta * R = A versus the
+alternative hypothesis L * beta * R ~= A, where beta is estimated under
+the model in the envelope family.\end{verbatim}
     
-\section{fit\_OLS}
-
-\begin{par}
-Multivariate linear regression.
-\end{par} \vspace{1em}
-
 \subsection*{Contents}
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
+   \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
-
-\begin{par}
-[betaOLS SigmaOLS]=fit\_OLS(X,Y)
-\end{par} \vspace{1em}
-\begin{par}
-Input
-\end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item X: Predictors, an n by p matrix, p is the number of predictors.  The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
-\end{itemize}
-\begin{par}
-Output
-\end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item betaOLS: An r by p matrix containing estimate of the regression coefficients $\beta$.
-   \item SigmaOLS: An r by r matrix containing estimate of the error covariance matrix.
-\end{itemize}
+\subsection*{Syntax}
 
 
-\subsection*{Description}
-
-\begin{par}
-In a multivariate linear model, Y and X follows the following relationship: $Y=\alpha+\beta X+\varepsilon$, where $\varepsilon$ contains the errors.  This function performs the ordinary least squares fit to the inputs, and returns the estimates of $\beta$ and the covariance matrix of $\varepsilon$.
-\end{par} \vspace{1em}
-
-\newpage
-
-
-
+\begin{verbatim}       TestOutput = testcoefficient(ModelOutput, modelType)
+       TestOutput = testcoefficient(ModelOutput, modelType, TestInput)\end{verbatim}
     
-\section{get\_Init}
+
+\subsection*{Input}
 
 \begin{par}
-Starting value for the envelope subspace.
+\textbf{ModelOutput}: A list containing the model outputs from fitting the models.
 \end{par} \vspace{1em}
-
-\subsection*{Contents}
-
+\begin{par}
+\textbf{modelType}: A string characters indicting the model, choices can be 'env', 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{TestInput}: A list that specifies the null hypothesis, including L, R, and A.  If not provided by the user, default values will be used.
+\end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
-   \item Description
-   \item Reference
+   \item TestInput.L: The matrix multiplied to $\beta$ on the left.  According to different model, it has different size requirement.  Default value will be set if the user does not specify.
+\end{itemize}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestInput.R: The matrix multiplied to $\beta$ on the right.  According to different model, it has different size requirement.  Default value will be set if the user does not specify.
+\end{itemize}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestInput.A: The matrix on the right hand side of the equation.  Default value will be set if the user does not specify.
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Output}
 
 \begin{par}
-WInit=get\_Init(X,Y,u,DataParameter)
-\end{par} \vspace{1em}
-\begin{par}
-Input
+\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, and the p-value.  At the same time, a table is printed out.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors. An n by p matrix, p is the number of predictors.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations.
-   \item u: Dimension of the envelope. An integer between 1 and r-1.
-   \item DataParameter: A list containing commonly used statistics computed from the data.
-\end{itemize}
-\begin{par}
-Output
-\end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item WInit: The initial estimate of the orthogonal basis of the envelope subspace. An r by u orthogonal matrix.
-\end{itemize}
-
-
-\subsection*{Description}
-
-\begin{par}
-We compute the eigenvectors for the covariance matrices of Y and the estimated errors, and get 2r vectors.  Then we get all the combinations of u vectors out of the 2r vectors. If the number of 2r choose u is small(\ensuremath{<}=50), we search over all the combinations and find out the one that minimizes the objective function F. If that number is large, then we do it iteratively: we pick up any u eigenvectors, fix all of them except the first one. Then we search over all the vectors orthogonal to the fixed ones, and record the one that minimizes F. Next, we fix the first u eigenvectors again but this time search for second one, then we record the vector. This goes on and on until the last one. We do it for 5 rounds and use the final set as our starting value.
-\end{par} \vspace{1em}
-
-
-\subsection*{Reference}
-
-\begin{par}
-The codes is implemented based on the algorithm in Section 3.5 of Su and Cook (2011).
-\end{par} \vspace{1em}
-
-
-
-
-\newpage
-
-
-
- 
-\section{Kpd}
-
-\begin{par}
-Compute the communication matrix Kpd.
-\end{par} \vspace{1em}
-
-\subsection*{Contents}
-
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item Usage
-   \item Description
-   \item Reference
-\end{itemize}
-
-
-\subsection*{Usage}
-
-\begin{par}
-k=Kpd(p,d)
-\end{par} \vspace{1em}
-\begin{par}
-Input
-\end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item p and d are two positive integers represent the dimension parameters for the communication matrix.
-\end{itemize}
-\begin{par}
-Output
-\end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item k: The communication matrix Kpd. An p*d by p*d matrix.
+   \item TestOutput.chisqStatistic: The test statistics. A real number.
+   \item TestOutput.df: The degrees of freedom of the reference chi-squared distribution.  A positive integer.
+   \item TestOutput.pValue: p-value of the test.  A real number in [0, 1].
 \end{itemize}
 
 
 \subsection*{Description}
 
 \begin{par}
-For a p by d matrix A, vec(A')=Kpd*vec(A), and Kpd is called a communication matrix.
+This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by a model in the envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$ (for 'env', 'ienv', 'penv', 'senv' and 'xenv'), or if the group main effects are all zeros (for 'henv').  The test statistics used is vec $(L\beta R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\beta R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom the same as the length of vec(A).
 \end{par} \vspace{1em}
 
 
-\subsection*{Reference}
+\subsection*{Example}
 
-\begin{par}
-The codes is implemented based on Definition 3.1 in Magnus and Neudecker (1979).
-\end{par} \vspace{1em}
 
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1:6);
+       alpha = 0.01;
+       u = lrt_env(X, Y, alpha);
+       ModelOutput = env(X, Y, u);
+       modelType = 'env';
+       TestOutout = testcoefficient(ModelOutput, modelType);\end{verbatim}
+         \color{lightgray} \begin{verbatim}
+ Test Hypothesis     Chisq Statistic    DF     P-value
+----------------------------------------------------------------------
+L * beta * R = A         116.230        6      0.0000
+----------------------------------------------------------------------
+\end{verbatim} \color{black}   
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       Xtemp = fiberpaper(:, 5 : 7);
+       X.X1 = Xtemp(:, 3);
+       X.X2 = Xtemp(:, 1 : 2);
+       alpha = 0.01;
+       u = lrt_penv(X, Y, alpha);
+       ModelOutput = penv(X, Y, u);
+       r = size(Y, 2);
+       p1 = size(X.X1, 2);
+       TestInput.L = rand(2, r);
+       TestInput.R = rand(p1, 1);
+       TestInput.A = zeros(2, 1);
+       TestOutout = testcoefficient_penv(ModelOutput, TestInput);\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+
+ Test Hypothesis     Chisq Statistic    DF     P-value
+----------------------------------------------------------------------
+L * beta * R = A          12.598        2      0.0018
+----------------------------------------------------------------------
+\end{verbatim} \color{black}
+    
 
 
 \newpage
 
-
-
-\section{Lmatrix}
-
-\begin{par}
-Extract the 2nd to the last diagonal element of a matrix into a vector.
-\end{par} \vspace{1em}
-
-\subsection*{Contents}
-
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item Usage
-   \item Description
-\end{itemize}
-
-
-\subsection*{Usage}
-
-\begin{par}
-L=Lmatrix(r)
-\end{par} \vspace{1em}
-\begin{par}
-Input
-\end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item r: The dimension of the matrix being extracted.  The matrix should be an r by r matrix.
-\end{itemize}
-\begin{par}
-Output
-\end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item L: An r-1 dimensional vector that contains all the diagonal elements but the first one of the matrix.
-\end{itemize}
-
-
-\subsection*{Description}
-
-\begin{par}
-Let A be an r by r matrix, and vec be the vector operator, then Lmatrix(r)*vec(A) will give the 2nd to the rth diagonal elements of A, arranged in a column vector.
-\end{par} \vspace{1em}
-
-\newpage
-\section{make\_parameter}
-
-\begin{par}
-Compute summary statistics from the data.
-\end{par} \vspace{1em}
-
-\subsection*{Contents}
-
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item Usage
-   \item Description
-\end{itemize}
-
-
-\subsection*{Usage}
-
-\begin{par}
-DataParameter=make\_parameter(X,Y,method)
-\end{par} \vspace{1em}
-\begin{par}
-Input
-\end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item X: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
-   \item method: A string of characters indicating which member of the envelope family to be used, the choices can be 'env', 'ienv', 'henv' or 'senv'.
-\end{itemize}
-\begin{par}
-Output
-\end{par} \vspace{1em}
-\begin{par}
-DataParameter: A list that contains summary statistics computed from the data.  The output list can vary from method to method.
-\end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item DataParameter.n: The number of observations in the data.  A positive integer.
-   \item DataParameter.ng: A p by 1 vector containing the number of observations in each group.  p is the number of groups.  Only for 'henv'.
-   \item DataParameter.ncum: A p by 1 vector containing the total number of observations till this group.  Only for 'henv'.
-   \item DataParameter.ind: An n by 1 vector indicating the sequence of the observations after sorted by groups.
-   \item DataParameter.p: The number of predictors or number of groups for 'henv'.  A positive integer.
-   \item DataParameter.r: The number of responses.  A positive integer.
-   \item DataParameter.XC: Centered predictors.  An n by p matrix with the ith row being the ith observation of X subtracted by the mean of X.  Only for 'env' and 'ienv'.
-   \item DataParameter.YC: Centered responses.  An n by r matrix with the ith row being the ith observation of Y subtracted by the mean of Y.  Only for 'env' and 'ienv'.
-   \item DataParameter.mX: The mean of predictors.  A p by 1 vector.  For all method except 'henv'.
-   \item DataParameter.mY: The mean of responses.  An r by 1 vector.
-   \item DataParameter.mYg: An r by p matrix with the ith column being the sample mean of the ith group.
-   \item DataParameter.sigX: The sample covariance matrix of X.  A p by p matrix.
-   \item DataParameter.sigY: The sample covariance matrix of Y.  An r by r matrix.
-   \item DataParameter.sigRes: For 'env', 'senv', 'ienv': The sample covariance matrix of the residuals from the ordinary least squares regression of Y on X.  An r by r matrix. For 'henv', an r by r by p three dimensional matrix with the ith depth is the ith sample covariance matrix for the ith group.
-   \item DataParameter.sigFit: The sample covariance matrix of the fitted value from the ordinary least squares regression of Y on X.  An r by r matrix. Only for method 'ienv'.
-   \item DataParameter.betaOLS: The regression coefficients from the ordinary least squares regression of Y on X.  An r by p matrix.  For all method except 'henv'.
-\end{itemize}
-
-
-\subsection*{Description}
-
-\begin{par}
-This function computes statistics that will be used frequently in the estimation for each method.
-\end{par} \vspace{1em}
-
-\newpage
 
 \part{env}
     
