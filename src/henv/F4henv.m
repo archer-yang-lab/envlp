@@ -1,5 +1,5 @@
 %% F4henv
-% Objective funtion for computing the envelope subspace in heteroscedastic
+% Objective function for computing the envelope subspace in heteroscedastic
 % envelope model.
 
 %% Syntax

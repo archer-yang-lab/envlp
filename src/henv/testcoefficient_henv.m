@@ -11,7 +11,7 @@
 %% Input
 % 
 % *ModelOutput*: A list containing the maximum likelihood estimators and other
-% statistics inherted from henv.
+% statistics inherited from henv.
 % 
 % *TestInput*: A list that specifies the null hypothesis, including L, R, and
 % A.  If not provided by the user, default values will be used.
@@ -23,7 +23,7 @@
 % by d2 matrix, while d2 is less than or equal to p.  Default value:
 % identity matrix $$(I_{p-1}, 0_{(p-1)\times 1})^{T}$.  This is because the
 % columns of $$\beta$ sum to 0.  Then we cannot use $$I_p$ as default.
-% * TestInput.A: The matrix on the right handside of the equation.  It is a
+% * TestInput.A: The matrix on the right hand side of the equation.  It is a
 % d1 by d2 matrix.  Default value: d1 by d2 zero matrix.
 % 
 %% Output
