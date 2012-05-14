@@ -9,7 +9,7 @@
 %
 % *X*: A list containing the value of X1 and X2.
 % 
-% * X.X1: Predictors of main interst. An n by p1 matrix, n is the number of 
+% * X.X1: Predictors of main interest. An n by p1 matrix, n is the number of 
 % observations, and p1 is the number of main predictors. The
 % predictors can be univariate or multivariate, discrete or continuous.
 % * X.X2: Covariates, or predictors not of main interest.  An n by p2 matrix,
@@ -21,7 +21,7 @@
 % *u*: Dimension of the partial envelope subspace.  A positive integer between 0 and
 % r.
 % 
-% *B*: Number of boostrap samples.  A positive integer.
+% *B*: Number of bootstrap samples.  A positive integer.
 % 
 % *Opts*: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not

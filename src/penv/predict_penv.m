@@ -7,7 +7,7 @@
 %% Input
 %
 % *ModelOutput*: A list containing the maximum likelihood estimators and other
-% statistics inherted from penv.
+% statistics inherited from penv.
 % 
 % *Xnew*: A list containing the value of X1 and X2 with which to estimate or
 % predict Y. 
@@ -44,14 +44,15 @@
 %         X.X1 = Xtemp(:, 3);
 %         X.X2 = Xtemp(:, 1 : 2);
 %         alpha = 0.01;
-%         u = lrt_penv(X, Y, alpha)
-%         ModelOutput = penv(X, Y, u)
+%         u = lrt_penv(X, Y, alpha);
+%         ModelOutput = penv(X, Y, u);
 %         Xnew.X1 = X.X1(1, :)';
 %         Xnew.X2 = X.X2(1, :)';
 %         PredictOutput = predict_penv(ModelOutput, Xnew, 'estimation')
-%         PredictOutput.value  % Compare the fitted value with the data
-%         Y(1, :)'
+%         [PredictOutput.value, Y(1, :)'] % Compare the fitted value with the data
+%         PredictOutput.SE
 %         PredictOutput = predict_penv(ModelOutput, Xnew, 'prediction')
+%         PredictOutput.SE
 
 function PredictOutput = predict_penv(ModelOutput, Xnew, infType)
 
