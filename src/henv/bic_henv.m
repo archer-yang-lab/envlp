@@ -7,13 +7,16 @@
 %         u = bic_henv(X, Y, Opts)
 %
 %% Input
-%
-% *X*: Group indicators. An n by p matrix, p is the number of groups. X can
-% only take p different values, one for each group.
 % 
+% *X*: Group indicators. A matrix with n rows.  X can only have p unique
+%  rows, where p is the number of groups. For example, if there 
+% are two groups, X can only have 2 different kinds of rows, such as (0, 1)
+% and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not
+% restricted, as long as X only has p unique rows.
+%
 % *Y*: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
-% continuous variables.
+% continuous variables, and r should be greater than p.
 % 
 % *Opts*: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not

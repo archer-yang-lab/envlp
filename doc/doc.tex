@@ -1669,8 +1669,6 @@ L * beta * R = A          61.344        2      0.0000
 
 \part{henv}
 
-
-
 \section{aic\_henv}
 
 \begin{par}
@@ -1681,32 +1679,46 @@ Select the dimension of the envelope subspace using Akaike information criterion
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = aic_henv(X, Y)
+       u = aic_henv(X, Y, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-u=aic\_henv(X,Y)
+\textbf{X}: Group indicators. A matrix with n rows.  X can only have p unique  rows, where p is the number of groups. For example, if there are two groups, X can only have 2 different kinds of rows, such as (0, 1) and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not restricted, as long as X only has p unique rows.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be greater than p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Group indicators. An n by p matrix, p is the number of groups. X can only take p different values, one for each group.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item u: Dimension of the envelope. An integer between 0 and r.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -1715,17 +1727,21 @@ Output
 This function implements the Akaike information criteria (AIC) to select the dimension of the envelope subspace for the heteroscedastic envelope model.
 \end{par} \vspace{1em}
 
+
 \subsection*{Example}
 
-\begin{par}
-load waterstrider.mat\\
-u=aic\_henv(X,Y)
-\end{par} \vspace{1em}
 
-\newpage
-
-
+\begin{verbatim}       load waterstrider.mat
+       u = aic_henv(X, Y)\end{verbatim}
     
+        \color{lightgray} \begin{verbatim}
+u =
+
+     6
+
+\end{verbatim} \color{black}
+    \newpage
+
 \section{bic\_henv}
 
 \begin{par}
@@ -1736,32 +1752,46 @@ Select the dimension of the envelope subspace using Bayesian information criteri
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = bic_henv(X, Y)
+       u = bic_henv(X, Y, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-u=bic\_henv(X,Y)
+\textbf{X}: Group indicators. A matrix with n rows.  X can only have p unique  rows, where p is the number of groups. For example, if there are two groups, X can only have 2 different kinds of rows, such as (0, 1) and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not restricted, as long as X only has p unique rows.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be greater than p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Group indicators. An n by p matrix, p is the number of groups. X can only take p different values, one for each group.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item u: Dimension of the envelope. An integer between 0 and r.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -1773,19 +1803,19 @@ This function implements the Bayesian information criteria (BIC) to select the d
 
 \subsection*{Example}
 
-\begin{par}
-load waterstrider.mat\\
-u=bic\_henv(X,Y)
-\end{par} \vspace{1em}
 
+\begin{verbatim}       load waterstrider.mat
+       u = bic_henv(X, Y)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+u =
+
+     4
+
+\end{verbatim} \color{black}
 
 \newpage
 
-
-
-
- 
-    
 \section{bstrp\_henv}
 
 \begin{par}
@@ -1796,34 +1826,52 @@ Compute bootstrap standard error for the heteroscedastic envelope model.
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       bootse = bstrp_henv(X, Y, u, B)
+       bootse = bstrp_henv(X, Y, u, B, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-bootse=bstrp\_henv(X,Y,B,u)
+\textbf{X}: Group indicators. A matrix with n rows.  X can only have p unique  rows, where p is the number of groups. For example, if there are two groups, X can only have 2 different kinds of rows, such as (0, 1) and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not restricted, as long as X only has p unique rows.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be greater than p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope subspace.  A positive integer between 0 and r.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{B}: Number of bootstrap samples.  A positive integer.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Group indicators. An n by p matrix, p is the number of groups. X can only take p different values, one for each group.
-   \item Y: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
-   \item B: Number of boostrap samples.  A positive integer.
-   \item u: Dimension of the envelope subspace.  A positive integer between 0 and r.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{bootse}: The standard error for elements in $\beta$ computed by bootstrap.  An r by p matrix.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item bootse: The standard error for elements in $\beta$ computed by bootstrap.  An r by p matrix.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -1832,16 +1880,35 @@ Output
 This function computes the bootstrap standard errors for the regression coefficients in the heteroscedastic envelope model by bootstrapping the residuals.
 \end{par} \vspace{1em}
 
+
 \subsection*{Example}
 
-\begin{par}
-load waterstrider.mat\\
-u=lrt\_henv(X,Y,0.01)\\
-B=100;\\
-bootse=bstrp\_henv(X,Y,B,u)
 
-\end{par} \vspace{1em}
+\begin{verbatim}       load waterstrider.mat\end{verbatim}
+    
+\begin{verbatim}       u = lrt_henv(X, Y, 0.01)\end{verbatim}
+        \color{lightgray} \begin{verbatim}
+u =
 
+     6        
+\end{verbatim} \color{black}
+\begin{verbatim}       
+       B = 100;
+       bootse = bstrp_henv(X, Y, u, B)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+bootse =
+
+    0.0305    0.0466    0.0647
+    0.0309    0.0485    0.0682
+    0.0305    0.0432    0.0638
+    0.0205    0.0289    0.0425
+    0.0385    0.0553    0.0799
+    0.0295    0.0427    0.0618
+    0.0389    0.0567    0.0819
+    0.0321    0.0463    0.0665
+
+\end{verbatim} \color{black}
 
 \newpage
 
@@ -1850,38 +1917,41 @@ bootse=bstrp\_henv(X,Y,B,u)
 \section{dF4henv}
 
 \begin{par}
-The first derivative of the objective funtion for computing the envelope subspace in the heteroscedastic envelope model.
+The first derivative of the objective function for computing the envelope subspace in the heteroscedastic envelope model.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       df = dF4henv(R, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-df = dF4henv(R,DataParameter)
+\textbf{R}: An r by u semi orthogonal matrix, 0 \ensuremath{<} u \ensuremath{<}= r.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{DataParameter}: A structure that contains the statistics calculated from the data.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item R: An r by u semi orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}=r.
-   \item DataParameter: A structure that contains the statistics calculated form the data.
-\end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{df}: An r by u matrix containing the value of the derivative function evaluated at R.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item df: An r by u containing the value of the derivative function evaluated at R.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -1890,49 +1960,46 @@ Output
 The objective function is derived in Section 2.2 in Su and Cook (2012) by  using maximum likelihood estimation. This function is the derivative of  the objective function.
 \end{par} \vspace{1em}
 
-
-
 \newpage
 
-
-
-
-    
 \section{F4henv}
 
 \begin{par}
-Objective funtion for computing the envelope subspace in heteroscedastic envelope model.
+Objective function for computing the envelope subspace in heteroscedastic envelope model.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       f = F4henv(R, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-f = F4henv(R,DataParameter)
+\textbf{R}: An r by u semi orthogonal matrix, 0 \ensuremath{<} u \ensuremath{<}= r.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{DataParameter}: A structure that contains the statistics calculated from the data.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item R: An r by u semi orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}=r.
-   \item DataParameter: A structure that contains the statistics calculated form the data.
-\end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{f}: A scalar containing the value of the objective function evaluated at R.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item f: A scalar containing the value of the objective function evaluated at R.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -1940,9 +2007,7 @@ Output
 \begin{par}
 The objective function is derived in Section 2.2 of Su and Cook (2012)  using maximum likelihood estimation. The columns of the semi-orthogonal matrix that minimizes this function span the estimated envelope subspace in the heteroscedastic envelope model.
 \end{par} \vspace{1em}
-
 \newpage
-
 
 
     
@@ -1956,91 +2021,141 @@ Fit the heteroscedastic envelope model.
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item References
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       ModelOutput = henv(X, Y, u)
+       ModelOutput = henv(X, Y, u, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-stat=henv(X,Y,u)
+\textbf{X}: Group indicators. A matrix with n rows.  X can only have p unique  rows, where p is the number of groups. For example, if there are two groups, X can only have 2 different kinds of rows, such as (0, 1) and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not restricted, as long as X only has p unique rows.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be greater than p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Group indicators. An n by p matrix, p is the number of groups. X can only take p different values, one for each group.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
-   \item u: Dimension of the envelope. An integer between 0 and r.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
-\end{par} \vspace{1em}
-\begin{par}
-stat: A list that contains the maximum likelihood estimators and some statistics.
+\textbf{ModelOutput}: A list that contains the maximum likelihood estimators and some statistics.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item stat.mu: The heteroscedastic envelope estimator of the grand mean. A r by 1 vector.
-   \item stat.mug: The heteroscedastic envelope estimator of the group mean. A r by p matrix, the ith column of the matrix contains the mean for the ith group.
-   \item stat.Yfit: A n by r matrix, the ith row gives the group mean of the group that the ith observation belongs to.  As X is just a group indicator, and is not ordinal, stat.mug alone does not tell which group corresponds to which group mean.
-   \item stat.Gamma: The orthogonal basis of the envelope subspace. An r by u semi-orthogonal matrix.
-   \item stat.Gamma0: The orthogonal basis of the complement of the envelope subspace.  An r by r-u semi-orthogonal matrix.
-   \item stat.beta: The heteroscedastic envelope estimator of the group mean effect. An r by p matrix, the ith column of the matrix contains the main effect for the ith group.
-   \item stat.Sigma: The heteroscedastic envelope estimator of the error covariance matrix.  A three dimensional matrix with dimension r, r and p, stat.Sigma(:,:,i) contains the estimated covariance matrix for the ith group.
-   \item stat.eta: The coordinates of $\beta$ with respect to Gamma. An u by p matrix, the ith column contains the coordinates of the main effect of the ith group with respect to Gamma.
-   \item stat.Omega: The coordinates of Sigma with respect to Gamma. An u by u by p matrix, stat.Omega(:,:,i) contains the coordinates of the covariance matrix of the ith group with respect to Gamma.
-   \item stat.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u matrix.
-   \item stat.l: The maximized log likelihood function.  A real number.
-   \item stat.np: The number of parameters in the heteroscedastic envelope model.  A positive integer.
-   \item stat.asyHenv: The asymptotic standard errors for elements in $beta$ under the heteroscedastic envelope model. An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
-   \item stat.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the heteroscedastic envelope estimator. An r by p matrix, the (i, j)th element in stat.ratio is the elementwise standard error ratio for the ith element in the jth group mean effect.
+   \item ModelOutput.mu: The heteroscedastic envelope estimator of the grand mean. A r by 1 vector.
+   \item ModelOutput.mug: The heteroscedastic envelope estimator of the group mean. A r by p matrix, the ith column of the matrix contains the mean for the ith group.
+   \item ModelOutput.Yfit: A n by r matrix, the ith row gives the group mean of the group that the ith observation belongs to.  As X is just a group indicator, and is not ordinal, ModelOutput.mug alone does not tell which group corresponds to which group mean.
+   \item ModelOutput.Gamma: The orthogonal basis of the envelope subspace. An r by u semi-orthogonal matrix.
+   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  An r by r-u semi-orthogonal matrix.
+   \item ModelOutput.beta: The heteroscedastic envelope estimator of the group main effect. An r by p matrix, the ith column of the matrix contains the main effect for the ith group.
+   \item ModelOutput.groupInd: A matrix containing the unique values of group indicators. The matrix has p rows.  The group mean of the ith row is stored in the ith column of ModelOutput.mug.
+   \item ModelOutput.Sigma: The heteroscedastic envelope estimator of the error covariance matrix.  A three dimensional matrix with dimension r, r and p, ModelOutput.Sigma(:, :, i) contains the estimated covariance matrix for the ith group.
+   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. An u by p matrix, the ith column contains the coordinates of the main effect of the ith group with respect to Gamma.
+   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u by p matrix, ModelOutput.Omega(:, :, i) contains the coordinates of the covariance matrix of the ith group with respect to Gamma.
+   \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r - u by r - u matrix.
+   \item ModelOutput.l: The maximized log likelihood function.  A real number.
+   \item ModelOutput.np: The number of parameters in the heteroscedastic envelope model.  A positive integer.
+   \item ModelOutput.covMatrix: The asymptotic covariance of ($\mu$', vec($\beta$'))'.  An r(p + 1) by r(p + 1) matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1 / n.
+   \item ModelOutput.asyHenv: The asymptotic standard errors for elements in $\beta$ under the heteroscedastic envelope model. An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
+   \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the heteroscedastic envelope estimator. An r by p matrix, the (i, j)th element in ModelOutput.ratio is the elementwise standard error ratio for the ith element in the jth group mean effect.
+   \item ModelOutput.ng: The number of observations in each group.  A p by 1 vector.
 \end{itemize}
 
 
 \subsection*{Description}
 
 \begin{par}
-This function fits the heteroscedatic envelope model to the responses and predictors, using the maximum likehood estimation.  When the dimension of the envelope is between 1 and r-1, we implemented the algorithm in Su and Cook (2012). When the dimension is r, then the envelope model degenerates to the standard multivariate linear model for comparing group means.  When the dimension is 0, it means there is not any group effect, and the fitting is different.
+This function fits the heteroscedastic envelope model to the responses and predictors, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and r-1, we implemented the algorithm in Su and Cook (2012). When the dimension is r, then the envelope model degenerates to the standard multivariate linear model for comparing group means.  When the dimension is 0, it means there is not any group effect, and the fitting is different.
 \end{par} \vspace{1em}
 
 
 \subsection*{References}
 
-\begin{itemize}
+\begin{enumerate}
 \setlength{\itemsep}{-1ex}
    \item The codes is implemented based on the algorithm in Section 2.2 of Su and Cook (2012).
    \item The Grassmann manifold optimization step calls the package sg\_min 2.4.1 by Ross Lippert (http://web.mit.edu/$\sim$ripper/www.sgmin.html).
-\end{itemize}
+\end{enumerate}
 
 
 \subsection*{Example}
 
 \begin{par}
-The following codes produce the results of the waterstrider example in Su
-and Cook (2011).
-
-load waterstrider.mat\\
-u=lrt\_henv(X,Y,0.01)\\
-stat=henv(X,Y,u)\\
-stat.ratio
-
+The following codes produce the results of the water strider example in Su and Cook (2011).
 \end{par} \vspace{1em}
 
+\begin{verbatim}       load waterstrider.mat
+       u = lrt_henv(X, Y, 0.01)
+       \end{verbatim}
+               \color{lightgray} \begin{verbatim}
+u =
+
+     6
+\end{verbatim} \color{black}
+\begin{verbatim}       ModelOutput = henv(X, Y, u)
+       ModelOutput.ratio\end{verbatim}
+
+ \color{lightgray} \begin{verbatim}
+ModelOutput = 
+
+           mu: [8x1 double]
+          mug: [8x3 double]
+         Yfit: [90x8 double]
+        Gamma: [8x6 double]
+       Gamma0: [8x2 double]
+         beta: [8x3 double]
+     groupInd: [3x2 double]
+        Sigma: [8x8x3 double]
+          eta: [6x3 double]
+        Omega: [6x6x3 double]
+       Omega0: [2x2 double]
+           np: 98
+            l: 1.0051e+03
+    covMatrix: [32x32 double]
+      asyHenv: [8x3 double]
+        ratio: [8x3 double]
+           ng: [3x1 double]
 
 
+ans =
 
+    6.5439   11.2830    6.4954
+    4.6325    5.3226    4.7242
+    4.4456    5.0741    4.4198
+    4.7338    6.2469    5.1937
+    8.0377   12.5386    9.4823
+    9.5067   11.5974   11.3444
+   11.8632   15.6080   12.5611
+    6.9792   11.1559   10.1002
 
+\end{verbatim} \color{black}
+    
 \newpage
-
-
-
-
- 
     
 \section{lrt\_henv}
 
@@ -2052,57 +2167,325 @@ Select the dimension of the envelope subspace using likelihood ratio testing for
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = lrt_henv(X, Y, alpha)
+       u = lrt_henv(X, Y, alpha, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-u=lrt\_henv(X,Y,alpha)
+\textbf{X}: Group indicators. A matrix with n rows.  X can only have p unique  rows, where p is the number of groups. For example, if there are two groups, X can only have 2 different kinds of rows, such as (0, 1) and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not restricted, as long as X only has p unique rows.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be greater than p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{alpha}: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Group indicators. An n by p matrix, p is the number of groups. X can only take p different values, one for each group.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
-   \item alpha: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements the likelihood ratio testing procedure to select the dimension of the envelope subspace in heteroscedastic envelope model, with pre-specified significance level $\alpha$.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load waterstrider.mat
+       u = lrt_henv(X, Y, 0.01)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+u =
+
+     6
+
+\end{verbatim} \color{black}
+
+\newpage
+
+\section{predict\_henv}
+
+\begin{par}
+Perform estimation or prediction under the heteroscedastic envelope model.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       PredictOutput = predict_henv(ModelOutput, Xnew, infType)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{ModelOutput}: A list containing the maximum likelihood estimators and other statistics inherited from henv.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Xnew}: A group indicator.  It must be a column vector, whose transpose is the same as one of the group indictors from the original data.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{PredictOutput}: A list containing the results of the inference.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item u: Dimension of the envelope. An integer between 0 and r.
+   \item PredictOutput.value: The fitted value or the prediction value evaluated at Xnew. An r by 1 vector.
+   \item PredictOutput.covMatrix: The covariance matrix of PredictOutput.value. An r by r matrix.
+   \item PredictOutput.SE: The standard error of elements in PredictOutput.value. An r by 1 vector.
 \end{itemize}
 
 
 \subsection*{Description}
 
 \begin{par}
-This function implements the likelihood ratio testing procedure to select the dimension of the envelope subspace in heteroscedastic envelope model, with prespecified significance level $\alpha$.
+This function evaluates the inner envelope model at new value Xnew.  It can perform estimation: find the group mean for the group indicated by Xnew, or prediction: predict Y for the group indicated by Xnew.  The covariance matrix and the standard errors are also provided.
 \end{par} \vspace{1em}
 
 
 \subsection*{Example}
 
+
+\begin{verbatim}       load waterstrider.mat
+       u = lrt_henv(X, Y, 0.01);
+       ModelOutput = henv(X, Y, u);
+       ModelOutput.groupInd
+       ModelOutput.mug
+       Xnew = X(1, :)'
+       \end{verbatim}
+        \color{lightgray} \begin{verbatim}
+  
+  ans =
+
+    -1    -1
+     0     1
+     1     0
+
+
+ans =
+
+   -1.1417   -1.1267   -1.0845
+   -1.4063   -1.4067   -1.3132
+   -1.3314   -1.3336   -1.2152
+   -0.3113   -0.1839   -0.1736
+    0.4003    0.3847    0.3072
+    0.4107    0.3753    0.3735
+    0.3467    0.3271    0.3179
+   -0.1954   -0.2100   -0.3488
+
+
+Xnew =
+
+     1
+     0
+\end{verbatim} \color{black}
+          
+       \begin{verbatim}
+       PredictOutput = predict_henv(ModelOutput, Xnew, 'estimation')
+       PredictOutput.value %This is the 3rd group mean
+       PredictOutput.SE
+\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+PredictOutput = 
+
+        value: [8x1 double]
+    covMatrix: [8x8 double]
+           SE: [8x1 double]
+
+
+ans =
+
+   -1.0845
+   -1.3132
+   -1.2152
+   -0.1736
+    0.3072
+    0.3735
+    0.3179
+   -0.3488
+
+
+ans =
+
+    0.0682
+    0.0695
+    0.0651
+    0.0436
+    0.0832
+    0.0636
+    0.0847
+    0.0698
+\end{verbatim} \color{black}
+       \begin{verbatim}
+       PredictOutput = predict_henv(ModelOutput, Xnew, 'prediction')
+       PredictOutput.SE\end{verbatim}
+
+        \color{lightgray} \begin{verbatim}
+
+PredictOutput = 
+
+        value: [8x1 double]
+    covMatrix: [8x8 double]
+           SE: [8x1 double]
+
+
+ans =
+
+    0.3720
+    0.3812
+    0.3581
+    0.2398
+    0.4612
+    0.3519
+    0.4710
+    0.3854
+
+\end{verbatim} \color{black}
+    
+\newpage
+
+\section{testcoefficient\_henv}
+
+
+\begin{verbatim}This function tests the null hypothesis L * beta * R = A versus the
+alternative hypothesis L * beta * R ~= A, where beta is estimated under
+the heteroscedastic envelope model.\end{verbatim}
+    
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       TestOutput = testcoefficient_henv(ModelOutput)
+       TestOutput = testcoefficient_henv(ModelOutput, TestInput)\end{verbatim}
+    
+
+\subsection*{Input}
+
 \begin{par}
-load waterstrider.mat\\
-u=lrt\_henv(X,Y,0.01)
+\textbf{ModelOutput}: A list containing the maximum likelihood estimators and other statistics inherited from henv.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{TestInput}: A list that specifies the null hypothesis, including L, R, and A.  If not provided by the user, default values will be used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestInput.L: The matrix multiplied to $\beta$ on the left.  It is a d1 by r matrix, while d1 is less than or equal to r - 1.  Default value: identity matrix $I_{r}$.
+   \item TestInput.R: The matrix multiplied to $\beta$ on the right.  It is a p by d2 matrix, while d2 is less than or equal to p.  Default value: identity matrix $(I_{p-1}, 0_{(p-1)\times 1})^{T}$.  This is because the columns of $\beta$ sum to 0.  Then we cannot use $I_p$ as default.
+   \item TestInput.A: The matrix on the right hand side of the equation.  It is a d1 by d2 matrix.  Default value: d1 by d2 zero matrix.
+\end{itemize}
 
 
+\subsection*{Output}
+
+\begin{par}
+\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, and the p-value.  At the same time, a table is printed out.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestOutput.chisqStatistic: The test statistics. A real number.
+   \item TestOutput.df: The degrees of freedom of the reference chi-squared distribution.  A positive integer.
+   \item TestOutput.pValue: p-value of the test.  A real number in [0, 1].
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the heteroscedastic envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if all the main group effects are 0.  The test statistics used is vec $(L\beta R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\beta R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
 \end{par} \vspace{1em}
 
 
+\subsection*{Example}
 
+
+\begin{verbatim}       load waterstrider.mat
+       u = lrt_henv(X, Y, 0.01);
+       ModelOutput = henv(X, Y, u);
+       TestOutout = testcoefficient_henv(ModelOutput);\end{verbatim}
+
+               \color{lightgray} \begin{verbatim}
+Test Hypothesis     Chisq Statistic    DF     P-value
+----------------------------------------------------------------------
+L * beta * R = A         226.256       16      0.0000
+----------------------------------------------------------------------
+\end{verbatim} \color{black}
+\begin{verbatim}       r = size(Y, 2);
+       p = size(ModelOutput.beta, 2);
+       TestInput.L = rand(2, r);
+       TestInput.R = rand(p, 1);
+       TestInput.A = zeros(2, 1);
+       TestOutout = testcoefficient_henv(ModelOutput, TestInput);\end{verbatim}
+    
+
+        \color{lightgray} \begin{verbatim}
+
+Test Hypothesis     Chisq Statistic    DF     P-value
+----------------------------------------------------------------------
+L * beta * R = A          23.429        2      0.0000
+----------------------------------------------------------------------
+\end{verbatim} \color{black}
+    
 \newpage
-
-
-
 
 \part{ienv}
 

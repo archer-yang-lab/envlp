@@ -15,7 +15,7 @@
 %
 % *Y*: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
-% continuous variables, and r should be strictly greater than p.
+% continuous variables, and r should be greater than p.
 %
 % *u*: Dimension of the envelope. An integer between 0 and r.
 %
@@ -68,7 +68,7 @@
 % * ModelOutput.l: The maximized log likelihood function.  A real number.
 % * ModelOutput.np: The number of parameters in the heteroscedastic envelope
 % model.  A positive integer.
-% * ModelOutput.covMatrix: The asymptotic covariance of ($$\mu$', vec($$\beta$')'.  An r(p + 1) by
+% * ModelOutput.covMatrix: The asymptotic covariance of ($$\mu$', vec($$\beta$'))'.  An r(p + 1) by
 % r(p + 1) matrix.  The covariance matrix returned are asymptotic.  For the
 % actual standard errors, multiply by 1 / n.
 % * ModelOutput.asyHenv: The asymptotic standard errors for elements in $$\beta$
@@ -81,8 +81,8 @@
 % * ModelOutput.ng: The number of observations in each group.  A p by 1 vector.
 
 %% Description
-% This function fits the heteroscedatic envelope model to the responses and predictors,
-% using the maximum likehood estimation.  When the dimension of the
+% This function fits the heteroscedastic envelope model to the responses and predictors,
+% using the maximum likelihood estimation.  When the dimension of the
 % envelope is between 1 and r-1, we implemented the algorithm in Su and Cook (2012).
 % When the dimension is r, then the envelope model degenerates
 % to the standard multivariate linear model for comparing group means.  When the dimension is 0,
@@ -97,7 +97,7 @@
 
 %% Example
 %
-% The following codes produce the results of the waterstrider example in Su
+% The following codes produce the results of the water strider example in Su
 % and Cook (2011).
 % 
 %         load waterstrider.mat

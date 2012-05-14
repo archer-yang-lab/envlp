@@ -7,7 +7,7 @@
 %% Input
 %
 % *ModelOutput*: A list containing the maximum likelihood estimators and other
-% statistics inherted from ienv.
+% statistics inherited from henv.
 % 
 % *Xnew*: A group indicator.  It must be a column vector, whose transpose is
 % the same as one of the group indictors from the original data. 
@@ -42,8 +42,10 @@
 %         ModelOutput.mug
 %         Xnew = X(1, :)'
 %         PredictOutput = predict_henv(ModelOutput, Xnew, 'estimation')
-%         PredictOutput.value  
+%         PredictOutput.value %This is the 3rd group mean
+%         PredictOutput.SE
 %         PredictOutput = predict_henv(ModelOutput, Xnew, 'prediction')
+%         PredictOutput.SE
 
 
 function PredictOutput = predict_henv(ModelOutput, Xnew, infType)
