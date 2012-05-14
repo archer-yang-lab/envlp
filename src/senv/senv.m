@@ -67,7 +67,7 @@
 
 %% Description
 % This function fits the scaled envelope model to the responses and predictors,
-% using the maximum likehood estimation.  When the dimension of the
+% using the maximum likelihood estimation.  When the dimension of the
 % envelope is between 1 and r - 1, we implemented the algorithm in Cook and
 % Su (2012).  When the dimension is r, then the scaled envelope model 
 % degenerates to the standard multivariate linear regression.  When the

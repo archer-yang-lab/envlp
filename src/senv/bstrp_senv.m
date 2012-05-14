@@ -16,7 +16,7 @@
 % *u*: Dimension of the envelope subspace.  A positive integer between 0 and
 % r.
 % 
-% *B*: Number of boostrap samples.  A positive integer.
+% *B*: Number of bootstrap samples.  A positive integer.
 % 
 % *Opts*: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
@@ -43,7 +43,7 @@
 %         Y = sales(:, 4 : 7);
 %         X = sales(:, 1 : 3);
 % 
-%         u = bic_ienv(X, Y)
+%         u = bic_senv(X, Y)
 %         B = 20;
 %         bootse = bstrp_senv(X, Y, u, B)
 

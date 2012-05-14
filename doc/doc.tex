@@ -4008,32 +4008,46 @@ Select the dimension of the scaled envelope subspace using Akaike information cr
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = aic_senv(X, Y)
+       u = aic_senv(X, Y, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-u=aic\_senv(X,Y)
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is the number of observations. The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors. An n by p matrix, p is the number of predictors and n is the number of observations. The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses. The responses must be continuous variables.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{u}: Dimension of the inner envelope. An integer between 0 and r.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item u: Dimension of the inner envelope. An integer between 0 and r.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -4045,22 +4059,22 @@ This function implements the Akaike information criteria (AIC) to select the dim
 
 \subsection*{Example}
 
-\begin{par}
-load('sales.txt')\\
-Y=T9\_12(:,4:7);\\
-X=T9\_12(:,1:3);\\
-u=aic\_senv(X,Y)
 
-\end{par} \vspace{1em}
+\begin{verbatim}       load('sales.txt')
+       Y = sales(:, 4 : 7);
+       X = sales(:, 1 : 3);
+       u = aic_senv(X, Y)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+u =
 
+     4
+
+\end{verbatim} \color{black}
 
 \newpage
 
 
-
-
-
-    
 \section{bic\_senv}
 
 \begin{par}
@@ -4071,32 +4085,46 @@ Select the dimension of the scaled envelope subspace using Bayesian information 
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = bic_senv(X, Y)
+       u = bic_senv(X, Y, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-u=bic\_senv(X,Y)
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is the number of observations. The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors. An n by p matrix, p is the number of predictors and n is the number of observations. The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses. The responses must be continuous variables.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{u}: Dimension of the inner envelope. An integer between 0 and r.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item u: Dimension of the inner envelope. An integer between 0 and r.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -4108,19 +4136,20 @@ This function implements the Bayesian information criteria (BIC) to select the d
 
 \subsection*{Example}
 
-\begin{par}
-load('sales.txt')\\
-Y=T9\_12(:,4:7);\\
-X=T9\_12(:,1:3);\\
-u=bic\_senv(X,Y)
 
-\end{par} \vspace{1em}
+\begin{verbatim}       load('sales.txt')
+       Y = sales(:, 4 : 7);
+       X = sales(:, 1 : 3);
+       u = bic_senv(X, Y)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
 
+u =
+
+     2
+
+\end{verbatim} \color{black}
 \newpage
-
-
-
-
 
 \section{bstrp\_senv}
 
@@ -4132,34 +4161,52 @@ Compute bootstrap standard error for the scaled envelope model.
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       bootse = bstrp_senv(X, Y, u, B)
+       bootse = bstrp_senv(X, Y, u, B, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-bootse=bstrp\_senv(X,Y,B,u)
+\textbf{X}: Predictors, an n by p matrix, p is the number of predictors.  The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope subspace.  A positive integer between 0 and r.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{B}: Number of bootstrap samples.  A positive integer.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors, an n by p matrix, p is the number of predictors.  The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
-   \item B: Number of boostrap samples.  A positive integer.
-   \item u: Dimension of the envelope subspace.  A positive integer between 0 and r.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{bootse}: The standard error for elements in $\beta$ computed by bootstrap.  An r by p matrix.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item bootse: The standard error for elements in $\beta$ computed by bootstrap.  An r by p matrix.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -4168,59 +4215,76 @@ Output
 This function computes the bootstrap standard errors for the regression coefficients in the scaled envelope model by bootstrapping the residuals.
 \end{par} \vspace{1em}
 
+
 \subsection*{Example}
 
-\begin{par}
-load('sales.txt')\\
-Y=T9\_12(:,4:7);\\
-X=T9\_12(:,1:3);\\
-u=bic\_ienv(X,Y)\\
-B=20;\\
-bootse=bstrp\_senv(X,Y,B,u)
 
-\end{par} \vspace{1em}
+\begin{verbatim}       load('sales.txt')
+       Y = sales(:, 4 : 7);
+       X = sales(:, 1 : 3);\end{verbatim}
+    
+\begin{verbatim}       u = bic_senv(X, Y)\end{verbatim}
+        \color{lightgray} \begin{verbatim}
+u =
+
+     2
+\end{verbatim} \color{black}
+\begin{verbatim}
+       B = 20;
+       bootse = bstrp_senv(X, Y, u, B)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+
+bootse =
+
+    0.0539    0.0472    0.0554
+    0.0675    0.0912    0.1178
+    0.0567    0.0781    0.0791
+    0.0986    0.0944    0.1283
+
+\end{verbatim} \color{black}
+    
 
 \newpage
 
-
-
-
-    
 \section{dF4senv}
 
 \begin{par}
-First derivative of the objective funtion for computing the envelope subspace in the scaled envelope model.
+First derivative of the objective function for computing the envelope subspace in the scaled envelope model.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       df = dF4senv(R, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-f = dF4senv(R,DataParameter)
+\textbf{R}: An r by u semi-orthogonal matrix, 0 \ensuremath{<} u \ensuremath{<}= r.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{DataParameter}: A structure that contains the statistics calculated from the data.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item R: An r by u semi-orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}=p.
-   \item DataParameter: A structure that contains the statistics calculated form the data.
-\end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{df}: The first derivative of the objective function for computing the  envelope subspace.  An r by u matrix.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item dF: The first derivative of the objective function for computing the  envelope subspace.  An r by u matrix.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -4229,48 +4293,46 @@ Output
 This first derivative of F4senv obtained by matrix calculus calculations.
 \end{par} \vspace{1em}
 
-
 \newpage
 
-
-
-
-    
 \section{F4senv}
 
 \begin{par}
-Objective funtion for computing the envelope subspace in scaled envelope model.
+Objective function for computing the envelope subspace in scaled envelope model.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       f = F4senv(R, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-f = F4senv(R,DataParameter)
+\textbf{R}: An r by u semi orthogonal matrix, 0 \ensuremath{<} u \ensuremath{<}= r.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{DataParameter}: A structure that contains the statistics calculated from the data.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item R: An r by u semi orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}r.
-   \item DataParameter: A structure that contains the statistics calculated form the data.
-\end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{f}: A scalar containing the value of the objective function evaluated at R.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item f: A scalar containing the value of the objective function evaluated at R.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -4282,47 +4344,47 @@ The objective function is derived in Section 4.1 in Cook and Su (2012) using max
 
 \newpage
 
-
-
-
-
-    
 \section{objfun}
 
 \begin{par}
-Objective funtion for computing the scales in the scaled envelope model.
+Objective function for computing the scales in the scaled envelope model.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       f = objfun(d, Gamma, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-f = objfun(d,Gamma,DataParameter)
+\textbf{d}: An r - 1 dimensional column vector containing the scales for the 2nd to the rth responses.  All the entries in d are positive.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Gamma}: A r by u semi-orthogonal matrix that spans the envelope subspace or the estimated envelope subspace.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item d: An r-1 dimensional column vector containing the scales for the 2nd to the rth responses.  All the entries in d are positive.
-   \item Gamma: A r by u semi-orthogomal matrix that spans the envelope subspace or the estimated envelope subspace.
-   \item DataParameter: A structure that contains the statistics calculated form the data.
-\end{itemize}
 \begin{par}
-Output
+\textbf{DataParameter}: A structure that contains the statistics calculated form the data.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item f: A scalar containing the value of the objective function evaluated at d.
-\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{f}: A scalar containing the value of the objective function evaluated at d.
+\end{par} \vspace{1em}
 
 
 \subsection*{Description}
@@ -4332,11 +4394,126 @@ The objective function is derived in Section 4.1 of Su and Cook (2012)  using ma
 \end{par} \vspace{1em}
 
 
-
 \newpage
 
+    
+    
+\section{predict\_senv}
+
+\begin{par}
+Perform estimation or prediction under the scaled envelope model.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
 
 
+\subsection*{Syntax}
+
+
+\begin{verbatim}       PredictOutput = predict_senv(ModelOutput, Xnew, infType)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{ModelOutput}: A list containing the maximum likelihood estimators and other statistics inherited from senv.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Xnew}: The value of X with which to estimate or predict Y.  A p by 1 vector.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{PredictOutput}: A list containing the results of the inference.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item PredictOutput.value: The fitted value or the prediction value evaluated at Xnew. An r by 1 vector.
+   \item PredictOutput.covMatrix: The covariance matrix of PredictOutput.value. An r by r matrix.
+   \item PredictOutput.SE: The standard error of elements in PredictOutput.value. An r by 1 vector.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function evaluates the scaled envelope model at new value Xnew.  It can perform estimation: find the fitted value when X = Xnew, or prediction: predict Y when X = Xnew.  The covariance matrix and the standard errors are also provided.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load('sales.txt')
+       Y = sales(:, 4 : 7);
+       X = sales(:, 1 : 3);
+       u = bic_senv(X, Y);
+       ModelOutput = senv(X, Y, u);
+       Xnew = X(1, :)';
+       PredictOutput = predict_senv(ModelOutput, Xnew, 'estimation')
+       [PredictOutput.value, Y(1, :)']  % Compare the fitted value with the data
+       PredictOutput.SE\end{verbatim}    
+        \color{lightgray} \begin{verbatim}
+PredictOutput = 
+
+        value: [4x1 double]
+    covMatrix: [4x4 double]
+           SE: [4x1 double]
+
+
+ans =
+
+    8.9109    9.0000
+   11.5096   12.0000
+    9.6063    9.0000
+   19.5119   20.0000
+
+
+ans =
+
+    7.7627
+    5.8952
+    4.2205
+    8.0134
+\end{verbatim} \color{black}       
+       \begin{verbatim}
+       PredictOutput = predict_senv(ModelOutput, Xnew, 'prediction')
+       PredictOutput.SE\end{verbatim}
+        \color{lightgray} \begin{verbatim}
+
+PredictOutput = 
+
+        value: [4x1 double]
+    covMatrix: [4x4 double]
+           SE: [4x1 double]
+
+
+ans =
+
+    8.3024
+    6.3052
+    4.4254
+    8.5956
+
+\end{verbatim} \color{black}
+    
+
+
+\newpage
 
 \section{senv}
 
@@ -4348,92 +4525,237 @@ Fit the scaled envelope model.
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item References
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       ModelOutput = senv(X, Y, u)
+       ModelOutput = senv(X, Y, u, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-stat=senv(X,Y,u)
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
-   \item u: Dimension of the envelope. An integer between 0 and r.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out number of iterations, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
-\end{par} \vspace{1em}
-\begin{par}
-stat: A list that contains the maximum likelihood estimators and some statistics.
+\textbf{ModelOutput}: A list that contains the maximum likelihood estimators and some statistics.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item stat.beta: The scaled envelope estimator of the regression coefficients $\beta$. An r by p matrix.
-   \item stat.Sigma: The scaled envelope estimator of the error covariance matrix.  An r by r matrix.
-   \item stat.Lambda: The matrix of estimated scales. An r by r diagonal matrix with the first diagonal element equal to 1 and other diagonal elements being positive.
-   \item stat.Gamma: The orthogonal basis of the envelope subspace. An r by u semi-orthogonal matrix.
-   \item stat.Gamma0: The orthogonal basis of the complement of the envelope subspace.  An r by r-u semi-orthogonal matrix.
-   \item stat.eta: The coordinates of $\beta$ with respect to Gamma. An u by p matrix.
-   \item stat.Omega: The coordinates of Sigma with respect to Gamma. An u by u matrix.
-   \item stat.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u matrix.
-   \item stat.alpha: The estimated intercept in the scaled envelope model.  An r by 1 vector.
-   \item stat.l: The maximized log likelihood function.  A real number.
-   \item stat.asySenv: Asymptotic standard error for elements in $\beta$ under the scaled envelope model.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
-   \item stat.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the scaled envelope estimator, for each element in $\beta$.  An r by p matrix.
-   \item stat.np: The number of parameters in the scaled envelope model.  A positive integer.
+   \item ModelOutput.beta: The scaled envelope estimator of the regression coefficients $\beta$. An r by p matrix.
+   \item ModelOutput.Sigma: The scaled envelope estimator of the error covariance matrix.  An r by r matrix.
+   \item ModelOutput.Lambda: The matrix of estimated scales. An r by r diagonal matrix with the first diagonal element equal to 1 and other diagonal elements being positive.
+   \item ModelOutput.Gamma: The orthogonal basis of the envelope subspace. An r by u semi-orthogonal matrix.
+   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  An r by r - u semi-orthogonal matrix.
+   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. An u by p matrix.
+   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u matrix.
+   \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r - u by r - u matrix.
+   \item ModelOutput.alpha: The estimated intercept in the scaled envelope model.  An r by 1 vector.
+   \item ModelOutput.l: The maximized log likelihood function.  A real number.
+   \item ModelOutput.covMatrix: The asymptotic covariance of vec($\beta$).  An rp by rp matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1 / n.
+   \item ModelOutput.asySenv: Asymptotic standard error for elements in $\beta$ under the scaled envelope model.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
+   \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the scaled envelope estimator, for each element in $\beta$.  An r by p matrix.
+   \item ModelOutput.np: The number of parameters in the scaled envelope model.  A positive integer.
+   \item ModelOutput.n: The number of observations in the data.  A positive integer.
 \end{itemize}
 
 
 \subsection*{Description}
 
 \begin{par}
-This function fits the scaled envelope model to the responses and predictors, using the maximum likehood estimation.  When the dimension of the envelope is between 1 and r-1, we implemented the algorithm in Cook and Su (2012).  When the dimension is r, then the scaled envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
+This function fits the scaled envelope model to the responses and predictors, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and r - 1, we implemented the algorithm in Cook and Su (2012).  When the dimension is r, then the scaled envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
 \end{par} \vspace{1em}
 
 
 \subsection*{References}
 
-\begin{itemize}
+\begin{enumerate}
 \setlength{\itemsep}{-1ex}
    \item The codes is implemented based on the algorithm in Section 4.1 of Cook and Su (2012).
    \item The Grassmann manifold optimization step calls the package sg\_min 2.4.1 by Ross Lippert (http://web.mit.edu/$\sim$ripper/www.sgmin.html).
-\end{itemize}
-
-
+\end{enumerate}
 
 
 \subsection*{Example}
 
 \begin{par}
-The following codes produce the results of the test and performance
-example in Cook and Su (2012). \vspace{1em}
+The following codes produce the results of the test and performance example in Cook and Su (2012).
+\end{par} \vspace{1em}
 
-load('sales.txt')\\
-Y=T9\_12(:,4:7);\\
-X=T9\_12(:,1:3);\\
-u=bic\_env(X,Y)\\
-stat=env(X,Y,u);\\
-1-1./stat.ratio\\
-u=bic\_senv(X,Y)\\
-stat=senv(X,Y,u);\\
-stat.Lambda\\
-1-1./stat.ratio
+\begin{verbatim}       load('sales.txt')
+       Y = sales(:, 4 : 7);
+       X = sales(:, 1 : 3);
+       u = bic_senv(X, Y)\end{verbatim}    
+        \color{lightgray} \begin{verbatim}
+u =
+
+     2
+\end{verbatim} \color{black}       
+       \begin{verbatim}
+       ModelOutput = senv(X, Y, u)
+       ModelOutput.Lambda
+       1 - 1 ./ ModelOutput.ratio\end{verbatim}
+
+        \color{lightgray} \begin{verbatim}
+ModelOutput = 
+
+         beta: [4x3 double]
+        Sigma: [4x4 double]
+       Lambda: [4x4 double]
+        Gamma: [4x2 double]
+       Gamma0: [4x2 double]
+          eta: [2x3 double]
+        Omega: [2x2 double]
+       Omega0: [2x2 double]
+        alpha: [4x1 double]
+           np: 23
+            l: -386.1900
+    covMatrix: [12x12 double]
+      asySenv: [4x3 double]
+        ratio: [4x3 double]
+            n: 50
+
+
+ans =
+
+    1.0000         0         0         0
+         0    0.9729         0         0
+         0         0    0.8067         0
+         0         0         0    1.7016
+
+
+ans =
+
+    0.7020    0.5218    0.6517
+    0.6137    0.3219    0.5614
+    0.4439    0.1858    0.3924
+    0.5375    0.4639    0.5228
+
+\end{verbatim} \color{black}
+\newpage
+
+\section{testcoefficient\_senv}
+
+
+\begin{verbatim}This function tests the null hypothesis L * beta * R = A versus the
+alternative hypothesis L * beta * R ~= A, where beta is estimated under
+the scaled envelope model.\end{verbatim}
+    
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       TestOutput = testcoefficient_senv(ModelOutput)
+       TestOutput = testcoefficient_senv(ModelOutput, TestInput)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{ModelOutput}: A list containing the maximum likelihood estimators and other statistics inherited from senv.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{TestInput}: A list that specifies the null hypothesis, including L, R, and A.  If not provided by the user, default values will be used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestInput.L: The matrix multiplied to $\beta$ on the left.  It is a d1 by r matrix, while d1 is less than or equal to r.  Default value: identity matrix $I_r$.
+   \item TestInput.R: The matrix multiplied to $\beta$ on the right.  It is a p by d2 matrix, while d2 is less than or equal to p.  Default value: identity matrix $I_p$.
+   \item TestInput.A: The matrix on the right hand side of the equation.  It is a d1 by d2 matrix.  Default value: d1 by d2 zero matrix.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, and the p-value.  At the same time, a table is printed out.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestOutput.chisqStatistic: The test statistics. A real number.
+   \item TestOutput.df: The degrees of freedom of the reference chi-squared distribution.  A positive integer.
+   \item TestOutput.pValue: p-value of the test.  A real number in [0, 1].
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the scaled envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$.  The test statistics used is vec $(L\beta R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\beta R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
 \end{par} \vspace{1em}
 
 
+\subsection*{Example}
 
+
+\begin{verbatim}       load('sales.txt')
+       Y = sales(:,4:7);
+       X = sales(:,1:3);
+       u = bic_senv(X,Y)
+       ModelOutput = senv(X,Y,u);
+       TestOutout = testcoefficient_senv(ModelOutput);\end{verbatim}
+        \color{lightgray} \begin{verbatim}
+
+ Test Hypothesis     Chisq Statistic    DF     P-value
+----------------------------------------------------------------------
+L * beta * R = A        4827.816       12      0.0000
+----------------------------------------------------------------------
+\end{verbatim} \color{black}
+\begin{verbatim}
+       r = size(Y, 2);
+       p = size(X, 2);
+       TestInput.L = rand(2, r);
+       TestInput.R = rand(p, 1);
+       TestInput.A = zeros(2, 1);
+       TestOutout = testcoefficient_senv(ModelOutput, TestInput);\end{verbatim}
+         \color{lightgray} \begin{verbatim}
+Test Hypothesis     Chisq Statistic    DF     P-value
+----------------------------------------------------------------------
+L * beta * R = A        1025.948        2      0.0000
+----------------------------------------------------------------------
+\end{verbatim} \color{black}
+    
 \newpage
-
-
 
 \part{xenv}
 

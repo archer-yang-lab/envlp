@@ -1,5 +1,5 @@
 %% F4senv
-% Objective funtion for computing the envelope subspace in scaled envelope
+% Objective function for computing the envelope subspace in scaled envelope
 % model.
 
 %% Syntax

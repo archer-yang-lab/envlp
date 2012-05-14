@@ -1,5 +1,5 @@
 %% dF4senv
-% First derivative of the objective funtion for computing the envelope
+% First derivative of the objective function for computing the envelope
 % subspace in the scaled envelope model.
 
 %% Syntax
@@ -14,7 +14,7 @@
 %
 %% Output
 %
-% *dF*: The first derivative of the objective function for computing the
+% *df*: The first derivative of the objective function for computing the
 %  envelope subspace.  An r by u matrix.
 
 %% Description
