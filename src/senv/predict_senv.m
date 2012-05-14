@@ -7,7 +7,7 @@
 %% Input
 %
 % *ModelOutput*: A list containing the maximum likelihood estimators and other
-% statistics inherted from senv.
+% statistics inherited from senv.
 % 
 % *Xnew*: The value of X with which to estimate or predict Y.  A p by 1
 % vector.
@@ -37,13 +37,14 @@
 %         load('sales.txt')
 %         Y = sales(:, 4 : 7);
 %         X = sales(:, 1 : 3);
-%         u = bic_env(X, Y)
-%         ModelOutput = env(X, Y, u);
+%         u = bic_senv(X, Y);
+%         ModelOutput = senv(X, Y, u);
 %         Xnew = X(1, :)';
 %         PredictOutput = predict_senv(ModelOutput, Xnew, 'estimation')
-%         PredictOutput.value  % Compare the fitted value with the data
-%         Y(1, :)'
+%         [PredictOutput.value, Y(1, :)']  % Compare the fitted value with the data
+%         PredictOutput.SE
 %         PredictOutput = predict_senv(ModelOutput, Xnew, 'prediction')
+%         PredictOutput.SE
 
 function PredictOutput = predict_senv(ModelOutput, Xnew, infType)
 

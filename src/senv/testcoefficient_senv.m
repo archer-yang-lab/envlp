@@ -11,7 +11,7 @@
 %% Input
 % 
 % *ModelOutput*: A list containing the maximum likelihood estimators and other
-% statistics inherted from senv.
+% statistics inherited from senv.
 % 
 % *TestInput*: A list that specifies the null hypothesis, including L, R, and
 % A.  If not provided by the user, default values will be used.
@@ -22,7 +22,7 @@
 % * TestInput.R: The matrix multiplied to $$\beta$ on the right.  It is a p
 % by d2 matrix, while d2 is less than or equal to p.  Default value:
 % identity matrix $$I_p$.
-% * TestInput.A: The matrix on the right handside of the equation.  It is a
+% * TestInput.A: The matrix on the right hand side of the equation.  It is a
 % d1 by d2 matrix.  Default value: d1 by d2 zero matrix.
 % 
 %% Output
