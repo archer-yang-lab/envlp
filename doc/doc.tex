@@ -2490,9 +2490,6 @@ L * beta * R = A          23.429        2      0.0000
 \part{ienv}
 
 
-
-
-    
 \section{aic\_ienv}
 
 \begin{par}
@@ -2503,32 +2500,46 @@ Select the dimension of the inner envelope subspace using Akaike information cri
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = aic_ienv(X, Y)
+       u = aic_ienv(X, Y, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-u=aic\_ienv(X,Y)
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is the number of observations. The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors. An n by p matrix, p is the number of predictors and n is the number of observations. The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses. The responses must be continuous variables.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{u}: Dimension of the inner envelope. An integer between 0 and p or equal to r.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item u: Dimension of the inner envelope. An integer between 0 and p or equal to r.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -2540,22 +2551,19 @@ This function implements the Akaike information criteria (AIC) to select the dim
 
 \subsection*{Example}
 
-\begin{par}
-load irisf.mat \\
-u=aic\_ienv(X,Y)
-\end{par} \vspace{1em}
 
+\begin{verbatim}       load irisf.mat
+       u = aic_ienv(X, Y)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+u =
 
+     1
 
+\end{verbatim} \color{black}
 
 \newpage
 
-
-
-
-
- 
-    
 \section{bic\_ienv}
 
 \begin{par}
@@ -2566,32 +2574,46 @@ Select the dimension of the inner envelope subspace using Bayesian information c
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = bic_ienv(X, Y)
+       u = bic_ienv(X, Y, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-u=bic\_ienv(X,Y)
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is the number of observations. The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors. An n by p matrix, p is the number of predictors and n is the number of observations. The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses. The responses must be continuous variables.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{u}: Dimension of the inner envelope. An integer between 0 and p or equal to r.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item u: Dimension of the inner envelope. An integer between 0 and p or equal to r.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -2603,20 +2625,19 @@ This function implements the Bayesian information criteria (BIC) to select the d
 
 \subsection*{Example}
 
-\begin{par}
-load irisf.mat \\
-u=bic\_ienv(X,Y)
-\end{par} \vspace{1em}
 
+\begin{verbatim}       load irisf.mat
+       u = bic_ienv(X, Y)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+u =
 
+     1
+
+\end{verbatim} \color{black}
 
 \newpage
 
-
-
-
-   
-    
 \section{bstrp\_ienv}
 
 \begin{par}
@@ -2627,34 +2648,52 @@ Compute bootstrap standard error for the inner envelope model.
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       bootse = bstrp_ienv(X, Y, u, B)
+       bootse = bstrp_ienv(X, Y, u, B, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-bootse=bstrp\_ienv(X,Y,B,u)
+\textbf{X}: Predictors, an n by p matrix, p is the number of predictors.  The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the inner envelope. An integer between 0 and p or equal to r.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{B}: Number of bootstrap samples.  A positive integer.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors, an n by p matrix, p is the number of predictors.  The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
-   \item B: Number of boostrap samples.  A positive integer.
-   \item u: Dimension of the inner envelope. An integer between 0 and p or equal to r.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{bootse}: The standard error for elements in $\beta$ computed by bootstrap.  An r by p matrix.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item bootse: The standard error for elements in $\beta$ computed by bootstrap.  An r by p matrix.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -2666,60 +2705,72 @@ This function computes the bootstrap standard errors for the regression coeffici
 
 \subsection*{Example}
 
-\begin{par}
-load irisf.mat
-\end{par} \vspace{1em}
-\begin{par}
-u=bic\_ienv(X,Y) \\
-B=100; \\
-bootse=bstrp\_ienv(X,Y,B,u)
-\end{par} \vspace{1em}
 
+\begin{verbatim}       load irisf.mat\end{verbatim}
+    
+\begin{verbatim}       u = bic_ienv(X, Y)\end{verbatim}
+        \color{lightgray} \begin{verbatim}
 
+u =
 
+     1
+
+\end{verbatim} \color{black}
+\begin{verbatim}       B = 100;
+       bootse = bstrp_ienv(X, Y, u, B)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+
+bootse =
+
+   13.4695    4.9601
+    7.4709    2.7315
+   14.9316    5.2913
+    8.7597    3.0853
+
+\end{verbatim} \color{black}
 
 \newpage
 
 
-
-
-
-  
 \section{dF4ienv}
 
 \begin{par}
-First derivative of the objective funtion for computing the inner envelope subspace.
+First derivative of the objective function for computing the inner envelope subspace.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       df = dF4ienv(R, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-f = dF4ienv(R,DataParameter)
+\textbf{R}: An r by u semi-orthogonal matrix, 0 \ensuremath{<} u \ensuremath{<}= p.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{DataParameter}: A structure that contains the statistics calculated from the data.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item R: An r by u semi-orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}=p.
-   \item DataParameter: A structure that contains the statistics calculated form the data.
-\end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{df}: The first derivative of the objective function for computing the inner envelope subspace.  An r by u matrix.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item dF: The first derivative of the objective function for computing the inner envelope subspace.  An r by u matrix.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -2729,50 +2780,46 @@ This first derivative of F4ienv obtained by matrix calculus calculations.
 \end{par} \vspace{1em}
 
 
-
-
 \newpage
 
-
-
-
-
-
-\section{F4ienv}
+ \section{F4ienv}
 
 \begin{par}
-Objective funtion for computing the inner envelope subspace
+Objective function for computing the inner envelope subspace.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       f = F4ienv(R, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-f = F4ienv(R,DataParameter)
+\textbf{R}: An r by u semi orthogonal matrix, 0 \ensuremath{<} u \ensuremath{<}= p.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{DataParameter}: A structure that contains the statistics calculated from the data.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item R: An r by u semi orthogonal matrix, 0\ensuremath{<}u\ensuremath{<}=p.
-   \item DataParameter: A structure that contains the statistics calculated form the data.
-\end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{f}: A scalar containing the value of the objective function evaluated at R.
 \end{par} \vspace{1em}
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item f: A scalar containing the value of the objective function evaluated at R.
-\end{itemize}
 
 
 \subsection*{Description}
@@ -2781,14 +2828,8 @@ Output
 The objective function is derived in Section 3.3 in Su and Cook (2012) by  using maximum likelihood estimation. The columns of the semi-orthogonal matrix that minimizes this function span the estimated inner envelope subspace.
 \end{par} \vspace{1em}
 
-
-
 \newpage
 
-
-
-  
-    
 \section{ienv}
 
 \begin{par}
@@ -2799,66 +2840,85 @@ Fit the inner envelope model.
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item References
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       ModelOutput = ienv(X, Y, u)
+       ModelOutput = ienv(X, Y, u, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-stat=ienv(X,Y,u)
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the inner envelope. An integer between 0 and p or equal to r.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
-   \item u: Dimension of the inner envelope. An integer between 0 and p or equal to r.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
-\end{par} \vspace{1em}
-\begin{par}
-stat: A list that contains the maximum likelihood estimators and some statistics.
+\textbf{ModelOutput}: A list that contains the maximum likelihood estimators and some statistics.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item stat.beta: The envelope estimator of the regression coefficients $\beta$. An r by p matrix.
-   \item stat.Sigma: The envelope estimator of the error covariance matrix.  An r by r matrix.
-   \item stat.Gamma1: The orthogonal basis of the inner envelope subspace. An r by u semi-orthogonal matrix.
-   \item stat.Gamma0: The orthogonal basis of the complement of the inner envelope subspace.  An r by r-u semi-orthogonal matrix.
-   \item stat.eta1: The transpose of the coordinates of $\beta$ with respect to Gamma1. An p by u matrix.
-   \item stat.B: An (r-u) by (p-u) semi-orthogonal matrix, so that (Gamma, Gamma0*B) spans $\beta$.
-   \item stat.eta2: The transpose of the coordinates of $\beta$ with respect to Gamma0. An p by (p-u) matrix.
-   \item stat.Omega1: The coordinates of Sigma with respect to Gamma1. An u by u matrix.
-   \item stat.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u matrix.
-   \item stat.alpha: The estimated intercept in the inner envelope model.  An r by 1 vector.
-   \item stat.l: The maximized log likelihood function.  A real number.
-   \item stat.asyIenv: Asymptotic standard error for elements in $\beta$ under the inner envelope model.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
-   \item stat.ratio: The asymptotic standard error ratio of the stanard multivariate linear regression estimator over the inner envelope estimator, for each element in $\beta$.  An r by p matrix.
-   \item stat.np: The number of parameters in the inner envelope model.  A positive integer.
+   \item ModelOutput.beta: The envelope estimator of the regression coefficients $\beta$. An r by p matrix.
+   \item ModelOutput.Sigma: The envelope estimator of the error covariance matrix.  An r by r matrix.
+   \item ModelOutput.Gamma1: The orthogonal basis of the inner envelope subspace. An r by u semi-orthogonal matrix.
+   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the inner envelope subspace.  An r by r-u semi-orthogonal matrix.
+   \item ModelOutput.eta1: The transpose of the coordinates of $\beta$ with respect to Gamma1. An p by u matrix.
+   \item ModelOutput.B: An (r - u) by (p - u) semi-orthogonal matrix, so that (Gamma, Gamma0 * B) spans $\beta$.
+   \item ModelOutput.eta2: The transpose of the coordinates of $\beta$ with respect to Gamma0. An p by (p-u) matrix.
+   \item ModelOutput.Omega1: The coordinates of Sigma with respect to Gamma1. An u by u matrix.
+   \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r - u by r - u matrix.
+   \item ModelOutput.alpha: The estimated intercept in the inner envelope model.  An r by 1 vector.
+   \item ModelOutput.l: The maximized log likelihood function.  A real number.
+   \item ModelOutput.covMatrix: The asymptotic covariance of vec($\beta$).  An rp by rp matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1/n.
+   \item ModelOutput.asyIenv: Asymptotic standard error for elements in $\beta$ under the inner envelope model.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
+   \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the inner envelope estimator, for each element in $\beta$.  An r by p matrix.
+   \item ModelOutput.np: The number of parameters in the inner envelope model.  A positive integer.
+   \item ModelOutput.n: The number of observations in the data.  A positive integer.
 \end{itemize}
 
 
 \subsection*{Description}
 
 \begin{par}
-This function fits the inner envelope model to the responses and predictors, using the maximum likehood estimation.  When the dimension of the envelope is between 1 and p-1, we implemented the algorithm in Su and Cook (2012).  When the dimension is p, then the inner envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
+This function fits the inner envelope model to the responses and predictors, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and p-1, we implemented the algorithm in Su and Cook (2012).  When the dimension is p, then the inner envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
 \end{par} \vspace{1em}
 
 
 \subsection*{References}
 
-\begin{itemize}
+\begin{enumerate}
 \setlength{\itemsep}{-1ex}
    \item The codes is implemented based on the algorithm in Su and Cook (2012).
    \item The Grassmann manifold optimization step calls the package sg\_min 2.4.1 by Ross Lippert (http://web.mit.edu/$\sim$ripper/www.sgmin.html).
-\end{itemize}
+\end{enumerate}
 
 
 \subsection*{Example}
@@ -2866,25 +2926,52 @@ This function fits the inner envelope model to the responses and predictors, usi
 \begin{par}
 The following codes gives the results of the Fisher's iris data example in Su and Cook (2012).
 \end{par} \vspace{1em}
-\begin{par}
-load irisf.mat
-\end{par} \vspace{1em}
-\begin{par}
-u=bic\_env(X,Y) \\
-d=bic\_ienv(X,Y) \\
-stat=ienv(X,Y,d) \\
-1-1./stat.ratio
-\end{par} \vspace{1em}
 
+\begin{verbatim}       load irisf.mat\end{verbatim}
+    
+\begin{verbatim}       d = bic_ienv(X, Y)\end{verbatim}
+        \color{lightgray} \begin{verbatim}
+d =
+
+     1
+\end{verbatim} \color{black}
+\begin{verbatim}       ModelOutput = ienv(X, Y, d)
+       1 - 1 ./ ModelOutput.ratio\end{verbatim}
+        \color{lightgray} \begin{verbatim}
+
+ModelOutput = 
+
+         beta: [4x2 double]
+        Sigma: [4x4 double]
+       Gamma1: [4x1 double]
+       Gamma0: [4x3 double]
+            B: [3x1 double]
+         eta1: [2x1 double]
+         eta2: [2x1 double]
+       Omega1: 8.3751
+       Omega0: [3x3 double]
+        alpha: [4x1 double]
+           np: 16
+            l: -1.4805e+03
+    covMatrix: [8x8 double]
+      asyIenv: [4x2 double]
+        ratio: [4x2 double]
+            n: 150
+
+
+ans =
+
+    0.0049    0.2122
+    0.0020    0.0806
+    0.0033    0.1404
+    0.0004    0.0138
+
+\end{verbatim} \color{black}
 
 
 \newpage
 
 
-
-
-
-    
 \section{lrt\_ienv}
 
 \begin{par}
@@ -2895,62 +2982,279 @@ Select the dimension of the inner envelope subspace using likelihood ratio testi
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = lrt_ienv(X, Y, alpha)
+       u = lrt_ienv(X, Y, alpha, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-u=lrt\_ienv(X,Y,alpha)
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-Input
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{alpha}: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
-   \item alpha: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
 \begin{par}
-Output
+\textbf{u}: Dimension of the inner envelope. An integer between 0 and p or equal to r.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements the likelihood ratio testing procedure to select the dimension of the inner envelope subspace, with pre-specified significance level $\alpha$.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load irisf.mat\end{verbatim}
+    
+\begin{verbatim}       alpha = 0.01;
+       u = lrt_ienv(X, Y, alpha)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+u =
+
+     1
+
+\end{verbatim} \color{black}
+
+\newpage
+
+\section{predict\_ienv}
+
+\begin{par}
+Perform estimation or prediction under the inner envelope model.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       PredictOutput = predict_ienv(ModelOutput, Xnew, infType)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{ModelOutput}: A list containing the maximum likelihood estimators and other statistics inherited from ienv.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Xnew}: The value of X with which to estimate or predict Y.  A p by 1 vector.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{PredictOutput}: A list containing the results of the inference.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item u: Dimension of the inner envelope. An integer between 0 and p or equal to r.
+   \item PredictOutput.value: The fitted value or the prediction value evaluated at Xnew. An r by 1 vector.
+   \item PredictOutput.covMatrix: The covariance matrix of PredictOutput.value. An r by r matrix.
+   \item PredictOutput.SE: The standard error of elements in PredictOutput.value. An r by 1 vector.
 \end{itemize}
 
 
 \subsection*{Description}
 
 \begin{par}
-This function implements the likelihood ratio testing procedure to select the dimension of the inner envelope subspace, with prespecified significance level $\alpha$.
+This function evaluates the inner envelope model at new value Xnew.  It can perform estimation: find the fitted value when X = Xnew, or prediction: predict Y when X = Xnew.  The covariance matrix and the standard errors are also provided.
 \end{par} \vspace{1em}
 
 
 \subsection*{Example}
 
+
+\begin{verbatim}       load irisf.mat
+       d = bic_ienv(X, Y);
+       ModelOutput = ienv(X, Y, d);
+       Xnew = X(1, :)';
+       PredictOutput = predict_ienv(ModelOutput, Xnew, 'estimation')
+       [PredictOutput.value, Y(1, :)']  % Compare the fitted value with the data
+       PredictOutput.SE\end{verbatim}
+        \color{lightgray} \begin{verbatim}
+PredictOutput = 
+
+        value: [4x1 double]
+    covMatrix: [4x4 double]
+           SE: [4x1 double]
+
+
+ans =
+
+   49.9458   51.0000
+   34.2592   35.0000
+   14.5771   14.0000
+    2.4513    2.0000
+
+
+ans =
+
+    1.0978
+    0.7146
+    0.9265
+    0.4357
+\end{verbatim} \color{black}
+\begin{verbatim}       PredictOutput = predict_ienv(ModelOutput, Xnew, 'prediction')
+       PredictOutput.SE\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+PredictOutput = 
+
+        value: [4x1 double]
+    covMatrix: [4x4 double]
+           SE: [4x1 double]
+
+
+ans =
+
+    5.2197
+    3.3897
+    4.3996
+    2.0642
+
+\end{verbatim} \color{black}
+
+\newpage
+
+\section{testcoefficient\_ienv}
+
+
+\begin{verbatim}This function tests the null hypothesis L * beta * R = A versus the
+alternative hypothesis L * beta * R ~= A, where beta is estimated under
+the inner envelope model.\end{verbatim}
+    
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       TestOutput = testcoefficient_ienv(ModelOutput)
+       TestOutput = testcoefficient_ienv(ModelOutput, TestInput)\end{verbatim}
+    
+
+\subsection*{Input}
+
 \begin{par}
-load irisf.mat
+\textbf{ModelOutput}: A list containing the maximum likelihood estimators and other statistics inherited from ienv.
 \end{par} \vspace{1em}
 \begin{par}
-alpha=0.01;\\
- u=lrt\_ienv(X,Y,alpha)
+\textbf{TestInput}: A list that specifies the null hypothesis, including L, R, and A.  If not provided by the user, default values will be used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestInput.L: The matrix multiplied to $\beta$ on the left.  It is a d1 by r matrix, while d1 is less than or equal to r.  Default value: identity matrix $I_r$.
+   \item TestInput.R: The matrix multiplied to $\beta$ on the right.  It is a p by d2 matrix, while d2 is less than or equal to p.  Default value: identity matrix $I_p$.
+   \item TestInput.A: The matrix on the right hand side of the equation.  It is a d1 by d2 matrix.  Default value: d1 by d2 zero matrix.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, and the p-value.  At the same time, a table is printed out.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestOutput.chisqStatistic: The test statistics. A real number.
+   \item TestOutput.df: The degrees of freedom of the reference chi-squared distribution.  A positive integer.
+   \item TestOutput.pValue: p-value of the test.  A real number in [0, 1].
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the inner envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$.  The test statistics used is vec $(L\beta R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\beta R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
 \end{par} \vspace{1em}
 
 
+\subsection*{Example}
 
+
+\begin{verbatim}       load irisf.mat
+       d = bic_ienv(X,Y);
+       ModelOutput = ienv(X,Y,d);
+       TestOutout = testcoefficient_ienv(ModelOutput);\end{verbatim}
+       
+        \color{lightgray} \begin{verbatim}
+Test Hypothesis     Chisq Statistic    DF     P-value
+----------------------------------------------------------------------
+L * beta * R = A        4642.913        8      0.0000
+----------------------------------------------------------------------
+\end{verbatim} \color{black}
+\begin{verbatim}       TestInput.L = rand(2, 4);
+       TestInput.R = rand(2, 1);
+       TestInput.A = zeros(2, 1);
+       TestOutout = testcoefficient_ienv(ModelOutput, TestInput);\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+Test Hypothesis     Chisq Statistic    DF     P-value
+----------------------------------------------------------------------
+L * beta * R = A        1834.229        2      0.0000
+----------------------------------------------------------------------
+\end{verbatim} \color{black}
+    
+\newpage 
+    
 \part{penv}
 
-
-
-
-
-    
-    
 \section{aic\_penv}
 
 \begin{par}
@@ -2961,33 +3265,51 @@ Select the dimension of the partial envelope subspace using Akaike information c
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = aic_penv(X, Y)
+       u = aic_penv(X, Y, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-u=aic\_penv(X1,X2,Y)
-\end{par} \vspace{1em}
-\begin{par}
-Input
+\textbf{X}: A list containing the value of X1 and X2.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X1: Predictors of main interst. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
-   \item X2: Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+   \item X.X1: Predictors of main interest. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
+   \item X.X2: Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.
 \end{itemize}
 \begin{par}
-Output
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item u: Dimension of the envelope. An integer between 0 and r.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
 
 
 \subsection*{Description}
@@ -2999,24 +3321,24 @@ This function implements the Akaike information criteria (AIC) to select the dim
 
 \subsection*{Example}
 
-\begin{par}
-load T7-7.dat \\
-Y=T7\_7(:,1:4); \\
-X=T7\_7(:,5:7); \\
-X1=X(:,3); \\
-X2=X(:,1:2); \\
-u=aic\_penv(X1,X2,Y)
-\end{par} \vspace{1em}
 
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       Xtemp = fiberpaper(:, 5 : 7);
+       X.X1 = Xtemp(:, 3);
+       X.X2 = Xtemp(:, 1 : 2);
+       u = aic_penv(X, Y)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+u =
 
+     3
+
+\end{verbatim} \color{black}
+    
 
 \newpage
 
-
-
-
-  
-    
 \section{bic\_penv}
 
 \begin{par}
@@ -3027,33 +3349,51 @@ Select the dimension of the partial envelope subspace using Bayesian information
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = bic_penv(X, Y)
+       u = bic_penv(X, Y, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-u=bic\_penv(X1,X2,Y)
-\end{par} \vspace{1em}
-\begin{par}
-Input
+\textbf{X}: A list containing the value of X1 and X2.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X1: Predictors of main interst. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
-   \item X2: Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+   \item X.X1: Predictors of main interest. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
+   \item X.X2: Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.
 \end{itemize}
 \begin{par}
-Output
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item u: Dimension of the envelope. An integer between 0 and r.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
 
 
 \subsection*{Description}
@@ -3065,23 +3405,24 @@ This function implements the Bayesian information criteria (BIC) to select the d
 
 \subsection*{Example}
 
-\begin{par}
-load T7-7.dat \\
-Y=T7\_7(:,1:4); \\
-X=T7\_7(:,5:7); \\
-X1=X(:,3); \\
-X2=X(:,1:2); \\
-u=bic\_penv(X1,X2,Y)
-\end{par} \vspace{1em}
 
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       Xtemp = fiberpaper(:, 5 : 7);
+       X.X1 = Xtemp(:, 3);
+       X.X2 = Xtemp(:, 1 : 2);
+       u = bic_penv(X, Y)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+u =
 
+     1
 
+\end{verbatim} \color{black}
+    
 \newpage
 
 
-
-
-    
 \section{bstrp\_penv}
 
 \begin{par}
@@ -3092,35 +3433,57 @@ Compute bootstrap standard error for the partial envelope model.
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       bootse = bstrp_penv(X, Y, u, B)
+       bootse = bstrp_penv(X, Y, u, B, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-bootse=bstrp\_penv(X1,X2,Y,B,u)
-\end{par} \vspace{1em}
-\begin{par}
-Input
+\textbf{X}: A list containing the value of X1 and X2.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X1: Predictors of main interst. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
-   \item X2: Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.  The covariates can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
-   \item B: Number of boostrap samples.  A positive integer.
-   \item u: Dimension of the partial envelope subspace.  A positive integer between 0 and r.
+   \item X.X1: Predictors of main interest. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
+   \item X.X2: Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.
 \end{itemize}
 \begin{par}
-Output
+\textbf{Y}: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the partial envelope subspace.  A positive integer between 0 and r.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{B}: Number of bootstrap samples.  A positive integer.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item bootse: The standard error for elements in $\beta_1$ computed by bootstrap.  An r by p1 matrix.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{bootse}: The standard error for elements in $\beta_1$ computed by bootstrap.  An r by p1 matrix.
+\end{par} \vspace{1em}
 
 
 \subsection*{Description}
@@ -3132,29 +3495,36 @@ This function computes the bootstrap standard errors for the regression coeffici
 
 \subsection*{Example}
 
-\begin{par}
-load T7-7.dat \\
-Y=T7\_7(:,1:4); \\
-X=T7\_7(:,5:7); \\
-X1=X(:,3); \\
-X2=X(:,1:2); \\
-alpha=0.01; \\
-u=lrt\_penv(X1,X2,Y,alpha) \\
-B=100; \\
-bootse=bstrp\_penv(X1,X2,Y,B,u)
-\end{par} \vspace{1em}
 
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       Xtemp = fiberpaper(:, 5 : 7);
+       X.X1 = Xtemp(:, 3);
+       X.X2 = Xtemp(:, 1 : 2);
+       alpha = 0.01;
+       u = lrt_penv(X, Y, alpha)\end{verbatim}
+               \color{lightgray} \begin{verbatim}
+u =
 
+     1
+\end{verbatim} \color{black}
+\begin{verbatim}       B = 100;
+       bootse = bstrp_penv(X, Y, u, B)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+bootse =
+
+    0.0074
+    0.0021
+    0.0043
+    0.0019
+
+\end{verbatim} \color{black}
+    
 
 \newpage
 
 
-
-
-
-
- 
-    
 \section{lrt\_penv}
 
 \begin{par}
@@ -3165,66 +3535,84 @@ Select the dimension of the partial envelope subspace using likelihood ratio tes
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = lrt_penv(X, Y, alpha)
+       u = lrt_penv(X, Y, alpha, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-u=lrt\_penv(X1,X2,Y,alpha)
-\end{par} \vspace{1em}
-\begin{par}
-Input
+\textbf{X}: A list containing the value of X1 and X2.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X1: Predictors of main interst. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
-   \item X2: Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses. The responses must be continuous variables.
-   \item alpha: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
+   \item X.X1: Predictors of main interest. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
+   \item X.X2: Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.
 \end{itemize}
 \begin{par}
-Output
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{alpha}: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item u: Dimension of the partial envelope subspace. An integer between 0 and r.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: Dimension of the partial envelope subspace. An integer between 0 and r.
+\end{par} \vspace{1em}
 
 
 \subsection*{Description}
 
 \begin{par}
-This function implements the likelihood ratio testing procedure to select the dimension of the partial envelope subspace, with prespecified significance level $\alpha$.
+This function implements the likelihood ratio testing procedure to select the dimension of the partial envelope subspace, with pre-specified significance level $\alpha$.
 \end{par} \vspace{1em}
 
 
 \subsection*{Example}
 
-\begin{par}
-load T7-7.dat \\
-Y=T7\_7(:,1:4); \\
-X=T7\_7(:,5:7); \\
-X1=X(:,3);\\ 
-X2=X(:,1:2); \\
-alpha=0.01; \\
-u=lrt\_penv(X1,X2,Y,alpha)
-\end{par} \vspace{1em}
 
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       Xtemp = fiberpaper(:, 5 : 7);
+       X.X1 = Xtemp(:, 3);
+       X.X2 = Xtemp(:, 1 : 2);
+       alpha = 0.01;
+       u = lrt_penv(X, Y, alpha)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+u =
 
+     1
+
+\end{verbatim} \color{black}
 
 
 \newpage
 
-
-
-
-
-
-    
 \section{penv}
 
 \begin{par}
@@ -3235,66 +3623,89 @@ Fit the partial envelope model.
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Usage
+   \item Syntax
+   \item Input
+   \item Output
    \item Description
    \item References
    \item Example
 \end{itemize}
 
 
-\subsection*{Usage}
+\subsection*{Syntax}
+
+
+\begin{verbatim}       ModelOutput = penv(X, Y, u)
+       ModelOutput = penv(X, Y, u, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
 
 \begin{par}
-stat=penv(X1,X2,Y,u)
-\end{par} \vspace{1em}
-\begin{par}
-Input
+\textbf{X}: A list containing the value of X1 and X2.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item X1: Predictors of main interst. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
-   \item X2: Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.  The covariates can be univariate or multivariate, discrete or continuous.
-   \item Y: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p1.
-   \item u: Dimension of the partial envelope. An integer between 0 and r.
+   \item X.X1: Predictors of main interest. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
+   \item X.X2: Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.
 \end{itemize}
 \begin{par}
-Output
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p1.
 \end{par} \vspace{1em}
 \begin{par}
-stat: A list that contains the maximum likelihood estimators and some statistics.
+\textbf{u}: Dimension of the partial envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item stat.beta1: The partial envelope estimator of $\beta_1$, which is the regression coefficients for X1. An r by p1 matrix.
-   \item stat.beta2: The partial envelope estimator of $\beta_2$, which is the regression coefficients for X2. An r by p2 matrix.
-   \item stat.Sigma: The partial envelope estimator of the error covariance matrix.  An r by r matrix.
-   \item stat.Gamma: The orthogonal basis of the partial envelope subspace. An r by u semi-orthogonal matrix.
-   \item stat.Gamma0: The orthogonal basis of the complement of the partial envelope subspace.  An r by r-u semi-orthogonal matrix.
-   \item stat.eta: The coordinates of $\beta_1$ with respect to Gamma. An u by p1 matrix.
-   \item stat.Omega: The coordinates of Sigma with respect to Gamma. An u by u matrix.
-   \item stat.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u matrix.
-   \item stat.alpha: The estimated intercept in the partial envelope model.  An r by 1 vector.
-   \item stat.l: The maximized log likelihood function.  A real number.
-   \item stat.asyPenv: Asymptotic standard error for elements in $\beta$ under the partial envelope model.  An r by p1 matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
-   \item stat.ratio: The asymptotic standard error ratio of the stanard multivariate linear regression estimator over the partial envelope estimator, for each element in $\beta_1$.  An r by p1 matrix.
-   \item stat.np: The number of parameters in the envelope model.  A positive integer.
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{ModelOutput}: A list that contains the maximum likelihood estimators and some statistics.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item ModelOutput.beta1: The partial envelope estimator of $\beta_1$, which is the regression coefficients for X1. An r by p1 matrix.
+   \item ModelOutput.beta2: The partial envelope estimator of $\beta_2$, which is the regression coefficients for X2. An r by p2 matrix.
+   \item ModelOutput.Sigma: The partial envelope estimator of the error covariance matrix.  An r by r matrix.
+   \item ModelOutput.Gamma: The orthogonal basis of the partial envelope subspace. An r by u semi-orthogonal matrix.
+   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the partial envelope subspace.  An r by r - u semi-orthogonal matrix.
+   \item ModelOutput.eta: The coordinates of $\beta_1$ with respect to Gamma. An u by p1 matrix.
+   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u matrix.
+   \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r - u by r - u matrix.
+   \item ModelOutput.alpha: The estimated intercept in the partial envelope model.  An r by 1 vector.
+   \item ModelOutput.l: The maximized log likelihood function.  A real number.
+   \item ModelOutput.covMatrix: The asymptotic covariance of (vec($\beta_2$)', vec($\beta_1$)')'.  An rp by rp matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1/n.
+   \item ModelOutput.asyPenv: Asymptotic standard error for elements in $\beta_1$ under the partial envelope model.  An r by p1 matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
+   \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the partial envelope estimator, for each element in $\beta_1$.  An r by p1 matrix.
+   \item ModelOutput.np: The number of parameters in the envelope model.  A positive integer.
+   \item ModelOutput.n: The number of observations in the data.  A positive integer.
 \end{itemize}
 
 
 \subsection*{Description}
 
 \begin{par}
-This function fits the partial envelope model to the responses Y and predictors X1 and X2, using the maximum likehood estimation.  When the dimension of the envelope is between 1 and r-1, we implemented the algorithm in Su and Cook (2011).  When the dimension is r, then the partial envelope model degenerates to the standard multivariate linear regression with Y as the responses and both X1 and X2 as predictors.  When the dimension is 0, X1 and Y are uncorrelated, and the fitting is the standard multivariate linear regression with Y as the responses and X2 as the predictors.
+This function fits the partial envelope model to the responses Y and predictors X1 and X2, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and r - 1, we implemented the algorithm in Su and Cook (2011).  When the dimension is r, then the partial envelope model degenerates to the standard multivariate linear regression with Y as the responses and both X1 and X2 as predictors.  When the dimension is 0, X1 and Y are uncorrelated, and the fitting is the standard multivariate linear regression with Y as the responses and X2 as the predictors.
 \end{par} \vspace{1em}
 
 
 \subsection*{References}
 
-\begin{itemize}
+\begin{enumerate}
 \setlength{\itemsep}{-1ex}
    \item The codes is implemented based on the algorithm in Section 3.2 of Su and Cook (2012).
    \item The Grassmann manifold optimization step calls the package sg\_min 2.4.1 by Ross Lippert (http://web.mit.edu/$\sim$ripper/www.sgmin.html).
-\end{itemize}
+\end{enumerate}
 
 
 \subsection*{Example}
@@ -3302,27 +3713,288 @@ This function fits the partial envelope model to the responses Y and predictors 
 \begin{par}
 The following codes reconstruct the results of the paper and fiber example in Su and Cook (2012).
 \end{par} \vspace{1em}
-\begin{par}
-load T7-7.dat \\
-Y=T7\_7(:,1:4); \\
-X=T7\_7(:,5:7); \\
-X1=X(:,3); \\
-X2=X(:,1:2); \\
-alpha=0.01; \\
-u=lrt\_penv(X1,X2,Y,alpha) \\
-stat=penv(X1,X2,Y,u) \\
-stat.Omega \\
-eig(stat.Omega0) \\
-stat.ratio
-\end{par} \vspace{1em}
+
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       Xtemp = fiberpaper(:, 5 : 7);
+       X.X1 = Xtemp(:, 3);
+       X.X2 = Xtemp(:, 1 : 2);
+       alpha = 0.01;
+       u = lrt_penv(X, Y, alpha)\end{verbatim}
+        \color{lightgray} \begin{verbatim}
+u =
+
+     1
+\end{verbatim} \color{black}
+       \begin{verbatim}
+       ModelOutput = penv(X, Y, u)
+       ModelOutput.Omega
+       eig(ModelOutput.Omega0)
+       ModelOutput.ratio\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+ModelOutput = 
+
+        beta1: [4x1 double]
+        beta2: [4x2 double]
+        alpha: [4x1 double]
+        Gamma: [4x1 double]
+          eta: 0.0047
+        Omega: 0.0149
+       Omega0: [3x3 double]
+        Sigma: [4x4 double]
+            l: -35.6323
+           np: 23
+    covMatrix: [12x12 double]
+      asyPenv: [4x1 double]
+        ratio: [4x1 double]
+            n: 62
 
 
+ans =
+
+    0.0149
+
+
+ans =
+
+    4.9819
+    0.0999
+    0.0050
+
+
+ans =
+
+   66.0742
+    6.9326
+   10.5048
+    9.6279
+
+\end{verbatim} \color{black}
 
 \newpage
 
+\section{predict\_penv}
+
+\begin{par}
+Perform estimation or prediction under the partial envelope model.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
 
 
+\subsection*{Syntax}
 
+\begin{par}
+PredictOutput = predict\_penv(ModelOutput, Xnew, infType)
+\end{par} \vspace{1em}
+
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{ModelOutput}: A list containing the maximum likelihood estimators and other statistics inherited from penv.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Xnew}: A list containing the value of X1 and X2 with which to estimate or predict Y.
+\end{par} \vspace{1em}
+
+\begin{verbatim}* Xnew.X1: A p1 by 1 vector containing the value of X1.
+* Xnew.X2: A p2 by 1 vector containing the value of X2.\end{verbatim}
+    \begin{par}
+\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{PredictOutput}: A list containing the results of the inference.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item PredictOutput.value: The fitted value or the prediction value evaluated at Xnew. An r by 1 vector.
+   \item PredictOutput.covMatrix: The covariance matrix of PredictOutput.value. An r by r matrix.
+   \item PredictOutput.SE: The standard error of elements in PredictOutput.value. An r by 1 vector.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function evaluates the envelope model at new value Xnew.  It can perform estimation: find the fitted value when X = Xnew, or prediction: predict Y when X = Xnew.  The covariance matrix and the standard errors are also provided.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       Xtemp = fiberpaper(:, 5 : 7);
+       X.X1 = Xtemp(:, 3);
+       X.X2 = Xtemp(:, 1 : 2);
+       alpha = 0.01;
+       u = lrt_penv(X, Y, alpha);
+       ModelOutput = penv(X, Y, u);
+       Xnew.X1 = X.X1(1, :)';
+       Xnew.X2 = X.X2(1, :)';
+       PredictOutput = predict_penv(ModelOutput, Xnew, 'estimation')
+       [PredictOutput.value, Y(1, :)'] % Compare the fitted value with the data
+       PredictOutput.SE\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+PredictOutput = 
+
+        value: [4x1 double]
+    covMatrix: [4x4 double]
+           SE: [4x1 double]
+
+
+ans =
+
+   21.1169   21.3120
+    7.1173    7.0390
+    5.3637    5.3260
+    0.8737    0.9320
+
+
+ans =
+
+    1.4680
+    0.4234
+    0.7145
+    0.3161
+\end{verbatim} \color{black}
+
+       \begin{verbatim}
+       PredictOutput = predict_penv(ModelOutput, Xnew, 'prediction')
+       PredictOutput.SE\end{verbatim}
+        \color{lightgray} \begin{verbatim}
+PredictOutput = 
+
+        value: [4x1 double]
+    covMatrix: [4x4 double]
+           SE: [4x1 double]
+
+
+ans =
+
+    2.4277
+    0.6982
+    1.1802
+    0.5220
+
+\end{verbatim} \color{black}
+
+\newpage
+
+\section{testcoefficient\_penv}
+
+
+\begin{verbatim}This function tests the null hypothesis L * beta * R = A versus the
+alternative hypothesis L * beta * R ~= A, where beta1 is estimated under
+the envelope model.\end{verbatim}
+    
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       TestOutput = testcoefficient_penv(ModelOutput)
+       TestOutput = testcoefficient_penv(ModelOutput, TestInput)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{ModelOutput}: A list containing the maximum likelihood estimators and other statistics inherited from penv.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{TestInput}: A list that specifies the null hypothesis, including L, R, and A.  If not provided by the user, default values will be used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestInput.L: The matrix multiplied to $\beta$ on the left.  It is a d1 by r matrix, while d1 is less than or equal to r.  Default value: identity matrix $I_r$.
+   \item TestInput.R: The matrix multiplied to $\beta$ on the right.  It is a p1 by d2 matrix, while d2 is less than or equal to p1.  Default value: identity matrix $I_{p1}$.
+   \item TestInput.A: The matrix on the right hand side of the equation.  It is a d1 by d2 matrix.  Default value: d1 by d2 zero matrix.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, and the p-value.  At the same time, a table is printed out.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestOutput.chisqStatistic: The test statistics. A real number.
+   \item TestOutput.df: The degrees of freedom of the reference chi-squared distribution.  A positive integer.
+   \item TestOutput.pValue: p-value of the test.  A real number in [0, 1].
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the partial envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$.  The test statistics used is vec $(L\beta R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\beta R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       Xtemp = fiberpaper(:, 5 : 7);
+       X.X1 = Xtemp(:, 3);
+       X.X2 = Xtemp(:, 1 : 2);
+       alpha = 0.01;
+       u = lrt_penv(X, Y, alpha);
+       ModelOutput = penv(X, Y, u);
+       TestOutout = testcoefficient_penv(ModelOutput);\end{verbatim}
+        \color{lightgray} \begin{verbatim}
+ Test Hypothesis     Chisq Statistic    DF     P-value
+----------------------------------------------------------------------
+L * beta * R = A          12.604        4      0.0134
+----------------------------------------------------------------------
+\end{verbatim} \color{black}
+\begin{verbatim}
+       r = size(Y, 2);
+       p1 = size(X.X1, 2);
+       TestInput.L = rand(2, r);
+       TestInput.R = rand(p1, 1);
+       TestInput.A = zeros(2, 1);
+       TestOutout = testcoefficient_penv(ModelOutput, TestInput);\end{verbatim}
+   
+
+         \color{lightgray} \begin{verbatim}
+Test Hypothesis     Chisq Statistic    DF     P-value
+----------------------------------------------------------------------
+L * beta * R = A          11.452        2      0.0033
+----------------------------------------------------------------------
+\end{verbatim} \color{black}
+
+\newpage
 \part{senv}
     
     

@@ -59,7 +59,7 @@
 % * ModelOutput.asyIenv: Asymptotic standard error for elements in $$\beta$ under
 % the inner envelope model.  An r by p matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
-% * ModelOutput.ratio: The asymptotic standard error ratio of the stanard multivariate 
+% * ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate 
 % linear regression estimator over the inner envelope estimator, for each element 
 % in $$\beta$.  An r by p matrix.
 % * ModelOutput.np: The number of parameters in the inner envelope model.  A positive
@@ -69,7 +69,7 @@
 
 %% Description
 % This function fits the inner envelope model to the responses and predictors,
-% using the maximum likehood estimation.  When the dimension of the
+% using the maximum likelihood estimation.  When the dimension of the
 % envelope is between 1 and p-1, we implemented the algorithm in Su and
 % Cook (2012).  When the dimension is p, then the inner envelope model degenerates
 % to the standard multivariate linear regression.  When the dimension is 0,

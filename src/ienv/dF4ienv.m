@@ -1,9 +1,9 @@
 %% dF4ienv
-% First derivative of the objective funtion for computing the inner envelope
+% First derivative of the objective function for computing the inner envelope
 % subspace.
 
 %% Syntax
-%         f = dF4ienv(R, DataParameter)
+%         df = dF4ienv(R, DataParameter)
 % 
 %% Input
 %
@@ -14,7 +14,7 @@
 %
 %% Output
 %
-% *dF*: The first derivative of the objective function for computing the
+% *df*: The first derivative of the objective function for computing the
 % inner envelope subspace.  An r by u matrix.
 
 %% Description

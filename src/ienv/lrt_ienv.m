@@ -35,7 +35,7 @@
 
 %% Description
 % This function implements the likelihood ratio testing procedure to select
-% the dimension of the inner envelope subspace, with prespecified significance 
+% the dimension of the inner envelope subspace, with pre-specified significance 
 % level $$\alpha$.
 
 %% Example

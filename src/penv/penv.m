@@ -9,7 +9,7 @@
 %
 % *X*: A list containing the value of X1 and X2.
 % 
-% * X.X1: Predictors of main interst. An n by p1 matrix, n is the number of 
+% * X.X1: Predictors of main interest. An n by p1 matrix, n is the number of 
 % observations, and p1 is the number of main predictors. The
 % predictors can be univariate or multivariate, discrete or continuous.
 % * X.X2: Covariates, or predictors not of main interest.  An n by p2 matrix,
@@ -71,7 +71,7 @@
 
 %% Description
 % This function fits the partial envelope model to the responses Y and
-% predictors X1 and X2, using the maximum likehood estimation.  When the dimension of the
+% predictors X1 and X2, using the maximum likelihood estimation.  When the dimension of the
 % envelope is between 1 and r - 1, we implemented the algorithm in Su and
 % Cook (2011).  When the dimension is r, then the partial envelope model degenerates
 % to the standard multivariate linear regression with Y as the responses and
