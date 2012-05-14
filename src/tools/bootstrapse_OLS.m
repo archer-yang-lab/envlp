@@ -11,7 +11,7 @@
 % *Y*: Multivariate responses, an n by r matrix, r is the number of
 % responses and n is number of observations.  The responses must be continuous variables.
 % 
-% *B*: Number of boostrap samples.  A positive integer.
+% *B*: Number of bootstrap samples.  A positive integer.
 %
 % *Opts*: A list containing the optional input parameter. If not
 % defined, the default setting is used.

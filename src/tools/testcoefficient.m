@@ -26,7 +26,7 @@
 % to different model, it has different size requirement.  Default value will be
 % set if the user does not specify.
 % 
-% * TestInput.A: The matrix on the right handside of the equation.  Default value will be
+% * TestInput.A: The matrix on the right hand side of the equation.  Default value will be
 % set if the user does not specify.
 % 
 %% Output
@@ -45,7 +45,7 @@
 % L\beta R\neq A$.  The $$\beta$ is estimated by a model in the envelope model.  If
 % the user does not specify the values for L, R and A, then the test is
 % equivalent to the standard F test on if $$\beta = 0$ (for 'env', 'ienv', 
-% % 'penv', 'senv' and 'xenv'), or if the group main effects are all zeros 
+%  'penv', 'senv' and 'xenv'), or if the group main effects are all zeros 
 % (for 'henv').  The test statistics used is vec $$(L\beta R - A)$
 % $$\hat{\Sigma}^{-1}$ vec $$(L\beta R - A)^{T}$, and the reference
 % distribution is chi-squared distribution with degrees of freedom the same
@@ -56,8 +56,8 @@
 %         X = wheatprotein(:, 8);
 %         Y = wheatprotein(:, 1:6);
 %         alpha = 0.01;
-%         u = lrt_env(X, Y, alpha)
-%         ModelOutput = env(X, Y, u)
+%         u = lrt_env(X, Y, alpha);
+%         ModelOutput = env(X, Y, u);
 %         modelType = 'env';
 %         TestOutout = testcoefficient(ModelOutput, modelType);
 % 
@@ -67,8 +67,8 @@
 %         X.X1 = Xtemp(:, 3);
 %         X.X2 = Xtemp(:, 1 : 2);
 %         alpha = 0.01;
-%         u = lrt_penv(X, Y, alpha)
-%         ModelOutput = penv(X, Y, u)
+%         u = lrt_penv(X, Y, alpha);
+%         ModelOutput = penv(X, Y, u);
 %         r = size(Y, 2);
 %         p1 = size(X.X1, 2);
 %         TestInput.L = rand(2, r);
