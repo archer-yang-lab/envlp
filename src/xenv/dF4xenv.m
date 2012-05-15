@@ -1,5 +1,5 @@
 %% dF4xenv
-% The first derivative of the objective funtion for computing the envelope
+% The first derivative of the objective function for computing the envelope
 % subspace for the reduction on X.
 
 %% Syntax

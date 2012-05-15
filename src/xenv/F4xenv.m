@@ -1,5 +1,5 @@
 %% F4xenv
-% Objective funtion for computing the envelope subspace for the reduction
+% Objective function for computing the envelope subspace for the reduction
 % on X.
 
 %% Syntax

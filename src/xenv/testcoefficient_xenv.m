@@ -11,7 +11,7 @@
 %% Input
 % 
 % *ModelOutput*: A list containing the maximum likelihood estimators and other
-% statistics inherted from xenv.
+% statistics inherited from xenv.
 % 
 % *TestInput*: A list that specifies the null hypothesis, including L, R, and
 % A.  If not provided by the user, default values will be used.
@@ -22,7 +22,7 @@
 % * TestInput.R: The matrix multiplied to $$\beta$ on the right.  It is a r
 % by d2 matrix, while d2 is less than or equal to r.  Default value:
 % identity matrix $$I_r$.
-% * TestInput.A: The matrix on the right handside of the equation.  It is a
+% * TestInput.A: The matrix on the right hand side of the equation.  It is a
 % d1 by d2 matrix.  Default value: d1 by d2 zero matrix.
 % 
 %% Output
@@ -47,9 +47,10 @@
 
 %% Example
 %         load wheatprotein.txt
-%         X=wheatprotein(:,1:6);
-%         Y=wheatprotein(:,7);
-%         ModelOutput=xenv(X,Y,5);
+%         X=wheatprotein(:, 1 : 6);
+%         Y=wheatprotein(:, 7);
+%         u = bic_xenv(X, Y);
+%         ModelOutput=xenv(X, Y, u);
 %         TestOutout = testcoefficient_xenv(ModelOutput);
 %         r = size(Y, 2);
 %         p = size(X, 2);

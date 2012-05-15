@@ -65,7 +65,7 @@
 
 %% Description
 % This function fits the envelope model to the responses and predictors,
-% using the maximum likehood estimation.  When the dimension of the
+% using the maximum likelihood estimation.  When the dimension of the
 % envelope is between 1 and r - 1, we implemented the algorithm in Cook et
 % al. (2012).  When the dimension is r, then the envelope model degenerates
 % to the standard multivariate linear regression.  When the dimension is 0,
@@ -83,7 +83,6 @@
 %         load wheatprotein.txt
 %         X = wheatprotein(:, 1 : 6);
 %         Y = wheatprotein(:, 7);
-%         ModelOutput = xenv(X, Y, 0);
 % 
 %         p = size(X, 2);
 %         ModelOutput = xenv(X, Y, p);
@@ -97,14 +96,14 @@
 %         temp.betaOLS'
 %         ModelOutput.beta
 % 
-%         ModelOutput = xenv(X, Y, 5);
+%         u = bic_xenv(X, Y);
+%         ModelOutput = xenv(X, Y, u)
 % 
 %         %  To compare with the results obtained by Partial Least Squares, use the
 %         %  command 
-%         % [XL, YL, XS, YS, BETA, PCTVAR, MSE, stats] = plsregress(X,Y,5);
-%         % ModelOutput.beta
-%         % ModelOutput.mu
-%         % BETA
+%         [XL, YL, XS, YS, BETA, PCTVAR, MSE, stats] = plsregress(X, Y, u);
+%         ModelOutput.beta
+%         BETA(2 : end, :)
 
 function ModelOutput = xenv(X, Y, u, Opts)
 

@@ -8,7 +8,7 @@
 %% Input
 %
 % *ModelOutput*: A list containing the maximum likelihood estimators and other
-% statistics inherted from xenv.
+% statistics inherited from xenv.
 % 
 % *Xnew*: The value of X with which to estimate or predict Y.  A p by 1
 % vector.
@@ -42,9 +42,10 @@
 %         ModelOutput = xenv(X, Y, u);
 %         Xnew = X(1, :)';
 %         PredictOutput = predict_xenv(ModelOutput, Xnew, 'estimation')
-%         PredictOutput.value  % Compare the fitted value with the data
-%         Y(1, :)'
+%         [PredictOutput.value, Y(1, :)']  % Compare the fitted value with the data
+%         PredictOutput.SE
 %         PredictOutput = predict_xenv(ModelOutput, Xnew, 'prediction')
+%         PredictOutput.SE
 
 function PredictOutput = predict_xenv(ModelOutput, Xnew, infType)
 
