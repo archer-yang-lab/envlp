@@ -36,14 +36,15 @@
 %% Description
 % This function implements the likelihood ratio testing procedure to select
 % the dimension of the envelope subspace for the reduction on X, with
-% prespecified significance level $$\alpha$. 
+% pre-specified significance level $$\alpha$. 
 
 %% Example
 %
 %         load wheatprotein.txt
 %         X = wheatprotein(:, 1 : 6);
 %         Y = wheatprotein(:, 7);
-%         u = lrt_xenv(X, Y, 0.01)
+%         alpha = 0.01;
+%         u = lrt_xenv(X, Y, alpha)
 
 function u = lrt_xenv(X, Y, alpha, Opts)
 
