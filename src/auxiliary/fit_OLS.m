@@ -35,6 +35,8 @@
 %         X = wheatprotein(:, 8);
 %         Y = wheatprotein(:, 1 : 6);
 %         ModelOutput = fit_OLS(X, Y)
+%         ModelOutput.betaOLS
+%         ModelOutput.SigmaOLS
 
 function ModelOutput = fit_OLS(X, Y)
 

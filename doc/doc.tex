@@ -1,14 +1,48 @@
-
-% This LaTeX was auto-generated from an M-file by MATLAB.
-% To make changes, update the M-file and republish this document.
-
-\documentclass{article}
-\usepackage{graphicx}
-\usepackage{color}
-
-\sloppy
+\documentclass[a4paper,11pt,openany]{memoir}
+\def\MyFileVersion{Version 1.7e, 2012/04/11}
+\setlrmarginsandblock{3cm}{3cm}{1} 
+\setulmarginsandblock{2.5cm}{2.5cm}{*}
+\setmarginnotes{2.5mm}{2cm}{1em}
+\checkandfixthelayout
+\usepackage[latin1]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{
+  calc,
+  graphicx,
+  url,
+  fancyvrb,
+  multicol,
+  kvsetkeys
+}
+\usepackage[usenames]{color}
+%\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+%\definecolor{felinesrcbgcolor}{rgb}{1,1,0.85}
+%\definecolor{felinesrcbgcolor}{rgb}{0.94,0.97,1}
+%\definecolor{felineframe}{rgb}{0.79,0.88,1}
+%\definecolor{myorange}{rgb}{1,0.375,0}
 \definecolor{lightgray}{gray}{0.5}
-\setlength{\parindent}{0pt}
+
+\usepackage[draft]{fixme}
+\usepackage{fourier}
+\usepackage[scaled]{luximono}
+
+
+\usepackage[scaled]{berasans}
+
+\chapterstyle{ell}
+\renewcommand\tocheadstart{}
+\renewcommand\printtoctitle[1]{}
+
+%\raggedbottom
+%\fvset{frame=lines,
+%  framesep=3mm,
+%  framerule=3pt,
+%  fontsize=\small,
+%  rulecolor=\color{myorange},
+%  formatcom=\color{DarkGreen},
+%}
+
 
 \begin{document}
 
@@ -16,9 +50,8 @@
 
 
 
-\title{Matlab Package: Envelope}
-
-
+\title{Matlab Toolbox Envelope: Reference Manual}
+%\author{Dennis Cook\thanks{Email: \protect\url{dennis@stat.umn.edu}} \and Zhihua Su\thanks{Email: \protect\url{suzhihua@stat.umn.edu}} \and Yi Yang\thanks{Email: \protect\url{yiyang@umn.edu}}}
 
 \maketitle
 
@@ -31,9 +64,10 @@
 \newpage
 
 
-\part{tools}
+\chapter{tools}
 
-\section{bootstrapse}
+\rmfamily
+\color{black}\section{bootstrapse}
 
 \begin{par}
 Perform bootstrap to estimate actual standard errors for models in the envelope family.
@@ -123,7 +157,8 @@ This function computes the bootstrap standard errors for the regression coeffici
        B = 100;
        modelType = 'env';
        bootse = bootstrapse(X, Y, u, B, modelType)\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
 bootse =
 
     0.2896
@@ -132,7 +167,9 @@ bootse =
     0.5735
     0.2543
     0.5840
-\end{verbatim} \color{black}
+\end{verbatim} 
+\rmfamily
+\color{black}
     
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
@@ -146,7 +183,7 @@ bootse =
        bootse = bootstrapse(X, Y, u, B, modelType)\end{verbatim}
     
 
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 
 bootse =
@@ -156,12 +193,14 @@ bootse =
     0.0020
     0.0009
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 
 \newpage
 
-\section{bootstrapse\_OLS}
+\rmfamily
+\color{black}\section{bootstrapse\_OLS}
 
 \begin{par}
 Compute bootstrap standard error for ordinary least squares.
@@ -227,7 +266,7 @@ This function computes the bootstrap standard errors for the regression coeffici
        Y = wheatprotein(:, 1 : 6);
        bootse = bootstrapse_OLS(X, Y, 200)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 bootse =
 
    10.2168
@@ -237,11 +276,13 @@ bootse =
    14.5822
     5.5874
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
     
-\section{modelselectaic}
+\rmfamily
+\color{black}\section{modelselectaic}
 
 \begin{par}
 Select the dimension for the envelope family using Akaike information criteria.
@@ -322,12 +363,13 @@ This function implements the Akaike information criteria (AIC) to select the dim
        Y = wheatprotein(:, 1 : 6);
        modelType = 'env';
        u = modelselectaic(X, Y, modelType)\end{verbatim}
-\color{lightgray}\begin{verbatim}
+\color{lightgray}\ttfamily\begin{verbatim}
 u =
 
      1
 
-\end{verbatim}  \color{black}
+\end{verbatim}  \rmfamily
+\color{black}
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
        Xtemp = fiberpaper(:, 5 : 7);
@@ -337,17 +379,19 @@ u =
        u = modelselectaic(X, Y, modelType)\end{verbatim}
     
 
-\color{lightgray}\begin{verbatim}
+\color{lightgray}\ttfamily\begin{verbatim}
 u =
 
      3
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 \newpage
 
 
-\section{modelselectbic}
+\rmfamily
+\color{black}\section{modelselectbic}
 
 \begin{par}
 Select the dimension for the envelope family using Bayesian information criteria.
@@ -428,12 +472,13 @@ This function implements the Bayesian information criteria (BIC) to select the d
        Y = wheatprotein(:, 1 : 6);
        modelType = 'env';
        u = modelselectbic(X, Y, modelType)\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      1
 
-\end{verbatim} \color{black}    
+\end{verbatim} \rmfamily
+\color{black}    
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
        Xtemp = fiberpaper(:, 5 : 7);
@@ -443,20 +488,22 @@ u =
        u = modelselectbic(X, Y, modelType)\end{verbatim}
     
 
-   \color{lightgray} \begin{verbatim}
+   \color{lightgray}\ttfamily \begin{verbatim}
 
 u =
 
      1
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 
 \newpage
 
 
     
-\section{modelselectlrt}
+\rmfamily
+\color{black}\section{modelselectlrt}
 
 \begin{par}
 Select the dimension for the envelope family using likelihood ratio testing procedure.
@@ -541,11 +588,12 @@ This function implements the likelihood ratio testing procedure to select the di
        alpha = 0.01;
        modelType = 'env';
        u = modelselectlrt(X, Y, alpha, modelType)\end{verbatim}
-            \color{lightgray} \begin{verbatim}
+            \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      1
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
        Xtemp = fiberpaper(:, 5 : 7);
@@ -557,14 +605,15 @@ u =
     
 
 
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 
 u =
 
      1
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 
 
@@ -572,7 +621,8 @@ u =
 
 \newpage
 
-\section{prediction}
+\rmfamily
+\color{black}\section{prediction}
 
 \begin{par}
 Perform estimation or prediction for models in the envelope family.
@@ -654,7 +704,7 @@ This function evaluates the user-specified model, could be 'env', 'henv', 'ienv'
        PredictOutput = predict_env(ModelOutput, Xnew, 'estimation')
        [PredictOutput.value, Y(2, :)'] % Compare the fitted value with
        the observed value\end{verbatim}
-             \color{lightgray} \begin{verbatim}
+             \color{lightgray}\ttfamily \begin{verbatim}
 
 PredictOutput = 
 
@@ -672,7 +722,8 @@ ans =
   380.9473  383.0000
    -6.3287  -15.0000
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
    
 \begin{verbatim}       load fiberpaper.dat
@@ -689,7 +740,7 @@ ans =
        PredictOutput.SE\end{verbatim}
     
 
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 
 PredictOutput = 
@@ -706,12 +757,14 @@ ans =
     0.7145
     0.3161
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
  
     
 \newpage
 
-\section{testcoefficient}
+\rmfamily
+\color{black}\section{testcoefficient}
 
 
 \begin{verbatim}This function tests the null hypothesis L * beta * R = A versus the
@@ -793,12 +846,13 @@ This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta
        ModelOutput = env(X, Y, u);
        modelType = 'env';
        TestOutout = testcoefficient(ModelOutput, modelType);\end{verbatim}
-         \color{lightgray} \begin{verbatim}
+         \color{lightgray}\ttfamily \begin{verbatim}
  Test Hypothesis     Chisq Statistic    DF     P-value
-----------------------------------------------------------------------
+-------------------------------------------------------
 L * beta * R = A         116.230        6      0.0000
-----------------------------------------------------------------------
-\end{verbatim} \color{black}   
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}   
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
        Xtemp = fiberpaper(:, 5 : 7);
@@ -814,22 +868,24 @@ L * beta * R = A         116.230        6      0.0000
        TestInput.A = zeros(2, 1);
        TestOutout = testcoefficient_penv(ModelOutput, TestInput);\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
  Test Hypothesis     Chisq Statistic    DF     P-value
-----------------------------------------------------------------------
+-------------------------------------------------------
 L * beta * R = A          12.598        2      0.0018
-----------------------------------------------------------------------
-\end{verbatim} \color{black}
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}
     
 
 
 \newpage
 
 
-\part{env}
+\chapter{env}
     
-\section{aic\_env}
+\rmfamily
+\color{black}\section{aic\_env}
 
 \begin{par}
 Select the dimension of the envelope subspace using Akaike information criterion.
@@ -896,18 +952,20 @@ This function implements the Akaike information criteria (AIC) to select the dim
        Y = wheatprotein(:, 1:6);
        u = aic_env(X, Y)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      1
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
  
 
 \newpage
 
-\section{bic\_env}
+\rmfamily
+\color{black}\section{bic\_env}
 
 \begin{par}
 Select the dimension of the envelope subspace using Bayesian information criterion.
@@ -974,17 +1032,19 @@ This function implements the Bayesian information criteria (BIC) to select the d
        Y = wheatprotein(:, 1:6);
        u = bic_env(X, Y)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      1
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
  
  
  \newpage
 
-\section{bstrp\_env}
+\rmfamily
+\color{black}\section{bstrp\_env}
 
 \begin{par}
 Compute bootstrap standard error for the envelope model.
@@ -1057,17 +1117,19 @@ This function computes the bootstrap standard errors for the regression coeffici
        Y = wheatprotein(:, 1:6);
        alpha = 0.01;
        u = lrt_env(X, Y, alpha)
-\end{verbatim} \color{black}
-\color{lightgray} \begin{verbatim}
+\end{verbatim} \rmfamily
+\color{black}
+\color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      1
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
         \begin{verbatim}
        B = 100;
        bootse = bstrp_env(X, Y, u, B)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 bootse =
 
@@ -1078,14 +1140,16 @@ bootse =
     0.1675
     0.6192
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 
 
 \newpage
 
 
-\section{dF4env}
+\rmfamily
+\color{black}\section{dF4env}
 
 \begin{par}
 The first derivative of the objective function for computing the envelope subspace.
@@ -1136,7 +1200,8 @@ The objective function is derived in Section 4.3 in Cook et al. (2010) by  using
 
 
 
-\section{env}
+\rmfamily
+\color{black}\section{env}
 
 \begin{par}
 Fit the envelope model.
@@ -1237,16 +1302,17 @@ The following codes will reconstruct the results in the wheat protein data examp
        alpha = 0.01;
        u = lrt_env(X, Y, alpha)
 \end{verbatim}    
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      1
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
        \begin{verbatim}
        ModelOutput = env(X, Y, u)
 \end{verbatim}    
 
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 ModelOutput = 
 
@@ -1264,21 +1330,23 @@ ModelOutput =
         ratio: [6x1 double]
            np: 28
             n: 50
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}
        ModelOutput.Omega
        \end{verbatim}
 
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 ans =
 
     7.8762
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}
        eig(ModelOutput.Omega0)
        \end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 ans =
 
@@ -1290,11 +1358,12 @@ ans =
     0.0004
     0.0003
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}
        ModelOutput.ratio
        \end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 ans =
 
@@ -1305,12 +1374,14 @@ ans =
    65.8245
     6.4668
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
 
 
-\section{F4env}
+\rmfamily
+\color{black}\section{F4env}
 
 \begin{par}
 Objective function for computing the envelope subspace.
@@ -1358,7 +1429,8 @@ The objective function is derived in Section 4.3 of Cook et al. (2010)  using ma
 
 \newpage
 
-\section{lrt\_env}
+\rmfamily
+\color{black}\section{lrt\_env}
 
 \begin{par}
 Select the dimension of the envelope subspace using likelihood ratio testing.
@@ -1429,17 +1501,19 @@ This function implements the likelihood ratio testing procedure to select the di
        alpha = 0.01;
        u = lrt_env(X, Y, alpha)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      1
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 \newpage
 
 
-\section{predict\_env}
+\rmfamily
+\color{black}\section{predict\_env}
 
 \begin{par}
 Perform estimation or prediction under the envelope model.
@@ -1510,7 +1584,7 @@ This function evaluates the envelope model at new value Xnew.  It can perform es
        [PredictOutput.value, Y(1, :)']  % Compare the fitted value with the data
        PredictOutput.SE
        \end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 PredictOutput = 
 
         value: [6x1 double]
@@ -1536,11 +1610,12 @@ ans =
     4.7470
     6.8186
     2.6948
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
        \begin{verbatim}
        PredictOutput = predict_env(ModelOutput, Xnew, 'prediction')
        PredictOutput.SE\end{verbatim}
-            \color{lightgray} \begin{verbatim}
+            \color{lightgray}\ttfamily \begin{verbatim}
 PredictOutput = 
 
         value: [6x1 double]
@@ -1566,12 +1641,14 @@ ans =
    33.9006
    48.6945
    19.2448
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
  
 \newpage
 
 
-\section{testcoefficient\_env}
+\rmfamily
+\color{black}\section{testcoefficient\_env}
 
 
 \begin{verbatim}This function tests the null hypothesis L * beta * R = A versus the
@@ -1644,12 +1721,13 @@ This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta
        ModelOutput = env(X, Y, u);
        TestOutout = testcoefficient_env(ModelOutput);
        \end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
  Test Hypothesis     Chisq Statistic    DF     P-value
-----------------------------------------------------------------------
+-------------------------------------------------------
 L * beta * R = A         116.230        6      0.0000
-----------------------------------------------------------------------
-\end{verbatim} \color{black}       
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}       
 \begin{verbatim}
        r = size(Y, 2);
        p = size(X, 2);
@@ -1658,18 +1736,20 @@ L * beta * R = A         116.230        6      0.0000
        TestInput.A = zeros(2, 1);
        TestOutout = testcoefficient_senv(ModelOutput, TestInput);\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
  Test Hypothesis     Chisq Statistic    DF     P-value
-----------------------------------------------------------------------
+-------------------------------------------------------
 L * beta * R = A          61.344        2      0.0000
-----------------------------------------------------------------------
-\end{verbatim} \color{black}
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}
     
 \newpage
 
-\part{henv}
+\chapter{henv}
 
-\section{aic\_henv}
+\rmfamily
+\color{black}\section{aic\_henv}
 
 \begin{par}
 Select the dimension of the envelope subspace using Akaike information criterion for the heteroscedastic envelope model.
@@ -1734,15 +1814,17 @@ This function implements the Akaike information criteria (AIC) to select the dim
 \begin{verbatim}       load waterstrider.mat
        u = aic_henv(X, Y)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      6
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     \newpage
 
-\section{bic\_henv}
+\rmfamily
+\color{black}\section{bic\_henv}
 
 \begin{par}
 Select the dimension of the envelope subspace using Bayesian information criterion for the heteroscedastic envelope model.
@@ -1807,16 +1889,18 @@ This function implements the Bayesian information criteria (BIC) to select the d
 \begin{verbatim}       load waterstrider.mat
        u = bic_henv(X, Y)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      4
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
 
-\section{bstrp\_henv}
+\rmfamily
+\color{black}\section{bstrp\_henv}
 
 \begin{par}
 Compute bootstrap standard error for the heteroscedastic envelope model.
@@ -1887,16 +1971,17 @@ This function computes the bootstrap standard errors for the regression coeffici
 \begin{verbatim}       load waterstrider.mat\end{verbatim}
     
 \begin{verbatim}       u = lrt_henv(X, Y, 0.01)\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      6        
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}       
        B = 100;
        bootse = bstrp_henv(X, Y, u, B)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 bootse =
 
     0.0305    0.0466    0.0647
@@ -1908,13 +1993,15 @@ bootse =
     0.0389    0.0567    0.0819
     0.0321    0.0463    0.0665
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
 
 
     
-\section{dF4henv}
+\rmfamily
+\color{black}\section{dF4henv}
 
 \begin{par}
 The first derivative of the objective function for computing the envelope subspace in the heteroscedastic envelope model.
@@ -1962,7 +2049,8 @@ The objective function is derived in Section 2.2 in Su and Cook (2012) by  using
 
 \newpage
 
-\section{F4henv}
+\rmfamily
+\color{black}\section{F4henv}
 
 \begin{par}
 Objective function for computing the envelope subspace in heteroscedastic envelope model.
@@ -2011,7 +2099,8 @@ The objective function is derived in Section 2.2 of Su and Cook (2012)  using ma
 
 
     
-\section{henv}
+\rmfamily
+\color{black}\section{henv}
 
 \begin{par}
 Fit the heteroscedastic envelope model.
@@ -2112,15 +2201,16 @@ The following codes produce the results of the water strider example in Su and C
 \begin{verbatim}       load waterstrider.mat
        u = lrt_henv(X, Y, 0.01)
        \end{verbatim}
-               \color{lightgray} \begin{verbatim}
+               \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      6
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}       ModelOutput = henv(X, Y, u)
        ModelOutput.ratio\end{verbatim}
 
- \color{lightgray} \begin{verbatim}
+ \color{lightgray}\ttfamily \begin{verbatim}
 ModelOutput = 
 
            mu: [8x1 double]
@@ -2153,11 +2243,13 @@ ans =
    11.8632   15.6080   12.5611
     6.9792   11.1559   10.1002
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 \newpage
     
-\section{lrt\_henv}
+\rmfamily
+\color{black}\section{lrt\_henv}
 
 \begin{par}
 Select the dimension of the envelope subspace using likelihood ratio testing for the heteroscedastic envelope model.
@@ -2225,16 +2317,18 @@ This function implements the likelihood ratio testing procedure to select the di
 \begin{verbatim}       load waterstrider.mat
        u = lrt_henv(X, Y, 0.01)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      6
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
 
-\section{predict\_henv}
+\rmfamily
+\color{black}\section{predict\_henv}
 
 \begin{par}
 Perform estimation or prediction under the heteroscedastic envelope model.
@@ -2301,7 +2395,7 @@ This function evaluates the inner envelope model at new value Xnew.  It can perf
        ModelOutput.mug
        Xnew = X(1, :)'
        \end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
   
   ans =
 
@@ -2326,7 +2420,8 @@ Xnew =
 
      1
      0
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
           
        \begin{verbatim}
        PredictOutput = predict_henv(ModelOutput, Xnew, 'estimation')
@@ -2334,7 +2429,7 @@ Xnew =
        PredictOutput.SE
 \end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 PredictOutput = 
 
         value: [8x1 double]
@@ -2364,12 +2459,13 @@ ans =
     0.0636
     0.0847
     0.0698
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
        \begin{verbatim}
        PredictOutput = predict_henv(ModelOutput, Xnew, 'prediction')
        PredictOutput.SE\end{verbatim}
 
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 PredictOutput = 
 
@@ -2389,11 +2485,13 @@ ans =
     0.4710
     0.3854
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 \newpage
 
-\section{testcoefficient\_henv}
+\rmfamily
+\color{black}\section{testcoefficient\_henv}
 
 
 \begin{verbatim}This function tests the null hypothesis L * beta * R = A versus the
@@ -2463,12 +2561,13 @@ This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta
        ModelOutput = henv(X, Y, u);
        TestOutout = testcoefficient_henv(ModelOutput);\end{verbatim}
 
-               \color{lightgray} \begin{verbatim}
+               \color{lightgray}\ttfamily \begin{verbatim}
 Test Hypothesis     Chisq Statistic    DF     P-value
-----------------------------------------------------------------------
+-------------------------------------------------------
 L * beta * R = A         226.256       16      0.0000
-----------------------------------------------------------------------
-\end{verbatim} \color{black}
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}       r = size(Y, 2);
        p = size(ModelOutput.beta, 2);
        TestInput.L = rand(2, r);
@@ -2477,20 +2576,22 @@ L * beta * R = A         226.256       16      0.0000
        TestOutout = testcoefficient_henv(ModelOutput, TestInput);\end{verbatim}
     
 
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 Test Hypothesis     Chisq Statistic    DF     P-value
-----------------------------------------------------------------------
+-------------------------------------------------------
 L * beta * R = A          23.429        2      0.0000
-----------------------------------------------------------------------
-\end{verbatim} \color{black}
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}
     
 \newpage
 
-\part{ienv}
+\chapter{ienv}
 
 
-\section{aic\_ienv}
+\rmfamily
+\color{black}\section{aic\_ienv}
 
 \begin{par}
 Select the dimension of the inner envelope subspace using Akaike information criterion.
@@ -2555,16 +2656,18 @@ This function implements the Akaike information criteria (AIC) to select the dim
 \begin{verbatim}       load irisf.mat
        u = aic_ienv(X, Y)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      1
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
 
-\section{bic\_ienv}
+\rmfamily
+\color{black}\section{bic\_ienv}
 
 \begin{par}
 Select the dimension of the inner envelope subspace using Bayesian information criterion.
@@ -2629,16 +2732,18 @@ This function implements the Bayesian information criteria (BIC) to select the d
 \begin{verbatim}       load irisf.mat
        u = bic_ienv(X, Y)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      1
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
 
-\section{bstrp\_ienv}
+\rmfamily
+\color{black}\section{bstrp\_ienv}
 
 \begin{par}
 Compute bootstrap standard error for the inner envelope model.
@@ -2709,17 +2814,18 @@ This function computes the bootstrap standard errors for the regression coeffici
 \begin{verbatim}       load irisf.mat\end{verbatim}
     
 \begin{verbatim}       u = bic_ienv(X, Y)\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 u =
 
      1
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}       B = 100;
        bootse = bstrp_ienv(X, Y, u, B)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 bootse =
 
@@ -2728,12 +2834,14 @@ bootse =
    14.9316    5.2913
     8.7597    3.0853
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
 
 
-\section{dF4ienv}
+\rmfamily
+\color{black}\section{dF4ienv}
 
 \begin{par}
 First derivative of the objective function for computing the inner envelope subspace.
@@ -2782,7 +2890,8 @@ This first derivative of F4ienv obtained by matrix calculus calculations.
 
 \newpage
 
- \section{F4ienv}
+ \rmfamily
+\color{black}\section{F4ienv}
 
 \begin{par}
 Objective function for computing the inner envelope subspace.
@@ -2830,7 +2939,8 @@ The objective function is derived in Section 3.3 in Su and Cook (2012) by  using
 
 \newpage
 
-\section{ienv}
+\rmfamily
+\color{black}\section{ienv}
 
 \begin{par}
 Fit the inner envelope model.
@@ -2930,14 +3040,15 @@ The following codes gives the results of the Fisher's iris data example in Su an
 \begin{verbatim}       load irisf.mat\end{verbatim}
     
 \begin{verbatim}       d = bic_ienv(X, Y)\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 d =
 
      1
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}       ModelOutput = ienv(X, Y, d)
        1 - 1 ./ ModelOutput.ratio\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 ModelOutput = 
 
@@ -2966,13 +3077,15 @@ ans =
     0.0033    0.1404
     0.0004    0.0138
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 
 \newpage
 
 
-\section{lrt\_ienv}
+\rmfamily
+\color{black}\section{lrt\_ienv}
 
 \begin{par}
 Select the dimension of the inner envelope subspace using likelihood ratio testing.
@@ -3042,16 +3155,18 @@ This function implements the likelihood ratio testing procedure to select the di
 \begin{verbatim}       alpha = 0.01;
        u = lrt_ienv(X, Y, alpha)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      1
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
 
-\section{predict\_ienv}
+\rmfamily
+\color{black}\section{predict\_ienv}
 
 \begin{par}
 Perform estimation or prediction under the inner envelope model.
@@ -3118,7 +3233,7 @@ This function evaluates the inner envelope model at new value Xnew.  It can perf
        PredictOutput = predict_ienv(ModelOutput, Xnew, 'estimation')
        [PredictOutput.value, Y(1, :)']  % Compare the fitted value with the data
        PredictOutput.SE\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 PredictOutput = 
 
         value: [4x1 double]
@@ -3140,11 +3255,12 @@ ans =
     0.7146
     0.9265
     0.4357
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}       PredictOutput = predict_ienv(ModelOutput, Xnew, 'prediction')
        PredictOutput.SE\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 PredictOutput = 
 
         value: [4x1 double]
@@ -3159,11 +3275,13 @@ ans =
     4.3996
     2.0642
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
 
-\section{testcoefficient\_ienv}
+\rmfamily
+\color{black}\section{testcoefficient\_ienv}
 
 
 \begin{verbatim}This function tests the null hypothesis L * beta * R = A versus the
@@ -3233,29 +3351,32 @@ This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta
        ModelOutput = ienv(X,Y,d);
        TestOutout = testcoefficient_ienv(ModelOutput);\end{verbatim}
        
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 Test Hypothesis     Chisq Statistic    DF     P-value
-----------------------------------------------------------------------
+-------------------------------------------------------
 L * beta * R = A        4642.913        8      0.0000
-----------------------------------------------------------------------
-\end{verbatim} \color{black}
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}       TestInput.L = rand(2, 4);
        TestInput.R = rand(2, 1);
        TestInput.A = zeros(2, 1);
        TestOutout = testcoefficient_ienv(ModelOutput, TestInput);\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 Test Hypothesis     Chisq Statistic    DF     P-value
-----------------------------------------------------------------------
+-------------------------------------------------------
 L * beta * R = A        1834.229        2      0.0000
-----------------------------------------------------------------------
-\end{verbatim} \color{black}
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}
     
 \newpage 
     
-\part{penv}
+\chapter{penv}
 
-\section{aic\_penv}
+\rmfamily
+\color{black}\section{aic\_penv}
 
 \begin{par}
 Select the dimension of the partial envelope subspace using Akaike information criterion.
@@ -3329,17 +3450,19 @@ This function implements the Akaike information criteria (AIC) to select the dim
        X.X2 = Xtemp(:, 1 : 2);
        u = aic_penv(X, Y)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      3
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 
 \newpage
 
-\section{bic\_penv}
+\rmfamily
+\color{black}\section{bic\_penv}
 
 \begin{par}
 Select the dimension of the partial envelope subspace using Bayesian information criterion.
@@ -3413,17 +3536,19 @@ This function implements the Bayesian information criteria (BIC) to select the d
        X.X2 = Xtemp(:, 1 : 2);
        u = bic_penv(X, Y)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      1
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 \newpage
 
 
-\section{bstrp\_penv}
+\rmfamily
+\color{black}\section{bstrp\_penv}
 
 \begin{par}
 Compute bootstrap standard error for the partial envelope model.
@@ -3503,15 +3628,16 @@ This function computes the bootstrap standard errors for the regression coeffici
        X.X2 = Xtemp(:, 1 : 2);
        alpha = 0.01;
        u = lrt_penv(X, Y, alpha)\end{verbatim}
-               \color{lightgray} \begin{verbatim}
+               \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      1
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}       B = 100;
        bootse = bstrp_penv(X, Y, u, B)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 bootse =
 
     0.0074
@@ -3519,13 +3645,15 @@ bootse =
     0.0043
     0.0019
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 
 \newpage
 
 
-\section{lrt\_penv}
+\rmfamily
+\color{black}\section{lrt\_penv}
 
 \begin{par}
 Select the dimension of the partial envelope subspace using likelihood ratio testing.
@@ -3603,17 +3731,19 @@ This function implements the likelihood ratio testing procedure to select the di
        alpha = 0.01;
        u = lrt_penv(X, Y, alpha)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      1
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 
 \newpage
 
-\section{penv}
+\rmfamily
+\color{black}\section{penv}
 
 \begin{par}
 Fit the partial envelope model.
@@ -3721,18 +3851,19 @@ The following codes reconstruct the results of the paper and fiber example in Su
        X.X2 = Xtemp(:, 1 : 2);
        alpha = 0.01;
        u = lrt_penv(X, Y, alpha)\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      1
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
        \begin{verbatim}
        ModelOutput = penv(X, Y, u)
        ModelOutput.Omega
        eig(ModelOutput.Omega0)
        ModelOutput.ratio\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 ModelOutput = 
 
         beta1: [4x1 double]
@@ -3770,11 +3901,13 @@ ans =
    10.5048
     9.6279
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
 
-\section{predict\_penv}
+\rmfamily
+\color{black}\section{predict\_penv}
 
 \begin{par}
 Perform estimation or prediction under the partial envelope model.
@@ -3852,7 +3985,7 @@ This function evaluates the envelope model at new value Xnew.  It can perform es
        [PredictOutput.value, Y(1, :)'] % Compare the fitted value with the data
        PredictOutput.SE\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 PredictOutput = 
 
         value: [4x1 double]
@@ -3874,12 +4007,13 @@ ans =
     0.4234
     0.7145
     0.3161
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
        \begin{verbatim}
        PredictOutput = predict_penv(ModelOutput, Xnew, 'prediction')
        PredictOutput.SE\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 PredictOutput = 
 
         value: [4x1 double]
@@ -3894,11 +4028,13 @@ ans =
     1.1802
     0.5220
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
 
-\section{testcoefficient\_penv}
+\rmfamily
+\color{black}\section{testcoefficient\_penv}
 
 
 \begin{verbatim}This function tests the null hypothesis L * beta * R = A versus the
@@ -3972,12 +4108,13 @@ This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta
        u = lrt_penv(X, Y, alpha);
        ModelOutput = penv(X, Y, u);
        TestOutout = testcoefficient_penv(ModelOutput);\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
  Test Hypothesis     Chisq Statistic    DF     P-value
-----------------------------------------------------------------------
+-------------------------------------------------------
 L * beta * R = A          12.604        4      0.0134
-----------------------------------------------------------------------
-\end{verbatim} \color{black}
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}
        r = size(Y, 2);
        p1 = size(X.X1, 2);
@@ -3987,18 +4124,20 @@ L * beta * R = A          12.604        4      0.0134
        TestOutout = testcoefficient_penv(ModelOutput, TestInput);\end{verbatim}
    
 
-         \color{lightgray} \begin{verbatim}
+         \color{lightgray}\ttfamily \begin{verbatim}
 Test Hypothesis     Chisq Statistic    DF     P-value
-----------------------------------------------------------------------
+-------------------------------------------------------
 L * beta * R = A          11.452        2      0.0033
-----------------------------------------------------------------------
-\end{verbatim} \color{black}
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
-\part{senv}
+\chapter{senv}
     
     
-\section{aic\_senv}
+\rmfamily
+\color{black}\section{aic\_senv}
 
 \begin{par}
 Select the dimension of the scaled envelope subspace using Akaike information criterion.
@@ -4065,17 +4204,19 @@ This function implements the Akaike information criteria (AIC) to select the dim
        X = sales(:, 1 : 3);
        u = aic_senv(X, Y)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      4
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
 
 
-\section{bic\_senv}
+\rmfamily
+\color{black}\section{bic\_senv}
 
 \begin{par}
 Select the dimension of the scaled envelope subspace using Bayesian information criterion.
@@ -4142,16 +4283,18 @@ This function implements the Bayesian information criteria (BIC) to select the d
        X = sales(:, 1 : 3);
        u = bic_senv(X, Y)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 u =
 
      2
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 \newpage
 
-\section{bstrp\_senv}
+\rmfamily
+\color{black}\section{bstrp\_senv}
 
 \begin{par}
 Compute bootstrap standard error for the scaled envelope model.
@@ -4224,16 +4367,17 @@ This function computes the bootstrap standard errors for the regression coeffici
        X = sales(:, 1 : 3);\end{verbatim}
     
 \begin{verbatim}       u = bic_senv(X, Y)\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      2
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}
        B = 20;
        bootse = bstrp_senv(X, Y, u, B)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 bootse =
 
@@ -4242,12 +4386,14 @@ bootse =
     0.0567    0.0781    0.0791
     0.0986    0.0944    0.1283
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 
 \newpage
 
-\section{dF4senv}
+\rmfamily
+\color{black}\section{dF4senv}
 
 \begin{par}
 First derivative of the objective function for computing the envelope subspace in the scaled envelope model.
@@ -4295,7 +4441,8 @@ This first derivative of F4senv obtained by matrix calculus calculations.
 
 \newpage
 
-\section{F4senv}
+\rmfamily
+\color{black}\section{F4senv}
 
 \begin{par}
 Objective function for computing the envelope subspace in scaled envelope model.
@@ -4344,7 +4491,8 @@ The objective function is derived in Section 4.1 in Cook and Su (2012) using max
 
 \newpage
 
-\section{objfun}
+\rmfamily
+\color{black}\section{objfun}
 
 \begin{par}
 Objective function for computing the scales in the scaled envelope model.
@@ -4398,7 +4546,8 @@ The objective function is derived in Section 4.1 of Su and Cook (2012)  using ma
 
     
     
-\section{predict\_senv}
+\rmfamily
+\color{black}\section{predict\_senv}
 
 \begin{par}
 Perform estimation or prediction under the scaled envelope model.
@@ -4467,7 +4616,7 @@ This function evaluates the scaled envelope model at new value Xnew.  It can per
        PredictOutput = predict_senv(ModelOutput, Xnew, 'estimation')
        [PredictOutput.value, Y(1, :)']  % Compare the fitted value with the data
        PredictOutput.SE\end{verbatim}    
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 PredictOutput = 
 
         value: [4x1 double]
@@ -4489,11 +4638,12 @@ ans =
     5.8952
     4.2205
     8.0134
-\end{verbatim} \color{black}       
+\end{verbatim} \rmfamily
+\color{black}       
        \begin{verbatim}
        PredictOutput = predict_senv(ModelOutput, Xnew, 'prediction')
        PredictOutput.SE\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 PredictOutput = 
 
@@ -4509,13 +4659,15 @@ ans =
     4.4254
     8.5956
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 
 
 \newpage
 
-\section{senv}
+\rmfamily
+\color{black}\section{senv}
 
 \begin{par}
 Fit the scaled envelope model.
@@ -4615,17 +4767,18 @@ The following codes produce the results of the test and performance example in C
        Y = sales(:, 4 : 7);
        X = sales(:, 1 : 3);
        u = bic_senv(X, Y)\end{verbatim}    
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      2
-\end{verbatim} \color{black}       
+\end{verbatim} \rmfamily
+\color{black}       
        \begin{verbatim}
        ModelOutput = senv(X, Y, u)
        ModelOutput.Lambda
        1 - 1 ./ ModelOutput.ratio\end{verbatim}
 
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 ModelOutput = 
 
          beta: [4x3 double]
@@ -4660,10 +4813,12 @@ ans =
     0.4439    0.1858    0.3924
     0.5375    0.4639    0.5228
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 \newpage
 
-\section{testcoefficient\_senv}
+\rmfamily
+\color{black}\section{testcoefficient\_senv}
 
 
 \begin{verbatim}This function tests the null hypothesis L * beta * R = A versus the
@@ -4734,13 +4889,14 @@ This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta
        u = bic_senv(X,Y)
        ModelOutput = senv(X,Y,u);
        TestOutout = testcoefficient_senv(ModelOutput);\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
  Test Hypothesis     Chisq Statistic    DF     P-value
-----------------------------------------------------------------------
+-------------------------------------------------------
 L * beta * R = A        4827.816       12      0.0000
-----------------------------------------------------------------------
-\end{verbatim} \color{black}
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}
        r = size(Y, 2);
        p = size(X, 2);
@@ -4748,18 +4904,20 @@ L * beta * R = A        4827.816       12      0.0000
        TestInput.R = rand(p, 1);
        TestInput.A = zeros(2, 1);
        TestOutout = testcoefficient_senv(ModelOutput, TestInput);\end{verbatim}
-         \color{lightgray} \begin{verbatim}
+         \color{lightgray}\ttfamily \begin{verbatim}
 Test Hypothesis     Chisq Statistic    DF     P-value
-----------------------------------------------------------------------
+-------------------------------------------------------
 L * beta * R = A        1025.948        2      0.0000
-----------------------------------------------------------------------
-\end{verbatim} \color{black}
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}
     
 \newpage
 
-\part{xenv}
+\chapter{xenv}
 
-\section{aic\_xenv}
+\rmfamily
+\color{black}\section{aic\_xenv}
 
 \begin{par}
 Use Akaike information criterion to select the dimension of the envelope subspace for the reduction on X.
@@ -4826,16 +4984,18 @@ This function implements the Akaike information criteria (AIC) to select the dim
        Y = wheatprotein(:, 7);
        u = aic_xenv(X, Y)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      4
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 \newpage
 
-\section{bic\_xenv}
+\rmfamily
+\color{black}\section{bic\_xenv}
 
 \begin{par}
 Use Bayesian information criterion to select the dimension of the envelope subspace for the reduction on X.
@@ -4902,16 +5062,18 @@ This function implements the Bayesian information criteria (BIC) to select the d
        Y = wheatprotein(:, 7);
        u = bic_xenv(X, Y)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      4
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
 
-\section{bstrp\_xenv}
+\rmfamily
+\color{black}\section{bstrp\_xenv}
 
 \begin{par}
 Compute bootstrap standard error of the envelope model for the reduction on X.
@@ -4984,16 +5146,17 @@ This function computes the bootstrap standard errors for the regression coeffici
        Y = wheatprotein(:, 7);
        alpha = 0.01;
        u = lrt_xenv(X, Y, alpha)\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      4
-\end{verbatim} \color{black}    
+\end{verbatim} \rmfamily
+\color{black}    
      \begin{verbatim}
        B = 100;
        bootse = bstrp_xenv(X, Y, u, B)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 bootse =
 
     0.0222
@@ -5003,10 +5166,12 @@ bootse =
     0.0022
     0.0087
 
-\end{verbatim} \color{black}    
+\end{verbatim} \rmfamily
+\color{black}    
 \newpage
     
-\section{dF4xenv}
+\rmfamily
+\color{black}\section{dF4xenv}
 
 \begin{par}
 The first derivative of the objective function for computing the envelope subspace for the reduction on X.
@@ -5054,7 +5219,8 @@ The objective function is derived in Section 4.5.1 of Cook et al. (2012) by  usi
 
 \newpage
 
-\section{F4xenv}
+\rmfamily
+\color{black}\section{F4xenv}
 
 \begin{par}
 Objective function for computing the envelope subspace for the reduction on X.
@@ -5103,7 +5269,8 @@ The objective function is derived in Section 4.5.1 of Cook et al. (2012)  using 
     
 \newpage    
 
-\section{lrt\_xenv}
+\rmfamily
+\color{black}\section{lrt\_xenv}
 
 \begin{par}
 Use likelihood ratio testing to select the dimension of the envelope subspace for the reduction on X.
@@ -5174,17 +5341,19 @@ This function implements the likelihood ratio testing procedure to select the di
        alpha = 0.01;
        u = lrt_xenv(X, Y, alpha)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
      4
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 
 \newpage
 
-\section{predict\_xenv}
+\rmfamily
+\color{black}\section{predict\_xenv}
 
 \begin{par}
 Perform estimation or prediction under the envelope model for the reduction on X.
@@ -5253,7 +5422,7 @@ This function evaluates the envelope model for the reduction on X at new value X
        PredictOutput = predict_xenv(ModelOutput, Xnew, 'estimation')
        [PredictOutput.value, Y(1, :)']  % Compare the fitted value with the data
        PredictOutput.SE\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 PredictOutput = 
 
         value: 9.1751
@@ -5269,13 +5438,14 @@ ans =
 ans =
 
     4.1041
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
        
        \begin{verbatim}
        PredictOutput = predict_xenv(ModelOutput, Xnew, 'prediction')
        PredictOutput.SE\end{verbatim}
 
-\color{lightgray} \begin{verbatim}
+\color{lightgray}\ttfamily \begin{verbatim}
 PredictOutput = 
 
         value: 9.1751
@@ -5287,11 +5457,13 @@ ans =
 
     4.1080
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
 
-\section{testcoefficient\_xenv}
+\rmfamily
+\color{black}\section{testcoefficient\_xenv}
 
 
 \begin{verbatim}This function tests the null hypothesis L * beta * R = A versus the
@@ -5363,12 +5535,13 @@ This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta
        ModelOutput=xenv(X, Y, u);
        TestOutout = testcoefficient_xenv(ModelOutput);\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
  Test Hypothesis     Chisq Statistic    DF     P-value
-----------------------------------------------------------------------
+-------------------------------------------------------
 L * beta * R = A        3233.053        6      0.0000
-----------------------------------------------------------------------
-\end{verbatim} \color{black}
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}
 \begin{verbatim}
        r = size(Y, 2);
        p = size(X, 2);
@@ -5376,17 +5549,19 @@ L * beta * R = A        3233.053        6      0.0000
        TestInput.R = rand(r, 1);
        TestInput.A = zeros(2, 1);
        TestOutout = testcoefficient_xenv(ModelOutput, TestInput);\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
  Test Hypothesis     Chisq Statistic    DF     P-value
-----------------------------------------------------------------------
+-------------------------------------------------------
 L * beta * R = A          33.578        2      0.0000
-----------------------------------------------------------------------
-\end{verbatim} \color{black}
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}
     
     
 \newpage
     
-\section{xenv}
+\rmfamily
+\color{black}\section{xenv}
 
 \begin{par}
 Fit the envelope model for the reduction on X.
@@ -5494,7 +5669,7 @@ This function fits the envelope model to the responses and predictors, using the
        ModelOutput.sigYcX
        temp.betaOLS'
        ModelOutput.beta\end{verbatim}
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 ans =
 
     0.0321
@@ -5523,12 +5698,13 @@ ans =
    -0.1981
     0.0020
    -0.0480
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 \begin{verbatim}       u = bic_xenv(X, Y);
        ModelOutput = xenv(X, Y, u)\end{verbatim}
 
-\color{lightgray} \begin{verbatim}
+\color{lightgray}\ttfamily \begin{verbatim}
 
 ModelOutput = 
 
@@ -5547,7 +5723,8 @@ ModelOutput =
         ratio: [6x1 double]
            np: 27
             n: 50
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
     
 \begin{verbatim}       %  To compare with the results obtained by Partial Least Squares, use the 
        %  plsregress command
@@ -5556,7 +5733,7 @@ ModelOutput =
        BETA(2 : end, :)\end{verbatim}
     
 
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 ans =
 
@@ -5578,7 +5755,759 @@ ans =
     0.0056
    -0.0708
 
-\end{verbatim} \color{black}
+\end{verbatim} \rmfamily
+\color{black}
 
+\newpage
+
+\chapter{auxiliary}
+
+    
+\rmfamily
+\color{black}\section{center}
+
+\begin{par}
+Subtract the mean of each column.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       XC = center(X)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: A matrix or a column vector.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{XC}: A matrix or a column vector with the mean for each column equal to 0.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function centerizes a matrix or a vector, by subtracting each column by its column mean.
+\end{par} \vspace{1em}
+
+\newpage
+
+\rmfamily
+\color{black}\section{Contr}
+
+\begin{par}
+Compute the contraction matrix of dimension r.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       C = Contr(r)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{r}: Dimension of the contraction matrix.  A positive integer.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{C}: Contraction matrix of dimension r.  C is an r(r + 1) / 2 by r \^{} 2 matrix.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+The contraction and expansion matrices are links between the "vec" operator and "vech"operator: for an r by r symmetric matrix A, vech(A) = Contr(r) * vec(A), and vec(A) = Expan(r) * vech(A). The "vec" operator stacks the matrix A into an r \^{} 2 by 1 vector columnwise.  The "vech" operator stacks the lower triangle or the upper triangle of a symmetric matrix into an r(r+1)/2 vector. For more details of "vec", "vech", contraction and expansion matrix, refer to Henderson and Searle (1979).
+\end{par} \vspace{1em}
+
+\newpage
+
+\rmfamily
+\color{black}\section{Expan}
+
+\begin{par}
+Compute the expansion matrix of dimension r.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       E = Expan(r)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{r}: Dimension of the expansion matrix.  A positive integer.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{E}: Expansion matrix of dimension r.  E is an r \^{} 2 by r(r + 1) / 2 matrix.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+The contraction and expansion matrices are links between the "vec" operator and "vech" operator: for an r by r symmetric matrix A, vech(A) = Contr(r) * vec(A), and vec(A) = Expan(r) * vech(A). The "vec" operator stacks the matrix A into an r \^{} 2 by 1 vector columnwise.  The "vech" operator stacks the lower triangle or the upper triangle of a symmetric matrix into an r(r + 1) / 2 vector. For more details of "vec", "vech", contraction and expansion matrix, refer to Henderson and Searle (1979).
+\end{par} \vspace{1em}
+
+\newpage
+
+\rmfamily
+\color{black}\section{fit\_OLS}
+
+\begin{par}
+Multivariate linear regression.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       ModelOutput = fit_OLS(X, Y)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors, an n by p matrix, p is the number of predictors.  The predictors can be univariate or multivariate, discrete or continuous.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{ModelOutput}: A list that contains the maximum likelihood estimators of regression coefficients and error covariance matrix.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item ModelOutput.betaOLS: An r by p matrix containing estimate of the regression coefficients $\beta$.
+   \item ModelOutput.SigmaOLS: An r by r matrix containing estimate of the error covariance matrix.
+   \item ModelOutput.alpha: An r by 1 vector containing estimate of the intercept.
+   \item ModelOutput.n: The number of observations in the data.  A positive integer.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+In a multivariate linear model, Y and X follows the following relationship: $Y=\alpha+\beta X+\varepsilon$, where $\varepsilon$ contains the errors.  This function performs the ordinary least squares fit to the inputs, and returns the estimates of $\beta$ and the covariance matrix of $\varepsilon$.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1 : 6);
+       ModelOutput = fit_OLS(X, Y)
+       ModelOutput.betaOLS
+       ModelOutput.SigmaOLS\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}
+ModelOutput = 
+
+     betaOLS: [6x1 double]
+    SigmaOLS: [6x6 double]
+       alpha: [6x1 double]
+           n: 50
+
+
+ans =
+
+    3.2724
+    8.0288
+    7.5224
+   -2.0609
+    3.2244
+    0.6538
+
+
+ans =
+
+   1.0e+03 *
+
+    1.1905    0.9759    1.0506    1.1524    1.5384    0.6335
+    0.9759    0.8061    0.8657    0.9432    1.2636    0.5266
+    1.0506    0.8657    0.9310    1.0164    1.3664    0.5640
+    1.1524    0.9432    1.0164    1.1228    1.5234    0.6183
+    1.5384    1.2636    1.3664    1.5234    2.3229    0.8360
+    0.6335    0.5266    0.5640    0.6183    0.8360    0.3618
+
+\end{verbatim} \rmfamily
+\color{black}
+    
+\newpage
+
+\rmfamily
+\color{black}\section{get\_Init}
+
+\begin{par}
+Starting value for the envelope subspace.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Reference
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       WInit = get_Init(X, Y, u, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 1 and r - 1.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{DataParameter}: A list containing commonly used statistics computed from the data.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{WInit}: The initial estimate of the orthogonal basis of the envelope subspace. An r by u orthogonal matrix.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+We compute the eigenvectors for the covariance matrices of Y and the estimated errors, and get 2r vectors.  Then we get all the combinations of u vectors out of the 2r vectors. If the number of 2r choose u is small(\ensuremath{<}= 50), we search over all the combinations and find out the one that minimizes the objective function F. If that number is large, then we do it iteratively: we pick up any u eigenvectors, fix all of them except the first one. Then we search over all the vectors orthogonal to the fixed ones, and record the one that minimizes F. Next, we fix the first u eigenvectors again but this time search for second one, then we record the vector. This goes on and on until the last one. We do it for 5 rounds and use the final set as our starting value.
+\end{par} \vspace{1em}
+
+
+\subsection*{Reference}
+
+\begin{par}
+The codes is implemented based on the algorithm in Section 3.5 of Su and Cook (2011).
+\end{par} \vspace{1em}
+
+\newpage
+
+\rmfamily
+\color{black}\section{get\_Init4henv}
+
+\begin{par}
+Starting value for the heteroscedastic envelope subspace.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Reference
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       WInit = get_Init4henv(F, X, Y, u, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{F}: Objective function to get the heteroscedastic envelope subspace.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{X}: Group indicators. A matrix with n rows.  X can only have p unique  rows, where p is the number of groups. For example, if there are two groups, X can only have 2 different kinds of rows, such as (0, 1) and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not restricted, as long as X only has p unique rows.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 1 and r - 1.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{DataParameter}: A list containing commonly used statistics computed from the data.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{WInit}: The initial estimate of the orthogonal basis of the heteroscedastic envelope subspace. An r by u orthogonal matrix.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+We compute the eigenvectors for the estimated errors, and get r vectors.  Then we get all the combinations of u vectors out of the r vectors. If the number of r choose u is small(\ensuremath{<}=50), we search over all the combinations and find out the one that minimizes the objective function F. If that number is large, then we do it iteratively: we pick up any u eigenvectors, fix all of them except the first one. Then we search over all the vectors orthogonal to the fixed ones, and record the one that minimizes F. Next, we fix the first u eigenvectors again but this time search for second one, then we record the vector. This goes on and on until the last one. We do it for 3 rounds and use the final set as our starting value.
+\end{par} \vspace{1em}
+
+
+\subsection*{Reference}
+
+\begin{par}
+The codes is implemented based on the algorithm in Section 3.5 of Su and Cook (2011).
+\end{par} \vspace{1em}
+
+
+\newpage
+
+\rmfamily
+\color{black}\section{Kpd}
+
+\begin{par}
+Compute the communication matrix Kpd.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Reference
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       k = Kpd(p, d)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{p}, \textbf{d}: two positive integers represent the dimension parameters for the communication matrix.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{k}: The communication matrix Kpd. An p * d by p * d matrix.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+For a p by d matrix A, vec(A') = Kpd * vec(A), and Kpd is called a communication matrix.
+\end{par} \vspace{1em}
+
+
+\subsection*{Reference}
+
+\begin{par}
+The codes is implemented based on Definition 3.1 in Magnus and Neudecker (1979).
+\end{par} \vspace{1em}
+
+\newpage
+
+\rmfamily
+\color{black}\section{Lmatrix}
+
+\begin{par}
+Extract the 2nd to the last diagonal element of a matrix into a vector.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       L = Lmatrix(r)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{r}: The dimension of the matrix being extracted.  The matrix should be an r by r matrix.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{L}: An r - 1 dimensional vector that contains all the diagonal elements but the first one of the matrix.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+Let A be an r by r matrix, and vec be the vector operator, then Lmatrix(r) * vec(A) will give the 2nd to the rth diagonal elements of A, arranged in a column vector.
+\end{par} \vspace{1em}
+
+\newpage
+
+\rmfamily
+\color{black}\section{make\_dF}
+
+\begin{par}
+Generic function to generate the derivative function of the objective function F.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+\begin{par}
+dF = make\_dF(dfun\_method\_handle, FParameters)
+\end{par} \vspace{1em}
+
+
+\subsection*{Input}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item dfun\_method\_handle: A specific model derivative function of the objective function.
+   \item FParameters: A structure that contains data parameters as input for the function dfun\_method\_handle.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item dF: The generic derivative function of the objective function for computing the envelope subspace.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+Generic function to generate the derivative function of the objective function F. The function first sets a handle to the specific model function and fixes the data parameters from the sample needed for its computation. The handle fixed with those parameters is then evaluated at a given value for argument W. A generic derivative function dF is returned.
+\end{par} \vspace{1em}
+
+\newpage
+
+\rmfamily
+\color{black}\section{make\_F}
+
+\begin{par}
+Generic function to generate the objective function F.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+\begin{par}
+F = make\_F(fun\_method\_handle, FParameters)
+\end{par} \vspace{1em}
+
+
+\subsection*{Input}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item fun\_method\_handle: A specific model objective function.
+   \item FParameters: A structure that contains data parameters as input for the function fun\_method\_handle.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item F: The generic objective function for computing the envelope subspace.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+Generic function to generate the objective function F. The function first sets a handle to the specific model function and fixes the data parameters from the sample needed for its computation. The handle fixed with those parameters is then evaluated at a given value for argument W. A generic objective function F is returned.
+\end{par} \vspace{1em}
+
+\newpage 
+
+\rmfamily
+\color{black}\section{make\_opts}
+
+\begin{par}
+Make optional input parameters for running the sg\_min package.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output:
+   \item Description
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       Opts = make_opts(Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{Opts}: A list containing optional input parameter for sg\_min.m specified by users.  One or several (even all) fields could be empty.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.
+   \item Opts.ftol: Tolerance parameter for F.
+   \item Opts.gradtol: Tolerance parameter for dF.
+   \item Opts.verbose: Flag for print out output, logical 0 or 1.
+\end{itemize}
+
+
+\subsection*{Output:}
+
+\begin{par}
+\textbf{Opts}: A list containing optional input parameter for sg\_min.m, specified by users or the default values are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out output, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+The sg\_min function has some optional input parameters that control the iteration process.  These parameters include maximum number of iteration, tolerance parameters for convergence of the objective function F and the derivative of the objective function dF, and the print out of the iteration process.  The user can set one or all of parameters, if not, default values will be used.
+\end{par} \vspace{1em}
+
+\newpage
+
+\rmfamily
+\color{black}\section{make\_parameter}
+
+\begin{par}
+Compute summary statistics from the data.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       DataParameter = make_parameter(X, Y, method)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{method}: A string of characters indicating which member of the envelope family to be used, the choices can be 'env', 'ienv', 'henv', 'senv' or 'xenv'.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{DataParameter}: A list that contains summary statistics computed from the data.  The output list can vary from method to method.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item DataParameter.n: The number of observations in the data.  A positive integer.
+   \item DataParameter.ng: A p by 1 vector containing the number of observations in each group.  p is the number of groups.  Only for 'henv'.
+   \item DataParameter.ncum: A p by 1 vector containing the total number of observations till this group.  Only for 'henv'.
+   \item DataParameter.ind: An n by 1 vector indicating the sequence of the observations after sorted by groups.
+   \item DataParameter.p: The number of predictors or number of groups for 'henv'.  A positive integer.
+   \item DataParameter.r: The number of responses.  A positive integer.
+   \item DataParameter.XC: Centered predictors.  An n by p matrix with the ith row being the ith observation of X subtracted by the mean of X.  Only for 'env' and 'ienv'.
+   \item DataParameter.YC: Centered responses.  An n by r matrix with the ith row being the ith observation of Y subtracted by the mean of Y.  Only for 'env' and 'ienv'.
+   \item DataParameter.mX: The mean of predictors.  A p by 1 vector.  For all method except 'henv'.
+   \item DataParameter.mY: The mean of responses.  An r by 1 vector.
+   \item DataParameter.mYg: An r by p matrix with the ith column being the sample mean of the ith group.
+   \item DataParameter.sigX: The sample covariance matrix of X.  A p by p matrix.
+   \item DataParameter.sigY: The sample covariance matrix of Y.  An r by r matrix.
+   \item DataParameter.sigRes: For 'env', 'senv', 'ienv': The sample covariance matrix of the residuals from the ordinary least squares regression of Y on X.  An r by r matrix. For 'henv', an r by r by p three dimensional matrix with the ith depth is the ith sample covariance matrix for the ith group.
+   \item DataParameter.sigFit: The sample covariance matrix of the fitted value from the ordinary least squares regression of Y on X.  An r by r matrix. Only for method 'ienv'.
+   \item DataParameter.betaOLS: The regression coefficients from the ordinary least squares regression of Y on X.  An r by p matrix.  For all method except 'henv'.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function computes statistics that will be used frequently in the estimation for each method.
+\end{par} \vspace{1em}
+
+\newpage
+
+\section*{make\_F}
+
+\begin{par}
+Generic function to generate the objective function F.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+\begin{par}
+F = make\_F(fun\_method\_handle, FParameters)
+\end{par} \vspace{1em}
+
+
+\subsection*{Input}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item fun\_method\_handle: A specific model objective function.
+   \item FParameters: A structure that contains data parameters as input for the function fun\_method\_handle.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item F: The generic objective function for computing the envelope subspace.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+Generic function to generate the objective function F. The function first sets a handle to the specific model function and fixes the data parameters from the sample needed for its computation. The handle fixed with those parameters is then evaluated at a given value for argument W. A generic objective function F is returned.
+\end{par} \vspace{1em}
 \end{document}
     

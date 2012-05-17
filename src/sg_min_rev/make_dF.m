@@ -1,4 +1,4 @@
-%% make_F
+%% make_dF
 % Generic function to generate the derivative function of the objective function F.
  
 %% Syntax

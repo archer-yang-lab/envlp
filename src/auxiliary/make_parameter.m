@@ -2,7 +2,7 @@
 % Compute summary statistics from the data.
 
 %% Syntax
-%         DataParameter=make_parameter(X,Y,method)
+%         DataParameter = make_parameter(X, Y, method)
 %
 %% Input
 %
