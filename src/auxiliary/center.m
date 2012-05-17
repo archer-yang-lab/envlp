@@ -1,5 +1,5 @@
 %% center
-% Substract the mean of each column
+% Subtract the mean of each column.
 
 %% Syntax
 %         XC = center(X)
@@ -14,14 +14,10 @@
 % 0.
 
 %% Description
-% This function centerizes a matrix or a vector, by substracting each
+% This function centerizes a matrix or a vector, by subtracting each
 % column by its column mean.
 
-%% Example
-%
-%         a = [1 2 3; 4 5 6];
-% 
-%         center(a)
+
 
 function XC = center(X);
 
