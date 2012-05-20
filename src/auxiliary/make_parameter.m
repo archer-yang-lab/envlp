@@ -65,146 +65,146 @@
 % estimation for each method.
 
 
-function DataParameter=make_parameter(X,Y,method)
+function DataParameter = make_parameter(X, Y, method)
 
-if (strcmp(method,'env'))
+if (strcmp(method, 'env'))
     
     
-    [n p]=size(X);
-    r=size(Y,2);
+    [n p] = size(X);
+    r = size(Y, 2);
 
-    XC=center(X);
-    YC=center(Y);
-    ModelOutput=fit_OLS(X,Y);
+    XC = center(X);
+    YC = center(Y);
+    ModelOutput = fit_OLS(X, Y);
 
-    DataParameter.n=n;
-    DataParameter.p=p;
-    DataParameter.r=r;
-    DataParameter.XC=XC;
-    DataParameter.YC=YC;
-    DataParameter.mX=mean(X)';
-    DataParameter.mY=mean(Y)';
-    DataParameter.sigX=cov(X,1);
-    DataParameter.sigY=cov(Y,1);
-    DataParameter.sigRes=ModelOutput.SigmaOLS;
-    DataParameter.betaOLS=ModelOutput.betaOLS;
+    DataParameter.n = n;
+    DataParameter.p = p;
+    DataParameter.r = r;
+    DataParameter.XC = XC;
+    DataParameter.YC = YC;
+    DataParameter.mX = mean(X)';
+    DataParameter.mY = mean(Y)';
+    DataParameter.sigX = cov(X, 1);
+    DataParameter.sigY = cov(Y, 1);
+    DataParameter.sigRes = ModelOutput.SigmaOLS;
+    DataParameter.betaOLS = ModelOutput.betaOLS;
    
     
-elseif (strcmp(method,'senv'))
+elseif (strcmp(method, 'senv'))
     
     
-    [n p]=size(X);
-    r=size(Y,2);
+    [n p] = size(X);
+    r = size(Y, 2);
 
-    XC=center(X);
-    YC=center(Y);
-    ModelOutput=fit_OLS(X,Y);
+    XC = center(X);
+    YC = center(Y);
+    ModelOutput = fit_OLS(X, Y);
 
-    DataParameter.n=n;
-    DataParameter.p=p;
-    DataParameter.r=r;
-    DataParameter.mX=mean(X)';
-    DataParameter.mY=mean(Y)';
-    DataParameter.sigX=cov(X,1);
-    DataParameter.sigY=cov(Y,1);
-    DataParameter.sigRes=ModelOutput.SigmaOLS;
-    DataParameter.betaOLS=ModelOutput.betaOLS;
+    DataParameter.n = n;
+    DataParameter.p = p;
+    DataParameter.r = r;
+    DataParameter.mX = mean(X)';
+    DataParameter.mY = mean(Y)';
+    DataParameter.sigX = cov(X, 1);
+    DataParameter.sigY = cov(Y, 1);
+    DataParameter.sigRes = ModelOutput.SigmaOLS;
+    DataParameter.betaOLS = ModelOutput.betaOLS;
     
     
-elseif (strcmp(method,'ienv'))
+elseif (strcmp(method, 'ienv'))
     
     
-    [n p]=size(X);
-    r=size(Y,2);
+    [n p] = size(X);
+    r = size(Y, 2);
 
-    XC=center(X);
-    YC=center(Y);
-    ModelOutput=fit_OLS(X,Y);
-    sigY=cov(Y,1);
-    sigFit=sigY-ModelOutput.SigmaOLS;
+    XC = center(X);
+    YC = center(Y);
+    ModelOutput = fit_OLS(X, Y);
+    sigY = cov(Y, 1);
+    sigFit = sigY - ModelOutput.SigmaOLS;
 
-    DataParameter.n=n;
-    DataParameter.p=p;
-    DataParameter.r=r;
-    DataParameter.XC=XC;
-    DataParameter.YC=YC;
-    DataParameter.mX=mean(X)';
-    DataParameter.mY=mean(Y)';
-    DataParameter.sigX=cov(X,1);
-    DataParameter.sigY=sigY;
-    DataParameter.sigRes=ModelOutput.SigmaOLS;
-    DataParameter.sigFit=sigFit;
-    DataParameter.betaOLS=ModelOutput.betaOLS;
+    DataParameter.n = n;
+    DataParameter.p = p;
+    DataParameter.r = r;
+    DataParameter.XC = XC;
+    DataParameter.YC = YC;
+    DataParameter.mX = mean(X)';
+    DataParameter.mY = mean(Y)';
+    DataParameter.sigX = cov(X, 1);
+    DataParameter.sigY = sigY;
+    DataParameter.sigRes = ModelOutput.SigmaOLS;
+    DataParameter.sigFit = sigFit;
+    DataParameter.betaOLS = ModelOutput.betaOLS;
     
     
-elseif (strcmp(method,'henv'))
+elseif (strcmp(method, 'henv'))
     
     
-    [n r]=size(Y);
+    [n r] = size(Y);
 
-    [Xs ind]=sortrows(X);
-    p=1;
-    temp=Xs(1,:);
-    ng=0;
-    for i=1:n
-        if prod(double(Xs(i,:)==temp))==0            
-            temp=Xs(i,:);
-            ng(p)=i-1-sum(ng(1:p-1));
-            ncum(p)=i-1;
-            p=p+1;
+    [Xs ind] = sortrows(X);
+    p = 1;
+    temp = Xs(1, :);
+    ng = 0;
+    for i = 1 : n
+        if prod(double(Xs(i, :) == temp)) == 0            
+            temp = Xs(i, :);
+            ng(p) = i - 1 - sum(ng(1 : p - 1));
+            ncum(p) = i - 1;
+            p = p + 1;
         end
     end           
-    ncum(p)=n;
-    ng(p)=n-sum(ng(1:p-1));
+    ncum(p) = n;
+    ng(p) = n - sum(ng(1 : p - 1));
 
-    sigRes=zeros(r,r,p);
-    mYg=zeros(r,p);
+    sigRes = zeros(r, r, p);
+    mYg = zeros(r, p);
 
-    Ys=Y(ind,:);
+    Ys = Y(ind, :);
 
-    for i=1:p
+    for i = 1 : p
         if i>1
-            sigRes(:,:,i)=cov(Ys(ncum(i-1)+1:ncum(i),:),1);
-            mYg(:,i)=mean(Ys(ncum(i-1)+1:ncum(i),:))';
+            sigRes(:, :, i) = cov(Ys(ncum(i - 1) + 1 : ncum(i), :), 1);
+            mYg(:, i) = mean(Ys(ncum(i - 1) + 1 : ncum(i), :))';
         else
-            sigRes(:,:,i)=cov(Ys(1:ncum(i),:),1);
-            mYg(:,i)=mean(Ys(1:ncum(i),:))';
+            sigRes(:, :, i) = cov(Ys(1 : ncum(i), :), 1);
+            mYg(:, i) = mean(Ys(1 : ncum(i), :))';
         end
     end
 
 
 
-    DataParameter.n=n;
-    DataParameter.ng=ng;
-    DataParameter.ncum=ncum;
-    DataParameter.p=p;
-    DataParameter.r=r;
-    DataParameter.ind=ind;
-    DataParameter.mY=mean(Y)';
-    DataParameter.mYg=mYg;
-    DataParameter.sigY=cov(Y,1);
-    DataParameter.sigRes=sigRes;
+    DataParameter.n = n;
+    DataParameter.ng = ng;
+    DataParameter.ncum = ncum;
+    DataParameter.p = p;
+    DataParameter.r = r;
+    DataParameter.ind = ind;
+    DataParameter.mY = mean(Y)';
+    DataParameter.mYg = mYg;
+    DataParameter.sigY = cov(Y, 1);
+    DataParameter.sigRes = sigRes;
     
-elseif (strcmp(method,'xenv'))
+elseif (strcmp(method, 'xenv'))
     
-    [n p]=size(X);
-    r=size(Y,2);
-    XC=center(X);
-    YC=center(Y);
-    sigX=cov(X,1);
-    sigXY=XC'*YC/n;
-    sigY=cov(Y,1);
+    [n p] = size(X);
+    r = size(Y, 2);
+    XC = center(X);
+    YC = center(Y);
+    sigX = cov(X, 1);
+    sigXY = XC' * YC / n;
+    sigY = cov(Y, 1);
     
-    DataParameter.n=n;
-    DataParameter.p=p;
-    DataParameter.r=r;
-    DataParameter.mX=mean(X)';
-    DataParameter.mY=mean(Y)';
-    DataParameter.sigX=sigX;
-    DataParameter.sigY=sigY;
-    DataParameter.sigXY=sigXY;
-    DataParameter.sigXcY=sigX-sigXY*inv(sigY)*sigXY';
-    DataParameter.invSigX=inv(sigX);
+    DataParameter.n = n;
+    DataParameter.p = p;
+    DataParameter.r = r;
+    DataParameter.mX = mean(X)';
+    DataParameter.mY = mean(Y)';
+    DataParameter.sigX = sigX;
+    DataParameter.sigY = sigY;
+    DataParameter.sigXY = sigXY;
+    DataParameter.sigXcY = sigX - sigXY * inv(sigY) * sigXY';
+    DataParameter.invSigX = inv(sigX);
 
 end
 
