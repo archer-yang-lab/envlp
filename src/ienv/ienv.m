@@ -14,8 +14,7 @@
 % responses and n is number of observations. The responses must be 
 % continuous variables, and r should be strictly greater than p.
 %
-% *u*: Dimension of the inner envelope. An integer between 0 and p or equal
-% to r.
+% *u*: Dimension of the inner envelope. An integer between 0 and p.
 %
 % *Opts*: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
@@ -167,23 +166,23 @@ if u == p
     
 elseif u == 0
     
-    eigtem = eig(sigY);
-    ModelOutput.beta = zeros(r, p);
-    ModelOutput.Sigma = sigY;
+    temp = env(X, Y, r);
+    ModelOutput.beta = temp.beta;
+    ModelOutput.Sigma = temp.Sigma;
     ModelOutput.Gamma1 = [];
     ModelOutput.Gamma0 = eye(r);
     ModelOutput.B = eye(r);
     ModelOutput.eta1 = [];
-    ModelOutput.eta2 = [];
+    ModelOutput.eta2 = temp.beta;
     ModelOutput.Omega = [];
-    ModelOutput.Omega0 = sigY;
-    ModelOutput.alpha = mY;
-    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
-    ModelOutput.covMatrix = [];
-    ModelOutput.asyIenv = [];
-    ModelOutput.ratio = ones(r, p);
-    ModelOutput.np = r + u * p + r * (r + 1) / 2;  
-    ModelOutput.n = n;
+    ModelOutput.Omega0 = temp.Sigma;
+    ModelOutput.alpha = temp.alpha;
+    ModelOutput.l = temp.l;
+    ModelOutput.covMatrix = temp.covMatrix;
+    ModelOutput.asyIenv = temp.asyEnv;
+    ModelOutput.ratio = temp.ratio;
+    ModelOutput.np = temp.np;  
+    ModelOutput.n = temp.n;
 
 else 
     

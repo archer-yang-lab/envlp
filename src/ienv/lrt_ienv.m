@@ -30,8 +30,7 @@
 %
 %% Output
 %
-% *u*: Dimension of the inner envelope. An integer between 0 and p or equal
-% to r.
+% *u*: Dimension of the inner envelope. An integer between 0 and p.
 
 %% Description
 % This function implements the likelihood ratio testing procedure to select
@@ -61,10 +60,10 @@ Opts.verbose = 0;
 [n r] = size(Y);
 p = size(X, 2);
 
-ModelOutput0 = env(X, Y, r, Opts);
+ModelOutput0 = ienv(X, Y, 0, Opts);
 
 
-for i = 1 : (p + 1)
+for i = 1 : p
     
     if printFlag == 1
         fprintf(['\n Current dimension ' int2str(p + 1 - i)]);
@@ -81,7 +80,7 @@ for i = 1 : (p + 1)
     
 end
 
-if i == p + 1 && chi2cdf(chisq, df) > (1 - alpha)
-    u = r;
+if i == p && chi2cdf(chisq, df) > (1 - alpha)
+    u = 0;
     warning('No inner envelope model is selected, fit with the standard multivariate linear model.');
 end
