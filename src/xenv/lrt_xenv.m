@@ -54,6 +54,10 @@ elseif nargin == 3
     Opts = [];
 end
 
+if (alpha < 0 || alpha > 1)
+    error('alpha should be between [0, 1]!');
+end
+
 Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
