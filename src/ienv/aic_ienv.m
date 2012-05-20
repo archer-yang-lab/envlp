@@ -27,8 +27,7 @@
 %
 %% Output
 %
-% *u*: Dimension of the inner envelope. An integer between 0 and p or equal
-% to r.
+% *u*: Dimension of the inner envelope. An integer between 0 and p.
 
 %% Description
 % This function implements the Akaike information criteria (AIC) to select
@@ -54,12 +53,12 @@ Opts.verbose = 0;
 [n r] = size(Y);
 p = size(X, 2);
     
-ModelOutput = env(X, Y, r, Opts);
+ModelOutput = ienv(X, Y, 0, Opts);
 ic = - 2 * ModelOutput.l + 2 * ModelOutput.np;
-u = r;
+u = 0;
 
 
-for i = 0 : p
+for i = 1 : p
     
     if printFlag == 1
         fprintf(['Current dimension ' int2str(i) '\n']);
