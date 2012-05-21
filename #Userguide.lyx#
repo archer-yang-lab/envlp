@@ -584,7 +584,7 @@ BIC
 \begin_layout Plain Layout
 
 \size footnotesize
-Boostrap for Estimating Standard Errors
+Bootstrap for Estimating Standard Errors
 \end_layout
 
 \end_inset
@@ -718,7 +718,7 @@ BIC
 \begin_layout Plain Layout
 
 \size footnotesize
-Boostrap for Estimating Standard Errors
+Bootstrap for Estimating Standard Errors
 \end_layout
 
 \end_inset
@@ -852,7 +852,7 @@ BIC
 \begin_layout Plain Layout
 
 \size footnotesize
-Boostrap for Estimating Standard Errors
+Bootstrap for Estimating Standard Errors
 \end_layout
 
 \end_inset
@@ -986,7 +986,7 @@ BIC
 \begin_layout Plain Layout
 
 \size footnotesize
-Boostrap for Estimating Standard Errors
+Bootstrap for Estimating Standard Errors
 \end_layout
 
 \end_inset
@@ -1120,7 +1120,7 @@ BIC
 \begin_layout Plain Layout
 
 \size footnotesize
-Boostrap for Estimating Standard Errors
+Bootstrap for Estimating Standard Errors
 \end_layout
 
 \end_inset
@@ -1252,7 +1252,7 @@ BIC
 \begin_layout Plain Layout
 
 \size footnotesize
-Boostrap for Estimating Standard Errors
+Bootstrap for Estimating Standard Errors
 \end_layout
 
 \end_inset
@@ -1402,7 +1402,7 @@ Chapter
 \begin_inset space ~
 \end_inset
 
-4 Convergence arguments.
+4 Optional arguments.
  Explains how to control the convergence speed, input user-specified starting
  values, and display iteration process.
 \end_layout
@@ -1456,7 +1456,7 @@ Model Fitting: Fit the model.
 \end_layout
 
 \begin_layout Enumerate
-Postprocessing: Inference based on the model fitting.
+Post processing: Inference based on the model fitting.
 \end_layout
 
 \begin_layout Standard
@@ -1468,7 +1468,7 @@ Model Selection
 \end_layout
 
 \begin_layout Standard
-The model selection tools avaiable in this toolbox are Akaike information
+The model selection tools available in this toolbox are Akaike information
  criterion (AIC), Bayesian information criterion (BIC) and Likelihood ratio
  testing (LRT).
  Each model selection tool can be applied to all models, except that LRT
@@ -1504,7 +1504,14 @@ For the inputs: X is a matrix containing the predictors, except that with
  indicting the model and its choices can be ``env'', ``henv'', ``ienv'',
  ``penv'', ``senv'' and ``xenv''.
  The output is the dimension of the envelope subspace selected by the tool.
- Examples will be provided in Section 2.3.
+ Examples will be provided in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec_example"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1554,7 +1561,7 @@ The input X and Y are the same as the input in the model selection tools,
 \end_layout
 
 \begin_layout Subsubsection*
-Postprocessing
+Post processing
 \end_layout
 
 \begin_layout Standard
@@ -1697,6 +1704,13 @@ will print out a form displaying the test statistic, degrees of freedom
 
 \begin_layout Subsection
 Two examples
+\begin_inset CommandInset label
+LatexCommand label
+name "sec_example"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1708,7 +1722,7 @@ To demonstrate their usage, we take the envelope model and partial envelope
 \end_layout
 
 \begin_layout Subsubsection*
-Wheatprotein Data
+Wheat Protein Data
 \end_layout
 
 \begin_layout Standard
@@ -2746,12 +2760,6 @@ The uses may get a slightly different results from the above, as a different
 Toolbox Structure
 \end_layout
 
-\begin_layout Standard
-
-\color red
-The graph explaining the package structure is under construction.
-\end_layout
-
 \begin_layout Subsection
 Multivariate Linear Regression
 \begin_inset CommandInset label
@@ -2764,7 +2772,7 @@ name "sec_OLS"
 \end_layout
 
 \begin_layout Standard
-The envelope model is origianlly developed under the framework of multivariate
+The envelope model is originally developed under the framework of multivariate
  linear regression, and its performance is frequently compared to the standard
  multivariate linear regression model.
  In this package, we offer some simple functions on that makes the comparison
@@ -2784,7 +2792,7 @@ where
 \begin_inset Formula $\Y\in\mathbb{\mathbb{R}}^{r}$
 \end_inset
 
- is the multivarite response, 
+ is the multivariate response, 
 \begin_inset Formula $\X\in\mathbb{R}^{p}$
 \end_inset
 
@@ -2808,7 +2816,7 @@ where
 \begin_inset Formula $\betabf\in\mathbb{R}^{r\times p}$
 \end_inset
 
- are the unknown intercept and coefficents.
+ are the unknown intercept and coefficients.
  The goal of the envelope model is to reduce the standard errors in estimating
  
 \begin_inset Formula $\betabf$
@@ -2838,7 +2846,7 @@ where the input X is an
 \begin_inset Formula $n\times r$
 \end_inset
 
- matrix with the ith row as the traspose of the ith observation of 
+ matrix with the ith row as the transpose of the ith observation of 
 \begin_inset Formula $\Y$
 \end_inset
 
@@ -2915,7 +2923,7 @@ The envelope model is a general method in the envelope family to reduce
 .
  It can be applied when the number of the responses is strictly greater
  than the number of the predictors, and the responses are continuous variables.
- It has a potention to obtain efficiency gains in estimating 
+ It has a potential to obtain efficiency gains in estimating 
 \begin_inset Formula $\betabf$
 \end_inset
 
@@ -3178,8 +3186,8 @@ testcoefficient(ModelOutput, modelType, TestInput)
 \end_layout
 
 \begin_layout Standard
-The inputs and outputs of these postprocessing functions are discussed in
- details in Section 
+The inputs and outputs of these post processing functions are discussed
+ in details in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec_tour"
@@ -3234,7 +3242,7 @@ The standard model for estimating multivariate means for
 \begin_inset Formula $j$
 \end_inset
 
- without the paranthesis to represent the jth observation.
+ without the parenthesis to represent the jth observation.
  Then 
 \begin_inset Formula $\Y_{(i)j}\in\real{r}$
 \end_inset
@@ -3414,6 +3422,110 @@ key "johnson2002applied"
 \end_inset
 
 .
+ Take the water strider example 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "su2012estimation"
+
+\end_inset
+
+, the following codes performs the Box's M test.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+load waterstrider.mat         
+\end_layout
+
+\begin_layout LyX-Code
+alpha = 0.01;   # Users can specify other significance level      
+\end_layout
+
+\begin_layout LyX-Code
+TestOutput = mtest(X, Y, alpha); 
+\end_layout
+
+\begin_layout Standard
+The input X is a group indicator, there is no constraint on the number of
+ columns of X, as long as X takes 
+\begin_inset Formula $p$
+\end_inset
+
+ unique values for 
+\begin_inset Formula $p$
+\end_inset
+
+ populations.
+ For example, if there are three groups, X can take three unique values
+ as 
+\begin_inset Formula $1$
+\end_inset
+
+, 
+\begin_inset Formula $2$
+\end_inset
+
+, and 
+\begin_inset Formula $3$
+\end_inset
+
+ to indicate the groups, or X can take 
+\begin_inset Formula $(0,\:1)$
+\end_inset
+
+, 
+\begin_inset Formula $(1,\:0)$
+\end_inset
+
+, and 
+\begin_inset Formula $(0,\,0)$
+\end_inset
+
+ to indicate the groups.
+ The output is displayed below
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+---------------------------------------------
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+  MBox     Chi-sqr.
+         df          P 
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+---------------------------------------------   
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+157.5977   137.3361         72       0.0000 
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+---------------------------------------------
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Covariance matrices are significantly different.
+\end_layout
+
+\begin_layout Standard
+As the data has none constant covariance structure, we can apply the heterosceda
+stic envelope model.
+ To select the dimension of the envelope subspace, we use
 \end_layout
 
 \begin_layout LyX-Code
@@ -3432,6 +3544,117 @@ alpha = 0.01;
 u = modelselectlrt(X, Y, alpha, 'henv')
 \end_layout
 
+\begin_layout Standard
+The input X can have the same form as in the function 
+\family typewriter
+mtest
+\family default
+.
+ After obtaining 
+\begin_inset Formula $u$
+\end_inset
+
+, the heteroscedastic envelope model can be fit by 
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = henv(X, Y, u)
+\end_layout
+
+\begin_layout Standard
+The output 
+\family typewriter
+ModelOutput
+\family default
+ is a list containing the MLE of the grand mean 
+\begin_inset Formula $\mubf$
+\end_inset
+
+, the group mean 
+\begin_inset Formula $\mubf+\betabf_{(i)}$
+\end_inset
+
+, the fitted values 
+\begin_inset Formula $\widehat{{\Y}}$
+\end_inset
+
+, 
+\begin_inset Formula $\Gammabf$
+\end_inset
+
+, 
+\begin_inset Formula $\Gammabf_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\betabf_{(i)}$
+\end_inset
+
+, the unique values in 
+\begin_inset Formula $\X$
+\end_inset
+
+, 
+\begin_inset Formula $\Sigmabf_{(i)}$
+\end_inset
+
+, 
+\begin_inset Formula $\etabf_{(i)}$
+\end_inset
+
+, 
+\begin_inset Formula $\Omegabf_{(i)}$
+\end_inset
+
+, and 
+\begin_inset Formula $\Omegabf_{0}$
+\end_inset
+
+ , and also statistics computed from the model, including the maximized
+ log likelihood, the asymptotic covariance matrix of 
+\begin_inset Formula $(\mubf^{T},\,\betabf_{(1)}^{T},\,\cdots,\,\betabf_{(p)}^{T})^{T}$
+\end_inset
+
+, the asymptotic standard errors of 
+\begin_inset Formula $\betabf_{(i)}$
+\end_inset
+
+, the ratios of the asymptotic standard errors of the standard model versus
+ the inner envelope model for elements in 
+\begin_inset Formula $\betabf_{(i)}$
+\end_inset
+
+, the number of parameters in the model, and the number of observations
+ in the data.
+ After model fitting, the functions for post processing inference are 
+\end_layout
+
+\begin_layout LyX-Code
+bootse = bootstrapse(X, Y, u, B, 'henv')
+\end_layout
+
+\begin_layout LyX-Code
+PredictOutput = prediction(ModelOutput, Xnew, 'estimation', 'henv')
+\end_layout
+
+\begin_layout LyX-Code
+PredictOutput = prediction(ModelOutput, Xnew, 'prediction', 'henv')
+\end_layout
+
+\begin_layout LyX-Code
+
+\family typewriter
+TestOutput
+\family default
+ = 
+\family typewriter
+testcoefficient(ModelOutput, modelType, TestInput)
+\end_layout
+
+\begin_layout Standard
+Their inputs and outputs are similar to those for the envelope model.
+\end_layout
+
 \begin_layout Subsection
 Inner Envelope Model
 \begin_inset CommandInset label
@@ -3444,8 +3667,14 @@ name "sec_im"
 \end_layout
 
 \begin_layout Standard
-Like the envelope model, the inner envelope model is also a general method
- to reduce the standard errors in estimating 
+Like the envelope model, the inner envelope model 
+\begin_inset CommandInset citation
+LatexCommand citeauthor
+key "su2012inner"
+
+\end_inset
+
+ is also a general method to reduce the standard errors in estimating 
 \begin_inset Formula $\betabf$
 \end_inset
 
@@ -3710,7 +3939,7 @@ testcoefficient(ModelOutput, modelType, TestInput)
 \end_layout
 
 \begin_layout Standard
-Their inputs and outpus are similar to those for the envelope model.
+Their inputs and outputs are similar to those for the envelope model.
 \end_layout
 
 \begin_layout Subsection
@@ -4071,8 +4300,15 @@ name "sec_sem"
 \end_layout
 
 \begin_layout Standard
-Scaled envelope model is used when the user hopes to have a scale-invariant
- version of the envelope model.
+Scaled envelope model (
+\begin_inset CommandInset citation
+LatexCommand citeauthor
+key "cook2012scaled"
+
+\end_inset
+
+) is used when the user hopes to have a scale-invariant version of the envelope
+ model.
  It is more efficient or at least as efficient as the standard model.
  The scaled envelope model normally takes longer to compute because of the
  nature of its iterative computing algorithm.
@@ -4642,13 +4878,1083 @@ reference "sec_em"
 \end_layout
 
 \begin_layout Section
-Convergence Arguments
+Optional Arguments
 \begin_inset CommandInset label
 LatexCommand label
 name "chap_argument"
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
+The computing of the envelope models involve Grassmann manifold optimization.
+ The package sg_min 2.4.1 by Ross Lippert (http://web.mit.edu/
+\begin_inset Formula $\sim$
+\end_inset
+
+ripper/www.sgmin.html) uses the analytical first derivative and numerical
+ second derivative of the objective function, and we find it very stable.
+ The Grassmann manifold optimization in this package is then based on sg_min
+ 2.4.1.
+ Because of the iterative nature of the optimization, we offer some optional
+ arguments so that the users can control the convergence tolerance and speed,
+ as well as monitoring the iteration process.
+ In functions 
+\family typewriter
+modelselectaic
+\family default
+, 
+\family typewriter
+modelselectbic
+\family default
+, 
+\family typewriter
+modelselectlrt
+\family default
+, 
+\family typewriter
+env
+\family default
+, 
+\family typewriter
+henv
+\family default
+, 
+\family typewriter
+ienv
+\family default
+, 
+\family typewriter
+penv
+\family default
+, 
+\family typewriter
+senv
+\family default
+, 
+\family typewriter
+xenv
+\family default
+ and 
+\family typewriter
+bootstrapse
+\family default
+, there is an optional input argument 
+\family typewriter
+Opts
+\family default
+.
+ Opts is a list, which has four elements: 
+\end_layout
+
+\begin_layout Enumerate
+Opts.maxIter: This controls the maximum number of iterations.
+ The default value is 
+\begin_inset Formula $300$
+\end_inset
+
+.
+ The iterations will terminate once the maximum number of iterations is
+ reached, then the results are based on the last iteration.
+ At the same time, a warning 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family typewriter
+WARNING: reached maximum number of iterations without convergence for specified
+ tolerances
+\family default
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+is printed out.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Opts.ftol: This controls the tolerance parameter of the objective function.
+ The default value is 
+\begin_inset Formula $1e-10$
+\end_inset
+
+.
+ The iteration will terminate once the tolerance condition for both the
+ objective function and its derivative are reached.
+\end_layout
+
+\begin_layout Enumerate
+Opts.gradtol: This controls the tolerance parameter of the derivative of
+ the objective function.
+ The default value is 
+\begin_inset Formula $1e-7$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Opts.verbose: This is a flag for printing out the computing process.
+ It is logical 
+\begin_inset Formula $0$
+\end_inset
+
+ or 
+\begin_inset Formula $1$
+\end_inset
+
+, with 
+\begin_inset Formula $0$
+\end_inset
+
+ for no print out and 
+\begin_inset Formula $1$
+\end_inset
+
+ for print out.
+ The default value is 
+\begin_inset Formula $0$
+\end_inset
+
+.
+ The print out will depend on the nature of the functions: with functions
+ for model selection 
+\family typewriter
+(modelselectaic
+\family default
+, 
+\family typewriter
+modelselectbic
+\family default
+ and 
+\family typewriter
+modelselectlrt
+\family default
+), the current dimension will be printed out; with functions for bootstrap
+ (
+\family typewriter
+bootstrapse
+\family default
+), the current number of bootstrap sample will be printed out; with the
+ scaled envelope model (
+\family typewriter
+senv
+\family default
+), the current number of iteration for the alternating algorithm between
+ the scales and Grassmann manifold optimization is printed out; and with
+ all the other functions 
+\family typewriter
+henv
+\family default
+, 
+\family typewriter
+ienv
+\family default
+, 
+\family typewriter
+penv
+\family default
+, 
+\family typewriter
+senv
+\family default
+, and 
+\family typewriter
+xenv
+\family default
+, the current number of iterations of the Grassmann manifold optimization
+ is printed out.
+\end_layout
+
+\begin_layout Standard
+The users can choose to define some or none of the four elements, if not
+ defined, the default value will be used.
+ If the users choose to define some of the elements, it is added as the
+ last input of the function.
+ For example, suppose the users define 
+\family typewriter
+Opts
+\family default
+ for 
+\family typewriter
+env
+\family default
+, then the syntax of 
+\family typewriter
+env
+\family default
+ will be 
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = env(X, Y, u, Opts)
+\end_layout
+
+\begin_layout Standard
+We will conclude this chapter by a couple of examples.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Control Convergence Arguments
+\end_layout
+
+\begin_layout Standard
+We use the wheat protein data and the function 
+\family typewriter
+env
+\family default
+ as an example.
+ First we set 
+\end_layout
+
+\begin_layout LyX-Code
+Opts.verbose = 1
+\end_layout
+
+\begin_layout Standard
+so that we can monitor the iteration process.
+ We leave the other arguments as default values for now
+\end_layout
+
+\begin_layout LyX-Code
+load wheatprotein.txt 
+\end_layout
+
+\begin_layout LyX-Code
+X = wheatprotein(:, 8); 
+\end_layout
+
+\begin_layout LyX-Code
+Y = wheatprotein(:, 1:6); 
+\end_layout
+
+\begin_layout LyX-Code
+u = 1;
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = env(X, Y, u, Opts);
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+iter	grad		F(Y)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+0	3.109420e+00	-1.166907e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+1	1.448779e-01	-1.193292e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+2	2.566091e-01	-1.193338e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+3	2.434851e-02	-1.193379e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+4	1.035130e-02	-1.193385e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+5	1.259475e-02	-1.193385e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+6	9.240358e-03	-1.193385e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+7	1.436949e-02	-1.193386e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+8	1.096367e-02	-1.193389e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+9	1.643753e-04	-1.193391e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+10	2.813965e-04	-1.193391e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+11	8.046247e-05	-1.193391e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+12	4.414260e-07	-1.193391e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+13	1.774275e-07	-1.193391e+00
+\end_layout
+
+\begin_layout Standard
+We notice that it takes 
+\begin_inset Formula $13$
+\end_inset
+
+ iterations till convergence.
+ Suppose we set the maximum number of iterations as 
+\begin_inset Formula $10$
+\end_inset
+
+, then the algorithm stops at the tenth iteration and a warning is printed
+ out at the end.
+\end_layout
+
+\begin_layout LyX-Code
+Opts.maxIter = 10;
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = env(X, Y, u, Opts);
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+iter	grad		F(Y)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+0	3.109420e+00	-1.166907e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+1	1.448779e-01	-1.193292e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+2	2.566091e-01	-1.193338e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+3	2.434851e-02	-1.193379e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+4	1.035130e-02	-1.193385e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+5	1.259475e-02	-1.193385e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+6	9.240358e-03	-1.193385e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+7	1.436949e-02	-1.193386e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+8	1.096367e-02	-1.193389e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+9	1.643753e-04	-1.193391e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+10	2.813965e-04	-1.193391e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+WARNING: reached maximum number of iterations without convergence for specified
+ tolerances
+\end_layout
+
+\begin_layout Standard
+Normally Grassmann manifold optimization takes hundreds of iterations to
+ converge at the default tolerance parameters.
+ We use this example because of the limit of pages.
+ Now we change the tolerance level of convergence.
+\end_layout
+
+\begin_layout LyX-Code
+Opts.ftol = 1e-5;
+\end_layout
+
+\begin_layout LyX-Code
+Opts.gradtol = 1e-3;
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = env(X, Y, u, Opts);
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+iter	grad		F(Y)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+0	3.109420e+00	-1.166907e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+1	1.448779e-01	-1.193292e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+2	2.566091e-01	-1.193338e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+3	2.434851e-02	-1.193379e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+4	1.035130e-02	-1.193385e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+5	1.259475e-02	-1.193385e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+6	9.240357e-03	-1.193385e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+7	1.436947e-02	-1.193386e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+8	1.096356e-02	-1.193389e+00
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+9	1.573313e-04	-1.193391e+00
+\end_layout
+
+\begin_layout Standard
+As we loosen the tolerance level, it requires less number of iterations
+ till convergence.
+\end_layout
+
+\begin_layout Subsubsection*
+The Display Argument
+\end_layout
+
+\begin_layout Standard
+In the previous example, the print out for 
+\family typewriter
+env
+\family default
+ is the Grassmann manifold optimization process.
+ In this example, we will show different print out types for different functions.
+ We will still use the wheat protein data as the background for the first
+ two cases.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+load wheatprotein.txt 
+\end_layout
+
+\begin_layout LyX-Code
+X = wheatprotein(:, 8); 
+\end_layout
+
+\begin_layout LyX-Code
+Y = wheatprotein(:, 1:6); 
+\end_layout
+
+\begin_layout Description
+
+\series bold
+1.
+ 
+\series default
+With functions on model selection, the print out is the current dimension:
+\end_layout
+
+\begin_layout LyX-Code
+Opts.verbose = 1;
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectaic(X, Y, 'env', Opts);
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current dimension 0
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current dimension 1
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current dimension 2
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current dimension 3
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current dimension 4
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current dimension 5
+\end_layout
+
+\begin_layout Standard
+Suppose the number of responses is 
+\begin_inset Formula $r$
+\end_inset
+
+, the print out will start with dimension 
+\begin_inset Formula $0$
+\end_inset
+
+ and end with dimension 
+\begin_inset Formula $r-1$
+\end_inset
+
+.
+ The case of 
+\begin_inset Formula $u=r$
+\end_inset
+
+ is computed but not printed, because it takes little time, compared to
+ the Grasmann manifold optimization process.
+\end_layout
+
+\begin_layout Description
+2.
+ With function
+\series bold
+ 
+\family typewriter
+\series default
+bootstrapse
+\family default
+, the print out is the current number of bootstrap sample.
+\end_layout
+
+\begin_layout LyX-Code
+u = 1;
+\end_layout
+
+\begin_layout LyX-Code
+B = 15;
+\end_layout
+
+\begin_layout LyX-Code
+Opts.verbose = 1;
+\end_layout
+
+\begin_layout LyX-Code
+bootse = bootstrapse(X, Y, u, B, 'env', Opts);
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of bootstrap sample 1
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of bootstrap sample 2
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of bootstrap sample 3
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of bootstrap sample 4
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of bootstrap sample 5
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of bootstrap sample 6
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of bootstrap sample 7
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of bootstrap sample 8
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of bootstrap sample 9
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of bootstrap sample 10
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of bootstrap sample 11
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of bootstrap sample 12
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of bootstrap sample 13
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of bootstrap sample 14
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of bootstrap sample 15
+\end_layout
+
+\begin_layout Standard
+The print out will start from the first bootstrap sample till the last bootstrap
+ sample.
+ 
+\end_layout
+
+\begin_layout Description
+3.
+ With function 
+\family typewriter
+senv
+\family default
+, the print out is the alternating algorithm between the optimization of
+ the scaling parameters and Grassmann manifold.
+\end_layout
+
+\begin_layout LyX-Code
+load('sales.txt')
+\end_layout
+
+\begin_layout LyX-Code
+Y = sales(:, 4 : 7);
+\end_layout
+
+\begin_layout LyX-Code
+X = sales(:, 1 : 3);
+\end_layout
+
+\begin_layout LyX-Code
+u = 1;
+\end_layout
+
+\begin_layout LyX-Code
+Opts.verbose = 1;
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = senv(X, Y, u, Opts);
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 1
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 2
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 3
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 4
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 5
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 6
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 7
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 8
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 9
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 10
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 11
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 12
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 13
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 14
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 15
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 16
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 17
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 18
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 19
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 20
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 21
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 22
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 23
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 24
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 25
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+Current number of iterations 26
+\end_layout
+
+\begin_layout Standard
+The maximum number of iteration of the alternating algorithm is 
+\begin_inset Formula $1000$
+\end_inset
+
+.
+ So the print out can run from the first iteration to the thousandth iteration.
+ 
+\end_layout
+
+\begin_layout Description
+4.
+ With other functions, the print out is the Grassmann manifold optimatization
+ process as in 
+\family typewriter
+env
+\family default
+.
+\end_layout
+
+\begin_layout LyX-Code
+load irisf.mat
+\end_layout
+
+\begin_layout LyX-Code
+d = 1;
+\end_layout
+
+\begin_layout LyX-Code
+Opts.verbose = 1;
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = ienv(X, Y, d, Opts)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+iter	grad		F(Y)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+0	2.043243e-01	1.808874e-02
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+1	1.102662e-01	1.399590e-02
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+2	3.082806e-02	7.353045e-03
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+3	1.755330e-03	7.285612e-03
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+4	1.312911e-03	7.285253e-03
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+5	3.840448e-04	7.284642e-03
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+6	1.174194e-06	7.284631e-03
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+7	1.462019e-06	7.284631e-03
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+8	9.358198e-08	7.284631e-03
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+9	1.478274e-08	7.284631e-03
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+10	1.952908e-08	7.284631e-03
+\end_layout
+
+\begin_layout LyX-Code
 
 \end_layout
 
