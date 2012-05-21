@@ -1,0 +1,3582 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass scrartcl
+\begin_preamble
+\usepackage{subfig}
+\usepackage{arydshln}
+\usepackage{times}
+\newcommand{\mlab}{Matlab}
+\newcommand{\ldr}{LDR}
+
+%\newcommand{\half}{\frac{1}{2}}
+\newcommand{\half}{1/2}
+
+
+\newcommand{\real}[1]{{\mathbb R}^{#1}}
+
+\newcommand{\Pdg}{P_{\alphabfs (\Deltabfs_{y})}}
+\newcommand{\spn}{\mathrm{span}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\var}{\mathrm{var}}
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\covhat}{\widehat{\mathrm{Cov}}}
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand{\stack}{\mathrm{stack}}
+\newcommand{\Normal}{\mathrm{Normal}}
+\newcommand{\tr}{\mathrm{\,tr}}
+\newcommand{\vecc}{\mathrm{\,vec}}
+\newcommand{\I}{\mathbf I}
+\newcommand{\m}{\mathbf m}
+
+%\newcommand{\ols}{ordinary least square}
+\newcommand{\save}{\mathrm{SAVE}}
+\newcommand{\sir}{\mathrm{sir}}
+\newcommand{\mle}{MLE}%{maximum likelihood estimator}
+%\newcommand{\Fsos}{F^{\mathrm{bire}}}
+%\newcommand{\Fsoshat}{\hat{F}^{\mathrm{bire}}}
+\newcommand{\Fsir}{F^{\mathrm{sir}}}
+\newcommand{\Fsirhat}{\hat{F}^{\mathrm{sir}}}
+\newcommand{\Fsub}{F^{\mathrm{sopt}}}
+\newcommand{\Fsubhat}{\hat{F}^{\mathrm{sopt}}}
+\newcommand{\Fopt}{F^{\mathrm{ire}}}
+\newcommand{\Fopthat}{\hat{F}^{\mathrm{ire}}}
+\newcommand{\Ffire}{F^{\mathrm{fire}}}
+\newcommand{\Ffirehat}{\hat{F}^{\mathrm{fire}}}
+\newcommand{\sdr}{SDR}
+\newcommand{\wct}{WCT}
+\newcommand{\ct}{CT}
+\newcommand{\ire}{IRE}
+\newcommand{\oire}{IRE}
+\newcommand{\fire}{Fast IRE}
+\newcommand{\mda}{MDA}
+\newcommand{\name}{block inverse regression estimation}
+\newcommand{\idenvec}{{\mathbf 1}}
+
+% Bold Face symbols
+\newcommand{\X}{\mathbf X}
+\newcommand{\Xhat}{\widehat{\X}}
+\newcommand{\x}{{\mathbf x}}
+\newcommand{\Y}{{\mathbf Y}}
+\newcommand{\y}{\mathbf y}
+\newcommand{\ellhat}{\hat{\ell}}
+\newcommand{\ellbf}{\mathbf{\ell}}
+\newcommand{\ellbfhat}{\hat{\ellbf}}
+\newcommand{\abf}{\mathbf a}
+\newcommand{\q}{{\mathbf q}}
+\newcommand{\f}{{\mathbf f}}
+\newcommand{\Obf}{\mathbf O}
+
+
+\newcommand{\Xcaln}{{\mathcal X}_{n}}
+\newcommand{\Xbar}{\bar{\X}}
+\newcommand{\Xbarcal}{\bar{{\mathcal X}}}
+\newcommand{\Xbb}{\mathbb{X}}
+\newcommand{\Fbb}{\mathbb{F}}
+\newcommand{\Ybb}{\mathbb{Y}}
+
+\newcommand{\Xbbhat}{\widehat{\mathbb{X}}}
+\newcommand{\Ss}{\mathbf{S}}
+\newcommand{\Ty}{\T_{y}}
+\makeatletter
+\renewcommand*{\@seccntformat}[1]{%
+   \csname the#1\endcsname.\quad}
+\makeatother
+\newcommand{\Z}{{\mathbf Z}}
+\newcommand{\z}{{\mathbf z}}
+\newcommand{\Zbar}{\bar{\Z}}
+\newcommand{\Zhat}{\hat{\Z}}
+\newcommand{\Zwidehat}{\widehat{\Z}}
+\newcommand{\Sigmabfhatz}{\greekbold{\hat{\Sigma}}_{\Z}}
+\newcommand{\Sigmabfhatzy}{\greekbold{\hat{\Sigma}}_{\Z|y}}
+\newcommand{\Sigmabfzy}{\Sigmabf_{\Z|y}}
+\newcommand{\sigmahat}{\hat{\sigma}}
+
+\newcommand{\fit}{\mathrm{fit}}
+\newcommand{\res}{\mathrm{res}}
+\newcommand{\rres}{{ 11},\mathrm{res}}
+
+\newcommand{\ffit}{{ 11},\mathrm{fit}}
+\newcommand{\G}{\mathbf{G}}
+\newcommand{\Ll}{\mathbf{L}}
+\newcommand{\Guno}{\mathbf{G_1}}
+\newcommand{\Hh}{\mathbf{H}}
+\newcommand{\Ww}{\mathbf{W}}
+\newcommand{\Mm}{\mathbf{M}}
+\newcommand{\dw}{w}
+%\newcommand{\pfcpc}{PFC(PC)}
+\newcommand{\pfcpc}{$\mathrm{PFC}_{\mathrm{PC}}$}
+\newcommand{\pfcall}{$\mathrm{PFC}_{\mathrm{all}}$}
+
+
+\newcommand{\fbf}{{\mathbf f}}
+\newcommand{\fbfhat}{\hat{\fbf}}
+\newcommand{\fhat}{\hat{f}}
+\newcommand{\D}{\mathbf D}
+\newcommand{\cbf}{{\mathbf c}}
+\newcommand{\Dfbf}{\D_{\fbf}}
+\newcommand{\Dfbfhat}{\D_{\fbfhat}}
+\newcommand{\K}{\mathbf K}
+\newcommand{\Khat}{\widehat \K}
+
+\newcommand{\ghat}{\hat{g}}
+\newcommand{\Rhat}{\widehat{R}}
+\newcommand{\vhat}{\widehat{\bv}}
+
+\newcommand{\uhat}{\widehat{\bu}}
+\newcommand{\gbf}{{\mathbf g}}
+\newcommand{\gbfhat}{\hat{\gbf}}
+
+\newcommand{\Dgbf}{\D_{\gbf}}
+\newcommand{\Dgbfhat}{\D_{\gbfhat}}
+
+\newcommand{\Pbf}{{\mathbf P}}
+\newcommand{\Qbf}{{\mathbf Q}}
+\newcommand{\Qfbf}{\Qbf_{\fbf}}
+\newcommand{\Qfbfhat}{\Qbf_{\fbfhat}}
+\newcommand{\Qgbf}{\Qbf_{\gbf}}
+\newcommand{\Qgbfhat}{\Qbf_{\gbfhat}}
+\newcommand{\Pgbf}{\Pbf_{\gbf}}
+
+\newcommand{\T}{\mathbf T}
+\newcommand{\tT}{\widetilde{\T}}
+\newcommand{\tV}{\widetilde{\V}}
+\newcommand{\dT}{\dot{\T}}
+\newcommand{\dV}{\dot{\V}}
+\newcommand{\ddT}{\ddot{\T}}
+\newcommand{\V}{{\mathbf V}}
+\newcommand{\Vhat}{\widehat \V}
+\newcommand{\bv}{{\mathbf v}}
+\newcommand{\bu}{{\mathbf u}}
+\newcommand{\Vhalf}{{\mathbf V}^{\half}}
+\newcommand{\tL}{{\widetilde L}}
+\newcommand{\bd}{\deltabf}
+
+\newcommand{\ahat}{{\hat{a}}}
+\newcommand{\bhat}{{\hat{b}}}
+
+\newcommand{\U}{{\mathbf U}}
+\newcommand{\bO}{{\mathbf O}}
+\newcommand{\tD}{{\tilde{D}}}
+\newcommand{\W}{{\mathbf W}}
+\newcommand{\dbf}{{\mathbf d}}
+\newcommand{\Lbf}{{\mathbf L}}
+\newcommand{\F}{{\mathbf F}}
+\newcommand{\M}{{\mathbf M}}
+\newcommand{\N}{{\mathbf N}}
+\newcommand{\s}{{\mathbf S}}
+\newcommand{\sy}{{\mathbf S}_{y}}
+\newcommand{\bbf}{{\mathbf b}}
+\newcommand{\A}{{\mathbf A}}
+\newcommand{\B}{{\mathbf B}}
+\newcommand{\Q}{{\mathbf Q}}
+\newcommand{\C}{{\mathbf C}}
+\newcommand{\Chat}{\widehat{\mathbf C}}
+\newcommand{\Dhat}{\widehat{\mathbf D}}
+\newcommand{\e}{{\mathbf e}}
+\newcommand{\Ebf}{{\mathbf E}}
+\newcommand{\R}{{\mathbf R}}
+\newcommand{\Ghat}{\widehat{\G}}
+\newcommand{\Hbf}{{\mathbf H}}
+\newcommand{\h}{\mathbf h}
+\newcommand{\tB}{\widetilde{\B}}
+\newcommand{\tC}{\widetilde{\C}}
+\newcommand{\mpc}{M_{\mathrm{\scriptscriptstyle{PC}}}}
+\newcommand{\mpfc}{M_{\mathrm{\scriptscriptstyle{PFC}}}}
+\newcommand{\lpc}{L_{\mathrm{\scriptscriptstyle{PC}}}}
+\newcommand{\lpfc}{L_{\mathrm{\scriptscriptstyle{PFC}}}}
+\newcommand{\tlpfc}{\widetilde{L}_{\mathrm{\scriptscriptstyle{PFC}}}}
+
+
+
+% Greek Bold Face symbols
+
+\newcommand{\greekbold}[1]{\mbox{\boldmath $#1$}}
+\newcommand{\alphabf}{\greekbold{\alpha}}
+\newcommand{\alphabfhat}{\widehat{\alphabf}}
+\newcommand{\alphahat}{\widehat{\alpha}}
+\newcommand{\alphabfs}{\greekbold{\scriptstyle \alpha}}
+\newcommand{\etabf}{\greekbold{\eta}}
+\newcommand{\etabftd}{\widetilde{\etabf}}
+\newcommand{\etabfs}{\greekbold{\scriptstyle \eta}}
+\newcommand{\betabf}{\greekbold{\beta}}
+\newcommand{\etabfhat}{\hat{\greekbold{\eta}}}
+\newcommand{\rhobf}{\greekbold{\rho}}
+\newcommand{\betabfhat}{\widehat{\greekbold{\beta}}}
+\newcommand{\betabft}{\greekbold{\widetilde{\beta}}}
+\newcommand{\betabfs}{\greekbold{\scriptstyle \beta}}
+\newcommand{\taubf}{\greekbold{\tau}}
+\newcommand{\taubfhat}{\hat{\greekbold{\tau}}}
+\newcommand{\taubfn}{\taubf_{n}}
+\newcommand{\taubfhatn}{\hat{\taubf}_{n}}
+\newcommand{\Lambdabf}{\greekbold{\Lambda}}
+\newcommand{\Lambdabfhat}{\widehat{\greekbold{\Lambda}}}
+\newcommand{\Lambdabfs}{\greekbold{\scriptstyle{\Lambda}}}
+\newcommand{\epsilonbf}{\greekbold{\epsilon}}
+\newcommand{\mubfbar}{\bar{\mubf}}
+\newcommand{\mubfhat}{\hat{\mubf}}
+\newcommand{\J}{\mathbf J}
+\newcommand{\gammabf}{\greekbold{\gamma}}
+\newcommand{\gammabfhat}{\hat{\greekbold{\gamma}}}
+\newcommand{\gammabfy}{\greekbold{\gamma}_{y}}
+\newcommand{\Gammabf}{\greekbold{\Gamma}}
+\newcommand{\gammabfs}{\greekbold{{\scriptstyle \gamma}}}
+\newcommand{\Gammabfs}{{\greekbold{\scriptstyle \Gamma}}}
+\newcommand{\Gammabfhat}{\widehat{\greekbold{\Gamma}}}
+\newcommand{\deltabf}{\greekbold{\delta}}
+\newcommand{\Deltabf}{\greekbold{\Delta}}
+\newcommand{\Deltabfhat}{\widehat{\greekbold{\Delta}}}
+\newcommand{\Deltabfs}{{\greekbold{\scriptstyle \Delta}}}
+\newcommand{\deltabfs}{{\greekbold{\scriptstyle \delta}}}
+\newcommand{\Deltabfshat}{{\widehat{\greekbold{\scriptstyle \Delta}}}}
+\newcommand{\omegabf}{\greekbold{\omega}}
+\newcommand{\Omegabf}{\greekbold{\Omega}}
+\newcommand{\Omegabfs}{{\greekbold{\scriptstyle \Omega}}}
+\newcommand{\Omegabfstd}{{\tilde{\greekbold{\scriptstyle \Omegabf}}}}
+\newcommand{\Omegabfsbar}{{\bar{\greekbold{\scriptstyle{\Omegabf}}}}}
+\newcommand{\Omegabftd}{\widetilde{\Omegabf}}
+\newcommand{\Omegabfbar}{\bar{\Omegabf}}
+\newcommand{\Omegabfhat}{\widehat{\greekbold{\Omega}}}
+\newcommand{\phibf}{\greekbold{\phi}}
+\newcommand{\phibfhat}{\widehat{\greekbold{\phi}}}
+\newcommand{\lambdabf}{\greekbold{\lambda}}
+
+
+\newcommand{\Sigmabf}{\greekbold{\Sigma}}
+\newcommand{\Sigmabfhat}{\greekbold{\widehat{\Sigma}}}
+\newcommand{\Sigmabft}{\greekbold{\widetilde{\Sigma}}}
+\newcommand{\Sigmabfhats}{{\greekbold{\scriptstyle \widehat{\Sigma}}}}
+\newcommand{\Sigmabfs}{{\greekbold{\scriptstyle \Sigma}}}
+\newcommand{\mubf}{\greekbold{\mu}}
+
+\newcommand{\xibf}{\greekbold{\xi}}
+\newcommand{\xibfy}{\xibf_{y}}
+\newcommand{\xibfs}{{\greekbold{\scriptstyle \xi}}}
+\newcommand{\xibfhat}{{\hat{\xibf}}}
+\newcommand{\xibfhats}{\hat{\xibfs}}
+
+\newcommand{\xibfhaty}{{\hat{\xibf}_{y}}}
+\newcommand{\txibf}{\tilde{\greekbold{\xi}}}
+\newcommand{\txibfs}{\tilde{\greekbold{\scriptstyle \xi}}}
+\newcommand{\Phibf}{\greekbold{\Phi}}
+\newcommand{\Phibfhat}{\widehat{\Phibf}}
+\newcommand{\Phibfs}{\greekbold{\scriptstyle \Phi}}
+\newcommand{\Phibfshat}{\hat{\Phibfs}}
+\newcommand{\thetabf}{\greekbold{\theta}}
+\newcommand{\varepsilonbf}{\greekbold{\varepsilon}}
+
+\newcommand{\zetabf}{\greekbold{\zeta}}
+\newcommand{\tzetabf}{\tilde{\greekbold{\zeta}}}
+\newcommand{\zetabfhat}{{\hat{\zetabf}}}
+\newcommand{\zetabfs}{{\greekbold{\scriptstyle \zeta}}}
+\newcommand{\zetabfhats}{\hat{\zetabfs}}
+\newcommand{\nubf}{\greekbold{\nu}}
+\newcommand{\nubfhat}{{\hat{\nubf}}}
+
+\newcommand{\lambdahat}{\hat{\lambda}}
+
+\newcommand{\fa}[1]{2{#1}}
+\newcommand{\fb}[1]{1{#1}}
+\newcommand{\Si}[1]{\Gammabf_{#1}\Omegabf_{#1}\Gammabf_{#1}^{T}}
+\newcommand{\Sinv}[1]{\Gammabf_{#1}\Omegabf_{#1}^{-1}\Gammabf_{#1}^{T}}
+
+
+%subspace notation
+\newcommand{\syx}{\mathcal{S}_{Y|\X}}
+\newcommand{\syz}{\mathcal{S}_{Y|\Z}}
+\newcommand{\drs}{DRS}
+\newcommand{\cs}{CS}
+\newcommand{\spc}{{\mathcal S}}
+\newcommand{\spchat}{\widehat{\mathcal S}}
+\newcommand{\dist}{{\mathcal D}}
+\newcommand{\Mhat}{\widehat{{\mathbf M}}}
+\newcommand{\Mhatsir}{\widehat{\mathbf M}_{\mathrm{\scriptscriptstyle{SIR}}}}
+\newcommand{\Msir}{\mathbf{M}_{\mathrm{\scriptscriptstyle{SIR}}}}
+\newcommand{\Msave}{\mathbf{M}_{\mathrm{\scriptscriptstyle{SAVE}}}}
+\newcommand{\Mhatsave}{\widehat{\mathbf M}_{\mathrm{\scriptscriptstyle{SAVE}}}}
+\newcommand{\ospc}{{\mathcal O}}
+\newcommand{\hspc}{{\mathcal H}}
+\newcommand{\gspc}{{\mathcal G}}
+\newcommand{\mspc}{{\mathcal M}}
+\newcommand{\OLS}{\mathrm{OLS}}
+\newcommand{\pfc}{\mathrm{pfc}}
+\newcommand{\mse}{\mathrm{MSE}}
+\newcommand{\bspc}{\mathcal B}
+\newcommand{\espc}{{\cal E}}
+\newcommand{\iseb}{{\cal IE}_{\Sigmabfs}(\bspc)}
+\newcommand{\seb}{{\cal E}_{\Sigmabfs}(\bspc)}
+\newcommand{\sebp}{{\cal E}_{\Sigmabfs}(\bspc_{1})}
+
+\newcommand{\clc}{CLC}
+
+\newcommand{\indep}{\;\, \rule[0em]{.03em}{.67em} \hspace{-.25em}
+\rule[0em]{.65em}{.03em} \hspace{-.25em}
+\rule[0em]{.03em}{.67em}\;\,}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine natbib_authoryear
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+User's Guide
+\end_layout
+
+\begin_layout Section
+Overview
+\end_layout
+
+\begin_layout Standard
+This MATLAB toolbox ``envelope'' implements six models in the envelope family,
+ including envelope model, heteroscedastic envelope model, inner envelope
+ model, partial envelope model, scaled envelope model and envelope model
+ for the reduction on X.
+ 
+\end_layout
+
+\begin_layout Subsection
+Technical Support
+\end_layout
+
+\begin_layout Standard
+We provides a support website, on which the users can download the package
+ and check recent updates http://code.google.com/p/envlp/ .
+ For further help, the users can contact the authors of the toolbox dennis@stat.u
+mn.edu , suzhihua@stat.umn.edu , and yiyang@umn.edu .
+\end_layout
+
+\begin_layout Subsection
+About this Toolbox
+\end_layout
+
+\begin_layout Standard
+The toolbox ``envelope'' contains the following utilities:
+\end_layout
+
+\begin_layout Itemize
+Envelope Module ``
+\emph on
+env
+\emph default
+''.
+\end_layout
+
+\begin_layout Itemize
+Heteroscedastic Envelope Module ``henv''.
+\end_layout
+
+\begin_layout Itemize
+Inner Envelope Module ``ienv''.
+\end_layout
+
+\begin_layout Itemize
+Partial Envelope Module ``penv''.
+\end_layout
+
+\begin_layout Itemize
+Scaled Envelope Module ``senv''.
+\end_layout
+
+\begin_layout Itemize
+Envelope Model in the Predictor Space Module ``xenv''.
+\end_layout
+
+\begin_layout Itemize
+Examples on Using the Toolbox.
+\end_layout
+
+\begin_layout Itemize
+Data Published in Papers on Envelope Models.
+\end_layout
+
+\begin_layout Standard
+The applicability of this toolbox is described in the following table:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="19" columns="4">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0pt">
+<column alignment="left" valignment="top" width="0pt">
+<column alignment="left" valignment="top" width="0pt">
+<column alignment="left" valignment="top" width="0pt">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Model
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Model Selection Tools
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Inference Tools
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Section
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Envelope Model
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+AIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Estimation and Prediction
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec_em"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+BIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Boostrap for Estimating Standard Errors
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="left" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+LRT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Hypothesis Test on Coefficients
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Heteroscedastic Envelope Model
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+AIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Estimation and Prediction
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+BIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Boostrap for Estimating Standard Errors
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+LRT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Hypothesis Test on Coefficients
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Inner Envelope Model 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+AIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Estimation and Prediction
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+3.3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+BIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Boostrap for Estimating Standard Errors
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+LRT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Hypothesis Test on Coefficients
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Partial Envelope Model
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+AIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Estimation and Prediction
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec_pm"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+BIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Boostrap for Estimating Standard Errors
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+LRT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Hypothesis Test on Coefficients
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Scaled Envelope Model
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+AIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Estimation and Prediction
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+3.5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+BIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Boostrap for Estimating Standard Errors
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Hypothesis Test on Coefficients
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Envelope Model in the Predictor Space
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+AIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Estimation and Prediction
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+3.6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+BIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Boostrap for Estimating Standard Errors
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="left" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+LRT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Hypothesis Test on Coefficients
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Applicability of toolbox ``envelope''
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab_app"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Document Organization
+\end_layout
+
+\begin_layout Standard
+This user's guide is organized as follows:
+\end_layout
+
+\begin_layout Description
+Chapter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+1 Overview.
+ Introduces the content and applicability of the toolbox.
+ 
+\end_layout
+
+\begin_layout Description
+Chapter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+2 Quick start.
+ Describes the installation of the toolbox, and provides simple examples
+ on using the main functions.
+ 
+\end_layout
+
+\begin_layout Description
+Chapter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+3 Toolbox structure.
+ Discusses the structure of the toolbox, and demonstrates the applicability
+ with more detailed examples.
+ 
+\end_layout
+
+\begin_layout Description
+Chapter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+4 Convergence arguments.
+ Explains how to control the convergence speed, input user-specified starting
+ values, and display iteration process.
+\end_layout
+
+\begin_layout Section
+Quick Start
+\end_layout
+
+\begin_layout Subsection
+Installation
+\end_layout
+
+\begin_layout Standard
+To install the toolbox, direct your MATLAB working directory to the folder
+ ``envlp'', and type 
+\end_layout
+
+\begin_layout LyX-Code
+install_envelope
+\end_layout
+
+\begin_layout Standard
+If the users agree with our license statements, the installation is completed,
+ and all the utilities of the toolbox are added to the MATLAB path.
+ Once installed, no further action is needed to call the functions in the
+ toolbox, even if the users change a working directory, or MATLAB is relaunched.
+ 
+\end_layout
+
+\begin_layout Subsection
+A Guided Tour
+\begin_inset CommandInset label
+LatexCommand label
+name "sec_tour"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This ``envelope'' toolbox consists tools in the following three classes:
+\end_layout
+
+\begin_layout Enumerate
+Model selection: Select the dimension of the envelope subspace.
+\end_layout
+
+\begin_layout Enumerate
+Model Fitting: Fit the model.
+\end_layout
+
+\begin_layout Enumerate
+Postprocessing: Inference based on the model fitting.
+\end_layout
+
+\begin_layout Standard
+We will present a tour of our toolbox through all three classes.
+\end_layout
+
+\begin_layout Subsubsection*
+Model Selection
+\end_layout
+
+\begin_layout Standard
+The model selection tools avaiable in this toolbox are Akaike information
+ criterion (AIC), Bayesian information criterion (BIC) and Likelihood ratio
+ testing (LRT).
+ Each model selection tool can be applied to all models, except that LRT
+ cannot be applied to scaled envelope model, as indicated in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab_app"
+
+\end_inset
+
+.
+ AIC and BIC generally require longer computing time than LRT, because of
+ the nature of the method.
+ The syntax of AIC, BIC and LRT are 
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectaic(X, Y, modelType)
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectbic(X, Y, modelType)
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectlrt(X, Y, alpha, modelType)
+\end_layout
+
+\begin_layout Standard
+For the inputs: X is a matrix containing the predictors, except that with
+ ``penv'', it is a list having X.X1 and X.X2; Y is a matrix containing the
+ response; 'alpha' is the significance level; and 'modelType' is a string
+ indicting the model and its choices can be ``env'', ``henv'', ``ienv'',
+ ``penv'', ``senv'' and ``xenv''.
+ The output is the dimension of the envelope subspace selected by the tool.
+ Examples will be provided in Section 2.3.
+\end_layout
+
+\begin_layout Subsubsection*
+Model Fitting
+\end_layout
+
+\begin_layout Standard
+The functions to fit the six models in the envelope family are the main
+ drive of this toolbox.
+ Their syntax are 
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = env(X, Y, u)
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = henv(X, Y, u)
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = ienv(X, Y, u)
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = penv(X, Y, u)
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = senv(X, Y, u)
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = xenv(X, Y, u)
+\end_layout
+
+\begin_layout Standard
+The input X and Y are the same as the input in the model selection tools,
+ u is the dimension of the envelope subspace, the user can input any dimension
+ if it is known, and use model selection tools described in model selection
+ part to choose u.
+ The output ModelOutput is a list, containing the maximum likelihood estimators
+ (MLE) under the model, as well as some keys statistics for inference, including
+ the standard error ratios of elements in the regression coefficients for
+ the standard model versus the envelope model, maximized value of the log
+ likelihood, number of parameters, etc.
+\end_layout
+
+\begin_layout Subsubsection*
+Postprocessing
+\end_layout
+
+\begin_layout Standard
+This toolbox provides functions for the following inference: 
+\end_layout
+
+\begin_layout Itemize
+Compute bootstrap standard errors for the regression coefficients 
+\begin_inset Formula $\betabfhat$
+\end_inset
+
+, which gives an estimator for the actual standard errors of 
+\begin_inset Formula $\betabfhat$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+For a given data point, report its fitted value or predicted value, with
+ associated standard errors.
+ 
+\end_layout
+
+\begin_layout Itemize
+Test hypothesis
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}: & \Lbf\betabfhat\R=\A\\
+H_{\alpha}: & \Lbf\betabfhat\R\neq\A
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\Lbf$
+\end_inset
+
+, 
+\begin_inset Formula $\R$
+\end_inset
+
+ and 
+\begin_inset Formula $\A$
+\end_inset
+
+ are given matrices.
+\end_layout
+
+\begin_layout Standard
+The syntax of functions for the inferences are 
+\end_layout
+
+\begin_layout LyX-Code
+bootse = bootstrapse(X, Y, u, B, modelType)
+\end_layout
+
+\begin_layout LyX-Code
+PredictOutput = prediction(ModelOutput, Xnew, infType, modelType)
+\end_layout
+
+\begin_layout LyX-Code
+
+\family typewriter
+TestOutput
+\family default
+ = 
+\family typewriter
+testcoefficient(ModelOutput, modelType, TestInput)
+\end_layout
+
+\begin_layout Standard
+respectively.
+ For the inputs, modelType in all three functions is the same as in model
+ section part; ModelOutput in 
+\family typewriter
+prediction
+\family default
+ and 
+\family typewriter
+testcoefficient
+\family default
+ is a list returned from the functions for model fitting; X, Y, and u are
+ discussed in the model selection part; B is the number of bootstrap sample;
+ Xnew is a value of X with which to estimate or predict Y; infType is a
+ string of characters indicting the inference type, the choices can be ``estimat
+ion'' or ``prediction''; and TestInput is a list that specifies the null
+ hypothesis, including 
+\begin_inset Formula $\Lbf$
+\end_inset
+
+, 
+\begin_inset Formula $\R$
+\end_inset
+
+, and 
+\begin_inset Formula $\A$
+\end_inset
+
+.
+ TestInput is an option input argument, is missing, 
+\family typewriter
+testcoefficient
+\family default
+ will perform the usual F test, i.e.
+ testing if 
+\begin_inset Formula $\betabf=0$
+\end_inset
+
+.
+ The output of 
+\family typewriter
+bootstrapse
+\family default
+ is a matrix the same size of 
+\begin_inset Formula $\betabfhat$
+\end_inset
+
+, with each elements as the bootstrap standard error of its corresponding
+ element in 
+\begin_inset Formula $\betabfhat$
+\end_inset
+
+.
+ The output of 
+\family typewriter
+prediction
+\family default
+ is a list containing the fitted or predicted value, its covariance matrix
+ and standard errors.
+ The function 
+\family typewriter
+testcoefficient 
+\family default
+will print out a form displaying the test statistic, degrees of freedom
+ of the reference distribution and the p-value, all of which are also summarized
+ in the list TestOutput.
+\end_layout
+
+\begin_layout Subsection
+Two examples
+\end_layout
+
+\begin_layout Standard
+To demonstrate their usage, we take the envelope model and partial envelope
+ model as examples.
+ Other methods can be applied similarly, and are also discussed in details
+ in Section 3.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Wheatprotein Data
+\end_layout
+
+\begin_layout Standard
+For the envelope model, the data we use is the wheatprotein data, which
+ is used as a data analysis example in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "cook2010envelope"
+
+\end_inset
+
+.
+ First we load the data and assign column 1 to 6 as the response 
+\begin_inset Formula $Y$
+\end_inset
+
+ and column 8 as the predictor 
+\begin_inset Formula $X$
+\end_inset
+
+.
+ The description of the data is available under the folder /envlp/data.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+load wheatprotein.txt
+\end_layout
+
+\begin_layout LyX-Code
+X = wheatprotein(:, 8);
+\end_layout
+
+\begin_layout LyX-Code
+Y = wheatprotein(:, 1:6);
+\end_layout
+
+\begin_layout Standard
+Then we apply the model selection tools and get the following results.
+\end_layout
+
+\begin_layout LyX-Code
+modelType = 'env';         
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectaic(X, Y, modelType)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+u =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+     1
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectbic(X, Y, modelType)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+u =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+     1
+\end_layout
+
+\begin_layout LyX-Code
+alpha = 0.01;
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectlrt(X, Y, alpha, modelType)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+u =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+     1
+\end_layout
+
+\begin_layout Standard
+In this example, all three model selection tools agree that the dimension
+ of the envelope should be 
+\begin_inset Formula $1$
+\end_inset
+
+, which is consistent with the results in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "cook2010envelope"
+
+\end_inset
+
+.
+ Then we fit the envelope model with dimension 
+\begin_inset Formula $1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = env(X, Y, u)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+ModelOutput = 
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+         beta: [6x1 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+        Sigma: [6x6 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+        Gamma: [6x1 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+       Gamma0: [6x5 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+          eta: 8.5647
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+        Omega: 7.8762
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+       Omega0: [5x5 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+        alpha: [6x1 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+            l: -850.7592
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    covMatrix: [6x6 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+       asyEnv: [6x1 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+        ratio: [6x1 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+           np: 28
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+            n: 50
+\end_layout
+
+\begin_layout Standard
+We notice that ModelOutput is a list that includes the MLEs and the statistics
+ relevant to the influence of the envelope model.
+ Fore more details of the components in ModelOutput, please refer to the
+ Reference of the toolbox.
+ If we would want to see the regression coefficients, as well as the standard
+ error ratios, we can type 
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput.beta
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+   -1.0644
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    4.4730
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    3.6839
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+   -5.9770
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.6013
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+   -1.5986
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput.ratio
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+   28.0945
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+   18.4326
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+   23.6384
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+   16.3211
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+   65.8245
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    6.4668
+\end_layout
+
+\begin_layout Standard
+and get the results.
+ We can also look at the eigenvalues of 
+\begin_inset Formula $\Sigmabf_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Sigmabf_{2}$
+\end_inset
+
+ by the following commands
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput.Omega
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    7.8762
+\end_layout
+
+\begin_layout LyX-Code
+eig(ModelOutput.Omega0)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+   1.0e+03 *
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    6.5166
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.2083
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.0201
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.0004
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.0003
+\end_layout
+
+\begin_layout Standard
+These results are consistent with those published in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "cook2010envelope"
+
+\end_inset
+
+.
+ With the model fitting results, if we would like to check the fitted value
+ and its standard errors for the second observation, we can use the 
+\family typewriter
+prediction
+\family default
+ function.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+Xnew = X(2, :)';
+\end_layout
+
+\begin_layout LyX-Code
+PredictOutput = predict_env(ModelOutput, Xnew, 'estimation')
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+PredictOutput = 
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+        value: [6x1 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    covMatrix: [6x6 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+           SE: [6x1 double]
+\end_layout
+
+\begin_layout Standard
+We can get the standard errors of the fitted value, and also we can compare
+ the fitted value with its true value 
+\end_layout
+
+\begin_layout LyX-Code
+PredictOutput.SE
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    4.8892
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    4.0227
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    4.3237
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    4.7470
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    6.8186
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    2.6948
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+[PredictOutput.value, Y(2,:)']
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+  474.7135  458.0000
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+  127.4740  112.0000
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+  251.2044  236.0000
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+  380.8280  368.0000
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+  380.9473  383.0000
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+   -6.3287  -15.0000
+\end_layout
+
+\begin_layout Standard
+Now suppose we want to test if 
+\begin_inset Formula $\betabf=0$
+\end_inset
+
+, we run the 
+\family typewriter
+testcoefficient 
+\family default
+as
+\end_layout
+
+\begin_layout LyX-Code
+TestOutput = testcoefficient(ModelOutput, modelType)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+ Test Hypothesis     Chisq Statistic    DF     P-value
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+-------------------------------------------------------
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+L * beta * R = A       116.230                 6               0.0000
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+-------------------------------------------------------
+\end_layout
+
+\begin_layout Standard
+Notice that we did not have TestInput, because we are performing the usual
+ F test on if 
+\begin_inset Formula $\betabf=0$
+\end_inset
+
+.
+ The test results indicate that we have strong evidence to reject 
+\begin_inset Formula $\betabf=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Fiber and Paper Data
+\end_layout
+
+\begin_layout Standard
+Now we look at another example for the partial envelope model.
+ The data we load is the fiber and paper data used in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "su2011partial"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+load fiberpaper.dat
+\end_layout
+
+\begin_layout LyX-Code
+Y = fiberpaper(:, 1 : 4);
+\end_layout
+
+\begin_layout LyX-Code
+X.X1 = fiberpaper(:, 7); 
+\end_layout
+
+\begin_layout LyX-Code
+X.X2 = fiberpaper(:, 5 : 6); 
+\end_layout
+
+\begin_layout Standard
+We notice that for partial envelope model, X is a list, with X.X1 containing
+ the main predictors and X.X2 containing covariates.
+ The model selection process is parallel to that for the envelope model:
+\end_layout
+
+\begin_layout LyX-Code
+modelType = 'penv';
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectaic(X, Y, modelType) 
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+u =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+     3
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectbic(X, Y, modelType)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+u =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+     1
+\end_layout
+
+\begin_layout LyX-Code
+alpha = 0.01;
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectlrt(X, Y, alpha, modelType)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+u =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+     1
+\end_layout
+
+\begin_layout Standard
+In this example, AIC picks the dimension 
+\begin_inset Formula $3$
+\end_inset
+
+, while BIC and LRT both gives dimension as 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ In 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "su2011partial"
+
+\end_inset
+
+, 
+\begin_inset Formula $u=1$
+\end_inset
+
+ is used for model fitting and inference.
+ So we fit the partial envelope model with 
+\begin_inset Formula $u=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout LyX-Code
+u = 1;
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = penv(X, Y, u)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+ModelOutput = 
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+        beta1: [4x1 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+        beta2: [4x2 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+        alpha: [4x1 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+        Gamma: [4x1 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+          eta: 0.0047
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+        Omega: 0.0149
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+       Omega0: [3x3 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+        Sigma: [4x4 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+            l: -35.6323
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+           np: 23
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    covMatrix: [12x12 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+      asyPenv: [4x1 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+        ratio: [4x1 double]
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+            n: 62
+\end_layout
+
+\begin_layout Standard
+Again we get the output as a list, which contains the MLE for the parameters
+ and statistics that are relevant to the inference for the partial envelope
+ model.
+ Detailed description of the elements in the list is in the Reference of
+ the toolbox.
+ To look at the standard error ratios, and the eigenvalues of 
+\begin_inset Formula $\Sigmabf_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Sigmabf_{2}$
+\end_inset
+
+, we key in 
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput.ratio
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+   66.0742
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    6.9326
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+   10.5048
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    9.6279
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput.Omega
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.0149
+\end_layout
+
+\begin_layout LyX-Code
+eig(ModelOutput.Omega0)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    4.9819
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.0999
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.0050
+\end_layout
+
+\begin_layout Standard
+The results are almost the same the those in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "su2011partial"
+
+\end_inset
+
+.
+ They are slightly different, because the toolbox used a different starting
+ value algorithm, which is less likely to be trapped in local minimum and
+ thus leads to a more reliable result.
+ Next we look at the standard errors for elements in 
+\begin_inset Formula $\betabfhat$
+\end_inset
+
+.
+ Since ModelOutput.asyPenv contains the asymptotic standard errors, for actual
+ standard errors, we need to divide the asymptotic standard errors by 
+\begin_inset Formula $\sqrt{n}$
+\end_inset
+
+, where 
+\begin_inset Formula $n$
+\end_inset
+
+ is the sample size and is returned in ModelOutput.n.
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput.asyPenv / sqrt(ModelOutput.n)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+   1.0e-03 *
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.3181
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.8704
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.9719
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.4689
+\end_layout
+
+\begin_layout Standard
+The standard errors above are computed assuming the partial envelope model.
+ They can also be estimated using bootstrap the residuals.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+B = 5000;
+\end_layout
+
+\begin_layout LyX-Code
+bootse = bootstrapse(X, Y, u, B, modelType)
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+bootse =
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.0052
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.0020
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.0029
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+    0.0013
+\end_layout
+
+\begin_layout Standard
+The uses may get a slightly different results from the above, as a different
+ random seed is used.
+ 
+\end_layout
+
+\begin_layout Section
+Toolbox Structure
+\end_layout
+
+\begin_layout Standard
+
+\color red
+The graph explaining the package structure is under construction.
+\end_layout
+
+\begin_layout Subsection
+Multivariate Linear Regression
+\begin_inset CommandInset label
+LatexCommand label
+name "sec_OLS"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The envelope model is origianlly developed under the framework of multivariate
+ linear regression, and its performance is frequently compared to the standard
+ multivariate linear regression model.
+ In this package, we offer some simple functions on that makes the comparison
+ easier.
+\end_layout
+
+\begin_layout Standard
+A standard multivariate linear regression model is formulated as
+\begin_inset Formula 
+\[
+\Y=\alphabf+\betabf\X+\varepsilonbf,
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\Y\in\mathbb{\mathbb{R}}^{r}$
+\end_inset
+
+ is the multivarite response, 
+\begin_inset Formula $\X\in\mathbb{R}^{p}$
+\end_inset
+
+ is non-stochastic predictor, and 
+\begin_inset Formula $\varepsilonbf\in\mathbb{\mathbb{R}}^{r}$
+\end_inset
+
+ follows a distribution with mean 
+\begin_inset Formula $0$
+\end_inset
+
+, and covariance matrix 
+\begin_inset Formula $\Sigmabf\in\mathbb{R}^{r\times r}$
+\end_inset
+
+, 
+\begin_inset Formula $\alphabf\in\mathbb{R}^{r}$
+\end_inset
+
+ and 
+\begin_inset Formula $\betabf\in\mathbb{R}^{r\times p}$
+\end_inset
+
+ are the unknown intercept and coefficents.
+ The goal of the envelope model is to reduce the standard errors in estimating
+ 
+\begin_inset Formula $\betabf$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+This function to fit this model is 
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = fit_OLS(X, Y)
+\end_layout
+
+\begin_layout Standard
+where the input X is an 
+\begin_inset Formula $n\times p$
+\end_inset
+
+ matrix, with the ith row as the transpose of the ith observation of 
+\begin_inset Formula $\X$
+\end_inset
+
+, and Y is an 
+\begin_inset Formula $n\times r$
+\end_inset
+
+ matrix with the ith row as the traspose of the ith observation of 
+\begin_inset Formula $\Y$
+\end_inset
+
+.
+ The output 
+\family typewriter
+ModelOutput 
+\family default
+is a list, which contains the ordinary least squares (OLS) estimators of
+ 
+\begin_inset Formula $\betabf$
+\end_inset
+
+, 
+\begin_inset Formula $\Sigmabf$
+\end_inset
+
+ and 
+\begin_inset Formula $\alphabf$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The standard errors of the OLS estimator 
+\begin_inset Formula $\betabfhat$
+\end_inset
+
+ is often compared to those of the envelope model, the function
+\end_layout
+
+\begin_layout LyX-Code
+bootse = bootstrapse_OLS(X, Y, B)
+\end_layout
+
+\begin_layout Standard
+computes the standard errors of 
+\begin_inset Formula $\betabfhat$
+\end_inset
+
+ estimated by bootstrapping the residuals.
+ The input B is the number of bootstrap samples, and bootse returns a matrix
+ with the same size as 
+\begin_inset Formula $\betabf$
+\end_inset
+
+, with each element as the standard error of the corresponding element in
+ 
+\begin_inset Formula $\betabf$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Envelope Model
+\begin_inset CommandInset label
+LatexCommand label
+name "sec_em"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The envelope model is a general method in the envelope family to reduce
+ the standard errors in estimating 
+\begin_inset Formula $\betabf$
+\end_inset
+
+.
+ It can be applied when the number of the responses is strictly greater
+ than the number of the predictors, and the responses are continuous variables.
+ It has a potention to obtain efficiency gains in estimating 
+\begin_inset Formula $\betabf$
+\end_inset
+
+, compared to the OLS estimators.
+\end_layout
+
+\begin_layout Standard
+In the multivariate linear regression context in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec_OLS"
+
+\end_inset
+
+, a coordinate form of the envelope model is 
+\begin_inset Formula 
+\[
+\Y=\alphabf+\Gammabf\etabf\X+\varepsilonbf,\quad\Sigmabf=\Gammabf\Omegabf\Gammabf^{T}+\Gammabf_{0}\Omegabf_{0}\Gammabf_{0}^{T},
+\]
+
+\end_inset
+
+where the regression coefficients 
+\begin_inset Formula $\betabf=\Gammabf\etabf\in\mathbb{R}^{r\times p}$
+\end_inset
+
+, 
+\begin_inset Formula $\Gammabf\in\mathbb{R}^{r\times u}$
+\end_inset
+
+ spans 
+\begin_inset Formula $\seb$
+\end_inset
+
+ -- the envelope subspace, 
+\begin_inset Formula $\Gammabf_{0}\in\real{r\times(r-u)}$
+\end_inset
+
+ spans the orthogonal complement of 
+\begin_inset Formula $\seb$
+\end_inset
+
+, 
+\begin_inset Formula $\etabf\in\mathbb{R}^{u\times p}$
+\end_inset
+
+, 
+\begin_inset Formula $\Omegabf\in\mathbb{R}^{u\times u}$
+\end_inset
+
+, 
+\begin_inset Formula $\Omegabf_{0}\in\mathbb{R}^{(r-u)\times(r-u)}$
+\end_inset
+
+ are coordinates, and 
+\begin_inset Formula $u$
+\end_inset
+
+ is the dimension of 
+\begin_inset Formula $\seb$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+To select the dimension of the envelope subspace 
+\begin_inset Formula $u$
+\end_inset
+
+, we can use the following functions
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectaic(X, Y, 'env') 
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectbic(X, Y, 'env')
+\end_layout
+
+\begin_layout LyX-Code
+alpha = 0.01;  # Users can specify other significance level
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectlrt(X, Y, alpha, 'env')
+\end_layout
+
+\begin_layout Standard
+The possible values of 
+\begin_inset Formula $u$
+\end_inset
+
+ can be any integer from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $r$
+\end_inset
+
+.
+ When 
+\begin_inset Formula $u=r$
+\end_inset
+
+, the envelope model is essentially the standard multivariate linear model.
+ And when 
+\begin_inset Formula $u=0$
+\end_inset
+
+, it means that 
+\begin_inset Formula $\betabf=0$
+\end_inset
+
+, then the changes in 
+\begin_inset Formula $\Y$
+\end_inset
+
+ does not depend on 
+\begin_inset Formula $\X$
+\end_inset
+
+.
+ After obtaining 
+\begin_inset Formula $u$
+\end_inset
+
+, we can fit the envelope model by 
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = env(X, Y, u)
+\end_layout
+
+\begin_layout Standard
+The output 
+\family typewriter
+ModelOutput 
+\family default
+is a list, which contains the MLE of 
+\begin_inset Formula $\betabf$
+\end_inset
+
+, 
+\begin_inset Formula $\Sigmabf$
+\end_inset
+
+, 
+\begin_inset Formula $\Gammabf$
+\end_inset
+
+, 
+\begin_inset Formula $\Gammabf_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\etabf$
+\end_inset
+
+, 
+\begin_inset Formula $\Omegabf$
+\end_inset
+
+, 
+\begin_inset Formula $\Omegabf_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\alphabf$
+\end_inset
+
+, and also statistics computed from the model, including the maximized log
+ likelihood, the asymptotic covariance matrix of 
+\begin_inset Formula $\vecc(\betabf)$
+\end_inset
+
+, the asymptotic standard errors of 
+\begin_inset Formula $\betabf$
+\end_inset
+
+, the ratios of the asymptotic standard errors of the standard model versus
+ the envelope model for elements in 
+\begin_inset Formula $\betabf$
+\end_inset
+
+, the number of parameters in the model, and the number of observations
+ in the data.
+ After fitting the data and get 
+\family typewriter
+ModelOutput
+\family default
+, we can perform post processing inference as computing bootstrap standard
+ errors of 
+\begin_inset Formula $\betabfhat$
+\end_inset
+
+ by 
+\end_layout
+
+\begin_layout LyX-Code
+bootse = bootstrapse(X, Y, u, B, 'env')
+\end_layout
+
+\begin_layout Standard
+or computing the fitted value or predicted value and associated standard
+ errors given a new 
+\begin_inset Formula $\X$
+\end_inset
+
+ by 
+\end_layout
+
+\begin_layout LyX-Code
+PredictOutput = prediction(ModelOutput, Xnew, 'estimation', 'env')
+\end_layout
+
+\begin_layout LyX-Code
+PredictOutput = prediction(ModelOutput, Xnew, 'prediction', 'env')
+\end_layout
+
+\begin_layout Standard
+or testing if a linear combination of 
+\begin_inset Formula $\betabf$
+\end_inset
+
+ is equal to a particular matrix, i.e.
+ given 
+\begin_inset Formula $\Lbf$
+\end_inset
+
+, 
+\begin_inset Formula $\R$
+\end_inset
+
+, and 
+\begin_inset Formula $\A$
+\end_inset
+
+, testing if 
+\begin_inset Formula $\Lbf\betabf\R=\A$
+\end_inset
+
+, 
+\end_layout
+
+\begin_layout LyX-Code
+
+\family typewriter
+TestOutput
+\family default
+ = 
+\family typewriter
+testcoefficient(ModelOutput, modelType, TestInput)
+\end_layout
+
+\begin_layout Standard
+The inputs and outputs of these postprocessing functions are discussed in
+ details in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec_tour"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection
+Inner Envelope Model
+\begin_inset CommandInset label
+LatexCommand label
+name "sec_im"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Like the envelope model, the inner envelope model is also a general method
+ to reduce the standard errors in estimating 
+\begin_inset Formula $\betabf$
+\end_inset
+
+.
+ It has a different mechanism to achieve the efficiency gains than the envelope
+ model, so it may be very useful when the envelope model reduces to the
+ standard model and offers no efficiency gains.
+ The inner envelope model also requires that the number of predictors is
+ strictly less than the number of responses.
+ 
+\end_layout
+
+\begin_layout Standard
+In the multivariate linear regression context, the coordinate form of the
+ inner envelope model can be written as
+\begin_inset Formula 
+\[
+\Y=\alphabf+(\Gammabf_{1}\etabf_{1}^{T}+\Gammabf_{0}\B\etabf_{2}^{T})\X+\varepsilonbf,\quad\Sigmabf=\Gammabf_{1}\Omegabf_{1}\Gammabf_{1}^{T}+\Gammabf_{0}\Omegabf_{0}\Gammabf_{0}^{T},
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula $\betabf=\Gammabf_{1}\etabf_{1}^{T}+\Gammabf_{0}\B\etabf_{2}^{T}\in\real{r\times p}$
+\end_inset
+
+ , 
+\begin_inset Formula $\Gammabf_{1}\in\real{r\times u}$
+\end_inset
+
+ spans the inner envelope subspace 
+\begin_inset Formula $\iseb$
+\end_inset
+
+, 
+\begin_inset Formula $\Gammabf_{0}\in\real{r\times(r-u)}$
+\end_inset
+
+ spans the orthogonal complement of 
+\begin_inset Formula $\iseb$
+\end_inset
+
+, 
+\end_layout
+
+\begin_layout Subsection
+Partial Envelope Model
+\begin_inset CommandInset label
+LatexCommand label
+name "sec_pm"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The partial envelope model can be applied when part of the predictors are
+ of main interest.
+ It only requires that the number of the main predictors is strictly less
+ than the number of the responses.
+ This is particular useful when the number of predictors 
+\begin_inset Formula $p$
+\end_inset
+
+ is large, but there are only a small number of predictors are of main interest.
+ Suppose that 
+\begin_inset Formula $\X^{T}=(\X_{1}^{T},\;\X_{2}^{T})$
+\end_inset
+
+, where 
+\begin_inset Formula $\X_{1}\in\mathbb{R}^{p_{1}}$
+\end_inset
+
+ are predictors of main interest, and 
+\begin_inset Formula $\X_{2}\in\mathbb{R}^{p_{2}}$
+\end_inset
+
+ are covariates, 
+\begin_inset Formula $p_{1}+p_{2}=p$
+\end_inset
+
+.
+ Then the standard model is formulated as 
+\begin_inset Formula $\Y=\alphabf+\betabf_{1}\X_{1}+\betabf_{2}\X_{2}+\varepsilonbf$
+\end_inset
+
+, and the coordinate form of the partial envelope model is 
+\begin_inset Formula 
+\[
+\Y=\alphabf+\Gammabf\etabf\X_{1}+\betabf_{2}\X_{2}+\varepsilonbf,\quad\Sigmabf=\Gammabf\Omegabf\Gammabf^{T}+\Gammabf_{0}\Omegabf_{0}\Gammabf_{0}^{T},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\betabf_{1}=\Gammabf\etabf\in\mathbb{R}^{r\times p_{1}}$
+\end_inset
+
+, 
+\begin_inset Formula $\Gammabf\in\mathbb{R}^{r\times u}$
+\end_inset
+
+ spans the partial envelope 
+\begin_inset Formula $\espc_{\Sigmabfs}(\bspc_{1})$
+\end_inset
+
+ -- the partial envelope subspace, 
+\begin_inset Formula $\Gammabf_{0}\in\real{r\times u}$
+\end_inset
+
+ spans the orthogonal complement of
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\begin_inset Formula $\espc_{\Sigmabfs}(\bspc_{1})$
+\end_inset
+
+,
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\begin_inset Formula $\etabf\in\mathbb{R}^{u\times p_{1}}$
+\end_inset
+
+, 
+\begin_inset Formula $\Omegabf\in\mathbb{R}^{u\times u}$
+\end_inset
+
+, 
+\begin_inset Formula $\Omegabf_{0}\in\mathbb{R}^{(r-u)\times(r-u)}$
+\end_inset
+
+ are coordinates, 
+\begin_inset Formula $\betabf_{2}\in\mathbb{R}^{r\times p_{2}}$
+\end_inset
+
+ are the coefficients for 
+\begin_inset Formula $\X_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $u$
+\end_inset
+
+ is the dimension of 
+\begin_inset Formula $\espc_{\Sigmabfs}(\bspc_{1})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+To use the functions related to partial envelope model, the input X is a
+ list, which has two elements X.X1 and X.X2.
+ The element X.X1 is an 
+\begin_inset Formula $n\times p_{1}$
+\end_inset
+
+ matrix, with the ith row as the transpose of the ith observation of 
+\begin_inset Formula $\X_{1}$
+\end_inset
+
+, and X.X2 is an 
+\begin_inset Formula $n\times p_{2}$
+\end_inset
+
+ matrix, with the ith row as the transpose of the ith observation of 
+\begin_inset Formula $\X_{2}$
+\end_inset
+
+.
+ The form of X as a list is unique to the partial envelope model.
+ 
+\end_layout
+
+\begin_layout Standard
+The following functions can be applied to select 
+\begin_inset Formula $u$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectaic(X, Y, 'penv') 
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectbic(X, Y, 'penv')
+\end_layout
+
+\begin_layout LyX-Code
+alpha = 0.01;  
+\end_layout
+
+\begin_layout LyX-Code
+u = modelselectlrt(X, Y, alpha, 'penv')
+\end_layout
+
+\begin_layout Standard
+The possible values of 
+\begin_inset Formula $u$
+\end_inset
+
+ are any integer from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $r$
+\end_inset
+
+, when 
+\begin_inset Formula $u=r$
+\end_inset
+
+, the partial envelope model reduces the standard model, and when 
+\begin_inset Formula $u=0$
+\end_inset
+
+, the changes in 
+\begin_inset Formula $\Y$
+\end_inset
+
+ does not depend on the changes in 
+\begin_inset Formula $\X_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+After obtaining 
+\begin_inset Formula $u$
+\end_inset
+
+, the partial envelope model can be fit by 
+\end_layout
+
+\begin_layout LyX-Code
+ModelOutput = penv(X, Y, u)
+\end_layout
+
+\begin_layout Standard
+The output 
+\family typewriter
+ModelOutput
+\family default
+ is a list containing the MLE of 
+\begin_inset Formula $\betabf_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $\betabf_{2}$
+\end_inset
+
+, 
+\begin_inset Formula $\Sigmabf$
+\end_inset
+
+, 
+\begin_inset Formula $\Gammabf$
+\end_inset
+
+, 
+\begin_inset Formula $\Gammabf_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\etabf$
+\end_inset
+
+, 
+\begin_inset Formula $\Omegabf$
+\end_inset
+
+, 
+\begin_inset Formula $\Omegabf_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\alphabf$
+\end_inset
+
+, and also statistics computed from the model, including the maximized log
+ likelihood, the asymptotic covariance matrix of 
+\begin_inset Formula $(\vecc(\betabf_{2})^{T},\;\vecc(\betabf_{1})^{T})^{T}$
+\end_inset
+
+, the asymptotic standard errors of 
+\begin_inset Formula $\betabf_{1}$
+\end_inset
+
+, the ratios of the asymptotic standard errors of the standard model versus
+ the envelope model for elements in 
+\begin_inset Formula $\betabf_{1}$
+\end_inset
+
+, the number of parameters in the model, and the number of observations
+ in the data.
+ The functions for post processing inference are 
+\end_layout
+
+\begin_layout LyX-Code
+bootse = bootstrapse(X, Y, u, B, 'penv')
+\end_layout
+
+\begin_layout LyX-Code
+PredictOutput = prediction(ModelOutput, Xnew, 'estimation', 'penv')
+\end_layout
+
+\begin_layout LyX-Code
+PredictOutput = prediction(ModelOutput, Xnew, 'prediction', 'penv')
+\end_layout
+
+\begin_layout LyX-Code
+
+\family typewriter
+TestOutput
+\family default
+ = 
+\family typewriter
+testcoefficient(ModelOutput, modelType, TestInput)
+\end_layout
+
+\begin_layout Standard
+The usage of functions are introduced in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec_tour"
+
+\end_inset
+
+, and are similar to those for the envelope models as discussed in Section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec_em"
+
+\end_inset
+
+.
+ The only difference is that in the function 
+\family typewriter
+prediction
+\family default
+, the input Xnew is a list, which has Xnew.X1 and Xnew.X2.
+ Xnew.X1 is a 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+ dimensional column vector containing the new value of 
+\begin_inset Formula $\X_{1}$
+\end_inset
+
+, and Xnew.X2 is a 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+ dimensional column vector containing the new value of 
+\begin_inset Formula $\X_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "/Users/zhihuasu/Dropbox/Research/Reference/thesis"
+options "plainnat"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
