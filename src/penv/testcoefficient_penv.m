@@ -1,7 +1,7 @@
 %% testcoefficient_penv
 % 
-%  This function tests the null hypothesis L * beta * R = A versus the
-%  alternative hypothesis L * beta * R ~= A, where beta1 is estimated under
+%  This function tests the null hypothesis L * beta1 * R = A versus the
+%  alternative hypothesis L * beta1 * R ~= A, where beta1 is estimated under
 %  the envelope model.
 
 %% Syntax
@@ -16,10 +16,10 @@
 % *TestInput*: A list that specifies the null hypothesis, including L, R, and
 % A.  If not provided by the user, default values will be used.
 %
-% * TestInput.L: The matrix multiplied to $$\beta$ on the left.  It is a d1
+% * TestInput.L: The matrix multiplied to $$\beta_1$ on the left.  It is a d1
 % by r matrix, while d1 is less than or equal to r.  Default value:
 % identity matrix $$I_r$.
-% * TestInput.R: The matrix multiplied to $$\beta$ on the right.  It is a
+% * TestInput.R: The matrix multiplied to $$\beta_1$ on the right.  It is a
 % p1 by d2 matrix, while d2 is less than or equal to p1.  Default value:
 % identity matrix $$I_p1$.
 % * TestInput.A: The matrix on the right hand side of the equation.  It is a
@@ -35,15 +35,15 @@
 % * TestOutput.df: The degrees of freedom of the reference chi-squared
 % distribution.  A positive integer.
 % * TestOutput.pValue: p-value of the test.  A real number in [0, 1].
-% * TestOutput.covMatrix: The covariance matrix of vec(L$$\beta$R). A d1 *
+% * TestOutput.covMatrix: The covariance matrix of vec(L$$\beta_1$R). A d1 *
 % d2 by d1 * d2 matrix.
 
 %% Description
-% This function tests for hypothesis $$H_0: L\beta R = A$, versus $$H_\alpha:
-% L\beta R\neq A$.  The $$\beta$ is estimated by the partial envelope model.  If
+% This function tests for hypothesis $$H_0: L\beta_1 R = A$, versus $$H_\alpha:
+% L\beta_1 R\neq A$.  The $$\beta_1$ is estimated by the partial envelope model.  If
 % the user does not specify the values for L, R and A, then the test is
-% equivalent to the standard F test on if $$\beta = 0$.  The test statistics
-% used is vec $$(L\beta R - A)$ $$\hat{\Sigma}^{-1}$ vec $$(L\beta R - A)^{T}$,
+% equivalent to the standard F test on if $$\beta_1 = 0$.  The test statistics
+% used is vec $$(L\beta_1 R - A)$ $$\hat{\Sigma}^{-1}$ vec $$(L\beta_1 R - A)^{T}$,
 % and the reference distribution is chi-squared distribution with degrees of
 % freedom d1 * d2. 
 
