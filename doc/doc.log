@@ -1,41 +1,36 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=latex 2011.7.3)  17 MAY 2012 23:03
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=latex 2009.11.7)  20 MAY 2012 19:19
 entering extended mode
- restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
 **doc.tex
 (./doc.tex
 LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
-rman-x-2009-06-19, ngerman-x-2009-06-19, afrikaans, ancientgreek, ibycus, arabi
-c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
-h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
-h, french, galician, german, ngerman, swissgerman, monogreek, greek, hungarian,
- icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, marathi, or
-iya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, kurmanji,
- lao, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk, pol
-ish, portuguese, romanian, russian, sanskrit, serbian, serbianc, slovak, sloven
-ian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, welsh, loaded
-.
-(/usr/local/texlive/2011/texmf-dist/tex/latex/memoir/memoir.cls
-Document Class: memoir 2011/03/06 v3.6j configurable book, report, article docu
-ment class
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, german-x-2009-06-19, ngerman-x-2009-06-19, ancientgreek, ibycus, ar
+abic, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danish, dutc
+h, esperanto, estonian, farsi, finnish, french, galician, german, ngerman, mono
+greek, greek, hungarian, icelandic, indonesian, interlingua, irish, italian, ku
+rmanji, latin, latvian, lithuanian, mongolian, mongolian2a, bokmal, nynorsk, po
+lish, portuguese, romanian, russian, sanskrit, serbian, slovak, slovenian, span
+ish, swedish, turkish, ukenglish, ukrainian, uppersorbian, welsh, loaded.
+(/usr/local/texlive/2009/texmf-dist/tex/latex/memoir/memoir.cls
+Document Class: memoir 2009/09/21 v1.61803398b configurable book, report, artic
+le document class
 \onelineskip=\skip41
 \lxvchars=\skip42
 \xlvchars=\skip43
 \@memcnta=\count79
 \c@@memmarkcntra=\count80
-(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is not detected.
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in pdf mode not detected.
 )
 Class memoir Info: An `ifetex' package is being emulated on input line 251.
 
-(/usr/local/texlive/2011/texmf-dist/tex/generic/ifxetex/ifxetex.sty
-Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+(/usr/local/texlive/2009/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2009/01/23 v0.5 Provides ifxetex conditional
 )
-(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2009/04/17 v1.2 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
 \stockheight=\skip44
@@ -43,11 +38,11 @@ Package ifluatex Info: LuaTeX not detected.
 \trimtop=\skip46
 \trimedge=\skip47
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/etex-pkg/etex.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/etex-pkg/etex.sty
 Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
 \et@xins=\count81
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/memoir/mem11.clo
+(/usr/local/texlive/2009/texmf-dist/tex/latex/memoir/mem11.clo
 File: mem11.clo 2008/01/30 v0.3 memoir class 11pt size option
 )
 \binding=\skip48
@@ -57,15 +52,13 @@ File: mem11.clo 2008/01/30 v0.3 memoir class 11pt size option
 \lowermargin=\skip52
 \headdrop=\skip53
 \normalrulethickness=\skip54
-\mem@maxheadheight=\skip55
-\mem@maxfootheight=\skip56
-\headwidth=\skip57
+\headwidth=\skip55
 \c@storedpagenumber=\count82
 \memPD=\dimen102
-\m@mabparskip=\skip58
-\thanksmarkwidth=\skip59
-\thanksmarksep=\skip60
-\droptitle=\skip61
+\m@mabparskip=\skip56
+\thanksmarkwidth=\skip57
+\thanksmarksep=\skip58
+\droptitle=\skip59
 \c@book=\count83
 \c@part=\count84
 \c@chapter=\count85
@@ -74,74 +67,74 @@ File: mem11.clo 2008/01/30 v0.3 memoir class 11pt size option
 \c@subsubsection=\count88
 \c@paragraph=\count89
 \c@subparagraph=\count90
-\beforechapskip=\skip62
-\midchapskip=\skip63
-\afterchapskip=\skip64
-\chapindent=\skip65
-\bottomsectionskip=\skip66
-\secindent=\skip67
-\beforesecskip=\skip68
-\aftersecskip=\skip69
-\subsecindent=\skip70
-\beforesubsecskip=\skip71
-\aftersubsecskip=\skip72
-\subsubsecindent=\skip73
-\beforesubsubsecskip=\skip74
-\aftersubsubsecskip=\skip75
-\paraindent=\skip76
-\beforeparaskip=\skip77
-\afterparaskip=\skip78
-\subparaindent=\skip79
-\beforesubparaskip=\skip80
-\aftersubparaskip=\skip81
-\pfbreakskip=\skip82
+\beforechapskip=\skip60
+\midchapskip=\skip61
+\afterchapskip=\skip62
+\chapindent=\skip63
+\bottomsectionskip=\skip64
+\secindent=\skip65
+\beforesecskip=\skip66
+\aftersecskip=\skip67
+\subsecindent=\skip68
+\beforesubsecskip=\skip69
+\aftersubsecskip=\skip70
+\subsubsecindent=\skip71
+\beforesubsubsecskip=\skip72
+\aftersubsubsecskip=\skip73
+\paraindent=\skip74
+\beforeparaskip=\skip75
+\afterparaskip=\skip76
+\subparaindent=\skip77
+\beforesubparaskip=\skip78
+\aftersubparaskip=\skip79
+\pfbreakskip=\skip80
 \c@@ppsavesec=\count91
 \c@@ppsaveapp=\count92
 \ragrparindent=\dimen103
 \everylistparindent=\dimen104
-\parsepi=\skip83
-\topsepi=\skip84
-\itemsepi=\skip85
-\parsepii=\skip86
-\topsepii=\skip87
-\topsepiii=\skip88
-\itemsepii=\skip89
-\itemsepiii=\skip90
-\partopsepii=\skip91
-\partopsepiii=\skip92
-\m@msavetopsep=\skip93
-\m@msavepartopsep=\skip94
+\parsepi=\skip81
+\topsepi=\skip82
+\itemsepi=\skip83
+\parsepii=\skip84
+\topsepii=\skip85
+\topsepiii=\skip86
+\itemsepii=\skip87
+\itemsepiii=\skip88
+\partopsepii=\skip89
+\partopsepiii=\skip90
+\m@msavetopsep=\skip91
+\m@msavepartopsep=\skip92
 \@enLab=\toks14
-\abstitleskip=\skip95
-\absleftindent=\skip96
+\abstitleskip=\skip93
+\absleftindent=\skip94
 \abs@leftindent=\dimen105
-\absrightindent=\skip97
-\absparindent=\skip98
-\absparsep=\skip99
+\absrightindent=\skip95
+\absparindent=\skip96
+\absparsep=\skip97
 \c@vslineno=\count93
 \c@poemline=\count94
 \c@modulo@vs=\count95
 \c@memfvsline=\count96
-\vleftskip=\skip100
-\vrightskip=\skip101
-\stanzaskip=\skip102
-\versewidth=\skip103
-\vgap=\skip104
-\vindent=\skip105
+\vleftskip=\skip98
+\vrightskip=\skip99
+\stanzaskip=\skip100
+\versewidth=\skip101
+\vgap=\skip102
+\vindent=\skip103
 \vleftmargin=\dimen106
 \c@verse=\count97
 \c@chrsinstr=\count98
-\beforepoemtitleskip=\skip106
-\afterpoemtitleskip=\skip107
+\beforepoemtitleskip=\skip104
+\afterpoemtitleskip=\skip105
 \c@poem=\count99
-\beforePoemTitleskip=\skip108
-\midPoemTitleskip=\skip109
-\afterPoemTitleskip=\skip110
+\beforePoemTitleskip=\skip106
+\midPoemTitleskip=\skip107
+\afterPoemTitleskip=\skip108
 \col@sep=\dimen107
 \extrarowheight=\dimen108
 \NC@list=\toks15
-\extratabsurround=\skip111
-\backup@length=\skip112
+\extratabsurround=\skip109
+\backup@length=\skip110
 \TX@col@width=\dimen109
 \TX@old@table=\dimen110
 \TX@old@col=\dimen111
@@ -166,8 +159,8 @@ File: mem11.clo 2008/01/30 v0.3 memoir class 11pt size option
 \@thisruleclass=\count103
 \@lastruleclass=\count104
 \@thisrulewidth=\dimen126
-\ctableftskip=\skip113
-\ctabrightskip=\skip114
+\ctableftskip=\skip111
+\ctabrightskip=\skip112
 \abovecolumnspenalty=\count105
 \@linestogo=\count106
 \@cellstogo=\count107
@@ -175,20 +168,19 @@ File: mem11.clo 2008/01/30 v0.3 memoir class 11pt size option
 \crtok=\toks17
 \@mincolumnwidth=\dimen127
 \c@newflo@tctr=\count109
-\mem@margin@floatbox=\box26
-\@contcwidth=\skip115
-\@contindw=\skip116
-\abovecaptionskip=\skip117
-\belowcaptionskip=\skip118
-\subfloattopskip=\skip119
-\subfloatcapskip=\skip120
-\subfloatcaptopadj=\skip121
-\subfloatbottomskip=\skip122
-\subfloatlabelskip=\skip123
+\@contcwidth=\skip113
+\@contindw=\skip114
+\abovecaptionskip=\skip115
+\belowcaptionskip=\skip116
+\subfloattopskip=\skip117
+\subfloatcapskip=\skip118
+\subfloatcaptopadj=\skip119
+\subfloatbottomskip=\skip120
+\subfloatlabelskip=\skip121
 \subfloatcapmargin=\dimen128
 \c@@contsubnum=\count110
-\m@mscap@capbox=\box27
-\m@mscap@fbox=\box28
+\m@mscap@capbox=\box26
+\m@mscap@fbox=\box27
 \sidecapsep=\dimen129
 \sidecapwidth=\dimen130
 \m@m@tempdima=\dimen131
@@ -196,120 +188,107 @@ File: mem11.clo 2008/01/30 v0.3 memoir class 11pt size option
 \sidecapraise=\dimen133
 \m@mscapmainwidth=\dimen134
 \m@mscaplkern=\dimen135
-\beforeepigraphskip=\skip124
-\afterepigraphskip=\skip125
-\epigraphwidth=\skip126
-\epigraphrule=\skip127
-LaTeX Info: Redefining \em on input line 7377.
-LaTeX Info: Redefining \emph on input line 7385.
-\tocentryskip=\skip128
-\tocbaseline=\skip129
-\cftparskip=\skip130
-\cftbeforebookskip=\skip131
+\beforeepigraphskip=\skip122
+\afterepigraphskip=\skip123
+\epigraphwidth=\skip124
+\epigraphrule=\skip125
+LaTeX Info: Redefining \em on input line 7000.
+LaTeX Info: Redefining \emph on input line 7008.
+\tocentryskip=\skip126
+\tocbaseline=\skip127
+\cftparskip=\skip128
+\cftbeforebookskip=\skip129
 \cftbookindent=\dimen136
 \cftbooknumwidth=\dimen137
-\cftbeforepartskip=\skip132
-\cftpartindent=\skip133
-\cftpartnumwidth=\skip134
-\cftbeforechapterskip=\skip135
-\cftchapterindent=\skip136
-\cftchapternumwidth=\skip137
-\cftbeforesectionskip=\skip138
-\cftsectionindent=\skip139
-\cftsectionnumwidth=\skip140
-\cftbeforesubsectionskip=\skip141
-\cftsubsectionindent=\skip142
-\cftsubsectionnumwidth=\skip143
-\cftbeforesubsubsectionskip=\skip144
-\cftsubsubsectionindent=\skip145
-\cftsubsubsectionnumwidth=\skip146
-\cftbeforeparagraphskip=\skip147
-\cftparagraphindent=\skip148
-\cftparagraphnumwidth=\skip149
-\cftbeforesubparagraphskip=\skip150
-\cftsubparagraphindent=\skip151
-\cftsubparagraphnumwidth=\skip152
+\cftbeforepartskip=\skip130
+\cftpartindent=\skip131
+\cftpartnumwidth=\skip132
+\cftbeforechapterskip=\skip133
+\cftchapterindent=\skip134
+\cftchapternumwidth=\skip135
+\cftbeforesectionskip=\skip136
+\cftsectionindent=\skip137
+\cftsectionnumwidth=\skip138
+\cftbeforesubsectionskip=\skip139
+\cftsubsectionindent=\skip140
+\cftsubsectionnumwidth=\skip141
+\cftbeforesubsubsectionskip=\skip142
+\cftsubsubsectionindent=\skip143
+\cftsubsubsectionnumwidth=\skip144
+\cftbeforeparagraphskip=\skip145
+\cftparagraphindent=\skip146
+\cftparagraphnumwidth=\skip147
+\cftbeforesubparagraphskip=\skip148
+\cftsubparagraphindent=\skip149
+\cftsubparagraphnumwidth=\skip150
 \prechapterprecisshift=\dimen138
 \c@maxsecnumdepth=\count111
 \bibindent=\dimen139
-\bibitemsep=\skip153
-\indexcolsep=\skip154
-\indexrule=\skip155
+\bibitemsep=\skip151
+\indexcolsep=\skip152
+\indexrule=\skip153
 \indexmarkstyle=\toks18
 \@indexbox=\insert233
 \glossarycolsep=\dimen140
 \glossaryrule=\dimen141
-\sideparvshift=\skip156
+\sideparvshift=\skip154
 \sideins=\insert232
-\sidebartopsep=\skip157
-\sidebarhsep=\skip158
-\sidebarvsep=\skip159
-\sidebarwidth=\skip160
-\footmarkwidth=\skip161
-\footmarksep=\skip162
-\footparindent=\skip163
-\footinsdim=\skip164
+\sidebartopsep=\skip155
+\sidebarhsep=\skip156
+\sidebarvsep=\skip157
+\sidebarwidth=\skip158
+\footmarkwidth=\skip159
+\footmarksep=\skip160
+\footparindent=\skip161
+\footinsdim=\skip162
 \footinsv@r=\insert231
 \@mpfootinsv@r=\insert230
 \m@m@k=\count112
 \m@m@h=\dimen142
-\m@mipn@skip=\skip165
-\sidefootins=\insert229
-\sidefootadjust=\skip166
-\sidefootheight=\skip167
-\sidefoothsep=\skip168
-\sidefootvsep=\skip169
-\sidefootwidth=\skip170
-\m@mdownsf=\skip171
-\c@sidefootnote=\count113
-\sidefootmarkwidth=\skip172
-\sidefootmarksep=\skip173
-\sidefootparindent=\skip174
-\c@pagenote=\count114
-\c@pagenoteshadow=\count115
-\mem@pn@lastkern=\skip175
+\m@mipn@skip=\skip163
+\c@pagenote=\count113
 \every@verbatim=\toks19
 \afterevery@verbatim=\toks20
 \verbatim@line=\toks21
-\tab@position=\count116
+\tab@position=\count114
 \verbatim@in@stream=\read1
-\verbatimindent=\skip176
+\verbatimindent=\skip164
 \verbatim@out=\write3
-\bvboxsep=\skip177
-\c@memfbvline=\count117
-\c@bvlinectr=\count118
-\bvnumlength=\skip178
+\bvboxsep=\skip165
+\c@memfbvline=\count115
+\c@bvlinectr=\count116
+\bvnumlength=\skip166
 \fb@frw=\dimen143
 \fb@frh=\dimen144
 \FrameRule=\dimen145
 \FrameSep=\dimen146
-\c@cp@cntr=\count119
-LaTeX Info: Redefining \: on input line 11807.
-LaTeX Info: Redefining \! on input line 11809.
-\c@ism@mctr=\count120
-\c@xsm@mctr=\count121
-\c@csm@mctr=\count122
-\c@ksm@mctr=\count123
-\c@xksm@mctr=\count124
-\c@cksm@mctr=\count125
-\c@msm@mctr=\count126
-\c@xmsm@mctr=\count127
-\c@cmsm@mctr=\count128
-\c@bsm@mctr=\count129
-\c@workm@mctr=\count130
-\c@sheetsequence=\count131
-\c@lastsheet=\count132
-\c@lastpage=\count133
-\c@figure=\count134
-\c@lofdepth=\count135
-\cftbeforefigureskip=\skip179
-\cftfigureindent=\skip180
-\cftfigurenumwidth=\skip181
-\c@table=\count136
-\c@lotdepth=\count137
-\cftbeforetableskip=\skip182
-\cfttableindent=\skip183
-\cfttablenumwidth=\skip184
+\c@cp@cntr=\count117
+LaTeX Info: Redefining \: on input line 10864.
+LaTeX Info: Redefining \! on input line 10866.
+\c@ism@mctr=\count118
+\c@xsm@mctr=\count119
+\c@csm@mctr=\count120
+\c@ksm@mctr=\count121
+\c@xksm@mctr=\count122
+\c@cksm@mctr=\count123
+\c@msm@mctr=\count124
+\c@xmsm@mctr=\count125
+\c@cmsm@mctr=\count126
+\c@bsm@mctr=\count127
+\c@workm@mctr=\count128
+\c@sheetsequence=\count129
+\c@lastsheet=\count130
+\c@lastpage=\count131
+\c@figure=\count132
+\c@lofdepth=\count133
+\cftbeforefigureskip=\skip167
+\cftfigureindent=\skip168
+\cftfigurenumwidth=\skip169
+\c@table=\count134
+\c@lotdepth=\count135
+\cftbeforetableskip=\skip170
+\cfttableindent=\skip171
+\cfttablenumwidth=\skip172
 Package abstract [2008/07/23] emulated by memoir.
 Package appendix [2008/07/23] emulated by memoir.
 Package array [2008/07/23] emulated by memoir.
@@ -343,138 +322,136 @@ Package titleref [2008/07/23] emulated by memoir.
 Package titling [2008/07/23] emulated by memoir.
 Package tocbibind [2008/07/23] emulated by memoir.
 Package tocloft [2008/07/23] emulated by memoir.
-Package tocvsec2 [2008/07/23] emulated by memoir.
 Package verbatim [2008/07/23] emulated by memoir.
 Package verse [2008/07/23] emulated by memoir.
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/memoir/mempatch.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/memoir/mempatch.sty
 Package: mempatch 2009/07/24 v6.0f Patches for memoir class v1.6180339
 ))
 
 ******************************************************
 Stock height and width: 845.04684pt by 597.50787pt
-Top and edge trims: 0pt and 0pt
+Top and edge trims: 0.0pt and 0.0pt
 Page height and width: 845.04684pt by 597.50787pt
-Text height and width: 704.60031pt by 426pt
+Text height and width: 704.60031pt by 426.0pt
 Spine and edge margins: 85.35826pt and 85.35826pt
 Upper and lower margins: 71.13188pt and 69.31465pt
 Headheight and headsep: 13.6pt and 19.8738pt
 Footskip: 27.46295pt
-Columnsep and columnseprule: 10pt and 0pt
+Columnsep and columnseprule: 10.0pt and 0.0pt
 Marginparsep and marginparwidth: 7.11317pt and 56.9055pt
-Sidecapsep and sidecapwidth: 7pt and 101pt
-Sidebarhsep and sidebarwidth: 7pt and 101pt
-Sidebarvsep and sidebartopsep: 13.6pt and 0pt
+Sidecapsep and sidecapwidth: 7.0pt and 101.0pt
+Sidebarhsep and sidebarwidth: 7.0pt and 101.0pt
+Sidebarvsep and sidebartopsep: 13.6pt and 0.0pt
 Sidebarheight: 594.32022pt
-Sidefoothsep and sidefootwidth: 7pt and 101pt
-Sidefootvsep and sidefootheight: 13.6pt and 594.32022pt
 ******************************************************
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
 \inpenc@prehook=\toks22
 \inpenc@posthook=\toks23
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/latin1.def
+(/usr/local/texlive/2009/texmf-dist/tex/latex/base/latin1.def
 File: latin1.def 2008/03/30 v1.1d Input encoding file
 ))
-(/usr/local/texlive/2011/texmf-dist/tex/generic/babel/babel.sty
+(/usr/local/texlive/2009/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2008/07/06 v3.8l The Babel package
 
-(/usr/local/texlive/2011/texmf-dist/tex/generic/babel/english.ldf
+(/usr/local/texlive/2009/texmf-dist/tex/generic/babel/english.ldf
 Language: english 2005/03/30 v3.3o English support from the babel system
 
-(/usr/local/texlive/2011/texmf-dist/tex/generic/babel/babel.def
+(/usr/local/texlive/2009/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2008/07/06 v3.8l Babel common definitions
-\babel@savecnt=\count138
+\babel@savecnt=\count136
 \U@D=\dimen147
 )
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
 ))
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/t1enc.def
+(/usr/local/texlive/2009/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 ))
-(/usr/local/texlive/2011/texmf-dist/tex/latex/tools/calc.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count139
-\calc@Bcount=\count140
+\calc@Acount=\count137
+\calc@Bcount=\count138
 \calc@Adimen=\dimen148
 \calc@Bdimen=\dimen149
-\calc@Askip=\skip185
-\calc@Bskip=\skip186
+\calc@Askip=\skip173
+\calc@Bskip=\skip174
 LaTeX Info: Redefining \setlength on input line 76.
 LaTeX Info: Redefining \addtolength on input line 77.
-\calc@Ccount=\count141
-\calc@Cskip=\skip187
+\calc@Ccount=\count139
+\calc@Cskip=\skip175
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks24
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/latexconfig/graphics.cfg
-File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+(/usr/local/texlive/2009/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: dvips.def on input line 91.
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/dvips.def
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/dvips.def
 File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 ))
 \Gin@req@height=\dimen150
 \Gin@req@width=\dimen151
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/url/url.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/ltxmisc/url.sty
 \Urlmuskip=\muskip10
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2008/02/07
 
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
 <2008/02/07> (tvz)
-\FV@CodeLineNo=\count142
+\FV@CodeLineNo=\count140
 \FV@InFile=\read2
-\FV@TabBox=\box29
-\c@FancyVerbLine=\count143
-\FV@StepNumber=\count144
+\FV@TabBox=\box28
+\c@FancyVerbLine=\count141
+\FV@StepNumber=\count142
 \FV@OutFile=\write4
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/tools/multicol.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2008/12/05 v1.6h multicolumn formatting (FMi)
-\c@tracingmulticols=\count145
-\mult@box=\box30
+\c@tracingmulticols=\count143
+\mult@box=\box29
 \multicol@leftmargin=\dimen152
-\c@unbalance=\count146
-\c@collectmore=\count147
-\doublecol@number=\count148
-\multicoltolerance=\count149
-\multicolpretolerance=\count150
+\c@unbalance=\count144
+\c@collectmore=\count145
+\doublecol@number=\count146
+\multicoltolerance=\count147
+\multicolpretolerance=\count148
 \full@width=\dimen153
 \page@free=\dimen154
 \premulticols=\dimen155
 \postmulticols=\dimen156
-\multicolsep=\skip188
-\multicolbaselineskip=\skip189
-\partial@page=\box31
-\last@line=\box32
-\mult@rightbox=\box33
-\mult@grightbox=\box34
-\mult@gfirstbox=\box35
-\mult@firstbox=\box36
+\multicolsep=\skip176
+\multicolbaselineskip=\skip177
+\partial@page=\box30
+\last@line=\box31
+\mult@rightbox=\box32
+\mult@grightbox=\box33
+\mult@gfirstbox=\box34
+\mult@firstbox=\box35
+\@tempa=\box36
 \@tempa=\box37
 \@tempa=\box38
 \@tempa=\box39
@@ -491,71 +468,71 @@ Package: multicol 2008/12/05 v1.6h multicolumn formatting (FMi)
 \@tempa=\box50
 \@tempa=\box51
 \@tempa=\box52
-\@tempa=\box53
-\c@columnbadness=\count151
-\c@finalcolumnbadness=\count152
+\c@columnbadness=\count149
+\c@finalcolumnbadness=\count150
 \last@try=\dimen157
 \multicolovershoot=\dimen158
 \multicolundershoot=\dimen159
-\mult@nat@firstbox=\box54
-\colbreak@box=\box55
+\mult@nat@firstbox=\box53
+\colbreak@box=\box54
 )
-(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2011/04/07 v1.13 Key value parser (HO)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2009/07/30 v1.5 Key value parser with default handler suppor
+t (HO)
 
-(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2007/09/09 v1.2 Providing info/warning/message (HO)
 )
-(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2011/02/16 v1.5 Prefix for e-TeX command names (HO)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2007/12/12 v1.2 Prefix for e-TeX command names (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
 (etexcmds)             that some package has redefined \expanded.
 (etexcmds)             In the latter case, load this package earlier.
 ))
-(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/color.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/latexconfig/color.cfg
+(/usr/local/texlive/2009/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: dvips.def on input line 130.
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/dvipsnam.def
+(/usr/local/texlive/2009/texmf-dist/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 ))
-(/usr/local/texlive/2011/texmf-dist/tex/latex/fixme/fixme.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/fixme/fixme.sty
 Package: fixme 2009/09/30 v4.1 Insert fixme notes in your documents
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/ifthen.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2008/08/13 v2.6a package option processing (HA)
 
-(/usr/local/texlive/2011/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2009/texmf-dist/tex/generic/xkeyval/xkeyval.tex
 \XKV@toks=\toks25
 \XKV@tempa@toks=\toks26
-\XKV@depth=\count153
+\XKV@depth=\count151
 File: xkeyval.tex 2008/08/13 v2.6a key=value parser (HA)
 ))
-\c@fixmecount=\count154
-\c@fxnotecount=\count155
-\c@fxwarningcount=\count156
-\c@fxerrorcount=\count157
-\c@fxfatalcount=\count158
+\c@fixmecount=\count152
+\c@fxnotecount=\count153
+\c@fxwarningcount=\count154
+\c@fxerrorcount=\count155
+\c@fxfatalcount=\count156
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/fourier/fourier.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/fourier/fourier.sty
 Package: fourier 2005/01/01 1.4 fourier-GUTenberg package
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/t1enc.def
+(/usr/local/texlive/2009/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 ))
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2005/09/27 v1.99g Standard LaTeX package
 Package textcomp Info: Sub-encoding information:
 (textcomp)               5 = only ISO-Adobe without \textcurrency
@@ -570,7 +547,7 @@ Package textcomp Info: Sub-encoding information:
 (textcomp)             See the documentation for details.
 Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 71.
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/ts1enc.def
+(/usr/local/texlive/2009/texmf-dist/tex/latex/base/ts1enc.def
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 )
 LaTeX Info: Redefining \oldstylenums on input line 266.
@@ -622,7 +599,7 @@ Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 324.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 325.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 326.
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/fourier/fourier-orns.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/fourier/fourier-orns.sty
 Package: fourier-orns 2004/01/30 1.1 fourier-ornaments package
 )
 LaTeX Font Info:    Redeclaring symbol font `operators' on input line 50.
@@ -724,140 +701,126 @@ LaTeX Font Info:    Redeclaring math accent \mathring on input line 256.
 (./luximono.sty
 Package: luximono 2004/01/26 loading LuxiMono as tt font (WaS)
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/bera/berasans.sty
+(/usr/local/texlive/2009/texmf-dist/tex/latex/bera/berasans.sty
 Package: berasans 2004/01/30 (WaS)
 )
 LaTeX Font Info:    Try loading font information for T1+futs on input line 33.
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/fourier/t1futs.fd
+(/usr/local/texlive/2009/texmf-dist/tex/latex/fourier/t1futs.fd
 File: t1futs.fd 2004/03/02 Fontinst v1.926 font definitions for T1/futs.
 )
 LaTeX Font Info:    Try loading font information for T1+fvs on input line 33.
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/bera/t1fvs.fd
+(/usr/local/texlive/2009/texmf-dist/tex/latex/bera/t1fvs.fd
 File: t1fvs.fd 2004/09/07 scalable font definitions for T1/fvs.
 )
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
 (Font)              scaled to size 22.39185pt on input line 33.
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2011/04/17 v6.82g Hypertext links for LaTeX
+(/usr/local/texlive/2009/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2009/10/09 v6.79a Hypertext links for LaTeX
 
-(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-Package: hobsub-hyperref 2011/04/23 v1.4 Bundle oberdiek, subset hyperref (HO)
-
-(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
-Package: hobsub-generic 2011/04/23 v1.4 Bundle oberdiek, subset generic (HO)
-Package: hobsub 2011/04/23 v1.4 Subsetting bundle oberdiek (HO)
-Package hobsub Info: Skipping package `infwarerr' (already loaded).
-Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
-Package hobsub Info: Skipping package `ifluatex' (already loaded).
-Package: ifvtex 2010/03/01 v1.5 Switches for detecting VTeX and its modes (HO)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2008/11/04 v1.4 Switches for detecting VTeX and its modes (HO)
 Package ifvtex Info: VTeX not detected.
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/oberdiek/hycolor.sty
+Package: hycolor 2009/10/02 v1.5 Code for color options of hyperref/bookmark (H
+O)
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/oberdiek/xcolor-patch.sty
+Package: xcolor-patch 2009/10/02 xcolor patch
+))
+\@linkdim=\dimen160
+\Hy@linkcounter=\count157
+\Hy@pagecounter=\count158
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2009/10/09 v6.79a Hyperref: PDFDocEncoding definition (HO)
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2009/08/13 v3.4 Keyval support for LaTeX options (HO)
+)
+Package hyperref Info: Option `unicode' set `true' on input line 2864.
+
+(/usr/local/texlive/2009/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2009/10/09 v6.79a Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Option `pdfusetitle' set `true' on input line 2864.
+Package hyperref Info: Option `bookmarks' set `true' on input line 2864.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 2864
+.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 2864.
+Package hyperref Info: Option `breaklinks' set `false' on input line 2864.
+Package hyperref Info: Option `colorlinks' set `false' on input line 2864.
+Package hyperref Info: Hyper figures OFF on input line 2975.
+Package hyperref Info: Link nesting OFF on input line 2980.
+Package hyperref Info: Hyper index ON on input line 2983.
+Package hyperref Info: Plain pages OFF on input line 2990.
+Package hyperref Info: Backreferencing OFF on input line 2995.
+
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks ON on input line 3191.
+LaTeX Info: Redefining \url on input line 3428.
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/bitset.sty
+Package: bitset 2007/09/28 v1.0 Data type bit set (HO)
+
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/intcalc.sty
 Package: intcalc 2007/09/27 v1.1 Expandable integer calculations (HO)
-Package hobsub Info: Skipping package `ifpdf' (already loaded).
-Package hobsub Info: Skipping package `etexcmds' (already loaded).
-Package hobsub Info: Skipping package `kvsetkeys' (already loaded).
-Package: kvdefinekeys 2011/04/07 v1.3 Defining keys (HO)
-Package: pdftexcmds 2011/04/22 v0.16 Utilities of pdfTeX for LuaTeX (HO)
+)
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/bigintcalc.sty
+Package: bigintcalc 2007/11/11 v1.1 Expandable big integer calculations (HO)
+
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2009/09/23 v0.6 LuaTeX support for pdfTeX utility functions
+ (HO)
+
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2009/08/05 v1.0 Some LaTeX kernel commands for general use (HO
+)
+)
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
-Package: pdfescape 2011/04/04 v1.12 Provides string conversions (HO)
-Package: bigintcalc 2011/01/30 v1.2 Expandable big integer calculations (HO)
-Package: bitset 2011/01/30 v1.1 Data type bit set (HO)
-Package: uniquecounter 2011/01/30 v1.2 Provides unlimited unique counter (HO)
-)
-Package hobsub Info: Skipping package `hobsub' (already loaded).
-Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
-Package: hopatch 2011/01/30 v1.0 Wrapper for package hooks (HO)
-Package: xcolor-patch 2011/01/30 xcolor patch
-Package: atveryend 2011/04/23 v1.7 Hooks at very end of document (HO)
-Package atveryend Info: \enddocument detected (standard).
-Package: atbegshi 2011/01/30 v1.15 At begin shipout hook (HO)
-Package: refcount 2010/12/01 v3.2 Data extraction from references (HO)
-Package: hycolor 2011/01/30 v1.7 Color options of hyperref/bookmark (HO)
-)
-(/usr/local/texlive/2011/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2010/12/23 v3.10 Keyval support for LaTeX options (HO)
-)
-\@linkdim=\dimen160
-\Hy@linkcounter=\count159
-\Hy@pagecounter=\count160
-
-(/usr/local/texlive/2011/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2011/04/17 v6.82g Hyperref: PDFDocEncoding definition (HO)
-)
-\Hy@SavedSpaceFactor=\count161
-
-(/usr/local/texlive/2011/texmf-dist/tex/latex/latexconfig/hyperref.cfg
-File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
-)
-Package hyperref Info: Option `unicode' set `true' on input line 3905.
-
-(/usr/local/texlive/2011/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2011/04/17 v6.82g Hyperref: PDF Unicode definition (HO)
-)
-Package hyperref Info: Option `pdfusetitle' set `true' on input line 3905.
-Package hyperref Info: Option `bookmarks' set `true' on input line 3905.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 3905
-.
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 3905.
-Package hyperref Info: Option `breaklinks' set `false' on input line 3905.
-Package hyperref Info: Option `colorlinks' set `false' on input line 3905.
-Package hyperref Info: Hyper figures OFF on input line 4026.
-Package hyperref Info: Link nesting OFF on input line 4031.
-Package hyperref Info: Hyper index ON on input line 4034.
-Package hyperref Info: Plain pages OFF on input line 4041.
-Package hyperref Info: Backreferencing OFF on input line 4046.
-Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4264.
-\c@Hy@tempcnt=\count162
-LaTeX Info: Redefining \url on input line 4617.
-\Fld@menulength=\count163
+)))
+\Fld@menulength=\count159
 \Field@Width=\dimen161
 \Fld@charsize=\dimen162
-Package hyperref Info: Hyper figures OFF on input line 5701.
-Package hyperref Info: Link nesting OFF on input line 5706.
-Package hyperref Info: Hyper index ON on input line 5709.
-Package hyperref Info: backreferencing OFF on input line 5716.
-Package hyperref Info: Link coloring OFF on input line 5721.
-Package hyperref Info: Link coloring with OCG OFF on input line 5726.
-Package hyperref Info: PDF/A mode OFF on input line 5731.
-LaTeX Info: Redefining \ref on input line 5771.
-LaTeX Info: Redefining \pageref on input line 5775.
-\Hy@abspage=\count164
-\c@Item=\count165
+\Field@toks=\toks27
+Package hyperref Info: Hyper figures OFF on input line 4377.
+Package hyperref Info: Link nesting OFF on input line 4382.
+Package hyperref Info: Hyper index ON on input line 4385.
+Package hyperref Info: backreferencing OFF on input line 4392.
+Package hyperref Info: Link coloring OFF on input line 4397.
+Package hyperref Info: Link coloring with OCG OFF on input line 4402.
+Package hyperref Info: PDF/A mode OFF on input line 4407.
+
+(/usr/local/texlive/2009/texmf-dist/tex/generic/oberdiek/atbegshi.sty
+Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/memoir/memhfixc.sty
-Package: memhfixc 2010/08/17 v1.15 nameref/hyperref package fixes for memoir cl
+\Hy@abspage=\count160
+\c@Item=\count161
+)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/memoir/memhfixc.sty
+Package: memhfixc 2009/02/06 v1.12 nameref/hyperref package fixes for memoir cl
 ass
-\c@memhycontfloat=\count166
+\c@memhycontfloat=\count162
 )
+*hyperref using default driver hdvips*
+(/usr/local/texlive/2009/texmf-dist/tex/latex/hyperref/hdvips.def
+File: hdvips.def 2009/10/09 v6.79a Hyperref driver for dvips
 
-Package hyperref Message: Driver (default): hdvips.
-
-(/usr/local/texlive/2011/texmf-dist/tex/latex/hyperref/hdvips.def
-File: hdvips.def 2011/04/17 v6.82g Hyperref driver for dvips
-
-(/usr/local/texlive/2011/texmf-dist/tex/latex/hyperref/pdfmark.def
-File: pdfmark.def 2011/04/17 v6.82g Hyperref definitions for pdfmark specials
-\pdf@docset=\toks27
-\pdf@box=\box56
-\pdf@toks=\toks28
-\pdf@defaulttoks=\toks29
-\Fld@listcount=\count167
-\c@bookmark@seq@number=\count168
-
-(/usr/local/texlive/2011/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
-Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
-Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
-82.
-)
-\Hy@SectionHShift=\skip190
-))
-No file doc.aux.
+(/usr/local/texlive/2009/texmf-dist/tex/latex/hyperref/pdfmark.def
+File: pdfmark.def 2009/10/09 v6.79a Hyperref definitions for pdfmark specials
+\pdf@docset=\toks28
+\pdf@box=\box55
+\pdf@toks=\toks29
+\pdf@defaulttoks=\toks30
+\Fld@listcount=\count163
+)) (./doc.aux)
 \openout1 = `doc.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
@@ -875,7 +838,7 @@ LaTeX Font Info:    ... okay on input line 52.
 LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 52.
 LaTeX Font Info:    Try loading font information for FML+futm on input line 52.
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/fourier/fmlfutm.fd
+ (/usr/local/texlive/2009/texmf-dist/tex/latex/fourier/fmlfutm.fd
 File: fmlfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futm.
 )
 LaTeX Font Info:    ... okay on input line 52.
@@ -883,7 +846,7 @@ LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 52.
 LaTeX Font Info:    Try loading font information for FMS+futm on input line 52.
 
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/fourier/fmsfutm.fd
+(/usr/local/texlive/2009/texmf-dist/tex/latex/fourier/fmsfutm.fd
 File: fmsfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FMS/futm.
 )
 LaTeX Font Info:    ... okay on input line 52.
@@ -891,14 +854,14 @@ LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 52.
 LaTeX Font Info:    Try loading font information for FMX+futm on input line 52.
 
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/fourier/fmxfutm.fd
+(/usr/local/texlive/2009/texmf-dist/tex/latex/fourier/fmxfutm.fd
 File: fmxfutm.fd futm-extension
 )
 LaTeX Font Info:    ... okay on input line 52.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 52.
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/ts1cmr.fd
+(/usr/local/texlive/2009/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 52.
@@ -906,32 +869,30 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
 LaTeX Font Info:    ... okay on input line 52.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 52.
 LaTeX Font Info:    ... okay on input line 52.
-\AtBeginShipoutBox=\box57
 Package hyperref Info: Link coloring OFF on input line 52.
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/hyperref/nameref.sty
-Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
+(/usr/local/texlive/2009/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
-(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
-Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+(/usr/local/texlive/2009/texmf-dist/tex/latex/oberdiek/refcount.sty
+Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
-\c@section@level=\count169
+\c@section@level=\count164
 )
-Redoing nameref's sectioning
-Redoing nameref's label
-LaTeX Info: Redefining \nameref on input line 52.
 LaTeX Info: Redefining \ref on input line 52.
 LaTeX Info: Redefining \pageref on input line 52.
-LaTeX Info: Redefining \nameref on input line 52.
+
+(./doc.out) (./doc.out)
 \@outlinefile=\write5
 \openout5 = `doc.out'.
 
+\AtBeginShipoutBox=\box56
 
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
+Redoing nameref's sectioning
+Redoing nameref's label
 LaTeX Font Info:    Try loading font information for FML+futmi on input line 61
 .
-(/usr/local/texlive/2011/texmf-dist/tex/latex/fourier/fmlfutmi.fd
+(/usr/local/texlive/2009/texmf-dist/tex/latex/fourier/fmlfutmi.fd
 File: fmlfutmi.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futmi.
 )
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
@@ -950,12 +911,149 @@ LaTeX Font Info:    Font shape `U/futm/m/n' will be
 
 LaTeX Warning: No \author given.
 
-\tf@toc=\write6
-\openout6 = `doc.toc'.
-
-[1
+(./doc.toc
+LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 2.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 10.07397pt on input line 2.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 7.63599pt on input line 2.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 5.51999pt on input line 2.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 10.07397pt on input line 2.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 7.63599pt on input line 2.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 5.51999pt on input line 2.
+ [1
 
 ]
+Overfull \hbox (1.09499pt too wide) detected at line 58
+ \T1/futs/m/n/10.95 102
+ []
+
+
+Overfull \hbox (1.98195pt too wide) detected at line 59
+ \T1/futs/b/n/10.95 104
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 60
+ \T1/futs/m/n/10.95 104
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 61
+ \T1/futs/m/n/10.95 106
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 62
+ \T1/futs/m/n/10.95 108
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 63
+ \T1/futs/m/n/10.95 110
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 64
+ \T1/futs/m/n/10.95 111
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 65
+ \T1/futs/m/n/10.95 112
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 66
+ \T1/futs/m/n/10.95 114
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 67
+ \T1/futs/m/n/10.95 116
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 68
+ \T1/futs/m/n/10.95 118
+ []
+
+
+Overfull \hbox (1.98195pt too wide) detected at line 69
+ \T1/futs/b/n/10.95 122
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 70
+ \T1/futs/m/n/10.95 122
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 71
+ \T1/futs/m/n/10.95 123
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 72
+ \T1/futs/m/n/10.95 124
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 73
+ \T1/futs/m/n/10.95 125
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 74
+ \T1/futs/m/n/10.95 127
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 75
+ \T1/futs/m/n/10.95 128
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 76
+ \T1/futs/m/n/10.95 129
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 77
+ \T1/futs/m/n/10.95 130
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 78
+ \T1/futs/m/n/10.95 131
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 79
+ \T1/futs/m/n/10.95 132
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 80
+ \T1/futs/m/n/10.95 133
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 81
+ \T1/futs/m/n/10.95 134
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 82
+ \T1/futs/m/n/10.95 136
+ []
+
+) [2]
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
 (Font)              scaled to size 18.66588pt on input line 72.
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <14.4> not available
@@ -964,88 +1062,73 @@ LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <12> not available
 (Font)              Font shape `T1/futs/b/n' tried instead on input line 81.
 LaTeX Font Info:    Try loading font information for TS1+futs on input line 85.
 
- (/usr/local/texlive/2011/texmf-dist/tex/latex/fourier/ts1futs.fd
+ (/usr/local/texlive/2009/texmf-dist/tex/latex/fourier/ts1futs.fd
 File: ts1futs.fd 2004/03/26 Fontinst v1.926 font definitions for TS1/futs.
 )
 LaTeX Font Info:    Try loading font information for T1+ul9 on input line 96.
+LaTeX Font Info:    No file T1ul9.fd. on input line 96.
 
-(/usr/local/texlive/2011/../texmf-local/tex/latex/luxi/t1ul9.fd
-File: t1ul9.fd 2003/03/02 font definitions for LuxiMono T1/ul9
-)
-LaTeX Font Info:    Font shape `T1/ul9/m/n' will be
-(Font)              scaled to size 9.52644pt on input line 96.
-LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 103.
- [2
 
-]
-LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 10.07397pt on input line 143.
-LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 7.63599pt on input line 143.
-LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 143.
-LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 10.07397pt on input line 143.
-LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 7.63599pt on input line 143.
-LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 143.
- [3]
+LaTeX Font Warning: Font shape `T1/ul9/m/n' undefined
+(Font)              using `T1/cmr/m/n' instead on input line 96.
+
+[3
+
+] [4]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 201.
 
-[4] [5]
+[5] [6]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 284.
 
-[6] [7]
+[7] [8]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 376.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 392.
 
-[8] [9]
+[9] [10]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 485.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 502.
 
-[10] [11]
+[11] [12]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 600.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 620.
 
-[12] [13]
+[13] [14]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 730.
 
-[14]
+[15]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 765.
 
-[15] [16]
+[16] [17]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 859.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 882.
 
-[17] [18
+[18] [19
 
 ]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 965.
 
-[19] [20]
+[20] [21]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1045.
 
-[21] [22]
+[22] [23]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1125.
 
@@ -1055,11 +1138,11 @@ LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1131.
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1148.
 
-[23] [24] [25]
+[24] [25] [26]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1314.
 
-[26]
+[27]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1338.
 
@@ -1069,294 +1152,253 @@ LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1349.
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1366.
 
-[27]
+[28]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1382.
 
-[28] [29] [30]
+[29] [30] [31]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1514.
 
-[31]
-Overfull \hbox (31.26929pt too wide) in paragraph at lines 1589--1589
-[]       \T1/ul9/m/n/10.95 [PredictOutput.value, Y(1, :)']  % Compare the fitte
-d value with the data[] 
- []
-
-[32]
+[32] [33]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1618.
 
-[33]
+[34]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1649.
 
-[34] [35]
+[35] [36]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1734.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1749.
 
-[36] [37
+[37] [38
 
 ]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1827.
 
-[38] [39]
+[39] [40]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1902.
 
-[40] [41]
+[41] [42]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1983.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2001.
 
-[42] [43] [44] [45] [46]
+[43] [44] [45] [46] [47]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2213.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2251.
 
-[47]
+[48]
 Overfull \hbox (9.17383pt too wide) in paragraph at lines 2260--2262
 \T1/futs/m/n/10.95 Select the di-men-sion of the en-ve-lope sub-space us-ing li
 ke-li-hood ra-tio test-ing for the het-eroscedas-
  []
 
-[48]
+[49]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2330.
 
-[49] [50]
+[50] [51]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2428.
 
-[51]
+[52]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2467.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2493.
 
-[52] [53]
+[53] [54]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2574.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2590.
 
-[54] [55
+[55] [56
 
 ]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2669.
 
-[56]
+[57]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2745.
 
-[57] [58]
+[58] [59]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2828.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2842.
 
-[59] [60] [61] [62]
+[60] [61] [62] [63]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3052.
 
-[63]
+[64]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3085.
 
-[64] [65]
+[65] [66]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3168.
 
-[66]
-Overfull \hbox (31.26929pt too wide) in paragraph at lines 3239--3239
-[]       \T1/ul9/m/n/10.95 [PredictOutput.value, Y(1, :)']  % Compare the fitte
-d value with the data[] 
- []
-
-[67]
+[67] [68]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3263.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3283.
 
-[68] [69]
+[69] [70]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3364.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3376.
 
-[70] [71
+[71] [72
 
 ]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3463.
 
-[72] [73]
+[73] [74]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3549.
 
-[74] [75]
+[75] [76]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3640.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3653.
 
-[76] [77]
+[77] [78]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3744.
 
-[78] [79] [80]
+[79] [80] [81]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3863.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3909.
 
-[81] [82]
-Overfull \hbox (25.55342pt too wide) in paragraph at lines 3990--3990
-[]       \T1/ul9/m/n/10.95 [PredictOutput.value, Y(1, :)'] % Compare the fitted
- value with the data[] 
- []
-
+[82] [83]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4015.
 
-[83]
+[84]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4036.
 
-[84] [85]
+[85] [86]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4121.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4137.
 
-[86] [87
+[87] [88
 
 ]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4217.
 
-[88] [89]
+[89] [90]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4297.
 
-[90] [91]
+[91] [92]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4379.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4394.
 
-[92] [93] [94] [95]
-Overfull \hbox (31.26929pt too wide) in paragraph at lines 4622--4622
-[]       \T1/ul9/m/n/10.95 [PredictOutput.value, Y(1, :)']  % Compare the fitte
-d value with the data[] 
- []
-
-[96]
+[93] [94] [95] [96] [97]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4646.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4667.
 
-[97] [98]
+[98] [99]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4779.
 
-[99]
+[100]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4821.
 
-[100] [101]
+[101] [102]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4903.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4917.
 
-[102] [103
+[103] [104
 
 ]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4997.
 
-[104] [105]
+[105] [106]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5075.
 
-[106] [107]
+[107] [108]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5158.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5174.
 
-[108] [109] [110] [111]
+[109] [110] [111] [112]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5354.
 
-[112]
-Overfull \hbox (31.26929pt too wide) in paragraph at lines 5428--5428
-[]       \T1/ul9/m/n/10.95 [PredictOutput.value, Y(1, :)']  % Compare the fitte
-d value with the data[] 
- []
-
-[113]
+[113] [114]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5446.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5465.
 
-[114] [115]
+[115] [116]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5548.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5562.
 
-[116] [117]
-Overfull \hbox (14.12169pt too wide) in paragraph at lines 5669--5669
-[]       \T1/ul9/m/n/10.95 % When u = p, the envelope model reduces to the ordi
-nary least squares[] 
- []
-
-[118]
+[117] [118] [119]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5706.
 
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5731.
 
-
-Overfull \hbox (31.26929pt too wide) in paragraph at lines 5734--5734
-[]       \T1/ul9/m/n/10.95 %  To compare with the results obtained by Partial L
-east Squares, use the[] 
- []
-
-[119]
+[120]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5763.
 
-[120] [121
+[121] [122
 
 ]
 Overfull \hbox (12.82018pt too wide) in paragraph at lines 5858--5860
@@ -1364,33 +1406,37 @@ Overfull \hbox (12.82018pt too wide) in paragraph at lines 5858--5860
 een the "vec" op-er-a-tor and "vech"operator:
  []
 
-[122] [123] [124]
+[123] [124] [125]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6005.
 
-[125] [126] [127] [128] [129]
+[126] [127] [128] [129] [130]
 Overfull \hbox (62.98167pt too wide) in paragraph at lines 6270--6271
 []\T1/futs/m/n/10.95 FParameters: A struc-ture that con-tains data pa-ram-e-ter
 s as in-put for the func-tion dfun_method_handle. 
  []
 
-[130]
+[131]
 Overfull \hbox (56.95918pt too wide) in paragraph at lines 6320--6321
 []\T1/futs/m/n/10.95 FParameters: A struc-ture that con-tains data pa-ram-e-ter
 s as in-put for the func-tion fun_method_handle. 
  []
 
-[131] [132] [133]
+[132] [133] [134]
 Overfull \hbox (2.18777pt too wide) in paragraph at lines 6466--6468
 \T1/futs/m/n/10.95 This func-tion com-putes statis-tics that will be used fre-q
 uently in the es-ti-ma-tion for each method.
  []
 
-[134]
-Overfull \hbox (56.95918pt too wide) in paragraph at lines 6500--6501
-[]\T1/futs/m/n/10.95 FParameters: A struc-ture that con-tains data pa-ram-e-ter
-s as in-put for the func-tion fun_method_handle. 
+[135]
+Overfull \hbox (0.61105pt too wide) in paragraph at lines 6533--6539
+\T1/futs/m/n/10.95 Trujillo-Ortiz, A., R. Hernandez-Walls, K. Castro-Morales, A
+. Espinoza-Tenorio, A. Guia-Ramirez
  []
+
+[136]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6555.
 
 
 FiXme Summary: Number of notes: 0,
@@ -1399,31 +1445,22 @@ FiXme Summary: Number of notes: 0,
 (FiXme)        Number of fatal errors: 0,
 (FiXme)        Total: 0.
 
-[135]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 6517.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 6517.
+[137]
+\tf@toc=\write6
+\openout6 = `doc.toc'.
+
  (./doc.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 6517.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 6517.
 
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-Package rerunfilecheck Warning: File `doc.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `doc.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D29A6D71FFA0B64336B22CA9260D20A4;9607.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 6517.
  ) 
 Here is how much of TeX's memory you used:
- 11597 strings out of 493634
- 163624 string characters out of 3143401
- 274090 words of memory out of 3000000
- 14777 multiletter control sequences out of 15000+200000
- 90138 words of font info for 65 fonts, out of 3000000 for 9000
- 831 hyphenation exceptions out of 8191
- 36i,11n,60p,782b,464s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 10790 strings out of 493849
+ 150139 string characters out of 3149230
+ 274003 words of memory out of 3000000
+ 13924 multiletter control sequences out of 15000+200000
+ 89815 words of font info for 64 fonts, out of 3000000 for 9000
+ 714 hyphenation exceptions out of 8191
+ 43i,12n,60p,782b,440s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on doc.dvi (135 pages, 386836 bytes).
+Output written on doc.dvi (137 pages, 458436 bytes).

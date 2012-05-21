@@ -6468,10 +6468,10 @@ This function computes statistics that will be used frequently in the estimation
 
 \newpage
 
-\section*{make\_F}
+\section{mtest}
 
 \begin{par}
-Generic function to generate the objective function F.
+Perform Box's M test to check the homogeneity of the covariance matrices.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
@@ -6482,37 +6482,78 @@ Generic function to generate the objective function F.
    \item Input
    \item Output
    \item Description
+   \item References
+   \item Example
 \end{itemize}
 
 
 \subsection*{Syntax}
 
-\begin{par}
-F = make\_F(fun\_method\_handle, FParameters)
-\end{par} \vspace{1em}
 
+\begin{verbatim}       TestOutput = mtest(X, Y, alpha)\end{verbatim}
+    
 
 \subsection*{Input}
 
-\begin{itemize}
-\setlength{\itemsep}{-1ex}
-   \item fun\_method\_handle: A specific model objective function.
-   \item FParameters: A structure that contains data parameters as input for the function fun\_method\_handle.
-\end{itemize}
+\begin{par}
+\textbf{X}: Group indicators. A matrix with n rows.  X can only have p unique  rows, where p is the number of groups. For example, if there are two groups, X can only have 2 different kinds of rows, such as (0, 1) and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not restricted, as long as X only has p unique rows.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be greater than p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{alpha}: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
+\end{par} \vspace{1em}
 
 
 \subsection*{Output}
 
+\begin{par}
+\textbf{TestOutput}: A list containing the Box's M statistic, the approximation test statistic, degrees of freedom for the approximation statistic test, and the p-value.  At the same time, a table is printed out.
+\end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item F: The generic objective function for computing the envelope subspace.
+   \item TestOutput.mStatistic: The Box's M statistic. A real number.
+   \item TestOutput.approxStatistic: The approximation test statistic.
+   \item TestOutput.df: The degrees of freedom of the approximation statistic test.  A positive integer.
+   \item TestOutput.pValue: p-value of the test.  A real number in [0, 1].
 \end{itemize}
 
 
 \subsection*{Description}
 
 \begin{par}
-Generic function to generate the objective function F. The function first sets a handle to the specific model function and fixes the data parameters from the sample needed for its computation. The handle fixed with those parameters is then evaluated at a given value for argument W. A generic objective function F is returned.
+This function performs the Box's M test for homegeneity of the covariance matrices for different groups, indicated by X. If the groups sample-size is at least 20 (sufficiently large), Box's M test takes a Chi-square approximation; otherwise it takes an F approximation.
 \end{par} \vspace{1em}
+
+
+\subsection*{References}
+
+\begin{par}
+The codes are implemented based on\\ 
+Trujillo-Ortiz, A., R. Hernandez-Walls, K. Castro-Morales, A. Espinoza-Tenorio, A. Guia-Ramirez and R. Carmona-Pina. (2002). MBoxtest: Multivariate Statistical Testing for the Homogeneity of Covariance Matrices by the Box's M. A MATLAB file. [WWW document]. URL: \\
+http://www.mathworks.com/matlabcentral/fileexchange\\
+/loadFile.do
+?objectId=2733\&objectType=FILE
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load waterstrider.mat
+       alpha = 0.01;
+       TestOutput = mtest(X, Y, alpha);\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim} 
+----------------------------------------------------------
+     MBox     Chi-sqr.         df          P
+----------------------------------------------------------
+  157.5977   137.3361          72       0.0000
+----------------------------------------------------------
+Covariance matrices are significantly different.
+\end{verbatim} \color{black}
+    
+
 \end{document}
     
