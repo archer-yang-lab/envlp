@@ -80,7 +80,7 @@ bootBeta = zeros(B, r * p);
 for i = 1 : B
     
     if printFlag == 1
-        fprintf(['Current number of boostrap sample ' int2str(i) '\n']);
+        fprintf(['Current number of bootstrap sample ' int2str(i) '\n']);
     end
     
     for j = 1 : p
