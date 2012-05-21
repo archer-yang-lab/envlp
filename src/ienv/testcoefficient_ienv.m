@@ -28,13 +28,15 @@
 %% Output
 % 
 % *TestOutput*: A list containing test statistics, degrees of freedom for the
-% reference chi-squared distribution, and the p-value.  At the same time, a
-% table is printed out.
+% reference chi-squared distribution, the p-value, and the covariance matrix 
+% of vec(L$$\beta$R).  At the same time, a table is printed out.
 % 
 % * TestOutput.chisqStatistic: The test statistics. A real number. 
 % * TestOutput.df: The degrees of freedom of the reference chi-squared
 % distribution.  A positive integer.
 % * TestOutput.pValue: p-value of the test.  A real number in [0, 1].
+% * TestOutput.covMatrix: The covariance matrix of vec(L$$\beta$R). A d1 *
+% d2 by d1 * d2 matrix.
 
 %% Description
 % This function tests for hypothesis $$H_0: L\beta R = A$, versus $$H_\alpha:
@@ -122,6 +124,8 @@ pValue = 1 - chi2cdf(chisqStatistic, df);
 TestOutput.chisqStatistic = chisqStatistic;
 TestOutput.df = df;
 TestOutput.pValue = pValue;
+TestOutput.covMatrix = Sigma;
+
 
 
 fprintf('\nTest Hypothesis     Chisq Statistic    DF     P-value\n') ;
