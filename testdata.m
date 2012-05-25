@@ -323,3 +323,27 @@ chisqrandnumber = sort(chi2rnd(r*p,[100 1]));
 plot(chisqrandnumber(1:100),results(1:100),chisqrandnumber(1:100),chisqrandnumber(1:100),'r--')
 xlabel('sorted chi-square random numbers')
 ylabel('test statistics')
+
+%---------Test xenvpls--------
+randn('state',10)
+rand('state',10)
+sigma1=10;
+sigma2=1;
+p=20;
+u=2;
+n=15;
+Q=rand(p,p);
+Q=grams(Q);
+Sigmao=sigma1^2*Q(:,1:u)*Q(:,1:u)'+sigma2^2*Q(:,u+1:end)*Q(:,u+1:end)';
+[V D]=eig(Sigmao); 
+[Dst Ind]=sort(diag(D),'descend');
+V=V(:,Ind);
+sig=rand(1);
+
+bet=Q(:,1:u)*rand(u,1);
+Mean=randn(p,1);
+X = mvnrnd(Mean',Sigmao,n);
+Y=X*bet+randn(n,1)*sig^2;
+
+ModelOutput = xenvpls(X, Y, 2)
+subspace(ModelOutput.Gamma, Q(:,1:u))
