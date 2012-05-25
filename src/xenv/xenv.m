@@ -109,25 +109,25 @@
 
 function ModelOutput = xenv(X, Y, u, Opts)
 
-if (nargin < 3)
+if nargin < 3
     error('Inputs: X, Y and u should be specified!');
-elseif (nargin == 3)
+elseif nargin == 3
     Opts = [];
 end
 
-[n,p] = size(X);
-[n1,r] = size(Y);
+[n, p] = size(X);
+[n1, r] = size(Y);
 
-if (n ~= n1)
+if n ~= n1
     error('The number of observations in X and Y should be equal!');
 end
 
-if (r >= p)
+if r >= p
     error('When the number of predictors is less than the number of responses, the envelope model for reduction on X cannot be applied.');
 end
 
 u = floor(u);
-if (u < 0 || u > p)
+if u < 0 || u > p
     error('u should be an integer between [0, p]!');
 end
 
