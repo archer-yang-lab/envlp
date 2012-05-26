@@ -8,12 +8,14 @@
 %
 %% Input
 %
-% *X*: Predictors. An n by p matrix, p is the number of predictors. The
-% predictors can be univariate or multivariate, discrete or continuous.
+% *X*: Predictors. An n by p matrix, p is the number of predictors and n is
+% number of observations. The 
+% number of predictors should be greater than the number of the responses.
+% And they must be continuous variables.
 % 
-% *Y*: Multivariate responses. An n by r matrix, r is the number of
-% responses and n is number of observations. The responses must be 
-% continuous variables.
+% *Y*: Responses. An n by r matrix, r is the number of
+% responses. The response can be univariate or multivariate and must be
+% contiuous variable.
 % 
 % *Opts*: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not

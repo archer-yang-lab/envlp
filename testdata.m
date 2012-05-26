@@ -345,5 +345,7 @@ Mean=randn(p,1);
 X = mvnrnd(Mean',Sigmao,n);
 Y=X*bet+randn(n,1)*sig^2;
 
-ModelOutput = xenvpls(X, Y, 2)
+ModelOutput = xenvpls(X, Y, u)
 subspace(ModelOutput.Gamma, Q(:,1:u))
+B=50;
+bootse = bstrp_xenvpls(X, Y, u, B)
