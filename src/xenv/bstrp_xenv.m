@@ -7,11 +7,14 @@
 %
 %% Input
 %
-% *X*: Predictors, an n by p matrix, p is the number of predictors.  The
-% predictors can be univariate or multivariate, discrete or continuous.
+% *X*: Predictors. An n by p matrix, p is the number of predictors and n is
+% number of observations. The 
+% number of predictors should be greater than the number of the responses.
+% And they must be continuous variables.
 % 
-% *Y*: Multivariate responses, an n by r matrix, r is the number of
-% responses and n is number of observations.  The responses must be continuous variables.
+% *Y*: Responses. An n by r matrix, r is the number of
+% responses. The response can be univariate or multivariate and must be
+% contiuous variable.
 % 
 % *u*: Dimension of the envelope subspace.  A positive integer between 0
 % and p.

@@ -7,12 +7,14 @@
 %
 %% Input
 %
-% *X*: Predictors. An n by p matrix, p is the number of predictors. The
-% predictors can be univariate or multivariate, discrete or continuous.
-%
-% *Y*: Multivariate responses. An n by r matrix, r is the number of
-% responses and n is number of observations. The responses must be 
-% continuous variables, and r should be strictly greater than p.
+% *X*: Predictors. An n by p matrix, p is the number of predictors and n is
+% number of observations. The 
+% number of predictors should be greater than the number of the responses.
+% And they must be continuous variables.
+% 
+% *Y*: Responses. An n by r matrix, r is the number of
+% responses. The response can be univariate or multivariate and must be
+% contiuous variable.
 %
 % *u*: Dimension of the envelope. An integer between 0 and p.
 %
@@ -66,7 +68,7 @@
 % integer.
 
 %% Description
-% This function fits the envelope model to the responses and predictors,
+% This function fits the envelope model in the predictor's space,
 % using the maximum likelihood estimation.  When the dimension of the
 % envelope is between 1 and r - 1, we implemented the algorithm in Cook et
 % al. (2012).  When the dimension is r, then the envelope model degenerates

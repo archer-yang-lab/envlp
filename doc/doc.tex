@@ -4959,10 +4959,10 @@ Use Akaike information criterion to select the dimension of the envelope subspac
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be contiuous variable.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
@@ -5037,10 +5037,10 @@ Use Bayesian information criterion to select the dimension of the envelope subsp
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be contiuous variable.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
@@ -5115,10 +5115,10 @@ Compute bootstrap standard error of the envelope model for the reduction on X.
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Predictors, an n by p matrix, p is the number of predictors.  The predictors can be univariate or multivariate, discrete or continuous.
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be contiuous variable.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{u}: Dimension of the envelope subspace.  A positive integer between 0 and p.
@@ -5312,10 +5312,10 @@ Use likelihood ratio testing to select the dimension of the envelope subspace fo
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be contiuous variable.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{alpha}: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
@@ -5605,10 +5605,10 @@ Fit the envelope model for the reduction on X.
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be contiuous variable.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{u}: Dimension of the envelope. An integer between 0 and p.
@@ -5654,7 +5654,7 @@ Fit the envelope model for the reduction on X.
 \subsection*{Description}
 
 \begin{par}
-This function fits the envelope model to the responses and predictors, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and r - 1, we implemented the algorithm in Cook et al. (2012).  When the dimension is r, then the envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
+This function fits the envelope model in the predictor's space, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and r - 1, we implemented the algorithm in Cook et al. (2012).  When the dimension is r, then the envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
 \end{par} \vspace{1em}
 
 

@@ -9,12 +9,14 @@
 %
 %% Input
 %
-% *X*: Predictors. An n by p matrix, p is the number of predictors. The
-% predictors can be univariate or multivariate, discrete or continuous.
+% *X*: Predictors. An n by p matrix, p is the number of predictors and n is
+% number of observations. The 
+% number of predictors should be greater than the number of the responses.
+% And they must be continuous variables.
 % 
-% *Y*: Multivariate responses. An n by r matrix, r is the number of
-% responses and n is number of observations. The responses must be 
-% continuous variables.
+% *Y*: Responses. An n by r matrix, r is the number of
+% responses. The response can be univariate or multivariate and must be
+% contiuous variable.
 % 
 % *alpha*: Significance level for testing.  A real number between 0 and 1,
 % often taken at 0.05 or 0.01.
