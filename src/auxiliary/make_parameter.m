@@ -14,8 +14,8 @@
 % continuous variables, and r should be strictly greater than p.
 % 
 % *method*: A string of characters indicating which member of the envelope
-% family to be used, the choices can be 'env', 'ienv', 'henv', 'senv' or
-% 'xenv'.
+% family to be used, the choices can be 'env', 'ienv', 'henv', 'senv', 
+% 'xenv' or 'xenvpls'.
 %
 %% Output
 % 
@@ -205,6 +205,25 @@ elseif (strcmp(method, 'xenv'))
     DataParameter.sigXY = sigXY;
     DataParameter.sigXcY = sigX - sigXY * inv(sigY) * sigXY';
     DataParameter.invSigX = inv(sigX);
+    
+elseif (strcmp(method, 'xenvpls'))
+    
+    [n p] = size(X);
+    r = size(Y, 2);
+    XC = center(X);
+    YC = center(Y);
+    sigX = cov(X, 1);
+    sigXY = XC' * YC / n;
+    sigY = cov(Y, 1);
+    
+    DataParameter.n = n;
+    DataParameter.p = p;
+    DataParameter.r = r;
+    DataParameter.mX = mean(X)';
+    DataParameter.mY = mean(Y)';
+    DataParameter.sigX = sigX;
+    DataParameter.sigY = sigY;
+    DataParameter.sigXY = sigXY;
 
 end
 
