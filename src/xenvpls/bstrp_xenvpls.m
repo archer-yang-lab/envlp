@@ -70,7 +70,7 @@ ModelOutput = xenvpls(X, Y, u);
 Yfit = ones(n, 1) * ModelOutput.mu' + X * ModelOutput.beta;
 resi = Y - Yfit;
 
-bootBeta = zeros(B, r * p);
+bootBeta = zeros(B, p * r);
 
 for i = 1 : B
     
@@ -81,8 +81,8 @@ for i = 1 : B
     bootresi = resi(randsample(1 : n, n, true), :);
     Yboot = Yfit + bootresi;
     temp = xenvpls(X, Yboot, u);
-    bootBeta(i,:) = reshape(temp.beta, 1, r * p);
+    bootBeta(i,:) = reshape(temp.beta, 1, p, r);
 
 end
 
-bootse = reshape(sqrt(diag(cov(bootBeta, 1))), r, p);
+bootse = reshape(sqrt(diag(cov(bootBeta, 1))), p, r);
