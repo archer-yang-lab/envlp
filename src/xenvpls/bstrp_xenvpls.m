@@ -81,7 +81,7 @@ for i = 1 : B
     bootresi = resi(randsample(1 : n, n, true), :);
     Yboot = Yfit + bootresi;
     temp = xenvpls(X, Yboot, u);
-    bootBeta(i,:) = reshape(temp.beta, 1, p, r);
+    bootBeta(i,:) = reshape(temp.beta, 1, p * r);
 
 end
 
