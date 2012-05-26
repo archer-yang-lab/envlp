@@ -6,6 +6,8 @@ function  install_envelope
 %  * SG_MIN Ver 2.4.1 (Modified Components)
 %  * Envelope Module
 %  * Envelope Module for Predictor Reduction
+%  * Envelope Module for Predictor Reduction Using Partial Least Squares
+%  Algorithm
 %  * Heteroscedastic Envelope Module
 %  * Inner Envelope Module
 %  * Partial Envelope Module
@@ -66,6 +68,7 @@ fprintf(' * SG_MIN Ver 2.4.1\n') ;
 fprintf(' * SG_MIN Ver 2.4.1 (Modified Components)\n') ;
 fprintf(' * Envelope Module\n') ;
 fprintf(' * Envelope Module for Predictor Reduction\n') ;
+fprintf(' * Envelope Module for Predictor Reduction Using Partial Least Squares Algorithm\n');
 fprintf(' * Heteroscedastic Envelope Module\n') ;
 fprintf(' * Inner Envelope Module\n') ;
 fprintf(' * Partial Envelope Module\n') ;
@@ -102,6 +105,11 @@ fprintf('Envelope Module added to the path: %s\n\n',s) ;
 s = fullfile(envelope_path,'/src/xenv') ;
 addpath(s) ;
 fprintf('Envelope Module for Predictor Reduction added to the path: %s\n\n',s) ;
+
+s = fullfile(envelope_path,'/src/xenvpls') ;
+addpath(s) ;
+fprintf('Envelope Module for Predictor Reduction Using Partial Least Squares Algorithm added to the path: %s\n\n',s) ;
+
 
 s = fullfile(envelope_path,'/src/henv') ;
 addpath(s) ;
