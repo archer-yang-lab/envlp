@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=latex 2009.11.7)  28 MAY 2012 04:27
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=latex 2009.11.7)  28 MAY 2012 04:33
 entering extended mode
  %&-line parsing enabled.
 **doc.tex
@@ -1565,33 +1565,37 @@ een the "vec" op-er-a-tor and "vech"operator:
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6705.
 
-[143] [144] [145] [146] [147] [148]
-Overfull \hbox (62.98167pt too wide) in paragraph at lines 7031--7032
+[143]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6785.
+
+[144] [145] [146] [147] [148]
+Overfull \hbox (62.98167pt too wide) in paragraph at lines 7049--7050
 []\T1/futs/m/n/10.95 FParameters: A struc-ture that con-tains data pa-ram-e-ter
 s as in-put for the func-tion dfun_method_handle. 
  []
 
 [149]
-Overfull \hbox (56.95918pt too wide) in paragraph at lines 7081--7082
+Overfull \hbox (56.95918pt too wide) in paragraph at lines 7099--7100
 []\T1/futs/m/n/10.95 FParameters: A struc-ture that con-tains data pa-ram-e-ter
 s as in-put for the func-tion fun_method_handle. 
  []
 
 [150] [151] [152]
-Overfull \hbox (2.18777pt too wide) in paragraph at lines 7227--7229
+Overfull \hbox (2.18777pt too wide) in paragraph at lines 7245--7247
 \T1/futs/m/n/10.95 This func-tion com-putes statis-tics that will be used fre-q
 uently in the es-ti-ma-tion for each method.
  []
 
 [153]
-Overfull \hbox (0.61105pt too wide) in paragraph at lines 7294--7300
+Overfull \hbox (0.61105pt too wide) in paragraph at lines 7312--7318
 \T1/futs/m/n/10.95 Trujillo-Ortiz, A., R. Hernandez-Walls, K. Castro-Morales, A
 . Espinoza-Tenorio, A. Guia-Ramirez
  []
 
 [154]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 7316.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 7334.
 
 
 FiXme Summary: Number of notes: 0,
@@ -1614,4 +1618,4 @@ Here is how much of TeX's memory you used:
  714 hyphenation exceptions out of 8191
  43i,12n,60p,782b,440s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on doc.dvi (155 pages, 512516 bytes).
+Output written on doc.dvi (155 pages, 512972 bytes).
