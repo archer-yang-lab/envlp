@@ -46,8 +46,8 @@ if p > u
     error('The rank of S cannot be greater than u.');
 end
 
-if sum(sum(M ~= M')) > 0 || sum(eig(M) > 0) ~= r
-    error('M must be positive definite.');
+if sum(eig(M) < 0) > 0
+    error('M must be semi-positive definite.');
 end
 
 U = S * S';
