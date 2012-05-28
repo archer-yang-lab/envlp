@@ -14,7 +14,7 @@
 % 
 % *Y*: Responses. An n by r matrix, r is the number of
 % responses. The response can be univariate or multivariate and must be
-% contiuous variable.
+% continuous variable.
 % 
 % *u*: Dimension of the envelope subspace.  A positive integer between 0
 % and p.

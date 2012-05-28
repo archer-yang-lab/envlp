@@ -14,7 +14,7 @@
 % 
 % *Y*: Responses. An n by r matrix, r is the number of
 % responses. The response can be univariate or multivariate and must be
-% contiuous variable.
+% continuous variable.
 %
 % *u*: Dimension of the envelope. An integer between 0 and p.
 %
@@ -56,7 +56,7 @@
 
 %% Reference
 % 
-% # The codes are implemented based on the algorithm in Section 4.3 of Cook 
+% The codes are implemented based on the algorithm in Section 4.3 of Cook 
 % et al (2012).
 
 %% Example
@@ -67,6 +67,7 @@
 %         m = 5;
 %         u = mfoldcv_xenvpls(X, Y, m)
 %         ModelOutput = xenvpls(X, Y, u)
+%         ModelOutput.beta
 
 
 

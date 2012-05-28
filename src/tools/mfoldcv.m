@@ -23,7 +23,7 @@
 % 
 % * Opts.verbose: Flag for print out the number of bootstrap samples, 
 % logical 0 or 1. Default value: 0.
-%
+
 %% Output
 %
 %  *u*: The dimension of the envelope subspace selected by m-fold cross

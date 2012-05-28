@@ -16,7 +16,7 @@
 % 
 % *Y*: Responses. An n by r matrix, r is the number of
 % responses. The response can be univariate or multivariate and must be
-% contiuous variable.
+% continuous variable.
 %
 % *m*: A positive integer that is used to indicate m-fold cross validation..
 % 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=latex 2009.11.7)  28 MAY 2012 01:34
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=latex 2009.11.7)  28 MAY 2012 04:27
 entering extended mode
  %&-line parsing enabled.
 **doc.tex
@@ -929,63 +929,73 @@ LaTeX Font Info:    Font shape `U/futm/m/n' will be
  [1
 
 ]
-Overfull \hbox (1.09499pt too wide) detected at line 58
+Overfull \hbox (1.09499pt too wide) detected at line 56
+ \T1/futs/m/n/10.95 100
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 57
  \T1/futs/m/n/10.95 102
  []
 
 
-Overfull \hbox (1.98195pt too wide) detected at line 59
- \T1/futs/b/n/10.95 104
- []
-
-
-Overfull \hbox (1.09499pt too wide) detected at line 60
+Overfull \hbox (1.09499pt too wide) detected at line 58
  \T1/futs/m/n/10.95 104
  []
 
 
-Overfull \hbox (1.09499pt too wide) detected at line 61
+Overfull \hbox (1.09499pt too wide) detected at line 59
+ \T1/futs/m/n/10.95 105
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 60
  \T1/futs/m/n/10.95 106
  []
 
 
+Overfull \hbox (1.09499pt too wide) detected at line 61
+ \T1/futs/m/n/10.95 107
+ []
+
+
 Overfull \hbox (1.09499pt too wide) detected at line 62
- \T1/futs/m/n/10.95 108
+ \T1/futs/m/n/10.95 109
  []
 
 
 Overfull \hbox (1.09499pt too wide) detected at line 63
- \T1/futs/m/n/10.95 110
- []
-
-
-Overfull \hbox (1.09499pt too wide) detected at line 64
- \T1/futs/m/n/10.95 111
- []
-
-
-Overfull \hbox (1.09499pt too wide) detected at line 65
  \T1/futs/m/n/10.95 112
  []
 
 
-Overfull \hbox (1.09499pt too wide) detected at line 66
+Overfull \hbox (1.98195pt too wide) detected at line 64
+ \T1/futs/b/n/10.95 114
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 65
  \T1/futs/m/n/10.95 114
  []
 
 
-Overfull \hbox (1.09499pt too wide) detected at line 67
+Overfull \hbox (1.09499pt too wide) detected at line 66
  \T1/futs/m/n/10.95 116
  []
 
 
-Overfull \hbox (1.09499pt too wide) detected at line 68
+Overfull \hbox (1.09499pt too wide) detected at line 67
  \T1/futs/m/n/10.95 118
  []
 
 
-Overfull \hbox (1.98195pt too wide) detected at line 69
- \T1/futs/b/n/10.95 122
+Overfull \hbox (1.09499pt too wide) detected at line 68
+ \T1/futs/m/n/10.95 120
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 69
+ \T1/futs/m/n/10.95 121
  []
 
 
@@ -995,65 +1005,115 @@ Overfull \hbox (1.09499pt too wide) detected at line 70
 
 
 Overfull \hbox (1.09499pt too wide) detected at line 71
- \T1/futs/m/n/10.95 123
- []
-
-
-Overfull \hbox (1.09499pt too wide) detected at line 72
  \T1/futs/m/n/10.95 124
  []
 
 
+Overfull \hbox (1.09499pt too wide) detected at line 72
+ \T1/futs/m/n/10.95 126
+ []
+
+
 Overfull \hbox (1.09499pt too wide) detected at line 73
- \T1/futs/m/n/10.95 125
- []
-
-
-Overfull \hbox (1.09499pt too wide) detected at line 74
- \T1/futs/m/n/10.95 127
- []
-
-
-Overfull \hbox (1.09499pt too wide) detected at line 75
  \T1/futs/m/n/10.95 128
  []
 
 
-Overfull \hbox (1.09499pt too wide) detected at line 76
- \T1/futs/m/n/10.95 129
+Overfull \hbox (1.98195pt too wide) detected at line 74
+ \T1/futs/b/n/10.95 132
  []
 
 
-Overfull \hbox (1.09499pt too wide) detected at line 77
- \T1/futs/m/n/10.95 130
- []
-
-
-Overfull \hbox (1.09499pt too wide) detected at line 78
- \T1/futs/m/n/10.95 131
- []
-
-
-Overfull \hbox (1.09499pt too wide) detected at line 79
+Overfull \hbox (1.09499pt too wide) detected at line 75
  \T1/futs/m/n/10.95 132
  []
 
 
-Overfull \hbox (1.09499pt too wide) detected at line 80
- \T1/futs/m/n/10.95 133
- []
-
-
-Overfull \hbox (1.09499pt too wide) detected at line 81
+Overfull \hbox (1.09499pt too wide) detected at line 76
  \T1/futs/m/n/10.95 134
  []
 
 
-Overfull \hbox (1.09499pt too wide) detected at line 82
+Overfull \hbox (1.09499pt too wide) detected at line 77
  \T1/futs/m/n/10.95 136
  []
 
-) [2]
+
+Overfull \hbox (1.98195pt too wide) detected at line 78
+ \T1/futs/b/n/10.95 139
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 79
+ \T1/futs/m/n/10.95 139
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 80
+ \T1/futs/m/n/10.95 140
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 81
+ \T1/futs/m/n/10.95 141
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 82
+ \T1/futs/m/n/10.95 142
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 83
+ \T1/futs/m/n/10.95 144
+ []
+
+[2]
+Overfull \hbox (1.09499pt too wide) detected at line 84
+ \T1/futs/m/n/10.95 145
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 85
+ \T1/futs/m/n/10.95 146
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 86
+ \T1/futs/m/n/10.95 147
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 87
+ \T1/futs/m/n/10.95 148
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 88
+ \T1/futs/m/n/10.95 149
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 89
+ \T1/futs/m/n/10.95 150
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 90
+ \T1/futs/m/n/10.95 151
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 91
+ \T1/futs/m/n/10.95 152
+ []
+
+
+Overfull \hbox (1.09499pt too wide) detected at line 92
+ \T1/futs/m/n/10.95 154
+ []
+
+) [3]
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
 (Font)              scaled to size 18.66588pt on input line 72.
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <14.4> not available
@@ -1072,412 +1132,466 @@ File: t1ul9.fd 2003/03/02 font definitions for LuxiMono T1/ul9
 )
 LaTeX Font Info:    Font shape `T1/ul9/m/n' will be
 (Font)              scaled to size 9.52644pt on input line 96.
- [3
+ [4
 
-] [4]
+] [5]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 201.
-
-[5] [6]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 284.
-
-[7] [8]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 376.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 191.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 392.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 217.
 
-[9] [10]
+[6] [7]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 485.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 300.
+
+[8] [9]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 381.
+
+[10] [11]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 472.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 502.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 488.
 
-[11] [12]
+[12] [13]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 600.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 581.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 620.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 598.
 
-[13] [14]
+[14] [15]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 730.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 696.
 
-[15]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 765.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 716.
 
 [16] [17]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 860.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 826.
+
+[18]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 861.
+
+[19] [20]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 956.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 883.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 979.
 
-[18] [19
+[21] [22
 
 ]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 966.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1063.
 
-[20] [21]
+[23] [24]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1046.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1143.
 
-[22] [23]
+[25] [26]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1126.
-
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1132.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1223.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1149.
-
-[24] [25] [26]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1317.
-
-[27]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1341.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1229.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1352.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1246.
+
+[27] [28] [29]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1414.
+
+[30]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1438.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1369.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1449.
 
-[28]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1385.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1466.
 
-[29] [30] [31]
+[31]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1517.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1482.
 
-[32]
-Overfull \hbox (31.26929pt too wide) in paragraph at lines 1592--1592
+[32] [33] [34]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1614.
+
+[35]
+Overfull \hbox (31.26929pt too wide) in paragraph at lines 1689--1689
 []       \T1/ul9/m/n/10.95 [PredictOutput.value, Y(1, :)']  % Compare the fitte
 d value with the data[] 
  []
 
-[33]
+[36]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1621.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1718.
 
-[34]
+[37]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1652.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1749.
 
-[35] [36]
+[38] [39]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1737.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1834.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1752.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1849.
 
-[37] [38
+[40] [41
 
 ]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1830.
-
-[39] [40]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1905.
-
-[41] [42]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1986.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1930.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2004.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1946.
 
-[43] [44] [45] [46] [47]
+[42] [43]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2217.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2036.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2255.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2055.
 
-[48]
-Overfull \hbox (9.17383pt too wide) in paragraph at lines 2264--2266
+[44]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2072.
+
+[45] [46]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2149.
+
+[47] [48
+
+]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2227.
+
+[49] [50]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2302.
+
+[51] [52]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2383.
+
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2401.
+
+[53] [54] [55] [56] [57]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2614.
+
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2652.
+
+[58]
+Overfull \hbox (9.17383pt too wide) in paragraph at lines 2661--2663
 \T1/futs/m/n/10.95 Select the di-men-sion of the en-ve-lope sub-space us-ing li
 ke-li-hood ra-tio test-ing for the het-eroscedas-
  []
 
-[49]
+[59]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2334.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2731.
 
-[50] [51]
+[60] [61]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2432.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2829.
 
-[52]
+[62]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2471.
-
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2497.
-
-[53] [54]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2579.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2868.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2595.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2894.
 
-[55] [56
+[63] [64]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2976.
+
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2992.
+
+[65] [66
 
 ]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2674.
-
-[57]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2750.
-
-[58] [59]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2833.
-
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 2847.
-
-[60] [61] [62] [63]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3058.
-
-[64]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3091.
-
-[65] [66]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3174.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3071.
 
 [67]
-Overfull \hbox (31.26929pt too wide) in paragraph at lines 3245--3245
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3147.
+
+[68] [69]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3230.
+
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3244.
+
+[70] [71] [72] [73]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3455.
+
+[74]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3488.
+
+[75] [76]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3571.
+
+[77]
+Overfull \hbox (31.26929pt too wide) in paragraph at lines 3642--3642
 []       \T1/ul9/m/n/10.95 [PredictOutput.value, Y(1, :)']  % Compare the fitte
 d value with the data[] 
  []
 
-[68]
+[78]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3269.
-
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3289.
-
-[69] [70]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3370.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3666.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3382.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3686.
 
-[71] [72
+[79] [80]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3767.
+
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3779.
+
+[81] [82
 
 ]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3469.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3866.
 
-[73] [74]
+[83] [84]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3555.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3952.
 
-[75] [76]
+[85] [86]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3646.
-
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3659.
-
-[77] [78]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3750.
-
-[79] [80] [81]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3870.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4043.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 3916.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4056.
 
-[82] [83]
-Overfull \hbox (25.55342pt too wide) in paragraph at lines 3997--3997
+[87] [88]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4147.
+
+[89] [90] [91]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4267.
+
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4313.
+
+[92] [93]
+Overfull \hbox (25.55342pt too wide) in paragraph at lines 4394--4394
 []       \T1/ul9/m/n/10.95 [PredictOutput.value, Y(1, :)'] % Compare the fitted
  value with the data[] 
  []
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4022.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4419.
 
-[84]
+[94]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4043.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4440.
 
-[85] [86]
+[95] [96]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4128.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4525.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4144.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4541.
 
-[87] [88
+[97] [98
 
 ]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4224.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4621.
 
-[89] [90]
+[99] [100]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4304.
-
-[91] [92]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4386.
-
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4401.
-
-[93] [94] [95] [96]
-Overfull \hbox (31.26929pt too wide) in paragraph at lines 4629--4629
-[]       \T1/ul9/m/n/10.95 [PredictOutput.value, Y(1, :)']  % Compare the fitte
-d value with the data[] 
- []
-
-[97]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4653.
-
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4674.
-
-[98] [99]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4787.
-
-[100]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4829.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4701.
 
 [101] [102]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4912.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4783.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4926.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4798.
 
-[103] [104
-
-]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5006.
-
-[105] [106]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5084.
-
-[107] [108]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5167.
-
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5183.
-
-[109] [110] [111] [112]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5363.
-
-[113]
-Overfull \hbox (31.26929pt too wide) in paragraph at lines 5437--5437
+[103] [104] [105] [106]
+Overfull \hbox (31.26929pt too wide) in paragraph at lines 5026--5026
 []       \T1/ul9/m/n/10.95 [PredictOutput.value, Y(1, :)']  % Compare the fitte
 d value with the data[] 
  []
 
-[114]
+[107]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5455.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5050.
 
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5474.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5071.
+
+[108] [109]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5184.
+
+[110]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5226.
+
+[111] [112]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5309.
+
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5323.
+
+[113] [114
+
+]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5403.
 
 [115] [116]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5558.
-
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5572.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5481.
 
 [117] [118]
-Overfull \hbox (14.12169pt too wide) in paragraph at lines 5680--5680
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5564.
+
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5580.
+
+[119] [120] [121] [122]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5760.
+
+[123]
+Overfull \hbox (31.26929pt too wide) in paragraph at lines 5834--5834
+[]       \T1/ul9/m/n/10.95 [PredictOutput.value, Y(1, :)']  % Compare the fitte
+d value with the data[] 
+ []
+
+[124]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5852.
+
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5871.
+
+[125] [126]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5955.
+
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5969.
+
+[127] [128]
+Overfull \hbox (14.12169pt too wide) in paragraph at lines 6077--6077
 []       \T1/ul9/m/n/10.95 % When u = p, the envelope model reduces to the ordi
 nary least squares[] 
  []
 
-[119]
+[129]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5717.
-
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5742.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6114.
 
 
-Overfull \hbox (31.26929pt too wide) in paragraph at lines 5745--5745
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6139.
+
+
+Overfull \hbox (31.26929pt too wide) in paragraph at lines 6142--6142
 []       \T1/ul9/m/n/10.95 %  To compare with the results obtained by Partial L
 east Squares, use the[] 
  []
 
-[120]
+[130]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 5774.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6171.
 
-[121] [122
+[131] [132
 
 ]
-Overfull \hbox (12.82018pt too wide) in paragraph at lines 5869--5871
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6252.
+
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6267.
+
+[133] [134]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6344.
+
+[135] [136]
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6434.
+
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6451.
+
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6465.
+
+[137] [138] [139
+
+]
+Overfull \hbox (12.82018pt too wide) in paragraph at lines 6558--6560
 \T1/futs/m/n/10.95 The con-trac-tion and ex-pan-sion ma-tri-ces are links be-tw
 een the "vec" op-er-a-tor and "vech"operator:
  []
 
-[123] [124] [125]
+[140] [141] [142]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6016.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6705.
 
-[126] [127] [128] [129] [130]
-Overfull \hbox (62.98167pt too wide) in paragraph at lines 6281--6282
+[143] [144] [145] [146] [147] [148]
+Overfull \hbox (62.98167pt too wide) in paragraph at lines 7031--7032
 []\T1/futs/m/n/10.95 FParameters: A struc-ture that con-tains data pa-ram-e-ter
 s as in-put for the func-tion dfun_method_handle. 
  []
 
-[131]
-Overfull \hbox (56.95918pt too wide) in paragraph at lines 6331--6332
+[149]
+Overfull \hbox (56.95918pt too wide) in paragraph at lines 7081--7082
 []\T1/futs/m/n/10.95 FParameters: A struc-ture that con-tains data pa-ram-e-ter
 s as in-put for the func-tion fun_method_handle. 
  []
 
-[132] [133] [134]
-Overfull \hbox (2.18777pt too wide) in paragraph at lines 6477--6479
+[150] [151] [152]
+Overfull \hbox (2.18777pt too wide) in paragraph at lines 7227--7229
 \T1/futs/m/n/10.95 This func-tion com-putes statis-tics that will be used fre-q
 uently in the es-ti-ma-tion for each method.
  []
 
-[135]
-Overfull \hbox (0.61105pt too wide) in paragraph at lines 6544--6550
+[153]
+Overfull \hbox (0.61105pt too wide) in paragraph at lines 7294--7300
 \T1/futs/m/n/10.95 Trujillo-Ortiz, A., R. Hernandez-Walls, K. Castro-Morales, A
 . Espinoza-Tenorio, A. Guia-Ramirez
  []
 
-[136]
+[154]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6566.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 7316.
 
 
 FiXme Summary: Number of notes: 0,
@@ -1486,18 +1600,18 @@ FiXme Summary: Number of notes: 0,
 (FiXme)        Number of fatal errors: 0,
 (FiXme)        Total: 0.
 
-[137]
+[155]
 \tf@toc=\write6
 \openout6 = `doc.toc'.
 
  (./doc.aux) ) 
 Here is how much of TeX's memory you used:
- 10813 strings out of 493849
- 150591 string characters out of 3149230
- 274003 words of memory out of 3000000
- 13944 multiletter control sequences out of 15000+200000
+ 10823 strings out of 493849
+ 150733 string characters out of 3149230
+ 275647 words of memory out of 3000000
+ 13954 multiletter control sequences out of 15000+200000
  90138 words of font info for 65 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  43i,12n,60p,782b,440s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on doc.dvi (137 pages, 459688 bytes).
+Output written on doc.dvi (155 pages, 512516 bytes).

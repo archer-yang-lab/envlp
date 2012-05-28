@@ -16,7 +16,7 @@
 % 
 % *Y*: Responses. An n by r matrix, r is the number of
 % responses. The response can be univariate or multivariate and must be
-% contiuous variable.
+% continuous variable.
 % 
 % *Opts*: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not

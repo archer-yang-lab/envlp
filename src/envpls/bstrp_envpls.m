@@ -45,7 +45,7 @@
 %         m = 5;
 %         u = mfoldcv_envpls(X, Y, m)
 %         B = 100;        
-%         bootse = bstrp_envpls(X, Y, u, B);
+%         bootse = bstrp_envpls(X, Y, u, B)
 
 
 function bootse = bstrp_envpls(X, Y, u, B, Opts)
