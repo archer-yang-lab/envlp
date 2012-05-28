@@ -40,7 +40,7 @@
 % and use the final set as our starting value. 
 
 %% Reference
-% The codes is implemented based on the algorithm in Section 3.5 of Su and 
+% The codes are implemented based on the algorithm in Section 3.5 of Su and 
 % Cook (2011).
 
 function WInit = get_Init4henv(F, X, Y, u, DataParameter)

@@ -18,7 +18,7 @@
 % communication matrix.
 
 %% Reference
-% The codes is implemented based on Definition 3.1 in Magnus and Neudecker
+% The codes are implemented based on Definition 3.1 in Magnus and Neudecker
 % (1979).
 
 function k = Kpd(p, d)
