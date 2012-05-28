@@ -75,7 +75,7 @@
 
 %% References
 % 
-% # The codes is implemented based on the algorithm in Section 4.3 of Cook 
+% # The codes are implemented based on the algorithm in Section 4.3 of Cook 
 % et al (2010).
 % # The Grassmann manifold optimization step calls the package sg_min 2.4.1
 % by Ross Lippert (http://web.mit.edu/~ripper/www.sgmin.html).
@@ -87,7 +87,7 @@
 % 
 %         load wheatprotein.txt
 %         X = wheatprotein(:, 8);
-%         Y = wheatprotein(:, 1:6);
+%         Y = wheatprotein(:, 1 : 6);
 %         alpha = 0.01;
 %         u = lrt_env(X, Y, alpha)
 %         ModelOutput = env(X, Y, u)

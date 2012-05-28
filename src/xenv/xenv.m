@@ -77,7 +77,7 @@
 
 %% References
 % 
-% # The codes is implemented based on the algorithm in Section 4.5.1 of Cook 
+% # The codes are implemented based on the algorithm in Section 4.5.1 of Cook 
 % et al (2012).
 % # The Grassmann manifold optimization step calls the package sg_min 2.4.1
 % by Ross Lippert (http://web.mit.edu/~ripper/www.sgmin.html).
