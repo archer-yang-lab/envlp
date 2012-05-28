@@ -31,7 +31,7 @@
 %% Output
 %
 % *bootse*: The standard error for elements in $$\beta$ computed by
-% bootstrap.  An p by r matrix.
+% bootstrap.  A p by r matrix.
 
 %% Description
 % This function computes the bootstrap standard errors for the regression

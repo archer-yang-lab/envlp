@@ -54,9 +54,9 @@
 % algorithms are different.  And this algorithm is much faster, which
 % provides a root n consistent starting value for the one in xenv.m.
 
-%% References
+%% Reference
 % 
-% # The codes is implemented based on the algorithm in Section 4.3 of Cook 
+% # The codes are implemented based on the algorithm in Section 4.3 of Cook 
 % et al (2012).
 
 %% Example

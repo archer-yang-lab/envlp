@@ -331,7 +331,7 @@ sigma1=10;
 sigma2=1;
 p=20;
 u=2;
-n=150;
+n=15;
 Q=rand(p,p);
 Q=grams(Q);
 Sigmao=sigma1^2*Q(:,1:u)*Q(:,1:u)'+sigma2^2*Q(:,u+1:end)*Q(:,u+1:end)';
@@ -349,3 +349,5 @@ ModelOutput = xenvpls(X, Y, u)
 subspace(ModelOutput.Gamma, Q(:,1:u))
 B=50;
 bootse = bstrp_xenvpls(X, Y, u, B)
+m = 5;
+u = mfoldcv_xenvpls(X, Y, m)
