@@ -5,10 +5,10 @@ function  install_envelope
 %  * SG_MIN Ver 2.4.1
 %  * SG_MIN Ver 2.4.1 (Modified Components)
 %  * Envelope Module
-%  * Envelope Module Using Sequential Algorithm
+%  * Envelope Using Sequential Algorithm Module
 %  * Envelope Module for Predictor Reduction
-%  * Envelope Module for Predictor Reduction Using Partial Least Squares
-%  Algorithm
+%  * Envelope for Predictor Reduction Using Partial Least Squares
+%  Algorithm Module
 %  * Heteroscedastic Envelope Module
 %  * Inner Envelope Module
 %  * Partial Envelope Module
