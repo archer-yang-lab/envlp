@@ -1,0 +1,1605 @@
+%% LyX 2.0.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[a4paper,11pt,openany]{memoir}
+\usepackage[latin1]{inputenc}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage[authoryear]{natbib}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{
+  calc,
+  graphicx,
+  url,
+  fancyvrb,
+  multicol,
+  kvsetkeys
+}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+
+\usepackage[draft]{fixme}
+\usepackage{fourier}
+\usepackage[scaled]{luximono}
+\usepackage[scaled]{berasans}
+
+\chapterstyle{ell}
+\renewcommand\tocheadstart{}
+\renewcommand\printtoctitle[1]{}
+
+\setlrmarginsandblock{3cm}{3cm}{1} 
+\setulmarginsandblock{2.5cm}{2.5cm}{*}
+\setmarginnotes{2.5mm}{2cm}{1em}
+\checkandfixthelayout
+
+\makeatletter
+
+\usepackage[svgnames,dvipsnames]{xcolor}
+\definecolor{felinesrcbgcolor}{rgb}{1,1,0.85}
+\definecolor{felinesrcbgcolor}{rgb}{0.94,0.97,1}
+\definecolor{felineframe}{rgb}{0.79,0.88,1}
+\definecolor{myorange}{rgb}{1,0.375,0}
+
+\raggedbottom
+\fvset{frame=lines,
+commandchars=\\\{\},
+  framesep=3mm,
+  framerule=3pt,
+  fontsize=\small,
+  rulecolor=\color{myorange},
+  formatcom=\color{DarkGreen},
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{subfig}
+\usepackage{arydshln}
+\usepackage{times}
+\newcommand{\mlab}{MATLAB}
+\newcommand{\ldr}{LDR}
+
+%\newcommand{\half}{\frac{1}{2}}
+\newcommand{\half}{1/2}
+
+
+\newcommand{\real}[1]{{\mathbb R}^{#1}}
+
+\newcommand{\Pdg}{P_{\alphabfs (\Deltabfs_{y})}}
+\newcommand{\spn}{\mathrm{span}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\var}{\mathrm{var}}
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\covhat}{\widehat{\mathrm{Cov}}}
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand{\stack}{\mathrm{stack}}
+\newcommand{\Normal}{\mathrm{Normal}}
+\newcommand{\tr}{\mathrm{\,tr}}
+\newcommand{\vecc}{\mathrm{\,vec}}
+\newcommand{\I}{\mathbf I}
+\newcommand{\m}{\mathbf m}
+
+%\newcommand{\ols}{ordinary least square}
+\newcommand{\save}{\mathrm{SAVE}}
+\newcommand{\sir}{\mathrm{sir}}
+\newcommand{\mle}{MLE}%{maximum likelihood estimator}
+%\newcommand{\Fsos}{F^{\mathrm{bire}}}
+%\newcommand{\Fsoshat}{\hat{F}^{\mathrm{bire}}}
+\newcommand{\Fsir}{F^{\mathrm{sir}}}
+\newcommand{\Fsirhat}{\hat{F}^{\mathrm{sir}}}
+\newcommand{\Fsub}{F^{\mathrm{sopt}}}
+\newcommand{\Fsubhat}{\hat{F}^{\mathrm{sopt}}}
+\newcommand{\Fopt}{F^{\mathrm{ire}}}
+\newcommand{\Fopthat}{\hat{F}^{\mathrm{ire}}}
+\newcommand{\Ffire}{F^{\mathrm{fire}}}
+\newcommand{\Ffirehat}{\hat{F}^{\mathrm{fire}}}
+\newcommand{\sdr}{SDR}
+\newcommand{\wct}{WCT}
+\newcommand{\ct}{CT}
+\newcommand{\ire}{IRE}
+\newcommand{\oire}{IRE}
+\newcommand{\fire}{Fast IRE}
+\newcommand{\mda}{MDA}
+\newcommand{\name}{block inverse regression estimation}
+\newcommand{\idenvec}{{\mathbf 1}}
+
+% Bold Face symbols
+\newcommand{\X}{\mathbf X}
+\newcommand{\Xhat}{\widehat{\X}}
+\newcommand{\x}{{\mathbf x}}
+\newcommand{\Y}{{\mathbf Y}}
+\newcommand{\y}{\mathbf y}
+\newcommand{\ellhat}{\hat{\ell}}
+\newcommand{\ellbf}{\mathbf{\ell}}
+\newcommand{\ellbfhat}{\hat{\ellbf}}
+\newcommand{\abf}{\mathbf a}
+\newcommand{\q}{{\mathbf q}}
+\newcommand{\f}{{\mathbf f}}
+\newcommand{\Obf}{\mathbf O}
+
+
+\newcommand{\Xcaln}{{\mathcal X}_{n}}
+\newcommand{\Xbar}{\bar{\X}}
+\newcommand{\Xbarcal}{\bar{{\mathcal X}}}
+\newcommand{\Xbb}{\mathbb{X}}
+\newcommand{\Fbb}{\mathbb{F}}
+\newcommand{\Ybb}{\mathbb{Y}}
+
+\newcommand{\Xbbhat}{\widehat{\mathbb{X}}}
+\newcommand{\Ss}{\mathbf{S}}
+\newcommand{\Ty}{\T_{y}}
+\makeatletter
+\renewcommand*{\@seccntformat}[1]{%
+   \csname the#1\endcsname.\quad}
+\makeatother
+\newcommand{\Z}{{\mathbf Z}}
+\newcommand{\z}{{\mathbf z}}
+\newcommand{\Zbar}{\bar{\Z}}
+\newcommand{\Zhat}{\hat{\Z}}
+\newcommand{\Zwidehat}{\widehat{\Z}}
+\newcommand{\Sigmabfhatz}{\greekbold{\hat{\Sigma}}_{\Z}}
+\newcommand{\Sigmabfhatzy}{\greekbold{\hat{\Sigma}}_{\Z|y}}
+\newcommand{\Sigmabfzy}{\Sigmabf_{\Z|y}}
+\newcommand{\sigmahat}{\hat{\sigma}}
+
+\newcommand{\fit}{\mathrm{fit}}
+\newcommand{\res}{\mathrm{res}}
+\newcommand{\rres}{{ 11},\mathrm{res}}
+
+\newcommand{\ffit}{{ 11},\mathrm{fit}}
+\newcommand{\G}{\mathbf{G}}
+\newcommand{\Ll}{\mathbf{L}}
+\newcommand{\Guno}{\mathbf{G_1}}
+\newcommand{\Hh}{\mathbf{H}}
+\newcommand{\Ww}{\mathbf{W}}
+\newcommand{\Mm}{\mathbf{M}}
+\newcommand{\dw}{w}
+%\newcommand{\pfcpc}{PFC(PC)}
+\newcommand{\pfcpc}{$\mathrm{PFC}_{\mathrm{PC}}$}
+\newcommand{\pfcall}{$\mathrm{PFC}_{\mathrm{all}}$}
+
+
+\newcommand{\fbf}{{\mathbf f}}
+\newcommand{\fbfhat}{\hat{\fbf}}
+\newcommand{\fhat}{\hat{f}}
+\newcommand{\D}{\mathbf D}
+\newcommand{\cbf}{{\mathbf c}}
+\newcommand{\Dfbf}{\D_{\fbf}}
+\newcommand{\Dfbfhat}{\D_{\fbfhat}}
+\newcommand{\K}{\mathbf K}
+\newcommand{\Khat}{\widehat \K}
+
+\newcommand{\ghat}{\hat{g}}
+\newcommand{\Rhat}{\widehat{R}}
+\newcommand{\vhat}{\widehat{\bv}}
+
+\newcommand{\uhat}{\widehat{\bu}}
+\newcommand{\gbf}{{\mathbf g}}
+\newcommand{\gbfhat}{\hat{\gbf}}
+
+\newcommand{\Dgbf}{\D_{\gbf}}
+\newcommand{\Dgbfhat}{\D_{\gbfhat}}
+
+\newcommand{\Pbf}{{\mathbf P}}
+\newcommand{\Qbf}{{\mathbf Q}}
+\newcommand{\Qfbf}{\Qbf_{\fbf}}
+\newcommand{\Qfbfhat}{\Qbf_{\fbfhat}}
+\newcommand{\Qgbf}{\Qbf_{\gbf}}
+\newcommand{\Qgbfhat}{\Qbf_{\gbfhat}}
+\newcommand{\Pgbf}{\Pbf_{\gbf}}
+
+\newcommand{\T}{\mathbf T}
+\newcommand{\tT}{\widetilde{\T}}
+\newcommand{\tV}{\widetilde{\V}}
+\newcommand{\dT}{\dot{\T}}
+\newcommand{\dV}{\dot{\V}}
+\newcommand{\ddT}{\ddot{\T}}
+\newcommand{\V}{{\mathbf V}}
+\newcommand{\Vhat}{\widehat \V}
+\newcommand{\bv}{{\mathbf v}}
+\newcommand{\bu}{{\mathbf u}}
+\newcommand{\Vhalf}{{\mathbf V}^{\half}}
+\newcommand{\tL}{{\widetilde L}}
+\newcommand{\bd}{\deltabf}
+
+\newcommand{\ahat}{{\hat{a}}}
+\newcommand{\bhat}{{\hat{b}}}
+
+\newcommand{\U}{{\mathbf U}}
+\newcommand{\bO}{{\mathbf O}}
+\newcommand{\tD}{{\tilde{D}}}
+\newcommand{\W}{{\mathbf W}}
+\newcommand{\dbf}{{\mathbf d}}
+\newcommand{\Lbf}{{\mathbf L}}
+\newcommand{\F}{{\mathbf F}}
+\newcommand{\M}{{\mathbf M}}
+\newcommand{\N}{{\mathbf N}}
+\newcommand{\s}{{\mathbf S}}
+\newcommand{\sy}{{\mathbf S}_{y}}
+\newcommand{\bbf}{{\mathbf b}}
+\newcommand{\A}{{\mathbf A}}
+\newcommand{\B}{{\mathbf B}}
+\newcommand{\Q}{{\mathbf Q}}
+\newcommand{\C}{{\mathbf C}}
+\newcommand{\Chat}{\widehat{\mathbf C}}
+\newcommand{\Dhat}{\widehat{\mathbf D}}
+\newcommand{\e}{{\mathbf e}}
+\newcommand{\Ebf}{{\mathbf E}}
+\newcommand{\R}{{\mathbf R}}
+\newcommand{\Ghat}{\widehat{\G}}
+\newcommand{\Hbf}{{\mathbf H}}
+\newcommand{\h}{\mathbf h}
+\newcommand{\tB}{\widetilde{\B}}
+\newcommand{\tC}{\widetilde{\C}}
+\newcommand{\mpc}{M_{\mathrm{\scriptscriptstyle{PC}}}}
+\newcommand{\mpfc}{M_{\mathrm{\scriptscriptstyle{PFC}}}}
+\newcommand{\lpc}{L_{\mathrm{\scriptscriptstyle{PC}}}}
+\newcommand{\lpfc}{L_{\mathrm{\scriptscriptstyle{PFC}}}}
+\newcommand{\tlpfc}{\widetilde{L}_{\mathrm{\scriptscriptstyle{PFC}}}}
+
+
+
+% Greek Bold Face symbols
+
+\newcommand{\greekbold}[1]{\mbox{\boldmath $#1$}}
+\newcommand{\alphabf}{\greekbold{\alpha}}
+\newcommand{\alphabfhat}{\widehat{\alphabf}}
+\newcommand{\alphahat}{\widehat{\alpha}}
+\newcommand{\alphabfs}{\greekbold{\scriptstyle \alpha}}
+\newcommand{\etabf}{\greekbold{\eta}}
+\newcommand{\etabftd}{\widetilde{\etabf}}
+\newcommand{\etabfs}{\greekbold{\scriptstyle \eta}}
+\newcommand{\betabf}{\greekbold{\beta}}
+\newcommand{\etabfhat}{\hat{\greekbold{\eta}}}
+\newcommand{\rhobf}{\greekbold{\rho}}
+\newcommand{\betabfhat}{\widehat{\greekbold{\beta}}}
+\newcommand{\betabft}{\greekbold{\widetilde{\beta}}}
+\newcommand{\betabfs}{\greekbold{\scriptstyle \beta}}
+\newcommand{\taubf}{\greekbold{\tau}}
+\newcommand{\taubfhat}{\hat{\greekbold{\tau}}}
+\newcommand{\taubfn}{\taubf_{n}}
+\newcommand{\taubfhatn}{\hat{\taubf}_{n}}
+\newcommand{\Lambdabf}{\greekbold{\Lambda}}
+\newcommand{\Lambdabfhat}{\widehat{\greekbold{\Lambda}}}
+\newcommand{\Lambdabfs}{\greekbold{\scriptstyle{\Lambda}}}
+\newcommand{\epsilonbf}{\greekbold{\epsilon}}
+\newcommand{\mubfbar}{\bar{\mubf}}
+\newcommand{\mubfhat}{\hat{\mubf}}
+\newcommand{\J}{\mathbf J}
+\newcommand{\gammabf}{\greekbold{\gamma}}
+\newcommand{\gammabfhat}{\hat{\greekbold{\gamma}}}
+\newcommand{\gammabfy}{\greekbold{\gamma}_{y}}
+\newcommand{\Gammabf}{\greekbold{\Gamma}}
+\newcommand{\gammabfs}{\greekbold{{\scriptstyle \gamma}}}
+\newcommand{\Gammabfs}{{\greekbold{\scriptstyle \Gamma}}}
+\newcommand{\Gammabfhat}{\widehat{\greekbold{\Gamma}}}
+\newcommand{\deltabf}{\greekbold{\delta}}
+\newcommand{\Deltabf}{\greekbold{\Delta}}
+\newcommand{\Deltabfhat}{\widehat{\greekbold{\Delta}}}
+\newcommand{\Deltabfs}{{\greekbold{\scriptstyle \Delta}}}
+\newcommand{\deltabfs}{{\greekbold{\scriptstyle \delta}}}
+\newcommand{\Deltabfshat}{{\widehat{\greekbold{\scriptstyle \Delta}}}}
+\newcommand{\omegabf}{\greekbold{\omega}}
+\newcommand{\Omegabf}{\greekbold{\Omega}}
+\newcommand{\Omegabfs}{{\greekbold{\scriptstyle \Omega}}}
+\newcommand{\Omegabfstd}{{\tilde{\greekbold{\scriptstyle \Omegabf}}}}
+\newcommand{\Omegabfsbar}{{\bar{\greekbold{\scriptstyle{\Omegabf}}}}}
+\newcommand{\Omegabftd}{\widetilde{\Omegabf}}
+\newcommand{\Omegabfbar}{\bar{\Omegabf}}
+\newcommand{\Omegabfhat}{\widehat{\greekbold{\Omega}}}
+\newcommand{\phibf}{\greekbold{\phi}}
+\newcommand{\phibfhat}{\widehat{\greekbold{\phi}}}
+\newcommand{\lambdabf}{\greekbold{\lambda}}
+
+
+\newcommand{\Sigmabf}{\greekbold{\Sigma}}
+\newcommand{\Sigmabfhat}{\greekbold{\widehat{\Sigma}}}
+\newcommand{\Sigmabft}{\greekbold{\widetilde{\Sigma}}}
+\newcommand{\Sigmabfhats}{{\greekbold{\scriptstyle \widehat{\Sigma}}}}
+\newcommand{\Sigmabfs}{{\greekbold{\scriptstyle \Sigma}}}
+\newcommand{\mubf}{\greekbold{\mu}}
+
+\newcommand{\xibf}{\greekbold{\xi}}
+\newcommand{\xibfy}{\xibf_{y}}
+\newcommand{\xibfs}{{\greekbold{\scriptstyle \xi}}}
+\newcommand{\xibfhat}{{\hat{\xibf}}}
+\newcommand{\xibfhats}{\hat{\xibfs}}
+
+\newcommand{\xibfhaty}{{\hat{\xibf}_{y}}}
+\newcommand{\txibf}{\tilde{\greekbold{\xi}}}
+\newcommand{\txibfs}{\tilde{\greekbold{\scriptstyle \xi}}}
+\newcommand{\Phibf}{\greekbold{\Phi}}
+\newcommand{\Phibfhat}{\widehat{\Phibf}}
+\newcommand{\Phibfs}{\greekbold{\scriptstyle \Phi}}
+\newcommand{\Phibfshat}{\hat{\Phibfs}}
+\newcommand{\thetabf}{\greekbold{\theta}}
+\newcommand{\varepsilonbf}{\greekbold{\varepsilon}}
+
+\newcommand{\zetabf}{\greekbold{\zeta}}
+\newcommand{\tzetabf}{\tilde{\greekbold{\zeta}}}
+\newcommand{\zetabfhat}{{\hat{\zetabf}}}
+\newcommand{\zetabfs}{{\greekbold{\scriptstyle \zeta}}}
+\newcommand{\zetabfhats}{\hat{\zetabfs}}
+\newcommand{\nubf}{\greekbold{\nu}}
+\newcommand{\nubfhat}{{\hat{\nubf}}}
+
+\newcommand{\lambdahat}{\hat{\lambda}}
+
+\newcommand{\fa}[1]{2{#1}}
+\newcommand{\fb}[1]{1{#1}}
+\newcommand{\Si}[1]{\Gammabf_{#1}\Omegabf_{#1}\Gammabf_{#1}^{T}}
+\newcommand{\Sinv}[1]{\Gammabf_{#1}\Omegabf_{#1}^{-1}\Gammabf_{#1}^{T}}
+
+
+%subspace notation
+\newcommand{\syx}{\mathcal{S}_{Y|\X}}
+\newcommand{\syz}{\mathcal{S}_{Y|\Z}}
+\newcommand{\drs}{DRS}
+\newcommand{\spc}{{\mathcal S}}
+\newcommand{\spchat}{\widehat{\mathcal S}}
+\newcommand{\dist}{{\mathcal D}}
+\newcommand{\Mhat}{\widehat{{\mathbf M}}}
+\newcommand{\Mhatsir}{\widehat{\mathbf M}_{\mathrm{\scriptscriptstyle{SIR}}}}
+\newcommand{\Msir}{\mathbf{M}_{\mathrm{\scriptscriptstyle{SIR}}}}
+\newcommand{\Msave}{\mathbf{M}_{\mathrm{\scriptscriptstyle{SAVE}}}}
+\newcommand{\Mhatsave}{\widehat{\mathbf M}_{\mathrm{\scriptscriptstyle{SAVE}}}}
+\newcommand{\ospc}{{\mathcal O}}
+\newcommand{\hspc}{{\mathcal H}}
+\newcommand{\gspc}{{\mathcal G}}
+\newcommand{\mspc}{{\mathcal M}}
+\newcommand{\OLS}{\mathrm{OLS}}
+\newcommand{\pfc}{\mathrm{pfc}}
+\newcommand{\mse}{\mathrm{MSE}}
+\newcommand{\bspc}{\mathcal B}
+\newcommand{\espc}{{\mathcal E}}
+\newcommand{\iseb}{\mathcal{IE}_{\Sigmabfs}(\bspc)}
+\newcommand{\seb}{{\mathcal E}_{\Sigmabfs}(\bspc)}
+\newcommand{\sebp}{{\mathcal E}_{\Sigmabfs}(\bspc_{1})}
+
+\newcommand{\clc}{CLC}
+
+\newcommand{\indep}{\;\, \rule[0em]{.03em}{.67em} \hspace{-.25em}
+\rule[0em]{.65em}{.03em} \hspace{-.25em}
+\rule[0em]{.03em}{.67em}\;\,}
+
+\makeatother
+
+
+\setlength{\parindent}{0pt}
+
+
+\begin{document}
+
+\title{MATLAB Toolbox Envelope:  User's Guide}
+
+\maketitle
+
+
+
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+
+\newpage
+
+
+\chapter{Overview}
+
+Envelope model and its variants are a new approach to multiple responses multivariate linear regression analysis. It has the potential to achieve massive efficiency gains compared with the standard model in the estimation of the coefficients for the selected predictors.
+
+This MATLAB toolbox ``envelope'' currently implements six models in the envelope
+family, including envelope model, heteroscedastic envelope model,
+inner envelope model, partial envelope model, scaled envelope model
+and envelope model for the reduction on predictors:
+
+\begin{description}
+\item[{env}] Envelope Module.
+\item[{henv}] Heteroscedastic Envelope Module. It is used
+when the data has none constant error structure.
+\item[{ienv}] Inner Envelope Module. 
+\item[{penv}] Partial Envelope Module. It can be applied when part of the predictors are of main interest.  It is particular useful when the number of predictors is large,
+\item[{senv}] Scaled Envelope Module. It is used when the user hopes to have a scale-invariant version of the envelope model.
+\item[{xenv}] Envelope Model in the Predictor Space Module. The envelope model in the predictor space is used when the number of predictors is strictly larger than the number of the responses.
+\end{description}
+The complete applicability of this toolbox is described in Table \ref{tab_app}.
+
+\begin{table}
+\begin{tabular}{l||l|l|l}
+\hline 
+{\footnotesize Model} & {\footnotesize Model Selection} & {\footnotesize Inference Tools} & {\footnotesize Section}\tabularnewline
+\hline 
+\hline 
+\multirow{3}{*}{{\footnotesize Envelope Model}} & {\footnotesize AIC} & {\footnotesize Estimation and Prediction} & \multirow{3}{*}{\ref{sec_em}}\tabularnewline
+\cline{2-3} 
+ & {\footnotesize BIC} & {\footnotesize Bootstrap for Estimating Standard Errors} & \tabularnewline
+\cline{2-3} 
+ & {\footnotesize LRT} & {\footnotesize Hypothesis Test on Coefficients} & \tabularnewline
+\hline 
+\hline 
+\multirow{3}{*}{{\footnotesize Heteroscedastic Envelope Model}} & {\footnotesize AIC} & {\footnotesize Estimation and Prediction} & \multirow{3}{*}{\ref{sec_hm}}\tabularnewline
+\cline{2-3} 
+ & {\footnotesize BIC} & {\footnotesize Bootstrap for Estimating Standard Errors} & \tabularnewline
+\cline{2-3} 
+ & {\footnotesize LRT} & {\footnotesize Hypothesis Test on Coefficients} & \tabularnewline
+\hline 
+\hline 
+\multirow{3}{*}{{\footnotesize Inner Envelope Model }} & {\footnotesize AIC} & {\footnotesize Estimation and Prediction} & \multirow{3}{*}{\ref{sec_im}}\tabularnewline
+\cline{2-3} 
+ & {\footnotesize BIC} & {\footnotesize Bootstrap for Estimating Standard Errors} & \tabularnewline
+\cline{2-3} 
+ & {\footnotesize LRT} & {\footnotesize Hypothesis Test on Coefficients} & \tabularnewline
+\hline 
+\hline 
+\multirow{3}{*}{{\footnotesize Partial Envelope Model}} & {\footnotesize AIC} & {\footnotesize Estimation and Prediction} & \multirow{3}{*}{\ref{sec_pm}}\tabularnewline
+\cline{2-3} 
+ & {\footnotesize BIC} & {\footnotesize Bootstrap for Estimating Standard Errors} & \tabularnewline
+\cline{2-3} 
+ & {\footnotesize LRT} & {\footnotesize Hypothesis Test on Coefficients} & \tabularnewline
+\hline 
+\hline 
+\multirow{3}{*}{{\footnotesize Scaled Envelope Model}} & {\footnotesize AIC} & {\footnotesize Estimation and Prediction} & \multirow{3}{*}{\ref{sec_sem}}\tabularnewline
+\cline{2-3} 
+ & {\footnotesize BIC} & {\footnotesize Bootstrap for Estimating Standard Errors} & \tabularnewline
+\cline{2-3} 
+ &  & {\footnotesize Hypothesis Test on Coefficients} & \tabularnewline
+\hline 
+\hline 
+\multirow{3}{*}{{\footnotesize Envelope Model in the Predictor Space}} & {\footnotesize AIC} & {\footnotesize Estimation and Prediction} & \multirow{3}{*}{\ref{sec_xm}}\tabularnewline
+\cline{2-3} 
+ & {\footnotesize BIC} & {\footnotesize Bootstrap for Estimating Standard Errors} & \tabularnewline
+\cline{2-3} 
+ & {\footnotesize LRT} & {\footnotesize Hypothesis Test on Coefficients} & \tabularnewline
+\hline 
+\end{tabular}\caption{Applicability of toolbox ``envelope''}
+\label{tab_app}
+
+\end{table}
+
+
+
+\section{Technical Support}
+
+We provides a support website, on which the users can download the
+package and check recent updates http://code.google.com/p/envlp/ .
+For further help, the users can contact the authors of the toolbox
+dennis@stat.umn.edu, suzhihua@stat.umn.edu, and yiyang@umn.edu .
+
+\section{Directory Structure}
+
+\begin{description}
+\item [{./envelope\_license.m}]  Envelope Toolbox License.
+\item [{./install\_envelope.m}]  Envelope Toolbox installation script. 
+\item [{./README.txt}] Envelope Toolbox Quick Start.
+\item [{./data/}] Data published in papers on envelope models and data description manual.
+\item [{./doc/}] User's guide, function reference manual. 
+\item [{./examples/}]  Examples for demonstration.
+\item [{./src/}] Envelope toolbox source code. 
+\end{description}
+
+\section{Document Organization}
+
+This user's guide is organized as follows:
+\begin{description}
+\item [{Chapter~~1}] Overview. Introduces the content and applicability
+of the toolbox. 
+\item [{Chapter~~2}] Quick start. Describes the installation of the toolbox,
+and provides simple examples on using the main functions. 
+\item [{Chapter~~3}] Toolbox structure. Discusses the structure of the
+toolbox, and demonstrates the applicability with more detailed examples. 
+\item [{Chapter~~4}] Optional arguments. Explains how to control the
+convergence speed, input user-specified starting values, and display
+iteration process.
+\end{description}
+
+\chapter{Quick Start}
+
+
+\section{Installation}
+
+To install the toolbox, direct your MATLAB working directory to the
+folder ``envlp'', and type 
+\begin{Verbatim}[commandchars=\\\{\}]
+install_envelope
+\end{Verbatim}
+If the users agree with our license statements, the installation is
+completed, and all the utilities of the toolbox are added to the MATLAB
+path. Once installed, no further action is needed to call the functions
+in the toolbox, even if the users change a working directory, or MATLAB
+is relaunched. 
+
+
+\section{A Guided Tour\label{sec_tour}}
+
+This ``envelope'' toolbox consists tools in the following three classes:
+\begin{enumerate}
+\item Model selection: Select the dimension of the envelope subspace.
+\item Model Fitting: Fit the model.
+\item Post processing: Inference based on the model fitting.
+\end{enumerate}
+We will present a tour of our toolbox through all three classes.
+
+
+\subsection*{Model Selection}
+
+The model selection tools available in this toolbox are Akaike information
+criterion (AIC), Bayesian information criterion (BIC) and Likelihood
+ratio testing (LRT). Each model selection tool can be applied to all
+models, except that LRT cannot be applied to scaled envelope model,
+as indicated in Table \ref{tab_app}. AIC and BIC generally require
+longer computing time than LRT, because of the nature of the method.
+The syntax of AIC, BIC and LRT are 
+\begin{Verbatim}[commandchars=\\\{\}]
+u = modelselectaic(X, Y, modelType)
+u = modelselectbic(X, Y, modelType)
+u = modelselectlrt(X, Y, alpha, modelType)
+\end{Verbatim}
+For the inputs: X is a matrix containing the predictors, except that
+with ``penv'', it is a list having X.X1 and X.X2; Y is a matrix containing
+the response; 'alpha' is the significance level; and 'modelType' is
+a string indicting the model and its choices can be ``env'', ``henv'',
+``ienv'', ``penv'', ``senv'' and ``xenv''. The output is the dimension
+of the envelope subspace selected by the tool. Examples will be provided
+in Section \ref{sec_example}.
+
+
+\subsection*{Model Fitting}
+
+The functions to fit the six models in the envelope family are the
+main drive of this toolbox. Their syntax are 
+\begin{Verbatim}[commandchars=\\\{\}]
+ModelOutput = env(X, Y, u)
+ModelOutput = henv(X, Y, u)
+ModelOutput = ienv(X, Y, u)
+ModelOutput = penv(X, Y, u)
+ModelOutput = senv(X, Y, u)
+ModelOutput = xenv(X, Y, u)
+\end{Verbatim}
+The input X and Y are the same as the input in the model selection
+tools, u is the dimension of the envelope subspace, the user can input
+any dimension if it is known, and use model selection tools described
+in model selection part to choose u. The output ModelOutput is a list,
+containing the maximum likelihood estimators (MLE) under the model,
+as well as some keys statistics for inference, including the standard
+error ratios of elements in the regression coefficients for the standard
+model versus the envelope model, maximized value of the log likelihood,
+number of parameters, etc.
+
+
+\subsection*{Post-processing}
+
+This toolbox provides functions for the following inference: 
+\begin{itemize}
+\item Compute bootstrap standard errors for the regression coefficients
+$\betabfhat$, which gives an estimator for the actual standard errors
+of $\betabfhat$. 
+\item For a given data point, report its fitted value or predicted value,
+with associated standard errors. 
+\item Test hypothesis
+\begin{eqnarray*}
+H_{0}: & \Lbf\betabfhat\R=\A\\
+H_{\alpha}: & \Lbf\betabfhat\R\neq\A
+\end{eqnarray*}
+where $\Lbf$, $\R$ and $\A$ are given matrices.
+\end{itemize}
+The syntax of functions for the inferences are 
+\begin{Verbatim}[commandchars=\\\{\}]
+bootse = bootstrapse(X, Y, u, B, modelType)
+PredictOutput = prediction(ModelOutput, Xnew, infType, modelType)
+TestOutput = testcoefficient(ModelOutput, modelType, TestInput)
+\end{Verbatim}
+respectively. For the inputs, modelType in all three functions is
+the same as in model section part; ModelOutput in \texttt{prediction}
+and \texttt{testcoefficient} is a list returned from the functions
+for model fitting; X, Y, and u are discussed in the model selection
+part; B is the number of bootstrap sample; Xnew is a value of X with
+which to estimate or predict Y; infType is a string of characters
+indicting the inference type, the choices can be ``estimation'' or
+``prediction''; and TestInput is a list that specifies the null hypothesis,
+including $\Lbf$, $\R$, and $\A$. TestInput is an option input
+argument, is missing, \texttt{testcoefficient} will perform the usual
+F test, i.e. testing if $\betabf=0$. The output of \texttt{bootstrapse}
+is a matrix the same size of $\betabfhat$, with each elements as
+the bootstrap standard error of its corresponding element in $\betabfhat$.
+The output of \texttt{prediction} is a list containing the fitted
+or predicted value, its covariance matrix and standard errors. The
+function \texttt{testcoefficient }will print out a form displaying
+the test statistic, degrees of freedom of the reference distribution
+and the p-value, all of which are also summarized in the list TestOutput.
+
+
+\section{Two examples\label{sec_example}}
+
+To demonstrate their usage, we take the envelope model and partial
+envelope model as examples. Other methods can be applied similarly,
+and are also discussed in details in Section 3. 
+
+
+\subsection*{Wheat Protein Data}
+
+For the envelope model, the data we use is the wheatprotein data,
+which is used as a data analysis example in \citet{cook2010envelope}.
+First we load the data and assign column 1 to 6 as the response $Y$
+and column 8 as the predictor $X$. The description of the data is
+available under the folder /envlp/data. 
+\begin{Verbatim}[commandchars=\\\{\}]
+load wheatprotein.txt
+X = wheatprotein(:, 8);
+Y = wheatprotein(:, 1:6);
+\end{Verbatim}
+Then we apply the model selection tools and get the following results.
+\begin{Verbatim}[commandchars=\\\{\}]
+modelType = 'env';         
+u = modelselectaic(X, Y, modelType)
+\emph{
+u =}
+\emph{
+     1
+}
+u = modelselectbic(X, Y, modelType)
+\emph{
+u =}
+\emph{
+     1}
+
+alpha = 0.01;
+u = modelselectlrt(X, Y, alpha, modelType)
+\emph{
+u =}
+\emph{
+     1}
+\end{Verbatim}
+In this example, all three model selection tools agree that the dimension
+of the envelope should be $1$, which is consistent with the results
+in \citet{cook2010envelope}. Then we fit the envelope model with
+dimension $1$.
+\begin{Verbatim}[commandchars=\\\{\}]
+ModelOutput = env(X, Y, u)
+\emph{ModelOutput = }
+\emph{         beta: [6x1 double]}
+\emph{        Sigma: [6x6 double]}
+\emph{        Gamma: [6x1 double]}
+\emph{       Gamma0: [6x5 double]}
+\emph{          eta: 8.5647}
+\emph{        Omega: 7.8762}
+\emph{       Omega0: [5x5 double]}
+\emph{        alpha: [6x1 double]}
+\emph{            l: -850.7592}
+\emph{    covMatrix: [6x6 double]}
+\emph{       asyEnv: [6x1 double]}
+\emph{        ratio: [6x1 double]}
+\emph{           np: 28}
+\emph{            n: 50}
+\end{Verbatim}
+We notice that ModelOutput is a list that includes the MLEs and the
+statistics relevant to the influence of the envelope model. Fore more
+details of the components in ModelOutput, please refer to the Reference
+of the toolbox. If we would want to see the regression coefficients,
+as well as the standard error ratios, we can type 
+\begin{Verbatim}[commandchars=\\\{\}]
+ModelOutput.beta
+\emph{ans =}
+\emph{   -1.0644}
+\emph{    4.4730}
+\emph{    3.6839}
+\emph{   -5.9770}
+\emph{    0.6013}
+\emph{   -1.5986}
+
+ModelOutput.ratio
+\emph{ans =}
+\emph{   28.0945}
+\emph{   18.4326}
+\emph{   23.6384}
+\emph{   16.3211}
+\emph{   65.8245}
+\emph{    6.4668}
+\end{Verbatim}
+and get the results. We can also look at the eigenvalues of $\Sigmabf_{1}$
+and $\Sigmabf_{2}$ by the following commands
+\begin{Verbatim}[commandchars=\\\{\}]
+ModelOutput.Omega
+\emph{ans =}
+\emph{    7.8762}
+eig(ModelOutput.Omega0)
+\emph{ans =}
+\emph{   1.0e+03 *}
+\emph{    6.5166}
+\emph{    0.2083}
+\emph{    0.0201}
+\emph{    0.0004}
+\emph{    0.0003}
+    \end{Verbatim}
+These results are consistent with those published in \citet{cook2010envelope}.
+With the model fitting results, if we would like to check the fitted
+value and its standard errors for the second observation, we can use
+the \texttt{prediction} function. 
+\begin{Verbatim}[commandchars=\\\{\}]
+Xnew = X(2, :)';
+PredictOutput = predict_env(ModelOutput, Xnew, 'estimation')
+\emph{PredictOutput = }
+\emph{        value: [6x1 double]}
+\emph{    covMatrix: [6x6 double]}
+\emph{           SE: [6x1 double]}
+           \end{Verbatim}
+We can get the standard errors of the fitted value, and also we can
+compare the fitted value with its true value 
+\begin{Verbatim}[commandchars=\\\{\}]
+\emph{PredictOutput.SE}
+\emph{ans =}
+\emph{    4.8892}
+\emph{    4.0227}
+\emph{    4.3237}
+\emph{    4.7470}
+\emph{    6.8186}
+\emph{    2.6948}
+
+[PredictOutput.value, Y(2,:)']
+\emph{ans =}
+\emph{  474.7135  458.0000}
+\emph{  127.4740  112.0000}
+\emph{  251.2044  236.0000}
+\emph{  380.8280  368.0000}
+\emph{  380.9473  383.0000}
+\emph{   -6.3287  -15.0000}
+\end{Verbatim}
+Now suppose we want to test if $\betabf=0$, we run the \texttt{testcoefficient
+}as
+\begin{Verbatim}[commandchars=\\\{\}]
+TestOutput = testcoefficient(ModelOutput, modelType)
+\emph{ Test Hypothesis     Chisq Statistic    DF     P-value}
+\emph{-------------------------------------------------------}
+\emph{L * beta * R = A       116.230          6       0.0000}
+\emph{-------------------------------------------------------}
+\end{Verbatim}
+Notice that we did not have TestInput, because we are performing the
+usual F test on if $\betabf=0$. The test results indicate that we
+have strong evidence to reject $\betabf=0$.
+
+
+\subsection*{Fiber and Paper Data}
+
+Now we look at another example for the partial envelope model. The
+data we load is the fiber and paper data used in \citet{su2011partial}. 
+\begin{Verbatim}[commandchars=\\\{\}]
+load fiberpaper.dat
+Y = fiberpaper(:, 1 : 4);
+X.X1 = fiberpaper(:, 7); 
+X.X2 = fiberpaper(:, 5 : 6);
+\end{Verbatim}
+We notice that for partial envelope model, X is a list, with X.X1
+containing the main predictors and X.X2 containing covariates. The
+model selection process is parallel to that for the envelope model:
+\begin{Verbatim}[commandchars=\\\{\}]
+modelType = 'penv';
+u = modelselectaic(X, Y, modelType) 
+\emph{u =}
+
+\emph{     3}
+
+u = modelselectbic(X, Y, modelType)
+\emph{u =}
+
+\emph{     1}
+
+alpha = 0.01;
+u = modelselectlrt(X, Y, alpha, modelType)
+\emph{u =}
+
+\emph{     1}
+     \end{Verbatim}
+In this example, AIC picks the dimension $3$, while BIC and LRT both
+gives dimension as $1$. In \citet{su2011partial}, $u=1$ is used
+for model fitting and inference. So we fit the partial envelope model
+with $u=1$.
+\begin{Verbatim}[commandchars=\\\{\}]
+u = 1;
+ModelOutput = penv(X, Y, u)
+\emph{ModelOutput = }
+\emph{        beta1: [4x1 double]}
+\emph{        beta2: [4x2 double]}
+\emph{        alpha: [4x1 double]}
+\emph{        Gamma: [4x1 double]}
+\emph{          eta: 0.0047}
+\emph{        Omega: 0.0149}
+\emph{       Omega0: [3x3 double]}
+\emph{        Sigma: [4x4 double]}
+\emph{            l: -35.6323}
+\emph{           np: 23}
+\emph{    covMatrix: [12x12 double]}
+\emph{      asyPenv: [4x1 double]}
+\emph{        ratio: [4x1 double]}
+\emph{            n: 62}
+\end{Verbatim}
+Again we get the output as a list, which contains the MLE for the
+parameters and statistics that are relevant to the inference for the
+partial envelope model. Detailed description of the elements in the
+list is in the Reference of the toolbox. To look at the standard error
+ratios, and the eigenvalues of $\Sigmabf_{1}$ and $\Sigmabf_{2}$,
+we key in 
+\begin{Verbatim}[commandchars=\\\{\}]
+ModelOutput.ratio
+\emph{ans =}
+\emph{   66.0742}
+\emph{    6.9326}
+\emph{   10.5048}
+\emph{    9.6279}
+
+ModelOutput.Omega
+\emph{ans =}
+\emph{    0.0149}
+
+eig(ModelOutput.Omega0)
+\emph{ans =}
+\emph{    4.9819}
+\emph{    0.0999}
+\emph{    0.0050}
+\end{Verbatim}
+The results are almost the same the those in \citet{su2011partial}.
+They are slightly different, because the toolbox used a different
+starting value algorithm, which is less likely to be trapped in local
+minimum and thus leads to a more reliable result. Next we look at
+the standard errors for elements in $\betabfhat$. Since ModelOutput.asyPenv
+contains the asymptotic standard errors, for actual standard errors,
+we need to divide the asymptotic standard errors by $\sqrt{n}$, where
+$n$ is the sample size and is returned in ModelOutput.n.
+\begin{Verbatim}[commandchars=\\\{\}]
+ModelOutput.asyPenv / sqrt(ModelOutput.n)
+\emph{ans =}
+\emph{   1.0e-03 *}
+\emph{    0.3181}
+\emph{    0.8704}
+\emph{    0.9719}
+\emph{    0.4689}
+\end{Verbatim}
+The standard errors above are computed assuming the partial envelope
+model. They can also be estimated using bootstrap the residuals. 
+\begin{Verbatim}[commandchars=\\\{\}]
+B = 5000;
+bootse = bootstrapse(X, Y, u, B, modelType)
+\emph{bootse =}
+\emph{    0.0052}
+\emph{    0.0020}
+\emph{    0.0029}
+\emph{    0.0013}
+\end{Verbatim}
+The uses may get a slightly different results from the above, as a
+different random seed is used. 
+
+
+\chapter{Envelope Models}
+
+
+\section{Multivariate Linear Regression\label{sec_OLS}}
+
+The envelope model is originally developed under the framework of
+multivariate linear regression, and its performance is frequently
+compared to the standard multivariate linear regression model. In
+this package, we offer some simple functions on that makes the comparison
+easier.
+
+A standard multivariate linear regression model is formulated as
+\[
+\Y=\alphabf+\betabf\X+\varepsilonbf,
+\]
+where $\Y\in\mathbb{\mathbb{R}}^{r}$ is the multivariate response,
+$\X\in\mathbb{R}^{p}$ is non-stochastic predictor, and $\varepsilonbf\in\mathbb{\mathbb{R}}^{r}$
+follows a distribution with mean $0$, and covariance matrix $\Sigmabf\in\mathbb{R}^{r\times r}$,
+$\alphabf\in\mathbb{R}^{r}$ and $\betabf\in\mathbb{R}^{r\times p}$
+are the unknown intercept and coefficients. The goal of the envelope
+model is to reduce the standard errors in estimating $\betabf$.
+
+This function to fit this model is 
+\begin{Verbatim}[commandchars=\\\{\}]
+ModelOutput = fit_OLS(X, Y)
+\end{Verbatim}
+where the input X is an $n\times p$ matrix, with the ith row as the
+transpose of the ith observation of $\X$, and Y is an $n\times r$
+matrix with the ith row as the transpose of the ith observation of
+$\Y$. The output \texttt{ModelOutput }is a list, which contains the
+ordinary least squares (OLS) estimators of $\betabf$, $\Sigmabf$
+and $\alphabf$. 
+
+The standard errors of the OLS estimator $\betabfhat$ is often compared
+to those of the envelope model, the function
+\begin{Verbatim}[commandchars=\\\{\}]
+bootse = bootstrapse_OLS(X, Y, B)
+\end{Verbatim}
+computes the standard errors of $\betabfhat$ estimated by bootstrapping
+the residuals. The input B is the number of bootstrap samples, and
+bootse returns a matrix with the same size as $\betabf$, with each
+element as the standard error of the corresponding element in $\betabf$.
+
+
+\section{Envelope Model\label{sec_em}}
+
+The envelope model is a general method in the envelope family to reduce
+the standard errors in estimating $\betabf$. It can be applied when
+the number of the responses is strictly greater than the number of
+the predictors, and the responses are continuous variables. It has
+a potential to obtain efficiency gains in estimating $\betabf$, compared
+to the OLS estimators.
+
+In the multivariate linear regression context in Section \ref{sec_OLS},
+a coordinate form of the envelope model is 
+\[
+\Y=\alphabf+\Gammabf\etabf\X+\varepsilonbf,\quad\Sigmabf=\Gammabf\Omegabf\Gammabf^{T}+\Gammabf_{0}\Omegabf_{0}\Gammabf_{0}^{T},
+\]
+where the regression coefficients $\betabf=\Gammabf\etabf$, $\bspc=\spn(\betabf)$,
+$\Gammabf\in\mathbb{R}^{r\times u}$ spans $\seb$ -- the envelope
+subspace, $\Gammabf_{0}\in\real{r\times(r-u)}$ spans the orthogonal
+complement of $\seb$, $\etabf\in\mathbb{R}^{u\times p}$, $\Omegabf\in\mathbb{R}^{u\times u}$,
+$\Omegabf_{0}\in\mathbb{R}^{(r-u)\times(r-u)}$ are coordinates, and
+$u$ is the dimension of $\seb$.
+
+To select the dimension of the envelope subspace $u$, we can use
+the following functions
+\begin{Verbatim}[commandchars=\\\{\}]
+u = modelselectaic(X, Y, 'env') 
+u = modelselectbic(X, Y, 'env')
+alpha = 0.01;  # Users can specify other significance level
+u = modelselectlrt(X, Y, alpha, 'env')
+\end{Verbatim}
+The possible values of $u$ can be any integer from $0$ to $r$.
+When $u=r$, the envelope model is essentially the standard multivariate
+linear model. And when $u=0$, it means that $\betabf=0$, then the
+changes in $\Y$ does not depend on $\X$. After obtaining $u$, we
+can fit the envelope model by 
+\begin{Verbatim}[commandchars=\\\{\}]
+ModelOutput = env(X, Y, u)
+\end{Verbatim}
+The output \texttt{ModelOutput }is a list, which contains the MLE
+of $\betabf$, $\Sigmabf$, $\Gammabf$, $\Gammabf_{0}$, $\etabf$,
+$\Omegabf$, $\Omegabf_{0}$ and $\alphabf$, and also statistics
+computed from the model, including the maximized log likelihood, the
+asymptotic covariance matrix of $\vecc(\betabf)$, the asymptotic
+standard errors of $\betabf$, the ratios of the asymptotic standard
+errors of the standard model versus the envelope model for elements
+in $\betabf$, the number of parameters in the model, and the number
+of observations in the data. After fitting the data and get \texttt{ModelOutput},
+we can perform post processing inference as computing bootstrap standard
+errors of $\betabfhat$ by 
+\begin{Verbatim}[commandchars=\\\{\}]
+bootse = bootstrapse(X, Y, u, B, 'env')
+\end{Verbatim}
+or computing the fitted value or predicted value and associated standard
+errors given a new $\X$ by 
+\begin{Verbatim}[commandchars=\\\{\}]
+PredictOutput = prediction(ModelOutput, Xnew, 'estimation', 'env')
+PredictOutput = prediction(ModelOutput, Xnew, 'prediction', 'env')
+\end{Verbatim}
+or testing if a linear combination of $\betabf$ is equal to a particular
+matrix, i.e. given $\Lbf$, $\R$, and $\A$, testing if $\Lbf\betabf\R=\A$, 
+\begin{Verbatim}[commandchars=\\\{\}]
+TestOutput = testcoefficient(ModelOutput, modelType, TestInput)
+\end{Verbatim}
+The inputs and outputs of these post processing functions are discussed
+in details in Section \ref{sec_tour}. 
+
+
+\section{Heteroscedastic Envelope Model\label{sec_hm}}
+
+The heteroscedastic envelope model \citep{su2012estimation} is used
+when the data has none constant error structure, and it is developed
+under the framework of estimating multivariate means for different
+populations. To use the heteroscedastic envelope model, the number
+of response should be greater than or equal to the number of populations. 
+
+The standard model for estimating multivariate means for $p$ populations
+can be formulated as $\Y_{(i)j}=\mubf+\betabf_{(i)}+\varepsilonbf_{(i)j},\;\; i=1,\,\cdots,\, p,\;\; j=1,\,\cdots,\, n_{(i)}$.
+We use the subscript $(i)$ to represent the ith group, and we $j$
+without the parenthesis to represent the jth observation. Then $\Y_{(i)j}\in\real{r}$
+is the jth observation in the ith group, $n_{(i)}$ is the number
+of observations in the ith group, $\mubf\in\real{r}$ is the grand
+mean, $\betabf_{(i)}\in\real{r}$ is the main effect for the ith group
+and satisfies $\sum_{i=1}^{p}n_{(i)}\betabf_{(i)}=0$, the errors
+$\varepsilonbf_{(i)j}$ follows a distribution with mean $0$, and
+covariance matrix $\Sigmabf_{(i)}\in\real{r\times r}$. With this
+formulation, let $\bspc=\spn(\betabf_{(1)}\,\cdots,\,\betabf_{(p)})$,
+and $\mspc=\{\Sigmabf_{(i)}:\, i=1,\,\cdots,\, p\}$, the coordinate
+form of the heteroscedastic envelope model is displayed as follows:
+\[
+\Y_{(i)j}=\mubf+\Gammabf\etabf_{(i)}+\varepsilonbf_{(i)j},\quad\Sigmabf_{(i)}=\Gammabf\Omegabf_{1(i)}\Gammabf^{T}+\Gammabf_{0}\Omegabf_{0}\Gammabf_{0}^{T},\quad i=1,\,\cdots,\, p,\;\; j=1,\,\cdots,\, n_{(i)},
+\]
+where $\betabf_{(i)}=\Gammabf\etabf_{(i)}$, $\Gammabf\in\real{r\times u}$
+spans $\espc_{\mspc}(\bspc)$ -- the $\mspc$ envelope of $\bspc$,
+$\Gammabf_{0}\in\real{r\times(r-u)}$ spans the orthogonal complement
+of $\espc_{\mspc}(\bspc)$, $\etabf_{(i)}\in\mathbb{R}^{u\times1}$,
+$\Omegabf_{1(i)}\in\mathbb{R}^{u\times u}$, $\Omegabf_{0}\in\mathbb{R}^{(r-u)\times(r-u)}$
+, $i=1,\,\cdots,\, p$, are coordinates, $\sum_{i=1}^{p}n_{(i)}\etabf_{(i)}=0$,
+and $u$ is the dimension of $\espc_{\mspc}(\bspc)$.
+
+To use the heteroscedastic envelope model, first we check if the data
+has heteroscedastic error structure by the Box's M test \citep{johnson2002applied}.
+Take the water strider example \citep{su2012estimation}, the following
+codes performs the Box's M test. 
+\begin{Verbatim}[commandchars=\\\{\}]
+load waterstrider.mat         
+alpha = 0.01;   # Users can specify other significance level      
+TestOutput = mtest(X, Y, alpha); 
+\end{Verbatim}
+The input X is a group indicator, there is no constraint on the number
+of columns of X, as long as X takes $p$ unique values for $p$ populations.
+For example, if there are three groups, X can take three unique values
+as $1$, $2$, and $3$ to indicate the groups, or X can take $(0,\:1)$,
+$(1,\:0)$, and $(0,\,0)$ to indicate the groups. The output is displayed
+below
+\begin{Verbatim}[commandchars=\\\{\}]
+\emph{---------------------------------------------}
+\emph{  MBox     Chi-sqr.         df          P }
+\emph{---------------------------------------------   }
+\emph{157.5977   137.3361         72       0.0000 }
+\emph{---------------------------------------------}
+Covariance matrices are significantly different.
+\end{Verbatim}
+As the data has none constant covariance structure, we can apply the
+heteroscedastic envelope model. To select the dimension of the envelope
+subspace, we use
+\begin{Verbatim}[commandchars=\\\{\}]
+u = modelselectaic(X, Y, 'henv') 
+u = modelselectbic(X, Y, 'henv')
+alpha = 0.01;  
+u = modelselectlrt(X, Y, alpha, 'henv')
+\end{Verbatim}
+The input X can have the same form as in the function \texttt{mtest}.
+After obtaining $u$, the heteroscedastic envelope model can be fit
+by 
+\begin{Verbatim}[commandchars=\\\{\}]
+ModelOutput = henv(X, Y, u)
+\end{Verbatim}
+The output \texttt{ModelOutput} is a list containing the MLE of the
+grand mean $\mubf$, the group mean $\mubf+\betabf_{(i)}$, the fitted
+values $\widehat{{\Y}}$, $\Gammabf$, $\Gammabf_{0}$, $\betabf_{(i)}$,
+the unique values in $\X$, $\Sigmabf_{(i)}$, $\etabf_{(i)}$, $\Omegabf_{(i)}$,
+and $\Omegabf_{0}$ , and also statistics computed from the model,
+including the maximized log likelihood, the asymptotic covariance
+matrix of $(\mubf^{T},\,\betabf_{(1)}^{T},\,\cdots,\,\betabf_{(p)}^{T})^{T}$,
+the asymptotic standard errors of $\betabf_{(i)}$, the ratios of
+the asymptotic standard errors of the standard model versus the inner
+envelope model for elements in $\betabf_{(i)}$, the number of parameters
+in the model, and the number of observations in the data. After model
+fitting, the functions for post processing inference are 
+\begin{Verbatim}[commandchars=\\\{\}]
+bootse = bootstrapse(X, Y, u, B, 'henv')
+PredictOutput = prediction(ModelOutput, Xnew, 'estimation', 'henv')
+PredictOutput = prediction(ModelOutput, Xnew, 'prediction', 'henv')
+TestOutput = testcoefficient(ModelOutput, modelType, TestInput)
+\end{Verbatim}
+Their inputs and outputs are similar to those for the envelope model.
+
+
+\section{Inner Envelope Model\label{sec_im}}
+
+Like the envelope model, the inner envelope model \citeauthor{su2012inner}
+is also a general method to reduce the standard errors in estimating
+$\betabf$. It has a different mechanism to achieve the efficiency
+gains than the envelope model, so it may be very useful when the envelope
+model reduces to the standard model and offers no efficiency gains.
+The inner envelope model also requires that the number of predictors
+is strictly less than the number of responses. 
+
+In the multivariate linear regression context (Section \ref{sec_OLS}),
+the coordinate form of the inner envelope model can be written as
+\[
+\Y=\alphabf+(\Gammabf_{1}\etabf_{1}^{T}+\Gammabf_{0}\B\etabf_{2}^{T})\X+\varepsilonbf,\quad\Sigmabf=\Gammabf_{1}\Omegabf_{1}\Gammabf_{1}^{T}+\Gammabf_{0}\Omegabf_{0}\Gammabf_{0}^{T},
+\]
+where $\betabf=\Gammabf_{1}\etabf_{1}^{T}+\Gammabf_{0}\B\etabf_{2}^{T}\in\real{r\times p}$,
+$\bspc=\spn(\betabf)$, $\Gammabf_{1}\in\real{r\times u}$ spans the
+inner envelope subspace $\iseb$, $\Gammabf_{0}\in\real{r\times(r-u)}$
+spans the orthogonal complement of $\iseb$, $\B\in\real{(r-u)\times(p-u)}$
+is a semi-orthogonal matrix such that $(\Gammabf_{1},\;\Gammabf_{0}\B)$
+spans $\bspc$, $\etabf_{1}\in\real{p\times u}$, $\etabf_{2}\in\real{p\times(p-u)}$,
+$\Omegabf_{1}\in\real{u\times u}$, and $\Omegabf_{0}\in\real{(r-u)\times(r-u)}$
+contains the coordinates, and $u$ is the dimension of $\iseb$.
+
+To select the dimension of $\iseb$, we use the same functions as
+for the envelope model, except that the modelType is \texttt{'ienv'}.
+\begin{Verbatim}[commandchars=\\\{\}]
+u = modelselectaic(X, Y, 'ienv') 
+u = modelselectbic(X, Y, 'ienv')
+alpha = 0.01;  
+u = modelselectlrt(X, Y, alpha, 'ienv')
+\end{Verbatim}
+The possible values of $u$ are integers from $0$ to $p$. When $u=0$,
+the inner envelope model reduces to the standard model, and offers
+no efficiency gains. When $u=p$, the inner envelope model is equivalent
+to an envelope model with dimension $p$. 
+
+Given the dimension $u$, the inner envelope model can be fitted by
+\begin{Verbatim}[commandchars=\\\{\}]
+ModelOutput = ienv(X, Y, u)
+\end{Verbatim}
+The output \texttt{ModelOutput} is a list containing the MLE of $\betabf$,
+$\Sigmabf$, $\Gammabf_{1}$, $\Gammabf_{0}$, $\etabf_{1}$, $\B$,
+$\etabf_{2}$, $\Omegabf_{1}$, $\Omegabf_{0}$ and $\alphabf$, and
+also statistics computed from the model, including the maximized log
+likelihood, the asymptotic covariance matrix of $\vecc(\betabf)$,
+the asymptotic standard errors of $\betabf$, the ratios of the asymptotic
+standard errors of the standard model versus the inner envelope model
+for elements in $\betabf$, the number of parameters in the model,
+and the number of observations in the data. After model fitting, the
+functions for post processing inference are 
+\begin{Verbatim}[commandchars=\\\{\}]
+bootse = bootstrapse(X, Y, u, B, 'ienv')
+PredictOutput = prediction(ModelOutput, Xnew, 'estimation', 'ienv')
+PredictOutput = prediction(ModelOutput, Xnew, 'prediction', 'ienv')
+TestOutput = testcoefficient(ModelOutput, modelType, TestInput)
+\end{Verbatim}
+Their inputs and outputs are similar to those for the envelope model.
+
+
+\section{Partial Envelope Model\label{sec_pm}}
+
+The partial envelope model \citep{su2011partial} can be applied when
+part of the predictors are of main interest. It only requires that
+the number of the main predictors is strictly less than the number
+of the responses. This is particular useful when the number of predictors
+$p$ is large, but there are only a small number of predictors are
+of main interest. Suppose that $\X^{T}=(\X_{1}^{T},\;\X_{2}^{T})$,
+where $\X_{1}\in\mathbb{R}^{p_{1}}$ are predictors of main interest,
+and $\X_{2}\in\mathbb{R}^{p_{2}}$ are covariates, $p_{1}+p_{2}=p$.
+Then the standard model is formulated as $\Y=\alphabf+\betabf_{1}\X_{1}+\betabf_{2}\X_{2}+\varepsilonbf$,
+and the coordinate form of the partial envelope model is 
+\[
+\Y=\alphabf+\Gammabf\etabf\X_{1}+\betabf_{2}\X_{2}+\varepsilonbf,\quad\Sigmabf=\Gammabf\Omegabf\Gammabf^{T}+\Gammabf_{0}\Omegabf_{0}\Gammabf_{0}^{T},
+\]
+where $\betabf_{1}=\Gammabf\etabf\in\mathbb{R}^{r\times p_{1}}$,
+$\Gammabf\in\mathbb{R}^{r\times u}$ spans the partial envelope $\espc_{\Sigmabfs}(\bspc_{1})$
+-- the partial envelope subspace, $\Gammabf_{0}\in\real{r\times u}$
+spans the orthogonal complement of $\espc_{\Sigmabfs}(\bspc_{1})$,
+$\etabf\in\mathbb{R}^{u\times p_{1}}$, $\Omegabf\in\mathbb{R}^{u\times u}$,
+$\Omegabf_{0}\in\mathbb{R}^{(r-u)\times(r-u)}$ are coordinates, $\betabf_{2}\in\mathbb{R}^{r\times p_{2}}$
+are the coefficients for $\X_{2}$ and $u$ is the dimension of $\espc_{\Sigmabfs}(\bspc_{1})$.
+
+To use the functions related to partial envelope model, the input
+X is a list, which has two elements X.X1 and X.X2. The element X.X1
+is an $n\times p_{1}$ matrix, with the ith row as the transpose of
+the ith observation of $\X_{1}$, and X.X2 is an $n\times p_{2}$
+matrix, with the ith row as the transpose of the ith observation of
+$\X_{2}$. The form of X as a list is unique to the partial envelope
+model. 
+
+The following functions can be applied to select $u$,
+\begin{Verbatim}[commandchars=\\\{\}]
+u = modelselectaic(X, Y, 'penv') 
+u = modelselectbic(X, Y, 'penv')
+alpha = 0.01;  
+u = modelselectlrt(X, Y, alpha, 'penv')
+\end{Verbatim}
+The possible values of $u$ are any integer from $0$ to $r$, when
+$u=r$, the partial envelope model reduces the standard model, and
+when $u=0$, the changes in $\Y$ does not depend on the changes in
+$\X_{1}$.
+
+After obtaining $u$, the partial envelope model can be fit by 
+\begin{Verbatim}[commandchars=\\\{\}]
+ModelOutput = penv(X, Y, u)
+\end{Verbatim}
+The output \texttt{ModelOutput} is a list containing the MLE of $\betabf_{1}$,
+$\betabf_{2}$, $\Sigmabf$, $\Gammabf$, $\Gammabf_{0}$, $\etabf$,
+$\Omegabf$, $\Omegabf_{0}$ and $\alphabf$, and also statistics
+computed from the model, including the maximized log likelihood, the
+asymptotic covariance matrix of $(\vecc(\betabf_{2})^{T},\;\vecc(\betabf_{1})^{T})^{T}$,
+the asymptotic standard errors of $\betabf_{1}$, the ratios of the
+asymptotic standard errors of the standard model versus the partial
+envelope model for elements in $\betabf_{1}$, the number of parameters
+in the model, and the number of observations in the data. The functions
+for post processing inference are 
+\begin{Verbatim}[commandchars=\\\{\}]
+bootse = bootstrapse(X, Y, u, B, 'penv')
+PredictOutput = prediction(ModelOutput, Xnew, 'estimation', 'penv')
+PredictOutput = prediction(ModelOutput, Xnew, 'prediction', 'penv')
+TestOutput = testcoefficient(ModelOutput, modelType, TestInput)
+\end{Verbatim}
+The usage of functions are introduced in Section \ref{sec_tour},
+and are similar to those for the envelope models as discussed in Section
+\ref{sec_em}. The only difference is that in the function \texttt{prediction},
+the input Xnew is a list, which has Xnew.X1 and Xnew.X2. Xnew.X1 is
+a $p_{1}$ dimensional column vector containing the new value of $\X_{1}$,
+and Xnew.X2 is a $p_{2}$ dimensional column vector containing the
+new value of $\X_{2}$.
+
+
+\section{Scaled Envelope Model\label{sec_sem}}
+
+Scaled envelope model (\citeauthor{cook2012scaled}) is used when
+the user hopes to have a scale-invariant version of the envelope model.
+It is more efficient or at least as efficient as the standard model.
+The scaled envelope model normally takes longer to compute because
+of the nature of its iterative computing algorithm. But users can
+print out the model fitting process, which will be discussed in Chapter
+\ref{chap_argument}.
+
+In the multivariate linear regression context (\ref{sec_OLS}), the
+coordinate form of the scaled envelope model can be written as
+\[
+\Y=\alphabf+\Lambdabf\Gammabf\etabf\X+\varepsilonbf,\quad\Sigmabf=\Lambdabf\Gammabf\Omegabf\Gammabf^{T}\Lambdabf+\Lambdabf\Gammabf_{0}\Omegabf_{0}\Gammabf_{0}^{T}\Lambdabf,
+\]
+where $\betabf=\Lambdabf\Gammabf\etabf\in\real{r\times p}$, $\Lambdabf\in\real{r\times r}$
+is the scaling matrix, it is a diagonal matrix with the first element
+as $1$, and the other diagonal elements as positive real numbers,
+$\Gammabf\in\real{r\times p}$ spans the envelope subspace $\espc_{\Lambdabfs^{-1}\Sigmabfs\Lambdabfs^{-1}}(\Lambdabf^{-1}\bspc)$,
+$\Gammabf_{0}\in\real{r\times(r-u)}$ spans the orthogonal complement
+of $\espc_{\Lambdabfs^{-1}\Sigmabfs\Lambdabfs^{-1}}(\Lambdabf^{-1}\bspc)$,
+$\etabf\in\real{u\times p}$, $\Omegabf\in\real{u\times u}$, and
+$\Omegabf_{0}\in\real{(r-u)\times(r-u)}$ carry the coordinates, and
+$u$ is the dimension of the envelope subspace $\espc_{\Lambdabfs^{-1}\Sigmabfs\Lambdabfs^{-1}}(\Lambdabf^{-1}\bspc)$.
+If $\Lambdabf=\I_{r}$, then the scaled envelope model is equivalent
+to the envelope model. 
+
+To select the dimension of $\espc_{\Lambdabfs^{-1}\Sigmabfs\Lambdabfs^{-1}}(\Lambdabf^{-1}\bspc)$,
+we can apply the following two functions
+\begin{Verbatim}[commandchars=\\\{\}]
+u = modelselectaic(X, Y, 'senv') 
+u = modelselectbic(X, Y, 'senv')
+\end{Verbatim}
+Notice that likelihood ratio testing can not be applied to the model
+selection of the scaled envelope model, only AIC and BIC can be used
+to select $u$. The possible values of $u$ can be any integer from
+$0$ to $r$. When $u=r$, the scaled envelope model is essentially
+the standard multivariate linear model. And when $u=0$, it means
+that $\betabf=0$, then the changes in $\Y$ does not depend on $\X$.
+After obtaining $u$, we can fit the scaled envelope model by 
+\begin{Verbatim}[commandchars=\\\{\}]
+ModelOutput = senv(X, Y, u)
+\end{Verbatim}
+The output \texttt{ModelOutput} is a list, which contains the MLE
+of $\betabf$, $\Sigmabf$, $\Lambdabf$, $\Gammabf$, $\Gammabf_{0}$,
+$\etabf$, $\Omegabf$, $\Omegabf_{0}$ and $\alphabf$, and also
+statistics computed from the model, including the maximized log likelihood,
+the asymptotic covariance matrix of $\vecc(\betabf)$, the asymptotic
+standard errors of $\betabf$, the ratios of the asymptotic standard
+errors of the standard model versus the scaled envelope model for
+elements in $\betabf$, the number of parameters in the model, and
+the number of observations in the data. After model fitting, the users
+can perform the following post processing inference:
+\begin{Verbatim}[commandchars=\\\{\}]
+bootse = bootstrapse(X, Y, u, B, 'senv')
+PredictOutput = prediction(ModelOutput, Xnew, 'estimation', 'senv')
+PredictOutput = prediction(ModelOutput, Xnew, 'prediction', 'senv')
+TestOutput = testcoefficient(ModelOutput, modelType, TestInput)
+\end{Verbatim}
+These functions are used similarly as for the envelope model.
+
+
+\section{Envelope Model in the Predictor Space\label{sec_xm}}
+
+The envelope model in the predictor space is used when the number
+of predictors is strictly larger than the number of the responses.
+It has the potential to have better prediction performance compared
+to the standard model, or even the partial least squares. In fact,
+in the population version, the envelope estimator in this case is
+equivalent to the partial least squares estimator, but in the sample
+version, its performance is normally more stable than the partial
+least squares estimator. 
+
+We slightly change the formulation of the standard model as $\Y=\mubf+\betabf^{T}\X+\varepsilonbf$,
+to be consistent with the notations in \citet{cook2012envelopes}.
+Then the coordinate form of envelope model in the predictor space
+is as follows:
+\[
+\Y=\mubf+\etabf^{T}\Omegabf^{-1}\Gammabf^{T}\X+\varepsilonbf,\quad\Sigmabf_{\X}=\Gammabf\Omegabf\Gammabf^{T}+\Gammabf_{0}\Omegabf_{0}\Gammabf_{0}^{T},
+\]
+where $\mubf\in\real{r}$ is the intercept, $\betabf=\Gammabf\Omegabf^{-1}\etabf\in\real{p\times r}$,
+$\Gammabf\in\real{r\times u}$ spans the envelope subspace $\espc_{\Sigmabfs_{\X}}(\bspc)$,
+and $\bspc=\spn(\betabf^{T})$, $\Gammabf_{0}\in\real{r\times(r-u)}$
+spans the orthogonal complement of $\espc_{\Sigmabfs_{\X}}(\bspc)$,
+$\etabf\in\real{u\times r}$, $\Omegabf\in\real{u\times u}$, and
+$\Omegabf_{0}\in\real{(r-u)\times(r-u)}$ carry coordinates, and $u$
+is the dimension of the envelope $\espc_{\Sigmabfs_{\X}}(\bspc)$.
+
+To select the dimension of $\espc_{\Sigmabfs_{\X}}(\bspc)$, we apply
+the following three functions
+\begin{Verbatim}[commandchars=\\\{\}]
+u = modelselectaic(X, Y, 'xenv') 
+u = modelselectbic(X, Y, 'xenv')
+alpha = 0.01;  
+u = modelselectlrt(X, Y, alpha, 'xenv')
+\end{Verbatim}
+The possible values for $u$ can be any integer from $0$ to $p$,
+when $u=p$, the envelope model reduces to the standard model, and
+when $u=0$, the changes in $\Y$ does not depend on $\X$. After
+estimating $u$, we can fit the model by 
+\begin{Verbatim}[commandchars=\\\{\}]
+ModelOutput = xenv(X, Y, u)
+\end{Verbatim}
+The output \texttt{ModelOutput} is a list, which contains the MLE
+of $\betabf$, $\Sigmabf_{\X}$, $\Gammabf$, $\Gammabf_{0}$, $\etabf$,
+$\Omegabf$, $\Omegabf_{0}$ and $\mubf$, and also statistics computed
+from the model, including the maximized log likelihood, the asymptotic
+covariance matrix of $\vecc(\betabf)$, the asymptotic standard errors
+of $\betabf$, the ratios of the asymptotic standard errors of the
+standard model versus the envelope model for elements in $\betabf$,
+the number of parameters in the model, and the number of observations
+in the data. After model fitting, the following post processing inference
+can be performed:
+\begin{Verbatim}[commandchars=\\\{\}]
+bootse = bootstrapse(X, Y, u, B, 'xenv')
+PredictOutput = prediction(ModelOutput, Xnew, 'estimation', 'xenv')
+PredictOutput = prediction(ModelOutput, Xnew, 'prediction', 'xenv')
+TestOutput = testcoefficient(ModelOutput, modelType, TestInput)
+\end{Verbatim}
+These functions are used similarly as for the envelope model in Section
+\ref{sec_em}.
+
+
+\chapter{Optional Arguments\label{chap_argument}}
+
+The computing of the envelope models involve Grassmann manifold optimization.
+The package sg\_min 2.4.1 by Ross Lippert (http://web.mit.edu/$\sim$ripper/www.sgmin.html)
+uses the analytical first derivative and numerical second derivative
+of the objective function, and we find it very stable. The Grassmann
+manifold optimization in this package is then based on sg\_min 2.4.1.
+Because of the iterative nature of the optimization, we offer some
+optional arguments so that the users can control the convergence tolerance
+and speed, as well as monitoring the iteration process. In functions
+\texttt{modelselectaic}, \texttt{modelselectbic}, \texttt{modelselectlrt},
+\texttt{env}, \texttt{henv}, \texttt{ienv}, \texttt{penv}, \texttt{senv},
+\texttt{xenv} and \texttt{bootstrapse}, there is an optional input
+argument \texttt{Opts}. Opts is a list, which has five elements: 
+\begin{enumerate}
+\item Opts.maxIter: This controls the maximum number of iterations. The
+default value is $300$. The iterations will terminate once the maximum
+number of iterations is reached, then the results are based on the
+last iteration. At the same time, a warning
+\begin{Verbatim}[commandchars=\\\{\}]
+\emph{WARNING: reached maximum number of iterations without convergence}
+\emph{for specified tolerances}
+\end{Verbatim}
+is printed out. 
+\item Opts.ftol: This controls the tolerance parameter of the objective
+function. The default value is $1e-10$. The iteration will terminate
+once the tolerance condition for both the objective function and its
+derivative are reached.
+\item Opts.gradtol: This controls the tolerance parameter of the derivative
+of the objective function. The default value is $1e-7$.
+\item Opts.verbose: This is a flag for printing out the computing process.
+It is logical $0$ or $1$, with $0$ for no print out and $1$ for
+print out. The default value is $0$. The print out will depend on
+the nature of the functions: with functions for model selection \texttt{(modelselectaic},
+\texttt{modelselectbic} and \texttt{modelselectlrt}), the current
+dimension will be printed out; with functions for bootstrap (\texttt{bootstrapse}),
+the current number of bootstrap sample will be printed out; with the
+scaled envelope model (\texttt{senv}), the current number of iteration
+for the alternating algorithm between the scales and Grassmann manifold
+optimization is printed out; and with all the other functions \texttt{henv},
+\texttt{ienv}, \texttt{penv}, \texttt{senv}, and \texttt{xenv}, the
+current number of iterations of the Grassmann manifold optimization
+is printed out.
+\item Opts.init: This argument allows the users to input their starting
+values. If not specified, the starting values are generated by the
+functions \texttt{get\_Init} or \texttt{get\_Init4henv}. This argument
+is only applicable to \texttt{env}, \texttt{henv}, \texttt{ienv},
+\texttt{penv}, \texttt{senv} and \texttt{xenv}.
+\end{enumerate}
+The users can choose to define some or none of the five elements,
+if not defined, the default value will be used. If the users choose
+to define some of the elements, it is added as the last input of the
+function. For example, suppose the users define \texttt{Opts} for
+\texttt{env}, then the syntax of \texttt{env} will be 
+\begin{Verbatim}[commandchars=\\\{\}]
+ModelOutput = env(X, Y, u, Opts)
+\end{Verbatim}
+We will conclude this chapter by a couple of examples. 
+
+
+\subsection*{Control Convergence Arguments}
+
+We use the wheat protein data and the function \texttt{env} as an
+example. First we set 
+\begin{Verbatim}[commandchars=\\\{\}]
+Opts.verbose = 1
+\end{Verbatim}
+so that we can monitor the iteration process. We leave the other arguments
+as default values for now
+\begin{Verbatim}[commandchars=\\\{\}]
+load wheatprotein.txt 
+X = wheatprotein(:, 8); 
+Y = wheatprotein(:, 1:6); 
+u = 1;
+ModelOutput = env(X, Y, u, Opts);
+\emph{iter	grad		F(Y)}
+\emph{0	3.109420e+00	-1.166907e+00}
+\emph{1	1.448779e-01	-1.193292e+00}
+\emph{2	2.566091e-01	-1.193338e+00}
+\emph{3	2.434851e-02	-1.193379e+00}
+\emph{4	1.035130e-02	-1.193385e+00}
+\emph{5	1.259475e-02	-1.193385e+00}
+\emph{6	9.240358e-03	-1.193385e+00}
+\emph{7	1.436949e-02	-1.193386e+00}
+\emph{8	1.096367e-02	-1.193389e+00}
+\emph{9	1.643753e-04	-1.193391e+00}
+\emph{10	2.813965e-04	-1.193391e+00}
+\emph{11	8.046247e-05	-1.193391e+00}
+\emph{12	4.414260e-07	-1.193391e+00}
+\emph{13	1.774275e-07	-1.193391e+00}
+\end{Verbatim}
+We notice that it takes $13$ iterations till convergence. Suppose
+we set the maximum number of iterations as $10$, then the algorithm
+stops at the tenth iteration and a warning is printed out at the end.
+\begin{Verbatim}[commandchars=\\\{\}]
+Opts.maxIter = 10;
+ModelOutput = env(X, Y, u, Opts);
+\emph{iter	grad		F(Y)}
+\emph{0	3.109420e+00	-1.166907e+00}
+\emph{1	1.448779e-01	-1.193292e+00}
+\emph{2	2.566091e-01	-1.193338e+00}
+\emph{3	2.434851e-02	-1.193379e+00}
+\emph{4	1.035130e-02	-1.193385e+00}
+\emph{5	1.259475e-02	-1.193385e+00}
+\emph{6	9.240358e-03	-1.193385e+00}
+\emph{7	1.436949e-02	-1.193386e+00}
+\emph{8	1.096367e-02	-1.193389e+00}
+\emph{9	1.643753e-04	-1.193391e+00}
+\emph{10	2.813965e-04	-1.193391e+00}
+\emph{WARNING: reached maximum number of iterations without convergence for }
+\emph{specified tolerances}
+\end{Verbatim}
+Normally Grassmann manifold optimization takes hundreds of iterations
+to converge at the default tolerance parameters. We use this example
+because that we can print its complete iteration process. Now we change
+the tolerance level of convergence.
+\begin{Verbatim}[commandchars=\\\{\}]
+Opts.ftol = 1e-5;
+Opts.gradtol = 1e-3;
+ModelOutput = env(X, Y, u, Opts);
+\emph{iter	grad		F(Y)}
+\emph{0	3.109420e+00	-1.166907e+00}
+\emph{1	1.448779e-01	-1.193292e+00}
+\emph{2	2.566091e-01	-1.193338e+00}
+\emph{3	2.434851e-02	-1.193379e+00}
+\emph{4	1.035130e-02	-1.193385e+00}
+\emph{5	1.259475e-02	-1.193385e+00}
+\emph{6	9.240357e-03	-1.193385e+00}
+\emph{7	1.436947e-02	-1.193386e+00}
+\emph{8	1.096356e-02	-1.193389e+00}
+\emph{9	1.573313e-04	-1.193391e+00}
+\end{Verbatim}
+As we loosen the tolerance level, it requires less number of iterations
+till convergence. If the users want to specify their starting value,
+it can be done by
+\begin{Verbatim}[commandchars=\\\{\}]
+Opts.init = [1 0 0 0 0 0]';
+ModelOutput = env(X, Y, u, Opts);
+\emph{iter	grad		F(Y)}
+\emph{0	3.510184e+00	7.406482e+00}
+\emph{1	1.005063e+01	5.523686e+00}
+\emph{2	2.643888e+00	4.138687e+00}
+\emph{...}
+\emph{74	1.465095e-02	-1.193389e+00}
+\emph{75	1.066872e-04	-1.193391e+00}
+\emph{76	7.018152e-07	-1.193391e+00}
+\end{Verbatim}
+From the result, we notice that a random starting value normally takes
+longer to convergence. Furthermore, according to our experience, it
+is more likely to be trapped in the local minimums, and therefore,
+should be avoided.
+
+\subsection*{The Display Argument}
+
+In the previous example, the print out for \texttt{env} is the Grassmann
+manifold optimization process. In this example, we will show different
+print out types for different functions. We will still use the wheat
+protein data as the background for the first two cases. 
+\begin{Verbatim}[commandchars=\\\{\}]
+load wheatprotein.txt 
+X = wheatprotein(:, 8); 
+Y = wheatprotein(:, 1:6); 
+\end{Verbatim}
+\begin{description}
+\item [{1.}] With functions on model selection, the print out is the current
+dimension:\end{description}
+\begin{Verbatim}[commandchars=\\\{\}]
+Opts.verbose = 1;
+u = modelselectaic(X, Y, 'env', Opts);
+\emph{Current dimension 0}
+\emph{Current dimension 1}
+\emph{Current dimension 2}
+\emph{Current dimension 3}
+\emph{Current dimension 4}
+\emph{Current dimension 5}
+\end{Verbatim}
+Suppose the number of responses is $r$, the print out will start
+with dimension $0$ and end with dimension $r-1$. The case of $u=r$
+is computed but not printed, because it takes little time, compared
+to the Grasmann manifold optimization process.
+\begin{description}
+\item [{2.}] With function\textbf{ }\texttt{bootstrapse}, the print out
+is the current number of bootstrap sample.\end{description}
+\begin{Verbatim}[commandchars=\\\{\}]
+u = 1;
+B = 15;
+Opts.verbose = 1;
+bootse = bootstrapse(X, Y, u, B, 'env', Opts);
+\emph{Current number of bootstrap sample 1}
+\emph{Current number of bootstrap sample 2}
+\emph{Current number of bootstrap sample 3}
+\emph{Current number of bootstrap sample 4}
+\emph{Current number of bootstrap sample 5}
+\emph{Current number of bootstrap sample 6}
+\emph{Current number of bootstrap sample 7}
+\emph{Current number of bootstrap sample 8}
+\emph{Current number of bootstrap sample 9}
+\emph{Current number of bootstrap sample 10}
+\emph{Current number of bootstrap sample 11}
+\emph{Current number of bootstrap sample 12}
+\emph{Current number of bootstrap sample 13}
+\emph{Current number of bootstrap sample 14}
+\emph{Current number of bootstrap sample 15}
+\end{Verbatim}
+The print out will start from the first bootstrap sample till the
+last bootstrap sample. 
+\begin{description}
+\item [{3.}] With function \texttt{senv}, the print out is the alternating
+algorithm between the optimization of the scaling parameters and Grassmann
+manifold.\end{description}
+\begin{Verbatim}[commandchars=\\\{\}]
+load('sales.txt')
+Y = sales(:, 4 : 7);
+X = sales(:, 1 : 3);
+u = 1;
+Opts.verbose = 1;
+ModelOutput = senv(X, Y, u, Opts);
+\emph{Current number of iterations 1}
+\emph{Current number of iterations 2}
+\emph{Current number of iterations 3}
+\emph{Current number of iterations 4}
+\emph{Current number of iterations 5}
+\emph{Current number of iterations 6}
+\emph{Current number of iterations 7}
+\emph{Current number of iterations 8}
+\emph{Current number of iterations 9}
+\emph{Current number of iterations 10}
+\emph{Current number of iterations 11}
+\emph{Current number of iterations 12}
+\emph{Current number of iterations 13}
+\emph{Current number of iterations 14}
+\emph{Current number of iterations 15}
+\emph{Current number of iterations 16}
+\emph{Current number of iterations 17}
+\emph{Current number of iterations 18}
+\emph{Current number of iterations 19}
+\emph{Current number of iterations 20}
+\emph{Current number of iterations 21}
+\emph{Current number of iterations 22}
+\emph{Current number of iterations 23}
+\emph{Current number of iterations 24}
+\emph{Current number of iterations 25}
+\emph{Current number of iterations 26}
+\end{Verbatim}
+The maximum number of iteration of the alternating algorithm is $1000$.
+So the print out can run from the first iteration to the thousandth
+iteration. 
+\begin{description}
+\item [{4.}] With other functions, the print out is the Grassmann manifold
+optimization process as in \texttt{env}.\end{description}
+\begin{Verbatim}[commandchars=\\\{\}]
+load irisf.mat
+d = 1;
+Opts.verbose = 1;
+ModelOutput = ienv(X, Y, d, Opts)
+\emph{iter	grad		F(Y)}
+\emph{0	2.043243e-01	1.808874e-02}
+\emph{1	1.102662e-01	1.399590e-02}
+\emph{2	3.082806e-02	7.353045e-03}
+\emph{3	1.755330e-03	7.285612e-03}
+\emph{4	1.312911e-03	7.285253e-03}
+\emph{5	3.840448e-04	7.284642e-03}
+\emph{6	1.174194e-06	7.284631e-03}
+\emph{7	1.462019e-06	7.284631e-03}
+\emph{8	9.358198e-08	7.284631e-03}
+\emph{9	1.478274e-08	7.284631e-03}
+\emph{10	1.952908e-08	7.284631e-03}
+\end{Verbatim}
+
+\bibliographystyle{plainnat}
+\bibliography{thesis}
+
+\end{document}
