@@ -6766,6 +6766,24 @@ This function constructs the M-envelope of span(S) using a sequential algorithm 
 The codes are implemented based on the algorithm in the lecture notes of Cook (2012).
 \end{par} \vspace{1em}
 
+\subsection*{Example}
+
+
+\begin{verbatim}       S = [1 2 3]';
+       S0 = grams(nulbasis(S'));
+       M = S * S' + S0 * S0';
+       u = 1;
+       W = get_envelope(S, M, u)\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}
+W =
+
+    0.2673
+    0.5345
+    0.8018
+
+\end{verbatim} \rmfamily\color{black}
+    
 \newpage 
 
 \rmfamily

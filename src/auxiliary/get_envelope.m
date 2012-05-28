@@ -27,6 +27,13 @@
 % The codes are implemented based on the algorithm in the lecture notes
 % of Cook (2012).
 
+%% Example
+%         S = [1 2 3]';
+%         S0 = grams(nulbasis(S'));
+%         M = S * S' + S0 * S0';
+%         u = 1;
+%         W = get_envelope(S, M, u)
+
 
 function W = get_envelope(S, M, u)
 
