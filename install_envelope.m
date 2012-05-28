@@ -5,7 +5,7 @@ function  install_envelope
 %  * SG_MIN Ver 2.4.1
 %  * SG_MIN Ver 2.4.1 (Modified Components)
 %  * Envelope Module
-%  * Envelope Module Using Partial Least Squares
+%  * Envelope Module Using Sequential Algorithm
 %  * Envelope Module for Predictor Reduction
 %  * Envelope Module for Predictor Reduction Using Partial Least Squares
 %  Algorithm
@@ -68,7 +68,7 @@ fprintf('\nThis script will install the following utilities to the Matlab path.\
 fprintf(' * SG_MIN Ver 2.4.1\n') ;
 fprintf(' * SG_MIN Ver 2.4.1 (Modified Components)\n') ;
 fprintf(' * Envelope Module\n') ;
-fprintf(' * Envelope Module Using Partial Least Squares\n');
+fprintf(' * Envelope Module Using Sequential Algorithm\n');
 fprintf(' * Envelope Module for Predictor Reduction\n') ;
 fprintf(' * Envelope Module for Predictor Reduction Using Partial Least Squares Algorithm\n');
 fprintf(' * Heteroscedastic Envelope Module\n') ;
@@ -106,7 +106,7 @@ fprintf('Envelope Module added to the path: %s\n\n',s) ;
 
 s = fullfile(envelope_path,'/src/envpls') ;
 addpath(s) ;
-fprintf('Envelope Module Using Partial Least Squares added to the path: %s\n\n',s) ;
+fprintf('Envelope Module Using Sequential Algorithm added to the path: %s\n\n',s) ;
 
 s = fullfile(envelope_path,'/src/xenv') ;
 addpath(s) ;
