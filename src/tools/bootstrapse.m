@@ -31,8 +31,8 @@
 % 
 % *B*: Number of bootstrap samples.  A positive integer.
 % 
-% *modelType*: A string characters indicting the model, choices can be 'env',
-% 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
+% *modelType*: A string characters indicting the model, choices can be
+% 'env', 'envpls', 'henv', 'ienv', 'penv', 'senv', 'xenv' and 'xenvpls'.
 %
 % *Opts*: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
