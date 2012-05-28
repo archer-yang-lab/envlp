@@ -2297,7 +2297,7 @@ TestOutput = testcoefficient(ModelOutput, modelType)
 \begin_layout LyX-Code
 
 \emph on
-L * beta * R = A       116.230          6       0.0000
+L * beta * R = A       116.230                 6               0.0000
 \end_layout
 
 \begin_layout LyX-Code
