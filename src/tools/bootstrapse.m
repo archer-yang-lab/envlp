@@ -10,8 +10,8 @@
 % *X*: Predictors.   The predictors can be univariate or multivariate, 
 % discrete or continuous.  
 % 
-% For model type for method 'env', 'henv', 'ienv',
-% ' senv', and 'xenv'. X is an n by p matrix, p is the number of
+% For model type for method 'env', 'envpls', 'henv', 'ienv', ' senv',
+% 'xenv' and 'xenvpls'. X is an n by p matrix, p is the number of 
 % predictors. 
 % 
 % For model type 'penv', X is  A list containing the value of X1 and X2.
@@ -46,10 +46,12 @@
 %
 %% Output
 %
-% bootse: For 'env', 'henv', 'ienv', 'senv' and 'xenv', an r by p matrix 
+% bootse: For 'env', 'envpls', 'henv', 'ienv', and 'senv', an r by p matrix 
 % containing the standard errors for elements in $$\beta$ computed by
 % bootstrap.  For 'penv', an r by p1 matrix containing the standard errors 
-% for $$\beta_1$ computed by bootstrap.
+% for $$\beta_1$ computed by bootstrap.  For 'xenv' and 'xenvpls', a p by r
+% matrix containing the standard errors for elements in $$\beta$ computed 
+% by bootstrap.
 
 %% Description
 % This function computes the bootstrap standard errors for the regression
@@ -64,6 +66,8 @@
 %         u = lrt_env(X, Y, alpha);
 %         B = 100;
 %         modelType = 'env';
+%         bootse = bootstrapse(X, Y, u, B, modelType)
+%         modelType = 'envpls';
 %         bootse = bootstrapse(X, Y, u, B, modelType)
 % 
 %         load fiberpaper.dat
@@ -91,6 +95,8 @@ end
 switch(modelType)
     case 'env'
         bootse = bstrp_env(X, Y, u, B, Opts);
+    case 'envpls'
+        bootse = bstrp_envpls(X, Y, u, B, Opts);
     case 'henv'
         bootse = bstrp_henv(X, Y, u, B, Opts);
     case 'ienv'
@@ -101,6 +107,8 @@ switch(modelType)
         bootse = bstrp_senv(X, Y, u, B, Opts);
     case 'xenv'
         bootse = bstrp_xenv(X, Y, u, B, Opts);
+    case 'xenvpls'
+        bootse = bstrp_xenvpls(X, Y, u, B, Opts);
     otherwise
         fprintf('The value specified in modelType is not supported!');
 end
