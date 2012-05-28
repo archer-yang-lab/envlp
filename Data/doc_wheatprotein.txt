@@ -1,0 +1,22 @@
+Wheat Protein
+
+
+Description
+
+The data are the result of an experiment to calibrate a near infrared reflectance (NIR) instrument for measuring the protein content of ground wheat samples.  The protein content of each sample (in percent) was measured by the standard Kjeldahl method.  In Fearn (1983), the problem is to find a linear combination of the measurements that predicts protein content. The estimated coefficients can then be entered into the instrument allowing the protein content of future samples to be read directly.   The first 24 cases were used for calibration and the last 26 samples were used for prediction. 
+
+
+Format
+
+A matrix with 50 observations on 8 variables.  
+
+Column 1 to Column 6:  Measurements of the reflectance of NIR radiation by the wheat samples at 6 wavelength in the range 1680-2310 nm.  The measurements were made on the log(1/reflectance) scale.
+Column 7: The protein content of each sample (in percent).
+Column 8: Binary indicator, 0 for high protein content and 1 for low protein content. The cut off point is if the protein content is smaller than 9.75.
+
+
+Reference
+
+Fearn, T. (1983). A misuse of ridge regression in the calibration of a near infrared reflectance instrument.
+
+
