@@ -15,7 +15,7 @@
 % 
 % *Y*: Responses. An n by r matrix, r is the number of
 % responses. The response can be univariate or multivariate and must be
-% contiuous variable.
+% continuous variable.
 % 
 % *u*: Dimension of the envelope subspace.  A positive integer between 0
 % and p.
@@ -47,7 +47,7 @@
 %         m = 5;
 %         u = mfoldcv_xenvpls(X, Y, m)
 %         B = 100;        
-%         bootse = bstrp_xenvpls(X, Y, u, B, Opts);
+%         bootse = bstrp_xenvpls(X, Y, u, B, Opts)
 
 
 function bootse = bstrp_xenvpls(X, Y, u, B, Opts)

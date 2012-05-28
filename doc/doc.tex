@@ -103,7 +103,7 @@ Perform bootstrap to estimate actual standard errors for models in the envelope 
 \textbf{X}: Predictors.   The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-For model type for method 'env', 'henv', 'ienv', ' senv', and 'xenv'. X is an n by p matrix, p is the number of predictors.
+For model type for method 'env', 'envpls', 'henv', 'ienv', ' senv', 'xenv' and 'xenvpls'. X is an n by p matrix, p is the number of predictors.
 \end{par} \vspace{1em}
 \begin{par}
 For model type 'penv', X is  A list containing the value of X1 and X2.
@@ -123,7 +123,7 @@ For model type 'penv', X is  A list containing the value of X1 and X2.
 \textbf{B}: Number of bootstrap samples.  A positive integer.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{modelType}: A string characters indicting the model, choices can be 'env', 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
+\textbf{modelType}: A string characters indicting the model, choices can be 'env', 'envpls', 'henv', 'ienv', 'penv', 'senv', 'xenv' and 'xenvpls'.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
@@ -140,7 +140,7 @@ For model type 'penv', X is  A list containing the value of X1 and X2.
 \subsection*{Output}
 
 \begin{par}
-bootse: For 'env', 'henv', 'ienv', 'senv' and 'xenv', an r by p matrix containing the standard errors for elements in $\beta$ computed by bootstrap.  For 'penv', an r by p1 matrix containing the standard errors for $\beta_1$ computed by bootstrap.
+bootse: For 'env', 'envpls', 'henv', 'ienv', and 'senv', an r by p matrix containing the standard errors for elements in $\beta$ computed by bootstrap.  For 'penv', an r by p1 matrix containing the standard errors for $\beta_1$ computed by bootstrap.  For 'xenv' and 'xenvpls', a p by r matrix containing the standard errors for elements in $\beta$ computed by bootstrap.
 \end{par} \vspace{1em}
 
 
@@ -149,7 +149,6 @@ bootse: For 'env', 'henv', 'ienv', 'senv' and 'xenv', an r by p matrix containin
 \begin{par}
 This function computes the bootstrap standard errors for the regression coefficients or for partial envelope model, the main regression coefficients in the specified model by bootstrapping the residuals.
 \end{par} \vspace{1em}
-
 
 \subsection*{Example}
 
@@ -175,7 +174,23 @@ bootse =
 \end{verbatim} 
 \rmfamily
 \color{black}
-    
+
+\begin{verbatim}       modelType = 'envpls';
+       bootse = bootstrapse(X, Y, u, B, modelType)
+       \end{verbatim}
+   
+        \color{lightgray}\ttfamily \begin{verbatim}
+bootse =
+
+    9.3899
+    7.7384
+    8.3303
+    9.0875
+   13.4416
+    5.1477
+\end{verbatim} \rmfamily
+
+\color{black}
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
        Xtemp = fiberpaper(:, 5 : 7);
@@ -185,7 +200,8 @@ bootse =
        u = lrt_penv(X, Y, alpha);
        B = 100;
        modelType = 'penv';
-       bootse = bootstrapse(X, Y, u, B, modelType)\end{verbatim}
+       bootse = bootstrapse(X, Y, u, B, modelType)
+       \end{verbatim}
     
 
         \color{lightgray}\ttfamily \begin{verbatim}
@@ -283,6 +299,86 @@ bootse =
 
 \end{verbatim} \rmfamily
 \color{black}
+
+\newpage
+
+\rmfamily
+\color{black}    
+\section{mfoldcv}
+
+\begin{par}
+Select the dimension for the envelope family using m-fold cross validation.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = mfoldcv(X, Y, m, modelType)
+       u = mfoldcv(X, Y, m, modelType, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors.  The predictors can be univariate or multivariate, discrete or continuous.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{modelType}: A string characters indicting the model, choices can be 'envpls' or 'xenvpls'.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: The dimension of the envelope subspace selected by m-fold cross validation.
+\end{par} \vspace{1em}
+    
+
+\subsection*{Description}
+
+\begin{par}
+This function implements m-fold cross validation to select the dimension of the envelope space, based on prediction performance.  For each u, the data is partitioned into m parts, each part is in turn used for testing for the prediction performance while the rest m-1 parts are used for training.  The dimension is select as the one that minimizes the average prediction errors. If Y is multivariate, the identity inner product is used for computing the prediction errors.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1 : 6);
+       m = 5;
+       modelType = 'envpls';
+       u = mfoldcv(X, Y, m, modelType)\end{verbatim}
+    
+        \color{lightgray} \ttfamily\begin{verbatim}
+u =
+
+     0
+
+\end{verbatim}\rmfamily \color{black}
 
 \newpage
     
@@ -886,6 +982,7 @@ L * beta * R = A          12.598          2        0.0018
 
 
 \newpage
+
 
 
 \chapter{env}
@@ -1752,6 +1849,306 @@ L * beta * R = A          61.344         2        0.0000
 \end{verbatim} \rmfamily
 \color{black}
     
+\newpage
+\chapter{envpls}
+\rmfamily
+\color{black}\section{bstrp\_envpls}
+
+\begin{par}
+Compute bootstrap standard errors of the envelope model using a sequential algorithm.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       bootse = bstrp_envpls(X, Y, u, B)
+       bootse = bstrp_envpls(X, Y, u, B, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope subspace.  A positive integer between 0 and p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{B}: Number of bootstrap samples.  A positive integer.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{bootse}: The standard error for elements in $\beta$ computed by bootstrap.  An r by p matrix.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function computes the bootstrap standard errors for the regression coefficients in the envelope model by bootstrapping the residuals. The envelope model is applied for the reduction on X, using a sequential algorithm.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1 : 6);
+       m = 5;
+       u = mfoldcv_envpls(X, Y, m)\end{verbatim}
+               \color{lightgray} \ttfamily\begin{verbatim}
+u =
+
+     0
+
+\end{verbatim} \rmfamily
+\color{black}\begin{verbatim}
+       
+       B = 100;
+       bootse = bstrp_envpls(X, Y, u, B);\end{verbatim}
+
+        \color{lightgray}\ttfamily \begin{verbatim}
+bootse =
+
+     0
+     0
+     0
+     0
+     0
+     0
+
+\end{verbatim} \rmfamily    
+\color{black}
+
+\newpage
+
+\rmfamily
+\color{black}\section{envpls}
+
+\begin{par}
+Fit the envelope model using a sequential algorithm.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item References
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       ModelOutput = envpls(X, Y, u)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{ModelOutput}: A list that contains the maximum likelihood estimators and some statistics.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item ModelOutput.beta: The envelope estimator of the regression coefficients $\beta$. An r by p matrix.
+   \item ModelOutput.Sigma: The envelope estimator of the error covariance matrix.  An r by r matrix.
+   \item ModelOutput.Gamma: The orthogonal basis of the envelope subspace. An r by u semi-orthogonal matrix.
+   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  An r by r-u semi-orthogonal matrix.
+   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. An u by p matrix.
+   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u matrix.
+   \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u matrix.
+   \item ModelOutput.alpha: The estimated intercept in the envelope model.  An r by 1 vector.
+   \item ModelOutput.np: The number of parameters in the envelope model.  A positive integer.
+   \item ModelOutput.n: The number of observations in the data.  A positive integer.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function fits the envelope model to the responses and predictors, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and r-1, we implemented the algorithm in Cook et al. (2010).  When the dimension is r, then the envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
+\end{par} \vspace{1em}
+
+
+\subsection*{References}
+
+\begin{par}
+The codes are implemented based on the sequential algorithm in the lecture notes of Cook (2012).
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1 : 6);
+       u = mfoldcv_envpls(X, Y, m)\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}
+u =
+
+     0
+\end{verbatim}\rmfamily 
+\color{black}
+\begin{verbatim}
+
+       ModelOutput = envpls(X, Y, u)
+\end{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
+ModelOutput = 
+
+      beta: [6x1 double]
+     Sigma: [6x6 double]
+     Gamma: []
+    Gamma0: [6x6 double]
+       eta: []
+     Omega: []
+    Omega0: [6x6 double]
+     alpha: [6x1 double]
+        np: 27
+         n: 50
+\end{verbatim}\rmfamily 
+\color{black}
+
+\begin{verbatim}
+       ModelOutput.Sigma\end{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}       
+ans =
+
+   1.0e+03 *
+
+    1.1932    0.9825    1.0568    1.1508    1.5411    0.6340
+    0.9825    0.8222    0.8808    0.9391    1.2700    0.5279
+    1.0568    0.8808    0.9451    1.0125    1.3725    0.5652
+    1.1508    0.9391    1.0125    1.1239    1.5217    0.6180
+    1.5411    1.2700    1.3725    1.5217    2.3255    0.8365
+    0.6340    0.5279    0.5652    0.6180    0.8365    0.3619
+
+\end{verbatim} \rmfamily\color{black}
+       
+\newpage
+\rmfamily
+\color{black}\section{mfoldcv\_xenvpls}
+
+\begin{par}
+Select the dimension of the envelope subspace using m-fold cross validation for envelope model on the reduction on X using a sequential algorithm.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = mfoldcv_xenvpls(X, Y, m)
+       u = mfoldcv_xenvpls(X, Y, m, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{m}: A positive integer that is used to indicate m-fold cross validation..
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+
+\begin{verbatim}*u*: The dimension of the envelope subspace selected by m-fold cross
+validation.\end{verbatim}
+    
+
+\subsection*{Description}
+
+\begin{par}
+This function implements m-fold cross validation to select the dimension of the envelope space, based on prediction performance.  For each u, the data is partitioned into m parts, each part is in turn used for testing for the prediction performance while the rest m-1 parts are used for training.  The dimension is select as the one that minimizes the average prediction errors. If Y is multivariate, the identity inner product is used for computing the prediction errors.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1 : 6);
+       m = 5;
+       u = mfoldcv_envpls(X, Y, m)\end{verbatim}
+    
+        \color{lightgray} \ttfamily\begin{verbatim}
+u =
+
+     0
+
+\end{verbatim} \rmfamily
+\color{black}
+
 \newpage
 
 \chapter{henv}
@@ -4962,7 +5359,7 @@ Use Akaike information criterion to select the dimension of the envelope subspac
 \textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be contiuous variable.
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
@@ -5040,7 +5437,7 @@ Use Bayesian information criterion to select the dimension of the envelope subsp
 \textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be contiuous variable.
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
@@ -5118,7 +5515,7 @@ Compute bootstrap standard error of the envelope model for the reduction on X.
 \textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be contiuous variable.
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{u}: Dimension of the envelope subspace.  A positive integer between 0 and p.
@@ -5315,7 +5712,7 @@ Use likelihood ratio testing to select the dimension of the envelope subspace fo
 \textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be contiuous variable.
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{alpha}: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
@@ -5608,7 +6005,7 @@ Fit the envelope model for the reduction on X.
 \textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be contiuous variable.
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{u}: Dimension of the envelope. An integer between 0 and p.
@@ -5774,6 +6171,298 @@ ans =
 \end{verbatim} \rmfamily
 \color{black}
 
+\newpage
+
+\chapter{xenvpls}
+\rmfamily
+\color{black}\section{bstrp\_xenvpls}
+
+\begin{par}
+Compute bootstrap standard error of the envelope model for the reduction on X using partial least squares algorithm.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       bootse = bstrp_xenvpls(X, Y, u, B)
+       bootse = bstrp_xenvpls(X, Y, u, B, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope subspace.  A positive integer between 0 and p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{B}: Number of bootstrap samples.  A positive integer.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{bootse}: The standard error for elements in $\beta$ computed by bootstrap.  A p by r matrix.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function computes the bootstrap standard errors for the regression coefficients in the envelope model by bootstrapping the residuals. The envelope model is applied for the reduction on X, using the partial least squares algorithm.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 1 : 6);
+       Y = wheatprotein(:, 7);
+       m = 5;
+       u = mfoldcv_xenvpls(X, Y, m)\end{verbatim}
+               \color{lightgray} \ttfamily\begin{verbatim}
+u =
+
+     6
+     \end{verbatim} \rmfamily
+     \color{black}
+\begin{verbatim}       B = 100;
+       bootse = bstrp_xenvpls(X, Y, u, B, Opts)\end{verbatim}
+    
+        \color{lightgray} \ttfamily\begin{verbatim}
+bootse =
+
+    0.0287
+    0.0383
+    0.0409
+    0.0207
+    0.0026
+    0.0097
+
+\end{verbatim} \rmfamily\color{black}
+
+\newpage
+\rmfamily
+\color{black}\section{mfoldcv\_xenvpls}
+
+\begin{par}
+Select the dimension of the envelope subspace using m-fold cross validation for envelope model on the reduction on X using partial least squares algorithm.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = mfoldcv_xenvpls(X, Y, m)
+       u = mfoldcv_xenvpls(X, Y, m, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{m}: A positive integer that is used to indicate m-fold cross validation..
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: The dimension of the envelope subspace selected by m-fold cross validation.
+\end{par} \vspace{1em}
+    
+
+\subsection*{Description}
+
+\begin{par}
+This function implements m-fold cross validation to select the dimension of the envelope space, based on prediction performance.  For each u, the data is partitioned into m parts, each part is in turn used for testing for the prediction performance while the rest m-1 parts are used for training.  The dimension is select as the one that minimizes the average prediction errors. If Y is multivariate, the identity inner product is used for computing the prediction errors.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 1 : 6);
+       Y = wheatprotein(:, 7);
+       m = 5;
+       u = mfoldcv_xenvpls(X, Y, m)\end{verbatim}
+    
+        \color{lightgray} \ttfamily\begin{verbatim}
+u =
+
+     6
+
+\end{verbatim} \rmfamily\color{black}
+
+\newpage
+
+\rmfamily
+\color{black}\section{xenvpls}
+
+\begin{par}
+Fit the envelope model for the reduction on X using partial least squares algorithm.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Reference
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       ModelOutput = xenvpls(X, Y, u)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and p.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{ModelOutput}: A list that contains the maximum likelihood estimators and some statistics.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item ModelOutput.beta: The envelope estimator of the regression coefficients $\beta$. An p by r matrix.
+   \item ModelOutput.SigX: The envelope estimator of the covariance matrix of X, $\Sigma_X$.  A p by p matrix.
+   \item ModelOutput.Gamma: The orthogonal basis of the envelope subspace. An p by u semi-orthogonal matrix.
+   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  An p by p-u semi-orthogonal matrix.
+   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. An u by r matrix.
+   \item ModelOutput.Omega: The coordinates of $\Sigma_X$ with respect to Gamma. An u by u matrix.
+   \item ModelOutput.Omega0: The coordinates of $\Sigma_X$ with respect to Gamma0. An p - u by p - u matrix.
+   \item ModelOutput.mu: The estimated intercept.  An r by 1 vector.
+   \item ModelOutput.sigYcX: The estimated conditional covariance matrix of Y given X. An r by r matrix.
+   \item ModelOutput.np: The number of parameters in the envelope model.  A positive integer.
+   \item ModelOutput.n: The number of observations in the data.  A positive integer.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function fits the envelope model in the predictor's space, by the partial least squares algorithm in Cook et al. (2012). In the population level, this algorithm is equivalent to that in xenv.m, which uses the maximum likelihood estimation.  In the sample version, the two algorithms are different.  And this algorithm is much faster, which provides a root n consistent starting value for the one in xenv.m.
+\end{par} \vspace{1em}
+
+
+\subsection*{Reference}
+
+\begin{par}
+The codes are implemented based on the algorithm in Section 4.3 of Cook et al (2012).
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 1 : 6);
+       Y = wheatprotein(:, 7);
+       m = 5;
+       u = mfoldcv_xenvpls(X, Y, m)\end{verbatim}
+        \color{lightgray} \ttfamily\begin{verbatim}
+u =
+
+     6
+\end{verbatim}\rmfamily
+ \color{black}
+\begin{verbatim}       ModelOutput = xenvpls(X, Y, u)\end{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
+ModelOutput = 
+
+      beta: [6x1 double]
+      SigX: [6x6 double]
+     Gamma: [6x6 double]
+    Gamma0: []
+       eta: [6x1 double]
+     Omega: [6x6 double]
+    Omega0: []
+        mu: 24.5781
+    sigYcX: 0.0321
+        np: 29
+         n: 50
+\end{verbatim}\rmfamily
+ \color{black}
+
+\begin{verbatim}       ModelOutput.beta\end{verbatim}    
+        \color{lightgray}\ttfamily \begin{verbatim}
+ans =
+
+   -0.0416
+   -0.0490
+    0.3368
+   -0.1981
+    0.0020
+   -0.0480
+
+\end{verbatim}\rmfamily \color{black}
 \newpage
 
 \chapter{auxiliary}
@@ -6017,6 +6706,67 @@ ans =
 \color{black}
     
 \newpage
+
+\rmfamily
+\color{black}
+\section{get\_envelope}
+
+\begin{par}
+Construct the envelope subspace using a sequential algorithm.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Reference
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       W = get_envelope(S, M, u)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{S}: An r by p matrix whose columns span the subspace, the rank of S cannot be greater than u.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{M}: An r by r positive semi-definite matrix.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{W}: An r by u semi-orthogonal matrix that spans the M-envelope of span(S).
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function constructs the M-envelope of span(S) using a sequential algorithm similar to partial least squares.
+\end{par} \vspace{1em}
+
+
+\subsection*{Reference}
+
+\begin{par}
+The codes are implemented based on the algorithm in the lecture notes of Cook (2012).
+\end{par} \vspace{1em}
+
+\newpage 
 
 \rmfamily
 \color{black}\section{get\_Init}

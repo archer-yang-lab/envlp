@@ -52,7 +52,7 @@
 
 %% References
 % 
-% # The codes are implemented based on the sequential algorithm in the lecture notes
+% The codes are implemented based on the sequential algorithm in the lecture notes
 % of Cook (2012).
 
 %% Example
@@ -62,6 +62,7 @@
 %         Y = wheatprotein(:, 1 : 6);
 %         u = mfoldcv_envpls(X, Y, m)
 %         ModelOutput = envpls(X, Y, u)
+%         ModelOutput.Sigma
 
 function ModelOutput = envpls(X, Y, u)
 

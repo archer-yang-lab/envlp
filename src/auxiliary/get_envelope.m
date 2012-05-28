@@ -24,7 +24,7 @@
 % algorithm similar to partial least squares.
 
 %% Reference
-% # The codes are implemented based on the algorithm in the lecture notes
+% The codes are implemented based on the algorithm in the lecture notes
 % of Cook (2012).
 
 
