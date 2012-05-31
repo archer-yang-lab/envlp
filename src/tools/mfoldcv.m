@@ -15,6 +15,8 @@
 % responses and n is number of observations. The responses must be 
 % continuous variables.
 % 
+% *m*: A positive integer that is used to indicate m-fold cross validation.
+% 
 % *modelType*: A string characters indicting the model, choices can be
 % 'envpls' or 'xenvpls'.
 % 
