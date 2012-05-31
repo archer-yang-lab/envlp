@@ -175,7 +175,7 @@ if u == 0
     ModelOutput.np = r + u * p + r * (r + 1) / 2;  
     ModelOutput.n = n;
     
-elseif u == r
+elseif u == r || (u == 1 && p == 1)
     
     covMatrix = kron(inv(sigX), sigRes);
     asyFm = reshape(sqrt(diag(covMatrix)), r, p);
