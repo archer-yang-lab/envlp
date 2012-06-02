@@ -63,7 +63,11 @@ if (reply(1)~='y')
     fprintf('\nOK. No changes were made to the path. Good bye!\n\n') ;
     return
 end
-
+fprintf('\n#############################################################################\n') ;
+fprintf('\n## NOTE: If you have previously installed an older version of this toolbox ##\n') ;
+fprintf('\n## please have it removed from MATLAB search path first before installing  ##\n') ;
+fprintf('\n## this version.                                                           ##\n') ;
+fprintf('\n#############################################################################\n') ;
 fprintf('\nThis script will install the following utilities to the Matlab path.\n') ;
 fprintf(' * SG_MIN Ver 2.4.1\n') ;
 fprintf(' * SG_MIN Ver 2.4.1 (Modified Components)\n') ;
