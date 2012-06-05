@@ -10,7 +10,7 @@
 % *X*: Predictors.   The predictors can be univariate or multivariate, 
 % discrete or continuous.  
 % 
-% For model type for method 'env', 'envpls', 'henv', 'ienv', ' senv',
+% For model type for method 'env', 'envseq', 'henv', 'ienv', ' senv',
 % 'xenv' and 'xenvpls'. X is an n by p matrix, p is the number of 
 % predictors. 
 % 
@@ -32,7 +32,7 @@
 % *B*: Number of bootstrap samples.  A positive integer.
 % 
 % *modelType*: A string characters indicting the model, choices can be
-% 'env', 'envpls', 'henv', 'ienv', 'penv', 'senv', 'xenv' and 'xenvpls'.
+% 'env', 'envseq', 'henv', 'ienv', 'penv', 'senv', 'xenv' and 'xenvpls'.
 %
 % *Opts*: A list containing the optional input parameter, to control the
 % iterations in sg_min. If one or several (even all) fields are not
@@ -46,7 +46,7 @@
 %
 %% Output
 %
-% bootse: For 'env', 'envpls', 'henv', 'ienv', and 'senv', an r by p matrix 
+% bootse: For 'env', 'envseq', 'henv', 'ienv', and 'senv', an r by p matrix 
 % containing the standard errors for elements in $$\beta$ computed by
 % bootstrap.  For 'penv', an r by p1 matrix containing the standard errors 
 % for $$\beta_1$ computed by bootstrap.  For 'xenv' and 'xenvpls', a p by r
@@ -67,7 +67,7 @@
 %         B = 100;
 %         modelType = 'env';
 %         bootse = bootstrapse(X, Y, u, B, modelType)
-%         modelType = 'envpls';
+%         modelType = 'envseq';
 %         bootse = bootstrapse(X, Y, u, B, modelType)
 % 
 %         load fiberpaper.dat
@@ -95,8 +95,8 @@ end
 switch(modelType)
     case 'env'
         bootse = bstrp_env(X, Y, u, B, Opts);
-    case 'envpls'
-        bootse = bstrp_envpls(X, Y, u, B, Opts);
+    case 'envseq'
+        bootse = bstrp_envseq(X, Y, u, B, Opts);
     case 'henv'
         bootse = bstrp_henv(X, Y, u, B, Opts);
     case 'ienv'

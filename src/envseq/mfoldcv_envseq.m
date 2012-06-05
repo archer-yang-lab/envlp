@@ -46,9 +46,9 @@
 %         X = wheatprotein(:, 8);
 %         Y = wheatprotein(:, 1 : 6);
 %         m = 5;
-%         u = mfoldcv_envpls(X, Y, m)
+%         u = mfoldcv_envseq(X, Y, m)
 
-function u = mfoldcv_envpls(X, Y, m, Opts)
+function u = mfoldcv_envseq(X, Y, m, Opts)
 
 if nargin < 3
     error('Inputs: X, Y, and m should be specified!');
@@ -77,7 +77,7 @@ for j = 0 : tempInd
         index((floor((i - 1) * n / m) + 1) : ceil(i * n / m)) = 0;
         tempX = X(index, :);
         tempY = Y(index, :);
-        ModelTemp = envpls(tempX, tempY, j);
+        ModelTemp = envseq(tempX, tempY, j);
         
         testX = X(logical(1 - index), :);
         testY = Y(logical(1 - index), :);

@@ -1,10 +1,10 @@
-%% bstrp_envpls
+%% bstrp_envseq
 % Compute bootstrap standard errors of the envelope model using a
 % sequential algorithm.
 
 %% Syntax
-%         bootse = bstrp_envpls(X, Y, u, B)
-%         bootse = bstrp_envpls(X, Y, u, B, Opts)
+%         bootse = bstrp_envseq(X, Y, u, B)
+%         bootse = bstrp_envseq(X, Y, u, B, Opts)
 %
 %% Input
 %
@@ -43,12 +43,12 @@
 %         X = wheatprotein(:, 8);
 %         Y = wheatprotein(:, 1 : 6);
 %         m = 5;
-%         u = mfoldcv_envpls(X, Y, m)
+%         u = mfoldcv_envseq(X, Y, m)
 %         B = 100;        
-%         bootse = bstrp_envpls(X, Y, u, B)
+%         bootse = bstrp_envseq(X, Y, u, B)
 
 
-function bootse = bstrp_envpls(X, Y, u, B, Opts)
+function bootse = bstrp_envseq(X, Y, u, B, Opts)
 
 if nargin < 4
     error('Inputs: X, Y, B and u should be specified!');
@@ -63,7 +63,7 @@ Opts.verbose = 0;
 [n r] = size(Y);
 p = size(X, 2);
 
-ModelOutput = envpls(X, Y, u);
+ModelOutput = envseq(X, Y, u);
 
 Yfit = ones(n, 1) * ModelOutput.alpha' + X * ModelOutput.beta';
 resi = Y - Yfit;
@@ -78,7 +78,7 @@ for i = 1 : B
     
     bootresi = resi(randsample(1 : n, n, true), :);
     Yboot = Yfit + bootresi;
-    temp = envpls(X, Yboot, u);
+    temp = envseq(X, Yboot, u);
     bootBeta(i, :) = reshape(temp.beta, 1, r * p);
 
 end

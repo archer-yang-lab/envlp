@@ -410,7 +410,7 @@ and envelope model in the predictor space (using Grassmann manifold optimization
 
 \begin{description}
 \item[{env}] Envelope Module.  The envelope model is a general tool for efficient estimation in the context of MLR, and it has the potential to achieve substantial efficiency gains when part of the response variables or their linear combination is invariant to the changes of the predictors \citep{cook2010envelope}. 
-\item[{envpls}] Envelope Model Using Sequential Algorithm Module.  This module also implements the envelope model, but uses a sequential computing algorithm.  This algorithm makes the envelope model applicable for small sample size cases \citep{cook2012envelopes}.
+\item[{envseq}] Envelope Model Using Sequential Algorithm Module.  This module also implements the envelope model, but uses a sequential computing algorithm.  This algorithm makes the envelope model applicable for small sample size cases \citep{cook2012envelopes}.
 \item[{henv}] Heteroscedastic Envelope Module. The heteroscedastic envelope model is used when the data has none constant error structure \citep{su2012estimation}.
 \item[{ienv}] Inner Envelope Module. The inner envelope model is also a general tool for efficient estimation in the context of MLR, but has a different mechanism from the envelope model.  Therefore it may provide efficiency gains in the cases when the envelope models fail to offer any gains \citep{su2012inner}. 
 \item[{penv}] Partial Envelope Module. The partial envelope model can be applied when part of the predictors are of main interest.  It often gives more efficiency gains than the envelope model in estimating the coefficients of the main predictors \citep{su2011partial}.
@@ -566,7 +566,7 @@ We will present a tour of our toolbox through all three classes.
 
 The dimension selection tools available in this toolbox are Akaike information
 criterion (AIC), Bayesian information criterion (BIC), Likelihood
-ratio testing (LRT) and m-fold cross validation.  The m-fold cross validation can only be applied to ``envpls'' and ``xenvpls'', while AIC, BIC and LRT can be applied to ``env'', ``henv'', ``ienv'', ``penv'', ``senv'' and ``xenv'', except that LRT cannot be applied to ``senv'',
+ratio testing (LRT) and m-fold cross validation.  The m-fold cross validation can only be applied to ``envseq'' and ``xenvpls'', while AIC, BIC and LRT can be applied to ``env'', ``henv'', ``ienv'', ``penv'', ``senv'' and ``xenv'', except that LRT cannot be applied to ``senv'',
 as indicated in Table \ref{tab_app}. AIC and BIC generally require
 longer computing time than LRT, because of the nature of the method.
 The syntax of AIC, BIC, LRT and m-fold cross validation are 
@@ -580,7 +580,7 @@ For the inputs: X is a matrix containing the predictors, except that
 with ``penv'', it is a list having X.X1 and X.X2; Y is a matrix containing
 the response; 'alpha' is the significance level; 'm' is an integer indicating m-fold cross validation and 'modelType' is
 a string indicting the model. The choices for \texttt{modelselectaic}, \texttt{modelselectbic} and \texttt{modelselectlrt} can be ``env'', ``henv'',
-``ienv'', ``penv'', ``senv'' and ``xenv'', and the choices for \texttt{mfoldcv} are ``envpls'' and ``xenvpls''.  The output is the dimension
+``ienv'', ``penv'', ``senv'' and ``xenv'', and the choices for \texttt{mfoldcv} are ``envseq'' and ``xenvpls''.  The output is the dimension
 of the envelope subspace selected by the tool. Examples will be provided
 in Section \ref{sec_example}.
 
@@ -591,7 +591,7 @@ The functions to fit the six models in the envelope family are the
 main drive of this toolbox. Their syntax are 
 \begin{Verbatim}[commandchars=\\\{\}]
 ModelOutput = env(X, Y, u)
-ModelOutput = envpls(X, Y, u)
+ModelOutput = envseq(X, Y, u)
 ModelOutput = henv(X, Y, u)
 ModelOutput = ienv(X, Y, u)
 ModelOutput = penv(X, Y, u)
@@ -609,7 +609,7 @@ error ratios of elements in the regression coefficients for the standard
 model versus the envelope model, maximized value of the log likelihood,
 number of parameters, etc. 
 
-\texttt{envpls} and \texttt{xenvpls} fit the same model as \texttt{env} and \texttt{xenv}, respectively, but use a different computing algorithm, making them capable to accommodate small sample size cases. With large sample size cases, \texttt{envpls} and \texttt{xenvpls} can also be applied, and usually give different results from \texttt{env} and \texttt{xenv}.  \citep{cook2012envelopes} indicates that \texttt{env} and \texttt{xenv} normally give better results, and therefore are recommended.
+\texttt{envseq} and \texttt{xenvpls} fit the same model as \texttt{env} and \texttt{xenv}, respectively, but use a different computing algorithm, making them capable to accommodate small sample size cases. With large sample size cases, \texttt{envseq} and \texttt{xenvpls} can also be applied, and usually give different results from \texttt{env} and \texttt{xenv}.  \citep{cook2012envelopes} indicates that \texttt{env} and \texttt{xenv} normally give better results, and therefore are recommended.
 
 
 \subsection*{Post-processing}
@@ -634,7 +634,7 @@ bootse = bootstrapse(X, Y, u, B, modelType)
 PredictOutput = prediction(ModelOutput, Xnew, infType, modelType)
 TestOutput = testcoefficient(ModelOutput, modelType, TestInput)
 \end{Verbatim}
-respectively. For the inputs, modelType in all three functions can be ``env'', ``henv'', ``ienv'', ``penv'', ``senv'' and ``xenv'', while modelType in \texttt{bootstrapse} can also be ``envpls'' and ``xenvpls''; ModelOutput in \texttt{prediction}
+respectively. For the inputs, modelType in all three functions can be ``env'', ``henv'', ``ienv'', ``penv'', ``senv'' and ``xenv'', while modelType in \texttt{bootstrapse} can also be ``envseq'' and ``xenvpls''; ModelOutput in \texttt{prediction}
 and \texttt{testcoefficient} is a list returned from the functions
 for model fitting; X, Y, and u are discussed in the dimension selection
 part; B is the number of bootstrap sample; Xnew is a value of X with
@@ -1027,9 +1027,9 @@ To select the dimension of the envelope subspace $u$, we can use
 the m-fold cross validation. Common choices are $5$ or $10$.
 \begin{Verbatim}[commandchars=\\\{\}]
 m = 5; 
-u = mfoldcv(X, Y, m, 'envpls')
+u = mfoldcv(X, Y, m, 'envseq')
 \end{Verbatim}
-The possible values of $u$ can be any integer from $0$ to the minimum of the floor of $(m-1)n/m-1$ and $r$.  When $u=r$, the envelope model is essentially the standard multivariate linear model, and when $u=0$, it means that $\betabf=0$, and the changes in $\Y$ do not depend on the changes in $\X$.  If the sample size is large, we can also use the tools for the ``env'' to select $u$, as ``env'' and ``envpls'' implement the same model.
+The possible values of $u$ can be any integer from $0$ to the minimum of the floor of $(m-1)n/m-1$ and $r$.  When $u=r$, the envelope model is essentially the standard multivariate linear model, and when $u=0$, it means that $\betabf=0$, and the changes in $\Y$ do not depend on the changes in $\X$.  If the sample size is large, we can also use the tools for the ``env'' to select $u$, as ``env'' and ``envseq'' implement the same model.
 \begin{Verbatim}[commandchars=\\\{\}]
 u = modelselectaic(X, Y, 'env') 
 u = modelselectbic(X, Y, 'env')
@@ -1039,24 +1039,24 @@ u = modelselectlrt(X, Y, alpha, 'env')
 
 After getting $u$, to fit the envelope model using the sequential algorithm, we use 
 \begin{Verbatim}[commandchars=\\\{\}]
-ModelOutput = envpls(X, Y, u)
+ModelOutput = envseq(X, Y, u)
 \end{Verbatim}
 The output \texttt{ModelOutput} is a list, which contains the estimators of $\betabf$, $\Sigmabf$, $\Gammabf$, $\Gammabf_{0}$, $\etabf$,
-$\Omegabf$, $\Omegabf_{0}$ and $\alphabf$, and also the number of parameters in the model and number of observations in the data.  It does not contain any information based on the likelihood function, for example, the maximized log-likelihood, the asymptotic covariance matrix of $\vecc(\betabf)$, the asymptotic standard errors of elements in $\betabf$, etc.  This is because \texttt{envpls} is mainly implemented for small sample size cases, under which the likelihood cannot be estimated.  Then any inference that is based on the covariance matrix of $\vecc(\betabf)$ such as estimation, prediction and test coefficients cannot be performed with ``envpls''.  But we can still estimate the bootstrap standard errors for $\betabfhat$ by 
+$\Omegabf$, $\Omegabf_{0}$ and $\alphabf$, and also the number of parameters in the model and number of observations in the data.  It does not contain any information based on the likelihood function, for example, the maximized log-likelihood, the asymptotic covariance matrix of $\vecc(\betabf)$, the asymptotic standard errors of elements in $\betabf$, etc.  This is because \texttt{envseq} is mainly implemented for small sample size cases, under which the likelihood cannot be estimated.  Then any inference that is based on the covariance matrix of $\vecc(\betabf)$ such as estimation, prediction and test coefficients cannot be performed with ``envseq''.  But we can still estimate the bootstrap standard errors for $\betabfhat$ by 
 \begin{Verbatim}[commandchars=\\\{\}]
-bootse = bootstrapse(X, Y, u, B, 'envpls')
+bootse = bootstrapse(X, Y, u, B, 'envseq')
 \end{Verbatim}
 
 {\color{blue} To Dennis: I am not sure if we would like to include this in.  Using the sequential algorithm as the starting value normally gives a different result, which is often the local maximum.}
 
 
-Another utility of \texttt{envpls} is that it can provide a starting value for \texttt{env} when $r$ is large.  \texttt{env} can be very slow if $r$ is large, while \texttt{envpls} is faster than \texttt{env}.  Using the starting value from \texttt{envpls} can save much computing time, and at the same time, may still have the good performance from \texttt{env}.  An example is shown as follows.
+Another utility of \texttt{envseq} is that it can provide a starting value for \texttt{env} when $r$ is large.  \texttt{env} can be very slow if $r$ is large, while \texttt{envseq} is faster than \texttt{env}.  Using the starting value from \texttt{envseq} can save much computing time, and at the same time, may still have the good performance from \texttt{env}.  An example is shown as follows.
 \begin{Verbatim}[commandchars=\\\{\}]
 load wheatprotein.txt
 X = wheatprotein(:, 8);
 Y = wheatprotein(:, 1 : 6);
 u = 1;
-temp = envpls(X, Y, u);
+temp = envseq(X, Y, u);
 Opts.init = temp.Gamma;
 ModelOutput = env(X, Y, u, Opts);
 \end{Verbatim}
@@ -1426,7 +1426,7 @@ After obtaining $u$, to fit the envelope model in the predictor space using part
 ModelOutput = xenvpls(X, Y, u)
 \end{Verbatim}
 The output \texttt{ModelOutput} is a list, which contains the estimators of  $\betabf$, $\Sigmabf_{\X}$, $\Gammabf$, $\Gammabf_{0}$, $\etabf$,
-$\Omegabf$, $\Omegabf_{0}$ and $\mubf$, and also the number of parameters in the model and number of observations in the data.  It does not contain any information based on the likelihood function, for example, the maximized log-likelihood, the asymptotic covariance matrix of $\vecc(\betabf)$, the asymptotic standard errors of elements in $\betabf$, etc.  This is because \texttt{envpls} is mainly implemented for small sample size cases, under which the likelihood cannot be estimated.  The estimator is obtained by partial least squares algorithm.  We can check this by
+$\Omegabf$, $\Omegabf_{0}$ and $\mubf$, and also the number of parameters in the model and number of observations in the data.  It does not contain any information based on the likelihood function, for example, the maximized log-likelihood, the asymptotic covariance matrix of $\vecc(\betabf)$, the asymptotic standard errors of elements in $\betabf$, etc.  This is because \texttt{envseq} is mainly implemented for small sample size cases, under which the likelihood cannot be estimated.  The estimator is obtained by partial least squares algorithm.  We can check this by
 \begin{Verbatim}[commandchars=\\\{\}]
 ModelOutput = xenvpls(X, Y, u);
 [XL, YL, XS, YS, BETA, PCTVAR, MSE, stats]  =  plsregress(X, Y, u);

@@ -108,7 +108,7 @@ s = fullfile(envelope_path,'/src/env') ;
 addpath(s) ;
 fprintf('Envelope Module added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'/src/envpls') ;
+s = fullfile(envelope_path,'/src/envseq') ;
 addpath(s) ;
 fprintf('Envelope Module Using Sequential Algorithm added to the path: %s\n\n',s) ;
 
