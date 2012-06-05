@@ -103,7 +103,7 @@ Perform bootstrap to estimate actual standard errors for models in the envelope 
 \textbf{X}: Predictors.   The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-For model type for method 'env', 'envpls', 'henv', 'ienv', ' senv', 'xenv' and 'xenvpls'. X is an n by p matrix, p is the number of predictors.
+For model type for method 'env', 'envseq', 'henv', 'ienv', ' senv', 'xenv' and 'xenvpls'. X is an n by p matrix, p is the number of predictors.
 \end{par} \vspace{1em}
 \begin{par}
 For model type 'penv', X is  A list containing the value of X1 and X2.
@@ -123,7 +123,7 @@ For model type 'penv', X is  A list containing the value of X1 and X2.
 \textbf{B}: Number of bootstrap samples.  A positive integer.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{modelType}: A string characters indicting the model, choices can be 'env', 'envpls', 'henv', 'ienv', 'penv', 'senv', 'xenv' and 'xenvpls'.
+\textbf{modelType}: A string characters indicting the model, choices can be 'env', 'envseq', 'henv', 'ienv', 'penv', 'senv', 'xenv' and 'xenvpls'.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameter, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
@@ -140,7 +140,7 @@ For model type 'penv', X is  A list containing the value of X1 and X2.
 \subsection*{Output}
 
 \begin{par}
-bootse: For 'env', 'envpls', 'henv', 'ienv', and 'senv', an r by p matrix containing the standard errors for elements in $\beta$ computed by bootstrap.  For 'penv', an r by p1 matrix containing the standard errors for $\beta_1$ computed by bootstrap.  For 'xenv' and 'xenvpls', a p by r matrix containing the standard errors for elements in $\beta$ computed by bootstrap.
+bootse: For 'env', 'envseq', 'henv', 'ienv', and 'senv', an r by p matrix containing the standard errors for elements in $\beta$ computed by bootstrap.  For 'penv', an r by p1 matrix containing the standard errors for $\beta_1$ computed by bootstrap.  For 'xenv' and 'xenvpls', a p by r matrix containing the standard errors for elements in $\beta$ computed by bootstrap.
 \end{par} \vspace{1em}
 
 
@@ -175,7 +175,7 @@ bootse =
 \rmfamily
 \color{black}
 
-\begin{verbatim}       modelType = 'envpls';
+\begin{verbatim}       modelType = 'envseq';
        bootse = bootstrapse(X, Y, u, B, modelType)
        \end{verbatim}
    
@@ -341,7 +341,7 @@ Select the dimension for the envelope family using m-fold cross validation.
 \textbf{m}: A positive integer that is used to indicate m-fold cross validation.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{modelType}: A string characters indicting the model, choices can be 'envpls' or 'xenvpls'.
+\textbf{modelType}: A string characters indicting the model, choices can be 'envseq' or 'xenvpls'.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
@@ -373,7 +373,7 @@ This function implements m-fold cross validation to select the dimension of the 
        X = wheatprotein(:, 8);
        Y = wheatprotein(:, 1 : 6);
        m = 5;
-       modelType = 'envpls';
+       modelType = 'envseq';
        u = mfoldcv(X, Y, m, modelType)\end{verbatim}
     
         \color{lightgray} \ttfamily\begin{verbatim}
@@ -1853,9 +1853,9 @@ L * beta * R = A          61.344         2        0.0000
 \color{black}
     
 \newpage
-\chapter{envpls}
+\chapter{envseq}
 \rmfamily
-\color{black}\section{bstrp\_envpls}
+\color{black}\section{bstrp\_envseq}
 
 \begin{par}
 Compute bootstrap standard errors of the envelope model using a sequential algorithm.
@@ -1876,8 +1876,8 @@ Compute bootstrap standard errors of the envelope model using a sequential algor
 \subsection*{Syntax}
 
 
-\begin{verbatim}       bootse = bstrp_envpls(X, Y, u, B)
-       bootse = bstrp_envpls(X, Y, u, B, Opts)\end{verbatim}
+\begin{verbatim}       bootse = bstrp_envseq(X, Y, u, B)
+       bootse = bstrp_envseq(X, Y, u, B, Opts)\end{verbatim}
     
 
 \subsection*{Input}
@@ -1924,7 +1924,7 @@ This function computes the bootstrap standard errors for the regression coeffici
        X = wheatprotein(:, 8);
        Y = wheatprotein(:, 1 : 6);
        m = 5;
-       u = mfoldcv_envpls(X, Y, m)\end{verbatim}
+       u = mfoldcv_envseq(X, Y, m)\end{verbatim}
                \color{lightgray} \ttfamily\begin{verbatim}
 u =
 
@@ -1934,7 +1934,7 @@ u =
 \color{black}\begin{verbatim}
        
        B = 100;
-       bootse = bstrp_envpls(X, Y, u, B);\end{verbatim}
+       bootse = bstrp_envseq(X, Y, u, B);\end{verbatim}
 
         \color{lightgray}\ttfamily \begin{verbatim}
 bootse =
@@ -1952,7 +1952,7 @@ bootse =
 \newpage
 
 \rmfamily
-\color{black}\section{envpls}
+\color{black}\section{envseq}
 
 \begin{par}
 Fit the envelope model using a sequential algorithm.
@@ -1974,7 +1974,7 @@ Fit the envelope model using a sequential algorithm.
 \subsection*{Syntax}
 
 
-\begin{verbatim}       ModelOutput = envpls(X, Y, u)\end{verbatim}
+\begin{verbatim}       ModelOutput = envseq(X, Y, u)\end{verbatim}
     
 
 \subsection*{Input}
@@ -2030,7 +2030,7 @@ The codes are implemented based on the sequential algorithm in the lecture notes
 \begin{verbatim}       load wheatprotein.txt
        X = wheatprotein(:, 8);
        Y = wheatprotein(:, 1 : 6);
-       u = mfoldcv_envpls(X, Y, m)\end{verbatim}
+       u = mfoldcv_envseq(X, Y, m)\end{verbatim}
     
         \color{lightgray}\ttfamily \begin{verbatim}
 u =
@@ -2040,7 +2040,7 @@ u =
 \color{black}
 \begin{verbatim}
 
-       ModelOutput = envpls(X, Y, u)
+       ModelOutput = envseq(X, Y, u)
 \end{verbatim}
         \color{lightgray}\ttfamily \begin{verbatim}
 ModelOutput = 
@@ -2142,7 +2142,7 @@ This function implements m-fold cross validation to select the dimension of the 
        X = wheatprotein(:, 8);
        Y = wheatprotein(:, 1 : 6);
        m = 5;
-       u = mfoldcv_envpls(X, Y, m)\end{verbatim}
+       u = mfoldcv_envseq(X, Y, m)\end{verbatim}
     
         \color{lightgray} \ttfamily\begin{verbatim}
 u =

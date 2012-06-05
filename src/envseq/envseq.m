@@ -1,8 +1,8 @@
-%% envpls
+%% envseq
 % Fit the envelope model using a sequential algorithm.
 
 %% Syntax
-%         ModelOutput = envpls(X, Y, u)
+%         ModelOutput = envseq(X, Y, u)
 %
 %% Input
 %
@@ -60,11 +60,11 @@
 %         load wheatprotein.txt
 %         X = wheatprotein(:, 8);
 %         Y = wheatprotein(:, 1 : 6);
-%         u = mfoldcv_envpls(X, Y, m)
-%         ModelOutput = envpls(X, Y, u)
+%         u = mfoldcv_envseq(X, Y, m)
+%         ModelOutput = envseq(X, Y, u)
 %         ModelOutput.Sigma
 
-function ModelOutput = envpls(X, Y, u)
+function ModelOutput = envseq(X, Y, u)
 
 % Verify the parameters
 

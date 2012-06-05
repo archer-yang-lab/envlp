@@ -18,7 +18,7 @@
 % *m*: A positive integer that is used to indicate m-fold cross validation.
 % 
 % *modelType*: A string characters indicting the model, choices can be
-% 'envpls' or 'xenvpls'.
+% 'envseq' or 'xenvpls'.
 % 
 % *Opts*: A list containing the optional input parameters. If one or
 % several (even all) fields are not defined, the default settings are used.
@@ -45,7 +45,7 @@
 %         X = wheatprotein(:, 8);
 %         Y = wheatprotein(:, 1 : 6);
 %         m = 5;
-%         modelType = 'envpls';
+%         modelType = 'envseq';
 %         u = mfoldcv(X, Y, m, modelType)
 
 
@@ -60,8 +60,8 @@ elseif nargin == 4
 end
 
 switch(modelType)
-    case 'envpls'
-        u = mfoldcv_envpls(X, Y, Opts);
+    case 'envseq'
+        u = mfoldcv_envseq(X, Y, Opts);
     case 'xenvpls'
         u = mfoldcv_xenvpls(X, Y, Opts);
     otherwise
