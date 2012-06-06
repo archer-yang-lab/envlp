@@ -23,8 +23,11 @@
 
 function f = F4env(R, DataParameter)
 
+n = DataParameter.n;
+r = DataParameter.r;
 sigRes = DataParameter.sigRes;
 sigY = DataParameter.sigY;
+logDetSigY = DataParameter.logDetSigY;
 
 eigtem = eig(R' * sigRes * R);
 a = log(prod(eigtem(eigtem > 0)));
@@ -32,4 +35,4 @@ a = log(prod(eigtem(eigtem > 0)));
 eigtem0 = eig(R' * inv(sigY) * R);
 b = log(prod(eigtem0(eigtem0 > 0)));
 
-f = a + b;
+f = n * r * (1 + log(2 * pi)) + n * (a + b + logDetSigY);

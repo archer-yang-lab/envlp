@@ -154,11 +154,10 @@ sigX = DataParameter.sigX;
 sigY = DataParameter.sigY;
 sigRes = DataParameter.sigRes;
 betaOLS = DataParameter.betaOLS;
+logDetSigY = DataParameter.logDetSigY;
 
 if u == 0
-    
-    eigtem = eig(sigY);
-    
+        
     ModelOutput.beta = zeros(r, p);
     ModelOutput.Sigma = sigY;
     ModelOutput.Lambda = eye(r);
@@ -168,7 +167,7 @@ if u == 0
     ModelOutput.Omega = [];
     ModelOutput.Omega0 = sigY;
     ModelOutput.alpha = mY;
-    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
+    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * logDetSigY;
     ModelOutput.covMatrix = [];
     ModelOutput.asySenv = [];
     ModelOutput.ratio = ones(r, p);
@@ -247,9 +246,7 @@ else
     Omega = Gamma' * inv(Lambda) * sigRes * inv(Lambda) * Gamma;
     Omega0 = Gamma0' * inv(Lambda) * sigY * inv(Lambda) * Gamma0;
     Sigma = Lambda * (Gamma * Omega * Gamma' + Gamma0 * Omega0 * Gamma0') * Lambda;
-    
-    eigtem = eig(sigY);
-    
+        
     ModelOutput.beta = beta;
     ModelOutput.Sigma = Sigma;
     ModelOutput.Lambda = Lambda;
@@ -260,7 +257,7 @@ else
     ModelOutput.Omega0 = Omega0;
     ModelOutput.alpha = mY - beta * mX;
     ModelOutput.np = init.np + r - 1;
-    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * (l + log(prod(eigtem(eigtem > 0))));
+    ModelOutput.l = - 0.5 * l;
     
     %---compute asymptotic variance and get the ratios---
     asyFm = kron(inv(sigX), Sigma);

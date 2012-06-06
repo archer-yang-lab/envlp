@@ -27,10 +27,12 @@
 function f = F4henv(R, DataParameter)
 
 p = DataParameter.p;
+r = DataParameter.r;
 n = DataParameter.n;
 ng = DataParameter.ng;
 sigRes = DataParameter.sigRes;
 sigY = DataParameter.sigY;
+logDetSigY = DataParameter.logDetSigY;
 
 f = 0;
 for i = 1 : p
@@ -42,4 +44,4 @@ end
 eigtem0 = eig(R' * inv(sigY) * R);
 b = log(prod(eigtem0(eigtem0 > 0)));
 
-f = f + b;
+f = n * r * (1 + log(2 * pi)) + n * (f + b + logDetSigY);

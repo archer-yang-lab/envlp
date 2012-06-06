@@ -145,6 +145,8 @@ sigY = DataParameter.sigY;
 sigFit = DataParameter.sigFit;
 sigRes = DataParameter.sigRes;
 betaOLS = DataParameter.betaOLS;
+logDetSigRes = DataParameter.logDetSigRes;
+
 
 if u == p
     
@@ -187,9 +189,7 @@ elseif u == 0
     ModelOutput.n = temp.n;
 
 else 
-    
-    eigtem = eig(sigRes);
-    
+        
     F = make_F(@F4ienv, DataParameter);
     dF = make_dF(@dF4ienv, DataParameter);
 
@@ -244,7 +244,7 @@ else
     ModelOutput.Omega0 = Omega0;
     ModelOutput.alpha = alpha;
     ModelOutput.np = p ^ 2 + (p - u) * (r - p) + r * (r + 1) / 2;
-    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0))) - n / 2 * l;
+    ModelOutput.l = - 0.5 * l;
     
     
     %-----Compute asymptotic variance for inner envelope model-----

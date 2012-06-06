@@ -25,6 +25,7 @@
 
 function df = dF4env(R, DataParameter)
 
+n = DataParameter.n;
 sigRes = DataParameter.sigRes;
 sigY = DataParameter.sigY;
 
@@ -34,4 +35,4 @@ temp = inv(sigY);
 
 b = 2 * temp * R * inv(R' * temp * R);
 
-df = a + b;
+df = n * (a + b);

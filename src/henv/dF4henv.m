@@ -39,4 +39,4 @@ end
 
 b = 2 * inv(sigY) * R * inv(R' * inv(sigY) * R);
 
-df = df + b;
+df = n * (df + b);

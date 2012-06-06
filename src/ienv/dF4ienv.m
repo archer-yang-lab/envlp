@@ -29,6 +29,7 @@ sigRes = DataParameter.sigRes;
 sigY = DataParameter.sigY;
 sigFit = DataParameter.sigFit;
 p = DataParameter.p;
+n = DataParameter.n;
 
 
 temp = inv(sigRes);
@@ -58,4 +59,4 @@ end
 
 b = b * dzdg0 * dg0dg1;
 
-df = a + reshape(b, r, u);
+df = n * (a + reshape(b, r, u));

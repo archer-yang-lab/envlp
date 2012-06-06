@@ -76,6 +76,9 @@ if (strcmp(method, 'env'))
     XC = center(X);
     YC = center(Y);
     ModelOutput = fit_OLS(X, Y);
+    sigY = cov(Y, 1);
+    eigtemY = eig(sigY);
+    logDetSigY = log(prod(eigtemY(eigtemY > 0)));
 
     DataParameter.n = n;
     DataParameter.p = p;
@@ -85,9 +88,10 @@ if (strcmp(method, 'env'))
     DataParameter.mX = mean(X)';
     DataParameter.mY = mean(Y)';
     DataParameter.sigX = cov(X, 1);
-    DataParameter.sigY = cov(Y, 1);
+    DataParameter.sigY = sigY;
     DataParameter.sigRes = ModelOutput.SigmaOLS;
     DataParameter.betaOLS = ModelOutput.betaOLS;
+    DataParameter.logDetSigY = logDetSigY;
    
     
 elseif (strcmp(method, 'senv'))
@@ -99,16 +103,20 @@ elseif (strcmp(method, 'senv'))
     XC = center(X);
     YC = center(Y);
     ModelOutput = fit_OLS(X, Y);
-
+    sigY = cov(Y, 1);
+    eigtemY = eig(sigY);
+    logDetSigY = log(prod(eigtemY(eigtemY > 0)));
+    
     DataParameter.n = n;
     DataParameter.p = p;
     DataParameter.r = r;
     DataParameter.mX = mean(X)';
     DataParameter.mY = mean(Y)';
     DataParameter.sigX = cov(X, 1);
-    DataParameter.sigY = cov(Y, 1);
+    DataParameter.sigY = sigY;
     DataParameter.sigRes = ModelOutput.SigmaOLS;
     DataParameter.betaOLS = ModelOutput.betaOLS;
+    DataParameter.logDetSigY = logDetSigY;
     
     
 elseif (strcmp(method, 'ienv'))
@@ -121,7 +129,11 @@ elseif (strcmp(method, 'ienv'))
     YC = center(Y);
     ModelOutput = fit_OLS(X, Y);
     sigY = cov(Y, 1);
-    sigFit = sigY - ModelOutput.SigmaOLS;
+    sigRes = ModelOutput.SigmaOLS;
+    sigFit = sigY - sigRes;
+    eigtem = eig(sigRes);
+    logDetSigRes = log(prod(eigtem(eigtem > 0)));
+    
 
     DataParameter.n = n;
     DataParameter.p = p;
@@ -132,9 +144,10 @@ elseif (strcmp(method, 'ienv'))
     DataParameter.mY = mean(Y)';
     DataParameter.sigX = cov(X, 1);
     DataParameter.sigY = sigY;
-    DataParameter.sigRes = ModelOutput.SigmaOLS;
+    DataParameter.sigRes = sigRes;
     DataParameter.sigFit = sigFit;
     DataParameter.betaOLS = ModelOutput.betaOLS;
+    DataParameter.logDetSigRes = logDetSigRes;
     
     
 elseif (strcmp(method, 'henv'))
@@ -172,7 +185,9 @@ elseif (strcmp(method, 'henv'))
         end
     end
 
-
+    sigY = cov(Y, 1);
+    eigtemY = eig(sigY);
+    logDetSigY = log(prod(eigtemY(eigtemY > 0)));
 
     DataParameter.n = n;
     DataParameter.ng = ng;
@@ -182,8 +197,9 @@ elseif (strcmp(method, 'henv'))
     DataParameter.ind = ind;
     DataParameter.mY = mean(Y)';
     DataParameter.mYg = mYg;
-    DataParameter.sigY = cov(Y, 1);
+    DataParameter.sigY = sigY;
     DataParameter.sigRes = sigRes;
+    DataParameter.logDetSigY = logDetSigY;
     
 elseif (strcmp(method, 'xenv'))
     
@@ -194,6 +210,10 @@ elseif (strcmp(method, 'xenv'))
     sigX = cov(X, 1);
     sigXY = XC' * YC / n;
     sigY = cov(Y, 1);
+    eigtemY = eig(sigY);
+    logDetSigY = log(prod(eigtemY(eigtemY > 0)));
+    eigtemX = eig(sigX);
+    logDetSigX = log(prod(eigtemX(eigtemX > 0)));
     
     DataParameter.n = n;
     DataParameter.p = p;
@@ -205,6 +225,8 @@ elseif (strcmp(method, 'xenv'))
     DataParameter.sigXY = sigXY;
     DataParameter.sigXcY = sigX - sigXY * inv(sigY) * sigXY';
     DataParameter.invSigX = inv(sigX);
+    DataParameter.logDetSigY = logDetSigY;
+    DataParameter.logDetSigX = logDetSigX;
     
 elseif (strcmp(method, 'xenvpls'))
     
