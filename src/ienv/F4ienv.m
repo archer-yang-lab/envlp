@@ -26,11 +26,13 @@ function f = F4ienv(R, DataParameter)
 
 u = size(R, 2);
 
+r = DataParameter.r;
+p = DataParameter.p;
+n = DataParameter.n;
 sigRes = DataParameter.sigRes;
 sigY = DataParameter.sigY;
 sigFit = DataParameter.sigFit;
-p = DataParameter.p;
-
+logDetSigRes = DataParameter.logDetSigRes;
 
 
 eigtem = eig(R' * sigRes * R);
@@ -45,4 +47,4 @@ lambdas = sort(diag(D), 'descend');
 logl = log(lambdas + 1);
 c = sum(logl((p - u + 1) : end));
 
-f = a + b + c;
+f = n * r * (1 + log(2 * pi)) + n * (logDetSigRes + a + b + c);

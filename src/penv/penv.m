@@ -265,7 +265,7 @@ elseif u==0
     ModelOutput.np = r + u * p1 + r * p2 + r * (r + 1) / 2;
     ModelOutput.n = n;    
 
-elseif u==r
+elseif u == r
     
     X = [X1 X2];
     temp = fit_OLS(X, Y);

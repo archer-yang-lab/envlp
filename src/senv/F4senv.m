@@ -26,9 +26,12 @@
 
 function f = F4senv(R, DataParameter)
 
-sigRes = DataParameter.sigRes;
+n = DataParameter.n;
+r = DataParameter.r;
 sigY = DataParameter.sigY;
+sigRes = DataParameter.sigRes;
 Lambda = DataParameter.Lambda;
+logDetSigY = DataParameter.logDetSigY;
 
 
 eigtem = eig(R' * inv(Lambda) * sigRes * inv(Lambda) * R);
@@ -37,4 +40,4 @@ a = log(prod(eigtem(eigtem > 0)));
 eigtem0 = eig(R' * Lambda * inv(sigY) * Lambda * R);
 b = log(prod(eigtem0(eigtem0 > 0)));
 
-f = a + b;
+f = n * r * (1 + log(2 * pi)) + n * (logDetSigY + a + b);

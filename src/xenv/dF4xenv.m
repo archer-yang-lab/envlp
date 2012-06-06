@@ -25,12 +25,13 @@
 
 function df = dF4xenv(R, DataParameter)
 
-sigXcY = DataParameter.sigXcY;
+n = DataParameter.n;
 sigX = DataParameter.sigX;
+sigXcY = DataParameter.sigXcY;
 invSigX = DataParameter.invSigX;
 
 a = 2 * sigXcY * R * inv(R' * sigXcY * R);
 
 b = 2 * invSigX * R * inv(R' * invSigX * R);
 
-df = a + b;
+df = n * (a + b);

@@ -156,9 +156,12 @@ r = DataParameter.r;
 mX = DataParameter.mX;
 mY = DataParameter.mY;
 sigX = DataParameter.sigX; % Standard estimator of \Sigma_X
-sigXY = DataParameter.sigXY;
 sigY = DataParameter.sigY;
+sigXY = DataParameter.sigXY;
+sigXcY = DataParameter.sigXcY;
 invSigX = DataParameter.invSigX;
+logDetSigX = DataParameter.logDetSigX;
+logDetSigY = DataParameter.logDetSigY;
 
 sigYcX = sigY - sigXY' * invSigX * sigXY;
 
@@ -205,9 +208,6 @@ if u > 0 && u < p
     beta = Gamma * inv(Omega) * eta;
     mu = mY - beta' * mX;
 
-    eigtem = eig(SigX);
-    eigtem2 = eig(sigYcX);
-
     %---compute asymptotic variance and get the ratios---
     asyFm = kron(sigYcX, inv(SigX));
     asyFm = reshape(sqrt(diag(asyFm)), p, r);
@@ -224,10 +224,7 @@ if u > 0 && u < p
     ModelOutput.Omega0 = Omega0;
     ModelOutput.mu = mu;
     ModelOutput.sigYcX = sigYcX;
-    ModelOutput.l = - n * (p + r) / 2 * log(2 * pi) - n / 2 * (log(prod(eigtem(eigtem > 0)))  ...
-    	+ log(prod(eigtem2(eigtem2 > 0)))) - 1 / 2 * trace(X * invSigX * X') ...
-		- 1 / 2 * trace((Y - ones(n, 1) * mu' - X * beta)  ...
-		* inv(sigYcX) * (Y - ones(n, 1) * mu' - X * beta)');
+    ModelOutput.l = - 0.5 * l;
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyXenv = asyEnv;
     ModelOutput.ratio = asyFm ./ asyEnv;
@@ -236,9 +233,7 @@ if u > 0 && u < p
     
 elseif u == 0
     
-    mu = mY;
-    eigtem = eig(sigX);
-    eigtem3 = eig(sigY);    
+    mu = mY;  
     ModelOutput.beta = zeros(p, r);
     ModelOutput.SigX = sigX;
     ModelOutput.Gamma = [];
@@ -248,9 +243,7 @@ elseif u == 0
     ModelOutput.Omega0 = sigX;
     ModelOutput.mu = mu;
     ModelOutput.sigYcX = sigY;
-    ModelOutput.l = - n * (p + r) / 2 * log(2 * pi) - n / 2 * (log(prod(eigtem(eigtem > 0)))  ...
-    	+ log(prod(eigtem3(eigtem3 > 0)))) - 1 / 2 * trace(X * invSigX * X') - 1 / 2 * trace((Y - ones(n, 1) * mu') ...
-        * inv(sigY) * (Y - ones(n, 1) * mu')');
+    ModelOutput.l = - n * (p + r) * (1 + log(2 * pi)) / 2 - n / 2 * (logDetSigX + logDetSigY);
     ModelOutput.covMatrix = [];
     ModelOutput.asyXenv = [];
     ModelOutput.ratio = ones(p, r);
@@ -265,8 +258,7 @@ elseif u == p
     asyFm = reshape(sqrt(diag(covMatrix)), p, r);
     beta = temp.betaOLS';
     mu = mY - beta' * mX;
-    eigtem = eig(sigX);
-    eigtem2 = eig(sigYcX);
+    eigtem3 = eig(sigXcY);
     
     ModelOutput.beta = beta;
     ModelOutput.SigX = sigX;
@@ -277,9 +269,7 @@ elseif u == p
     ModelOutput.Omega0 = [];
     ModelOutput.mu = mu;
     ModelOutput.sigYcX = sigYcX;
-    ModelOutput.l = - n * (p + r) / 2 * log(2 * pi) - n / 2 * (log(prod(eigtem(eigtem > 0)))  ...
-    	+ log(prod(eigtem2(eigtem2 > 0)))) - 1 / 2 * trace(X * invSigX * X') ...
-		- 1 / 2 * trace((Y - ones(n, 1) * mu' - X * beta) * inv(sigYcX) * (Y - ones(n, 1) * mu' - X * beta)');
+    ModelOutput.l = - n * (p + r) * (1 + log(2 * pi)) / 2 - n / 2 * (logDetSigY + log(prod(eigtem3(eigtem3 > 0))));
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyXenv = asyFm;
     ModelOutput.ratio = ones(p,r);

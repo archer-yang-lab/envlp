@@ -145,8 +145,7 @@ sigX = DataParameter.sigX;
 sigY = DataParameter.sigY;
 sigRes = DataParameter.sigRes;
 betaOLS = DataParameter.betaOLS;
-
-eigtem = eig(sigY);
+logDetSigY = DataParameter.logDetSigY;
 
 F = make_F(@F4env, DataParameter);
 dF = make_dF(@dF4env, DataParameter);
@@ -203,7 +202,7 @@ if u > 0 && u < r
     ModelOutput.Omega = Omega;
     ModelOutput.Omega0 = Omega0;
     ModelOutput.alpha = alpha;
-    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * (l + log(prod(eigtem(eigtem > 0))));
+    ModelOutput.l = - 0.5 * l;
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyEnv = asyEnv;
     ModelOutput.ratio = asyFm./asyEnv;
@@ -220,7 +219,7 @@ elseif u == 0
     ModelOutput.Omega = [];
     ModelOutput.Omega0 = sigY;
     ModelOutput.alpha = mY;
-    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
+    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * logDetSigY;
     ModelOutput.covMatrix = [];
     ModelOutput.asyEnv = [];
     ModelOutput.ratio = ones(r, p);

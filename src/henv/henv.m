@@ -161,6 +161,7 @@ mYg = DataParameter.mYg;
 sigRes = DataParameter.sigRes;
 sigY = DataParameter.sigY;
 ind = DataParameter.ind;
+logDetSigY = DataParameter.logDetSigY;
 
 if u == 0
     
@@ -173,8 +174,7 @@ if u == 0
     eta = [];
     Omega = [];
     Omega0 = sigY;
-    eigtem = eig(sigY);
-    l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
+    l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * logDetSigY;
     
     ModelOutput.mu = mu;
     ModelOutput.mug = mug;
@@ -283,7 +283,6 @@ elseif u == r
 else
     
     mu=mY;
-    eigtem = eig(sigY);
  
     F = make_F(@F4henv, DataParameter);
     dF = make_dF(@dF4henv, DataParameter);
@@ -405,7 +404,7 @@ else
     ModelOutput.Omega = Omega;
     ModelOutput.Omega0 = Omega0;
     ModelOutput.np = (r - u) + u * (r - u + p) + p * u * (u + 1) / 2 + (r - u) * (r - u + 1) / 2;
-    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * (l + log(prod(eigtem(eigtem > 0))));   
+    ModelOutput.l = - 0.5 * l;   
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyHenv = asyHenv;
     ModelOutput.ratio = asyFm ./ asyHenv;

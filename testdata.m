@@ -21,6 +21,7 @@ Y=X*bet'+epsil;
 
 % Fit and check
 ModelOutput=env(X,Y,u);
+subspace(ModelOutput.Gamma,G)
 eig(ModelOutput.Omega)
 eig(ModelOutput.Omega0)
 norm(ModelOutput.beta-bet)
@@ -28,7 +29,6 @@ ModelOutput=fit_OLS(X,Y);
 beta_OLS=ModelOutput.betaOLS;
 sigres=ModelOutput.SigmaOLS;
 norm(beta_OLS-bet)
-subspace(ModelOutput.Gamma,G)
 
 alpha=0.01;
 u=lrt_env(X,Y,alpha)
@@ -119,6 +119,8 @@ for i=1:n
 end
             
 ModelOutput=ienv(X,Y,d);
+ModelOutput=ienv(X,Y,0);
+
 subspace(ModelOutput.Gamma1,Gamma1)
 
 alpha=0.01;
