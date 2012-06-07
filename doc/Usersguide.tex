@@ -1046,7 +1046,7 @@ $\Omegabf$, $\Omegabf_{0}$ and $\alphabf$, and also the number of parameters in 
 \begin{Verbatim}[commandchars=\\\{\}]
 bootse = bootstrapse(X, Y, u, B, 'envseq')
 \end{Verbatim}
-\texttt{env} can be very slow if $r$ is large, and it cannot be applicable when $n$ is less than $r$.  In those cases, \texttt{envseq} can be used as an alternative.   The results of \texttt{envseq} also provide a starting value for \texttt{env}, although it is more often stuck in local minimums than the default starting value of \texttt{env}.  Nevertheless, to do this, an example is shown as follows.
+\texttt{env} can be very slow if $r$ is large, and it cannot be applicable when $n$ is less than $r$.  In those cases, \texttt{envseq} can be used as an alternative.   The results of \texttt{envseq} also provide a starting value for \texttt{env}, although it is more often stuck in local minimums than the default starting value of \texttt{env}.  Nevertheless, \texttt{envseq} provides a $\sqrt{n}$ consistent estimator of the envelope, then one Gauss-Newton iteration with the output of \texttt{envseq} as the starting value gives an estimator that is asymptotically equivalent to the MLE.  To use the output of \texttt{envseq} as the starting value, an example is shown as follows.
 \begin{Verbatim}[commandchars=\\\{\}]
 load wheatprotein.txt
 X = wheatprotein(:, 8);
