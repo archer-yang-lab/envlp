@@ -2,8 +2,8 @@ function  install_envelope
 
 %INSTALL_ENVELOPE -- Add various envelope utilities to the MATLAB path
 %
-%  * SG_MIN Ver 2.4.1
-%  * SG_MIN Ver 2.4.1 (Modified Components)
+%  * SG_MIN Ver 2.4.3
+%  * SG_MIN Ver 2.4.3 (Modified Components)
 %  * Envelope Module
 %  * Envelope Using Sequential Algorithm Module
 %  * Envelope in the Predictor Space Module 
@@ -69,8 +69,8 @@ fprintf('\n## please have it removed from MATLAB search path first before instal
 fprintf('\n## this version.                                                           ##\n') ;
 fprintf('\n#############################################################################\n') ;
 fprintf('\nThis script will install the following utilities to the Matlab path.\n') ;
-fprintf(' * SG_MIN Ver 2.4.1\n') ;
-fprintf(' * SG_MIN Ver 2.4.1 (Modified Components)\n') ;
+fprintf(' * SG_MIN Ver 2.4.3\n') ;
+fprintf(' * SG_MIN Ver 2.4.3 (Modified Components)\n') ;
 fprintf(' * Envelope Module\n') ;
 fprintf(' * Envelope Module Using Sequential Algorithm\n');
 fprintf(' * Envelope in the Predictor Space Module\n') ;
@@ -98,11 +98,11 @@ envelope_path = fileparts(which('install_envelope')) ;  % e.g. '/work/envelope'
 
 s = fullfile(envelope_path,'/src/sg_min') ;
 addpath(s) ;
-fprintf('\nSG_MIN Ver 2.4.1 added to the path: %s\n\n',s) ;
+fprintf('\nSG_MIN Ver 2.4.3 added to the path: %s\n\n',s) ;
 
 s = fullfile(envelope_path,'/src/sg_min_rev') ;
 addpath(s) ;
-fprintf('SG_MIN Ver 2.4.1 (Modified Components) added to the path: %s\n\n',s) ;
+fprintf('SG_MIN Ver 2.4.3 (Modified Components) added to the path: %s\n\n',s) ;
 
 s = fullfile(envelope_path,'/src/env') ;
 addpath(s) ;
