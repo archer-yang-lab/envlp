@@ -69,6 +69,11 @@ if nargin < 1
 
 elseif nargin == 1
     
+    u = size(ModelOutput.Gamma, 2);
+    if u == 0
+        error('beta is a zero matrix, no test is interesting.');
+    end
+    
     [p r] = size(ModelOutput.beta);
     TestInput.L = eye(p);
     TestInput.R = eye(r);
@@ -77,6 +82,11 @@ elseif nargin == 1
     Rs2 = r;
     
 elseif nargin == 2
+    
+    u = size(ModelOutput.Gamma, 2);
+    if u == 0
+        error('beta is a zero matrix, no test is interesting.');
+    end
     
     [p r] = size(ModelOutput.beta);
     

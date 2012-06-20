@@ -61,7 +61,7 @@
 %         TestInput.L = rand(2, r);
 %         TestInput.R = rand(p, 1);
 %         TestInput.A = zeros(2, 1);
-%         TestOutout = testcoefficient_senv(ModelOutput, TestInput); 
+%         TestOutout = testcoefficient_env(ModelOutput, TestInput); 
 
 
 function TestOutput = testcoefficient_env(ModelOutput, TestInput)
@@ -72,6 +72,11 @@ if nargin < 1
 
 elseif nargin == 1
     
+    u = size(ModelOutput.Gamma, 2);
+    if u == 0
+        error('beta is a zero matrix, no test is interesting.');
+    end
+    
     [r p] = size(ModelOutput.beta);
     TestInput.L = eye(r);
     TestInput.R = eye(p);
@@ -80,6 +85,11 @@ elseif nargin == 1
     Rs2 = p;
     
 elseif nargin == 2
+    
+    u = size(ModelOutput.Gamma, 2);
+    if u == 0
+        error('beta is a zero matrix, no test is interesting.');
+    end
     
     [r p] = size(ModelOutput.beta);
     
