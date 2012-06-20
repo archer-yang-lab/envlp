@@ -65,7 +65,7 @@ Opts.verbose = 0;
 
 ModelOutput0 = env(X, Y, r, Opts);
 
-for i = 0 : r-1
+for i = 0 : r - 1
 
     	if printFlag == 1 
 		fprintf(['Current dimension ' int2str(i) '\n']);
