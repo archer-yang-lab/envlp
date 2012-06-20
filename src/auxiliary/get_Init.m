@@ -38,10 +38,6 @@
 function WInit = get_Init(F, u, DataParameter)
 
 
-% global sigres;
-% global FParameters;
-% sigma = FParameters.sigma;
-% sigmag = FParameters.sigmag;
 
 n = DataParameter.n;
 p = DataParameter.p;
