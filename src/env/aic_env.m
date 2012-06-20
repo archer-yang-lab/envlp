@@ -36,7 +36,7 @@
 %% Example
 %         load wheatprotein.txt
 %         X = wheatprotein(:, 8);
-%         Y = wheatprotein(:, 1:6);
+%         Y = wheatprotein(:, 1 : 6);
 %         u = aic_env(X, Y)
 
 function u = aic_env(X, Y, Opts)
