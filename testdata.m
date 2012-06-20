@@ -368,3 +368,11 @@ mu=Gamma*eta;
 Sigma=Gamma*Gamma'*sigma^2+Gamma0*Gamma0'*sigma0^2;
 X=mvnrnd(mu,Sigma,n);
 ModelOutput = envmean(X, u);
+
+subspace(Gamma,ModelOutput.Gamma)
+[mu ModelOutput.mu mean(X)']
+ModelOutput.Omega
+ModelOutput.Omega0
+
+Opts.verbose=1;
+ModelOutput = envmean(X, u, Opts);
