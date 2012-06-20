@@ -126,7 +126,7 @@ else
                 end
             end %for j=1:2*r
             initset(1 : u) = initset(2 : (u + 1));
-            initset(u+1) = initset(1);
+            initset(u + 1) = initset(1);
         end % end for i=1:u
     end % end for rep=1:3
 
