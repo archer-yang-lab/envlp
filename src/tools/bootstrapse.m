@@ -34,7 +34,7 @@
 % *modelType*: A string characters indicting the model, choices can be
 % 'env', 'envseq', 'henv', 'ienv', 'penv', 'senv', 'xenv' and 'xenvpls'.
 %
-% *Opts*: A list containing the optional input parameter, to control the
+% *Opts*: A list containing the optional input parameters, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
 % 

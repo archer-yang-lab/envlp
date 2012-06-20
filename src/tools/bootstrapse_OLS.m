@@ -13,7 +13,7 @@
 % 
 % *B*: Number of bootstrap samples.  A positive integer.
 %
-% *Opts*: A list containing the optional input parameter. If not
+% *Opts*: A list containing the optional input parameters. If not
 % defined, the default setting is used.
 % 
 % * Opts.verbose: Flag for print out the number of bootstrap samples, 
