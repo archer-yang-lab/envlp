@@ -1832,7 +1832,7 @@ This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta
         \color{lightgray}\ttfamily \begin{verbatim}
  Test Hypothesis     Chisq Statistic    DF     P-value
 ------------------------------------------------------------------------
-L * beta * R = A         116.230         6        0.0000
+L * beta * R = A         116.230        6      0.0000
 ------------------------------------------------------------------------
 \end{verbatim} \rmfamily
 \color{black}       
@@ -1842,12 +1842,12 @@ L * beta * R = A         116.230         6        0.0000
        TestInput.L = rand(2, r);
        TestInput.R = rand(p, 1);
        TestInput.A = zeros(2, 1);
-       TestOutout = testcoefficient_senv(ModelOutput, TestInput);\end{verbatim}
+       TestOutout = testcoefficient_env(ModelOutput, TestInput);\end{verbatim}
     
         \color{lightgray}\ttfamily \begin{verbatim}
  Test Hypothesis     Chisq Statistic    DF     P-value
 ------------------------------------------------------------------------
-L * beta * R = A          61.344         2        0.0000
+L * beta * R = A         111.628        2      0.0000
 ------------------------------------------------------------------------
 \end{verbatim} \rmfamily
 \color{black}
