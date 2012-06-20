@@ -158,7 +158,7 @@ dF = make_dF(@dF4env, DataParameter);
 
 
 if u > 0 && u < r
-    %---Compute \Gamma using sg_min---
+    
     maxIter = Opts.maxIter;
 	ftol = Opts.ftol;
 	gradtol = Opts.gradtol;
@@ -168,11 +168,12 @@ if u > 0 && u < r
         verbose = 'verbose';
     end
     if ~isfield(Opts, 'init') 
-        init = get_Init(F, X, Y, u, DataParameter);
+        init = get_Init(F, u, DataParameter);
     else
         init = Opts.init;
     end
 
+    %---Compute \Gamma using sg_min---
     [l Gamma] = sg_min(F, dF, init, maxIter, 'prcg', verbose, ftol, gradtol);
 
     %---Compute the rest of the parameters based on \Gamma---
@@ -205,7 +206,7 @@ if u > 0 && u < r
     ModelOutput.l = - 0.5 * l;
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyEnv = asyEnv;
-    ModelOutput.ratio = asyFm./asyEnv;
+    ModelOutput.ratio = asyFm ./ asyEnv;
     ModelOutput.np = r + u * p + r * (r + 1) / 2;
     ModelOutput.n = n;
     
