@@ -379,3 +379,5 @@ ModelOutput = envmean(X, u, Opts);
 u = aic_envmean(X)
 u = bic_envmean(X)
 u = lrt_envmean(X,0.01)
+B = 100;
+bootse = bstrp_envmean(X, u, B)
