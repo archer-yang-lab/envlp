@@ -376,3 +376,5 @@ ModelOutput.Omega0
 
 Opts.verbose=1;
 ModelOutput = envmean(X, u, Opts);
+u = aic_envmean(X);
+u = bic_envmean(X);
