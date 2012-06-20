@@ -78,7 +78,7 @@ for i = 1 : B
     bootresi = resi(randsample(1 : n, n, true), :);
     Yboot = Yfit + bootresi;
     temp = env(X, Yboot, u, Opts);
-    bootBeta(i,:) = reshape(temp.beta, 1, r * p);
+    bootBeta(i, :) = reshape(temp.beta, 1, r * p);
 
 end
 
