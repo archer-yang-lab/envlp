@@ -2,20 +2,11 @@
 % Starting value for the heteroscedastic envelope subspace.
 
 %% Syntax
-%         WInit = get_Init4henv(F, X, Y, u, DataParameter)
+%         WInit = get_Init4henv(F, u, DataParameter)
 
 %% Input
 %
 % *F*: Objective function to get the heteroscedastic envelope subspace.
-% 
-% *X*: Group indicators. A matrix with n rows.  X can only have p unique
-%  rows, where p is the number of groups. For example, if there 
-% are two groups, X can only have 2 different kinds of rows, such as (0, 1)
-% and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not
-% restricted, as long as X only has p unique rows.
-% 
-% *Y*: Multivariate responses. An n by r matrix, r is the number of
-% responses and n is number of observations.  
 % 
 % *u*: Dimension of the envelope. An integer between 1 and r - 1.
 % 
@@ -43,7 +34,7 @@
 % The codes are implemented based on the algorithm in Section 3.5 of Su and 
 % Cook (2011).
 
-function WInit = get_Init4henv(F, X, Y, u, DataParameter)
+function WInit = get_Init4henv(F, u, DataParameter)
 
 n = DataParameter.n;
 ng = DataParameter.ng;
@@ -58,8 +49,7 @@ for i = 1 : p
 end
 
 [V D] = eig(tmp);
-% [V2 D]=eig(sigY);
-% V=[V1 V2];
+
 
 crit = nchoosek(r, u);
 
@@ -102,11 +92,11 @@ else
                         iniValue = temp;
                     end
                 end
-            end %for j=1:2*r
+            end 
             initset(1 : u) = initset(2 : (u + 1));
             initset(u + 1) = initset(1);
-        end % end for i=1:u
-    end % end for rep=1:3
+        end 
+    end 
 
     WInit = V(:, initset(1 : u));
    

@@ -2,14 +2,11 @@
 % Starting value for the envelope subspace.
 
 %% Syntax
-%         WInit = get_Init(X, Y, u, DataParameter)
+%         WInit = get_Init(F, u, DataParameter)
 %
 %% Input
 %
-% *X*: Predictors. An n by p matrix, p is the number of predictors. 
-% 
-% *Y*: Multivariate responses. An n by r matrix, r is the number of
-% responses and n is number of observations.  
+% *F*: Objective function of the envelope subspace.
 % 
 % *u*: Dimension of the envelope. An integer between 1 and r - 1.
 % 
@@ -38,7 +35,7 @@
 % The codes are implemented based on the algorithm in Section 3.5 of Su and 
 % Cook (2011).
 
-function WInit = get_Init(F, X, Y, u, DataParameter)
+function WInit = get_Init(F, u, DataParameter)
 
 
 % global sigres;

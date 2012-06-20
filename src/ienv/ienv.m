@@ -202,7 +202,7 @@ else
         verbose = 'verbose';
     end
     if ~isfield(Opts, 'init') 
-        init = get_Init(F, X, Y, u, DataParameter);
+        init = get_Init(F, u, DataParameter);
     else
         init = Opts.init;
     end

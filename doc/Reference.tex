@@ -6815,16 +6815,13 @@ Starting value for the envelope subspace.
 \subsection*{Syntax}
 
 
-\begin{verbatim}       WInit = get_Init(X, Y, u, DataParameter)\end{verbatim}
+\begin{verbatim}       WInit = get_Init(F, u, DataParameter)\end{verbatim}
     
 
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Predictors. An n by p matrix, p is the number of predictors.
-\end{par} \vspace{1em}
-\begin{par}
-\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations.
+\textbf{F}: Objective function of the envelope subspace.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{u}: Dimension of the envelope. An integer between 1 and r - 1.
@@ -6846,6 +6843,7 @@ Starting value for the envelope subspace.
 \begin{par}
 We compute the eigenvectors for the covariance matrices of Y and the estimated errors, and get 2r vectors.  Then we get all the combinations of u vectors out of the 2r vectors. If the number of 2r choose u is small(\ensuremath{<}= 50), we search over all the combinations and find out the one that minimizes the objective function F. If that number is large, then we do it iteratively: we pick up any u eigenvectors, fix all of them except the first one. Then we search over all the vectors orthogonal to the fixed ones, and record the one that minimizes F. Next, we fix the first u eigenvectors again but this time search for second one, then we record the vector. This goes on and on until the last one. We do it for 5 rounds and use the final set as our starting value.
 \end{par} \vspace{1em}
+
 
 
 \subsection*{Reference}
@@ -6878,19 +6876,13 @@ Starting value for the heteroscedastic envelope subspace.
 \subsection*{Syntax}
 
 
-\begin{verbatim}       WInit = get_Init4henv(F, X, Y, u, DataParameter)\end{verbatim}
+\begin{verbatim}       WInit = get_Init4henv(F, u, DataParameter)\end{verbatim}
     
 
 \subsection*{Input}
 
 \begin{par}
 \textbf{F}: Objective function to get the heteroscedastic envelope subspace.
-\end{par} \vspace{1em}
-\begin{par}
-\textbf{X}: Group indicators. A matrix with n rows.  X can only have p unique  rows, where p is the number of groups. For example, if there are two groups, X can only have 2 different kinds of rows, such as (0, 1) and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not restricted, as long as X only has p unique rows.
-\end{par} \vspace{1em}
-\begin{par}
-\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{u}: Dimension of the envelope. An integer between 1 and r - 1.

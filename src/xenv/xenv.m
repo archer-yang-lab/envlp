@@ -188,7 +188,7 @@ if u > 0 && u < p
         verbose = 'verbose';
     end
     if ~isfield(Opts, 'init') 
-        init = get_Init(tempF, Y, X, u, tempParameter);
+        init = get_Init(tempF, u, tempParameter);
     else
         init = Opts.init;
     end
