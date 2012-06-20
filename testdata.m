@@ -353,3 +353,18 @@ B=50;
 bootse = bstrp_xenvpls(X, Y, u, B)
 m = 5;
 u = mfoldcv_xenvpls(X, Y, m)
+
+
+
+n=100;
+p=10;
+u=2;
+eta=randn(u,1)*2;
+sigma=1;
+sigma0=5;
+Gamma=grams(rand(r,u));
+Gamma0=grams(nulbasis(Gamma'));
+mu=Gamma*eta;
+Sigma=Gamma*Gamma'*sigma^2+Gamma0*Gamma0'*sigma0^2;
+X=mvnrnd(mu,Sigma,n);
+ModelOutput = envmean(X, u);

@@ -43,7 +43,7 @@ r = DataParameter.r;
 sigY = DataParameter.sigY;
 sigRes = DataParameter.sigRes;
 
-tmp = zeros(r,r);
+tmp = zeros(r, r);
 for i = 1 : p
     tmp = tmp + ng(i) / n * sigRes(:, :, i);
 end
