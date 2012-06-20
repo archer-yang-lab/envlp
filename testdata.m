@@ -356,9 +356,9 @@ u = mfoldcv_xenvpls(X, Y, m)
 
 
 
-n=100;
+n=1000;
 p=10;
-u=2;
+u=1;
 eta=randn(u,1)*2;
 sigma=1;
 sigma0=5;
@@ -376,5 +376,6 @@ ModelOutput.Omega0
 
 Opts.verbose=1;
 ModelOutput = envmean(X, u, Opts);
-u = aic_envmean(X);
-u = bic_envmean(X);
+u = aic_envmean(X)
+u = bic_envmean(X)
+u = lrt_envmean(X,0.01)
