@@ -6,7 +6,7 @@
 %
 %% Input 
 %
-% *Opts*: A list containing optional input parameter for sg_min.m specified
+% *Opts*: A list containing optional input parameters for sg_min.m specified
 % by users.  One or several (even all) fields could be empty.
 %
 % * Opts.maxIter: Maximum number of iterations.
@@ -16,7 +16,7 @@
 %
 %% Output:
 % 
-% *Opts*: A list containing optional input parameter for sg_min.m, specified by
+% *Opts*: A list containing optional input parameters for sg_min.m, specified by
 % users or the default values are used.
 %
 % * Opts.maxIter: Maximum number of iterations.  Default value: 300.

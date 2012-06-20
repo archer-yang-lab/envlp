@@ -21,7 +21,7 @@
 %
 % *u*: Dimension of the partial envelope. An integer between 0 and r.
 %
-% *Opts*: A list containing the optional input parameter, to control the
+% *Opts*: A list containing the optional input parameters, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
 % 

@@ -21,7 +21,7 @@
 % *alpha*: Significance level for testing.  A real number between 0 and 1,
 % often taken at 0.05 or 0.01.
 % 
-% *Opts*: A list containing the optional input parameter, to control the
+% *Opts*: A list containing the optional input parameters, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
 % 

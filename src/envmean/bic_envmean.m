@@ -11,7 +11,7 @@
 % *X*: Data matrix. An n by p matrix, p is the dimension of the variable
 % and n is number of observations. 
 % 
-% *Opts*: A list containing the optional input parameter, to control the
+% *Opts*: A list containing the optional input parameters, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
 % 
