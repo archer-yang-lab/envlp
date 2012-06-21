@@ -1,3 +1,44 @@
+%% lrt_envmean
+% Select the dimension of the envelope subspace using likelihood ratio
+% testing.
+
+%% Syntax
+%         u = lrt_envmean(X, alpha)
+%         u = lrt_envmean(X, alpha, Opts)
+%
+%% Input
+%
+% *X*: Data matrix. An n by p matrix, p is the dimension of the variable
+% and n is number of observations. 
+% 
+% *alpha*: Significance level for testing.  A real number between 0 and 1,
+% often taken at 0.05 or 0.01.
+% 
+% *Opts*: A list containing the optional input parameters, to control the
+% iterations in sg_min. If one or several (even all) fields are not
+% defined, the default settings are used.
+% 
+% * Opts.maxIter: Maximum number of iterations.  Default value: 300.
+% * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
+% * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+% * Opts.verbose: Flag for print out dimension selection process, 
+% logical 0 or 1. Default value: 0.
+%
+%% Output
+%
+% *u*: Dimension of the envelope. An integer between 0 and p.
+
+%% Description
+% This function implements the likelihood ratio testing procedure to select
+% the dimension of the envelope subspace, with pre-specified significance 
+% level $$\alpha$.  
+
+%% Example
+%         load wheatprotein.txt
+%         X = wheatprotein(:, 1 : 6);
+%         alpha = 0.01;
+%         u = lrt_envmean(X, alpha)
+
 function u = lrt_envmean(X, alpha, Opts)
 
 if nargin < 2
