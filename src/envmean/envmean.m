@@ -77,7 +77,7 @@
 %         load wheatprotein.txt
 %         X = wheatprotein(:, 1 : 6);
 %         u = bic_envmean(X)
-%         ModelOutput = envmean(X, Y, u)
+%         ModelOutput = envmean(X, u)
 %         ModelOutput.mu
 %         ModelOutput.Sigma
 

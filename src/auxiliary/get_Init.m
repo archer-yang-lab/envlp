@@ -27,7 +27,7 @@
 % do it iteratively: we pick up any u eigenvectors, fix all of them except 
 % the first one. Then we search over all the vectors orthogonal to the 
 % fixed ones, and record the one that minimizes F. Next, we fix the first 
-% u eigenvectors again but this time search for second one, then we record 
+% u eigenvectors again but this time search for the second one, then we record 
 % the vector. This goes on and on until the last one. We do it for 5 rounds 
 % and use the final set as our starting value. 
 

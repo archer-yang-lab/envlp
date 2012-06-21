@@ -1,7 +1,41 @@
+%% get_Init4envmean
+% Starting value for the envelope subspace in estimating the multiavriate mean.
+
+%% Syntax
+%         WInit = get_Init4envmean(F, u, DataParameter)
+
+%% Input
+%
+% *F*: Objective function to get the envelope subspace.
+% 
+% *u*: Dimension of the envelope. An integer between 1 and p - 1.
+% 
+% *DataParameter*: A list containing commonly used statistics computed from
+% the data.
+%
+%% Output
+%
+% *WInit*: The initial estimate of the orthogonal basis of the envelope
+% subspace. A p by u orthogonal matrix.
+
+%% Description
+% We compute the eigenvectors for the estimated error covariance matrix,
+% and get p vectors.  Then we get all the combinations  
+% of u vectors out of the p vectors. If the number of p choose u is 
+% small(<=50), we search over all the combinations and find out the one 
+% that minimizes the objective function F. If that number is large, then we
+% do it iteratively: we pick up any u eigenvectors, fix all of them except 
+% the first one. Then we search over all the vectors orthogonal to the 
+% fixed ones, and record the one that minimizes F. Next, we fix the first 
+% u eigenvectors again but this time search for the second one, then we record 
+% the vector. This goes on and on until the last one. We do it for 3 rounds 
+% and use the final set as our starting value. 
+
+%% Reference
+% The codes are implemented based on the algorithm in Section 3.5 of Su and 
+% Cook (2011).
+
 function WInit = get_Init4envmean(F, u, DataParameter)
-
-
-
 
 n = DataParameter.n;
 p = DataParameter.p;

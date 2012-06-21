@@ -155,7 +155,7 @@ This function computes the bootstrap standard errors for the regression coeffici
 
 \begin{verbatim}       load wheatprotein.txt
        X = wheatprotein(:, 8);
-       Y = wheatprotein(:, 1:6);
+       Y = wheatprotein(:, 1 : 6);
        alpha = 0.01;
        u = lrt_env(X, Y, alpha);
        B = 100;
@@ -800,7 +800,7 @@ This function evaluates the user-specified model, could be 'env', 'henv', 'ienv'
 
 \begin{verbatim}       load wheatprotein.txt
        X = wheatprotein(:, 8);
-       Y = wheatprotein(:, 1:6);
+       Y = wheatprotein(:, 1 : 6);
        modelType = 'env';
        u =  modelselectbic(X, Y, modelType);
        ModelOutput = env(X, Y, u);
@@ -945,7 +945,7 @@ This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta
 
 \begin{verbatim}       load wheatprotein.txt
        X = wheatprotein(:, 8);
-       Y = wheatprotein(:, 1:6);
+       Y = wheatprotein(:, 1 : 6);
        alpha = 0.01;
        u = lrt_env(X, Y, alpha);
        ModelOutput = env(X, Y, u);
@@ -1055,7 +1055,7 @@ This function implements the Akaike information criteria (AIC) to select the dim
 
 \begin{verbatim}       load wheatprotein.txt
        X = wheatprotein(:, 8);
-       Y = wheatprotein(:, 1:6);
+       Y = wheatprotein(:, 1 : 6);
        u = aic_env(X, Y)\end{verbatim}
     
         \color{lightgray}\ttfamily \begin{verbatim}
@@ -1135,7 +1135,7 @@ This function implements the Bayesian information criteria (BIC) to select the d
 
 \begin{verbatim}       load wheatprotein.txt
        X = wheatprotein(:, 8);
-       Y = wheatprotein(:, 1:6);
+       Y = wheatprotein(:, 1 : 6);
        u = bic_env(X, Y)\end{verbatim}
     
         \color{lightgray}\ttfamily \begin{verbatim}
@@ -1220,7 +1220,7 @@ This function computes the bootstrap standard errors for the regression coeffici
 
 \begin{verbatim}       load wheatprotein.txt
        X = wheatprotein(:, 8);
-       Y = wheatprotein(:, 1:6);
+       Y = wheatprotein(:, 1 : 6);
        alpha = 0.01;
        u = lrt_env(X, Y, alpha)
 \end{verbatim} \rmfamily
@@ -1406,7 +1406,7 @@ The following codes will reconstruct the results in the wheat protein data examp
 
 \begin{verbatim}       load wheatprotein.txt
        X = wheatprotein(:, 8);
-       Y = wheatprotein(:, 1:6);
+       Y = wheatprotein(:, 1 : 6);
        alpha = 0.01;
        u = lrt_env(X, Y, alpha)
 \end{verbatim}    
@@ -1605,7 +1605,7 @@ This function implements the likelihood ratio testing procedure to select the di
 
 \begin{verbatim}       load wheatprotein.txt
        X = wheatprotein(:, 8);
-       Y = wheatprotein(:, 1:6);
+       Y = wheatprotein(:, 1 : 6);
        alpha = 0.01;
        u = lrt_env(X, Y, alpha)\end{verbatim}
     
@@ -1683,7 +1683,7 @@ This function evaluates the envelope model at new value Xnew.  It can perform es
 
 \begin{verbatim}       load wheatprotein.txt
        X = wheatprotein(:, 8);
-       Y = wheatprotein(:, 1:6);
+       Y = wheatprotein(:, 1 : 6);
        alpha = 0.01;
        u = lrt_env(X, Y, alpha);
        ModelOutput = env(X, Y, u);
@@ -1823,7 +1823,7 @@ This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta
 
 \begin{verbatim}       load wheatprotein.txt
        X = wheatprotein(:, 8);
-       Y = wheatprotein(:, 1:6);
+       Y = wheatprotein(:, 1 : 6);
        alpha = 0.01;
        u = lrt_env(X, Y, alpha);
        ModelOutput = env(X, Y, u);
@@ -1853,6 +1853,789 @@ L * beta * R = A         111.628        2      0.0000
 \color{black}
     
 \newpage
+
+\chapter{envmean}
+
+    
+\rmfamily
+\color{black}\section{aic\_envmean}
+
+\begin{par}
+Select the dimension of the envelope subspace using Akaike information criterion.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = aic_envmean(X)
+       u = aic_envmean(X, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and p.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements the Akaike information criteria (AIC) to select the dimension of the envelope subspace.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 1 : 6);
+       u = aic_envmean(X)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+u =
+
+     6
+
+\end{verbatim} \color{black}
+    
+
+\newpage
+
+\rmfamily
+\color{black}\section{bic\_envmean}
+
+\begin{par}
+Select the dimension of the envelope subspace using Bayesian information criterion.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = bic_envmean(X)
+       u = bic_envmean(X, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and p.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements the Bayesian information criteria (BIC) to select the dimension of the envelope subspace.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 1 : 6);
+       u = bic_envmean(X)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+u =
+
+     5
+
+\end{verbatim} \color{black}
+    
+    \newpage
+
+\rmfamily
+\color{black}\section{bstrp\_envmean}
+
+\begin{par}
+Compute bootstrap standard error for the envelope estimator of the multivariate mean.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       bootse = bstrp_envmean(X, u, B)
+       bootse = bstrp_envmean(X, u, B, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope subspace.  A positive integer between 0 and p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{B}: Number of bootstrap samples.  A positive integer.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{bootse}: The standard error for elements in $\mu$ computed by bootstrap.  A p dimensional column vector.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function computes the bootstrap standard errors for the envelope estimator of the multivariate mean by bootstrapping the residuals.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 1 : 6);
+       alpha = 0.01;
+       u = lrt_envmean(X, alpha)\end{verbatim}
+    
+        \color{lightgray} \ttfamily\begin{verbatim}
+       
+u =
+
+     5
+\end{verbatim} \rmfamily
+\color{black}       
+\begin{verbatim}       B = 100;
+       bootse = bstrp_envmean(X, u, B)\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}
+bootse =
+
+    5.6513
+    4.6606
+    5.0257
+    5.4714
+    7.7713
+    3.0035
+
+\end{verbatim} \rmfamily
+\color{black}
+    
+
+
+\newpage
+
+\rmfamily
+\color{black}\section{dF4envmean}
+
+\begin{par}
+The first derivative of the objective function for computing the envelope subspace.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       df = dF4envmean(R, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{R}: A p by u semi orthogonal matrix, 0 \ensuremath{<} u \ensuremath{<}= p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{DataParameter}: A structure that contains the statistics calculated from the data.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{df}: A p by u matrix containing the value of the derivative function evaluated at R.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+The objective function is derived by maximum likelihood estimation. This function is the derivative of the objective function.
+\end{par} \vspace{1em}
+
+\newpage
+
+\rmfamily
+\color{black}\section{envmean}
+
+\begin{par}
+Provide envelope estimator for the multivariate mean.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item References
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       ModelOutput = envmean(X, u)
+       ModelOutput = envmean(X, u, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
+   \item Opts.init: The initial value for the envelope subspace. A p by u matrix. Default value is the one generated by function get\_Init4envmean.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{ModelOutput}: A list that contains the maximum likelihood estimators and some statistics.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item ModelOutput.mu: The envelope estimator of the multivariate mean $\mu$. A p dimensional column vector.
+   \item ModelOutput.Sigma: The envelope estimator of the error covariance matrix.  A p by p matrix.
+   \item ModelOutput.Gamma: The orthogonal basis of the envelope subspace. A p by u semi-orthogonal matrix.
+   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  An p by p-u semi-orthogonal matrix.
+   \item ModelOutput.eta: The coordinates of $\mu$ with respect to Gamma. A u dimensional column vector.
+   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. A u by u matrix.
+   \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. A p-u by p-u matrix.
+   \item ModelOutput.l: The maximized log likelihood function.  A real number.
+   \item ModelOutput.covMatrix: The asymptotic covariance of $\mu$.  A p by p matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1/n.
+   \item ModelOutput.asyEnv: The asymptotic standard error for elements in $\mu$ under the envelope model.  A p dimensional column vector.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
+   \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the envelope estimator, for each element in $\mu$.  A p dimensional column vector.
+   \item ModelOutput.np: The number of parameters in the envelope model.  A positive integer.
+   \item ModelOutput.n: The number of observations in the data.  A positive integer.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function provides an envelope estimator for the multivariate mean, with a given dimension of the envelope subspace u. The estimator is obtained using the maximum likelihood estimation.  When the dimension is p, then the envelope model degenerates to the standard sample mean.  When the dimension is 0, it means that X has mean 0.
+\end{par} \vspace{1em}
+
+
+\subsection*{References}
+
+\begin{par}
+The Grassmann manifold optimization step calls the package sg\_min 2.4.3 by Ross Lippert (http://web.mit.edu/$\sim$ripper/www.sgmin.html).
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 1 : 6);
+       u = bic_envmean(X)\end{verbatim}
+    
+        \color{lightgray} \ttfamily\begin{verbatim}
+u =
+
+     5
+\end{verbatim} \rmfamily
+\color{black}
+
+\begin{verbatim}       ModelOutput = envmean(X, u)\end{verbatim}
+
+        \color{lightgray} \ttfamily\begin{verbatim}
+
+ModelOutput = 
+
+           mu: [6x1 double]
+        Sigma: [6x6 double]
+        Gamma: [6x5 double]
+       Gamma0: [6x1 double]
+          eta: [5x1 double]
+        Omega: [5x5 double]
+       Omega0: 214.1646
+            l: -881.6301
+    covMatrix: [6x6 double]
+       asyEnv: [6x1 double]
+        ratio: [6x1 double]
+           np: 26
+            n: 50
+\end{verbatim} \rmfamily
+\color{black}
+
+\begin{verbatim}       ModelOutput.mu\end{verbatim}
+        \color{lightgray} \ttfamily\begin{verbatim}
+
+ans =
+
+  474.0794
+  129.7194
+  253.0441
+  377.6816
+  381.4752
+   -7.2039
+
+\end{verbatim} \rmfamily
+\color{black}
+
+\begin{verbatim}       ModelOutput.Sigma\end{verbatim}
+
+
+
+        \color{lightgray} \ttfamily\begin{verbatim}
+ans =
+
+   1.0e+03 *
+
+    1.2430    1.0297    1.1037    1.1862    1.5078    0.6631
+    1.0297    0.8668    0.9252    0.9733    1.2439    0.5555
+    1.1037    0.9252    0.9893    1.0459    1.3413    0.5926
+    1.1862    0.9733    1.0459    1.1463    1.4748    0.6382
+    1.5078    1.2439    1.3413    1.4748    2.1477    0.8132
+    0.6631    0.5555    0.5926    0.6382    0.8132    0.3788
+
+\end{verbatim} \rmfamily
+\color{black}
+    
+
+\newpage
+
+\rmfamily
+\color{black}\section{F4envmean}
+
+\begin{par}
+Objective function for computing the envelope subspace.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       f = F4envmean(R, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{R}: A p by u semi orthogonal matrix, 0 \ensuremath{<} u \ensuremath{<}= p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{DataParameter}: A structure that contains the statistics calculated from the data.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{f}: A scalar containing the value of the objective function evaluated at R.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+The objective function is derived by maximum likelihood estimation. The columns of the semi-orthogonal matrix that minimizes this function span the estimated envelope subspace.
+\end{par} \vspace{1em}
+
+\newpage
+
+\rmfamily
+\color{black}\section{lrt\_envmean}
+
+\begin{par}
+Select the dimension of the envelope subspace using likelihood ratio testing.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = lrt_envmean(X, alpha)
+       u = lrt_envmean(X, alpha, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{alpha}: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and p.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements the likelihood ratio testing procedure to select the dimension of the envelope subspace, with pre-specified significance level $\alpha$.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 1 : 6);
+       alpha = 0.01;
+       u = lrt_envmean(X, alpha)\end{verbatim}
+    
+        \color{lightgray} \begin{verbatim}
+u =
+
+     5
+
+\end{verbatim} \color{black}
+
+\newpage
+
+\rmfamily
+\color{black}\section{predict\_envmean}
+
+\begin{par}
+Perform estimation of the multivariate mean or prediction for a new observation.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       PredictOutput = predict_envmean(ModelOutput, infType)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{ModelOutput}: A list containing the maximum likelihood estimators and other statistics inherited from envmean.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{PredictOutput}: A list containing the results of the inference.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item PredictOutput.value: The estimated multivariate mean or the prediction value. A p dimensional column vector.
+   \item PredictOutput.covMatrix: The covariance matrix of PredictOutput.value. A p by p matrix.
+   \item PredictOutput.SE: The standard error of elements in PredictOutput.value.  A p dimensional column vector.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+If the inference type is prediction, this function predicts a new observation and gives its covariance matrix and standard errors of its elements.  If the inference type is estimation, this function gives the estimation of the multivariate mean, its covariance matrix and standard errors of its elements.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 1 : 6);
+       alpha = 0.01;
+       u = lrt_envmean(X, alpha);
+       ModelOutput = envmean(X, u);
+       PredictOutput = predict_envmean(ModelOutput, 'prediction')\end{verbatim}
+    
+        \color{lightgray} \ttfamily\begin{verbatim}
+PredictOutput = 
+
+        value: [6x1 double]
+    covMatrix: [6x6 double]
+           SE: [6x1 double]
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}       PredictOutput.value\end{verbatim}
+        \color{lightgray} \ttfamily\begin{verbatim}
+ans =
+
+  474.0794
+  129.7194
+  253.0441
+  377.6816
+  381.4752
+   -7.2039
+\end{verbatim} \rmfamily
+\color{black}
+
+\begin{verbatim}       PredictOutput.SE\end{verbatim}
+        \color{lightgray} \ttfamily\begin{verbatim}
+
+ans =
+
+   35.6077
+   29.7337
+   31.7655
+   34.1944
+   46.8043
+   19.6574
+
+\end{verbatim} \rmfamily
+\color{black}        
+
+\newpage
+
+    
+\rmfamily
+\color{black}\section{testcoefficient\_envmean}
+
+
+\begin{verbatim}This function tests the null hypothesis L * mu = A versus the
+alternative hypothesis L * mu ~= A, where mu is the envelope estimator
+of the multivariate mean.\end{verbatim}
+    
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       TestOutput = testcoefficient_envmean(ModelOutput)
+       TestOutput = testcoefficient_envmean(ModelOutput, TestInput)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{ModelOutput}: A list containing the maximum likelihood estimators and other statistics inherited from envmean.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{TestInput}: A list that specifies the null hypothesis, including L and A.  If not provided by the user, default values will be used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestInput.L: The matrix multiplied to $\mu$ on the left.  It is a d1 by p matrix, while d1 is less than or equal to p.  Default value: identity matrix $I_p$.
+   \item TestInput.A: The vector on the right hand side of the equation.  It is a d1 dimensional column vector.  Default value: d1 by d2 zero matrix.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of L$\mu$.  At the same time, a table is printed out.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestOutput.chisqStatistic: The test statistics. A real number.
+   \item TestOutput.df: The degrees of freedom of the reference chi-squared distribution.  A positive integer.
+   \item TestOutput.pValue: p-value of the test.  A real number in [0, 1].
+   \item TestOutput.covMatrix: The covariance matrix of L$\mu$. A d1 dimensional column vector.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function tests for hypothesis $H_0: L\mu = A$, versus $H_\alpha: L\mu\neq A$.  The $\mu$ is estimated by the envelope model.  If the user does not specify the values for L and A, then the test is equivalent to the standard F test on if $\mu = 0$.  The test statistics used is $(L\mu - A)$ $\hat{\Sigma}^{-1}$ $(L\mu - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 1 : 6);
+       alpha = 0.01;
+       u = lrt_envmean(X, alpha);
+       ModelOutput = envmean(X, u);
+       TestOutout = testcoefficient_envmean(ModelOutput);\end{verbatim}
+    
+        \color{lightgray} \ttfamily\begin{verbatim}
+ Test Hypothesis     Chisq Statistic    DF     P-value
+-------------------------------------------------------
+L * mu = A          1351183.290          6      0.0000
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}
+       
+\begin{verbatim}       p = size(X, 2);
+       TestInput.L = rand(2, p);
+       TestInput.A = zeros(2, 1);
+       TestOutout = testcoefficient_envmean(ModelOutput, TestInput);\end{verbatim}
+
+
+        \color{lightgray} \ttfamily\begin{verbatim}
+ Test Hypothesis     Chisq Statistic    DF     P-value
+-------------------------------------------------------
+L * mu = A            37273.324          2      0.0000
+-------------------------------------------------------
+\end{verbatim} \rmfamily
+\color{black}
+    
+    \newpage
+
 \chapter{envpls}
 \rmfamily
 \color{black}\section{bstrp\_envpls}
@@ -6841,9 +7624,69 @@ Starting value for the envelope subspace.
 \subsection*{Description}
 
 \begin{par}
-We compute the eigenvectors for the covariance matrices of Y and the estimated errors, and get 2r vectors.  Then we get all the combinations of u vectors out of the 2r vectors. If the number of 2r choose u is small(\ensuremath{<}= 50), we search over all the combinations and find out the one that minimizes the objective function F. If that number is large, then we do it iteratively: we pick up any u eigenvectors, fix all of them except the first one. Then we search over all the vectors orthogonal to the fixed ones, and record the one that minimizes F. Next, we fix the first u eigenvectors again but this time search for second one, then we record the vector. This goes on and on until the last one. We do it for 5 rounds and use the final set as our starting value.
+We compute the eigenvectors for the covariance matrices of Y and the estimated errors, and get 2r vectors.  Then we get all the combinations of u vectors out of the 2r vectors. If the number of 2r choose u is small(\ensuremath{<}= 50), we search over all the combinations and find out the one that minimizes the objective function F. If that number is large, then we do it iteratively: we pick up any u eigenvectors, fix all of them except the first one. Then we search over all the vectors orthogonal to the fixed ones, and record the one that minimizes F. Next, we fix the first u eigenvectors again but this time search for the second one, then we record the vector. This goes on and on until the last one. We do it for 5 rounds and use the final set as our starting value.
 \end{par} \vspace{1em}
 
+
+
+\subsection*{Reference}
+
+\begin{par}
+The codes are implemented based on the algorithm in Section 3.5 of Su and Cook (2011).
+\end{par} \vspace{1em}
+
+\newpage
+
+\rmfamily
+\color{black}\section{get\_Init4envmean}
+
+\begin{par}
+Starting value for the envelope subspace in estimating the multiavriate mean.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Reference
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       WInit = get_Init4envmean(F, u, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{F}: Objective function to get the envelope subspace.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 1 and p - 1.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{DataParameter}: A list containing commonly used statistics computed from the data.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{WInit}: The initial estimate of the orthogonal basis of the envelope subspace. A p by u orthogonal matrix.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+We compute the eigenvectors for the estimated error covariance matrix, and get p vectors.  Then we get all the combinations of u vectors out of the p vectors. If the number of p choose u is small(\ensuremath{<}=50), we search over all the combinations and find out the one that minimizes the objective function F. If that number is large, then we do it iteratively: we pick up any u eigenvectors, fix all of them except the first one. Then we search over all the vectors orthogonal to the fixed ones, and record the one that minimizes F. Next, we fix the first u eigenvectors again but this time search for the second one, then we record the vector. This goes on and on until the last one. We do it for 3 rounds and use the final set as our starting value.
+\end{par} \vspace{1em}
 
 
 \subsection*{Reference}
@@ -6902,7 +7745,7 @@ Starting value for the heteroscedastic envelope subspace.
 \subsection*{Description}
 
 \begin{par}
-We compute the eigenvectors for the estimated errors, and get r vectors.  Then we get all the combinations of u vectors out of the r vectors. If the number of r choose u is small(\ensuremath{<}=50), we search over all the combinations and find out the one that minimizes the objective function F. If that number is large, then we do it iteratively: we pick up any u eigenvectors, fix all of them except the first one. Then we search over all the vectors orthogonal to the fixed ones, and record the one that minimizes F. Next, we fix the first u eigenvectors again but this time search for second one, then we record the vector. This goes on and on until the last one. We do it for 3 rounds and use the final set as our starting value.
+We compute the eigenvectors for the estimated error covariance matrix, and get r vectors.  Then we get all the combinations of u vectors out of the r vectors. If the number of r choose u is small(\ensuremath{<}=50), we search over all the combinations and find out the one that minimizes the objective function F. If that number is large, then we do it iteratively: we pick up any u eigenvectors, fix all of them except the first one. Then we search over all the vectors orthogonal to the fixed ones, and record the one that minimizes F. Next, we fix the first u eigenvectors again but this time search for the second one, then we record the vector. This goes on and on until the last one. We do it for 3 rounds and use the final set as our starting value.
 \end{par} \vspace{1em}
 
 
