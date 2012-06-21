@@ -36,7 +36,7 @@
 %
 %         load wheatprotein.txt
 %         X = wheatprotein(:, 8);
-%         Y = wheatprotein(:, 1:6);
+%         Y = wheatprotein(:, 1 : 6);
 %         alpha = 0.01;
 %         u = lrt_env(X, Y, alpha);
 %         ModelOutput = env(X, Y, u);
