@@ -6,7 +6,7 @@
 % ========
 % 
 % This document refers to all Matlab scripts and documentation (referred
-% to collectively here as "the software") contained in the "envelope toolbox"
+% to collectively here as "the software") contained in the "envlp toolbox"
 % by Dennis Cook, Zhihua Su and Yi Yang 2012.
 % 
 % The software is freely available and freely redistributable, according

@@ -1,6 +1,6 @@
-function  install_envelope
+function  install_envlp
 
-%INSTALL_ENVELOPE -- Add various envelope utilities to the MATLAB path
+%INSTALL_ENVLP -- Add various envelope utilities to the MATLAB path
 %
 %  * SG_MIN Ver 2.4.3
 %  * SG_MIN Ver 2.4.3 (Modified Components)
@@ -24,17 +24,18 @@ function  install_envelope
 % Original coding by Zhihua Su and Yi Yang, University of Minnesota
 % $Revision: 1.0.0 $  $Date: 2012-05-03 $
 %
-% Part of the envelope toolbox version 1.1 for MATLAB version 5 and up.
+% Part of the envlp toolbox version 1.0.0 for MATLAB version 5 and up.
 % http://code.google.com/p/envlp/
 % Copyright (c) Dennis Cook, Zhihua Su, Yi Yang, 2012
-% Please read the LICENSE and NO WARRANTY statement in ./envelope_license.m
+% Please read the LICENSE and NO WARRANTY statement in ./envlp_license.m
 
 %-- Print herald
 more off ;
 home ;
 
 
-fprintf('Matlab ENVELOPE Toolbox ver. 1.0.0, released DD MMM YYYY.\n\n') ;
+fprintf('envlp -- A MATLAB Toolbox for Envelope Models ver. 1.0.0.\n\n') ;
+fprintf('Released DD MMM YYYY.\n\n') ;
 
 fprintf('Copyright (c) Dennis Cook, Zhihua Su, Yi Yang, 2012.\n\n') ;
 fprintf('http://code.google.com/p/envlp/.\n\n') ;
@@ -42,7 +43,7 @@ fprintf('This software is freely available and freely redistributable,\n') ;
 fprintf('according to the conditions of the GNU General Public License.\n') ;
 fprintf('The full text of the GNU General Public License is available at\n') ;
 fprintf('the Free Software Foundation website (http://www.fsf.org) and is\n') ;
-fprintf('reproduced in envelope_license.m. In brief, the GNU GPL provisions are:\n\n') ;
+fprintf('reproduced in envlp_license.m. In brief, the GNU GPL provisions are:\n\n') ;
 
 fprintf('You may not distribute the software, in whole or in part, in\n') ;
 fprintf('conjunction with proprietary code. That means you ONLY have my\n') ;
@@ -96,70 +97,70 @@ if (reply(1)~='y')
 end
 
 %-- Path name -- edit this if necessary
-envelope_path = fileparts(which('install_envelope')) ;  % e.g. '/work/envelope'
+envlp_path = fileparts(which('install_envlp')) ;  % e.g. '/work/envlp'
 
-s = fullfile(envelope_path,'/src/sg_min') ;
+s = fullfile(envlp_path,'/src/sg_min') ;
 addpath(s) ;
 fprintf('\nSG_MIN Ver 2.4.3 added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'/src/sg_min_rev') ;
+s = fullfile(envlp_path,'/src/sg_min_rev') ;
 addpath(s) ;
 fprintf('SG_MIN Ver 2.4.3 (Modified Components) added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'/src/env') ;
+s = fullfile(envlp_path,'/src/env') ;
 addpath(s) ;
 fprintf('Envelope Module added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'/src/envmean') ;
+s = fullfile(envlp_path,'/src/envmean') ;
 addpath(s) ;
 fprintf('Envelope Module for Estimating the Multivariate Mean added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'/src/envseq') ;
+s = fullfile(envlp_path,'/src/envseq') ;
 addpath(s) ;
 fprintf('Envelope Module Using Sequential Algorithm added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'/src/xenv') ;
+s = fullfile(envlp_path,'/src/xenv') ;
 addpath(s) ;
 fprintf('Envelope in the Predictor Space Module added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'/src/xenvpls') ;
+s = fullfile(envlp_path,'/src/xenvpls') ;
 addpath(s) ;
 fprintf('Envelope in the Predictor Space Using Partial Least Squares Algorithm Module added to the path: %s\n\n',s) ;
 
 
-s = fullfile(envelope_path,'/src/henv') ;
+s = fullfile(envlp_path,'/src/henv') ;
 addpath(s) ;
 fprintf('Heteroscedastic Envelope Module added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'/src/ienv') ;
+s = fullfile(envlp_path,'/src/ienv') ;
 addpath(s) ;
 fprintf('Inner Envelope Module added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'/src/penv') ;
+s = fullfile(envlp_path,'/src/penv') ;
 addpath(s) ;
 fprintf('Partial Envelope Module added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'/src/senv') ;
+s = fullfile(envlp_path,'/src/senv') ;
 addpath(s) ;
 fprintf('Scaled Envelope Module added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'/src/tools') ;
+s = fullfile(envlp_path,'/src/tools') ;
 addpath(s) ;
 fprintf('Post-pocessing Tools added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'/src/auxiliary') ;
+s = fullfile(envlp_path,'/src/auxiliary') ;
 addpath(s) ;
 fprintf('Auxiliary functions added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'data') ;
+s = fullfile(envlp_path,'data') ;
 addpath(s) ;
 fprintf('Example Data added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'doc') ;
+s = fullfile(envlp_path,'doc') ;
 addpath(s) ;
 fprintf('Documentation added to the path: %s\n\n',s) ;
 
-s = fullfile(envelope_path,'examples') ;
+s = fullfile(envlp_path,'examples') ;
 addpath(s) ;
 fprintf('Examples files added to the path: %s\n\n',s) ;
 
