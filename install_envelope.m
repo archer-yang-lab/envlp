@@ -5,10 +5,11 @@ function  install_envelope
 %  * SG_MIN Ver 2.4.3
 %  * SG_MIN Ver 2.4.3 (Modified Components)
 %  * Envelope Module
+%  * Envelope Module for Estimating the Multivariate Mean
 %  * Envelope Using Sequential Algorithm Module
 %  * Envelope in the Predictor Space Module 
 %  * Envelope in the Predictor Space Using Partial Least Squares
-%  Algorithm Module
+%    Algorithm Module
 %  * Heteroscedastic Envelope Module
 %  * Inner Envelope Module
 %  * Partial Envelope Module
@@ -72,6 +73,7 @@ fprintf('\nThis script will install the following utilities to the Matlab path.\
 fprintf(' * SG_MIN Ver 2.4.3\n') ;
 fprintf(' * SG_MIN Ver 2.4.3 (Modified Components)\n') ;
 fprintf(' * Envelope Module\n') ;
+fprintf(' * Envelope Module for Estimating the Multivariate Mean\n');
 fprintf(' * Envelope Module Using Sequential Algorithm\n');
 fprintf(' * Envelope in the Predictor Space Module\n') ;
 fprintf(' * Envelope in the Predictor Space Using Partial Least Squares Algorithm Module\n');
@@ -107,6 +109,10 @@ fprintf('SG_MIN Ver 2.4.3 (Modified Components) added to the path: %s\n\n',s) ;
 s = fullfile(envelope_path,'/src/env') ;
 addpath(s) ;
 fprintf('Envelope Module added to the path: %s\n\n',s) ;
+
+s = fullfile(envelope_path,'/src/envmean') ;
+addpath(s) ;
+fprintf('Envelope Module for Estimating the Multivariate Mean added to the path: %s\n\n',s) ;
 
 s = fullfile(envelope_path,'/src/envseq') ;
 addpath(s) ;
