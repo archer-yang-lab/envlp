@@ -73,15 +73,15 @@ fprintf('\n#####################################################################
 fprintf('\nThis script will install the following utilities to the Matlab path.\n') ;
 fprintf(' * SG_MIN Ver 2.4.3\n') ;
 fprintf(' * SG_MIN Ver 2.4.3 (Modified Components)\n') ;
-fprintf(' * Envelope Module\n') ;
-fprintf(' * Envelope Module for Estimating the Multivariate Mean\n');
-fprintf(' * Envelope Module Using Sequential Algorithm\n');
-fprintf(' * Envelope in the Predictor Space Module\n') ;
-fprintf(' * Envelope in the Predictor Space Using Partial Least Squares Algorithm Module\n');
-fprintf(' * Heteroscedastic Envelope Module\n') ;
-fprintf(' * Inner Envelope Module\n') ;
-fprintf(' * Partial Envelope Module\n') ;
-fprintf(' * Scaled Envelope Module\n') ;
+fprintf(' * env: Envelope\n') ;
+fprintf(' * envmean: Envelope for Estimating the Multivariate Mean\n');
+fprintf(' * envseq: Envelope Using Sequential Algorithm\n');
+fprintf(' * xenv: Envelope in the Predictor Space\n') ;
+fprintf(' * xenvpls: Envelope in the Predictor Space Using Partial Least Squares Algorithm\n');
+fprintf(' * henv: Heteroscedastic Envelope\n') ;
+fprintf(' * ienv: Inner Envelope\n') ;
+fprintf(' * penv: Partial Envelope\n') ;
+fprintf(' * senv: Scaled Envelope\n') ;
 fprintf(' * Auxiliary Tools\n') ;
 fprintf(' * Example Data\n') ;
 fprintf(' * Documentation\n') ;
@@ -109,40 +109,40 @@ fprintf('SG_MIN Ver 2.4.3 (Modified Components) added to the path: %s\n\n',s) ;
 
 s = fullfile(envlp_path,'/src/env') ;
 addpath(s) ;
-fprintf('Envelope Module added to the path: %s\n\n',s) ;
+fprintf('env added to the path: %s\n\n',s) ;
 
 s = fullfile(envlp_path,'/src/envmean') ;
 addpath(s) ;
-fprintf('Envelope Module for Estimating the Multivariate Mean added to the path: %s\n\n',s) ;
+fprintf('envmean added to the path: %s\n\n',s) ;
 
 s = fullfile(envlp_path,'/src/envseq') ;
 addpath(s) ;
-fprintf('Envelope Module Using Sequential Algorithm added to the path: %s\n\n',s) ;
+fprintf('envseq added to the path: %s\n\n',s) ;
 
 s = fullfile(envlp_path,'/src/xenv') ;
 addpath(s) ;
-fprintf('Envelope in the Predictor Space Module added to the path: %s\n\n',s) ;
+fprintf('xenv added to the path: %s\n\n',s) ;
 
 s = fullfile(envlp_path,'/src/xenvpls') ;
 addpath(s) ;
-fprintf('Envelope in the Predictor Space Using Partial Least Squares Algorithm Module added to the path: %s\n\n',s) ;
+fprintf('xenvpls added to the path: %s\n\n',s) ;
 
 
 s = fullfile(envlp_path,'/src/henv') ;
 addpath(s) ;
-fprintf('Heteroscedastic Envelope Module added to the path: %s\n\n',s) ;
+fprintf('henv added to the path: %s\n\n',s) ;
 
 s = fullfile(envlp_path,'/src/ienv') ;
 addpath(s) ;
-fprintf('Inner Envelope Module added to the path: %s\n\n',s) ;
+fprintf('ienv added to the path: %s\n\n',s) ;
 
 s = fullfile(envlp_path,'/src/penv') ;
 addpath(s) ;
-fprintf('Partial Envelope Module added to the path: %s\n\n',s) ;
+fprintf('penv added to the path: %s\n\n',s) ;
 
 s = fullfile(envlp_path,'/src/senv') ;
 addpath(s) ;
-fprintf('Scaled Envelope Module added to the path: %s\n\n',s) ;
+fprintf('senv added to the path: %s\n\n',s) ;
 
 s = fullfile(envlp_path,'/src/tools') ;
 addpath(s) ;
