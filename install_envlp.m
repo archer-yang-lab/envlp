@@ -4,16 +4,15 @@ function  install_envlp
 %
 %  * SG_MIN Ver 2.4.3
 %  * SG_MIN Ver 2.4.3 (Modified Components)
-%  * Envelope Module
-%  * Envelope Module for Estimating the Multivariate Mean
-%  * Envelope Using Sequential Algorithm Module
-%  * Envelope in the Predictor Space Module 
-%  * Envelope in the Predictor Space Using Partial Least Squares
-%    Algorithm Module
-%  * Heteroscedastic Envelope Module
-%  * Inner Envelope Module
-%  * Partial Envelope Module
-%  * Scaled Envelope Module
+%  * env: Envelope
+%  * envmean: Envelope for Estimating the Multivariate Mean
+%  * envseq: Envelope Using Sequential Algorithm
+%  * xenv: Envelope in the Predictor Space
+%  * xenvpls: Envelope in the Predictor Space Using Partial Least Squares Algorithm
+%  * henv: Heteroscedastic Envelope
+%  * ienv: Inner Envelope
+%  * penv: Partial Envelope
+%  * senv: Scaled Envelope
 %  * Post-pocessing Tools
 %  * Auxiliary Functions
 %  * Example Data
