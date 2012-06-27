@@ -53,10 +53,6 @@ if p > u
     error('The rank of S cannot be greater than u.');
 end
 
-if sum(eig(M) < 0) > 0
-    error('M must be semi-positive definite.');
-end
-
 U = S * S';
 
 [w, D] = eig(U);
