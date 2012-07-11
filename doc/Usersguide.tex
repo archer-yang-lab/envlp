@@ -1,12 +1,14 @@
 %% LyX 2.0.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
-\documentclass[a4paper,11pt,openany]{memoir}
+\documentclass[letter,11pt,openany]{memoir}
 \usepackage[latin1]{inputenc}
 \usepackage{array}
 \usepackage{multirow}
+\usepackage{booktabs}
 \usepackage[authoryear]{natbib}
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
+\usepackage{amssymb,amsthm,epsfig,float,psfrag}
 
 \usepackage{
   calc,
@@ -59,12 +61,9 @@ commandchars=\\\{\},
 %% Because html converters don't know tabularnewline
 \providecommand{\tabularnewline}{\\}
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
 \usepackage{subfig}
 \usepackage{arydshln}
-\usepackage{times}
 \newcommand{\mlab}{MATLAB}
 \newcommand{\ldr}{LDR}
 
@@ -422,83 +421,55 @@ The complete applicability of this toolbox is described in Table \ref{tab_app}.
 
 \begin{table}
 \begin{centering}
-\begin{tabular}{l||l|l|l}
-\hline 
-{\footnotesize Model} & {\footnotesize Model Selection} & {\footnotesize Inference} & {\footnotesize Section}\tabularnewline
-\hline 
-\hline 
-\multirow{3}{*}{{\footnotesize Envelope Model}} & {\footnotesize AIC} & {\footnotesize Estimation and Prediction} & \multirow{3}{*}{{\footnotesize \ref{sec_em}}}\tabularnewline
-\cline{2-3} 
- & {\footnotesize BIC} & {\footnotesize Bootstrap for Estimating Standard Errors} & \tabularnewline
-\cline{2-3} 
- & {\footnotesize LRT} & {\footnotesize Hypothesis Test on Coefficients} & \tabularnewline
-\hline 
-\hline 
-\multirow{2}{*}[0.5mm]{{\footnotesize }%
-\parbox[t]{5cm}{%
-{\footnotesize Envelope Model Using Sequential Algorithm}%
-}} & \multirow{2}{*}{{\footnotesize }%
-\parbox[c]{2cm}{%
-m-fold cross validation%
-}} & \multirow{2}{*}{{\footnotesize Bootstrap for Estimating Standard Errors}} & \multirow{2}{*}{{\footnotesize \ref{sec_empls}}}\tabularnewline
- &  &  & \tabularnewline
-\hline 
-\hline 
-\multirow{3}{*}{{\footnotesize Heteroscedastic Envelope Model}} & {\footnotesize AIC} & {\footnotesize Estimation and Prediction} & \multirow{3}{*}{{\footnotesize \ref{sec_hm}}}\tabularnewline
-\cline{2-3} 
- & {\footnotesize BIC} & {\footnotesize Bootstrap for Estimating Standard Errors} & \tabularnewline
-\cline{2-3} 
- & {\footnotesize LRT} & {\footnotesize Hypothesis Test on Coefficients} & \tabularnewline
-\hline 
-\hline 
-\multirow{3}{*}{{\footnotesize Inner Envelope Model }} & {\footnotesize AIC} & {\footnotesize Estimation and Prediction} & \multirow{3}{*}{{\footnotesize \ref{sec_im}}}\tabularnewline
-\cline{2-3} 
- & {\footnotesize BIC} & {\footnotesize Bootstrap for Estimating Standard Errors} & \tabularnewline
-\cline{2-3} 
- & {\footnotesize LRT} & {\footnotesize Hypothesis Test on Coefficients} & \tabularnewline
-\hline 
-\hline 
-\multirow{3}{*}{{\footnotesize Partial Envelope Model}} & {\footnotesize AIC} & {\footnotesize Estimation and Prediction} & \multirow{3}{*}{{\footnotesize \ref{sec_pm}}}\tabularnewline
-\cline{2-3} 
- & {\footnotesize BIC} & {\footnotesize Bootstrap for Estimating Standard Errors} & \tabularnewline
-\cline{2-3} 
- & {\footnotesize LRT} & {\footnotesize Hypothesis Test on Coefficients} & \tabularnewline
-\hline 
-\hline 
-\multirow{3}{*}{{\footnotesize Scaled Envelope Model}} & {\footnotesize AIC} & {\footnotesize Estimation and Prediction} & \multirow{3}{*}{{\footnotesize \ref{sec_sem}}}\tabularnewline
-\cline{2-3} 
- & {\footnotesize BIC} & {\footnotesize Bootstrap for Estimating Standard Errors} & \tabularnewline
-\cline{2-3} 
- &  & {\footnotesize Hypothesis Test on Coefficients} & \tabularnewline
-\hline 
-\hline 
-\multirow{3}{*}{{\footnotesize }%
-\parbox[c]{6cm}{%
-{\footnotesize Envelope Model in the Predictor Space}%
-}} & \multirow{1}{*}{{\footnotesize AIC}} & {\footnotesize Estimation and Prediction} & \multirow{3}{*}{{\footnotesize \ref{sec_xm}}}\tabularnewline
-\cline{2-3} 
- & {\footnotesize BIC} & {\footnotesize Bootstrap for Estimating Standard Errors} & \tabularnewline
-\cline{2-3} 
- & {\footnotesize LRT} & {\footnotesize Hypothesis Test on Coefficients} & \tabularnewline
-\hline 
-\hline 
-\multirow{2}{*}[2mm]{{\footnotesize }%
-\parbox[t][0.5cm]{6cm}{%
-{\footnotesize Envelope Model in the Predictor Space Using Partial
-Least Squares Algorithm}%
-}} & \multirow{2}{*}{{\footnotesize }%
-\parbox[c]{2cm}{%
-m-fold cross validation%
-}} & \multirow{2}{*}{{\footnotesize Bootstrap for Estimating Standard Errors}} & \multirow{2}{*}{{\footnotesize \ref{sec_xmpls}}}\tabularnewline
- &  &  & \tabularnewline
-\hline 
-\hline 
-\multirow{3}{*}{\parbox[t]{5cm}{\footnotesize Envelope Model for Estimating Multivariate Means}} & {\footnotesize AIC} & {\footnotesize Estimation and Prediction} & \multirow{3}{*}{{\footnotesize \ref{sec_envmean}}}\tabularnewline
-\cline{2-3} 
- & {\footnotesize BIC} & {\footnotesize Bootstrap for Estimating Standard Errors} & \tabularnewline
-\cline{2-3} 
- & {\footnotesize LRT} & {\footnotesize Hypothesis Test on Coefficients} & \tabularnewline
-\hline 
+\begin{tabular}{lllr}
+\toprule 
+ Module &  Dimension Selection &  Inference Tools &  Section\tabularnewline
+\midrule
+\multirow{3}{*}{\textbf{env}} &  AIC &  Estimation and Prediction & \multirow{3}{*}{\ref{sec_em}}\tabularnewline
+ &  BIC &  Bootstrap for Estimating Standard Errors & \tabularnewline
+ 
+ &  LRT &  Hypothesis Test on Coefficients & \tabularnewline
+\midrule
+\textbf{envseq} & m-fold CV & Bootstrap for Estimating Standard Errors & \ref{sec_empls}\tabularnewline
+\midrule
+\multirow{3}{*}{\textbf{henv}} &  AIC &  Estimation and Prediction & \multirow{3}{*}{\ref{sec_hm}}\tabularnewline
+ 
+ &  BIC &  Bootstrap for Estimating Standard Errors & \tabularnewline
+ 
+ &  LRT &  Hypothesis Test on Coefficients & \tabularnewline
+\midrule 
+\multirow{3}{*}{\textbf{ienv}} &  AIC &  Estimation and Prediction & \multirow{3}{*}{\ref{sec_im}}\tabularnewline
+ 
+ &  BIC &  Bootstrap for Estimating Standard Errors  & \tabularnewline
+ 
+ &  LRT &  Hypothesis Test on Coefficients  & \tabularnewline
+\midrule 
+\multirow{3}{*}{\textbf{penv}} &  AIC &  Estimation and Prediction & \multirow{3}{*}{\ref{sec_pm}}\tabularnewline
+ 
+ &  BIC &  Bootstrap for Estimating Standard Errors & \tabularnewline
+ 
+ &  LRT &  Hypothesis Test on Coefficients & \tabularnewline
+\midrule 
+\multirow{3}{*}{\textbf{senv}} &  AIC &  Estimation and Prediction & \multirow{3}{*}{\ref{sec_sem}}\tabularnewline
+ 
+ &  BIC &  Bootstrap for Estimating Standard Errors & \tabularnewline
+ 
+ &  &  Hypothesis Test on Coefficients & \tabularnewline
+\midrule 
+\multirow{3}{*}{\textbf{xenv}} & AIC &  Estimation and Prediction & \multirow{3}{*}{\ref{sec_xm}}\tabularnewline
+ 
+ &  BIC &  Bootstrap for Estimating Standard Errors & \tabularnewline
+ 
+ &  LRT &  Hypothesis Test on Coefficients & \tabularnewline
+\midrule 
+\textbf{xenvpls} & m-fold CV & Bootstrap for Estimating Standard Errors & \ref{sec_xmpls}\tabularnewline
+\midrule 
+\multirow{3}{*} {\textbf{envmean}} &  AIC &  Estimation and Prediction & \multirow{3}{*}{\ref{sec_envmean}}\tabularnewline
+ 
+ &  BIC &  Bootstrap for Estimating Standard Errors & \tabularnewline
+ 
+ &  LRT &  Hypothesis Test on Coefficients & \tabularnewline
+\bottomrule 
 \end{tabular}
 \par\end{centering}
 
