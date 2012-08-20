@@ -1,22 +1,21 @@
-%% mfoldcv_xenvpls
+%% mfoldcv_envseq
 % Select the dimension of the envelope subspace using m-fold cross
-% validation for envelope model on the reduction on X using a sequential
+% validation for envelope model using a sequential
 % algorithm.
 
 %% Syntax
-%         u = mfoldcv_xenvpls(X, Y, m)
-%         u = mfoldcv_xenvpls(X, Y, m, Opts)
+%         u = mfoldcv_envseq(X, Y, m)
+%         u = mfoldcv_envseq(X, Y, m, Opts)
 
 %% Input
 %
 % *X*: Predictors. An n by p matrix, p is the number of predictors and n is
-% number of observations. The 
-% number of predictors should be greater than the number of the responses.
-% And they must be continuous variables.
+% number of observations. 
 % 
 % *Y*: Responses. An n by r matrix, r is the number of
-% responses. The response can be univariate or multivariate and must be
-% contiuous variable.
+% responses. The 
+% number of the responses should be greater than the number of the predictors.
+% And they must be continuous variables.  
 %
 % *m*: A positive integer that is used to indicate m-fold cross validation.
 % 

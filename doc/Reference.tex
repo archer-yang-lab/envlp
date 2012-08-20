@@ -2636,9 +2636,9 @@ L * mu = A            37273.324          2      0.0000
     
     \newpage
 
-\chapter{envpls}
+\chapter{envseq}
 \rmfamily
-\color{black}\section{bstrp\_envpls}
+\color{black}\section{bstrp\_envseq}
 
 \begin{par}
 Compute bootstrap standard errors of the envelope model using a sequential algorithm.
@@ -2659,8 +2659,8 @@ Compute bootstrap standard errors of the envelope model using a sequential algor
 \subsection*{Syntax}
 
 
-\begin{verbatim}       bootse = bstrp_envpls(X, Y, u, B)
-       bootse = bstrp_envpls(X, Y, u, B, Opts)\end{verbatim}
+\begin{verbatim}       bootse = bstrp_envseq(X, Y, u, B)
+       bootse = bstrp_envseq(X, Y, u, B, Opts)\end{verbatim}
     
 
 \subsection*{Input}
@@ -2707,7 +2707,7 @@ This function computes the bootstrap standard errors for the regression coeffici
        X = wheatprotein(:, 8);
        Y = wheatprotein(:, 1 : 6);
        m = 5;
-       u = mfoldcv_envpls(X, Y, m)\end{verbatim}
+       u = mfoldcv_envseq(X, Y, m)\end{verbatim}
                \color{lightgray} \ttfamily\begin{verbatim}
 u =
 
@@ -2717,7 +2717,7 @@ u =
 \color{black}\begin{verbatim}
        
        B = 100;
-       bootse = bstrp_envpls(X, Y, u, B);\end{verbatim}
+       bootse = bstrp_envseq(X, Y, u, B)\end{verbatim}
 
         \color{lightgray}\ttfamily \begin{verbatim}
 bootse =
@@ -2735,7 +2735,7 @@ bootse =
 \newpage
 
 \rmfamily
-\color{black}\section{envpls}
+\color{black}\section{envseq}
 
 \begin{par}
 Fit the envelope model using a sequential algorithm.
@@ -2757,7 +2757,7 @@ Fit the envelope model using a sequential algorithm.
 \subsection*{Syntax}
 
 
-\begin{verbatim}       ModelOutput = envpls(X, Y, u)\end{verbatim}
+\begin{verbatim}       ModelOutput = envseq(X, Y, u)\end{verbatim}
     
 
 \subsection*{Input}
@@ -2769,7 +2769,7 @@ Fit the envelope model using a sequential algorithm.
 \textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{u}: Dimension of the envelope. An integer between 0 and r.
+\textbf{u}: Dimension of the envelope. An integer between 0 and (m-1) * n /m-1.
 \end{par} \vspace{1em}
 
 
@@ -2806,14 +2806,14 @@ This function fits the envelope model to the responses and predictors, using the
 The codes are implemented based on the sequential algorithm in the lecture notes of Cook (2012).
 \end{par} \vspace{1em}
 
-
 \subsection*{Example}
 
 
 \begin{verbatim}       load wheatprotein.txt
        X = wheatprotein(:, 8);
        Y = wheatprotein(:, 1 : 6);
-       u = mfoldcv_envpls(X, Y, m)\end{verbatim}
+       m = 5;
+       u = mfoldcv_envseq(X, Y, m)\end{verbatim}
     
         \color{lightgray}\ttfamily \begin{verbatim}
 u =
@@ -2823,7 +2823,7 @@ u =
 \color{black}
 \begin{verbatim}
 
-       ModelOutput = envpls(X, Y, u)
+       ModelOutput = envseq(X, Y, u)
 \end{verbatim}
         \color{lightgray}\ttfamily \begin{verbatim}
 ModelOutput = 
@@ -2859,10 +2859,10 @@ ans =
        
 \newpage
 \rmfamily
-\color{black}\section{mfoldcv\_xenvpls}
+\color{black}\section{mfoldcv\_envseq}
 
 \begin{par}
-Select the dimension of the envelope subspace using m-fold cross validation for envelope model on the reduction on X using a sequential algorithm.
+Select the dimension of the envelope subspace using m-fold cross validation for envelope model using a sequential algorithm.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
@@ -2880,17 +2880,17 @@ Select the dimension of the envelope subspace using m-fold cross validation for 
 \subsection*{Syntax}
 
 
-\begin{verbatim}       u = mfoldcv_xenvpls(X, Y, m)
-       u = mfoldcv_xenvpls(X, Y, m, Opts)\end{verbatim}
+\begin{verbatim}       u = mfoldcv_envseq(X, Y, m)
+       u = mfoldcv_envseq(X, Y, m, Opts)\end{verbatim}
     
 
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The number of the responses should be greater than the number of the predictors. And they must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{m}: A positive integer that is used to indicate m-fold cross validation.
@@ -2909,6 +2909,7 @@ Select the dimension of the envelope subspace using m-fold cross validation for 
 
 \begin{verbatim}*u*: The dimension of the envelope subspace selected by m-fold cross
 validation.\end{verbatim}
+   
     
 
 \subsection*{Description}
