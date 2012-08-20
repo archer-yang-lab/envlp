@@ -13,7 +13,7 @@
 % responses and n is number of observations. The responses must be 
 % continuous variables, and r should be strictly greater than p.
 % 
-% *u*: Dimension of the envelope. An integer between 0 and r.
+% *u*: Dimension of the envelope. An integer between 0 and the floor of (m ? 1) * n /m ? 1.
 % 
 %% Output
 % 
@@ -60,6 +60,7 @@
 %         load wheatprotein.txt
 %         X = wheatprotein(:, 8);
 %         Y = wheatprotein(:, 1 : 6);
+%         m = 5;
 %         u = mfoldcv_envseq(X, Y, m)
 %         ModelOutput = envseq(X, Y, u)
 %         ModelOutput.Sigma
