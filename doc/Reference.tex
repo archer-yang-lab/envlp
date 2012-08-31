@@ -157,7 +157,7 @@ This function computes the bootstrap standard errors for the regression coeffici
        X = wheatprotein(:, 8);
        Y = wheatprotein(:, 1 : 6);
        alpha = 0.01;
-       u = lrt_env(X, Y, alpha);
+       u = modelselectlrt(X, Y, alpha, 'env');
        B = 100;
        modelType = 'env';
        bootse = bootstrapse(X, Y, u, B, modelType)\end{verbatim}
@@ -193,9 +193,8 @@ bootse =
 \color{black}
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
-       Xtemp = fiberpaper(:, 5 : 7);
-       X.X1 = Xtemp(:, 3);
-       X.X2 = Xtemp(:, 1 : 2);
+       X.X1 = fiberpaper(:, 7);
+       X.X2 = fiberpaper(:, 5 : 6);
        alpha = 0.01;
        u = lrt_penv(X, Y, alpha);
        B = 100;
@@ -476,9 +475,8 @@ u =
 \color{black}
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
-       Xtemp = fiberpaper(:, 5 : 7);
-       X.X1 = Xtemp(:, 3);
-       X.X2 = Xtemp(:, 1 : 2);
+       X.X1 = fiberpaper(:, 7);
+       X.X2 = fiberpaper(:, 5 : 6);
        modelType = 'penv';
        u = modelselectaic(X, Y, modelType)\end{verbatim}
     
@@ -585,9 +583,8 @@ u =
 \color{black}    
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
-       Xtemp = fiberpaper(:, 5 : 7);
-       X.X1 = Xtemp(:, 3);
-       X.X2 = Xtemp(:, 1 : 2);
+       X.X1 = fiberpaper(:, 7);
+       X.X2 = fiberpaper(:, 5 : 6);
        modelType = 'penv';
        u = modelselectbic(X, Y, modelType)\end{verbatim}
     
@@ -700,9 +697,8 @@ u =
 \color{black}
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
-       Xtemp = fiberpaper(:, 5 : 7);
-       X.X1 = Xtemp(:, 3);
-       X.X2 = Xtemp(:, 1 : 2);
+       X.X1 = fiberpaper(:, 7);
+       X.X2 = fiberpaper(:, 5 : 6);
        alpha = 0.01;
        modelType = 'penv';
        u = modelselectlrt(X, Y, alpha, modelType)\end{verbatim}
@@ -805,7 +801,7 @@ This function evaluates the user-specified model, could be 'env', 'henv', 'ienv'
        u =  modelselectbic(X, Y, modelType);
        ModelOutput = env(X, Y, u);
        Xnew = X(2, :)';
-       PredictOutput = predict_env(ModelOutput, Xnew, 'estimation')
+       PredictOutput = prediction(ModelOutput, Xnew, 'estimation', modelType)
        [PredictOutput.value, Y(2, :)'] % Compare the fitted value with
        the observed value\end{verbatim}
              \color{lightgray}\ttfamily \begin{verbatim}
@@ -832,15 +828,14 @@ ans =
    
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
-       Xtemp = fiberpaper(:, 5 : 7);
-       X.X1 = Xtemp(:, 3);
-       X.X2 = Xtemp(:, 1 : 2);
+       X.X1 = fiberpaper(:, 7);
+       X.X2 = fiberpaper(:, 5 : 6);
        modelType = 'penv';
        u =  modelselectbic(X, Y, modelType);
        ModelOutput = penv(X, Y, u);
        Xnew.X1 = X.X1(1, :)';
        Xnew.X2 = X.X2(1, :)';
-       PredictOutput = predict_penv(ModelOutput, Xnew, 'estimation')
+       PredictOutput = prediction(ModelOutput, Xnew, 'estimation', modelType)
        PredictOutput.SE\end{verbatim}
     
 
@@ -960,9 +955,8 @@ L * beta * R = A         116.230         6        0.0000
 \color{black}   
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
-       Xtemp = fiberpaper(:, 5 : 7);
-       X.X1 = Xtemp(:, 3);
-       X.X2 = Xtemp(:, 1 : 2);
+       X.X1 = fiberpaper(:, 7);
+       X.X2 = fiberpaper(:, 5 : 6);
        alpha = 0.01;
        u = lrt_penv(X, Y, alpha);
        ModelOutput = penv(X, Y, u);
@@ -1222,7 +1216,7 @@ This function computes the bootstrap standard errors for the regression coeffici
        X = wheatprotein(:, 8);
        Y = wheatprotein(:, 1 : 6);
        alpha = 0.01;
-       u = lrt_env(X, Y, alpha)
+       u = modelselectlrt(X, Y, alpha, 'env')
 \end{verbatim} \rmfamily
 \color{black}
 \color{lightgray}\ttfamily \begin{verbatim}
@@ -1408,7 +1402,7 @@ The following codes will reconstruct the results in the wheat protein data examp
        X = wheatprotein(:, 8);
        Y = wheatprotein(:, 1 : 6);
        alpha = 0.01;
-       u = lrt_env(X, Y, alpha)
+       u = modelselectlrt(X, Y, alpha, 'env');
 \end{verbatim}    
         \color{lightgray}\ttfamily \begin{verbatim}
 u =
@@ -4639,9 +4633,8 @@ This function implements the Akaike information criteria (AIC) to select the dim
 
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
-       Xtemp = fiberpaper(:, 5 : 7);
-       X.X1 = Xtemp(:, 3);
-       X.X2 = Xtemp(:, 1 : 2);
+       X.X1 = fiberpaper(:, 7);
+       X.X2 = fiberpaper(:, 5 : 6);
        u = aic_penv(X, Y)\end{verbatim}
     
         \color{lightgray}\ttfamily \begin{verbatim}
@@ -4725,9 +4718,8 @@ This function implements the Bayesian information criteria (BIC) to select the d
 
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
-       Xtemp = fiberpaper(:, 5 : 7);
-       X.X1 = Xtemp(:, 3);
-       X.X2 = Xtemp(:, 1 : 2);
+       X.X1 = fiberpaper(:, 7);
+       X.X2 = fiberpaper(:, 5 : 6);
        u = bic_penv(X, Y)\end{verbatim}
     
         \color{lightgray}\ttfamily \begin{verbatim}
@@ -4817,9 +4809,8 @@ This function computes the bootstrap standard errors for the regression coeffici
 
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
-       Xtemp = fiberpaper(:, 5 : 7);
-       X.X1 = Xtemp(:, 3);
-       X.X2 = Xtemp(:, 1 : 2);
+       X.X1 = fiberpaper(:, 7);
+       X.X2 = fiberpaper(:, 5 : 6);
        alpha = 0.01;
        u = lrt_penv(X, Y, alpha)\end{verbatim}
                \color{lightgray}\ttfamily \begin{verbatim}
@@ -4919,9 +4910,8 @@ This function implements the likelihood ratio testing procedure to select the di
 
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
-       Xtemp = fiberpaper(:, 5 : 7);
-       X.X1 = Xtemp(:, 3);
-       X.X2 = Xtemp(:, 1 : 2);
+       X.X1 = fiberpaper(:, 7);
+       X.X2 = fiberpaper(:, 5 : 6);
        alpha = 0.01;
        u = lrt_penv(X, Y, alpha)\end{verbatim}
     
@@ -5041,9 +5031,8 @@ The following codes reconstruct the results of the paper and fiber example in Su
 
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
-       Xtemp = fiberpaper(:, 5 : 7);
-       X.X1 = Xtemp(:, 3);
-       X.X2 = Xtemp(:, 1 : 2);
+       X.X1 = fiberpaper(:, 7);
+       X.X2 = fiberpaper(:, 5 : 6);
        alpha = 0.01;
        u = lrt_penv(X, Y, alpha)\end{verbatim}
         \color{lightgray}\ttfamily \begin{verbatim}
@@ -5168,9 +5157,8 @@ This function evaluates the envelope model at new value Xnew.  It can perform es
 
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
-       Xtemp = fiberpaper(:, 5 : 7);
-       X.X1 = Xtemp(:, 3);
-       X.X2 = Xtemp(:, 1 : 2);
+       X.X1 = fiberpaper(:, 7);
+       X.X2 = fiberpaper(:, 5 : 6);
        alpha = 0.01;
        u = lrt_penv(X, Y, alpha);
        ModelOutput = penv(X, Y, u);
@@ -5296,9 +5284,8 @@ This function tests for hypothesis $H_0: L\beta_1 R = A$, versus $H_\alpha: L\be
 
 \begin{verbatim}       load fiberpaper.dat
        Y = fiberpaper(:, 1 : 4);
-       Xtemp = fiberpaper(:, 5 : 7);
-       X.X1 = Xtemp(:, 3);
-       X.X2 = Xtemp(:, 1 : 2);
+       X.X1 = fiberpaper(:, 7);
+       X.X2 = fiberpaper(:, 5 : 6);
        alpha = 0.01;
        u = lrt_penv(X, Y, alpha);
        ModelOutput = penv(X, Y, u);
