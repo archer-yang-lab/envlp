@@ -89,7 +89,7 @@
 %         X = wheatprotein(:, 8);
 %         Y = wheatprotein(:, 1 : 6);
 %         alpha = 0.01;
-%         u = lrt_env(X, Y, alpha)
+%         u = modelselectlrt(X, Y, alpha, 'env')
 %         ModelOutput = env(X, Y, u)
 %         ModelOutput.Omega
 %         eig(ModelOutput.Omega0)

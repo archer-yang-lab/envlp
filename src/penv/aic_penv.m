@@ -41,9 +41,8 @@
 %% Example
 %         load fiberpaper.dat
 %         Y = fiberpaper(:, 1 : 4);
-%         Xtemp = fiberpaper(:, 5 : 7);
-%         X.X1 = Xtemp(:, 3);
-%         X.X2 = Xtemp(:, 1 : 2);
+%         X.X1 = fiberpaper(:, 7);
+%         X.X2 = fiberpaper(:, 5 : 6);
 %         u = aic_penv(X, Y)
 
 function u = aic_penv(X, Y, Opts)

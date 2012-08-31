@@ -50,20 +50,19 @@
 %         u =  modelselectbic(X, Y, modelType);
 %         ModelOutput = env(X, Y, u);
 %         Xnew = X(2, :)';
-%         PredictOutput = predict_env(ModelOutput, Xnew, 'estimation')
+%         PredictOutput = prediction(ModelOutput, Xnew, 'estimation', modelType)
 %         [PredictOutput.value, Y(2, :)'] % Compare the fitted value with the observed value
 % 
 %         load fiberpaper.dat
 %         Y = fiberpaper(:, 1 : 4);
-%         Xtemp = fiberpaper(:, 5 : 7);
-%         X.X1 = Xtemp(:, 3);
-%         X.X2 = Xtemp(:, 1 : 2);
+%         X.X1 = fiberpaper(:, 7);
+%         X.X2 = fiberpaper(:, 5 : 6);
 %         modelType = 'penv';
 %         u =  modelselectbic(X, Y, modelType);
 %         ModelOutput = penv(X, Y, u);
 %         Xnew.X1 = X.X1(1, :)';
 %         Xnew.X2 = X.X2(1, :)';
-%         PredictOutput = predict_penv(ModelOutput, Xnew, 'estimation')
+%         PredictOutput = prediction(ModelOutput, Xnew, 'estimation', modelType)
 %         PredictOutput.SE
 % 
 
@@ -77,17 +76,17 @@ end
 
 switch(modelType)
     case 'env'
-        u = predict_env(ModelOutput, Xnew, infType, Opts);
+        PredictOutput = predict_env(ModelOutput, Xnew, infType);
     case 'henv'
-        u = predict_henv(ModelOutput, Xnew, infType, Opts);
+        PredictOutput = predict_henv(ModelOutput, Xnew, infType);
     case 'ienv'
-        u = predict_ienv(ModelOutput, Xnew, infType, Opts);
+        PredictOutput = predict_ienv(ModelOutput, Xnew, infType);
     case 'penv'
-        u = predict_penv(ModelOutput, Xnew, infType, Opts);
+        PredictOutput = predict_penv(ModelOutput, Xnew, infType);
     case 'senv'
-        u = predict_senv(ModelOutput, Xnew, infType, Opts);
+        PredictOutput = predict_senv(ModelOutput, Xnew, infType);
     case 'xenv'
-        u = predict_xenv(ModelOutput, Xnew, infType, Opts);
+        PredictOutput = predict_xenv(ModelOutput, Xnew, infType);
     otherwise
         fprintf('The value specified in modelType is not supported!');
 end
