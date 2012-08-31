@@ -1,8 +1,8 @@
 %% testcoefficient_envmean
 % 
 %  This function tests the null hypothesis L * mu = A versus the
-%  alternative hypothesis L * mu ~= A, where mu is the envelope estimator
-%  of the multivariate mean.
+%  alternative hypothesis L * mu ~= A, where mu is the 
+%  multivariate mean.
 
 %% Syntax
 %         TestOutput = testcoefficient_envmean(ModelOutput) 
