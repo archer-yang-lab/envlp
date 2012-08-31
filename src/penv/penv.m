@@ -98,7 +98,7 @@
 %         X.X1 = fiberpaper(:, 7);
 %         X.X2 = fiberpaper(:, 5 : 6);
 %         alpha = 0.01;
-%         u = lrt_penv(X, Y, alpha)
+%         u = modelselectlrt(X, Y, alpha, 'penv')
 %         ModelOutput = penv(X, Y, u)
 %         ModelOutput.Omega
 %         eig(ModelOutput.Omega0)

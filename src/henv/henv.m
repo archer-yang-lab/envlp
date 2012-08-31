@@ -100,7 +100,7 @@
 %% Example
 %
 % The following codes produce the results of the water strider example in Su
-% and Cook (2011).
+% and Cook (2012).
 % 
 %         load waterstrider.mat
 %         u = lrt_henv(X, Y, 0.01)

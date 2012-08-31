@@ -196,7 +196,7 @@ bootse =
        X.X1 = fiberpaper(:, 7);
        X.X2 = fiberpaper(:, 5 : 6);
        alpha = 0.01;
-       u = lrt_penv(X, Y, alpha);
+       u = modelselectlrt(X, Y, alpha, 'penv');
        B = 100;
        modelType = 'penv';
        bootse = bootstrapse(X, Y, u, B, modelType)
@@ -958,7 +958,7 @@ L * beta * R = A         116.230         6        0.0000
        X.X1 = fiberpaper(:, 7);
        X.X2 = fiberpaper(:, 5 : 6);
        alpha = 0.01;
-       u = lrt_penv(X, Y, alpha);
+       u = modelselectlrt(X, Y, alpha, 'penv');
        ModelOutput = penv(X, Y, u);
        r = size(Y, 2);
        p1 = size(X.X1, 2);
@@ -3381,7 +3381,7 @@ This function fits the heteroscedastic envelope model to the responses and predi
 \subsection*{Example}
 
 \begin{par}
-The following codes produce the results of the water strider example in Su and Cook (2011).
+The following codes produce the results of the water strider example in Su and Cook (2012).
 \end{par} \vspace{1em}
 
 \begin{verbatim}       load waterstrider.mat
@@ -4812,7 +4812,7 @@ This function computes the bootstrap standard errors for the regression coeffici
        X.X1 = fiberpaper(:, 7);
        X.X2 = fiberpaper(:, 5 : 6);
        alpha = 0.01;
-       u = lrt_penv(X, Y, alpha)\end{verbatim}
+       u = modelselectlrt(X, Y, alpha, 'penv')\end{verbatim}
                \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
@@ -5034,7 +5034,7 @@ The following codes reconstruct the results of the paper and fiber example in Su
        X.X1 = fiberpaper(:, 7);
        X.X2 = fiberpaper(:, 5 : 6);
        alpha = 0.01;
-       u = lrt_penv(X, Y, alpha)\end{verbatim}
+       u = modelselectlrt(X, Y, alpha, 'penv')\end{verbatim}
         \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
@@ -5160,7 +5160,7 @@ This function evaluates the envelope model at new value Xnew.  It can perform es
        X.X1 = fiberpaper(:, 7);
        X.X2 = fiberpaper(:, 5 : 6);
        alpha = 0.01;
-       u = lrt_penv(X, Y, alpha);
+       u = modelselectlrt(X, Y, alpha, 'penv');
        ModelOutput = penv(X, Y, u);
        Xnew.X1 = X.X1(1, :)';
        Xnew.X2 = X.X2(1, :)';
@@ -5287,7 +5287,7 @@ This function tests for hypothesis $H_0: L\beta_1 R = A$, versus $H_\alpha: L\be
        X.X1 = fiberpaper(:, 7);
        X.X2 = fiberpaper(:, 5 : 6);
        alpha = 0.01;
-       u = lrt_penv(X, Y, alpha);
+       u = modelselectlrt(X, Y, alpha, 'penv');
        ModelOutput = penv(X, Y, u);
        TestOutout = testcoefficient_penv(ModelOutput);\end{verbatim}
         \color{lightgray}\ttfamily \begin{verbatim}
