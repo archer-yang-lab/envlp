@@ -59,14 +59,14 @@ Examples and Datasets
 _____________________
 
 Trying some examples in the `envlp/examples/` subdirectory is a good way
-to check that envlp installed properly. Running these examples require
+to check if envlp is installed properly. Running these examples requires
 datasets in `envlp/data/` subdirectory. See envlp/data/README_data.txt
 for further information.
 
 Technical support
 _________________
 
-We provides a support website, on which the users can download the
+We provide a support website, on which the users can download the
 toolbox, report bugs and check recent updates
 http://code.google.com/p/envlp/. For further help, the users can contact
 the authors of the toolbox: Zhihua Su (zhihuasu@stat.ufl.edu), Yi Yang
