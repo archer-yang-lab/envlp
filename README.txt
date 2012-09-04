@@ -25,15 +25,16 @@ A MATLAB Toolbox for Computing Envelope Estimators in Multivariate
 Linear Regression.
 
 The envlp toolbox implements a variety of models in the envelope area
-under the framework of multivariate linear regression:
+under the framework of multivariate linear regression or estimating the
+multivariate mean:
 
 1.  envelope model
 2.  partial envelope model
 3.  heteroscedastic envelope model
 4.  inner envelope model
 5.  scaled envelope model
-6.  envelope model in the predictor space.
-7.  envelope model for estimating the multivariate mean.
+6.  envelope model in the predictor space
+7.  envelope model for estimating the multivariate mean
 
 Installation
 ____________
