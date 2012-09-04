@@ -10,7 +10,7 @@ LICENSE:
 GPL-2
 
 AUTHOR:
-Zhihua Su (suzhihua@stat.umn.edu)
+Zhihua Su (zhihuasu@ufl.edu)
 Yi Yang (yiyang@umn.edu)
 Dennis Cook (dennis@stat.umn.edu)
 
@@ -68,7 +68,7 @@ _________________
 We provides a support website, on which the users can download the
 toolbox, report bugs and check recent updates
 http://code.google.com/p/envlp/. For further help, the users can contact
-the authors of the toolbox: Zhihua Su (suzhihua@stat.umn.edu), Yi Yang
+the authors of the toolbox: Zhihua Su (zhihuasu@ufl.edu), Yi Yang
 (yiyang@umn.edu) and Dennis Cook (dennis@stat.umn.edu).
 
 References
