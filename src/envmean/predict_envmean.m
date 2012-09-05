@@ -32,10 +32,10 @@
 %% Example
 %
 %         load wheatprotein.txt
-%         X = wheatprotein(:, 1 : 6);
+%         Y = wheatprotein(:, 1 : 6);
 %         alpha = 0.01;
-%         u = lrt_envmean(X, alpha);
-%         ModelOutput = envmean(X, u);
+%         u = lrt_envmean(Y, alpha);
+%         ModelOutput = envmean(Y, u);
 %         PredictOutput = predict_envmean(ModelOutput, 'prediction')
 %         PredictOutput.value
 %         PredictOutput.SE
