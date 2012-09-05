@@ -1873,14 +1873,14 @@ Select the dimension of the envelope subspace using Akaike information criterion
 \subsection*{Syntax}
 
 
-\begin{verbatim}       u = aic_envmean(X)
-       u = aic_envmean(X, Opts)\end{verbatim}
+\begin{verbatim}       u = aic_envmean(Y)
+       u = aic_envmean(Y, Opts)\end{verbatim}
     
 
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
+\textbf{Y}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
@@ -1912,8 +1912,8 @@ This function implements the Akaike information criteria (AIC) to select the dim
 
 
 \begin{verbatim}       load wheatprotein.txt
-       X = wheatprotein(:, 1 : 6);
-       u = aic_envmean(X)\end{verbatim}
+       Y = wheatprotein(:, 1 : 6);
+       u = aic_envmean(Y)\end{verbatim}
     
         \color{lightgray} \begin{verbatim}
 u =
@@ -1947,14 +1947,14 @@ Select the dimension of the envelope subspace using Bayesian information criteri
 \subsection*{Syntax}
 
 
-\begin{verbatim}       u = bic_envmean(X)
-       u = bic_envmean(X, Opts)\end{verbatim}
+\begin{verbatim}       u = bic_envmean(Y)
+       u = bic_envmean(Y, Opts)\end{verbatim}
     
 
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
+\textbf{Y}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
@@ -1986,8 +1986,8 @@ This function implements the Bayesian information criteria (BIC) to select the d
 
 
 \begin{verbatim}       load wheatprotein.txt
-       X = wheatprotein(:, 1 : 6);
-       u = bic_envmean(X)\end{verbatim}
+       Y = wheatprotein(:, 1 : 6);
+       u = bic_envmean(Y)\end{verbatim}
     
         \color{lightgray} \begin{verbatim}
 u =
@@ -2020,14 +2020,14 @@ Compute bootstrap standard error for the envelope estimator of the multivariate 
 \subsection*{Syntax}
 
 
-\begin{verbatim}       bootse = bstrp_envmean(X, u, B)
-       bootse = bstrp_envmean(X, u, B, Opts)\end{verbatim}
+\begin{verbatim}       bootse = bstrp_envmean(Y, u, B)
+       bootse = bstrp_envmean(Y, u, B, Opts)\end{verbatim}
     
 
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
+\textbf{Y}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{u}: Dimension of the envelope subspace.  A positive integer between 0 and p.
@@ -2065,9 +2065,9 @@ This function computes the bootstrap standard errors for the envelope estimator 
 
 
 \begin{verbatim}       load wheatprotein.txt
-       X = wheatprotein(:, 1 : 6);
+       Y = wheatprotein(:, 1 : 6);
        alpha = 0.01;
-       u = lrt_envmean(X, alpha)\end{verbatim}
+       u = lrt_envmean(Y, alpha)\end{verbatim}
     
         \color{lightgray} \ttfamily\begin{verbatim}
        
@@ -2077,17 +2077,17 @@ u =
 \end{verbatim} \rmfamily
 \color{black}       
 \begin{verbatim}       B = 100;
-       bootse = bstrp_envmean(X, u, B)\end{verbatim}
+       bootse = bstrp_envmean(Y, u, B)\end{verbatim}
     
         \color{lightgray}\ttfamily \begin{verbatim}
 bootse =
 
-    5.6513
-    4.6606
-    5.0257
-    5.4714
-    7.7713
-    3.0035
+    4.9229
+    4.0786
+    4.3783
+    4.7756
+    6.9111
+    2.6859
 
 \end{verbatim} \rmfamily
 \color{black}
@@ -2168,14 +2168,14 @@ Provide envelope estimator for the multivariate mean.
 \subsection*{Syntax}
 
 
-\begin{verbatim}       ModelOutput = envmean(X, u)
-       ModelOutput = envmean(X, u, Opts)\end{verbatim}
+\begin{verbatim}       ModelOutput = envmean(Y, u)
+       ModelOutput = envmean(Y, u, Opts)\end{verbatim}
     
 
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
+\textbf{Y}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{u}: Dimension of the envelope. An integer between 0 and p.
@@ -2219,8 +2219,9 @@ Provide envelope estimator for the multivariate mean.
 \subsection*{Description}
 
 \begin{par}
-This function provides an envelope estimator for the multivariate mean, with a given dimension of the envelope subspace u. The estimator is obtained using the maximum likelihood estimation.  When the dimension is p, then the envelope model degenerates to the standard sample mean.  When the dimension is 0, it means that X has mean 0.
+This function provides an envelope estimator for the multivariate mean, with a given dimension of the envelope subspace u. The estimator is obtained using the maximum likelihood estimation.  When the dimension is p, then the envelope model degenerates to the standard sample mean.  When the dimension is 0, it means that Y has mean 0.
 \end{par} \vspace{1em}
+
 
 
 \subsection*{References}
@@ -2234,8 +2235,8 @@ The Grassmann manifold optimization step calls the package sg\_min 2.4.3 by Ross
 
 
 \begin{verbatim}       load wheatprotein.txt
-       X = wheatprotein(:, 1 : 6);
-       u = bic_envmean(X)\end{verbatim}
+       Y = wheatprotein(:, 1 : 6);
+       u = bic_envmean(Y)\end{verbatim}
     
         \color{lightgray} \ttfamily\begin{verbatim}
 u =
@@ -2244,7 +2245,7 @@ u =
 \end{verbatim} \rmfamily
 \color{black}
 
-\begin{verbatim}       ModelOutput = envmean(X, u)\end{verbatim}
+\begin{verbatim}       ModelOutput = envmean(Y, u)\end{verbatim}
 
         \color{lightgray} \ttfamily\begin{verbatim}
 
@@ -2374,14 +2375,14 @@ Select the dimension of the envelope subspace using likelihood ratio testing.
 \subsection*{Syntax}
 
 
-\begin{verbatim}       u = lrt_envmean(X, alpha)
-       u = lrt_envmean(X, alpha, Opts)\end{verbatim}
+\begin{verbatim}       u = lrt_envmean(Y, alpha)
+       u = lrt_envmean(Y, alpha, Opts)\end{verbatim}
     
 
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
+\textbf{Y}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{alpha}: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
@@ -2411,14 +2412,13 @@ Select the dimension of the envelope subspace using likelihood ratio testing.
 This function implements the likelihood ratio testing procedure to select the dimension of the envelope subspace, with pre-specified significance level $\alpha$.
 \end{par} \vspace{1em}
 
-
 \subsection*{Example}
 
 
 \begin{verbatim}       load wheatprotein.txt
-       X = wheatprotein(:, 1 : 6);
+       Y = wheatprotein(:, 1 : 6);
        alpha = 0.01;
-       u = lrt_envmean(X, alpha)\end{verbatim}
+       u = lrt_envmean(Y, alpha)\end{verbatim}
     
         \color{lightgray} \begin{verbatim}
 u =
@@ -2484,14 +2484,15 @@ If the inference type is prediction, this function predicts a new observation an
 \end{par} \vspace{1em}
 
 
+
 \subsection*{Example}
 
 
 \begin{verbatim}       load wheatprotein.txt
-       X = wheatprotein(:, 1 : 6);
+       Y = wheatprotein(:, 1 : 6);
        alpha = 0.01;
-       u = lrt_envmean(X, alpha);
-       ModelOutput = envmean(X, u);
+       u = lrt_envmean(Y, alpha);
+       ModelOutput = envmean(Y, u);
        PredictOutput = predict_envmean(ModelOutput, 'prediction')\end{verbatim}
     
         \color{lightgray} \ttfamily\begin{verbatim}
@@ -2538,7 +2539,8 @@ ans =
 
 
 This function tests the null hypothesis L * mu = A versus the
-alternative hypothesis L * mu ~= A, where mu is the multivariate mean.
+alternative hypothesis L * mu ~= A, where mu is the
+multivariate mean.
     
 \subsection*{Contents}
 
@@ -2599,10 +2601,10 @@ This function tests for hypothesis $H_0: L\mu = A$, versus $H_\alpha: L\mu\neq A
 
 
 \begin{verbatim}       load wheatprotein.txt
-       X = wheatprotein(:, 1 : 6);
+       Y = wheatprotein(:, 1 : 6);
        alpha = 0.01;
-       u = lrt_envmean(X, alpha);
-       ModelOutput = envmean(X, u);
+       u = lrt_envmean(Y, alpha);
+       ModelOutput = envmean(Y, u);
        TestOutout = testcoefficient_envmean(ModelOutput);\end{verbatim}
     
         \color{lightgray} \ttfamily\begin{verbatim}
@@ -2613,7 +2615,7 @@ L * mu = A          1351183.290          6      0.0000
 \end{verbatim} \rmfamily
 \color{black}
        
-\begin{verbatim}       p = size(X, 2);
+\begin{verbatim}       p = size(Y, 2);
        TestInput.L = rand(2, p);
        TestInput.A = zeros(2, 1);
        TestOutout = testcoefficient_envmean(ModelOutput, TestInput);\end{verbatim}
@@ -2622,7 +2624,7 @@ L * mu = A          1351183.290          6      0.0000
         \color{lightgray} \ttfamily\begin{verbatim}
  Test Hypothesis     Chisq Statistic    DF     P-value
 -------------------------------------------------------
-L * mu = A            37273.324          2      0.0000
+L * mu = A            21655.274         2      0.0000
 -------------------------------------------------------
 \end{verbatim} \rmfamily
 \color{black}
