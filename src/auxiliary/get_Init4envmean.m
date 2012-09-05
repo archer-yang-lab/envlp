@@ -39,10 +39,10 @@ function WInit = get_Init4envmean(F, u, DataParameter)
 
 n = DataParameter.n;
 p = DataParameter.p;
-sigX = DataParameter.sigX;
+sigY = DataParameter.sigY;
 
 
-[V D] = eig(sigX);
+[V D] = eig(sigY);
 
 crit = nchoosek(p, u);
 
