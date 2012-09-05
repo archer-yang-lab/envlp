@@ -1,18 +1,18 @@
 % This example demonstrates the usage of envmean module.
 
 load wheatprotein.txt  % Load data
-X = wheatprotein(:, 1 : 6); % Assign the variables
+Y = wheatprotein(:, 1 : 6); % Assign the variables
 
 
 % Dimension selection
-u1 = aic_envmean(X) % Select u using AIC
+u1 = aic_envmean(Y) % Select u using AIC
 
 % % u1 =
 % % 
 % %      6
 
 
-u2 = bic_envmean(X) % Select u using BIC
+u2 = bic_envmean(Y) % Select u using BIC
 
 % % u2 =
 % % 
@@ -20,7 +20,7 @@ u2 = bic_envmean(X) % Select u using BIC
 
      
 alpha = 0.01;
-u3 = lrt_envmean(X, alpha) % Select u using LRT
+u3 = lrt_envmean(Y, alpha) % Select u using LRT
 
 % % u3 =
 % % 
@@ -28,7 +28,7 @@ u3 = lrt_envmean(X, alpha) % Select u using LRT
      
 
 % Fit the model
-ModelOutput = envmean(X, u3)
+ModelOutput = envmean(Y, u3)
 
 % % ModelOutput = 
 % % 
@@ -106,7 +106,7 @@ eig(ModelOutput.Omega0) % Check the eigenvalues of \Omega_0
     
 % Inference tools
 B = 100;
-bootse = bstrp_envmean(X, u3, B) % Compute bootstrap standard errors for elements in \mu
+bootse = bstrp_envmean(Y, u3, B) % Compute bootstrap standard errors for elements in \mu
 
 % % bootse =
 % % 
