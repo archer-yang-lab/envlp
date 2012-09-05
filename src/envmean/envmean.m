@@ -2,12 +2,12 @@
 % Provide envelope estimator for the multivariate mean.
 
 %% Syntax
-%         ModelOutput = envmean(X, u)
-%         ModelOutput = envmean(X, u, Opts)
+%         ModelOutput = envmean(Y, u)
+%         ModelOutput = envmean(Y, u, Opts)
 
 %% Input
 %
-% *X*: Data matrix. An n by p matrix, p is the dimension of the variable
+% *Y*: Data matrix. An n by p matrix, p is the dimension of the variable
 % and n is number of observations. 
 %
 % *u*: Dimension of the envelope. An integer between 0 and p.
@@ -64,7 +64,7 @@
 % with a given dimension of the envelope subspace u. The estimator is
 % obtained using the maximum likelihood estimation.  When the dimension is
 % p, then the envelope model degenerates to the standard sample mean.  When
-% the dimension is 0, it means that X has mean 0. 
+% the dimension is 0, it means that Y has mean 0. 
 
 %% References
 % 
@@ -75,21 +75,21 @@
 %
 % 
 %         load wheatprotein.txt
-%         X = wheatprotein(:, 1 : 6);
-%         u = bic_envmean(X)
-%         ModelOutput = envmean(X, u)
+%         Y = wheatprotein(:, 1 : 6);
+%         u = bic_envmean(Y)
+%         ModelOutput = envmean(Y, u)
 %         ModelOutput.mu
 %         ModelOutput.Sigma
 
-function ModelOutput = envmean(X, u, Opts)
+function ModelOutput = envmean(Y, u, Opts)
 
 if nargin < 2
-    error('Inputs: X and u should be specified!');
+    error('Inputs: Y and u should be specified!');
 elseif nargin == 2
     Opts = [];
 end
 
-[n, p] = size(X);
+[n, p] = size(Y);
 
 u = floor(u);
 if u < 0 || u > p
@@ -109,19 +109,19 @@ if isfield(Opts, 'init')
 end
 
 
-sX = X' * X / n;
-mX = mean(X)';
-sigX = cov(X, 1);
-eigtemX = eig(sX);
-logDetSX = log(prod(eigtemX(eigtemX > 0)));
+sY = Y' * Y / n;
+mY = mean(Y)';
+sigY = cov(Y, 1);
+eigtemY = eig(sY);
+logDetSY = log(prod(eigtemY(eigtemY > 0)));
 
 if u > 0 && u < p
 
     DataParameter.n = n;
     DataParameter.p = p;
-    DataParameter.sX = sX;
-    DataParameter.sigX = sigX;
-    DataParameter.logDetSX = logDetSX;
+    DataParameter.sY = sY;
+    DataParameter.sigY = sigY;
+    DataParameter.logDetSY = logDetSY;
 
     F = make_F(@F4envmean, DataParameter);
     dF = make_dF(@dF4envmean, DataParameter);
@@ -146,10 +146,10 @@ if u > 0 && u < p
 
     %---Compute the rest of the parameters based on \Gamma---
     Gamma0 = grams(nulbasis(Gamma'));
-    eta = Gamma' * mX;
+    eta = Gamma' * mY;
     mu = Gamma * eta;
-    Omega = Gamma' * sigX * Gamma;
-    Omega0 = Gamma0' * sX * Gamma0;
+    Omega = Gamma' * sigY * Gamma;
+    Omega0 = Gamma0' * sY * Gamma0;
     Sigma = Gamma * Omega * Gamma' + Gamma0 * Omega0 * Gamma0';
 
     %---compute asymptotic variance and get the ratios---
@@ -176,13 +176,13 @@ if u > 0 && u < p
 elseif u == 0
     
     ModelOutput.mu = zeros(p, 1);
-    ModelOutput.Sigma = sX;
+    ModelOutput.Sigma = sY;
     ModelOutput.Gamma = [];
     ModelOutput.Gamma0 = eye(p);
     ModelOutput.eta = [];
     ModelOutput.Omega = [];
-    ModelOutput.Omega0 = sX;
-    ModelOutput.l = - n * p / 2 * (1 + log(2 * pi)) - n / 2 * logDetSX;
+    ModelOutput.Omega0 = sY;
+    ModelOutput.l = - n * p / 2 * (1 + log(2 * pi)) - n / 2 * logDetSY;
     ModelOutput.covMatrix = [];
     ModelOutput.asyEnv = [];
     ModelOutput.ratio = ones(p, 1);
@@ -191,19 +191,19 @@ elseif u == 0
     
 elseif u == p
     
-    eigtem = eig(sigX);
-    logDetSigX = log(prod(eigtem(eigtem > 0)));
+    eigtem = eig(sigY);
+    logDetSigY = log(prod(eigtem(eigtem > 0)));
     
-    ModelOutput.mu = mX;
-    ModelOutput.Sigma = sigX;
+    ModelOutput.mu = mY;
+    ModelOutput.Sigma = sigY;
     ModelOutput.Gamma = eye(p);
     ModelOutput.Gamma0 = [];
-    ModelOutput.eta = mX;
-    ModelOutput.Omega = sigX;
+    ModelOutput.eta = mY;
+    ModelOutput.Omega = sigY;
     ModelOutput.Omega0 = [];
-    ModelOutput.l = - n * p / 2 * (1 + log(2 * pi)) - n / 2 * logDetSigX;
-    ModelOutput.covMatrix = sigX;
-    ModelOutput.asyEnv = sqrt(diag(sigX));
+    ModelOutput.l = - n * p / 2 * (1 + log(2 * pi)) - n / 2 * logDetSigY;
+    ModelOutput.covMatrix = sigY;
+    ModelOutput.asyEnv = sqrt(diag(sigY));
     ModelOutput.ratio = ones(p, 1);
     ModelOutput.np = u + p * (p + 1) / 2;
     ModelOutput.n = n; 
