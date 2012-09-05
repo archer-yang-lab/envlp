@@ -34,6 +34,7 @@
 % level $$\alpha$.  
 
 %% Example
+% 
 %         load wheatprotein.txt
 %         Y = wheatprotein(:, 1 : 6);
 %         alpha = 0.01;

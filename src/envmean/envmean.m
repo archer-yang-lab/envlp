@@ -73,7 +73,6 @@
 
 %% Example
 %
-% 
 %         load wheatprotein.txt
 %         Y = wheatprotein(:, 1 : 6);
 %         u = bic_envmean(Y)
