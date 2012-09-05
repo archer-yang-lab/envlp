@@ -46,12 +46,12 @@
 
 %% Example
 %         load wheatprotein.txt
-%         X = wheatprotein(:, 1 : 6);
+%         Y = wheatprotein(:, 1 : 6);
 %         alpha = 0.01;
-%         u = lrt_envmean(X, alpha);
-%         ModelOutput = envmean(X, u);
+%         u = lrt_envmean(Y, alpha);
+%         ModelOutput = envmean(Y, u);
 %         TestOutout = testcoefficient_envmean(ModelOutput);
-%         p = size(X, 2);
+%         p = size(Y, 2);
 %         TestInput.L = rand(2, p);
 %         TestInput.A = zeros(2, 1);
 %         TestOutout = testcoefficient_envmean(ModelOutput, TestInput);

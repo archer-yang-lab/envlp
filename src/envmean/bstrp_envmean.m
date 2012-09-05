@@ -3,12 +3,12 @@
 % multivariate mean. 
 
 %% Syntax
-%         bootse = bstrp_envmean(X, u, B)
-%         bootse = bstrp_envmean(X, u, B, Opts)
+%         bootse = bstrp_envmean(Y, u, B)
+%         bootse = bstrp_envmean(Y, u, B, Opts)
 %
 %% Input
 %
-% *X*: Data matrix. An n by p matrix, p is the dimension of the variable
+% *Y*: Data matrix. An n by p matrix, p is the dimension of the variable
 % and n is number of observations.  
 % 
 % *u*: Dimension of the envelope subspace.  A positive integer between 0
@@ -37,16 +37,16 @@
 
 %% Example
 %         load wheatprotein.txt
-%         X = wheatprotein(:, 1 : 6);
+%         Y = wheatprotein(:, 1 : 6);
 %         alpha = 0.01;
-%         u = lrt_envmean(X, alpha)
+%         u = lrt_envmean(Y, alpha)
 %         B = 100;
-%         bootse = bstrp_envmean(X, u, B)
+%         bootse = bstrp_envmean(Y, u, B)
 
-function bootse = bstrp_envmean(X, u, B, Opts)
+function bootse = bstrp_envmean(Y, u, B, Opts)
 
 if nargin < 3
-    error('Inputs: X, B and u should be specified!');
+    error('Inputs: Y, B and u should be specified!');
 elseif nargin == 3
     Opts = [];
 end
@@ -55,12 +55,12 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
-[n p] = size(X);
+[n p] = size(Y);
 
-ModelOutput = envmean(X, u, Opts);
+ModelOutput = envmean(Y, u, Opts);
 
-Xmean = ones(n, 1) * ModelOutput.mu';
-resi = X - Xmean;
+Ymean = ones(n, 1) * ModelOutput.mu';
+resi = Y - Ymean;
 
 bootBeta = zeros(B, p);
 
@@ -71,8 +71,8 @@ for i = 1 : B
     end
     
     bootresi = resi(randsample(1 : n, n, true), :);
-    Xboot = Xmean + bootresi;
-    temp = envmean(Xboot, u, Opts);
+    Yboot = Ymean + bootresi;
+    temp = envmean(Yboot, u, Opts);
     bootBeta(i, :) = temp.mu';
 
 end
