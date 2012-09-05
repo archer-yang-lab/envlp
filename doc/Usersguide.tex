@@ -133,6 +133,7 @@ commandchars=\\\{\},
 \newcommand{\Xbb}{\mathbb{X}}
 \newcommand{\Fbb}{\mathbb{F}}
 \newcommand{\Ybb}{\mathbb{Y}}
+\newcommand{\Ybar}{\bar{\Y}}
 
 \newcommand{\Xbbhat}{\widehat{\mathbb{X}}}
 \newcommand{\Ss}{\mathbf{S}}
@@ -1410,7 +1411,7 @@ bootse = bootstrapse(X, Y, u, B, 'xenvpls')
 
 \section{Envelope Estimator for Multivariate Mean\label{sec_envmean}}
 
-When estimating the multivariate mean from the data, the envelope estimator has a smaller risk than the sample mean, and often has a smaller risk than James-Stein estimator \citep{james1961estimation}.  More specifically, suppose $\X_{1}, \cdots, \X_{p}$ are independent and identically distributed with mean $\mubf\in\real{p}$ and covariance matrix $\Sigmabf\in\real{p\times p}$, for an estimator $\mubfhat$, the risk function is $R(\mubfhat, \mubf)=\E_{\mubfs}(L(\mubfhat, \mubf))$, and $L(\mubfhat, \mubf)=(\mubfhat-\mubf)^{T}\Sigmabf^{-1}(\mubfhat-\mubf)$ is the loss function.  Then $R(\mubfhat_{EM}, \mubf)\leq R(\Xbar, \mubf)$, where $\mubfhat_{EM}$ is the envelope estimator, and $\Xbar=\sum_{i=1}^{n}\X_{i}/n$ is the sample mean.\\
+When estimating the multivariate mean from the data, the envelope estimator has a smaller risk than the sample mean, and often has a smaller risk than James-Stein estimator \citep{james1961estimation}.  More specifically, suppose $\Y_{1}, \cdots, \Y_{p}$ are independent and identically distributed with mean $\mubf\in\real{p}$ and covariance matrix $\Sigmabf\in\real{p\times p}$, for an estimator $\mubfhat$, the risk function is $R(\mubfhat, \mubf)=\E_{\mubfs}(L(\mubfhat, \mubf))$, and $L(\mubfhat, \mubf)=(\mubfhat-\mubf)^{T}\Sigmabf^{-1}(\mubfhat-\mubf)$ is the loss function.  Then $R(\mubfhat_{EM}, \mubf)\leq R(\Ybar, \mubf)$, where $\mubfhat_{EM}$ is the envelope estimator, and $\Ybar=\sum_{i=1}^{n}\Y_{i}/n$ is the sample mean.\\
 \\
 The coordinate form of the envelope model for estimating the multivariate mean is 
 \[
@@ -1422,16 +1423,16 @@ $\Omegabf_{0}\in\mathbb{R}^{(p-u)\times(p-u)}$ carry coordinates, and $0\leq u\l
 Because it is not in the regression setting, the interface of the functions is different from other envelope models.  To select the dimension of the envelope subspace $u$, we can use
 the following functions
 \begin{Verbatim}[commandchars=\\\{\}]
-u = aic_envmean(X)
-u = bic_envmean(X)
+u = aic_envmean(Y)
+u = bic_envmean(Y)
 alpha = 0.01;  # Users can specify other significance level
-u = lrt_envmean(X, alpha)
+u = lrt_envmean(Y, alpha)
 \end{Verbatim}
-For the input, X is an $n\times p$ data matrix, where the $i$th row is $\X_{i}^{T}$, alpha is the significance level, which is often taken as $0.01$ or $0.05$.  The possible values of $u$ can be any integer from $0$ to $p$.
-When $u=p$, the envelope estimator reduces to the sample mean, $\mubfhat_{EM}=\Xbar$. And when $u=0$, it means that $\mubf$ is inferred to be a zero vector. After obtaining $u$, we
+For the input, Y is an $n\times p$ data matrix, where the $i$th row is $\Y_{i}^{T}$, alpha is the significance level, which is often taken as $0.01$ or $0.05$.  The possible values of $u$ can be any integer from $0$ to $p$.
+When $u=p$, the envelope estimator reduces to the sample mean, $\mubfhat_{EM}=\Ybar$. And when $u=0$, it means that $\mubf$ is inferred to be a zero vector. After obtaining $u$, we
 can get the estimator of the multivariate mean by 
 \begin{Verbatim}[commandchars=\\\{\}]
-ModelOutput = envmean(X, u)
+ModelOutput = envmean(Y, u)
 \end{Verbatim}
 The user can specify the dimension $u$, or use the dimension selection tools discussed above to choose $u$.  The output \texttt{ModelOutput }is a list, which contains the MLEs
 of $\mubf$, $\Sigmabf$, $\Gammabf$, $\Gammabf_{0}$, $\etabf$,
@@ -1443,7 +1444,7 @@ errors in the sample mean versus the envelope estimator, the number of parameter
 we can perform post processing inference as computing bootstrap standard
 errors of $\mubfhat$ by 
 \begin{Verbatim}[commandchars=\\\{\}]
-bootse = bstrp_envmean(X, u, B)
+bootse = bstrp_envmean(Y, u, B)
 \end{Verbatim}
 or computing predicted value for a new observation by 
 \begin{Verbatim}[commandchars=\\\{\}]
