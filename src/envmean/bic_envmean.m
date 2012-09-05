@@ -3,12 +3,12 @@
 % criterion.
 
 %% Syntax
-%         u = bic_envmean(X)
-%         u = bic_envmean(X, Opts)
+%         u = bic_envmean(Y)
+%         u = bic_envmean(Y, Opts)
 %
 %% Input
 %
-% *X*: Data matrix. An n by p matrix, p is the dimension of the variable
+% *Y*: Data matrix. An n by p matrix, p is the dimension of the variable
 % and n is number of observations. 
 % 
 % *Opts*: A list containing the optional input parameters, to control the
@@ -31,13 +31,13 @@
 
 %% Example
 %         load wheatprotein.txt
-%         X = wheatprotein(:, 1 : 6);
-%         u = bic_envmean(X)
+%         Y = wheatprotein(:, 1 : 6);
+%         u = bic_envmean(Y)
 
-function u = bic_envmean(X, Opts)
+function u = bic_envmean(Y, Opts)
 
 if nargin < 1
-    error('Inputs: X should be specified!');
+    error('Inputs: Y should be specified!');
 elseif nargin == 1
     Opts = [];
 end
@@ -46,9 +46,9 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
-[n p] = size(X);
+[n p] = size(Y);
     
-ModelOutput = envmean(X, p, Opts);
+ModelOutput = envmean(Y, p, Opts);
 ic = - 2 * ModelOutput.l + log(n) * ModelOutput.np;
 u = p;
 
@@ -58,7 +58,7 @@ for i = 0 : p - 1
 		fprintf(['Current dimension ' int2str(i) '\n']);
     end
     
-	ModelOutput = envmean(X, i, Opts);
+	ModelOutput = envmean(Y, i, Opts);
 	temp = -2 * ModelOutput.l + log(n) * ModelOutput.np;
 	
     if temp < ic
