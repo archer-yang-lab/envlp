@@ -25,12 +25,12 @@
 function df = dF4envmean(R, DataParameter)
 
 n = DataParameter.n;
-sX = DataParameter.sX;
-sigX = DataParameter.sigX;
+sY = DataParameter.sY;
+sigY = DataParameter.sigY;
 
-a = 2 * sigX * R * inv(R' * sigX * R);
+a = 2 * sigY * R * inv(R' * sigY * R);
 
-temp = inv(sX);
+temp = inv(sY);
 
 b = 2 * temp * R * inv(R' * temp * R);
 
