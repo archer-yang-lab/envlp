@@ -3,12 +3,12 @@
 % testing.
 
 %% Syntax
-%         u = lrt_envmean(X, alpha)
-%         u = lrt_envmean(X, alpha, Opts)
+%         u = lrt_envmean(Y, alpha)
+%         u = lrt_envmean(Y, alpha, Opts)
 %
 %% Input
 %
-% *X*: Data matrix. An n by p matrix, p is the dimension of the variable
+% *Y*: Data matrix. An n by p matrix, p is the dimension of the variable
 % and n is number of observations. 
 % 
 % *alpha*: Significance level for testing.  A real number between 0 and 1,
@@ -35,14 +35,14 @@
 
 %% Example
 %         load wheatprotein.txt
-%         X = wheatprotein(:, 1 : 6);
+%         Y = wheatprotein(:, 1 : 6);
 %         alpha = 0.01;
-%         u = lrt_envmean(X, alpha)
+%         u = lrt_envmean(Y, alpha)
 
-function u = lrt_envmean(X, alpha, Opts)
+function u = lrt_envmean(Y, alpha, Opts)
 
 if nargin < 2
-    error('Inputs: X and alpha should be specified!');
+    error('Inputs: Y and alpha should be specified!');
 elseif nargin == 2
     Opts = [];
 end
@@ -55,9 +55,9 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
-[n p] = size(X);
+[n p] = size(Y);
 
-ModelOutput0 = envmean(X, p, Opts);
+ModelOutput0 = envmean(Y, p, Opts);
 
 for i = 0 : p - 1
 
@@ -65,7 +65,7 @@ for i = 0 : p - 1
 		fprintf(['Current dimension ' int2str(i) '\n']);
         end
     
-	ModelOutput = envmean(X, i, Opts);
+	ModelOutput = envmean(Y, i, Opts);
 	chisq = - 2 * (ModelOutput.l - ModelOutput0.l);
 	df = ModelOutput0.np - ModelOutput.np;
 	
