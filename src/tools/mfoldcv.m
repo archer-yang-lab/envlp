@@ -61,9 +61,9 @@ end
 
 switch(modelType)
     case 'envseq'
-        u = mfoldcv_envseq(X, Y, Opts);
+        u = mfoldcv_envseq(X, Y, m, Opts);
     case 'xenvpls'
-        u = mfoldcv_xenvpls(X, Y, Opts);
+        u = mfoldcv_xenvpls(X, Y, m, Opts);
     otherwise
         fprintf('The value specified in modelType is not supported!');
 end
