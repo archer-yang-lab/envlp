@@ -1,0 +1,54 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Cook(2012)]{cook2012lecture}
+R.D. Cook.
+\newblock {Lecture Notes on Dimension Reduction}.
+\newblock School of Statistics, University of Minnesota, Minneapolis, 2012.
+
+\bibitem[Cook and Su(2012)]{cook2012scaled}
+R.D. Cook and Z.~Su.
+\newblock Scaled envelopes: Scale invariant and efficient estimation in
+  multivariate linear regression.
+\newblock To be submitted shortly, 2012.
+
+\bibitem[Cook et~al.(2010)Cook, Li, and Chiaromonte]{cook2010envelope}
+R.D. Cook, B.~Li, and F.~Chiaromonte.
+\newblock {Envelope models for parsimonious and efficient multivariate linear
+  regression (with discussion)}.
+\newblock \emph{Statist. Sinica}, 20:\penalty0 927--1010, 2010.
+
+\bibitem[Cook et~al.(2012)Cook, Helland, and Su]{cook2012envelopes}
+R.D. Cook, I.~Helland, and Z.~Su.
+\newblock Envelopes and partial least squares regression.
+\newblock Submitted, 2012.
+
+\bibitem[Johnson and Wichern(2007)]{johnson2002applied}
+R.A. Johnson and D.W. Wichern.
+\newblock \emph{{Applied Multivariate Statistical Analysis}}.
+\newblock Upper Saddle River, NJ: Prentice Hall, 2007.
+
+\bibitem[Su and Cook(2011)]{su2011partial}
+Z.~Su and R.D. Cook.
+\newblock {Partial envelopes for efficient estimation in multivariate linear
+  regression}.
+\newblock \emph{Biometrika}, 98\penalty0 (1):\penalty0 133--146, 2011.
+\newblock ISSN 0006-3444.
+
+\bibitem[Su and Cook(2012)]{su2012estimation}
+Z.~Su and R.D. Cook.
+\newblock {Estimation of Multivariate Means with Heteroscedastic Errors Using
+  Envelope Models}.
+\newblock \emph{Statistica Sinica}, to appear, 2012.
+
+\bibitem[Su and Cook(to appear)]{su2012inner}
+Z.~Su and R.D. Cook.
+\newblock {Inner Envelopes: Efficient Estimation in Multivariate Linear
+  Regression}.
+\newblock \emph{Biometrika}, to appear.
+
+\end{thebibliography}
