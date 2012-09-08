@@ -53,7 +53,7 @@
 % * ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate 
 % linear regression estimator over the envelope estimator, for each element 
 % in $$\mu$.  A p dimensional column vector.
-% * ModelOutput.np: The number of parameters in the envelope model.  A positive
+% * ModelOutput.paramNum: The number of parameters in the envelope model.  A positive
 % integer.
 % * ModelOutput.n: The number of observations in the data.  A positive
 % integer.
@@ -169,7 +169,7 @@ if u > 0 && u < p
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyEnv = asyEnv;
     ModelOutput.ratio = asyFm;
-    ModelOutput.np = u + p * (p + 1) / 2;
+    ModelOutput.paramNum = u + p * (p + 1) / 2;
     ModelOutput.n = n;
     
 elseif u == 0
@@ -185,7 +185,7 @@ elseif u == 0
     ModelOutput.covMatrix = [];
     ModelOutput.asyEnv = [];
     ModelOutput.ratio = ones(p, 1);
-    ModelOutput.np = u + p * (p + 1) / 2;
+    ModelOutput.paramNum = u + p * (p + 1) / 2;
     ModelOutput.n = n;  
     
 elseif u == p
@@ -204,7 +204,7 @@ elseif u == p
     ModelOutput.covMatrix = sigY;
     ModelOutput.asyEnv = sqrt(diag(sigY));
     ModelOutput.ratio = ones(p, 1);
-    ModelOutput.np = u + p * (p + 1) / 2;
+    ModelOutput.paramNum = u + p * (p + 1) / 2;
     ModelOutput.n = n; 
     
 end

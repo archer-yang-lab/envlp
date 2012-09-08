@@ -63,7 +63,7 @@
 % * ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate 
 % linear regression estimator over the inner envelope estimator, for each element 
 % in $$\beta$.  An r by p matrix.
-% * ModelOutput.np: The number of parameters in the inner envelope model.  A positive
+% * ModelOutput.paramNum: The number of parameters in the inner envelope model.  A positive
 % integer.
 % * ModelOutput.n: The number of observations in the data.  A positive
 % integer.
@@ -162,7 +162,7 @@ if u == p
     ModelOutput.Omega0 = temp.Omega0;
     ModelOutput.alpha = temp.alpha;
     ModelOutput.l = temp.l;
-    ModelOutput.np = temp.np;
+    ModelOutput.paramNum = temp.paramNum;
     ModelOutput.covMatrix = temp.covMatrix;
     ModelOutput.asyIenv = temp.asyEnv;
     ModelOutput.ratio = temp.ratio;
@@ -185,7 +185,7 @@ elseif u == 0
     ModelOutput.covMatrix = temp.covMatrix;
     ModelOutput.asyIenv = temp.asyEnv;
     ModelOutput.ratio = temp.ratio;
-    ModelOutput.np = temp.np;  
+    ModelOutput.paramNum = temp.paramNum;  
     ModelOutput.n = temp.n;
 
 else 
@@ -243,7 +243,7 @@ else
     ModelOutput.Omega1 = Omega1;
     ModelOutput.Omega0 = Omega0;
     ModelOutput.alpha = alpha;
-    ModelOutput.np = p ^ 2 + (p - u) * (r - p) + r * (r + 1) / 2;
+    ModelOutput.paramNum = p ^ 2 + (p - u) * (r - p) + r * (r + 1) / 2;
     ModelOutput.l = - 0.5 * l;
     
     

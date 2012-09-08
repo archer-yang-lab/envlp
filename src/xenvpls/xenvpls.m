@@ -41,7 +41,7 @@
 % * ModelOutput.mu: The estimated intercept.  An r by 1 vector.
 % * ModelOutput.sigYcX: The estimated conditional covariance matrix of Y given X.
 % An r by r matrix.
-% * ModelOutput.np: The number of parameters in the envelope model.  A positive
+% * ModelOutput.paramNum: The number of parameters in the envelope model.  A positive
 % integer.
 % * ModelOutput.n: The number of observations in the data.  A positive
 % integer.
@@ -142,7 +142,7 @@ if u > 0 && u < p
     ModelOutput.Omega0 = Omega0;
     ModelOutput.mu = mu;
     ModelOutput.sigYcX = sigYcX;
-    ModelOutput.np = r + u * r + p * (p + 1) / 2 + r * (r + 1) / 2;
+    ModelOutput.paramNum = r + u * r + p * (p + 1) / 2 + r * (r + 1) / 2;
     ModelOutput.n = n;    
     
 elseif u == 0
@@ -157,7 +157,7 @@ elseif u == 0
     ModelOutput.Omega0 = sigX;
     ModelOutput.mu = mu;
     ModelOutput.sigYcX = sigY;
-    ModelOutput.np = r + p * (p + 1) / 2 + r * (r + 1) / 2;
+    ModelOutput.paramNum = r + p * (p + 1) / 2 + r * (r + 1) / 2;
     ModelOutput.n = n;    
 
 elseif u == p
@@ -176,7 +176,7 @@ elseif u == p
     ModelOutput.Omega0 = [];
     ModelOutput.mu = mu;
     ModelOutput.sigYcX = sigYcX;
-    ModelOutput.np = r + (p + r) * (p + r + 1) / 2;
+    ModelOutput.paramNum = r + (p + r) * (p + r + 1) / 2;
     ModelOutput.n = n;    
     
 end

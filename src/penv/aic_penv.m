@@ -60,7 +60,7 @@ Opts.verbose = 0;
 [n r] = size(Y);
 
 ModelOutput = penv(X, Y, r, Opts);
-ic = - 2 * ModelOutput.l + 2 * ModelOutput.np;
+ic = - 2 * ModelOutput.l + 2 * ModelOutput.paramNum;
 u = r;
 
 
@@ -71,7 +71,7 @@ for i = 0 : r - 1
     end
     
     ModelOutput = penv(X, Y, i, Opts);
-    temp = -2 * ModelOutput.l + 2 * ModelOutput.np;
+    temp = -2 * ModelOutput.l + 2 * ModelOutput.paramNum;
     
     if temp < ic
         u = i;

@@ -49,7 +49,7 @@ Opts.verbose = 0;
 [n p] = size(Y);
     
 ModelOutput = envmean(Y, p, Opts);
-ic = - 2 * ModelOutput.l + log(n) * ModelOutput.np;
+ic = - 2 * ModelOutput.l + log(n) * ModelOutput.paramNum;
 u = p;
 
 for i = 0 : p - 1
@@ -59,7 +59,7 @@ for i = 0 : p - 1
     end
     
 	ModelOutput = envmean(Y, i, Opts);
-	temp = -2 * ModelOutput.l + log(n) * ModelOutput.np;
+	temp = -2 * ModelOutput.l + log(n) * ModelOutput.paramNum;
 	
     if temp < ic
 	   u = i;

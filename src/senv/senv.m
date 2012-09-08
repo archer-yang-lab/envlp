@@ -62,7 +62,7 @@
 % * ModelOutput.ratio: The asymptotic standard error ratio of the standard
 % multivariate linear regression estimator over the scaled envelope
 % estimator, for each element in $$\beta$.  An r by p matrix.
-% * ModelOutput.np: The number of parameters in the scaled envelope model.  A
+% * ModelOutput.paramNum: The number of parameters in the scaled envelope model.  A
 % positive integer.
 % * ModelOutput.n: The number of observations in the data.  A positive
 % integer.
@@ -171,7 +171,7 @@ if u == 0
     ModelOutput.covMatrix = [];
     ModelOutput.asySenv = [];
     ModelOutput.ratio = ones(r, p);
-    ModelOutput.np = r + u * p + r * (r + 1) / 2;  
+    ModelOutput.paramNum = r + u * p + r * (r + 1) / 2;  
     ModelOutput.n = n;
     
 elseif u == r || (u == 1 && p == 1)
@@ -194,7 +194,7 @@ elseif u == r || (u == 1 && p == 1)
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asySenv = asyFm;
     ModelOutput.ratio = ones(r, p);
-    ModelOutput.np = r + u * p + r * (r + 1) / 2;
+    ModelOutput.paramNum = r + u * p + r * (r + 1) / 2;
     ModelOutput.n = n;
     
 else
@@ -256,7 +256,7 @@ else
     ModelOutput.Omega = Omega;
     ModelOutput.Omega0 = Omega0;
     ModelOutput.alpha = mY - beta * mX;
-    ModelOutput.np = init.np + r - 1;
+    ModelOutput.paramNum = init.paramNum + r - 1;
     ModelOutput.l = - 0.5 * l;
     
     %---compute asymptotic variance and get the ratios---

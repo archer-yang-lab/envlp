@@ -54,7 +54,7 @@ Opts.verbose = 0;
 p = size(X, 2);
     
 ModelOutput = ienv(X, Y, 0, Opts);
-ic = - 2 * ModelOutput.l + log(n) * ModelOutput.np;
+ic = - 2 * ModelOutput.l + log(n) * ModelOutput.paramNum;
 u = 0;
 
 
@@ -65,7 +65,7 @@ for i = 1 : p
     end
     
     ModelOutput = ienv(X, Y, i, Opts);
-    temp = - 2 * ModelOutput.l + log(n) * ModelOutput.np;
+    temp = - 2 * ModelOutput.l + log(n) * ModelOutput.paramNum;
     
     if temp < ic
         u = i;

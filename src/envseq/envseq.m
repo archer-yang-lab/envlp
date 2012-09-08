@@ -36,7 +36,7 @@
 % matrix.
 % * ModelOutput.alpha: The estimated intercept in the envelope model.  An r by 1
 % vector.
-% * ModelOutput.np: The number of parameters in the envelope model.  A positive
+% * ModelOutput.paramNum: The number of parameters in the envelope model.  A positive
 % integer.
 % * ModelOutput.n: The number of observations in the data.  A positive
 % integer.
@@ -137,7 +137,7 @@ if u > 0 && u < r
     ModelOutput.Omega = Omega;
     ModelOutput.Omega0 = Omega0;
     ModelOutput.alpha = alpha;
-    ModelOutput.np = r + u * p + r * (r + 1) / 2;
+    ModelOutput.paramNum = r + u * p + r * (r + 1) / 2;
     ModelOutput.n = n;
     
 elseif u == 0
@@ -150,7 +150,7 @@ elseif u == 0
     ModelOutput.Omega = [];
     ModelOutput.Omega0 = sigY;
     ModelOutput.alpha = mY;
-    ModelOutput.np = r + u * p + r * (r + 1) / 2;
+    ModelOutput.paramNum = r + u * p + r * (r + 1) / 2;
     ModelOutput.n = n;    
 
 elseif u == r
@@ -163,7 +163,7 @@ elseif u == r
     ModelOutput.Omega = sigRes;
     ModelOutput.Omega0 = [];
     ModelOutput.alpha = mY - betaOLS * mX;
-    ModelOutput.np = r + u * p + r * (r + 1) / 2;
+    ModelOutput.paramNum = r + u * p + r * (r + 1) / 2;
     ModelOutput.n = n;    
     
 end

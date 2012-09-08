@@ -36,7 +36,7 @@ ModelOutput = senv(X, Y, u2)
 % %         Omega: [2x2 double]
 % %        Omega0: [2x2 double]
 % %         alpha: [4x1 double]
-% %            np: 23
+% %      paramNum: 23
 % %             l: -386.1900
 % %     covMatrix: [12x12 double]
 % %       asySenv: [4x3 double]
