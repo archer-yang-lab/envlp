@@ -27,7 +27,7 @@ ModelOutput = envseq(X, Y, u)
 % %      Omega: []
 % %     Omega0: [6x6 double]
 % %      alpha: [6x1 double]
-% %         np: 27
+% %   paramNum: 27
 % %          n: 50
 
 

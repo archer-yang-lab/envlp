@@ -43,7 +43,7 @@ ModelOutput = envmean(Y, u3)
 % %     covMatrix: [6x6 double]
 % %        asyEnv: [6x1 double]
 % %         ratio: [6x1 double]
-% %            np: 26
+% %      paramNum: 26
 % %             n: 50
 
 

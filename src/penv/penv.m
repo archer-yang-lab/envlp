@@ -66,7 +66,7 @@
 % * ModelOutput.ratio: The asymptotic standard error ratio of the stanard multivariate 
 % linear regression estimator over the partial envelope estimator, for each element 
 % in $$\beta_1$.  An r by p1 matrix.
-% * ModelOutput.np: The number of parameters in the envelope model.  A positive
+% * ModelOutput.paramNum: The number of parameters in the envelope model.  A positive
 % integer.
 % * ModelOutput.n: The number of observations in the data.  A positive
 % integer.
@@ -235,7 +235,7 @@ if u > 0 && u < r
     ModelOutput.Omega0 = Omega0;
     ModelOutput.Sigma = Sigma;
     ModelOutput.l = maxl; 
-    ModelOutput.np = r + u * p1 + r * p2 + r * (r + 1) / 2;
+    ModelOutput.paramNum = r + u * p1 + r * p2 + r * (r + 1) / 2;
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyPenv = asyPenv;
     ModelOutput.ratio = asyFm ./ asyPenv;
@@ -261,7 +261,7 @@ elseif u==0
     ModelOutput.covMatrix = [];
     ModelOutput.asyPenv = [];
     ModelOutput.ratio = ones(r, p1);
-    ModelOutput.np = r + u * p1 + r * p2 + r * (r + 1) / 2;
+    ModelOutput.paramNum = r + u * p1 + r * p2 + r * (r + 1) / 2;
     ModelOutput.n = n;    
 
 elseif u == r
@@ -290,7 +290,7 @@ elseif u == r
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyPenv = asyFm;
     ModelOutput.ratio = ones(r, p1);
-    ModelOutput.np = r + u * p1 + r * p2 + r * (r + 1) / 2;
+    ModelOutput.paramNum = r + u * p1 + r * p2 + r * (r + 1) / 2;
     ModelOutput.n = n;
     
 end

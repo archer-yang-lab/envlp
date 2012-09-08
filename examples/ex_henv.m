@@ -50,7 +50,7 @@ ModelOutput = henv(X, Y, u3)
 % %           eta: [6x3 double]
 % %         Omega: [6x6x3 double]
 % %        Omega0: [2x2 double]
-% %            np: 98
+% %      paramNum: 98
 % %             l: 1.0051e+03
 % %     covMatrix: [32x32 double]
 % %       asyHenv: [8x3 double]

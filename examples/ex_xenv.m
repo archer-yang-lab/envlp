@@ -47,7 +47,7 @@ ModelOutput = xenv(X, Y, u3)
 % %     covMatrix: [6x6 double]
 % %       asyXenv: [6x1 double]
 % %         ratio: [6x1 double]
-% %            np: 27
+% %      paramNum: 27
 % %             n: 50
 
 

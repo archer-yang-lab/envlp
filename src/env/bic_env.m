@@ -54,7 +54,7 @@ Opts.verbose = 0;
 [n r] = size(Y);
     
 ModelOutput = env(X, Y, r, Opts);
-ic = - 2 * ModelOutput.l + log(n) * ModelOutput.np;
+ic = - 2 * ModelOutput.l + log(n) * ModelOutput.paramNum;
 u = r;
 
 for i = 0 : r - 1
@@ -64,7 +64,7 @@ for i = 0 : r - 1
     end
     
     ModelOutput = env(X, Y, i, Opts);
-    temp = - 2 * ModelOutput.l + log(n) * ModelOutput.np;
+    temp = - 2 * ModelOutput.l + log(n) * ModelOutput.paramNum;
     
     if temp < ic
         u = i;

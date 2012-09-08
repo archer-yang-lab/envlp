@@ -28,7 +28,7 @@ ModelOutput = xenvpls(X, Y, u)
 % %     Omega0: []
 % %         mu: 24.5781
 % %     sigYcX: 0.0321
-% %         np: 29
+% %   paramNum: 29
 % %          n: 50
 
 

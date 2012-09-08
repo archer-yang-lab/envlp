@@ -73,7 +73,7 @@ for i = 0 : r - 1
     
 	ModelOutput = env(X, Y, i, Opts);
 	chisq = - 2 * (ModelOutput.l - ModelOutput0.l);
-	df = ModelOutput0.np - ModelOutput.np;
+	df = ModelOutput0.paramNum - ModelOutput.paramNum;
 	
     if chi2cdf(chisq, df) < (1 - alpha)
 	    u = i;

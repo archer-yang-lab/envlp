@@ -57,7 +57,7 @@ Opts.verbose = 0;
 [n p] = size(X);
     
 ModelOutput = xenv(X, Y, p, Opts);
-ic = - 2 * ModelOutput.l + 2 * ModelOutput.np;
+ic = - 2 * ModelOutput.l + 2 * ModelOutput.paramNum;
 u = p;
 
 
@@ -68,7 +68,7 @@ for i = 0 : p - 1
     end
     
     ModelOutput = xenv(X, Y, i, Opts);
-    temp =  - 2 * ModelOutput.l + 2 * ModelOutput.np;
+    temp =  - 2 * ModelOutput.l + 2 * ModelOutput.paramNum;
     
     if temp < ic
         u = i;

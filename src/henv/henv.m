@@ -68,7 +68,7 @@
 % * ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r - u by r - u
 % matrix.
 % * ModelOutput.l: The maximized log likelihood function.  A real number.
-% * ModelOutput.np: The number of parameters in the heteroscedastic envelope
+% * ModelOutput.paramNum: The number of parameters in the heteroscedastic envelope
 % model.  A positive integer.
 % * ModelOutput.covMatrix: The asymptotic covariance of ($$\mu$', vec($$\beta$'))'.  An r(p + 1) by
 % r(p + 1) matrix.  The covariance matrix returned are asymptotic.  For the
@@ -188,7 +188,7 @@ if u == 0
     ModelOutput.Omega = Omega;
     ModelOutput.Omega0 = Omega0;
     ModelOutput.l = l;
-    ModelOutput.np = (r - u) + u * (r - u + p) + p * u * (u + 1) / 2 + (r - u) * (r - u + 1) / 2;
+    ModelOutput.paramNum = (r - u) + u * (r - u + p) + p * u * (u + 1) / 2 + (r - u) * (r - u + 1) / 2;
     ModelOutput.covMatrix = Sigma;
     ModelOutput.asyHenv = [];
     ModelOutput.ratio = ones(r, p);    
@@ -273,7 +273,7 @@ elseif u == r
     ModelOutput.Omega = Omega;
     ModelOutput.Omega0 = Omega0;
     ModelOutput.l = l;
-    ModelOutput.np = (r - u) + u * (r - u + p) ...
+    ModelOutput.paramNum = (r - u) + u * (r - u + p) ...
 		+ p * u * (u + 1) / 2 + (r - u) * (r - u + 1) / 2;
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyHenv = asyFm;
@@ -403,7 +403,7 @@ else
     ModelOutput.eta = eta;
     ModelOutput.Omega = Omega;
     ModelOutput.Omega0 = Omega0;
-    ModelOutput.np = (r - u) + u * (r - u + p) + p * u * (u + 1) / 2 + (r - u) * (r - u + 1) / 2;
+    ModelOutput.paramNum = (r - u) + u * (r - u + p) + p * u * (u + 1) / 2 + (r - u) * (r - u + 1) / 2;
     ModelOutput.l = - 0.5 * l;   
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyHenv = asyHenv;

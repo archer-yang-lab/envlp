@@ -44,7 +44,7 @@ ModelOutput = penv(X, Y, u3)
 % %        Omega0: [3x3 double]
 % %         Sigma: [4x4 double]
 % %             l: -35.6323
-% %            np: 23
+% %      paramNum: 23
 % %     covMatrix: [12x12 double]
 % %       asyPenv: [4x1 double]
 % %         ratio: [4x1 double]

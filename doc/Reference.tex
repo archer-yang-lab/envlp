@@ -1371,7 +1371,7 @@ Fit the envelope model.
    \item ModelOutput.covMatrix: The asymptotic covariance of vec($\beta$).  An rp by rp matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1/n.
    \item ModelOutput.asyEnv: The asymptotic standard error for elements in $\beta$ under the envelope model.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
    \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the envelope estimator, for each element in $\beta$.  An r by p matrix.
-   \item ModelOutput.np: The number of parameters in the envelope model.  A positive integer.
+   \item ModelOutput.paramNum: The number of parameters in the envelope model.  A positive integer.
    \item ModelOutput.n: The number of observations in the data.  A positive integer.
 \end{itemize}
 
@@ -1430,7 +1430,7 @@ ModelOutput =
     covMatrix: [6x6 double]
        asyEnv: [6x1 double]
         ratio: [6x1 double]
-           np: 28
+     paramNum: 28
             n: 50
 \end{verbatim} \rmfamily
 \color{black}
@@ -2211,7 +2211,7 @@ Provide envelope estimator for the multivariate mean.
    \item ModelOutput.covMatrix: The asymptotic covariance of $\mu$.  A p by p matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1/n.
    \item ModelOutput.asyEnv: The asymptotic standard error for elements in $\mu$ under the envelope model.  A p dimensional column vector.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
    \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the envelope estimator, for each element in $\mu$.  A p dimensional column vector.
-   \item ModelOutput.np: The number of parameters in the envelope model.  A positive integer.
+   \item ModelOutput.paramNum: The number of parameters in the envelope model.  A positive integer.
    \item ModelOutput.n: The number of observations in the data.  A positive integer.
 \end{itemize}
 
@@ -2262,7 +2262,7 @@ ModelOutput =
     covMatrix: [6x6 double]
        asyEnv: [6x1 double]
         ratio: [6x1 double]
-           np: 26
+     paramNum: 26
             n: 50
 \end{verbatim} \rmfamily
 \color{black}
@@ -2783,7 +2783,7 @@ Fit the envelope model using a sequential algorithm.
    \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u matrix.
    \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u matrix.
    \item ModelOutput.alpha: The estimated intercept in the envelope model.  An r by 1 vector.
-   \item ModelOutput.np: The number of parameters in the envelope model.  A positive integer.
+   \item ModelOutput.paramNum: The number of parameters in the envelope model.  A positive integer.
    \item ModelOutput.n: The number of observations in the data.  A positive integer.
 \end{itemize}
 
@@ -2831,7 +2831,7 @@ ModelOutput =
      Omega: []
     Omega0: [6x6 double]
      alpha: [6x1 double]
-        np: 27
+  paramNum: 27
          n: 50
 \end{verbatim}\rmfamily 
 \color{black}
@@ -3356,7 +3356,7 @@ Fit the heteroscedastic envelope model.
    \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u by p matrix, ModelOutput.Omega(:, :, i) contains the coordinates of the covariance matrix of the ith group with respect to Gamma.
    \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r - u by r - u matrix.
    \item ModelOutput.l: The maximized log likelihood function.  A real number.
-   \item ModelOutput.np: The number of parameters in the heteroscedastic envelope model.  A positive integer.
+   \item ModelOutput.paramNum: The number of parameters in the heteroscedastic envelope model.  A positive integer.
    \item ModelOutput.covMatrix: The asymptotic covariance of ($\mu$', vec($\beta$'))'.  An r(p + 1) by r(p + 1) matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1 / n.
    \item ModelOutput.asyHenv: The asymptotic standard errors for elements in $\beta$ under the heteroscedastic envelope model. An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
    \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the heteroscedastic envelope estimator. An r by p matrix, the (i, j)th element in ModelOutput.ratio is the elementwise standard error ratio for the ith element in the jth group mean effect.
@@ -3412,7 +3412,7 @@ ModelOutput =
           eta: [6x3 double]
         Omega: [6x6x3 double]
        Omega0: [2x2 double]
-           np: 98
+     paramNum: 98
             l: 1.0051e+03
     covMatrix: [32x32 double]
       asyHenv: [8x3 double]
@@ -4200,7 +4200,7 @@ Fit the inner envelope model.
    \item ModelOutput.covMatrix: The asymptotic covariance of vec($\beta$).  An rp by rp matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1/n.
    \item ModelOutput.asyIenv: Asymptotic standard error for elements in $\beta$ under the inner envelope model.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
    \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the inner envelope estimator, for each element in $\beta$.  An r by p matrix.
-   \item ModelOutput.np: The number of parameters in the inner envelope model.  A positive integer.
+   \item ModelOutput.paramNum: The number of parameters in the inner envelope model.  A positive integer.
    \item ModelOutput.n: The number of observations in the data.  A positive integer.
 \end{itemize}
 
@@ -4252,7 +4252,7 @@ ModelOutput =
        Omega1: 8.3751
        Omega0: [3x3 double]
         alpha: [4x1 double]
-           np: 16
+     paramNum: 16
             l: -1.4805e+03
     covMatrix: [8x8 double]
       asyIenv: [4x2 double]
@@ -5004,7 +5004,7 @@ Fit the partial envelope model.
    \item ModelOutput.covMatrix: The asymptotic covariance of (vec($\beta_2$)', vec($\beta_1$)')'.  An rp by rp matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1/n.
    \item ModelOutput.asyPenv: Asymptotic standard error for elements in $\beta_1$ under the partial envelope model.  An r by p1 matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
    \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the partial envelope estimator, for each element in $\beta_1$.  An r by p1 matrix.
-   \item ModelOutput.np: The number of parameters in the envelope model.  A positive integer.
+   \item ModelOutput.paramNum: The number of parameters in the envelope model.  A positive integer.
    \item ModelOutput.n: The number of observations in the data.  A positive integer.
 \end{itemize}
 
@@ -5061,7 +5061,7 @@ ModelOutput =
        Omega0: [3x3 double]
         Sigma: [4x4 double]
             l: -35.6323
-           np: 23
+     paramNum: 23
     covMatrix: [12x12 double]
       asyPenv: [4x1 double]
         ratio: [4x1 double]
@@ -5921,7 +5921,7 @@ Fit the scaled envelope model.
    \item ModelOutput.covMatrix: The asymptotic covariance of vec($\beta$).  An rp by rp matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1 / n.
    \item ModelOutput.asySenv: Asymptotic standard error for elements in $\beta$ under the scaled envelope model.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
    \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the scaled envelope estimator, for each element in $\beta$.  An r by p matrix.
-   \item ModelOutput.np: The number of parameters in the scaled envelope model.  A positive integer.
+   \item ModelOutput.paramNum: The number of parameters in the scaled envelope model.  A positive integer.
    \item ModelOutput.n: The number of observations in the data.  A positive integer.
 \end{itemize}
 
@@ -5975,7 +5975,7 @@ ModelOutput =
         Omega: [2x2 double]
        Omega0: [2x2 double]
         alpha: [4x1 double]
-           np: 23
+     paramNum: 23
             l: -386.1900
     covMatrix: [12x12 double]
       asySenv: [4x3 double]
@@ -6818,7 +6818,7 @@ Fit the envelope model for the reduction on X.
    \item ModelOutput.covMatrix: The asymptotic covariance of vec($\beta$).  An pr by pr matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1 / n.
    \item ModelOutput.asyXenv: Asymptotic standard error for elements in $\beta$ under the envelope model.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
    \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the envelope estimator, for each element in $\beta$.  An p by r matrix.
-   \item ModelOutput.np: The number of parameters in the envelope model.  A positive integer.
+   \item ModelOutput.paramNum: The number of parameters in the envelope model.  A positive integer.
    \item ModelOutput.n: The number of observations in the data.  A positive integer.
 \end{itemize}
 
@@ -6913,7 +6913,7 @@ ModelOutput =
     covMatrix: [6x6 double]
       asyXenv: [6x1 double]
         ratio: [6x1 double]
-           np: 27
+     paramNum: 27
             n: 50
 \end{verbatim} \rmfamily
 \color{black}
@@ -7179,7 +7179,7 @@ Fit the envelope model for the reduction on X using partial least squares algori
    \item ModelOutput.Omega0: The coordinates of $\Sigma_X$ with respect to Gamma0. An p - u by p - u matrix.
    \item ModelOutput.mu: The estimated intercept.  An r by 1 vector.
    \item ModelOutput.sigYcX: The estimated conditional covariance matrix of Y given X. An r by r matrix.
-   \item ModelOutput.np: The number of parameters in the envelope model.  A positive integer.
+   \item ModelOutput.paramNum: The number of parameters in the envelope model.  A positive integer.
    \item ModelOutput.n: The number of observations in the data.  A positive integer.
 \end{itemize}
 
@@ -7225,7 +7225,7 @@ ModelOutput =
     Omega0: []
         mu: 24.5781
     sigYcX: 0.0321
-        np: 29
+  paramNum: 29
          n: 50
 \end{verbatim}\rmfamily
  \color{black}
