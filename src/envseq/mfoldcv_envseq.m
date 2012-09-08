@@ -87,8 +87,6 @@ for j = 0 : tempInd
     end
 end
 
-PreErr
-mean(PreErr)
 
 [minErr ind] = min(mean(PreErr));
 u = ind - 1;
