@@ -70,7 +70,7 @@ end
 Z = zeros(n, r + 1);
 Z(:, 1) = xMarker;
 Z(:, 2 : end) = Y;
-[MB X2 v P] = Mboxtest(Z, alpha);
+[MB X2 v P] = MBoxtest(Z, alpha);
 TestOutput.mStatistic = MB;
 TestOutput.approxStatistic = X2;
 TestOutput.df = v;
