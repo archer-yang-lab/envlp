@@ -88,6 +88,8 @@ elseif nargin == 2
     Opts = [];
 end
 
+Y = double(Y);
+
 [n, p] = size(Y);
 
 u = floor(u);

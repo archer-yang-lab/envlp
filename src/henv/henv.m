@@ -115,6 +115,9 @@ elseif nargin == 3
     Opts = [];
 end
 
+X = double(X);
+Y = double(Y);
+
 n = size(X, 1);
 [n1, r] = size(Y);
 

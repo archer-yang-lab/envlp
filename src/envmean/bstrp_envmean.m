@@ -55,6 +55,8 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
+Y = double(Y);
+
 [n p] = size(Y);
 
 ModelOutput = envmean(Y, u, Opts);

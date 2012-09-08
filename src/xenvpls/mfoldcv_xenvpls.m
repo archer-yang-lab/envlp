@@ -56,6 +56,9 @@ elseif nargin == 3
     Opts = [];
 end
 
+X = double(X);
+Y = double(Y);
+
 Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;

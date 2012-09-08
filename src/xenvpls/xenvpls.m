@@ -77,6 +77,9 @@ if nargin < 3
     error('Inputs: X, Y and u should be specified!');
 end
 
+X = double(X);
+Y = double(Y);
+
 [n, p] = size(X);
 [n1, r] = size(Y);
 

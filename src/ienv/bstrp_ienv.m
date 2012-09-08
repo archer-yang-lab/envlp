@@ -56,6 +56,9 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
+X = double(X);
+Y = double(Y);
+
 [n r] = size(Y);
 p = size(X, 2);
 

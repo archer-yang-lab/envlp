@@ -61,6 +61,9 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
+X = double(X);
+Y = double(Y);
+
 DataParameter = make_parameter(X, Y, 'henv');
 p = DataParameter.p;
 r = DataParameter.r;

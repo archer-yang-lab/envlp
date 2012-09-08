@@ -69,6 +69,8 @@ function ModelOutput = envseq(X, Y, u)
 
 % Verify the parameters
 
+X = double(X);
+Y = double(Y);
 
 [n, p] = size(X);
 [n1, r] = size(Y);

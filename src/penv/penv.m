@@ -114,6 +114,10 @@ elseif nargin == 3
     Opts = [];
 end
 
+X.X1 = double(X.X1);
+X.X2 = double(X.X2);
+Y = double(Y);
+
 X1 = X.X1;
 X2 = X.X2;
 

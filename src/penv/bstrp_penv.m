@@ -64,6 +64,10 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
+X.X1 = double(X.X1);
+X.X2 = double(X.X2);
+Y = double(Y);
+
 X1 = X.X1;
 X2 = X.X2;
 [n r] = size(Y);
