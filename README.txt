@@ -10,9 +10,9 @@ LICENSE:
 GPL-2
 
 AUTHORS:
-Zhihua Su (zhihuasu@stat.ufl.edu)
-Yi Yang (yiyang@umn.edu)
 Dennis Cook (dennis@stat.umn.edu)
+Zhihua Su (suzhihua@stat.ufl.edu)  
+Yi Yang (yiyang@umn.edu)
 
 URL:
 http://code.google.com/p/envlp/
@@ -41,7 +41,7 @@ ____________
 
 You can place the envlp directory anywhere. To install the toolbox,
 direct your MATLAB working directory to the folder `envlp/`, and type
-install_envlp If the users agree with our license statements, the
+`install_envlp` If the users agree with our license statements, the
 installation is completed, and all the utilities of the toolbox are
 added to the MATLAB path.
 
@@ -60,7 +60,7 @@ _____________________
 
 Trying some examples in the `envlp/examples/` subdirectory is a good way
 to check if envlp is installed properly. Running these examples requires
-datasets in `envlp/data/` subdirectory. See envlp/data/README_data.txt
+datasets in `envlp/data/` subdirectory. See `envlp/data/README_data.txt`
 for further information.
 
 Technical support
@@ -69,13 +69,12 @@ _________________
 We provide a support website, on which the users can download the
 toolbox, report bugs and check recent updates
 http://code.google.com/p/envlp/. For further help, the users can contact
-the authors of the toolbox: Zhihua Su (zhihuasu@stat.ufl.edu), Yi Yang
-(yiyang@umn.edu) and Dennis Cook (dennis@stat.umn.edu).
+the authors of the toolbox: Dennis Cook (dennis@stat.umn.edu), Zhihua Su (zhihuasu@stat.ufl.edu) and Yi Yang (yiyang@umn.edu).
 
 References
 __________
 
 envlp: A MATLAB Toolbox for Computing Envelope Estimators in
 Multivariate Linear Regression.
-Zhihua Su, Yi Yang, Dennis Cook.
+Dennis Cook, Zhihua Su, Yi Yang.
 Technical report (2012)
