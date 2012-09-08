@@ -49,9 +49,9 @@ if r ~= r1
     error('The size of S is not valid.');
 end
 
-if p > u
-    error('The rank of S cannot be greater than u.');
-end
+% if p > u
+%     error('The rank of S cannot be greater than u.');
+% end
 
 U = S * S';
 
