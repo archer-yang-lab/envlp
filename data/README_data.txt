@@ -6,8 +6,9 @@ There are five datasets included in this folder:
 1.	fiberpaper.dat
 2.	irisf.mat
 3. 	sales.txt
-4.	waterstrider.mat
-5.	wheatprotein.txt
+4.     VocabGrowth.mat
+5.	waterstrider.mat
+6.	wheatprotein.txt
 
 ===================================================================
 1.	Pulp and paper property
@@ -131,7 +132,37 @@ References:
 
 ===================================================================
 
-4.	Water strider data
+4.	Vocabulary growth data
+
+Description:
+
+     Data is collected from the Laboratory School of the University of Chicago.  The data consists of scores from a cohort of pupils in grades 8-11 on the vocabulary section of the Cooperative Reading Test.  The scores are scaled to a common, but arbitrary origin and unit of measurement, so as to be comparable over the four grades.
+
+Usage:
+
+     load VocabGrowth
+     
+Format:
+
+     A matrix with 64 observations on 4 variables.
+
+Value:
+
+Column 1: Grade 8 vocabulary score.
+
+Column 2: Grade 9 vocabulary score.
+
+Column 3: Grade 10 vocabulary score.
+
+Column 4: Grade 11 vocabulary score.
+
+References:
+
+     Bock, R.D. (1975). Multivariate Statistical Methods in Behavioral Research. 
+
+===================================================================
+
+5.	Water strider data
 
 Description:
 
@@ -190,7 +221,7 @@ References:
 
 ===================================================================
 
-5.	The protein content of ground wheat samples.
+6.	The protein content of ground wheat samples.
 
 Description:
 

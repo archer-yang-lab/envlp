@@ -41,13 +41,13 @@
 
 %% Example
 % 
-%         load wheatprotein.txt
-%         X = wheatprotein(:, 1 : 6);
-%         Y = wheatprotein(:, 7);
+%         load VocabGrowth 
+%         X = VocabGrowth(:, 1 : 3); 
+%         Y = VocabGrowth(:, 4);
 %         m = 5;
 %         u = mfoldcv_xenvpls(X, Y, m)
 %         B = 100;        
-%         bootse = bstrp_xenvpls(X, Y, u, B, Opts)
+%         bootse = bstrp_xenvpls(X, Y, u, B)
 
 
 function bootse = bstrp_xenvpls(X, Y, u, B, Opts)
