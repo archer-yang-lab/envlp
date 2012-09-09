@@ -1,7 +1,7 @@
 ===================================================================
 README: Datasets
 
-There are five datasets included in this folder:
+There are eight datasets included in this folder:
 
 1.	Adopted.mat
 2.	fiberpaper.dat
