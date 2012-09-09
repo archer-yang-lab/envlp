@@ -1911,14 +1911,14 @@ This function implements the Akaike information criteria (AIC) to select the dim
 \subsection*{Example}
 
 
-\begin{verbatim}       load wheatprotein.txt
-       Y = wheatprotein(:, 1 : 6);
+\begin{verbatim}       load Adopted
+       Y = Adopted(:, 1 : 6);
        u = aic_envmean(Y)\end{verbatim}
     
         \color{lightgray} \begin{verbatim}
 u =
 
-     6
+     3
 
 \end{verbatim} \color{black}
     
@@ -1985,14 +1985,14 @@ This function implements the Bayesian information criteria (BIC) to select the d
 \subsection*{Example}
 
 
-\begin{verbatim}       load wheatprotein.txt
-       Y = wheatprotein(:, 1 : 6);
+\begin{verbatim}       load Adopted
+       Y = Adopted(:, 1 : 6);
        u = bic_envmean(Y)\end{verbatim}
     
         \color{lightgray} \begin{verbatim}
 u =
 
-     5
+     3
 
 \end{verbatim} \color{black}
     
@@ -2064,16 +2064,15 @@ This function computes the bootstrap standard errors for the envelope estimator 
 \subsection*{Example}
 
 
-\begin{verbatim}       load wheatprotein.txt
-       Y = wheatprotein(:, 1 : 6);
-       alpha = 0.01;
-       u = lrt_envmean(Y, alpha)\end{verbatim}
+\begin{verbatim}       load Adopted
+       Y = Adopted(:, 1 : 6);
+       u = bic_envmean(Y)\end{verbatim}
     
         \color{lightgray} \ttfamily\begin{verbatim}
        
 u =
 
-     5
+     3
 \end{verbatim} \rmfamily
 \color{black}       
 \begin{verbatim}       B = 100;
@@ -2082,12 +2081,12 @@ u =
         \color{lightgray}\ttfamily \begin{verbatim}
 bootse =
 
-    4.9229
-    4.0786
-    4.3783
-    4.7756
-    6.9111
-    2.6859
+    0.5155
+   13.4169
+   13.2268
+   17.0221
+   21.4016
+   22.0329
 
 \end{verbatim} \rmfamily
 \color{black}
@@ -2234,14 +2233,14 @@ The Grassmann manifold optimization step calls the package sg\_min 2.4.3 by Ross
 \subsection*{Example}
 
 
-\begin{verbatim}       load wheatprotein.txt
-       Y = wheatprotein(:, 1 : 6);
+\begin{verbatim}       load Adopted
+       Y = Adopted(:, 1 : 6);
        u = bic_envmean(Y)\end{verbatim}
     
         \color{lightgray} \ttfamily\begin{verbatim}
 u =
 
-     5
+     3
 \end{verbatim} \rmfamily
 \color{black}
 
@@ -2253,17 +2252,17 @@ ModelOutput =
 
            mu: [6x1 double]
         Sigma: [6x6 double]
-        Gamma: [6x5 double]
-       Gamma0: [6x1 double]
-          eta: [5x1 double]
-        Omega: [5x5 double]
-       Omega0: 214.1646
-            l: -881.6301
+        Gamma: [6x3 double]
+       Gamma0: [6x3 double]
+          eta: [3x1 double]
+        Omega: [3x3 double]
+       Omega0: [3x3 double]
+            l: -1.3492e+03
     covMatrix: [6x6 double]
        asyEnv: [6x1 double]
         ratio: [6x1 double]
-     paramNum: 26
-            n: 50
+     paramNum: 24
+            n: 62
 \end{verbatim} \rmfamily
 \color{black}
 
@@ -2272,12 +2271,12 @@ ModelOutput =
 
 ans =
 
-  474.0794
-  129.7194
-  253.0441
-  377.6816
-  381.4752
-   -7.2039
+   12.3258
+   85.9841
+  115.5767
+  112.1291
+  114.4862
+  106.4240
 
 \end{verbatim} \rmfamily
 \color{black}
@@ -2289,14 +2288,23 @@ ans =
         \color{lightgray} \ttfamily\begin{verbatim}
 ans =
 
-   1.0e+03 *
+  Columns 1 through 5
 
-    1.2430    1.0297    1.1037    1.1862    1.5078    0.6631
-    1.0297    0.8668    0.9252    0.9733    1.2439    0.5555
-    1.1037    0.9252    0.9893    1.0459    1.3413    0.5926
-    1.1862    0.9733    1.0459    1.1463    1.4748    0.6382
-    1.5078    1.2439    1.3413    1.4748    2.1477    0.8132
-    0.6631    0.5555    0.5926    0.6382    0.8132    0.3788
+    8.3278    2.9150   -4.0008    0.1057    0.3731
+    2.9150  235.6587    5.8146   42.1613   59.7492
+   -4.0008    5.8146  179.2066   91.7228   92.9563
+    0.1057   42.1613   91.7228  167.1073  114.4203
+    0.3731   59.7492   92.9563  114.4203  184.3248
+   -0.8157   71.9394   72.1815  110.2918  161.8752
+
+  Column 6
+
+   -0.8157
+   71.9394
+   72.1815
+  110.2918
+  161.8752
+  233.9185
 
 \end{verbatim} \rmfamily
 \color{black}
@@ -2415,15 +2423,15 @@ This function implements the likelihood ratio testing procedure to select the di
 \subsection*{Example}
 
 
-\begin{verbatim}       load wheatprotein.txt
-       Y = wheatprotein(:, 1 : 6);
+\begin{verbatim}       load Adopted
+       Y = Adopted(:, 1 : 6);
        alpha = 0.01;
        u = lrt_envmean(Y, alpha)\end{verbatim}
     
         \color{lightgray} \begin{verbatim}
 u =
 
-     5
+     2
 
 \end{verbatim} \color{black}
 
@@ -2488,10 +2496,9 @@ If the inference type is prediction, this function predicts a new observation an
 \subsection*{Example}
 
 
-\begin{verbatim}       load wheatprotein.txt
-       Y = wheatprotein(:, 1 : 6);
-       alpha = 0.01;
-       u = lrt_envmean(Y, alpha);
+\begin{verbatim}       load Adopted
+       Y = Adopted(:, 1 : 6);
+       u = bic_envmean(Y);
        ModelOutput = envmean(Y, u);
        PredictOutput = predict_envmean(ModelOutput, 'prediction')\end{verbatim}
     
@@ -2507,12 +2514,12 @@ PredictOutput =
         \color{lightgray} \ttfamily\begin{verbatim}
 ans =
 
-  474.0794
-  129.7194
-  253.0441
-  377.6816
-  381.4752
-   -7.2039
+   12.3258
+   85.9841
+  115.5767
+  112.1291
+  114.4862
+  106.4240
 \end{verbatim} \rmfamily
 \color{black}
 
@@ -2521,12 +2528,12 @@ ans =
 
 ans =
 
-   35.6077
-   29.7337
-   31.7655
-   34.1944
-   46.8043
-   19.6574
+    2.9090
+   15.4745
+   13.4943
+   13.0308
+   13.6857
+   15.4172
 
 \end{verbatim} \rmfamily
 \color{black}        
@@ -2600,17 +2607,16 @@ This function tests for hypothesis $H_0: L\mu = A$, versus $H_\alpha: L\mu\neq A
 \subsection*{Example}
 
 
-\begin{verbatim}       load wheatprotein.txt
-       Y = wheatprotein(:, 1 : 6);
-       alpha = 0.01;
-       u = lrt_envmean(Y, alpha);
+\begin{verbatim}       load Adopted
+       Y = Adopted(:, 1 : 6);
+       u = bic_envmean(Y);
        ModelOutput = envmean(Y, u);
        TestOutout = testcoefficient_envmean(ModelOutput);\end{verbatim}
     
         \color{lightgray} \ttfamily\begin{verbatim}
  Test Hypothesis     Chisq Statistic    DF     P-value
 -------------------------------------------------------
-L * mu = A          1351183.290          6      0.0000
+L * mu = A             8716.691          6      0.0000
 -------------------------------------------------------
 \end{verbatim} \rmfamily
 \color{black}
@@ -2624,7 +2630,7 @@ L * mu = A          1351183.290          6      0.0000
         \color{lightgray} \ttfamily\begin{verbatim}
  Test Hypothesis     Chisq Statistic    DF     P-value
 -------------------------------------------------------
-L * mu = A            21655.274         2      0.0000
+L * mu = A             6543.508          2      0.0000
 -------------------------------------------------------
 \end{verbatim} \rmfamily
 \color{black}

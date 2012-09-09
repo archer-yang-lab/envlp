@@ -35,8 +35,8 @@
 
 %% Example
 % 
-%         load wheatprotein.txt
-%         Y = wheatprotein(:, 1 : 6);
+%         load Adopted
+%         Y = Adopted(:, 1 : 6);
 %         alpha = 0.01;
 %         u = lrt_envmean(Y, alpha)
 

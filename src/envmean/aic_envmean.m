@@ -30,8 +30,8 @@
 % the dimension of the envelope subspace. 
 
 %% Example
-%         load wheatprotein.txt
-%         Y = wheatprotein(:, 1 : 6);
+%         load Adopted
+%         Y = Adopted(:, 1 : 6);
 %         u = aic_envmean(Y)
 
 function u = aic_envmean(Y, Opts)

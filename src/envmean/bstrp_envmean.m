@@ -36,10 +36,10 @@
 % estimator of the multivariate mean by bootstrapping the residuals.  
 
 %% Example
-%         load wheatprotein.txt
-%         Y = wheatprotein(:, 1 : 6);
-%         alpha = 0.01;
-%         u = lrt_envmean(Y, alpha)
+% 
+%         load Adopted
+%         Y = Adopted(:, 1 : 6);
+%         u = bic_envmean(Y)
 %         B = 100;
 %         bootse = bstrp_envmean(Y, u, B)
 

@@ -73,8 +73,8 @@
 
 %% Example
 %
-%         load wheatprotein.txt
-%         Y = wheatprotein(:, 1 : 6);
+%         load Adopted
+%         Y = Adopted(:, 1 : 6);
 %         u = bic_envmean(Y)
 %         ModelOutput = envmean(Y, u)
 %         ModelOutput.mu
