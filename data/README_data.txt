@@ -6,10 +6,11 @@ There are five datasets included in this folder:
 1.	Adopted.mat
 2.	fiberpaper.dat
 3.	irisf.mat
-4.	sales.txt
-5.	VocabGrowth.mat
-6.	waterstrider.mat
-7.	wheatprotein.txt
+4.	Rohwer.mat
+5.	sales.txt
+6.	VocabGrowth.mat
+7.	waterstrider.mat
+8.	wheatprotein.txt
 
 ===================================================================
 
@@ -147,7 +148,58 @@ References:
 
 ===================================================================
 
-4.	The quality of its sales staff
+4. Rohwer Data Set
+
+Description:
+
+     Data from an experiment by William D. Rohwer on kindergarten
+     children designed to examine how well performance on a set of
+     paired-associate (PA) tasks can predict performance on some
+     measures of aptitude and achievement.
+
+Usage:
+
+     data(Rohwer)
+
+Format:
+
+     A data frame with 69 observations on the following 5 variables.
+
+Value:
+
+     Column 1: ‘SAT’ a numeric vector: score on a Student Achievement Test
+
+     Column 2: ‘PPVT’ a numeric vector: score on the Peabody Picture Vocabulary
+          Test
+
+     Column 3: ‘Raven’ a numeric vector: score on the Raven Progressive Matrices
+          Test
+
+     Column 4: ‘n’ a numeric vector: performance on a 'named' PA task
+
+     Column 5: ‘s’ a numeric vector: performance on a 'still' PA task
+
+Details:
+
+     The variables ‘SAT’, ‘PPVT’ and ‘Raven’ are responses to be
+     potentially explained by performance on the paired-associate (PA)
+     learning task‘n’ and ‘s’.
+
+Source:
+
+     Timm, N.H. 1975).  Multivariate Analysis with Applications in
+     Education and Psychology.  Wadsworth (Brooks/Cole), Examples 4.3
+     (p. 281), 4.7 (p. 313), 4.13 (p. 344).
+
+References:
+
+     Friendly, M. (2007).  HE plots for Multivariate General Linear
+     Models.  Journal of Computational and Graphical Statistics,
+     *16*(2) 421-444.  <URL: http://datavis.ca/papers/jcgs-heplots.pdf>
+
+===================================================================
+
+5.	The quality of its sales staff
 
 Description:
 
@@ -193,7 +245,7 @@ References:
 
 ===================================================================
 
-5.	Vocabulary growth data
+6.	Vocabulary growth data
 
 Description:
 
@@ -228,7 +280,7 @@ References:
 
 ===================================================================
 
-6.	Water strider data
+7.	Water strider data
 
 Description:
 
@@ -287,7 +339,7 @@ References:
 
 ===================================================================
 
-7.	The protein content of ground wheat samples.
+8.	The protein content of ground wheat samples.
 
 Description:
 
