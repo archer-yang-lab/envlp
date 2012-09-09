@@ -197,7 +197,7 @@ elseif u == r || (u == 1 && p == 1)
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asySenv = asyFm;
     ModelOutput.ratio = ones(r, p);
-    ModelOutput.paramNum = r + u * p + r * (r + 1) / 2;
+    ModelOutput.paramNum = r + r * p + r * (r + 1) / 2;
     ModelOutput.n = n;
     
 else
