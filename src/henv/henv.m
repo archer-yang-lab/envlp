@@ -166,6 +166,11 @@ sigY = DataParameter.sigY;
 ind = DataParameter.ind;
 logDetSigY = DataParameter.logDetSigY;
 
+minNg = min(ng);
+if minNg < r
+    error('Some groups have sample sizes smaller than the number of responses, therefore the group covariance matrix cannot be estimated.');
+end
+
 if u == 0
     
     Gamma = [];
