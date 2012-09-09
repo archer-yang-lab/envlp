@@ -2704,16 +2704,15 @@ This function computes the bootstrap standard errors for the regression coeffici
 \subsection*{Example}
 
 
-\begin{verbatim}       load wheatprotein.txt
-       X = wheatprotein(:, 8);
-       Y = wheatprotein(:, 1 : 6);
+\begin{verbatim}       load Rohwer
+       X = Rohwer(:, 4 : 5);
+       Y = Rohwer(:, 1 : 3);
        m = 5;
        u = mfoldcv_envseq(X, Y, m)\end{verbatim}
                \color{lightgray} \ttfamily\begin{verbatim}
 u =
 
-     0
-
+     1
 \end{verbatim} \rmfamily
 \color{black}\begin{verbatim}
        
@@ -2723,12 +2722,9 @@ u =
         \color{lightgray}\ttfamily \begin{verbatim}
 bootse =
 
-     0
-     0
-     0
-     0
-     0
-     0
+    0.8738    0.6855
+    0.5191    0.4404
+    0.0961    0.0654
 
 \end{verbatim} \rmfamily    
 \color{black}
@@ -2810,16 +2806,16 @@ The codes are implemented based on the sequential algorithm in the lecture notes
 \subsection*{Example}
 
 
-\begin{verbatim}       load wheatprotein.txt
-       X = wheatprotein(:, 8);
-       Y = wheatprotein(:, 1 : 6);
+\begin{verbatim}       load Rohwer
+       X = Rohwer(:, 4 : 5);
+       Y = Rohwer(:, 1 : 3);
        m = 5;
        u = mfoldcv_envseq(X, Y, m)\end{verbatim}
     
         \color{lightgray}\ttfamily \begin{verbatim}
 u =
 
-     0
+     1
 \end{verbatim}\rmfamily 
 \color{black}
 \begin{verbatim}
@@ -2829,16 +2825,16 @@ u =
         \color{lightgray}\ttfamily \begin{verbatim}
 ModelOutput = 
 
-      beta: [6x1 double]
-     Sigma: [6x6 double]
-     Gamma: []
-    Gamma0: [6x6 double]
-       eta: []
-     Omega: []
-    Omega0: [6x6 double]
-     alpha: [6x1 double]
-  paramNum: 27
-         n: 50
+        beta: [3x2 double]
+       Sigma: [3x3 double]
+       Gamma: [3x1 double]
+      Gamma0: [3x2 double]
+         eta: [2.5708 1.1966]
+       Omega: 752.8146
+      Omega0: [2x2 double]
+       alpha: [3x1 double]
+    paramNum: 11
+           n: 69
 \end{verbatim}\rmfamily 
 \color{black}
 
@@ -2847,14 +2843,9 @@ ModelOutput =
         \color{lightgray}\ttfamily \begin{verbatim}       
 ans =
 
-   1.0e+03 *
-
-    1.1932    0.9825    1.0568    1.1508    1.5411    0.6340
-    0.9825    0.8222    0.8808    0.9391    1.2700    0.5279
-    1.0568    0.8808    0.9451    1.0125    1.3725    0.5652
-    1.1508    0.9391    1.0125    1.1239    1.5217    0.6180
-    1.5411    1.2700    1.3725    1.5217    2.3255    0.8365
-    0.6340    0.5279    0.5652    0.6180    0.8365    0.3619
+  587.2575  229.9647   37.2716
+  229.9647  421.1372   42.9256
+   37.2716   42.9256   12.2696
 
 \end{verbatim} \rmfamily\color{black}
        
@@ -2923,16 +2914,16 @@ This function implements m-fold cross validation to select the dimension of the 
 \subsection*{Example}
 
 
-\begin{verbatim}       load wheatprotein.txt
-       X = wheatprotein(:, 8);
-       Y = wheatprotein(:, 1 : 6);
+\begin{verbatim}       load Rohwer
+       X = Rohwer(:, 4 : 5);
+       Y = Rohwer(:, 1 : 3);
        m = 5;
        u = mfoldcv_envpls(X, Y, m)\end{verbatim}
     
         \color{lightgray} \ttfamily\begin{verbatim}
 u =
 
-     0
+     1
 
 \end{verbatim} \rmfamily
 \color{black}

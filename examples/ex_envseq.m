@@ -1,8 +1,8 @@
 % This example demonstrates the usage of envseq module.
 
-load wheatprotein.txt  % Load data
-X = wheatprotein(:, 8); % Assign predictor
-Y = wheatprotein(:, 1 : 6); % Assign responses
+load Rohwer  % Load data
+X = Rohwer(:, 4 : 5); % Assign predictors
+Y = Rohwer(:, 1 : 3); % Assign responses
 
 
 % Dimension selection
@@ -11,7 +11,7 @@ u = mfoldcv(X, Y, m, 'envseq') % Select u using 5-fold cross validation
 
 % % u =
 % % 
-% %      0
+% %      1
 
 
 % Fit the model
@@ -19,53 +19,34 @@ ModelOutput = envseq(X, Y, u)
 
 % % ModelOutput = 
 % % 
-% %       beta: [6x1 double]
-% %      Sigma: [6x6 double]
-% %      Gamma: []
-% %     Gamma0: [6x6 double]
-% %        eta: []
-% %      Omega: []
-% %     Omega0: [6x6 double]
-% %      alpha: [6x1 double]
-% %   paramNum: 27
-% %          n: 50
+% %         beta: [3x2 double]
+% %        Sigma: [3x3 double]
+% %        Gamma: [3x1 double]
+% %       Gamma0: [3x2 double]
+% %          eta: [2.5708 1.1966]
+% %        Omega: 752.8146
+% %       Omega0: [2x2 double]
+% %        alpha: [3x1 double]
+% %     paramNum: 11
+% %            n: 69
 
 
 ModelOutput.beta  % Print estimated regression coefficients
 
 % % ans =
 % % 
-% %      0
-% %      0
-% %      0
-% %      0
-% %      0
-% %      0
+% %     2.0952    0.9752
+% %     1.4774    0.6877
+% %     0.1911    0.0889
    
    
 ModelOutput.Sigma  % Check error covariance matrix
 
 % % ans =
 % % 
-% %    1.0e+03 *
-% % 
-% %   Columns 1 through 4
-% % 
-% %     1.1932    0.9825    1.0568    1.1508
-% %     0.9825    0.8222    0.8808    0.9391
-% %     1.0568    0.8808    0.9451    1.0125
-% %     1.1508    0.9391    1.0125    1.1239
-% %     1.5411    1.2700    1.3725    1.5217
-% %     0.6340    0.5279    0.5652    0.6180
-% % 
-% %   Columns 5 through 6
-% % 
-% %     1.5411    0.6340
-% %     1.2700    0.5279
-% %     1.3725    0.5652
-% %     1.5217    0.6180
-% %     2.3255    0.8365
-% %     0.8365    0.3619
+% %   587.2575  229.9647   37.2716
+% %   229.9647  421.1372   42.9256
+% %    37.2716   42.9256   12.2696
 
 
 % Inference tools
@@ -74,11 +55,8 @@ bootse = bootstrapse(X, Y, u, B, 'envseq') % Compute bootstrap standard errors f
 
 % % bootse =
 % % 
-% %      0
-% %      0
-% %      0
-% %      0
-% %      0
-% %      0
+% %     0.8834    0.6340
+% %     0.5204    0.4381
+% %     0.0885    0.0616
 
 

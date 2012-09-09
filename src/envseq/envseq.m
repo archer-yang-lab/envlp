@@ -57,9 +57,9 @@
 
 %% Example
 % 
-%         load wheatprotein.txt
-%         X = wheatprotein(:, 8);
-%         Y = wheatprotein(:, 1 : 6);
+%         load Rohwer  
+%         X = Rohwer(:, 4 : 5); 
+%         Y = Rohwer(:, 1 : 3);
 %         m = 5;
 %         u = mfoldcv_envseq(X, Y, m)
 %         ModelOutput = envseq(X, Y, u)
