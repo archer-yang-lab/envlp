@@ -1,8 +1,8 @@
 % This example demonstrates the usage of xenvpls module.
 
-load wheatprotein.txt  % Load data
-X = wheatprotein(:, 1 : 6); % Assign predictors
-Y = wheatprotein(:, 7); % Assign response
+load VocabGrowth % Load data
+X = VocabGrowth(:, 1 : 3); % Assign predictors
+Y = VocabGrowth(:, 4); % Assign response
 
 
 % Dimension selection
@@ -11,7 +11,7 @@ u = mfoldcv(X, Y, m, 'xenvpls') % Select u using 5-fold cross validation
 
 % % u =
 % % 
-% %      6
+% %      1
 
 
 % Fit the model
@@ -19,36 +19,33 @@ ModelOutput = xenvpls(X, Y, u)
 
 % % ModelOutput = 
 % % 
-% %       beta: [6x1 double]
-% %       SigX: [6x6 double]
-% %      Gamma: [6x6 double]
-% %     Gamma0: []
-% %        eta: [6x1 double]
-% %      Omega: [6x6 double]
-% %     Omega0: []
-% %         mu: 24.5781
-% %     sigYcX: 0.0321
-% %   paramNum: 29
-% %          n: 50
+% %         beta: [3x1 double]
+% %         SigX: [3x3 double]
+% %        Gamma: [3x1 double]
+% %       Gamma0: [3x2 double]
+% %          eta: 5.2899
+% %        Omega: 10.9286
+% %       Omega0: [2x2 double]
+% %           mu: 1.5683
+% %       sigYcX: 1.0934
+% %     paramNum: 9
+% %            n: 64
 
 
 ModelOutput.beta  % Print estimated regression coefficients
 
 % % ans =
 % % 
-% %    -0.0416
-% %    -0.0490
-% %     0.3368
-% %    -0.1981
-% %     0.0020
-% %    -0.0480
+% %     0.2573
+% %     0.2741
+% %     0.3049
    
    
 ModelOutput.sigYcX  % Check error variance
 
 % % ans =
 % % 
-% %     0.0321
+% %     1.0934
 
 
 % Inference tools
@@ -57,11 +54,8 @@ bootse = bootstrapse(X, Y, u, B, 'xenvpls') % Compute bootstrap standard errors 
 
 % % bootse =
 % % 
-% %     0.0255
-% %     0.0336
-% %     0.0349
-% %     0.0179
-% %     0.0021
-% %     0.0095
+% %     0.0219
+% %     0.0242
+% %     0.0259
 
 
