@@ -291,7 +291,7 @@ else
     H(sep1 + 1 : end,  sep4 + 1 : sep5) = Contr(r) * kron(Lambda * Gamma,  Lambda * Gamma) * Expan(u);
     H(sep1 + 1 : end,  sep5 + 1 : end) = Contr(r) * kron(Lambda * Gamma0,  Lambda * Gamma0) * Expan(r - u);
     
-    asyvar = H * inv(H' * J * H) * H';
+    asyvar = H * pinv(H' * J * H) * H';
     covMatrix = asyvar(1 : r * p, 1 : r * p);
     asySenv = reshape(sqrt(diag(covMatrix)), r, p);
     ModelOutput.covMatrix = covMatrix;
