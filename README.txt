@@ -11,7 +11,7 @@ GPL-2
 
 AUTHORS:
 Dennis Cook (dennis@stat.umn.edu)
-Zhihua Su (suzhihua@stat.ufl.edu)  
+Zhihua Su (zhihuasu@stat.ufl.edu)  
 Yi Yang (yiyang@umn.edu)
 
 URL:
