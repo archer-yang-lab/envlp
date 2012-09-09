@@ -3,15 +3,76 @@ README: Datasets
 
 There are five datasets included in this folder:
 
-1.	fiberpaper.dat
-2.	irisf.mat
-3.	sales.txt
-4.	VocabGrowth.mat
-5.	waterstrider.mat
-6.	wheatprotein.txt
+1.	Adopted.mat
+2.	fiberpaper.dat
+3.	irisf.mat
+4.	sales.txt
+5.	VocabGrowth.mat
+6.	waterstrider.mat
+7.	wheatprotein.txt
 
 ===================================================================
-1.	Pulp and paper property
+
+1.	Adopted Children
+
+Description:
+
+     Data are a subset from an observational, longitudinal, study on
+     adopted children.  Is child's intelligence related to intelligence
+     of the biological mother and the intelligence of the adoptive
+     mother?
+
+     The child's intelligence was measured at age 2, 4, 8, and 13 for
+     this sample.  How does intelligence change over time, and how are
+     these changes related to intelligence of the birth and adoptive
+     mother?
+
+Usage:
+
+     load Adopted.mat
+     
+Format:
+
+     A data frame with 62 observations on the following 6 variables.
+
+Value:
+
+     Column 1: adoptive mother's years of education (proxy for her IQ)
+
+     Column 2: biological mother's score on IQ test
+
+     Column 3: IQ of child at age 2
+
+     Column 4: IQ of child at age 4
+
+     Column 5: IQ of child at age 8
+
+     Column 6: IQ of child at age 13
+
+Source:
+
+     Ramsey, F.L. and Schafer, D.W. (2002). _The Statistical Sleuth: A
+     Course in Methods of Data Analysis (2nd ed)_, Duxbury.
+
+     This data set is identical to ‘ex1605’ in the ‘Sleuth2’ package.
+
+References:
+
+     Friendly, Michael (2010). HE Plots for Repeated Measures Designs.
+     _Journal of Statistical Software_, 37(4), 1-40. URL <URL:
+     http://www.jstatsoft.org/v37/i04/>.
+
+     Skodak, M. and Skeels, H.M. (1949). A Final Follow-up Study of One
+     Hundred Adopted Children, _Journal of Genetic Psychology_ *75*:
+     85-125.
+
+See Also:
+
+     ‘ex1605’
+
+===================================================================
+
+2.	Pulp and paper property
 
 Description:
 
@@ -28,21 +89,21 @@ Format:
 
 Value:
 
-Column 1: Arithmetic fiber length.
+     Column 1: Arithmetic fiber length.
 
-Column 2: Long fiber fraction.
+     Column 2: Long fiber fraction.
 
-Column 3: Fine fiber fraction.
+     Column 3: Fine fiber fraction.
 
-Column 4: Zero span tensile.
+     Column 4: Zero span tensile.
 
-Column 5: Breaking length.
+     Column 5: Breaking length.
 
-Column 6: Elastic modulus.
+     Column 6: Elastic modulus.
 
-Column 7: Stress at failure.
+     Column 7: Stress at failure.
 
-Column 8: Burst strength.
+     Column 8: Burst strength.
 
 References:
 
@@ -51,7 +112,7 @@ References:
 
 ===================================================================
 
-2.	Fisher's iris data
+3.	Fisher's iris data
 
 Description:
 
@@ -68,16 +129,16 @@ Format:
 
 Value:
 
-Column 1: Indicator of the species: 1 for Iris Setaso, 2 for Iris
+     Column 1: Indicator of the species: 1 for Iris Setaso, 2 for Iris
           Versicolor and 3 for Iris Verginica.
 
-Column 2: Sepal length.
+     Column 2: Sepal length.
 
-Column 3: Sepal width.
+     Column 3: Sepal width.
 
-Column 4: Petal length.
+     Column 4: Petal length.
 
-Column 5: Petal width.
+     Column 5: Petal width.
 
 References:
 
@@ -86,7 +147,7 @@ References:
 
 ===================================================================
 
-3.	The quality of its sales staff
+4.	The quality of its sales staff
 
 Description:
 
@@ -111,19 +172,19 @@ Format:
 
 Value:
 
-Column 1: Index of sales growth.
+     Column 1: Index of sales growth.
 
-Column 2: Index of sales profitability.
+     Column 2: Index of sales profitability.
 
-Column 3: Index of new-account sales.
+     Column 3: Index of new-account sales.
 
-Column 4: Score on creativity test.
+     Column 4: Score on creativity test.
 
-Column 5: Score on mechanical reasoning test.
+     Column 5: Score on mechanical reasoning test.
 
-Column 6: Score on abstract reasoning test.
+     Column 6: Score on abstract reasoning test.
 
-Column 7: Score on mathematics test.
+     Column 7: Score on mathematics test.
 
 References:
 
@@ -132,7 +193,7 @@ References:
 
 ===================================================================
 
-4.	Vocabulary growth data
+5.	Vocabulary growth data
 
 Description:
 
@@ -152,13 +213,13 @@ Format:
 
 Value:
 
-Column 1: Grade 8 vocabulary score.
+     Column 1: Grade 8 vocabulary score.
 
-Column 2: Grade 9 vocabulary score.
+     Column 2: Grade 9 vocabulary score.
 
-Column 3: Grade 10 vocabulary score.
+     Column 3: Grade 10 vocabulary score.
 
-Column 4: Grade 11 vocabulary score.
+     Column 4: Grade 11 vocabulary score.
 
 References:
 
@@ -167,7 +228,7 @@ References:
 
 ===================================================================
 
-5.	Water strider data
+6.	Water strider data
 
 Description:
 
@@ -190,32 +251,32 @@ Format:
 
 Value:
 
-Column 1: Binary indicator: 1 for L. esakii and 0 for other species.
+     Column 1: Binary indicator: 1 for L. esakii and 0 for other species.
 
-Column 2: Binary indicator: 1 for L. dissortis and 0 for other species.
+     Column 2: Binary indicator: 1 for L. dissortis and 0 for other species.
 
-Column 3: Logarithm (natural base) of length of the first antennal
+     Column 3: Logarithm (natural base) of length of the first antennal
           segment.  Raw measurements are in millimeters.
 
-Column 4: Logarithm (natural base) of length of the second antennal
+     Column 4: Logarithm (natural base) of length of the second antennal
           segment.  Raw measurements are in millimeters.
 
-Column 5: Logarithm (natural base) of length of the third antennal
+     Column 5: Logarithm (natural base) of length of the third antennal
           segment.  Raw measurements are in millimeters.
 
-Column 6: Logarithm (natural base) of length of the fourth antennal
+     Column 6: Logarithm (natural base) of length of the fourth antennal
           segment.  Raw measurements are in millimeters.
 
-Column 7: Logarithm (natural base) of length of middle femora.  Raw
+     Column 7: Logarithm (natural base) of length of middle femora.  Raw
           measurements are in millimeters.
 
-Column 8: Logarithm (natural base) of length of middle tibiae.  Raw
+     Column 8: Logarithm (natural base) of length of middle tibiae.  Raw
           measurements are in millimeters.
 
-Column 9: Logarithm (natural base) of length of hind femora.  Raw
+     Column 9: Logarithm (natural base) of length of hind femora.  Raw
           measurements are in millimeters.
 
-Column 10: Logarithm (natural base) of length of hind tibiae.  Raw
+     Column 10: Logarithm (natural base) of length of hind tibiae.  Raw
           measurements are in millimeters.
 
 References:
@@ -226,7 +287,7 @@ References:
 
 ===================================================================
 
-6.	The protein content of ground wheat samples.
+7.	The protein content of ground wheat samples.
 
 Description:
 
@@ -251,14 +312,14 @@ Format:
 
 Value:
 
-Column 1 to Column 6: Measurements of the reflectance of NIR radiation
+     Column 1 to Column 6: Measurements of the reflectance of NIR radiation
           by the wheat samples at 6 wavelength in the range 1680-2310
           nm.  The measurements were made on the log(1/reflectance)
           scale.
 
-Column 7: The protein content of each sample (in percent).
+     Column 7: The protein content of each sample (in percent).
 
-Column 8: Binary indicator, 0 for high protein content and 1 for low
+     Column 8: Binary indicator, 0 for high protein content and 1 for low
           protein content. The cut off point is if the protein content
           is smaller than 9.75.
 
