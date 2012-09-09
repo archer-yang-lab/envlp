@@ -5,8 +5,8 @@ There are five datasets included in this folder:
 
 1.	fiberpaper.dat
 2.	irisf.mat
-3. 	sales.txt
-4.     VocabGrowth.mat
+3.	sales.txt
+4.	VocabGrowth.mat
 5.	waterstrider.mat
 6.	wheatprotein.txt
 
@@ -136,11 +136,15 @@ References:
 
 Description:
 
-     Data is collected from the Laboratory School of the University of Chicago.  The data consists of scores from a cohort of pupils in grades 8-11 on the vocabulary section of the Cooperative Reading Test.  The scores are scaled to a common, but arbitrary origin and unit of measurement, so as to be comparable over the four grades.
+     Data is collected from the Laboratory School of the University of
+     Chicago.  The data consists of scores from a cohort of pupils in
+     grades 8-11 on the vocabulary section of the Cooperative Reading
+     Test.  The scores are scaled to a common, but arbitrary origin and
+     unit of measurement, so as to be comparable over the four grades.
 
 Usage:
 
-     load VocabGrowth
+     load VocabGrowth.mat
      
 Format:
 
@@ -158,7 +162,8 @@ Column 4: Grade 11 vocabulary score.
 
 References:
 
-     Bock, R.D. (1975). Multivariate Statistical Methods in Behavioral Research. 
+     Bock, R.D. (1975). Multivariate Statistical Methods in Behavioral
+     Research.
 
 ===================================================================
 
