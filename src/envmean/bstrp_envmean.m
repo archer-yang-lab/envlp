@@ -80,3 +80,5 @@ for i = 1 : B
 end
 
 bootse = sqrt(diag(cov(bootBeta, 1)));
+
+fprintf('\nIf convergence is not reached for a bootstrap sample, \nit is still used in computing bootse.\n')
