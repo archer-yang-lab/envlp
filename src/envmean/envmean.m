@@ -170,7 +170,7 @@ if u > 0 && u < p
     ModelOutput.l = - 0.5 * l;
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asyEnv = asyEnv;
-    ModelOutput.ratio = asyFm;
+    ModelOutput.ratio = asyFm./asyEnv;
     ModelOutput.paramNum = u + p * (p + 1) / 2;
     ModelOutput.n = n;
     
