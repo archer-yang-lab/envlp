@@ -45,7 +45,7 @@ ModelOutput = ienv(X, Y, u3)
 % %      paramNum: 16
 % %             l: -1.4805e+03
 % %     covMatrix: [8x8 double]
-% %       asyIenv: [4x2 double]
+% %         asySE: [4x2 double]
 % %         ratio: [4x2 double]
 % %             n: 150
 

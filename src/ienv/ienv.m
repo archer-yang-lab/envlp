@@ -57,7 +57,7 @@
 % * ModelOutput.covMatrix: The asymptotic covariance of vec($$\beta$).  An rp by
 % rp matrix.  The covariance matrix returned are asymptotic.  For the
 % actual standard errors, multiply by 1/n.
-% * ModelOutput.asyIenv: Asymptotic standard error for elements in $$\beta$ under
+% * ModelOutput.asySE: Asymptotic standard error for elements in $$\beta$ under
 % the inner envelope model.  An r by p matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
 % * ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate 
@@ -167,7 +167,7 @@ if u == p
     ModelOutput.l = temp.l;
     ModelOutput.paramNum = temp.paramNum;
     ModelOutput.covMatrix = temp.covMatrix;
-    ModelOutput.asyIenv = temp.asyEnv;
+    ModelOutput.asySE = temp.asyEnv;
     ModelOutput.ratio = temp.ratio;
     ModelOutput.n = n;
     
@@ -186,7 +186,7 @@ elseif u == 0
     ModelOutput.alpha = temp.alpha;
     ModelOutput.l = temp.l;
     ModelOutput.covMatrix = temp.covMatrix;
-    ModelOutput.asyIenv = temp.asyEnv;
+    ModelOutput.asySE = temp.asyEnv;
     ModelOutput.ratio = temp.ratio;
     ModelOutput.paramNum = temp.paramNum;  
     ModelOutput.n = temp.n;
@@ -278,11 +278,11 @@ else
     J(p * r + 1 : end, p * r + 1 : end) = Expan(r)' * kron(insigma, insigma) * Expan(r) / 2;
     asyv = H * pinv(H' * J * H) * H';
     covMatrix = asyv(1 : r * p, 1 : r * p);
-    asyIenv = reshape(sqrt(diag(covMatrix)), r, p);    
+    asySE = reshape(sqrt(diag(covMatrix)), r, p);    
     
     ModelOutput.covMatrix = covMatrix;
-    ModelOutput.asyIenv = asyIenv;
-    ModelOutput.ratio = asyFm ./ asyIenv;
+    ModelOutput.asySE = asySE;
+    ModelOutput.ratio = asyFm ./ asySE;
     ModelOutput.n = n;
     
 end
