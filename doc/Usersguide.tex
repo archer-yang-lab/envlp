@@ -835,7 +835,7 @@ ModelOutput = penv(X, Y, u)
 \emph{            l: -35.6323}
 \emph{     paramNum: 23}
 \emph{    covMatrix: [12x12 double]}
-\emph{      asyPenv: [4x1 double]}
+\emph{        asySE: [4x1 double]}
 \emph{        ratio: [4x1 double]}
 \emph{            n: 62}
 \end{Verbatim}
@@ -867,12 +867,12 @@ The results are almost the same the those in \citet{su2011partial}.
 They are slightly different, because the toolbox uses a different
 starting value algorithm, which is less likely to be trapped in local
 minimum and thus leads to more reliable results. Next we look at
-the standard errors for elements in $\betabfhat$. Since ModelOutput.asyPenv
+the standard errors for elements in $\betabfhat$. Since ModelOutput.asySE
 contains the asymptotic standard errors, for actual standard errors,
 we need to divide the asymptotic standard errors by $\sqrt{n}$, where
 $n$ is the sample size and is returned in ModelOutput.n.
 \begin{Verbatim}[commandchars=\\\{\}]
-ModelOutput.asyPenv / sqrt(ModelOutput.n)
+ModelOutput.asySE / sqrt(ModelOutput.n)
 \emph{ans =}
 \emph{   1.0e-03 *}
 \emph{    0.3181}
