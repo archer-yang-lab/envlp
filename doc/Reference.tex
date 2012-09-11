@@ -3355,7 +3355,7 @@ Fit the heteroscedastic envelope model.
    \item ModelOutput.l: The maximized log likelihood function.  A real number.
    \item ModelOutput.paramNum: The number of parameters in the heteroscedastic envelope model.  A positive integer.
    \item ModelOutput.covMatrix: The asymptotic covariance of ($\mu$', vec($\beta$'))'.  An r(p + 1) by r(p + 1) matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1 / n.
-   \item ModelOutput.asyHenv: The asymptotic standard errors for elements in $\beta$ under the heteroscedastic envelope model. An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
+   \item ModelOutput.asySE: The asymptotic standard errors for elements in $\beta$ under the heteroscedastic envelope model. An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
    \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the heteroscedastic envelope estimator. An r by p matrix, the (i, j)th element in ModelOutput.ratio is the elementwise standard error ratio for the ith element in the jth group mean effect.
    \item ModelOutput.ng: The number of observations in each group.  A p by 1 vector.
 \end{itemize}
@@ -3412,7 +3412,7 @@ ModelOutput =
      paramNum: 98
             l: 1.0051e+03
     covMatrix: [32x32 double]
-      asyHenv: [8x3 double]
+        asySE: [8x3 double]
         ratio: [8x3 double]
            ng: [3x1 double]
 

@@ -73,7 +73,7 @@
 % * ModelOutput.covMatrix: The asymptotic covariance of ($$\mu$', vec($$\beta$'))'.  An r(p + 1) by
 % r(p + 1) matrix.  The covariance matrix returned are asymptotic.  For the
 % actual standard errors, multiply by 1 / n.
-% * ModelOutput.asyHenv: The asymptotic standard errors for elements in $$\beta$
+% * ModelOutput.asySE: The asymptotic standard errors for elements in $$\beta$
 % under the heteroscedastic envelope model. An r by p matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
 % * ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate 
@@ -198,7 +198,7 @@ if u == 0
     ModelOutput.l = l;
     ModelOutput.paramNum = (r - u) + u * (r - u + p) + p * u * (u + 1) / 2 + (r - u) * (r - u + 1) / 2;
     ModelOutput.covMatrix = Sigma;
-    ModelOutput.asyHenv = [];
+    ModelOutput.asySE = [];
     ModelOutput.ratio = ones(r, p);    
     ModelOutput.ng = ng';
     
@@ -284,7 +284,7 @@ elseif u == r
     ModelOutput.paramNum = (r - u) + u * (r - u + p) ...
 		+ p * u * (u + 1) / 2 + (r - u) * (r - u + 1) / 2;
     ModelOutput.covMatrix = covMatrix;
-    ModelOutput.asyHenv = asyFm;
+    ModelOutput.asySE = asyFm;
     ModelOutput.ratio = ones(r, p);
     ModelOutput.ng = ng';
     
@@ -398,7 +398,7 @@ else
     covMatrix(r + 1 : p * r, r * p + 1 : r * (p + 1)) = covMatrix(r * p + 1 : r * (p + 1), r + 1 : p * r)';
     covMatrix(r * p + 1 : r * (p + 1), 1 : r) = - tempA * temp(r + 1 : r * p, 1 : r);
     covMatrix(1 : r, r * p + 1 : r * (p + 1)) = covMatrix(r * p + 1 : r * (p + 1), 1 : r)';
-    asyHenv = reshape(sqrt(diag(covMatrix(r + 1 : end, r + 1 : end))), r, p);
+    asySE = reshape(sqrt(diag(covMatrix(r + 1 : end, r + 1 : end))), r, p);
     
     ModelOutput.mu = mu;
     ModelOutput.mug = mug;
@@ -414,8 +414,8 @@ else
     ModelOutput.paramNum = (r - u) + u * (r - u + p) + p * u * (u + 1) / 2 + (r - u) * (r - u + 1) / 2;
     ModelOutput.l = - 0.5 * l;   
     ModelOutput.covMatrix = covMatrix;
-    ModelOutput.asyHenv = asyHenv;
-    ModelOutput.ratio = asyFm ./ asyHenv;
+    ModelOutput.asySE = asySE;
+    ModelOutput.ratio = asyFm ./ asySE;
     ModelOutput.ng = ng';
     
 end
