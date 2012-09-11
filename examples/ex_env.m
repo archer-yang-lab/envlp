@@ -44,7 +44,7 @@ ModelOutput = env(X, Y, u3)
 % %         alpha: [6x1 double]
 % %             l: -850.7592
 % %     covMatrix: [6x6 double]
-% %        asyEnv: [6x1 double]
+% %         asySE: [6x1 double]
 % %         ratio: [6x1 double]
 % %      paramNum: 28
 % %             n: 50

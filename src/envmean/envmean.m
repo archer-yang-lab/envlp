@@ -47,7 +47,7 @@
 % * ModelOutput.covMatrix: The asymptotic covariance of $$\mu$.  A p by
 % p matrix.  The covariance matrix returned are asymptotic.  For the
 % actual standard errors, multiply by 1/n.
-% * ModelOutput.asyEnv: The asymptotic standard error for elements in $$\mu$ under
+% * ModelOutput.asySE: The asymptotic standard error for elements in $$\mu$ under
 % the envelope model.  A p dimensional column vector.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1/sqrt(n).
 % * ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate 
@@ -158,7 +158,7 @@ if u > 0 && u < p
     temp = kron(eta * eta', inv(Omega0)) + kron(Omega, inv(Omega0))... 
         + kron(inv(Omega), Omega0) - 2 * kron(eye(u), eye(p - u));  
     covMatrix = Gamma * Omega * Gamma' + kron(eta', Gamma0) * inv(temp) * kron(eta, Gamma0');
-    asyEnv = sqrt(diag(covMatrix));
+    asySE = sqrt(diag(covMatrix));
 
     ModelOutput.mu = mu;
     ModelOutput.Sigma = Sigma;
@@ -169,8 +169,8 @@ if u > 0 && u < p
     ModelOutput.Omega0 = Omega0;
     ModelOutput.l = - 0.5 * l;
     ModelOutput.covMatrix = covMatrix;
-    ModelOutput.asyEnv = asyEnv;
-    ModelOutput.ratio = asyFm./asyEnv;
+    ModelOutput.asySE = asySE;
+    ModelOutput.ratio = asyFm./asySE;
     ModelOutput.paramNum = u + p * (p + 1) / 2;
     ModelOutput.n = n;
     
@@ -185,7 +185,7 @@ elseif u == 0
     ModelOutput.Omega0 = sY;
     ModelOutput.l = - n * p / 2 * (1 + log(2 * pi)) - n / 2 * logDetSY;
     ModelOutput.covMatrix = [];
-    ModelOutput.asyEnv = [];
+    ModelOutput.asySE = [];
     ModelOutput.ratio = ones(p, 1);
     ModelOutput.paramNum = u + p * (p + 1) / 2;
     ModelOutput.n = n;  
@@ -204,7 +204,7 @@ elseif u == p
     ModelOutput.Omega0 = [];
     ModelOutput.l = - n * p / 2 * (1 + log(2 * pi)) - n / 2 * logDetSigY;
     ModelOutput.covMatrix = sigY;
-    ModelOutput.asyEnv = sqrt(diag(sigY));
+    ModelOutput.asySE = sqrt(diag(sigY));
     ModelOutput.ratio = ones(p, 1);
     ModelOutput.paramNum = u + p * (p + 1) / 2;
     ModelOutput.n = n; 
