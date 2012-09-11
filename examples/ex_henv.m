@@ -53,7 +53,7 @@ ModelOutput = henv(X, Y, u3)
 % %      paramNum: 98
 % %             l: 1.0051e+03
 % %     covMatrix: [32x32 double]
-% %       asyHenv: [8x3 double]
+% %         asySE: [8x3 double]
 % %         ratio: [8x3 double]
 % %            ng: [3x1 double]
 
