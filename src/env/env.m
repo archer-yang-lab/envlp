@@ -53,7 +53,7 @@
 % * ModelOutput.covMatrix: The asymptotic covariance of vec($$\beta$).  An rp by
 % rp matrix.  The covariance matrix returned are asymptotic.  For the
 % actual standard errors, multiply by 1/n.
-% * ModelOutput.asyEnv: The asymptotic standard error for elements in $$\beta$ under
+% * ModelOutput.asySE: The asymptotic standard error for elements in $$\beta$ under
 % the envelope model.  An r by p matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1/sqrt(n).
 % * ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate 
@@ -196,7 +196,7 @@ if u > 0 && u < r
     temp = kron(eta * sigX * eta', inv(Omega0))...
 		 + kron(Omega, inv(Omega0)) + kron(inv(Omega), Omega0) - 2 * kron(eye(u), eye(r - u));
     covMatrix = kron(inv(sigX), Sigma1) + kron(eta', Gamma0) * inv(temp) * kron(eta, Gamma0');
-    asyEnv = reshape(sqrt(diag(covMatrix)), r, p);
+    asySE = reshape(sqrt(diag(covMatrix)), r, p);
     
     ModelOutput.beta = beta;
     ModelOutput.Sigma = Sigma;
@@ -208,8 +208,8 @@ if u > 0 && u < r
     ModelOutput.alpha = alpha;
     ModelOutput.l = - 0.5 * l;
     ModelOutput.covMatrix = covMatrix;
-    ModelOutput.asyEnv = asyEnv;
-    ModelOutput.ratio = asyFm ./ asyEnv;
+    ModelOutput.asySE = asySE;
+    ModelOutput.ratio = asyFm ./ asySE;
     ModelOutput.paramNum = r + u * p + r * (r + 1) / 2;
     ModelOutput.n = n;
     
@@ -225,7 +225,7 @@ elseif u == 0
     ModelOutput.alpha = mY;
     ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * logDetSigY;
     ModelOutput.covMatrix = [];
-    ModelOutput.asyEnv = [];
+    ModelOutput.asySE = [];
     ModelOutput.ratio = ones(r, p);
     ModelOutput.paramNum = r + u * p + r * (r + 1) / 2;
     ModelOutput.n = n;    
@@ -246,7 +246,7 @@ elseif u == r
     eigtem = eig(sigRes);
     ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
     ModelOutput.covMatrix = covMatrix;
-    ModelOutput.asyEnv = asyFm;
+    ModelOutput.asySE = asyFm;
     ModelOutput.ratio = ones(r, p);
     ModelOutput.paramNum = r + u * p + r * (r + 1) / 2;
     ModelOutput.n = n;    
