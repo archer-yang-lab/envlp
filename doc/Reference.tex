@@ -5916,7 +5916,7 @@ Fit the scaled envelope model.
    \item ModelOutput.alpha: The estimated intercept in the scaled envelope model.  An r by 1 vector.
    \item ModelOutput.l: The maximized log likelihood function.  A real number.
    \item ModelOutput.covMatrix: The asymptotic covariance of vec($\beta$).  An rp by rp matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1 / n.
-   \item ModelOutput.asySenv: Asymptotic standard error for elements in $\beta$ under the scaled envelope model.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
+   \item ModelOutput.asySE: Asymptotic standard error for elements in $\beta$ under the scaled envelope model.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
    \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the scaled envelope estimator, for each element in $\beta$.  An r by p matrix.
    \item ModelOutput.paramNum: The number of parameters in the scaled envelope model.  A positive integer.
    \item ModelOutput.n: The number of observations in the data.  A positive integer.
@@ -5975,7 +5975,7 @@ ModelOutput =
      paramNum: 23
             l: -386.1900
     covMatrix: [12x12 double]
-      asySenv: [4x3 double]
+        asySE: [4x3 double]
         ratio: [4x3 double]
             n: 50
 

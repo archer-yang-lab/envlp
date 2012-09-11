@@ -39,7 +39,7 @@ ModelOutput = senv(X, Y, u2)
 % %      paramNum: 23
 % %             l: -386.1900
 % %     covMatrix: [12x12 double]
-% %       asySenv: [4x3 double]
+% %         asySE: [4x3 double]
 % %         ratio: [4x3 double]
 % %             n: 50
 
