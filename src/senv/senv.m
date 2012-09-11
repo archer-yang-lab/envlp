@@ -56,7 +56,7 @@
 % * ModelOutput.covMatrix: The asymptotic covariance of vec($$\beta$).  An rp by
 % rp matrix.  The covariance matrix returned are asymptotic.  For the
 % actual standard errors, multiply by 1 / n.
-% * ModelOutput.asySenv: Asymptotic standard error for elements in $$\beta$ under
+% * ModelOutput.asySE: Asymptotic standard error for elements in $$\beta$ under
 % the scaled envelope model.  An r by p matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
 % * ModelOutput.ratio: The asymptotic standard error ratio of the standard
@@ -172,7 +172,7 @@ if u == 0
     ModelOutput.alpha = mY;
     ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * logDetSigY;
     ModelOutput.covMatrix = [];
-    ModelOutput.asySenv = [];
+    ModelOutput.asySE = [];
     ModelOutput.ratio = ones(r, p);
     ModelOutput.paramNum = r + u * p + r * (r + 1) / 2;  
     ModelOutput.n = n;
@@ -195,7 +195,7 @@ elseif u == r || (u == 1 && p == 1)
     ModelOutput.alpha = mY - betaOLS * mX;
     ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
     ModelOutput.covMatrix = covMatrix;
-    ModelOutput.asySenv = asyFm;
+    ModelOutput.asySE = asyFm;
     ModelOutput.ratio = ones(r, p);
     ModelOutput.paramNum = r + r * p + r * (r + 1) / 2;
     ModelOutput.n = n;
@@ -293,10 +293,10 @@ else
     
     asyvar = H * pinv(H' * J * H) * H';
     covMatrix = asyvar(1 : r * p, 1 : r * p);
-    asySenv = reshape(sqrt(diag(covMatrix)), r, p);
+    asySE = reshape(sqrt(diag(covMatrix)), r, p);
     ModelOutput.covMatrix = covMatrix;
-    ModelOutput.asySenv = asySenv;
-    ModelOutput.ratio = asyFm ./ asySenv;
+    ModelOutput.asySE = asySE;
+    ModelOutput.ratio = asyFm ./ asySE;
     ModelOutput.n = n;
     
 end
