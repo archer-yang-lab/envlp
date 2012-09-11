@@ -56,7 +56,7 @@
 % * ModelOutput.covMatrix: The asymptotic covariance of vec($$\beta$).  An pr by
 % pr matrix.  The covariance matrix returned are asymptotic.  For the
 % actual standard errors, multiply by 1 / n.
-% * ModelOutput.asyXenv: Asymptotic standard error for elements in $$\beta$ under
+% * ModelOutput.asySE: Asymptotic standard error for elements in $$\beta$ under
 % the envelope model.  An r by p matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
 % * ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate 
@@ -216,7 +216,7 @@ if u > 0 && u < p
     asyFm = reshape(sqrt(diag(asyFm)), p, r);
     temp = kron(eta * inv(sigYcX) * eta', Omega0) + kron(Omega, inv(Omega0)) + kron(inv(Omega), Omega0) - 2 * kron(eye(u), eye(p - u));
     covMatrix = kron(sigYcX, Gamma * inv(Omega) * Gamma') + kron(eta', Gamma0) * inv(temp) * kron(eta, Gamma0');
-    asyEnv = reshape(sqrt(diag(covMatrix)), p, r);
+    asySE = reshape(sqrt(diag(covMatrix)), p, r);
     
     ModelOutput.beta = beta;
     ModelOutput.SigX = SigX;
@@ -229,8 +229,8 @@ if u > 0 && u < p
     ModelOutput.sigYcX = sigYcX;
     ModelOutput.l = - 0.5 * l;
     ModelOutput.covMatrix = covMatrix;
-    ModelOutput.asyXenv = asyEnv;
-    ModelOutput.ratio = asyFm ./ asyEnv;
+    ModelOutput.asySE = asySE;
+    ModelOutput.ratio = asyFm ./ asySE;
     ModelOutput.paramNum = r + u * r + p * (p + 1) / 2 + r * (r + 1) / 2;
     ModelOutput.n = n;    
     
@@ -248,7 +248,7 @@ elseif u == 0
     ModelOutput.sigYcX = sigY;
     ModelOutput.l = - n * (p + r) * (1 + log(2 * pi)) / 2 - n / 2 * (logDetSigX + logDetSigY);
     ModelOutput.covMatrix = [];
-    ModelOutput.asyXenv = [];
+    ModelOutput.asySE = [];
     ModelOutput.ratio = ones(p, r);
     ModelOutput.paramNum = r + p * (p + 1) / 2 + r * (r + 1) / 2;
     ModelOutput.n = n;    
@@ -274,7 +274,7 @@ elseif u == p
     ModelOutput.sigYcX = sigYcX;
     ModelOutput.l = - n * (p + r) * (1 + log(2 * pi)) / 2 - n / 2 * (logDetSigY + log(prod(eigtem3(eigtem3 > 0))));
     ModelOutput.covMatrix = covMatrix;
-    ModelOutput.asyXenv = asyFm;
+    ModelOutput.asySE = asyFm;
     ModelOutput.ratio = ones(p,r);
     ModelOutput.paramNum = r + (p + r) * (p + r + 1) / 2;
     ModelOutput.n = n;    
