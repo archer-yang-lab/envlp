@@ -46,7 +46,7 @@ ModelOutput = penv(X, Y, u3)
 % %             l: -35.6323
 % %      paramNum: 23
 % %     covMatrix: [12x12 double]
-% %       asyPenv: [4x1 double]
+% %         asySE: [4x1 double]
 % %         ratio: [4x1 double]
 % %             n: 62
 

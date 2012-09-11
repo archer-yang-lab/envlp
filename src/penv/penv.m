@@ -60,7 +60,7 @@
 % * ModelOutput.covMatrix: The asymptotic covariance of (vec($$\beta_2$)', vec($$\beta_1$)')'.  An rp by
 % rp matrix.  The covariance matrix returned are asymptotic.  For the
 % actual standard errors, multiply by 1/n.
-% * ModelOutput.asyPenv: Asymptotic standard error for elements in $$\beta_1$ under
+% * ModelOutput.asySE: Asymptotic standard error for elements in $$\beta_1$ under
 % the partial envelope model.  An r by p1 matrix.  The standard errors returned are
 % asymptotic, for actual standard errors, multiply by 1/sqrt(n).
 % * ModelOutput.ratio: The asymptotic standard error ratio of the stanard multivariate 
@@ -200,8 +200,8 @@ if u > 0 && u < r
     
     temp = kron(eta * Sig1G2 * eta', inv(Omega0)) + kron(Omega, inv(Omega0))...
         + kron(inv(Omega), Omega0) - 2 * kron(eye(u), eye(r - u));
-    asyPenv = kron(inv(Sig1G2), Sigma1) + kron(eta', Gamma0) * inv(temp) * kron(eta, Gamma0');
-    asyPenv = reshape(sqrt(diag(asyPenv)), r, p1);
+    asySE = kron(inv(Sig1G2), Sigma1) + kron(eta', Gamma0) * inv(temp) * kron(eta, Gamma0');
+    asySE = reshape(sqrt(diag(asySE)), r, p1);
     
     p = p1 + p2;
     invSigma = inv(Sigma);
@@ -241,8 +241,8 @@ if u > 0 && u < r
     ModelOutput.l = maxl; 
     ModelOutput.paramNum = r + u * p1 + r * p2 + r * (r + 1) / 2;
     ModelOutput.covMatrix = covMatrix;
-    ModelOutput.asyPenv = asyPenv;
-    ModelOutput.ratio = asyFm ./ asyPenv;
+    ModelOutput.asySE = asySE;
+    ModelOutput.ratio = asyFm ./ asySE;
     ModelOutput.n = n;
     
 elseif u==0
@@ -263,7 +263,7 @@ elseif u==0
     ModelOutput.alpha = mean(Y)' - beta2 * mean(X2)';
     ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
     ModelOutput.covMatrix = [];
-    ModelOutput.asyPenv = [];
+    ModelOutput.asySE = [];
     ModelOutput.ratio = ones(r, p1);
     ModelOutput.paramNum = r + u * p1 + r * p2 + r * (r + 1) / 2;
     ModelOutput.n = n;    
@@ -292,7 +292,7 @@ elseif u == r
     ModelOutput.alpha = mean(Y)' - beta * mean(X)';
     ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
     ModelOutput.covMatrix = covMatrix;
-    ModelOutput.asyPenv = asyFm;
+    ModelOutput.asySE = asyFm;
     ModelOutput.ratio = ones(r, p1);
     ModelOutput.paramNum = r + u * p1 + r * p2 + r * (r + 1) / 2;
     ModelOutput.n = n;

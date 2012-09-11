@@ -4999,7 +4999,7 @@ Fit the partial envelope model.
    \item ModelOutput.alpha: The estimated intercept in the partial envelope model.  An r by 1 vector.
    \item ModelOutput.l: The maximized log likelihood function.  A real number.
    \item ModelOutput.covMatrix: The asymptotic covariance of (vec($\beta_2$)', vec($\beta_1$)')'.  An rp by rp matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1/n.
-   \item ModelOutput.asyPenv: Asymptotic standard error for elements in $\beta_1$ under the partial envelope model.  An r by p1 matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
+   \item ModelOutput.asySE: Asymptotic standard error for elements in $\beta_1$ under the partial envelope model.  An r by p1 matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
    \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the partial envelope estimator, for each element in $\beta_1$.  An r by p1 matrix.
    \item ModelOutput.paramNum: The number of parameters in the envelope model.  A positive integer.
    \item ModelOutput.n: The number of observations in the data.  A positive integer.
@@ -5060,7 +5060,7 @@ ModelOutput =
             l: -35.6323
      paramNum: 23
     covMatrix: [12x12 double]
-      asyPenv: [4x1 double]
+        asySE: [4x1 double]
         ratio: [4x1 double]
             n: 62
 
