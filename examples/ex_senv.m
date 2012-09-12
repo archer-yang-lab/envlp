@@ -58,10 +58,10 @@ ModelOutput.ratio % Check the relative efficiency of the scaled envelope model v
 
 % % ans =
 % % 
-% %     3.3560    2.0912    2.8712
-% %     2.5888    1.4747    2.2799
-% %     1.7983    1.2281    1.6458
-% %     2.1622    1.8652    2.0954
+% %     3.1476    1.9614    2.6929
+% %     2.5769    1.4679    2.2694
+% %     1.6768    1.1451    1.5346
+% %     2.1408    1.8468    2.0747
     
 
 eig(ModelOutput.Omega) % Check the eigenvalues of \Omega
