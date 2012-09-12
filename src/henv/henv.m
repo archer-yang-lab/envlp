@@ -361,7 +361,35 @@ else
         J(i * r + 1 : (i + 1) * r, 1 : r) = J(1 : r, i * r + 1 : (i + 1) * r);
     end
     temp = inv(J);
-    asyFm = reshape(sqrt(diag(temp(1 : r * p, 1 : r * p))), r, p);
+    
+    J1 = zeros(p * r + p * r * (r + 1) / 2);
+    for i = 1 : p - 1
+        for j = 1 : p - 1
+            J1((i - 1) * r + 1 : i * r, (j - 1) * r + 1 : j * r) ...
+				= fracN(j) * fracN(i) / fracN(p) * inv(sigRes(:, :, p));
+        end
+        J1((i - 1) * r + 1 : i * r, (i - 1) * r + 1 : i * r) ...
+			= fracN(i) * inv(sigRes(:, :, i)) + fracN(i) ^ 2 / fracN(p) * inv(sigRes(:, :, p));
+    end
+    for i = 1 : p
+        J1(r * (p - 1) + 1 + (i - 1) * r * (r + 1) / 2 : r * (p - 1) + i * r * (r + 1) / 2,  ...
+        	r * (p - 1) + 1 + (i - 1) * r * (r + 1) / 2 : r * (p - 1) + i * r * (r + 1) / 2) ...
+			= 0.5 * fracN(i) * Expan(r)' * kron(inv(sigRes(:, :, i)), inv(sigRes(:, :, i))) * Expan(r);
+    end
+    J1(r + 1 : end, r + 1 : end) ...
+		= J1(1 : (p - 1) * r + p * r * (r + 1) / 2, 1 : (p - 1) * r + p * r * (r + 1) / 2);
+    J1(1 : r, :) = 0;
+    J1(r + 1 : end, 1 : r) = 0;
+    for i = 1 : p
+        J1(1 : r, 1 : r) = J1(1 : r, 1 : r) + fracN(i) * inv(sigRes(:, :, i));
+    end
+    for i = 1 : p - 1
+        J1(1 : r, i * r + 1 : (i + 1) * r) ...
+			= fracN(i) * (inv(sigRes(:, :, p)) - inv(sigRes(:, :, i)));
+        J1(i * r + 1 : (i + 1) * r, 1 : r) = J1(1 : r, i * r + 1 : (i + 1) * r);
+    end
+    temp1 = inv(J1);
+    asyFm = reshape(sqrt(diag(temp1(1 : r * p, 1 : r * p))), r, p);
     
     H = zeros(p * r + p * r * (r + 1) / 2,  ...
     	r + u * (r + p - 1 - u) + p * u * (u + 1) / 2 + (r - u) * (r - u + 1) / 2);
