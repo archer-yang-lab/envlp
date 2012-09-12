@@ -263,7 +263,7 @@ else
     ModelOutput.l = - 0.5 * l;
     
     %---compute asymptotic variance and get the ratios---
-    asyFm = kron(inv(sigX), Sigma);
+    asyFm = kron(inv(sigX), sigRes);
     asyFm = reshape(sqrt(diag(asyFm)), r, p);
     insigma = inv(Sigma);
     
