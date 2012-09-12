@@ -66,12 +66,12 @@ ModelOutput.ratio % Check the relative efficiency of the envelope model versus t
 
 % % ans =
 % % 
-% %    28.0945
-% %    18.4326
-% %    23.6384
-% %    16.3211
-% %    65.8245
-% %     6.4668
+% %    28.0389
+% %    18.3983
+% %    23.5916
+% %    16.2928
+% %    65.7999
+% %     6.4555
     
 
 eig(ModelOutput.Omega) % Check the eigenvalues of \Omega

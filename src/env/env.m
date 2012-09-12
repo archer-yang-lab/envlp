@@ -191,7 +191,7 @@ if u > 0 && u < r
     Sigma = Sigma1 + Sigma2;
 
     %---compute asymptotic variance and get the ratios---
-    asyFm = kron(inv(sigX), Sigma);
+    asyFm = kron(inv(sigX), sigRes);
     asyFm = reshape(sqrt(diag(asyFm)), r, p);
     temp = kron(eta * sigX * eta', inv(Omega0))...
 		 + kron(Omega, inv(Omega0)) + kron(inv(Omega), Omega0) - 2 * kron(eye(u), eye(r - u));
