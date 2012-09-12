@@ -212,7 +212,7 @@ if u > 0 && u < p
     mu = mY - beta' * mX;
 
     %---compute asymptotic variance and get the ratios---
-    asyFm = kron(sigYcX, inv(SigX));
+    asyFm = kron(sigYcX, inv(sigX));
     asyFm = reshape(sqrt(diag(asyFm)), p, r);
     temp = kron(eta * inv(sigYcX) * eta', Omega0) + kron(Omega, inv(Omega0)) + kron(inv(Omega), Omega0) - 2 * kron(eye(u), eye(p - u));
     covMatrix = kron(sigYcX, Gamma * inv(Omega) * Gamma') + kron(eta', Gamma0) * inv(temp) * kron(eta, Gamma0');
