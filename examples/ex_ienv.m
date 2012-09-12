@@ -64,10 +64,10 @@ ModelOutput.ratio % Check the relative efficiency of the inner envelope model ve
 
 % % ans =
 % % 
-% %     1.0049    1.2694
-% %     1.0020    1.0876
-% %     1.0034    1.1634
-% %     1.0004    1.0140
+% %     1.0036    1.2677
+% %     1.0169    1.1038
+% %     0.9938    1.1523
+% %     1.0044    1.0181
     
 
 eig(ModelOutput.Omega1) % Check the eigenvalues of \Omega

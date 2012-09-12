@@ -167,7 +167,7 @@ if u == p
     ModelOutput.l = temp.l;
     ModelOutput.paramNum = temp.paramNum;
     ModelOutput.covMatrix = temp.covMatrix;
-    ModelOutput.asySE = temp.asyEnv;
+    ModelOutput.asySE = temp.asySE;
     ModelOutput.ratio = temp.ratio;
     ModelOutput.n = n;
     
@@ -186,7 +186,7 @@ elseif u == 0
     ModelOutput.alpha = temp.alpha;
     ModelOutput.l = temp.l;
     ModelOutput.covMatrix = temp.covMatrix;
-    ModelOutput.asySE = temp.asyEnv;
+    ModelOutput.asySE = temp.asySE;
     ModelOutput.ratio = temp.ratio;
     ModelOutput.paramNum = temp.paramNum;  
     ModelOutput.n = temp.n;
@@ -252,7 +252,7 @@ else
     
     %-----Compute asymptotic variance for inner envelope model-----
     %-----Standard Model-----
-    asyFm = kron(inv(sigX), Sigma);
+    asyFm = kron(inv(sigX), sigRes);
     asyFm = reshape(sqrt(diag(asyFm)), r, p);
     
     %-----Inner Envelope Model-----
