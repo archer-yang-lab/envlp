@@ -65,10 +65,10 @@ ModelOutput.ratio % Check the relative efficiency of the partial envelope model 
 
 % % ans =
 % % 
-% %    66.0742
-% %     6.9326
-% %    10.5048
-% %     9.6279
+% %    65.9692
+% %     6.8217
+% %    10.4152
+% %     9.6228
     
 
 eig(ModelOutput.Omega) % Check the eigenvalues of \Omega
