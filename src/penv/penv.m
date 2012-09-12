@@ -158,6 +158,8 @@ end
 X1C = center(X1);
 X2C = center(X2);
 YC = center(Y);
+XC = [X1C X2C];
+sigRes = YC' * (eye(n) - XC * inv(XC' * XC) * XC') * YC / n;
 
 SX1 = cov(X1,1);
 SX2 = cov(X2,1);
@@ -195,7 +197,7 @@ if u > 0 && u < r
     
     %---compute asymptotic variance and get the ratios---
     Sig1G2 = SX1 - SX12 * inv(SX2) * SX12';
-    asyFm = kron(inv(Sig1G2), Sigma);
+    asyFm = kron(inv(Sig1G2), sigRes);
     asyFm = reshape(sqrt(diag(asyFm)), r, p1);
     
     temp = kron(eta * Sig1G2 * eta', inv(Omega0)) + kron(Omega, inv(Omega0))...
