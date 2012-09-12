@@ -154,7 +154,7 @@ if u > 0 && u < p
     Sigma = Gamma * Omega * Gamma' + Gamma0 * Omega0 * Gamma0';
 
     %---compute asymptotic variance and get the ratios---
-    asyFm = sqrt(diag(Sigma));
+    asyFm = sqrt(diag(sigY));
     temp = kron(eta * eta', inv(Omega0)) + kron(Omega, inv(Omega0))... 
         + kron(inv(Omega), Omega0) - 2 * kron(eye(u), eye(p - u));  
     covMatrix = Gamma * Omega * Gamma' + kron(eta', Gamma0) * inv(temp) * kron(eta, Gamma0');
