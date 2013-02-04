@@ -411,7 +411,7 @@ inner envelope model, partial envelope model, scaled envelope model and envelope
 \begin{description}
 \item[{env}] Implements the envelope model.  The envelope model is a general tool for efficient estimation in the context of MLR, and it has the potential to achieve substantial efficiency gains when part of the response variables or their linear combination is invariant to the changes of the predictors \citep{cook2010envelope}. 
 \item[{envseq}] Implements the envelope model using sequential algorithm.  This module also implements the envelope model, but uses a sequential computing algorithm.  This algorithm makes the envelope model applicable for small sample size cases \citep{cook2012envelopes}.
-\item[{henv}] Implements the heteroscedastic envelope model. The heteroscedastic envelope model is used when the data has non constant error structure \citep{su2012estimation}.
+\item[{henv}] Implements the heteroscedastic envelope model. The heteroscedastic envelope model is used when the data has non constant error structure \citep{su2013estimation}.
 \item[{ienv}] Implements the inner envelope model. The inner envelope model is also a general tool for efficient estimation in the context of MLR, but has a different mechanism from the envelope model.  Therefore it may provide efficiency gains in the cases when the envelope models fail to offer any gains \citep{su2012inner}. 
 \item[{penv}] Implements the partial envelope model. The partial envelope model can be applied when part of the predictors are of main interest.  It often gives more efficiency gains than the envelope model in estimating the coefficients of the main predictors \citep{su2011partial}.
 \item[{senv}] Implements the scaled envelope model. The scaled envelope model is used when the user hopes to have a scale-invariant version of the envelope model [\citeauthor{cook2012scaled}, 2012].
@@ -1041,7 +1041,7 @@ The usage of \texttt{Opts} will be discussed in details in Chapter \ref{chap_arg
 
 \section{Heteroscedastic Envelope Model\label{sec_hm}}
 
-The heteroscedastic envelope model \citep{su2012estimation} is used
+The heteroscedastic envelope model \citep{su2013estimation} is used
 when the data has non constant error structure, and it is developed
 under the framework of estimating multivariate means for different
 populations. To use the heteroscedastic envelope model, the number
@@ -1073,7 +1073,7 @@ and $u$ is the dimension of $\espc_{\mspc}(\bspc)$.\\
 \\
 To use the heteroscedastic envelope model, first we check if the data
 has heteroscedastic error structure by the Box's M test \citep{johnson2002applied}.
-Using the water strider example \citep{su2012estimation}, the following
+Using the water strider example \citep{su2013estimation}, the following
 codes performs the Box's M test. 
 \begin{Verbatim}[commandchars=\\\{\}]
 load waterstrider.mat         
