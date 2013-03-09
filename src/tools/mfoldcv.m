@@ -17,7 +17,7 @@
 % 
 % *m*: A positive integer that is used to indicate m-fold cross validation.
 % 
-% *modelType*: A string characters indicting the model, choices can be
+% *modelType*: A string of characters indicting the model, choices can be
 % 'envseq' or 'xenvpls'.
 % 
 % *Opts*: A list containing the optional input parameters. If one or
