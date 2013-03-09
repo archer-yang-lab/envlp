@@ -12,7 +12,7 @@
 % 
 % *ModelOutput*: A list containing the model outputs from fitting the models.
 % 
-% *modelType*: A string characters indicting the model, choices can be 'env',
+% *modelType*: A string of characters indicting the model, choices can be 'env',
 % 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
 % 
 % *TestInput*: A list that specifies the null hypothesis, including L, R, and

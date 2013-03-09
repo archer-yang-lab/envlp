@@ -31,7 +31,7 @@
 % 
 % *B*: Number of bootstrap samples.  A positive integer.
 % 
-% *modelType*: A string characters indicting the model, choices can be
+% *modelType*: A string of characters indicting the model, choices can be
 % 'env', 'envseq', 'henv', 'ienv', 'penv', 'senv', 'xenv' and 'xenvpls'.
 %
 % *Opts*: A list containing the optional input parameters, to control the

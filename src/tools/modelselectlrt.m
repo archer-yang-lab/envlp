@@ -30,7 +30,7 @@
 % *alpha*: Significance level for testing.  A real number between 0 and 1,
 % often taken at 0.05 or 0.01.
 % 
-% *modelType*: A string characters indicting the model, choices can be 'env',
+% *modelType*: A string of characters indicting the model, choices can be 'env',
 % 'henv', 'ienv', 'penv' and 'xenv'.
 % 
 % *Opts*: A list containing the optional input parameters, to control the

@@ -21,7 +21,7 @@
 % *infType*: A string of characters indicting the inference type,
 % the choices can be 'estimation' or 'prediction'.
 % 
-% *modelType*: A string characters indicting the model, choices can be 'env',
+% *modelType*: A string of characters indicting the model, choices can be 'env',
 % 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
 %
 %% Output

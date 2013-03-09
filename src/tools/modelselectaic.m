@@ -27,7 +27,7 @@
 % responses and n is number of observations. The responses must be 
 % continuous variables.
 % 
-% *modelType*: A string characters indicting the model, choices can be 'env',
+% *modelType*: A string of characters indicting the model, choices can be 'env',
 % 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
 % 
 % *Opts*: A list containing the optional input parameters, to control the
