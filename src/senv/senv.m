@@ -120,10 +120,10 @@ if n ~= n1
     error('The number of observations in X and Y should be equal!');
 end
 
-if p >= r
-    error(['Number of predictors should be less than number of response!' ...
-        '  Please use ordinary least squares.']);
-end
+% if p >= r
+%     error(['Number of predictors should be less than number of response!' ...
+%         '  Please use ordinary least squares.']);
+% end
 
 u = floor(u);
 if u < 0 || u > r

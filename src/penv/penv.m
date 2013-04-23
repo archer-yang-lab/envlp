@@ -129,9 +129,9 @@ if n ~= n1 || n2 ~= n1
     error('The number of observations in X1, X2 and Y should be equal!');
 end
 
-if p1 >= r
-    error('When the number of responses is less than the number of main predictors, the partial envelope model cannot be applied.');
-end
+% if p1 >= r
+%     error('When the number of responses is less than the number of main predictors, the partial envelope model cannot be applied.');
+% end
 
 u = floor(u);
 if u < 0 || u > r
