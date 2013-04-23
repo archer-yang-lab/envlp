@@ -87,9 +87,9 @@ if n ~= n1
     error('The number of observations in X and Y should be equal!');
 end
 
-if r >= p
-    error('When the number of predictors is less than the number of responses, the envelope model for reduction on X cannot be applied.');
-end
+% if r >= p
+%     error('When the number of predictors is less than the number of responses, the envelope model for reduction on X cannot be applied.');
+% end
 
 u = floor(u);
 if u < 0 || u > p

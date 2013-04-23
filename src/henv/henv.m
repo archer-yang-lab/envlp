@@ -127,10 +127,10 @@ end
 
 p = size(unique(X, 'rows'), 1);
 
-if p > r
-    error(['When the number of responses is less than the number of ' ...
-			'groups, the heteroscedastic envelope model cannot be applied.']);
-end
+% if p > r
+%     error(['When the number of responses is less than the number of ' ...
+% 			'groups, the heteroscedastic envelope model cannot be applied.']);
+% end
 
 u = floor(u);
 if u < 0 || u > r
