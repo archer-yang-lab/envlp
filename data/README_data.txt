@@ -159,7 +159,7 @@ Description:
 
 Usage:
 
-     data(Rohwer)
+     load Rohwer.mat
 
 Format:
 
