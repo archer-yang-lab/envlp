@@ -153,7 +153,7 @@ else
     if (F(Wguess1) < F(Wguess2))
         WInit = Wguess1;
     else
-        Winit = Wguess2;
+        WInit = Wguess2;
     end
     
 end
