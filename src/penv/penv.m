@@ -249,6 +249,7 @@ elseif u==0
     beta2 = temp.betaOLS;
     Sigma = temp.SigmaOLS;
     eigtem = eig(Sigma);
+    tempasy = kron(inv(SX2), Sigma);
     
     ModelOutput.beta1 = zeros(r, p1);
     ModelOutput.beta2 = beta2;
@@ -260,7 +261,7 @@ elseif u==0
     ModelOutput.Omega0 = Sigma;
     ModelOutput.alpha = mean(Y)' - beta2 * mean(X2)';
     ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
-    ModelOutput.covMatrix = [];
+    ModelOutput.covMatrix = tempasy;
     ModelOutput.asySE = [];
     ModelOutput.ratio = ones(r, p1);
     ModelOutput.paramNum = r + u * p1 + r * p2 + r * (r + 1) / 2;
