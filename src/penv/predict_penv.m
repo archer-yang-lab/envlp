@@ -83,14 +83,16 @@ if u == 0
     
     if strcmp(infType, 'estimation')
         
-        PredictOutput.value = ModelOutput.alpha;
-        PredictOutput.covMatrix = ModelOutput.Sigma / n;
+        PredictOutput.value = ModelOutput.alpha + ModelOutput.beta2 * Xnew.X2;
+        PredictOutput.covMatrix = ModelOutput.Sigma / n ...
+            + kron(Xnew.X2', eye(r)) * ModelOutput.covMatrix * kron(Xnew.X2, eye(r)) / n;
         PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
         
     elseif strcmp(infType, 'prediction')
         
-        PredictOutput.value = ModelOutput.alpha;
-        PredictOutput.covMatrix = (1 + 1 / n) * ModelOutput.Sigma;
+        PredictOutput.value = ModelOutput.alpha + ModelOutput.beta2 * Xnew.X2;
+        PredictOutput.covMatrix = (1 + 1 / n) * ModelOutput.Sigma ...
+            + kron(Xnew.X2', eye(r)) * ModelOutput.covMatrix * kron(Xnew.X2, eye(r)) / n;
         PredictOutput.SE = sqrt(diag(PredictOutput.covMatrix));
         
     end
