@@ -129,10 +129,6 @@ if n ~= n1 || n2 ~= n1
     error('The number of observations in X1, X2 and Y should be equal!');
 end
 
-% if p1 >= r
-%     error('When the number of responses is less than the number of main predictors, the partial envelope model cannot be applied.');
-% end
-
 u = floor(u);
 if u < 0 || u > r
     error('u should be an integer between [0, r]!');
@@ -272,6 +268,7 @@ elseif u==0
 
 elseif u == r
     
+    p = p1 + p2;
     X = [X1 X2];
     temp = fit_OLS(X, Y);
     beta = temp.betaOLS;
@@ -293,7 +290,7 @@ elseif u == r
     ModelOutput.Omega0 = [];
     ModelOutput.alpha = mean(Y)' - beta * mean(X)';
     ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
-    ModelOutput.covMatrix = covMatrix;
+    ModelOutput.covMatrix = tempasy(1: r * p, 1 : r * p);
     ModelOutput.asySE = asyFm;
     ModelOutput.ratio = ones(r, p1);
     ModelOutput.paramNum = r + u * p1 + r * p2 + r * (r + 1) / 2;
