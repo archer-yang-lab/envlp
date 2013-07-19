@@ -276,9 +276,13 @@ elseif u == r
     eigtem = eig(Sigma);
     sigX = cov(X, 1);
     tempasy = kron(inv(sigX), Sigma);
-    covMatrix = tempasy(1: r * p1, 1 : r * p1);
+    covMatrix = tempasy(1 : r * p1, 1 : r * p1);
     asyFm = reshape(sqrt(diag(covMatrix)), r, p1);
-    
+    covMatrix = zeros(r * p, r * p);
+    covMatrix(1 : r * p2, 1 : r * p2) = tempasy(1 + r * p1 : r * p, 1 + r * p1 : r * p);
+    covMatrix(1 + r * p2 : end, 1 + r * p2 : end) = tempasy(1 : r * p1, 1 : r * p1);
+    covMatrix(1 : r * p2, 1 + r * p2 : end) = tempasy(1 + r * p1 : r * p, 1 : r * p1);
+    covMatrix(1 + r * p2 : end, 1 : r * p2) = covMatrix(1 : r * p2, 1 + r * p2 : end)';
     
     ModelOutput.beta1 = beta(:, 1 : p1);
     ModelOutput.beta2 = beta(:, p1 + 1 : end);
@@ -290,7 +294,7 @@ elseif u == r
     ModelOutput.Omega0 = [];
     ModelOutput.alpha = mean(Y)' - beta * mean(X)';
     ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
-    ModelOutput.covMatrix = tempasy(1: r * p, 1 : r * p);
+    ModelOutput.covMatrix = covMatrix;
     ModelOutput.asySE = asyFm;
     ModelOutput.ratio = ones(r, p1);
     ModelOutput.paramNum = r + u * p1 + r * p2 + r * (r + 1) / 2;
