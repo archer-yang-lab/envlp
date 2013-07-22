@@ -90,21 +90,21 @@ Format:
 
 Value:
 
-     Column 1: Arithmetic fiber length.
+     Column 1: Breaking length.
 
-     Column 2: Long fiber fraction.
+     Column 2: Elastic modulus.
 
-     Column 3: Fine fiber fraction.
+     Column 3: Stress at failure.
 
-     Column 4: Zero span tensile.
+     Column 4: Burst strength.
 
-     Column 5: Breaking length.
+     Column 5: Arithmetic fiber length.
 
-     Column 6: Elastic modulus.
+     Column 6: Long fiber fraction.
 
-     Column 7: Stress at failure.
+     Column 7: Fine fiber fraction.
 
-     Column 8: Burst strength.
+     Column 8: Zero span tensile.
 
 References:
 
