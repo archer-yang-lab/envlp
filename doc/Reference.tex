@@ -347,7 +347,7 @@ Select the dimension for the envelope family using m-fold cross validation.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -2683,7 +2683,7 @@ Compute bootstrap standard errors of the envelope model using a sequential algor
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -2892,7 +2892,7 @@ Select the dimension of the envelope subspace using m-fold cross validation for 
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag for print out dimension seletion process, logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -4963,7 +4963,7 @@ Fit the partial envelope model.
    \item X.X2: Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.
 \end{itemize}
 \begin{par}
-\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p1.
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{u}: Dimension of the partial envelope. An integer between 0 and r.
@@ -6774,7 +6774,7 @@ Fit the envelope model for the reduction on X.
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The predictors must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
