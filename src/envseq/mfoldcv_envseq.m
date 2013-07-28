@@ -22,7 +22,7 @@
 % *Opts*: A list containing the optional input parameters. If one or
 % several (even all) fields are not defined, the default settings are used.
 % 
-% * Opts.verbose: Flag for print out the number of bootstrap samples, 
+% * Opts.verbose: Flag for print out dimension seletion process, 
 % logical 0 or 1. Default value: 0.
 
 %% Output
