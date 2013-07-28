@@ -36,7 +36,7 @@
 % of the envelope space, based on prediction performance.  For each u, the
 % data is partitioned into m parts, each part is in turn used for testing 
 % for the prediction performance while the rest m-1 parts are used for 
-% training.  The dimension is select as the one that minimizes the average 
+% training.  The dimension is selected as the one that minimizes the average 
 % prediction errors. If Y is multivariate, the identity inner product is 
 % used for computing the prediction errors.
 
