@@ -13,9 +13,7 @@
 % number of observations. 
 % 
 % *Y*: Responses. An n by r matrix, r is the number of
-% responses. The 
-% number of the responses should be greater than the number of the predictors.
-% And they must be continuous variables.  
+% responses. The responses must be continuous variables.  
 %
 % *m*: A positive integer that is used to indicate m-fold cross validation.
 % 
