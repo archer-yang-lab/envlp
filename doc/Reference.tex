@@ -331,8 +331,20 @@ Select the dimension for the envelope family using m-fold cross validation.
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Predictors.  The predictors can be univariate or multivariate, discrete or continuous.
+\textbf{X}: Predictors.   The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
+\begin{par}
+For model type 'env', 'envseq', 'henv', 'ienv', ' senv', 'xenv' and 'xenvpls', X is an n by p matrix, p is the number of predictors.
+\end{par} \vspace{1em}
+\begin{par}
+For model type 'penv', X is  A list containing the value of X1 and X2.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item X.X1 (only for 'penv'): Predictors of main interest. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
+   \item X.X2 (only for 'penv'): Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.
+\end{itemize}
+\vspace{1em}
 \begin{par}
 \textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
 \end{par} \vspace{1em}
@@ -340,7 +352,7 @@ Select the dimension for the envelope family using m-fold cross validation.
 \textbf{m}: A positive integer that is used to indicate m-fold cross validation.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{modelType}: A string of characters indicting the model, choices can be 'envpls' or 'xenvpls'.
+\textbf{modelType}: A string of characters indicting the model, choices can be 'env', 'envseq', 'henv', 'ienv', 'penv', 'senv', 'xenv' or 'xenvpls'.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
@@ -416,7 +428,7 @@ Select the dimension for the envelope family using Akaike information criteria.
 \textbf{X}: Predictors.   The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-For model type for method 'env', 'henv', 'ienv', ' senv', and 'xenv'. X is an n by p matrix, p is the number of predictors.
+For model type 'env', 'henv', 'ienv', ' senv', and 'xenv', X is an n by p matrix, p is the number of predictors.
 \end{par} \vspace{1em}
 \begin{par}
 For model type 'penv', X is  A list containing the value of X1 and X2.
@@ -524,7 +536,7 @@ Select the dimension for the envelope family using Bayesian information criteria
 \textbf{X}: Predictors.  The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-For model type for method 'env', 'henv', 'ienv', ' senv', and 'xenv'. X is an n by p matrix, p is the number of predictors.
+For model type 'env', 'henv', 'ienv', ' senv', and 'xenv', X is an n by p matrix, p is the number of predictors.
 \end{par} \vspace{1em}
 \begin{par}
 For model type 'penv', X is  A list containing the value of X1 and X2.
@@ -635,7 +647,7 @@ Select the dimension for the envelope family using likelihood ratio testing proc
 \textbf{X}: Predictors.   The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-For model type for method 'env', 'henv', 'ienv', and 'xenv'. X is an n by p matrix, p is the number of predictors.
+For model type 'env', 'henv', 'ienv', and 'xenv', X is an n by p matrix, p is the number of predictors.
 \end{par} \vspace{1em}
 \begin{par}
 For model type 'penv', X is  A list containing the value of X1 and X2.
@@ -1333,7 +1345,7 @@ Fit the envelope model.
 \textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{u}: Dimension of the envelope. An integer between 0 and r.
@@ -1611,6 +1623,86 @@ u =
 \end{verbatim} \rmfamily
 \color{black}
     
+\newpage
+
+\rmfamily
+\color{black}
+\section{mfoldcv\_env}
+
+\begin{par}
+Select the dimension of the envelope subspace using m-fold cross validation.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = mfoldcv_env(X, Y, m)
+       u = mfoldcv_env(X, Y, m, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{m}: A positive integer that is used to indicate m-fold cross validation.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+
+\begin{par}
+\textbf{u}: The dimension of the envelope subspace selected by m-fold cross validation.  An integer between 0 and r.
+\end{par} \vspace{1em}
+    
+
+\subsection*{Description}
+
+\begin{par}
+This function implements m-fold cross validation to select the dimension of the envelope space, based on prediction performance.  For each u, the data is partitioned into m parts, each part is in turn used for testing for the prediction performance while the rest m-1 parts are used for training.  The dimension is selected as the one that minimizes the average prediction errors. As Y is multivariate, the identity inner product is used for computing the prediction errors.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 8);
+       Y = wheatprotein(:, 1 : 6);
+       u = mfoldcv_env(X, Y, 5)\end{verbatim}
+    
+        \color{lightgray} \ttfamily\begin{verbatim}
+u =
+
+     1
+
+\end{verbatim} \rmfamily\color{black}
+
+
 \newpage
 
 
@@ -2428,15 +2520,89 @@ This function implements the likelihood ratio testing procedure to select the di
        alpha = 0.01;
        u = lrt_envmean(Y, alpha)\end{verbatim}
     
-        \color{lightgray} \begin{verbatim}
+        \color{lightgray} \ttfamily\begin{verbatim}
 u =
 
      2
 
-\end{verbatim} \color{black}
+\end{verbatim}\rmfamily \color{black}
 
 \newpage
+\rmfamily
+\color{black}\section{mfoldcv\_meanenv}
 
+\begin{par}
+Select the dimension of the envelope subspace using m-fold cross validation.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = mfoldcv_meanenv(Y, m)
+       u = mfoldcv_meanenv(Y, m, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{Y}: Data matrix. An n by p matrix, p is the dimension of the variable and n is number of observations.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{m}: A positive integer that is used to indicate m-fold cross validation.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: The dimension of the envelope subspace selected by m-fold cross validation.  An integer between 0 and p.
+\end{par} \vspace{1em}
+    
+
+\subsection*{Description}
+
+\begin{par}
+This function implements m-fold cross validation to select the dimension of the envelope space, based on prediction performance.  For each u, the data is partitioned into m parts, each part is in turn used for testing for the prediction performance while the rest m-1 parts are used for training.  The dimension is selected as the one that minimizes the average prediction errors. As Y is multivariate, the identity inner product is used for computing the prediction errors.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load Adopted
+       Y = Adopted(:, 1 : 6);
+       u = mfoldcv_envmean(Y, 5)\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}
+u =
+
+     1
+
+\end{verbatim}\rmfamily \color{black}
+
+
+
+
+\newpage
 \rmfamily
 \color{black}\section{predict\_envmean}
 
@@ -2907,7 +3073,7 @@ validation.\end{verbatim}
 \subsection*{Description}
 
 \begin{par}
-This function implements m-fold cross validation to select the dimension of the envelope space, based on prediction performance.  For each u, the data is partitioned into m parts, each part is in turn used for testing for the prediction performance while the rest m-1 parts are used for training.  The dimension is selected as the one that minimizes the average prediction errors. If Y is multivariate, the identity inner product is used for computing the prediction errors.
+This function implements m-fold cross validation to select the dimension of the envelope space, based on prediction performance.  For each u, the data is partitioned into m parts, each part is in turn used for testing for the prediction performance while the rest m-1 parts are used for training.  The dimension is selected as the one that minimizes the average prediction errors. As Y is multivariate, the identity inner product is used for computing the prediction errors.
 \end{par} \vspace{1em}
 
 
@@ -2964,7 +3130,7 @@ Select the dimension of the envelope subspace using Akaike information criterion
 \textbf{X}: Group indicators. A matrix with n rows.  X can only have p unique  rows, where p is the number of groups. For example, if there are two groups, X can only have 2 different kinds of rows, such as (0, 1) and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not restricted, as long as X only has p unique rows.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be greater than p.
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
@@ -3039,7 +3205,7 @@ Select the dimension of the envelope subspace using Bayesian information criteri
 \textbf{X}: Group indicators. A matrix with n rows.  X can only have p unique  rows, where p is the number of groups. For example, if there are two groups, X can only have 2 different kinds of rows, such as (0, 1) and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not restricted, as long as X only has p unique rows.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be greater than p.
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
@@ -3115,7 +3281,7 @@ Compute bootstrap standard error for the heteroscedastic envelope model.
 \textbf{X}: Group indicators. A matrix with n rows.  X can only have p unique  rows, where p is the number of groups. For example, if there are two groups, X can only have 2 different kinds of rows, such as (0, 1) and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not restricted, as long as X only has p unique rows.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be greater than p.
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{u}: Dimension of the envelope subspace.  A positive integer between 0 and r.
@@ -3316,7 +3482,7 @@ Fit the heteroscedastic envelope model.
 \textbf{X}: Group indicators. A matrix with n rows.  X can only have p unique  rows, where p is the number of groups. For example, if there are two groups, X can only have 2 different kinds of rows, such as (0, 1) and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not restricted, as long as X only has p unique rows.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be greater than p.
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{u}: Dimension of the envelope. An integer between 0 and r.
@@ -3465,7 +3631,7 @@ Select the dimension of the envelope subspace using likelihood ratio testing for
 \textbf{X}: Group indicators. A matrix with n rows.  X can only have p unique  rows, where p is the number of groups. For example, if there are two groups, X can only have 2 different kinds of rows, such as (0, 1) and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not restricted, as long as X only has p unique rows.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be greater than p.
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{alpha}: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
@@ -3509,6 +3675,85 @@ u =
 
 \end{verbatim} \rmfamily
 \color{black}
+
+\newpage
+\rmfamily
+\color{black}\section{mfoldcv\_henv}
+
+\begin{par}
+Use m-fold cross validation to select the dimension of the envelope subspace for heteroscedastic envelope model.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = mfoldcv_henv(X, Y, m)
+       u = mfoldcv_Henv(X, Y, m, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Group indicators. A matrix with n rows.  X can only have p unique  rows, where p is the number of groups. For example, if there are two groups, X can only have 2 different kinds of rows, such as (0, 1) and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not restricted, as long as X only has p unique rows.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{m}: A positive integer that is used to indicate m-fold cross validation.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
+    
+
+\subsection*{Description}
+
+\begin{par}
+This function implements m-fold cross validation to select the dimension of the envelope space, based on prediction performance.  For each u, the data is partitioned into m parts, each part is in turn used for testing for the prediction performance while the rest m-1 parts are used for training.  The dimension is selected as the one that minimizes the average prediction errors. As Y is multivariate, the identity inner product is used for computing the prediction errors.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load waterstrider.mat
+       u = mfoldcv_henv(X, Y, 5)\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}
+u =
+
+     2
+
+\end{verbatim} \rmfamily\color{black}
+ 
+
+
+
 
 \newpage
 
@@ -4353,6 +4598,84 @@ u =
 \newpage
 
 \rmfamily
+\color{black}\section{mfoldcv\_ienv}
+
+\begin{par}
+Select the dimension of the inner envelope subspace using m-fold cross validation.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = mfoldcv_ienv(X, Y, m)
+       u = mfoldcv_ienv(X, Y, m, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The number of the responses should be greater than the number of the predictors. And they must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{m}: A positive integer that is used to indicate m-fold cross validation.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+
+\begin{par}
+\textbf{u}: The dimension of the inner envelope subspace selected by m-fold cross validation.  An integer between 0 and p or equal to r.
+\end{par} \vspace{1em}
+    
+
+\subsection*{Description}
+
+\begin{par}
+This function implements m-fold cross validation to select the dimension of the inner envelope space, based on prediction performance.  For each u, the data is partitioned into m parts, each part is in turn used for testing for the prediction performance while the rest m-1 parts are used for training.  The dimension is selected as the one that minimizes the average prediction errors. As Y is multivariate, the identity inner product is used for computing the prediction errors.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load irisf.mat
+       u = mfoldcv_ienv(X, Y, 5)\end{verbatim}
+    
+        \color{lightgray} \ttfamily\begin{verbatim}
+
+u =
+
+     0
+
+\end{verbatim} \rmfamily\color{black}
+
+
+\newpage
+
+\rmfamily
 \color{black}\section{predict\_ienv}
 
 \begin{par}
@@ -4921,6 +5244,94 @@ u =
 
 \end{verbatim} \rmfamily
 \color{black}
+
+
+\newpage
+
+\rmfamily
+\color{black}\section{mfoldcv\_penv}
+
+\begin{par}
+Select the dimension of the partial envelope subspace using m-fold cross validation.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = mfoldcv_penv(X, Y, m)
+       u = mfoldcv_penv(X, Y, m, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: A list containing the value of X1 and X2.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item X.X1: Predictors of main interest. An n by p1 matrix, n is the number of observations, and p1 is the number of main predictors. The predictors can be univariate or multivariate, discrete or continuous.
+   \item X.X2: Covariates, or predictors not of main interest.  An n by p2 matrix, p2 is the number of covariates.
+\end{itemize}
+\begin{par}
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{m}: A positive integer that is used to indicate m-fold cross validation.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+
+\begin{par}
+\textbf{u}: The dimension of the partial envelope subspace selected by m-fold cross validation. An integer between 0 and r.    
+\end{par} \vspace{1em}
+
+\subsection*{Description}
+
+\begin{par}
+This function implements m-fold cross validation to select the dimension of the partial envelope space, based on prediction performance.  For each u, the data is partitioned into m parts, each part is in turn used for testing for the prediction performance while the rest m-1 parts are used for training.  The dimension is selected as the one that minimizes the average prediction errors. As Y is multivariate, the identity inner product is used for computing the prediction errors.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       X.X1 = fiberpaper(:, 7);
+       X.X2 = fiberpaper(:, 5 : 6);
+       u = mfoldcv_penv(X, Y, 5)\end{verbatim}
+    
+        \color{lightgray} \ttfamily\begin{verbatim}
+u =
+
+     0
+
+\end{verbatim} \rmfamily\color{black}
+
+
+
+
 
 
 \newpage
@@ -5669,6 +6080,84 @@ Objective function for computing the envelope subspace in scaled envelope model.
 The objective function is derived in Section 4.1 in Cook and Su (2012) using maximum likelihood estimation. The columns of the semi-orthogonal matrix that minimizes this function span the estimated envelope subspace.
 \end{par} \vspace{1em}
 
+\newpage
+
+\rmfamily
+\color{black}\section{mfoldcv\_senv}
+
+\begin{par}
+Select the dimension of the scaled envelope subspace using m-fold cross validation.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = mfoldcv_senv(X, Y, m)
+       u = mfoldcv_senv(X, Y, m, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The number of the responses should be greater than the number of the predictors. And they must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{m}: A positive integer that is used to indicate m-fold cross validation.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: The dimension of the scaled envelope subspace selected by m-fold cross validation. An integer between 0 and r.
+\end{par} \vspace{1em}
+    
+
+\subsection*{Description}
+
+\begin{par}
+This function implements m-fold cross validation to select the dimension of the scaled envelope space, based on prediction performance.  For each u, the data is partitioned into m parts, each part is in turn used for testing for the prediction performance while the rest m-1 parts are used for training.  The dimension is selected as the one that minimizes the average prediction errors. As Y is multivariate, the identity inner product is used for computing the prediction errors.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load('sales.txt')
+       Y = sales(:, 4 : 7);
+       X = sales(:, 1 : 3);
+       u = mfoldcv_senv(X, Y, 5)\end{verbatim}
+    
+        \color{lightgray} \ttfamily\begin{verbatim}
+u =
+
+     2
+
+\end{verbatim}\rmfamily \color{black}
+
+
 
 \newpage
 
@@ -6128,7 +6617,7 @@ Use Akaike information criterion to select the dimension of the envelope subspac
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The predictors must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
@@ -6206,7 +6695,7 @@ Use Bayesian information criterion to select the dimension of the envelope subsp
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The predictors must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
@@ -6284,7 +6773,7 @@ Compute bootstrap standard error of the envelope model for the reduction on X.
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The predictors must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
@@ -6481,7 +6970,7 @@ Use likelihood ratio testing to select the dimension of the envelope subspace fo
 \subsection*{Input}
 
 \begin{par}
-\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The number of predictors should be greater than the number of the responses. And they must be continuous variables.
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations. The predictors must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
@@ -6532,6 +7021,82 @@ u =
 \end{verbatim} \rmfamily
 \color{black}
     
+\newpage
+
+\rmfamily
+\color{black}\section{mfoldcv\_xenv}
+
+\begin{par}
+Use m-fold cross validation to select the dimension of the envelope subspace for the reduction on X.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = mfoldcv_xenv(X, Y, m)
+       u = mfoldcv_xenv(X, Y, m, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations.  The predictors must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{m}: A positive integer that is used to indicate m-fold cross validation.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: The dimension of the envelope subspace selected by m-fold cross validation.   An integer between 0 and p.
+\end{par} \vspace{1em}
+    
+
+\subsection*{Description}
+
+\begin{par}
+This function implements m-fold cross validation to select the dimension of the envelope space, based on prediction performance.  For each u, the data is partitioned into m parts, each part is in turn used for testing for the prediction performance while the rest m-1 parts are used for training.  The dimension is selected as the one that minimizes the average prediction errors. If Y is multivariate, the identity inner product is used for computing the prediction errors.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load wheatprotein.txt
+       X = wheatprotein(:, 1 : 6);
+       Y = wheatprotein(:, 7);
+       u = mfoldcv_xenv(X, Y, 5)\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}
+u =
+
+     4
+
+\end{verbatim} \rmfamily\color{black}
 
 \newpage
 
@@ -8100,7 +8665,7 @@ Perform Box's M test to check the homogeneity of the covariance matrices.
 \textbf{X}: Group indicators. A matrix with n rows.  X can only have p unique  rows, where p is the number of groups. For example, if there are two groups, X can only have 2 different kinds of rows, such as (0, 1) and (1, 0), or (1, 0, 10) and (0, 5, 6).  The number of columns is not restricted, as long as X only has p unique rows.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be greater than p.
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{alpha}: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
