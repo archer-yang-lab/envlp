@@ -17,7 +17,7 @@
 %
 % *Y*: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
-% continuous variables, and r should be strictly greater than p1.
+% continuous variables.
 %
 % *u*: Dimension of the partial envelope. An integer between 0 and r.
 %
