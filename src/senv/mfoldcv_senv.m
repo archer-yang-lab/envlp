@@ -22,6 +22,14 @@
 % 
 % * Opts.verbose: Flag for print out dimension selection process, 
 % logical 0 or 1. Default value: 0.
+% * Opts.rep: Number of replicates for scales. This option imposes special 
+% structure on scaling parameters. For example, if Opts.rep = [3 4], this 
+% means that the first three responses have the same scale and the next 
+% four responses share a different scale. The elements of this vector should 
+% sum to r. If not specified, the default is [], then all responses will be
+% scaled differently. If all responses have the same scale, input [r], then 
+% the regular envelope will be applied to the data.
+% The input should be a row vector.
 
 %% Output
 % 

@@ -29,10 +29,12 @@ function f = objfun(d, Gamma, DataParameter)
 n = DataParameter.n;
 sigY = DataParameter.sigY;
 sigRes = DataParameter.sigRes;
+rep = DataParameter.rep;
 
 
-
-    Lambda = diag([1 d]);
+    C = arrayfun(@(x, y) repmat(x, [1 y]), [1 d], rep, 'UniformOutput', false);
+    Ld = cell2mat(C);
+    Lambda = diag(Ld);
     eigtem = eig(Gamma' * Lambda * inv(sigY) * Lambda * Gamma);
     a = log(prod(eigtem(eigtem > 0))); 
     eigtem2 = eig(Gamma' * inv(Lambda) * sigRes * inv(Lambda) * Gamma);
