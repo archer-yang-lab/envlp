@@ -8,9 +8,7 @@
 %% Input
 %
 % *X*: Predictors. An n by p matrix, p is the number of predictors and n is
-% number of observations. The 
-% number of predictors should be greater than the number of the responses.
-% And they must be continuous variables.
+% number of observations. The predictors must be continuous variables.
 % 
 % *Y*: Responses. An n by r matrix, r is the number of
 % responses. The response can be univariate or multivariate and must be

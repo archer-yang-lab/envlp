@@ -17,7 +17,7 @@
 %
 % *Y*: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
-% continuous variables, and r should be strictly greater than p1.
+% continuous variables.
 %
 % *u*: Dimension of the partial envelope. An integer between 0 and r.
 %
@@ -128,10 +128,6 @@ X2 = X.X2;
 if n ~= n1 || n2 ~= n1
     error('The number of observations in X1, X2 and Y should be equal!');
 end
-
-% if p1 >= r
-%     error('When the number of responses is less than the number of main predictors, the partial envelope model cannot be applied.');
-% end
 
 u = floor(u);
 if u < 0 || u > r
@@ -253,6 +249,7 @@ elseif u==0
     beta2 = temp.betaOLS;
     Sigma = temp.SigmaOLS;
     eigtem = eig(Sigma);
+    tempasy = kron(inv(SX2), Sigma);
     
     ModelOutput.beta1 = zeros(r, p1);
     ModelOutput.beta2 = beta2;
@@ -264,7 +261,7 @@ elseif u==0
     ModelOutput.Omega0 = Sigma;
     ModelOutput.alpha = mean(Y)' - beta2 * mean(X2)';
     ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
-    ModelOutput.covMatrix = [];
+    ModelOutput.covMatrix = tempasy;
     ModelOutput.asySE = [];
     ModelOutput.ratio = ones(r, p1);
     ModelOutput.paramNum = r + u * p1 + r * p2 + r * (r + 1) / 2;
@@ -272,6 +269,7 @@ elseif u==0
 
 elseif u == r
     
+    p = p1 + p2;
     X = [X1 X2];
     temp = fit_OLS(X, Y);
     beta = temp.betaOLS;
@@ -279,9 +277,13 @@ elseif u == r
     eigtem = eig(Sigma);
     sigX = cov(X, 1);
     tempasy = kron(inv(sigX), Sigma);
-    covMatrix = tempasy(1: r * p1, 1 : r * p1);
+    covMatrix = tempasy(1 : r * p1, 1 : r * p1);
     asyFm = reshape(sqrt(diag(covMatrix)), r, p1);
-    
+    covMatrix = zeros(r * p, r * p);
+    covMatrix(1 : r * p2, 1 : r * p2) = tempasy(1 + r * p1 : r * p, 1 + r * p1 : r * p);
+    covMatrix(1 + r * p2 : end, 1 + r * p2 : end) = tempasy(1 : r * p1, 1 : r * p1);
+    covMatrix(1 : r * p2, 1 + r * p2 : end) = tempasy(1 + r * p1 : r * p, 1 : r * p1);
+    covMatrix(1 + r * p2 : end, 1 : r * p2) = covMatrix(1 : r * p2, 1 + r * p2 : end)';
     
     ModelOutput.beta1 = beta(:, 1 : p1);
     ModelOutput.beta2 = beta(:, p1 + 1 : end);

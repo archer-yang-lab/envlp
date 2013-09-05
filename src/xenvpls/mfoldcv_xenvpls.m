@@ -10,9 +10,7 @@
 %% Input
 %
 % *X*: Predictors. An n by p matrix, p is the number of predictors and n is
-% number of observations. The 
-% number of predictors should be greater than the number of the responses.
-% And they must be continuous variables.
+% number of observations. The predictors must be continuous variables.
 % 
 % *Y*: Responses. An n by r matrix, r is the number of
 % responses. The response can be univariate or multivariate and must be
@@ -23,7 +21,7 @@
 % *Opts*: A list containing the optional input parameters. If one or
 % several (even all) fields are not defined, the default settings are used.
 % 
-% * Opts.verbose: Flag for print out the number of bootstrap samples, 
+% * Opts.verbose: Flag for print out dimension seletion process, 
 % logical 0 or 1. Default value: 0.
 
 %% Output
@@ -36,7 +34,7 @@
 % of the envelope space, based on prediction performance.  For each u, the
 % data is partitioned into m parts, each part is in turn used for testing 
 % for the prediction performance while the rest m-1 parts are used for 
-% training.  The dimension is select as the one that minimizes the average 
+% training.  The dimension is selected as the one that minimizes the average 
 % prediction errors. If Y is multivariate, the identity inner product is 
 % used for computing the prediction errors.
 
