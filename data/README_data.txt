@@ -8,9 +8,10 @@ There are eight datasets included in this folder:
 3.	irisf.mat
 4.	Rohwer.mat
 5.	sales.txt
-6.	VocabGrowth.mat
-7.	waterstrider.mat
-8.	wheatprotein.txt
+6.     Urine.txt
+7.     VocabGrowth.mat
+8.     waterstrider.mat
+9.     wheatprotein.txt
 
 ===================================================================
 
@@ -90,21 +91,21 @@ Format:
 
 Value:
 
-     Column 1: Arithmetic fiber length.
+     Column 1: Breaking length.
 
-     Column 2: Long fiber fraction.
+     Column 2: Elastic modulus.
 
-     Column 3: Fine fiber fraction.
+     Column 3: Stress at failure.
 
-     Column 4: Zero span tensile.
+     Column 4: Burst strength.
 
-     Column 5: Breaking length.
+     Column 5: Arithmetic fiber length.
 
-     Column 6: Elastic modulus.
+     Column 6: Long fiber fraction.
 
-     Column 7: Stress at failure.
+     Column 7: Fine fiber fraction.
 
-     Column 8: Burst strength.
+     Column 8: Zero span tensile.
 
 References:
 
@@ -245,7 +246,61 @@ References:
 
 ===================================================================
 
-6.	Vocabulary growth data
+6.	Urine data
+
+Description:
+
+     Urine samples were taken on men in four weight categories.
+
+Usage:
+
+     load Urine.txt
+     
+Format:
+
+     A matrix with 45 observations on 16 variables.
+
+Value:
+
+     Column 1: pH.
+
+     Column 2: Modified creatinine coefficient.
+
+     Column 3: Pigment creatinine.
+
+     Column 4: Phosphate (mg/ml).
+
+     Column 5: Calcium (mg/ml).
+
+     Column 6: Phosphorus (mg/ml).
+
+     Column 7: Creatinine (mg/ml).
+
+     Column 8: Chloride (mg/ml).
+
+     Column 9: Boron (ug/ml).
+
+     Column 10: Choline (ug/ml).
+
+     Column 11: Copper (ug/ml).
+
+     Column 12: Group indicator, takes 1 if group 1, takes 0 otherwise.
+
+     Column 13: Group indicator, takes 1 if group 2, takes 0 otherwise.
+
+     Column 14: Group indicator, takes 1 if group 3, takes 0 otherwise.
+
+     Column 15: Volume (ml).
+
+     Column 16: (specific gravity - 1) * 10^3.
+
+References:
+
+     Seber, A.F. (2004). Multivariate Observations.
+
+===================================================================
+
+7.	Vocabulary growth data
 
 Description:
 
@@ -280,7 +335,7 @@ References:
 
 ===================================================================
 
-7.	Water strider data
+8.	Water strider data
 
 Description:
 
@@ -339,7 +394,7 @@ References:
 
 ===================================================================
 
-8.	The protein content of ground wheat samples.
+9.	The protein content of ground wheat samples.
 
 Description:
 

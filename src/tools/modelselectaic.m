@@ -11,9 +11,9 @@
 % *X*: Predictors.   The predictors can be univariate or multivariate, 
 % discrete or continuous.  
 % 
-% For model type for method 'env', 'henv', 'ienv',
-% ' senv', and 'xenv'. X is an n by p matrix, p is the number of
-% predictors. 
+% For model type 'env', 'henv', 'ienv', 
+% and 'xenv', X is an n by p matrix, p is the number of
+% predictors.
 % 
 % For model type 'penv', X is  A list containing the value of X1 and X2.
 % 
