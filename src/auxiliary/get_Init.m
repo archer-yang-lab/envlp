@@ -85,27 +85,6 @@ if crit <= 50
     sigini = (YC - XC * bini')' * (YC - XC * bini') / n;
         
 
-    m = 1;
-    while (m * p < u)
-        m = m + 1;
-    end
-    m = m + 2;
-    spini = zeros(r, m * p);
-    for i = 1 : m
-        spini(:, (i - 1) * p + 1 : i * p) = sigini ^ (i - 1) * bini;
-    end
-    rk = min(m * p, r);
-    
-    [Ul S V] = svd(spini);
-    [Ss In] = sort(diag(S(1 : rk, 1 : rk)), 'descend');
-    Wguess2=Ul(:, 1 : u);
-    
-    if (F(Wguess1) < F(Wguess2))
-        WInit = Wguess1;
-    else 
-        WInit = Wguess2;
-    end
-
 else
     
     initset = zeros(1, u + 1);
@@ -133,28 +112,26 @@ else
     Wguess1 = V(:, initset(1 : u));
     bini = Wguess1 * pinv(Wguess1' * Wguess1) * Wguess1' * betaOLS;
     sigini = (YC - XC * bini')' * (YC - XC * bini') / n;
-        
-
-    m = 1;
-    while (m * p < u)
-        m = m + 1;
-    end
-    m = m + 2;
-    spini = zeros(r, m * p);
-    for i = 1 : m
-        spini(:, (i - 1) * p + 1 : i * p) = sigini ^ (i - 1) * bini;
-    end
-    rk = min(m * p, r);
-    
-    [Ul S V] = svd(spini);
-    [Ss In] = sort(diag(S(1 : rk, 1 : rk)), 'descend');
-    Wguess2 = Ul(:, 1 : u);
-    
-    if (F(Wguess1) < F(Wguess2))
-        WInit = Wguess1;
-    else
-        WInit = Wguess2;
-    end
     
 end
 
+m = 1;
+while (m * p < u)
+    m = m + 1;
+end
+m = m + 2;
+spini = zeros(r, m * p);
+for i = 1 : m
+    spini(:, (i - 1) * p + 1 : i * p) = sigini ^ (i - 1) * bini;
+end
+rk = min(m * p, r);
+
+[Ul S V] = svd(spini);
+[Ss In] = sort(diag(S(1 : rk, 1 : rk)), 'descend');
+Wguess2 = Ul(:, 1 : u);
+
+if (F(Wguess1) < F(Wguess2))
+    WInit = Wguess1;
+else
+    WInit = Wguess2;
+end
