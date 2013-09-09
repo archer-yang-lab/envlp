@@ -50,15 +50,27 @@ function [fn,Yn]= sg_prcg(F,dF,Y)
                 dr = dr-alpha*olddr;
             else reset=0; end
 
-            gdr = ip(Y,dr,-g); dr = dr*sign(gdr); gdr = abs(gdr);
-            Hessdr = dgrad(dF,Y,dr); drHdr = ip(Y,dr,Hessdr);
+            gdr = ip(Y,dr,-g); 
+
+            dr = dr*sign(gdr);
+            gdr = abs(gdr);
+            Hessdr = dgrad(dF,Y,dr);
+            drHdr = ip(Y,dr,Hessdr);
+
             cga = abs(gdr/drHdr);
             if (fsat)
                 % we cannot call fzero unless the function values have different sign
-            while (dFline(0,Y,dr)>0) == (dFline(2*cga,Y,dr)>0)
+            while(dFline(0,Y,dr)>0) == (dFline(2*cga,Y,dr)>0) 
                 cga = 2*cga;
-        %        disp(strcat('   value of dFline(0,Y,dr) = ',num2str(dFline(0,Y,dr))))
+        %       disp(strcat('   value of dFline(0,Y,dr) = ',num2str(dFline(0,Y,dr))))
          %      disp(strcat('   value of dFline(2*cga,Y,dr) = ',num2str(dFline(2*cga,Y,dr))))
+                if (2*cga>=1e+100)                   
+                    break                    
+                end
+            end
+            if (2*cga>=1e+100) 
+                warning('Break!')
+				break
             end
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 cgb = fzero(dFline,[0,2*cga],[],Y,dr);
