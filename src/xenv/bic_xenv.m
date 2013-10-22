@@ -67,7 +67,7 @@ for i = 0 : p - 1
     end
     
     ModelOutput = xenv(X, Y, i, Opts);
-    temp = - 2 * ModelOutput.l + 2 * ModelOutput.paramNum;
+    temp = - 2 * ModelOutput.l + log(n) * ModelOutput.paramNum;
     
     if temp < ic
         u = i;
