@@ -137,10 +137,10 @@ end
 Opts = make_opts(Opts);
 
 if isfield(Opts, 'init')
-    [r2,u2] = size(Opts.init);
+    [p2,u2] = size(Opts.init);
 
-    if (r ~= r2 || u ~= u2)
-        error('The size of the initial value should be r by u!');
+    if (p ~= p2 || u ~= u2)
+        error('The size of the initial value should be p by u!');
     end
 
     if (rank(Opts.init) < u2)
