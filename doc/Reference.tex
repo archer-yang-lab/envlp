@@ -1842,6 +1842,164 @@ ans =
 
 
 \rmfamily
+\color{black}\section{predict2\_env}
+
+\begin{par}
+Perform estimation or prediction under the envelope model through partial envelope model.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       PredictOutput = predict2_env(X, Y, Xnew, infType)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Xnew}: The value of X with which to estimate or predict Y.  A p by 1 vector.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{PredictOutput}: A list containing the results of the inference.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item PredictOutput.value: The fitted value or the prediction value evaluated at Xnew. An r by 1 vector.
+   \item PredictOutput.covMatrix: The covariance matrix of PredictOutput.value. An r by r matrix.
+   \item PredictOutput.SE: The standard error of elements in PredictOutput.value.  An r by 1 vector.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function evaluates the envelope model at new value Xnew.  It can perform estimation: find the fitted value when X = Xnew, or prediction: predict Y when X = Xnew.  The covariance matrix and the standard errors are also provided.  Compared to predict\_env, this function performs prediction through partial envelope model, which can be more accurate if the partial envelope is of smaller dimension and contains less variant material information.
+\end{par} \vspace{1em}
+
+
+\subsection*{References}
+
+\begin{enumerate}
+\setlength{\itemsep}{-1ex}
+   \item The codes are implemented based on the following reference: R.D. Cook (2013) ``Lecture Notes on Envelope Models and Methods.'' School of Statistics, University of Minnesota, Minneapolis.
+\end{enumerate}
+
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       X = fiberpaper(:, [7 5 6]);
+       alpha = 0.01;
+       u = lrt_env(X, Y, alpha);        
+       ModelOutput = env(X, Y, u);
+       Xnew = X(10, :)';
+       p1 = predict_env(ModelOutput, Xnew, 'estimation')
+\end{verbatim}
+\color{lightgray}\ttfamily\begin{verbatim} 
+p1 = 
+
+        value: [4x1 double]
+    covMatrix: [4x4 double]
+           SE: [4x1 double]     
+\end{verbatim}\rmfamily
+\color{black}       \begin{verbatim}             
+       p1.value
+\end{verbatim}
+\color{lightgray}\ttfamily\begin{verbatim} 
+ans =
+
+   20.1120
+    6.9174
+    4.7911
+    0.6162
+\end{verbatim}\rmfamily
+\color{black}       \begin{verbatim}            
+       p1.SE
+\end{verbatim}
+\color{lightgray}\ttfamily\begin{verbatim} 
+ans =
+
+    1.7555
+    0.4533
+    0.8248
+    0.3846
+\end{verbatim}\rmfamily
+\color{black}       \begin{verbatim}                       
+       p2 = predict2_env(X, Y, Xnew, 'estimation')
+\end{verbatim}
+\color{lightgray}\ttfamily\begin{verbatim} 
+p2 = 
+
+        value: [4x1 double]
+    covMatrix: [4x4 double]
+           SE: [4x1 double]
+\end{verbatim}\rmfamily
+\color{black}       \begin{verbatim}            
+       p2.value
+\end{verbatim}
+\color{lightgray}\ttfamily\begin{verbatim} 
+ans =
+
+   20.1595
+    6.9105
+    4.8021
+    0.6182
+\end{verbatim}
+\rmfamily
+\color{black}       \begin{verbatim}                       
+       p2.SE
+\end{verbatim}
+\color{lightgray}\ttfamily\begin{verbatim} 
+ans =
+
+    0.2591
+    0.1001
+    0.1459
+    0.0741
+\end{verbatim}\rmfamily
+\color{black}       \begin{verbatim}                       
+       p1.SE./p2.SE
+\end{verbatim}
+\color{lightgray}\ttfamily\begin{verbatim} 
+ans =
+
+    6.7766
+    4.5264
+    5.6532
+    5.1914 
+\end{verbatim} \color{black}
+
+\newpage
+
+\rmfamily
 \color{black}\section{testcoefficient\_env}
 
 
@@ -3394,7 +3552,7 @@ The first derivative of the objective function for computing the envelope subspa
 \subsection*{Description}
 
 \begin{par}
-The objective function is derived in Section 2.2 in Su and Cook (2012) by  using maximum likelihood estimation. This function is the derivative of  the objective function.
+The objective function is derived in Section 2.2 in Su and Cook (2013) by  using maximum likelihood estimation. This function is the derivative of  the objective function.
 \end{par} \vspace{1em}
 
 \newpage
@@ -3443,7 +3601,7 @@ Objective function for computing the envelope subspace in heteroscedastic envelo
 \subsection*{Description}
 
 \begin{par}
-The objective function is derived in Section 2.2 of Su and Cook (2012)  using maximum likelihood estimation. The columns of the semi-orthogonal matrix that minimizes this function span the estimated envelope subspace in the heteroscedastic envelope model.
+The objective function is derived in Section 2.2 of Su and Cook (2013)  using maximum likelihood estimation. The columns of the semi-orthogonal matrix that minimizes this function span the estimated envelope subspace in the heteroscedastic envelope model.
 \end{par} \vspace{1em}
 \newpage
 
@@ -3530,7 +3688,7 @@ Fit the heteroscedastic envelope model.
 \subsection*{Description}
 
 \begin{par}
-This function fits the heteroscedastic envelope model to the responses and predictors, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and r-1, we implemented the algorithm in Su and Cook (2012). When the dimension is r, then the envelope model degenerates to the standard multivariate linear model for comparing group means.  When the dimension is 0, it means there is not any group effect, and the fitting is different.
+This function fits the heteroscedastic envelope model to the responses and predictors, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and r-1, we implemented the algorithm in Su and Cook (2013). When the dimension is r, then the envelope model degenerates to the standard multivariate linear model for comparing group means.  When the dimension is 0, it means there is not any group effect, and the fitting is different.
 \end{par} \vspace{1em}
 
 
@@ -3538,7 +3696,7 @@ This function fits the heteroscedastic envelope model to the responses and predi
 
 \begin{enumerate}
 \setlength{\itemsep}{-1ex}
-   \item The codes are implemented based on the algorithm in Section 2.2 of Su and Cook (2012).
+   \item The codes are implemented based on the algorithm in Section 2.2 of Su and Cook (2013).
    \item The Grassmann manifold optimization step calls the package sg\_min 2.4.3 by Ross Lippert (http://web.mit.edu/$\sim$ripper/www/sgmin.html).
 \end{enumerate}
 
@@ -3546,7 +3704,7 @@ This function fits the heteroscedastic envelope model to the responses and predi
 \subsection*{Example}
 
 \begin{par}
-The following codes produce the results of the water strider example in Su and Cook (2012).
+The following codes produce the results of the water strider example in Su and Cook (2013).
 \end{par} \vspace{1em}
 
 \begin{verbatim}       load waterstrider.mat
@@ -5778,7 +5936,7 @@ Select the dimension of the scaled envelope subspace using Akaike information cr
 \subsection*{Output}
 
 \begin{par}
-\textbf{u}: Dimension of the inner envelope. An integer between 0 and r.
+\textbf{u}: Dimension of the scaled envelope. An integer between 0 and r.
 \end{par} \vspace{1em}
 
 
@@ -5858,7 +6016,7 @@ Select the dimension of the scaled envelope subspace using Bayesian information 
 \subsection*{Output}
 
 \begin{par}
-\textbf{u}: Dimension of the inner envelope. An integer between 0 and r.
+\textbf{u}: Dimension of the scaled envelope. An integer between 0 and r.
 \end{par} \vspace{1em}
 
 
@@ -6080,7 +6238,7 @@ Objective function for computing the envelope subspace in scaled envelope model.
 \subsection*{Description}
 
 \begin{par}
-The objective function is derived in Section 4.1 in Cook and Su (2012) using maximum likelihood estimation. The columns of the semi-orthogonal matrix that minimizes this function span the estimated envelope subspace.
+The objective function is derived in Section 4.1 in Cook and Su (2013) using maximum likelihood estimation. The columns of the semi-orthogonal matrix that minimizes this function span the estimated envelope subspace.
 \end{par} \vspace{1em}
 
 \newpage
@@ -6212,7 +6370,7 @@ Objective function for computing the scales in the scaled envelope model.
 \subsection*{Description}
 
 \begin{par}
-The objective function is derived in Section 4.1 of Su and Cook (2012)  using maximum likelihood estimation.
+The objective function is derived in Section 4.1 of Cook and Su (2013)  using maximum likelihood estimation.
 \end{par} \vspace{1em}
 
 
@@ -6403,8 +6561,8 @@ Fit the scaled envelope model.
    \item ModelOutput.Lambda: The matrix of estimated scales. An r by r diagonal matrix with the first diagonal element equal to 1 and other diagonal elements being positive.
    \item ModelOutput.Gamma: The orthogonal basis of the envelope subspace. An r by u semi-orthogonal matrix.
    \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  An r by r - u semi-orthogonal matrix.
-   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. An u by p matrix.
-   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u matrix.
+   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. A u by p matrix.
+   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. A u by u matrix.
    \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r - u by r - u matrix.
    \item ModelOutput.alpha: The estimated intercept in the scaled envelope model.  An r by 1 vector.
    \item ModelOutput.l: The maximized log likelihood function.  A real number.
@@ -6419,7 +6577,7 @@ Fit the scaled envelope model.
 \subsection*{Description}
 
 \begin{par}
-This function fits the scaled envelope model to the responses and predictors, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and r - 1, we implemented the algorithm in Cook and Su (2012).  When the dimension is r, then the scaled envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
+This function fits the scaled envelope model to the responses and predictors, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and r - 1, we implemented the algorithm in Cook and Su (2013).  When the dimension is r, then the scaled envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
 \end{par} \vspace{1em}
 
 
@@ -6427,7 +6585,7 @@ This function fits the scaled envelope model to the responses and predictors, us
 
 \begin{enumerate}
 \setlength{\itemsep}{-1ex}
-   \item The codes are implemented based on the algorithm in Section 4.1 of Cook and Su (2012).
+   \item The codes are implemented based on the algorithm in Section 4.1 of Cook and Su (2013).
    \item The Grassmann manifold optimization step calls the package sg\_min 2.4.3 by Ross Lippert (http://web.mit.edu/$\sim$ripper/www/sgmin.html).
 \end{enumerate}
 
@@ -6435,7 +6593,7 @@ This function fits the scaled envelope model to the responses and predictors, us
 \subsection*{Example}
 
 \begin{par}
-The following codes produce the results of the test and performance example in Cook and Su (2012).
+The following codes produce the results of the test and performance example in Cook and Su (2013).
 \end{par} \vspace{1em}
 
 \begin{verbatim}       load('sales.txt')
@@ -6450,8 +6608,7 @@ u =
 \color{black}       
        \begin{verbatim}
        ModelOutput = senv(X, Y, u)
-       ModelOutput.Lambda
-       1 - 1 ./ ModelOutput.ratio\end{verbatim}
+\end{verbatim}
 
         \color{lightgray}\ttfamily \begin{verbatim}
 ModelOutput = 
@@ -6471,7 +6628,12 @@ ModelOutput =
         asySE: [4x3 double]
         ratio: [4x3 double]
             n: 50
-
+\end{verbatim} \rmfamily
+\color{black}
+       \begin{verbatim}
+       ModelOutput.Lambda
+       \end{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
 ans =
 
@@ -6480,7 +6642,12 @@ ans =
          0         0    0.8067         0
          0         0         0    1.7016
 
-
+\end{verbatim} \rmfamily
+\color{black}
+       \begin{verbatim}
+       1 - 1 ./ ModelOutput.ratio
+       \end{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 ans =
 
     0.6823    0.4901    0.6287
@@ -6508,7 +6675,7 @@ u =
 \color{black}       
        \begin{verbatim}
        ModelOutput = senv(X, Y, u, Opts)
-       ModelOutput.Lambda\end{verbatim}
+       \end{verbatim}
 
         \color{lightgray}\ttfamily \begin{verbatim}
 ModelOutput = 
@@ -6528,19 +6695,23 @@ ModelOutput =
         asySE: [9x3 double]
         ratio: [9x3 double]
             n: 45
-
-
+\end{verbatim} \rmfamily
+\color{black}
+       \begin{verbatim}
+ModelOutput.Lambda
+       \end{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 ans =
 
-    1.0000         0         0         0         0         0         0         0         0
-         0    1.0000         0         0         0         0         0         0         0
-         0         0    1.0000         0         0         0         0         0         0
-         0         0         0    1.0000         0         0         0         0         0
-         0         0         0         0    1.0000         0         0         0         0
-         0         0         0         0         0    1.0000         0         0         0
-         0         0         0         0         0         0    0.4356         0         0
-         0         0         0         0         0         0         0    0.4356         0
-         0         0         0         0         0         0         0         0    0.4356
+   1.0000         0         0         0         0         0         0         0         0
+        0    1.0000         0         0         0         0         0         0         0
+        0         0    1.0000         0         0         0         0         0         0
+        0         0         0    1.0000         0         0         0         0         0
+        0         0         0         0    1.0000         0         0         0         0
+        0         0         0         0         0    1.0000         0         0         0
+        0         0         0         0         0         0    0.4356         0         0
+        0         0         0         0         0         0         0    0.4356         0
+        0         0         0         0         0         0         0         0    0.4356
 \end{verbatim} \rmfamily
 \color{black}
 \newpage
@@ -6613,17 +6784,18 @@ This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta
 
 
 \begin{verbatim}       load('sales.txt')
-       Y = sales(:,4:7);
-       X = sales(:,1:3);
-       u = bic_senv(X,Y)
-       ModelOutput = senv(X,Y,u);
+       Y = sales(:, 4 : 7);
+       X = sales(:, 1 : 3);
+       u = bic_senv(X, Y)
+       ModelOutput = senv(X, Y, u);
        TestOutout = testcoefficient_senv(ModelOutput);\end{verbatim}
         \color{lightgray}\ttfamily \begin{verbatim}
 
  Test Hypothesis     Chisq Statistic    DF     P-value
-------------------------------------------------------------------------
-L * beta * R = A        4827.816        12      0.0000
-------------------------------------------------------------------------
+-------------------------------------------------------
+L * beta * R = A        4660.161       12      0.0000
+-------------------------------------------------------
+
 \end{verbatim} \rmfamily
 \color{black}
 \begin{verbatim}
@@ -6943,7 +7115,7 @@ The first derivative of the objective function for computing the envelope subspa
 \subsection*{Description}
 
 \begin{par}
-The objective function is derived in Section 4.5.1 of Cook et al. (2012) by  using maximum likelihood estimation. This function is the derivative of  the objective function.
+The objective function is derived in Section 4.5.1 of Cook et al. (2013) by  using maximum likelihood estimation. This function is the derivative of  the objective function.
 \end{par} \vspace{1em}
 
 \newpage
@@ -6992,7 +7164,7 @@ Objective function for computing the envelope subspace for the reduction on X.
 \subsection*{Description}
 
 \begin{par}
-The objective function is derived in Section 4.5.1 of Cook et al. (2012)  using maximum likelihood estimation. The columns of the semi-orthogonal matrix that minimizes this function span the estimated envelope subspace.
+The objective function is derived in Section 4.5.1 of Cook et al. (2013)  using maximum likelihood estimation. The columns of the semi-orthogonal matrix that minimizes this function span the estimated envelope subspace.
 \end{par} \vspace{1em}
 
     
@@ -7445,7 +7617,7 @@ Fit the envelope model for the reduction on X.
 \subsection*{Description}
 
 \begin{par}
-This function fits the envelope model in the predictor's space, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and r - 1, we implemented the algorithm in Cook et al. (2012).  When the dimension is r, then the envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
+This function fits the envelope model in the predictor's space, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and r - 1, we implemented the algorithm in Cook et al. (2013).  When the dimension is r, then the envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
 \end{par} \vspace{1em}
 
 
@@ -7453,7 +7625,7 @@ This function fits the envelope model in the predictor's space, using the maximu
 
 \begin{enumerate}
 \setlength{\itemsep}{-1ex}
-   \item The codes are implemented based on the algorithm in Section 4.5.1 of Cook et al (2012).
+   \item The codes are implemented based on the algorithm in Section 4.5.1 of Cook et al (2013).
    \item The Grassmann manifold optimization step calls the package sg\_min 2.4.3 by Ross Lippert (http://web.mit.edu/$\sim$ripper/www/sgmin.html).
 \end{enumerate}
 
@@ -7803,14 +7975,14 @@ Fit the envelope model for the reduction on X using partial least squares algori
 \subsection*{Description}
 
 \begin{par}
-This function fits the envelope model in the predictor's space, by the partial least squares algorithm in Cook et al. (2012). In the population level, this algorithm is equivalent to that in xenv.m, which uses the maximum likelihood estimation.  In the sample version, the two algorithms are different.  And this algorithm is much faster, which provides a root n consistent starting value for the one in xenv.m.
+This function fits the envelope model in the predictor's space, by the partial least squares algorithm in Cook et al. (2013). In the population level, this algorithm is equivalent to that in xenv.m, which uses the maximum likelihood estimation.  In the sample version, the two algorithms are different.  And this algorithm is much faster, which provides a root n consistent starting value for the one in xenv.m.
 \end{par} \vspace{1em}
 
 
 \subsection*{Reference}
 
 \begin{par}
-The codes are implemented based on the algorithm in Section 4.3 of Cook et al (2012).
+The codes are implemented based on the algorithm in Section 4.3 of Cook et al (2013).
 \end{par} \vspace{1em}
 
 
@@ -8002,7 +8174,7 @@ The contraction and expansion matrices are links between the "vec" operator and 
 \color{black}\section{fit\_OLS}
 
 \begin{par}
-Multivariate linear regression.
+Fit multivariate linear regression.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
@@ -8182,7 +8354,7 @@ W =
 \color{black}\section{get\_Init}
 
 \begin{par}
-Starting value for the envelope subspace.
+Generate starting value for the envelope subspace.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
@@ -8243,7 +8415,7 @@ The codes are implemented based on the algorithm in Section 3.5 of Su and Cook (
 \color{black}\section{get\_Init4envmean}
 
 \begin{par}
-Starting value for the envelope subspace in estimating the multiavriate mean.
+Generate starting value for the envelope subspace in estimating the multivariate mean.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
@@ -8303,7 +8475,7 @@ The codes are implemented based on the algorithm in Section 3.5 of Su and Cook (
 \color{black}\section{get\_Init4henv}
 
 \begin{par}
-Starting value for the heteroscedastic envelope subspace.
+Generate starting value for the heteroscedastic envelope subspace.
 \end{par} \vspace{1em}
 
 \subsection*{Contents}
@@ -8679,7 +8851,9 @@ Compute summary statistics from the data.
    \item DataParameter.sigY: The sample covariance matrix of Y.  An r by r matrix.
    \item DataParameter.sigRes: For 'env', 'senv', 'ienv': The sample covariance matrix of the residuals from the ordinary least squares regression of Y on X.  An r by r matrix. For 'henv', an r by r by p three dimensional matrix with the ith depth is the ith sample covariance matrix for the ith group.
    \item DataParameter.sigFit: The sample covariance matrix of the fitted value from the ordinary least squares regression of Y on X.  An r by r matrix. Only for method 'ienv'.
-   \item DataParameter.betaOLS: The regression coefficients from the ordinary least squares regression of Y on X.  An r by p matrix.  For all method except 'henv'.
+   \item DataParameter.betaOLS: The regression coefficients from the ordinary least squares regression of Y on X.  An r by p matrix.  For all methods except 'henv'.
+   \item DataParameter.invsigY: The inverse of the sample covariance matrix of Y.  An r by r matrix.  For all methods except 'ienv'.
+    \item DataParameter.invsigRes: The inverse of the sample covariance matrix of the residuals form the ordinary least squares regression of Y on X.  An r by r matrix. Only for method 'ienv'.
 \end{itemize}
 
 
