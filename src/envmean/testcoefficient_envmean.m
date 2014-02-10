@@ -81,7 +81,7 @@ elseif nargin == 2
     end
     p = size(ModelOutput.mu, 1);    
     if isfield(TestInput, 'L')
-        [Ls1 Ls2] = size(TestInput.L);
+        [Ls1, Ls2] = size(TestInput.L);
         if Ls1 > p || Ls2 ~= p
             error('The size of L is not supported.')
         end
@@ -92,7 +92,7 @@ elseif nargin == 2
 
     
     if isfield(TestInput, 'A')
-        [As1 As2] = size(TestInput.A);
+        [As1, As2] = size(TestInput.A);
         if As1 ~= Ls1 || As2 ~= 1
             error('The size of A should be the same as L * mu.')
         end
@@ -110,7 +110,7 @@ n = ModelOutput.n;
 Sigma = L * covMatrix * L' / n;
 temp = L * mu - A;
 
-chisqStatistic = temp' * inv(Sigma) * temp;
+chisqStatistic = temp' / Sigma * temp;
 df = Ls1;
 pValue = 1 - chi2cdf(chisqStatistic, df);
 

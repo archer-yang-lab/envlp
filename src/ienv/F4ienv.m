@@ -30,19 +30,18 @@ r = DataParameter.r;
 p = DataParameter.p;
 n = DataParameter.n;
 sigRes = DataParameter.sigRes;
-sigY = DataParameter.sigY;
 sigFit = DataParameter.sigFit;
 logDetSigRes = DataParameter.logDetSigRes;
-
+invsigRes = DataParameter.invsigRes;
 
 eigtem = eig(R' * sigRes * R);
-a = log(prod(eigtem(eigtem>0)));
+a = log(prod(eigtem(eigtem > 0)));
 
-eigtem0 = eig(R' * inv(sigRes) * R);
-b = log(prod(eigtem0(eigtem0>0)));
+eigtem0 = eig(R' * invsigRes * R);
+b = log(prod(eigtem0(eigtem0 > 0)));
 
 R0 = grams(nulbasis(R'));
-[V D] = eig(inv(R0' * sigRes * R0) * R0' * sigFit * R0);
+[~, D] = eig(eye(r - u) / (R0' * sigRes * R0) * R0' * sigFit * R0);
 lambdas = sort(diag(D), 'descend');
 logl = log(lambdas + 1);
 c = sum(logl((p - u + 1) : end));

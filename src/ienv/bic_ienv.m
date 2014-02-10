@@ -50,7 +50,7 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
-[n r] = size(Y);
+[n, ~] = size(Y);
 p = size(X, 2);
     
 ModelOutput = ienv(X, Y, 0, Opts);

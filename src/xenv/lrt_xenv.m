@@ -62,7 +62,7 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
-[n p] = size(X);
+p = size(X, 2);
 
 ModelOutput0 = xenv(X, Y, p, Opts);
 

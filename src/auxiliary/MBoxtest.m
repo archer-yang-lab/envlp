@@ -81,7 +81,7 @@ if nargin < 2,
     alpha = 0.05; %(default)
 end; 
 
-if (alpha <= 0 | alpha >= 1)
+if (alpha <= 0 || alpha >= 1)
    fprintf('Warning: significance level must be between 0 and 1\n');
    return;
 end;

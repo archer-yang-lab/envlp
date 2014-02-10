@@ -46,7 +46,7 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
-[n p] = size(Y);
+[n, p] = size(Y);
     
 ModelOutput = envmean(Y, p, Opts);
 ic = - 2 * ModelOutput.l + log(n) * ModelOutput.paramNum;

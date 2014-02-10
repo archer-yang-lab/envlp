@@ -73,10 +73,10 @@ function H = invdgrad_cg(dF,Y,W,tol,dl)
 		x = W;
 		if (abs(dl)>0) x = x/dl; end
 	end
-	if (SGParameters.verbose & posdef==0)
+	if (SGParameters.verbose && posdef==0)
 		disp('  invdgrad: Hessian not positive definite, CG terminating early');
 	end
-	if (SGParameters.verbose & cn==Nmax)
+	if (SGParameters.verbose && cn==Nmax)
 		disp('  invdgrad: max iterations reached inverting the hessian by CG'),
 	end
 	H = clamp(Y,x);

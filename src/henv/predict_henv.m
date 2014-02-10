@@ -58,12 +58,12 @@ if ~strcmp(infType, 'estimation') && ~strcmp(infType, 'prediction')
     error('Inference type can only be estimation or prediction.');
 end
 
-[tmp iX iG] = intersect(Xnew', ModelOutput.groupInd, 'rows');
+[tmp, ~, iG] = intersect(Xnew', ModelOutput.groupInd, 'rows');
 if size(tmp, 1)==0
     error('Xnew should be the same with one of the group indicators.')
 end
 
-[r u] = size(ModelOutput.Gamma);
+[r, u] = size(ModelOutput.Gamma);
 ng = ModelOutput.ng;
 n = sum(ng);
 

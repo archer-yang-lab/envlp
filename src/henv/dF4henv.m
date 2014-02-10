@@ -18,7 +18,7 @@
 
 %% Description
 %
-% The objective function is derived in Section 2.2 in Su and Cook (2012) by
+% The objective function is derived in Section 2.2 in Su and Cook (2013) by
 %  using maximum likelihood estimation. This function is the derivative of
 %  the objective function.
 
@@ -28,15 +28,15 @@ p = DataParameter.p;
 n = DataParameter.n;
 ng = DataParameter.ng;
 sigRes = DataParameter.sigRes;
-sigY = DataParameter.sigY;
+invsigY = DataParameter.invsigY;
 
 df = zeros(size(R));
 
 for i = 1 : p
-    a = 2 * ng(i) / n * sigRes(:, :, i) * R * inv(R' * sigRes(:, :, i) * R);
+    a = 2 * ng(i) / n * sigRes(:, :, i) * R / (R' * sigRes(:, :, i) * R);
     df = df + a;
 end
 
-b = 2 * inv(sigY) * R * inv(R' * inv(sigY) * R);
+b = 2 * invsigY * R / (R' * invsigY * R);
 
 df = n * (df + b);

@@ -35,7 +35,7 @@
 %
 %% Output
 %
-% *u*: Dimension of the inner envelope. An integer between 0 and r.
+% *u*: Dimension of the scaled envelope. An integer between 0 and r.
 % 
 %% Description
 % This function implements the Akaike information criteria (AIC) to select
@@ -60,7 +60,7 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
-[n r] = size(Y);
+r = size(Y, 2);
     
 ModelOutput = senv(X, Y, r, Opts);
 ic = - 2 * ModelOutput.l + 2 * ModelOutput.paramNum;

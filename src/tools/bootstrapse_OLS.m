@@ -48,7 +48,7 @@ printFlag = Opts.verbose;
 Opts.verbose = 0;
 
 ModelOutput = fit_OLS(X, Y);
-[n p] = size(X);
+[n, p] = size(X);
 r = size(Y, 2);
 mY = mean(Y)';
 XC = center(X);

@@ -19,7 +19,8 @@
 % subspace. An r by u orthogonal matrix.
 
 %% Description
-% We compute the eigenvectors for the estimated error covariance matrix, and get r vectors.  Then we get all the combinations 
+% We compute the eigenvectors for the estimated error covariance matrix, 
+% and get r vectors.  Then we get all the combinations 
 % of u vectors out of the r vectors. If the number of r choose u is 
 % small(<=50), we search over all the combinations and find out the one 
 % that minimizes the objective function F. If that number is large, then we
@@ -40,7 +41,6 @@ n = DataParameter.n;
 ng = DataParameter.ng;
 p = DataParameter.p;
 r = DataParameter.r;
-sigY = DataParameter.sigY;
 sigRes = DataParameter.sigRes;
 
 tmp = zeros(r, r);
@@ -48,7 +48,7 @@ for i = 1 : p
     tmp = tmp + ng(i) / n * sigRes(:, :, i);
 end
 
-[V D] = eig(tmp);
+[V, ~] = eig(tmp);
 
 
 crit = nchoosek(r, u);
@@ -56,7 +56,7 @@ crit = nchoosek(r, u);
 if crit <= 20
 
     Ys = zeros(crit, r, u);
-    [Ys(1 : crit, :, :) ind] = get_combeig(V, r, u);
+    [Ys(1 : crit, :, :), ~] = get_combeig(V, r, u);
     imax = size(Ys, 1);
     m = size(Ys, 2);
     nn = size(Ys, 3);

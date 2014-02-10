@@ -115,6 +115,7 @@ mY = mean(Y)';
 sigY = cov(Y, 1);
 eigtemY = eig(sY);
 logDetSY = log(prod(eigtemY(eigtemY > 0)));
+invsY = inv(sY);
 
 if u > 0 && u < p
 
@@ -123,7 +124,8 @@ if u > 0 && u < p
     DataParameter.sY = sY;
     DataParameter.sigY = sigY;
     DataParameter.logDetSY = logDetSY;
-
+    DataParameter.invsY = invsY;
+    
     F = make_F(@F4envmean, DataParameter);
     dF = make_dF(@dF4envmean, DataParameter);
 
@@ -143,7 +145,7 @@ if u > 0 && u < p
     
     %---Compute \Gamma using sg_min---
 
-    [l Gamma] = sg_min(F, dF, init, maxIter, 'prcg', verbose, ftol, gradtol);
+    [l, Gamma] = sg_min(F, dF, init, maxIter, 'prcg', verbose, ftol, gradtol);
 
     %---Compute the rest of the parameters based on \Gamma---
     Gamma0 = grams(nulbasis(Gamma'));
@@ -157,7 +159,7 @@ if u > 0 && u < p
     asyFm = sqrt(diag(sigY));
     temp = kron(eta * eta', inv(Omega0)) + kron(Omega, inv(Omega0))... 
         + kron(inv(Omega), Omega0) - 2 * kron(eye(u), eye(p - u));  
-    covMatrix = Gamma * Omega * Gamma' + kron(eta', Gamma0) * inv(temp) * kron(eta, Gamma0');
+    covMatrix = Gamma * Omega * Gamma' + kron(eta', Gamma0) / temp * kron(eta, Gamma0');
     asySE = sqrt(diag(covMatrix));
 
     ModelOutput.mu = mu;

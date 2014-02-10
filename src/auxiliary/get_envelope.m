@@ -43,7 +43,7 @@ end
 
 r = size(M, 1);
 r1 = size(S, 1);
-p = rank(S);
+% p = rank(S);
 
 if r ~= r1
     error('The size of S is not valid.');
@@ -56,7 +56,7 @@ end
 U = S * S';
 
 [w, D] = eig(U);
-[DM ind] = max(diag(D));
+[~, ind] = max(diag(D));
 W = w(:, ind);
 
 if u > 1
@@ -64,8 +64,8 @@ if u > 1
     for i = 2 : u
         
         Eu = grams(M * W);
-        QEu = eye(r) - Eu * inv(Eu' * Eu) * Eu';
-        [w, D] = eigs(QEu * U * QEu, 1);
+        QEu = eye(r) - Eu / (Eu' * Eu) * Eu';
+        [w, ~] = eigs(QEu * U * QEu, 1);
         W = [W w];
         
     end

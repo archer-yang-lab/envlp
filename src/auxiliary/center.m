@@ -19,7 +19,7 @@
 
 
 
-function XC = center(X);
+function XC = center(X)
 
 n = size(X, 1);
 

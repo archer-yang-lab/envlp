@@ -105,8 +105,8 @@ end
 X = double(X);
 Y = double(Y);
 
-[n,p] = size(X);
-[n1,r] = size(Y);
+[n, p] = size(X);
+[n1, r] = size(Y);
 
 if (n ~= n1)
     error('The number of observations in X and Y should be equal!');
@@ -144,11 +144,9 @@ YC = DataParameter.YC;
 mX = DataParameter.mX;
 mY = DataParameter.mY;
 sigX = DataParameter.sigX;
-sigY = DataParameter.sigY;
 sigFit = DataParameter.sigFit;
 sigRes = DataParameter.sigRes;
 betaOLS = DataParameter.betaOLS;
-logDetSigRes = DataParameter.logDetSigRes;
 
 
 if u == p
@@ -210,28 +208,28 @@ else
         init = Opts.init;
     end
     
-    [l Gamma1] = sg_min(F, dF, init, maxIter, 'prcg', verbose, ftol, gradtol);
+    [l, Gamma1] = sg_min(F, dF, init, maxIter, 'prcg', verbose, ftol, gradtol);
     
     Gamma0 = grams(nulbasis(Gamma1'));
     eta1 = (Gamma1' * betaOLS)';
     Omega1 = (YC * Gamma1 - XC * eta1)' * (YC * Gamma1 - XC * eta1) / n;
     
-    [Vtmp Dtmp] = eig(inv(Gamma0' * sigRes * Gamma0));
+    [Vtmp, Dtmp] = eig(inv(Gamma0' * sigRes * Gamma0));
     temp1 = Vtmp * diag(sqrt(diag(Dtmp))) * Vtmp';
     temp2 = Gamma0' * sigFit * Gamma0;
     temp3 = Vtmp * diag(diag(Dtmp) .^ ( - 0.5)) * Vtmp';
-    [Vt Lambdat] = eig(temp1 * temp2 * temp1);
-    [Lambda ind] = sort(diag(Lambdat), 'descend');
+    [Vt, Lambdat] = eig(temp1 * temp2 * temp1);
+    [Lambda, ind] = sort(diag(Lambdat), 'descend');
     V = Vt(:, ind);
     K = diag([zeros(1, p - u), Lambda(p - u + 1 : end)']);
     Omega0 = Gamma0' * sigRes * Gamma0 + temp3 * V * K * V' * temp3;
     
-    [Vtmp Dtmp] = eig(inv(Omega0));
+    [Vtmp, Dtmp] = eig(inv(Omega0));
     Omega0inv12 = Vtmp * diag(sqrt(diag(Dtmp))) * Vtmp;
-    [Vtmp Dtmp] = eig(Omega0inv12 * Gamma0' * sigFit * Gamma0 * Omega0inv12);
-    [Ds ind] = sort(Dtmp, 'descend');
-    B = grams(inv(Omega0inv12) * Vtmp(:, ind(1 : p - u)));
-    eta2 = (inv(B' * inv(Omega0) * B) * B' * inv(Omega0) * Gamma0' * betaOLS)';
+    [Vtmp, Dtmp] = eig(Omega0inv12 * Gamma0' * sigFit * Gamma0 * Omega0inv12);
+    [~, ind] = sort(Dtmp, 'descend');
+    B = grams(eye(r - u) / Omega0inv12 * Vtmp(:, ind(1 : p - u)));
+    eta2 = (eye(p - u) / (B' / Omega0 * B) * B' / Omega0 * Gamma0' * betaOLS)';
     beta = Gamma1 * eta1' + Gamma0 * B * eta2';
     Sigma = Gamma1 * Omega1 * Gamma1' + Gamma0 * Omega0 * Gamma0';
     alpha = mY - beta * mX;

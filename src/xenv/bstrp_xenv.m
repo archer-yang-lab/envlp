@@ -64,7 +64,7 @@ Opts.verbose = 0;
 X = double(X);
 Y = double(Y);
 
-[n r] = size(Y);
+[n, r] = size(Y);
 p = size(X, 2);
 
 ModelOutput = xenv(X, Y, u, Opts);

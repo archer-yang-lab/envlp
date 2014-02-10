@@ -21,23 +21,23 @@
 
 %% Description
 %
-% The objective function is derived in Section 4.1 of Su and Cook (2012)
+% The objective function is derived in Section 4.1 of Cook and Su (2013)
 %  using maximum likelihood estimation. 
 
 function f = objfun(d, Gamma, DataParameter)
 
 n = DataParameter.n;
-sigY = DataParameter.sigY;
 sigRes = DataParameter.sigRes;
 rep = DataParameter.rep;
-
+invsigY = DataParameter.invsigY;
 
     C = arrayfun(@(x, y) repmat(x, [1 y]), [1 d], rep, 'UniformOutput', false);
     Ld = cell2mat(C);
     Lambda = diag(Ld);
-    eigtem = eig(Gamma' * Lambda * inv(sigY) * Lambda * Gamma);
+    invLambda = diag(1./Ld);
+    eigtem = eig(Gamma' * Lambda * invsigY * Lambda * Gamma);
     a = log(prod(eigtem(eigtem > 0))); 
-    eigtem2 = eig(Gamma' * inv(Lambda) * sigRes * inv(Lambda) * Gamma);
+    eigtem2 = eig(Gamma' * invLambda * sigRes * invLambda * Gamma);
     b = log(prod(eigtem2(eigtem2 > 0)));
     
     f = n * a / 2 + n * b / 2;

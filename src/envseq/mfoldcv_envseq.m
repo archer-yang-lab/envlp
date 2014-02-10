@@ -73,7 +73,7 @@ for j = 0 : tempInd
     
     for i = 1 : m
 
-        index = logical([ones(n, 1)]);
+        index = true(n, 1);
         index((floor((i - 1) * n / m) + 1) : ceil(i * n / m)) = 0;
         tempX = X(index, :);
         tempY = Y(index, :);
@@ -89,6 +89,6 @@ for j = 0 : tempInd
 end
 
 
-[minErr ind] = min(mean(PreErr));
+[~, ind] = min(mean(PreErr));
 u = ind - 1;
 

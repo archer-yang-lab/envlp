@@ -34,7 +34,7 @@ function [fn,Yn]= sg_DOG(F,dF,Y)
     end
 
     delta = mag; delta_max = mag/sqrt(eps); delta_min = mag*sqrt(eps);
-    while ((mag>geps) | (abs(oldf/f-1)>feps)) & (N < maxiter)
+    while ((mag>geps) || (abs(oldf/f-1)>feps)) && (N < maxiter)
 	N= N+1;
 
 	gradsat = (mag<=geps);
@@ -70,9 +70,9 @@ function [fn,Yn]= sg_DOG(F,dF,Y)
 	rat = (pref-f)/(newf-f);
 % here is the place where you fudge around with the parameters
 % for the dog-leg algorithm.
-	if (0.66<rat & rat<1.5)
+	if (0.66<rat && rat<1.5)
 		delta=delta/3; steptype='good dog'; end
-	if (rat<.25 | 4 < rat) 
+	if (rat<.25 || 4 < rat) 
 		delta=delta*4; steptype='bad dog'; end
 	delta = min(delta_max,max(delta,delta_min));
 

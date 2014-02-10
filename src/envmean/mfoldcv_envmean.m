@@ -66,7 +66,7 @@ for j = 0 : tempInd
     
     for i = 1 : m
 
-        index = logical([ones(n, 1)]);
+        index = true(n, 1);
         index((floor((i - 1) * n / m) + 1) : ceil(i * n / m)) = 0;
         tempY = Y(index, :);
         ModelTemp = envmean(tempY, j);
@@ -74,12 +74,12 @@ for j = 0 : tempInd
         testY = Y(logical(1 - index), :);
         testN = size(testY, 1);
         resi = mean(testY) - ModelTemp.mu';
-        PreErr(i, j + 1) = sqrt(resi * resi');
+        PreErr(i, j + 1) = sqrt(resi * resi' / testN);   
         
     end
 end
 
 
-[minErr ind] = min(mean(PreErr));
+[~, ind] = min(mean(PreErr));
 u = ind - 1;
 

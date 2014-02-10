@@ -61,7 +61,6 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
-[n r] = size(Y);
 p = size(X, 2);
 
 ModelOutput0 = ienv(X, Y, 0, Opts);
@@ -86,5 +85,5 @@ end
 
 if i == p && chi2cdf(chisq, df) > (1 - alpha)
     u = 0;
-    warning('No inner envelope model is selected, fit with the standard multivariate linear model.');
+    fprintf('No inner envelope model is selected, fit with the standard multivariate linear model.');
 end

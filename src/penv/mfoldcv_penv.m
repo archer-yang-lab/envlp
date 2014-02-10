@@ -65,7 +65,7 @@ Y = double(Y);
 X1 = X.X1;
 X2 = X.X2;
 
-[n r] = size(Y);
+[n, r] = size(Y);
 
 
 Opts = make_opts(Opts);
@@ -83,7 +83,7 @@ for j = 0 : tempInd
     
     for i = 1 : m
 
-        index = logical([ones(n, 1)]);
+        index = true(n, 1);
         index((floor((i - 1) * n / m) + 1) : ceil(i * n / m)) = 0;
         tempX.X1 = X1(index, :);
         tempX.X2 = X2(index, :);
@@ -101,6 +101,6 @@ for j = 0 : tempInd
 end
 
 
-[minErr ind] = min(mean(PreErr));
+[~, ind] = min(mean(PreErr));
 u = ind - 1;
 

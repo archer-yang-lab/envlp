@@ -72,7 +72,7 @@ function ModelOutput = envseq(X, Y, u)
 X = double(X);
 Y = double(Y);
 
-[n, p] = size(X);
+[n, ~] = size(X);
 [n1, r] = size(Y);
 
 if n ~= n1
@@ -97,15 +97,9 @@ p = DataParameter.p;
 r = DataParameter.r;
 mX = DataParameter.mX;
 mY = DataParameter.mY;
-sigX = DataParameter.sigX;
 sigY = DataParameter.sigY;
 sigRes = DataParameter.sigRes;
 betaOLS = DataParameter.betaOLS;
-
-eigtem = eig(sigY);
-
-F = make_F(@F4env, DataParameter);
-dF = make_dF(@dF4env, DataParameter);
 
 
 % With different u, the model will be different.  When u=0, X and Y are

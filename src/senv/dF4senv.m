@@ -24,14 +24,13 @@
 function df = dF4senv(R, DataParameter)
 
 n = DataParameter.n;
-sigY = DataParameter.sigY;
 sigRes = DataParameter.sigRes;
 Lambda = DataParameter.Lambda;
+invsigY = DataParameter.invsigY;
+invLambda = diag(1./diag(Lambda));
 
-a = 2 * inv(Lambda) * sigRes * inv(Lambda) * R * inv(R' * inv(Lambda) * sigRes * inv(Lambda) * R);
+a = 2 * invLambda * sigRes * invLambda * R / (R' * invLambda * sigRes * invLambda * R);
 
-temp = inv(sigY);
-
-b = 2 * Lambda * temp * Lambda * R * inv(R' * Lambda * temp * Lambda * R);
+b = 2 * Lambda * invsigY * Lambda * R / (R' * Lambda * invsigY * Lambda * R);
 
 df = n * (a + b);

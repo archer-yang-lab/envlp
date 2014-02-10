@@ -70,7 +70,7 @@ Y = double(Y);
 
 X1 = X.X1;
 X2 = X.X2;
-[n r] = size(Y);
+[n, r] = size(Y);
 p1 = size(X1, 2);
 
 ModelOutput = penv(X, Y, u, Opts);

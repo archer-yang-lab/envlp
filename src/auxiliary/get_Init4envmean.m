@@ -37,12 +37,11 @@
 
 function WInit = get_Init4envmean(F, u, DataParameter)
 
-n = DataParameter.n;
 p = DataParameter.p;
 sigY = DataParameter.sigY;
 
 
-[V D] = eig(sigY);
+[V, ~] = eig(sigY);
 
 crit = nchoosek(p, u);
 
@@ -51,7 +50,7 @@ if crit <= 50
 %     setaux(Y,X,0,r,V,D);
 %     Ys=zeros(crit+5,r,u);
     Ys = zeros(crit, p, u);
-    [Ys(1 : crit, :, :) ind] = get_combeig(V, p, u);
+    [Ys(1 : crit, :, :), ~] = get_combeig(V, p, u);
 %     Ys(crit+1,:,:) = getSIR(u,r);
 %     Ys(crit+2,:,:) = getSAVE(u,r);
 %     Ys(crit+3,:,:) = getDR(u,r);
