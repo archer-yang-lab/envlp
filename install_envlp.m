@@ -24,7 +24,7 @@ function  install_envlp
 % $Revision: 1.0.0 $  $Date: 2012-05-03 $
 %
 % Part of the envlp toolbox version 1.0.0 for MATLAB version 5 and up.
-% http://code.google.com/p/envlp/
+% <http://code.google.com/p/envlp/ http://code.google.com/p/envlp/>
 % Copyright (c) Dennis Cook, Zhihua Su, Yi Yang, 2012
 % Please read the LICENSE and NO WARRANTY statement in ./envlp_license.m
 
@@ -37,11 +37,11 @@ fprintf('envlp -- A MATLAB Toolbox for Envelope Models ver. 1.0.0.\n\n') ;
 fprintf('Released DD MMM YYYY.\n\n') ;
 
 fprintf('Copyright (c) Dennis Cook, Zhihua Su, Yi Yang, 2012.\n\n') ;
-fprintf('http://code.google.com/p/envlp/.\n\n') ;
+fprintf('<a href="http://code.google.com/p/envlp/">http://code.google.com/p/envlp/</a>.\n\n') ;
 fprintf('This software is freely available and freely redistributable,\n') ;
 fprintf('according to the conditions of the GNU General Public License.\n') ;
 fprintf('The full text of the GNU General Public License is available at\n') ;
-fprintf('the Free Software Foundation website (http://www.fsf.org) and is\n') ;
+fprintf('the Free Software Foundation website (<a href="http://www.fsf.org">http://www.fsf.org</a>) and is\n') ;
 fprintf('reproduced in envlp_license.m. In brief, the GNU GPL provisions are:\n\n') ;
 
 fprintf('You may not distribute the software, in whole or in part, in\n') ;
@@ -178,7 +178,7 @@ else
     fprintf('The updated path saved to MATLAB''s pathdef.m file.\n\n') ;
 end
 
-fprintf('Updates may be available at http://code.google.com/p/envlp/ \n') ;
+fprintf('Updates may be available at <a href="http://code.google.com/p/envlp/">http://code.google.com/p/envlp/</a>\n') ;
 fprintf('Thank you for your interest in this software.\n') ;
 
 %---  Return no values
