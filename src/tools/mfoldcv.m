@@ -80,8 +80,6 @@ switch(modelType)
         u = mfoldcv_henv(X, Y, m, Opts);
     case 'ienv'
         u = mfoldcv_ienv(X, Y, m, Opts);
-    case 'henv'
-        u = mfoldcv_henv(X, Y, m, Opts);
     case 'penv'
         u = mfoldcv_penv(X, Y, m, Opts);
     case 'senv'

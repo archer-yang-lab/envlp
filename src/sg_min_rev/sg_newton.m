@@ -31,7 +31,7 @@ function [fn,Yn]= sg_newton(F,dF,Y)
 	disp(sprintf('%d\t%e\t%e\t%9d\t%s',N,mag,f,'none'));
     end
 
-    while ((mag>geps) | (abs(oldf/f-1)>feps)) & (N < maxiter)
+    while ((mag>geps) || (abs(oldf/f-1)>feps)) && (N < maxiter)
 	N= N+1;
 
 	gradsat = (mag<=geps);

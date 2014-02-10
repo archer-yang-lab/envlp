@@ -93,7 +93,7 @@ function [fn,Yn] = sg_min(F,dF,Y0,maxIter,varargin)
 	end
 % SGParamters.complex = 0 for real and 1 for complex.
 	if (rcarg)
-		if (~isreal(Y0)) & (1-SGParameters.complex)
+		if (~isreal(Y0)) && (1-SGParameters.complex)
 			warning('Y0 has imaginary part, but real computation has been declared.  Good luck.');
 		end
 	else

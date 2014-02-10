@@ -61,15 +61,15 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
-[n r] = size(Y);
+r = size(Y, 2);
 
 ModelOutput0 = env(X, Y, r, Opts);
 
 for i = 0 : r - 1
 
-    	if printFlag == 1 
-		fprintf(['Current dimension ' int2str(i) '\n']);
-        end
+    if printFlag == 1 
+        fprintf(['Current dimension ' int2str(i) '\n']);
+    end
     
 	ModelOutput = env(X, Y, i, Opts);
 	chisq = - 2 * (ModelOutput.l - ModelOutput0.l);

@@ -71,13 +71,13 @@ function [H,rs,x,r] = invdgrad_minres(dF,Y,W,tol,dl)
 		if (abs(dl)>0) x = x/dl; end
 	end
 
-	if (SGParameters.verbose & ~posdef)
+	if (SGParameters.verbose && ~posdef)
 		disp('  invdgrad: Hessian not positive definite, MINRES terminating early');
 	end
-	if (SGParameters.verbose & cn==Nmax)
+	if (SGParameters.verbose && cn==Nmax)
 		disp('  invdgrad: max iterations reached inverting the hessian by MINRES'),
 	end
-	if (SGParameters.verbose & rho>rho_old*(1+gepr))
+	if (SGParameters.verbose && rho>rho_old*(1+gepr))
 		disp('  invdgrad: residual increase detected in MINRES, terminating early'),
 	end
 	H = clamp(Y,x);

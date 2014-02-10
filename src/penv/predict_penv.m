@@ -63,15 +63,15 @@ if ~strcmp(infType, 'estimation') && ~strcmp(infType, 'prediction')
     error('Inference type can only be estimation or prediction.');
 end
 
-[r p1] = size(ModelOutput.beta1);
+[r, p1] = size(ModelOutput.beta1);
 p2 = size(ModelOutput.beta2, 2);
 
-[s1 s2] = size(Xnew.X1);
+[s1, s2] = size(Xnew.X1);
 if s1 ~= p1 || s2 ~= 1
     error('Xnew.X1 must be a p1 by 1 vector');
 end
 
-[s1 s2] = size(Xnew.X2);
+[s1, s2] = size(Xnew.X2);
 if s1 ~= p2 || s2 ~= 1
     error('Xnew.X2 must be a p2 by 1 vector');
 end

@@ -73,7 +73,7 @@ elseif nargin == 1
         error('beta is a zero matrix, no test is interesting.');
     end
     
-    [r p] = size(ModelOutput.beta);
+    [r, p] = size(ModelOutput.beta);
     TestInput.L = eye(r);
     TestInput.R = [eye(p - 1) zeros(p - 1, 1)]';
     TestInput.A = zeros(r, p - 1);
@@ -87,10 +87,10 @@ elseif nargin == 2
         error('beta is a zero matrix, no test is interesting.');
     end
     
-    [r p] = size(ModelOutput.beta);
+    [r, p] = size(ModelOutput.beta);
     
     if isfield(TestInput, 'L')
-        [Ls1 Ls2] = size(TestInput.L);
+        [Ls1, Ls2] = size(TestInput.L);
         if Ls1 > r || Ls2 ~= r
             error('The size of L is not supported.')
         end
@@ -100,7 +100,7 @@ elseif nargin == 2
     end
     
     if isfield(TestInput, 'R')
-        [Rs1 Rs2] = size(TestInput.R);
+        [Rs1, Rs2] = size(TestInput.R);
         if Rs1 ~= p || Rs2 > p - 1
             error('The size of R is not supported.')
         end
@@ -110,7 +110,7 @@ elseif nargin == 2
     end
     
     if isfield(TestInput, 'A')
-        [As1 As2] = size(TestInput.A);
+        [As1, As2] = size(TestInput.A);
         if As1 ~= Ls1 || As2 ~= Rs2
             error('The size of A should be the same as L * beta * R.')
         end
@@ -131,7 +131,7 @@ multiplier = diag(kron(1./sqrt(ng), ones(r, 1)));
 Sigma = kron(R', L) * multiplier * covMatrix * multiplier * kron(R, L');
 temp = reshape(L * beta * R - A, 1, Ls1 * Rs2);
 
-chisqStatistic = temp * inv(Sigma) * temp';
+chisqStatistic = temp / Sigma * temp';
 df = Ls1 * Rs2;
 pValue = 1 - chi2cdf(chisqStatistic, df);
 

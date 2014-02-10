@@ -46,7 +46,7 @@
 
 %% Description
 % This function fits the envelope model in the predictor's space,
-% by the partial least squares algorithm in Cook et al. (2012). In the
+% by the partial least squares algorithm in Cook et al. (2013). In the
 % population level, this algorithm is equivalent to that in xenv.m, which
 % uses the maximum likelihood estimation.  In the sample version, the two 
 % algorithms are different.  And this algorithm is much faster, which
@@ -55,7 +55,7 @@
 %% Reference
 % 
 % The codes are implemented based on the algorithm in Section 4.3 of Cook 
-% et al (2012).
+% et al (2013).
 
 %% Example
 % 
@@ -79,7 +79,7 @@ X = double(X);
 Y = double(Y);
 
 [n, p] = size(X);
-[n1, r] = size(Y);
+n1 = size(Y, 1);
 
 if n ~= n1
     error('The number of observations in X and Y should be equal!');
@@ -130,9 +130,9 @@ if u > 0 && u < p
     Omega = Gamma' * sigX * Gamma;
     Omega0 = Gamma0' * sigX * Gamma0;
     SigX = Gamma * Omega * Gamma' + Gamma0 * Omega0 * Gamma0'; % Envelope estimator of \Sigma_X
-    beta = Gamma * inv(Omega) * eta;
+    beta = Gamma / Omega * eta;
     mu = mY - beta' * mX;
-    sigYcX = sigY - eta' * inv(Omega) * eta;
+    sigYcX = sigY - eta' / Omega * eta;
     
     ModelOutput.beta = beta;
     ModelOutput.SigX = SigX;

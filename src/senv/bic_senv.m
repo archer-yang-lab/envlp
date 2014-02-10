@@ -35,7 +35,7 @@
 %
 %% Output
 %
-% *u*: Dimension of the inner envelope. An integer between 0 and r.
+% *u*: Dimension of the scaled envelope. An integer between 0 and r.
 % 
 %% Description
 % This function implements the Bayesian information criteria (BIC) to select
@@ -60,7 +60,7 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
-[n r] = size(Y);
+[n, r] = size(Y);
     
 ModelOutput = senv(X, Y, r, Opts);
 ic = - 2 * ModelOutput.l + log(n) * ModelOutput.paramNum;

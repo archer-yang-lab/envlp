@@ -27,12 +27,10 @@ function df = dF4env(R, DataParameter)
 
 n = DataParameter.n;
 sigRes = DataParameter.sigRes;
-sigY = DataParameter.sigY;
+invsigY = DataParameter.invsigY;
 
-a = 2 * sigRes * R * inv(R' * sigRes * R);
+a = 2 * sigRes * R / (R' * sigRes * R);
 
-temp = inv(sigY);
-
-b = 2 * temp * R * inv(R' * temp * R);
+b = 2 * invsigY * R / (R' * invsigY * R);
 
 df = n * (a + b);

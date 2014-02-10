@@ -57,8 +57,13 @@
 % from the ordinary least squares regression of Y on X.  An r by r matrix.
 % Only for method 'ienv'.
 % * DataParameter.betaOLS: The regression coefficients from the ordinary
-% least squares regression of Y on X.  An r by p matrix.  For all method
+% least squares regression of Y on X.  An r by p matrix.  For all methods
 % except 'henv'.
+% * DataParameter.invsigY: The inverse of the sample covariance matrix of Y.  An r by r
+% matrix. For all methods except 'ienv', 'xenv' and 'xenvpls'.
+% * DataParameter.invsigRes: The inverse of the sample covariance matrix of 
+% the residuals form the ordinary least squares regression of Y on X.  An r by r
+% matrix. Only for method 'ienv'.
 
 %% Description
 % This function computes statistics that will be used frequently in the
@@ -70,13 +75,14 @@ function DataParameter = make_parameter(X, Y, method)
 if (strcmp(method, 'env'))
     
     
-    [n p] = size(X);
+    [n, p] = size(X);
     r = size(Y, 2);
 
     XC = center(X);
     YC = center(Y);
     ModelOutput = fit_OLS(X, Y);
     sigY = cov(Y, 1);
+    invsigY = inv(sigY);
     eigtemY = eig(sigY);
     logDetSigY = log(prod(eigtemY(eigtemY > 0)));
 
@@ -92,18 +98,17 @@ if (strcmp(method, 'env'))
     DataParameter.sigRes = ModelOutput.SigmaOLS;
     DataParameter.betaOLS = ModelOutput.betaOLS;
     DataParameter.logDetSigY = logDetSigY;
-   
+    DataParameter.invsigY = invsigY;
     
 elseif (strcmp(method, 'senv'))
     
     
-    [n p] = size(X);
+    [n, p] = size(X);
     r = size(Y, 2);
 
-    XC = center(X);
-    YC = center(Y);
     ModelOutput = fit_OLS(X, Y);
     sigY = cov(Y, 1);
+    invsigY = inv(sigY);
     eigtemY = eig(sigY);
     logDetSigY = log(prod(eigtemY(eigtemY > 0)));
     
@@ -117,12 +122,13 @@ elseif (strcmp(method, 'senv'))
     DataParameter.sigRes = ModelOutput.SigmaOLS;
     DataParameter.betaOLS = ModelOutput.betaOLS;
     DataParameter.logDetSigY = logDetSigY;
+    DataParameter.invsigY = invsigY;
     
     
 elseif (strcmp(method, 'ienv'))
     
     
-    [n p] = size(X);
+    [n, p] = size(X);
     r = size(Y, 2);
 
     XC = center(X);
@@ -133,7 +139,7 @@ elseif (strcmp(method, 'ienv'))
     sigFit = sigY - sigRes;
     eigtem = eig(sigRes);
     logDetSigRes = log(prod(eigtem(eigtem > 0)));
-    
+    invsigRes = inv(sigRes);
 
     DataParameter.n = n;
     DataParameter.p = p;
@@ -148,14 +154,15 @@ elseif (strcmp(method, 'ienv'))
     DataParameter.sigFit = sigFit;
     DataParameter.betaOLS = ModelOutput.betaOLS;
     DataParameter.logDetSigRes = logDetSigRes;
+    DataParameter.invsigRes = invsigRes;
     
     
 elseif (strcmp(method, 'henv'))
     
     
-    [n r] = size(Y);
+    [n, r] = size(Y);
 
-    [Xs ind] = sortrows(X);
+    [Xs, ind] = sortrows(X);
     p = 1;
     temp = Xs(1, :);
     ng = 0;
@@ -176,7 +183,7 @@ elseif (strcmp(method, 'henv'))
     Ys = Y(ind, :);
 
     for i = 1 : p
-        if i>1
+        if i > 1
             sigRes(:, :, i) = cov(Ys(ncum(i - 1) + 1 : ncum(i), :), 1);
             mYg(:, i) = mean(Ys(ncum(i - 1) + 1 : ncum(i), :))';
         else
@@ -188,6 +195,7 @@ elseif (strcmp(method, 'henv'))
     sigY = cov(Y, 1);
     eigtemY = eig(sigY);
     logDetSigY = log(prod(eigtemY(eigtemY > 0)));
+    invsigY = inv(sigY);
 
     DataParameter.n = n;
     DataParameter.ng = ng;
@@ -200,10 +208,11 @@ elseif (strcmp(method, 'henv'))
     DataParameter.sigY = sigY;
     DataParameter.sigRes = sigRes;
     DataParameter.logDetSigY = logDetSigY;
+    DataParameter.invsigY = invsigY;
     
 elseif (strcmp(method, 'xenv'))
     
-    [n p] = size(X);
+    [n, p] = size(X);
     r = size(Y, 2);
     XC = center(X);
     YC = center(Y);
@@ -223,14 +232,14 @@ elseif (strcmp(method, 'xenv'))
     DataParameter.sigX = sigX;
     DataParameter.sigY = sigY;
     DataParameter.sigXY = sigXY;
-    DataParameter.sigXcY = sigX - sigXY * inv(sigY) * sigXY';
+    DataParameter.sigXcY = sigX - sigXY / sigY * sigXY';
     DataParameter.invSigX = inv(sigX);
     DataParameter.logDetSigY = logDetSigY;
     DataParameter.logDetSigX = logDetSigX;
     
 elseif (strcmp(method, 'xenvpls'))
     
-    [n p] = size(X);
+    [n, p] = size(X);
     r = size(Y, 2);
     XC = center(X);
     YC = center(Y);

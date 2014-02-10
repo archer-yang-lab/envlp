@@ -108,7 +108,7 @@ end
 X = double(X);
 Y = double(Y);
 
-[n, p] = size(X);
+n = size(X, 1);
 [n1, r] = size(Y);
 
 if n ~= n1
@@ -165,11 +165,13 @@ if u > 0 && u < r
     maxIter = Opts.maxIter;
 	ftol = Opts.ftol;
 	gradtol = Opts.gradtol;
-	if Opts.verbose == 0 
+	
+    if Opts.verbose == 0 
         verbose = 'quiet';
     else
         verbose = 'verbose';
     end
+    
     if ~isfield(Opts, 'init') 
         init = get_Init(F, u, DataParameter);
     else
@@ -177,7 +179,7 @@ if u > 0 && u < r
     end
 
     %---Compute \Gamma using sg_min---
-    [l Gamma] = sg_min(F, dF, init, maxIter, 'prcg', verbose, ftol, gradtol);
+    [l, Gamma] = sg_min(F, dF, init, maxIter, 'prcg', verbose, ftol, gradtol);
 
     %---Compute the rest of the parameters based on \Gamma---
     Gamma0 = grams(nulbasis(Gamma'));
@@ -195,7 +197,7 @@ if u > 0 && u < r
     asyFm = reshape(sqrt(diag(asyFm)), r, p);
     temp = kron(eta * sigX * eta', inv(Omega0))...
 		 + kron(Omega, inv(Omega0)) + kron(inv(Omega), Omega0) - 2 * kron(eye(u), eye(r - u));
-    covMatrix = kron(inv(sigX), Sigma1) + kron(eta', Gamma0) * inv(temp) * kron(eta, Gamma0');
+    covMatrix = kron(inv(sigX), Sigma1) + kron(eta', Gamma0) / temp * kron(eta, Gamma0');
     asySE = reshape(sqrt(diag(covMatrix)), r, p);
     
     ModelOutput.beta = beta;

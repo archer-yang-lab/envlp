@@ -53,7 +53,7 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
-[n r] = size(Y);
+r = size(Y, 2);
     
 ModelOutput = henv(X, Y, r, Opts);
 ic = - 2 * ModelOutput.l + 2 * ModelOutput.paramNum;

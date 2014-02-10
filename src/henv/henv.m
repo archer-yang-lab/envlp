@@ -85,7 +85,7 @@
 %% Description
 % This function fits the heteroscedastic envelope model to the responses and predictors,
 % using the maximum likelihood estimation.  When the dimension of the
-% envelope is between 1 and r-1, we implemented the algorithm in Su and Cook (2012).
+% envelope is between 1 and r-1, we implemented the algorithm in Su and Cook (2013).
 % When the dimension is r, then the envelope model degenerates
 % to the standard multivariate linear model for comparing group means.  When the dimension is 0,
 % it means there is not any group effect, and the fitting is different.
@@ -93,14 +93,14 @@
 %% References
 % 
 % # The codes are implemented based on the algorithm in Section 2.2 of Su
-% and Cook (2012).
+% and Cook (2013).
 % # The Grassmann manifold optimization step calls the package sg_min 2.4.3
 % by Ross Lippert (http://web.mit.edu/~ripper/www.sgmin.html).
 
 %% Example
 %
 % The following codes produce the results of the water strider example in Su
-% and Cook (2012).
+% and Cook (2013).
 % 
 %         load waterstrider.mat
 %         u = lrt_henv(X, Y, 0.01)
@@ -124,8 +124,6 @@ n = size(X, 1);
 if n ~= n1
     error('The number of observations in X and Y should be equal!');
 end
-
-p = size(unique(X, 'rows'), 1);
 
 % if p > r
 %     error(['When the number of responses is less than the number of ' ...
@@ -229,13 +227,14 @@ elseif u == r
     
     fracN = ng / n;
     J = zeros(p * r + p * r * (r + 1) / 2);
+
     for i = 1 : p - 1
         for j = 1 : p - 1
             J((i - 1) * r + 1 : i * r, (j - 1) * r + 1 : j * r)...
-                = fracN(j) * fracN(i) / fracN(p) * inv(Sigma(:, :, p));
+                = fracN(j) * fracN(i) / fracN(p) * eye(r) / Sigma(:, :, p);
         end
         J((i - 1) * r + 1 : i * r, (i - 1) * r + 1 : i * r)...
-                = fracN(i) * inv(Sigma(:, :, i)) + fracN(i) ^ 2 / fracN(p) * inv(Sigma(:, :, p));
+                = fracN(i) / Sigma(:, :, i) + fracN(i) ^ 2 / fracN(p) / Sigma(:, :, p);
     end
     for i = 1 : p
         J(r * (p - 1) + 1 + (i - 1) * r * (r + 1) / 2 : r * (p - 1) + i * r * (r + 1) / 2,  ...
@@ -247,7 +246,7 @@ elseif u == r
     J(1 : r, :) = 0;
     J(r + 1 : end, 1 : r) = 0;
     for i = 1 : p
-        J(1 : r, 1 : r) = J(1 : r, 1 : r) + fracN(i) * inv(Sigma(:, :, i));
+        J(1 : r, 1 : r) = J(1 : r, 1 : r) + fracN(i) / Sigma(:, :, i);
     end
     for i = 1 : p - 1
         J(1 : r, i * r + 1 : (i + 1) * r) = fracN(i) * (inv(Sigma(:, :, p)) - inv(Sigma(:, :, i)));
@@ -257,7 +256,7 @@ elseif u == r
     tempA = kron(ones(1, p - 1), eye(r));
     varGroupp = tempA * temp(r + 1 : r * p, r + 1 : r * p) * tempA';
     covMatrix = zeros(r * (p + 1), r * (p + 1));
-    covMatrix(1:r*p,1:r*p) = temp(1 : r * p, 1 : r * p);
+    covMatrix(1 : r * p, 1 : r * p) = temp(1 : r * p, 1 : r * p);
     covMatrix(r * p + 1 : r * (p + 1), r * p + 1 : r * (p + 1)) = varGroupp;
     for i = 1 : p - 1
         covMatrix(r * p + 1 : r * (p + 1), i * r + 1 : (i + 1) * r) ...
@@ -298,11 +297,13 @@ else
     maxIter = Opts.maxIter;
 	ftol = Opts.ftol;
 	gradtol = Opts.gradtol;
+    
 	if (Opts.verbose == 0) 
         verbose = 'quiet';
     else
         verbose = 'verbose';
     end
+    
     if ~isfield(Opts, 'init') 
         init = get_Init4henv(F, u, DataParameter);
     else
@@ -310,10 +311,10 @@ else
     end
     
     
-    [l Gamma] = sg_min(F, dF, init, maxIter, 'prcg', verbose, ftol, gradtol);
+    [l, Gamma] = sg_min(F, dF, init, maxIter, 'prcg', verbose, ftol, gradtol);
 
     Gamma0 = grams(nulbasis(Gamma'));
-    Omega0 = Gamma0'*sigY*Gamma0;
+    Omega0 = Gamma0' * sigY * Gamma0;
     eta = Gamma' * (mYg - mu * ones(1, p));
     beta = Gamma * eta;
     mug = mu * ones(1, p) + beta;
@@ -338,10 +339,10 @@ else
     for i = 1 : p - 1
         for j = 1 : p - 1
             J((i - 1) * r + 1 : i * r, (j - 1) * r + 1 : j * r) ...
-				= fracN(j) * fracN(i) / fracN(p) * inv(Sigma(:, :, p));
+				= fracN(j) * fracN(i) / fracN(p) * eye(r) / Sigma(:, :, p);
         end
         J((i - 1) * r + 1 : i * r, (i - 1) * r + 1 : i * r) ...
-			= fracN(i) * inv(Sigma(:, :, i)) + fracN(i) ^ 2 / fracN(p) * inv(Sigma(:, :, p));
+			= fracN(i) * eye(r) / Sigma(:, :, i) + fracN(i) ^ 2 / fracN(p) * eye(r) / Sigma(:, :, p);
     end
     for i = 1 : p
         J(r * (p - 1) + 1 + (i - 1) * r * (r + 1) / 2 : r * (p - 1) + i * r * (r + 1) / 2,  ...
@@ -353,23 +354,22 @@ else
     J(1 : r, :) = 0;
     J(r + 1 : end, 1 : r) = 0;
     for i = 1 : p
-        J(1 : r, 1 : r) = J(1 : r, 1 : r) + fracN(i) * inv(Sigma(:, :, i));
+        J(1 : r, 1 : r) = J(1 : r, 1 : r) + fracN(i) * eye(r) / Sigma(:, :, i);
     end
     for i = 1 : p - 1
         J(1 : r, i * r + 1 : (i + 1) * r) ...
 			= fracN(i) * (inv(Sigma(:, :, p)) - inv(Sigma(:, :, i)));
         J(i * r + 1 : (i + 1) * r, 1 : r) = J(1 : r, i * r + 1 : (i + 1) * r);
     end
-    temp = inv(J);
     
     J1 = zeros(p * r + p * r * (r + 1) / 2);
     for i = 1 : p - 1
         for j = 1 : p - 1
             J1((i - 1) * r + 1 : i * r, (j - 1) * r + 1 : j * r) ...
-				= fracN(j) * fracN(i) / fracN(p) * inv(sigRes(:, :, p));
+				= fracN(j) * fracN(i) / fracN(p) * eye(r) / sigRes(:, :, p);
         end
         J1((i - 1) * r + 1 : i * r, (i - 1) * r + 1 : i * r) ...
-			= fracN(i) * inv(sigRes(:, :, i)) + fracN(i) ^ 2 / fracN(p) * inv(sigRes(:, :, p));
+			= fracN(i) * eye(r) / sigRes(:, :, i) + fracN(i) ^ 2 / fracN(p) * eye(r) / sigRes(:, :, p);
     end
     for i = 1 : p
         J1(r * (p - 1) + 1 + (i - 1) * r * (r + 1) / 2 : r * (p - 1) + i * r * (r + 1) / 2,  ...
@@ -381,7 +381,7 @@ else
     J1(1 : r, :) = 0;
     J1(r + 1 : end, 1 : r) = 0;
     for i = 1 : p
-        J1(1 : r, 1 : r) = J1(1 : r, 1 : r) + fracN(i) * inv(sigRes(:, :, i));
+        J1(1 : r, 1 : r) = J1(1 : r, 1 : r) + fracN(i) * eye(r) / sigRes(:, :, i);
     end
     for i = 1 : p - 1
         J1(1 : r, i * r + 1 : (i + 1) * r) ...
@@ -414,7 +414,7 @@ else
     H(1 : r, r + 1 : end) = 0;
     H(r + 1 : end, 1 : r) = 0;
     H(1 : r, 1 : r) = eye(r);
-    temp = H * inv(H' * J * H) * H';
+    temp = H / (H' * J * H) * H';
     tempA = kron(ones(1, p - 1), eye(r));
     varGroupp = tempA * temp(r + 1 : r * p, r + 1 : r * p) * tempA';
     covMatrix = zeros(r * (p + 1), r * (p + 1));

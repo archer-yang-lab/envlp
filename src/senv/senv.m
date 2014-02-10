@@ -50,9 +50,9 @@
 % semi-orthogonal matrix.
 % * ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope
 % subspace.  An r by r - u semi-orthogonal matrix.
-% * ModelOutput.eta: The coordinates of $$\beta$ with respect to Gamma. An u by p
+% * ModelOutput.eta: The coordinates of $$\beta$ with respect to Gamma. A u by p
 % matrix.
-% * ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u
+% * ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. A u by u
 % matrix.
 % * ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r - u by r - u
 % matrix.
@@ -77,7 +77,7 @@
 % This function fits the scaled envelope model to the responses and predictors,
 % using the maximum likelihood estimation.  When the dimension of the
 % envelope is between 1 and r - 1, we implemented the algorithm in Cook and
-% Su (2012).  When the dimension is r, then the scaled envelope model 
+% Su (2013).  When the dimension is r, then the scaled envelope model 
 % degenerates to the standard multivariate linear regression.  When the
 % dimension is 0, it means that X and Y are uncorrelated, and the fitting
 % is different.
@@ -85,14 +85,14 @@
 %% References
 % 
 % # The codes are implemented based on the algorithm in Section 4.1 of Cook 
-% and Su (2012).
+% and Su (2013).
 % # The Grassmann manifold optimization step calls the package sg_min 2.4.3
 % by Ross Lippert (http://web.mit.edu/~ripper/www.sgmin.html).
 
 %% Example
 %
 % The following codes produce the results of the test and performance
-% example in Cook and Su (2012).
+% example in Cook and Su (2013).
 % 
 %         load('sales.txt')
 %         Y = sales(:, 4 : 7);
@@ -131,8 +131,8 @@ end
 X = double(X);
 Y = double(Y);
 
-[n p] = size(X);
-[n1 r] = size(Y);
+n = size(X, 1);
+[n1, r] = size(Y);
 
 if n ~= n1
     error('The number of observations in X and Y should be equal!');
@@ -279,10 +279,9 @@ elseif u > 0 && u < (q * r - r + 1) / q && q > 1
         
         F = make_F(@F4senv, DataParameter);
         dF = make_dF(@dF4senv, DataParameter);
-        [l Gamma] = sg_min(F, dF, Gamma, maxIter, 'prcg', verbose, ftol, gradtol);
+        [l, Gamma] = sg_min(F, dF, Gamma, maxIter, 'prcg', verbose, ftol, gradtol);
         
-        [d l2(i)] = fminsearch(@(d) objfun(d, Gamma, DataParameter),  d);
-        d
+        [d, l2(i)] = fminsearch(@(d) objfun(d, Gamma, DataParameter),  d);
         
         if i > 1 && abs(l2(i) - l2(i - 1)) < epsilon * abs(l2(i))
             break;
@@ -293,11 +292,12 @@ elseif u > 0 && u < (q * r - r + 1) / q && q > 1
     C = arrayfun(@(x, y) repmat(x, [1 y]), [1 d], rep, 'UniformOutput', false);
     Ld = cell2mat(C);
     Lambda = diag(Ld);
+    invLambda = diag(1./Ld);
     Gamma0 = grams(nulbasis(Gamma'));
-    eta = Gamma' * inv(Lambda) * betaOLS;
+    eta = Gamma' * invLambda * betaOLS;
     beta = Lambda * Gamma * eta;
-    Omega = Gamma' * inv(Lambda) * sigRes * inv(Lambda) * Gamma;
-    Omega0 = Gamma0' * inv(Lambda) * sigY * inv(Lambda) * Gamma0;
+    Omega = Gamma' * invLambda * sigRes * invLambda * Gamma;
+    Omega0 = Gamma0' * invLambda * sigY * invLambda * Gamma0;
     Sigma = Lambda * (Gamma * Omega * Gamma' + Gamma0 * Omega0 * Gamma0') * Lambda;
         
     ModelOutput.beta = beta;

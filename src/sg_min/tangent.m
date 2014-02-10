@@ -22,7 +22,7 @@ function H = tangent(Y,D)
 	elseif (met==2)
 		H = D - Y*vert';
 	end
-	if (norm(H,'fro')>0 & norm(vert,'fro')/norm(H,'fro')>1e6)
+	if (norm(H,'fro')>0 && norm(vert,'fro')/norm(H,'fro')>1e6)
 		vert = Y'*H;
 		verts = (vert+vert')/2;
 		H = H-Y*verts;

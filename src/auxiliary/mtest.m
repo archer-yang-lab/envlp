@@ -51,8 +51,8 @@
 
 function TestOutput = mtest(X, Y, alpha)
 
-[n r] = size(Y);
-[Xs ind] = sortrows(X);
+[n, r] = size(Y);
+[Xs, ~] = sortrows(X);
 xMarker = ones(n, 1);
 
 temp = Xs(1, :);
@@ -70,7 +70,7 @@ end
 Z = zeros(n, r + 1);
 Z(:, 1) = xMarker;
 Z(:, 2 : end) = Y;
-[MB X2 v P] = MBoxtest(Z, alpha);
+[MB, X2, v, P] = MBoxtest(Z, alpha);
 TestOutput.mStatistic = MB;
 TestOutput.approxStatistic = X2;
 TestOutput.df = v;

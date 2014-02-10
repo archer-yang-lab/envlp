@@ -69,14 +69,14 @@
 % This function fits the envelope model in the predictor's space,
 % using the maximum likelihood estimation.  When the dimension of the
 % envelope is between 1 and r - 1, we implemented the algorithm in Cook et
-% al. (2012).  When the dimension is r, then the envelope model degenerates
+% al. (2013).  When the dimension is r, then the envelope model degenerates
 % to the standard multivariate linear regression.  When the dimension is 0,
 % it means that X and Y are uncorrelated, and the fitting is different.
 
 %% References
 % 
 % # The codes are implemented based on the algorithm in Section 4.5.1 of Cook 
-% et al (2012).
+% et al (2013).
 % # The Grassmann manifold optimization step calls the package sg_min 2.4.3
 % by Ross Lippert (http://web.mit.edu/~ripper/www.sgmin.html).
 
@@ -119,7 +119,7 @@ X = double(X);
 Y = double(Y);
 
 [n, p] = size(X);
-[n1, r] = size(Y);
+[n1, ~] = size(Y);
 
 if n ~= n1
     error('The number of observations in X and Y should be equal!');
@@ -198,7 +198,7 @@ if u > 0 && u < p
     F = make_F(@F4xenv, DataParameter);
     dF = make_dF(@dF4xenv, DataParameter);
 
-    [l Gamma] = sg_min(F, dF, init, maxIter, 'prcg', verbose, ftol, gradtol);
+    [l, Gamma] = sg_min(F, dF, init, maxIter, 'prcg', verbose, ftol, gradtol);
 
     %---Compute the rest of the parameters based on \Gamma---
     Gamma0 = grams(nulbasis(Gamma'));
@@ -206,14 +206,14 @@ if u > 0 && u < p
     Omega = Gamma' * sigX * Gamma;
     Omega0 = Gamma0' * sigX * Gamma0;
     SigX = Gamma * Omega * Gamma' + Gamma0 * Omega0 * Gamma0'; % Envelope estimator of \Sigma_X
-    beta = Gamma * inv(Omega) * eta;
+    beta = Gamma / Omega * eta;
     mu = mY - beta' * mX;
 
     %---compute asymptotic variance and get the ratios---
     asyFm = kron(sigYcX, inv(sigX));
     asyFm = reshape(sqrt(diag(asyFm)), p, r);
-    temp = kron(eta * inv(sigYcX) * eta', Omega0) + kron(Omega, inv(Omega0)) + kron(inv(Omega), Omega0) - 2 * kron(eye(u), eye(p - u));
-    covMatrix = kron(sigYcX, Gamma * inv(Omega) * Gamma') + kron(eta', Gamma0) * inv(temp) * kron(eta, Gamma0');
+    temp = kron(eta / sigYcX * eta', Omega0) + kron(Omega, inv(Omega0)) + kron(inv(Omega), Omega0) - 2 * kron(eye(u), eye(p - u));
+    covMatrix = kron(sigYcX, Gamma / Omega * Gamma') + kron(eta', Gamma0) / temp * kron(eta, Gamma0');
     asySE = reshape(sqrt(diag(covMatrix)), p, r);
     
     ModelOutput.beta = beta;

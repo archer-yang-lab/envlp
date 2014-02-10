@@ -57,7 +57,7 @@ Opts.verbose = 0;
 
 Y = double(Y);
 
-[n p] = size(Y);
+[n, p] = size(Y);
 
 ModelOutput = envmean(Y, u, Opts);
 

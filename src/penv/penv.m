@@ -121,9 +121,9 @@ Y = double(Y);
 X1 = X.X1;
 X2 = X.X2;
 
-[n p1] = size(X1);
-[n2 p2] = size(X2);
-[n1 r] = size(Y);
+[n, p1] = size(X1);
+[n2, p2] = size(X2);
+[n1, r] = size(Y);
 
 if n ~= n1 || n2 ~= n1
     error('The number of observations in X1, X2 and Y should be equal!');
@@ -137,7 +137,7 @@ end
 Opts = make_opts(Opts);
 
 if isfield(Opts,'init')
-    [r2 u2] = size(Opts.init);
+    [r2, u2] = size(Opts.init);
 
     if r ~= r2 || u ~= u2
         error('The size of the initial value should be r by u!');
@@ -155,13 +155,13 @@ X1C = center(X1);
 X2C = center(X2);
 YC = center(Y);
 XC = [X1C X2C];
-sigRes = YC' * (eye(n) - XC * inv(XC' * XC) * XC') * YC / n;
+sigRes = YC' * (eye(n) - XC / (XC' * XC) * XC') * YC / n;
 
 SX1 = cov(X1,1);
 SX2 = cov(X2,1);
 SX12 = X1C' * X2C/n;
 
-QX2 = eye(n) - X2C * inv(X2C' * X2C) * X2C';
+QX2 = eye(n) - X2C / (X2C' * X2C) * X2C';
 R12 = QX2 * X1C;
 RY2 = QX2 * YC;
 
@@ -187,18 +187,18 @@ if u > 0 && u < r
     Omega0 = temp.Omega0;
     Sigma1 = Gamma * Omega * Gamma';
     Sigma = temp.Sigma;
-    beta2 = (YC - X1C * beta1')' * X2C * inv(X2C' * X2C);
+    beta2 = (YC - X1C * beta1')' * X2C / (X2C' * X2C);
     alpha = mean(Y)' - beta1 * mean(X1)' - beta2 * mean(X2)';
     maxl = temp.l;
     
     %---compute asymptotic variance and get the ratios---
-    Sig1G2 = SX1 - SX12 * inv(SX2) * SX12';
+    Sig1G2 = SX1 - SX12 / SX2 * SX12';
     asyFm = kron(inv(Sig1G2), sigRes);
     asyFm = reshape(sqrt(diag(asyFm)), r, p1);
     
     temp = kron(eta * Sig1G2 * eta', inv(Omega0)) + kron(Omega, inv(Omega0))...
         + kron(inv(Omega), Omega0) - 2 * kron(eye(u), eye(r - u));
-    asySE = kron(inv(Sig1G2), Sigma1) + kron(eta', Gamma0) * inv(temp) * kron(eta, Gamma0');
+    asySE = kron(inv(Sig1G2), Sigma1) + kron(eta', Gamma0) / temp * kron(eta, Gamma0');
     asySE = reshape(sqrt(diag(asySE)), r, p1);
     
     p = p1 + p2;
@@ -225,7 +225,7 @@ if u > 0 && u < r
     H(sep2 + 1 : end, sep4 + 1 : sep5) = Contr(r)*kron(Gamma, Gamma) * Expan(u);
     H(sep2 + 1 : end, sep5 + 1 : end) = Contr(r)*kron(Gamma0, Gamma0) * Expan(r - u);
     
-    covMatrix = H * inv(H' * J * H) * H';
+    covMatrix = H / (H' * J * H) * H';
     covMatrix = covMatrix(1 : r * p, 1 : r * p);
     
     ModelOutput.beta1 = beta1;

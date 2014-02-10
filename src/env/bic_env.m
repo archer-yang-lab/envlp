@@ -51,7 +51,7 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
-[n r] = size(Y);
+[n, r] = size(Y);
     
 ModelOutput = env(X, Y, r, Opts);
 ic = - 2 * ModelOutput.l + log(n) * ModelOutput.paramNum;

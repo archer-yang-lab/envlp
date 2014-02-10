@@ -56,15 +56,15 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
-[n p] = size(Y);
+p = size(Y, 2);
 
 ModelOutput0 = envmean(Y, p, Opts);
 
 for i = 0 : p - 1
 
-    	if printFlag == 1 
+    if printFlag == 1 
 		fprintf(['Current dimension ' int2str(i) '\n']);
-        end
+    end
     
 	ModelOutput = envmean(Y, i, Opts);
 	chisq = - 2 * (ModelOutput.l - ModelOutput0.l);

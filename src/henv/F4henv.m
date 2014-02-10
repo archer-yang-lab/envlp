@@ -19,7 +19,7 @@
 
 %% Description
 %
-% The objective function is derived in Section 2.2 of Su and Cook (2012)
+% The objective function is derived in Section 2.2 of Su and Cook (2013)
 %  using maximum likelihood estimation. The columns of the semi-orthogonal 
 % matrix that minimizes this function span the estimated envelope subspace
 % in the heteroscedastic envelope model.
@@ -41,7 +41,7 @@ for i = 1 : p
     f = f + ng(i) / n * a;  
 end
 
-eigtem0 = eig(R' * inv(sigY) * R);
+eigtem0 = eig(R' / sigY * R);
 b = log(prod(eigtem0(eigtem0 > 0)));
 
 f = n * r * (1 + log(2 * pi)) + n * (f + b + logDetSigY);

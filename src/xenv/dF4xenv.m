@@ -19,19 +19,18 @@
 
 %% Description
 %
-% The objective function is derived in Section 4.5.1 of Cook et al. (2012) by
+% The objective function is derived in Section 4.5.1 of Cook et al. (2013) by
 %  using maximum likelihood estimation. This function is the derivative of
 %  the objective function.
 
 function df = dF4xenv(R, DataParameter)
 
 n = DataParameter.n;
-sigX = DataParameter.sigX;
 sigXcY = DataParameter.sigXcY;
 invSigX = DataParameter.invSigX;
 
-a = 2 * sigXcY * R * inv(R' * sigXcY * R);
+a = 2 * sigXcY * R / (R' * sigXcY * R);
 
-b = 2 * invSigX * R * inv(R' * invSigX * R);
+b = 2 * invSigX * R / (R' * invSigX * R);
 
 df = n * (a + b);
