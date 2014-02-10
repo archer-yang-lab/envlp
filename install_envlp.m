@@ -24,7 +24,7 @@ function  install_envlp
 % $Revision: 1.0.0 $  $Date: 2012-05-03 $
 %
 % Part of the envlp toolbox version 1.0.0 for MATLAB version 5 and up.
-% <http://code.google.com/p/envlp/ http://code.google.com/p/envlp/>
+% http://code.google.com/p/envlp/ 
 % Copyright (c) Dennis Cook, Zhihua Su, Yi Yang, 2012
 % Please read the LICENSE and NO WARRANTY statement in ./envlp_license.m
 
