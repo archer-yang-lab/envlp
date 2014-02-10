@@ -49,8 +49,8 @@ sigRes = DataParameter.sigRes;
 betaOLS = DataParameter.betaOLS;
 
 
-[V1 D] = eig(sigRes);
-[V2 D] = eig(sigY);
+[V1, ~] = eig(sigRes);
+[V2, ~] = eig(sigY);
 V = [V1 V2];
 
 crit = nchoosek(2 * r, u);
@@ -60,7 +60,7 @@ if crit <= 50
 %     setaux(Y,X,0,r,V,D);
 %     Ys=zeros(crit+5,r,u);
     Ys = zeros(crit, r, u);
-    [Ys(1 : crit, :, :) ind] = get_combeig(V, 2 * r, u);
+    [Ys(1 : crit, :, :), ~] = get_combeig(V, 2 * r, u);
 %     Ys(crit+1,:,:) = getSIR(u,r);
 %     Ys(crit+2,:,:) = getSAVE(u,r);
 %     Ys(crit+3,:,:) = getDR(u,r);
@@ -126,9 +126,9 @@ for i = 1 : m
 end
 rk = min(m * p, r);
 
-[Ul S V] = svd(spini);
-[Ss In] = sort(diag(S(1 : rk, 1 : rk)), 'descend');
-Wguess2 = Ul(:, 1 : u);
+[Ul, S, ~] = svd(spini);
+[~, In] = sort(diag(S(1 : rk, 1 : rk)), 'descend');
+Wguess2 = Ul(:, In(1 : u));
 
 if (F(Wguess1) < F(Wguess2))
     WInit = Wguess1;
