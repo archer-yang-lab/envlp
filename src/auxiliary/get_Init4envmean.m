@@ -1,5 +1,5 @@
 %% get_Init4envmean
-% Starting value for the envelope subspace in estimating the multiavriate mean.
+% Generate starting value for the envelope subspace in estimating the multivariate mean.
 
 %% Syntax
 %         WInit = get_Init4envmean(F, u, DataParameter)

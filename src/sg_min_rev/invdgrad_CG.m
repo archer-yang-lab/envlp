@@ -2,7 +2,7 @@ function H = invdgrad_cg(dF,Y,W,tol,dl)
 % INVDGRAD_CG  Inverts the operator dgrad.  i.e. solves for H satisfying
 %		dl*H+dgrad(Y,H) = W.  The parameter, dl, is used for dogleg
 %		steps, and defaults to 0.  Uses a CG algorithm with
-%		a tolerance of gep*norm(W), or a tolerance of tol if given.
+%		a tolerance of gep*norm(W), or a tolerance of tol if given,
 %		if tol is given.
 %	
 %	H = INVDGRAD_CG(Y,W,tol,s)
