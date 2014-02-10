@@ -1,6 +1,5 @@
 %% mfoldcv_env
-% Select the dimension of the envelope subspace 
-% using m-fold cross validation.
+% Select the dimension of the envelope subspace using m-fold cross validation.
 
 %% Syntax
 %         u = mfoldcv_env(X, Y, m)

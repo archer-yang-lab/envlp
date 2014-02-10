@@ -2,7 +2,7 @@ function [H,rs,x,r] = invdgrad_minres(dF,Y,W,tol,dl)
 % INVDGRAD_MINRES  Inverts the operator dgrad.  i.e. solves for H satisfying
 %		dl*H+dgrad(Y,H) = W.  The parameter, dl, is used for dogleg
 %		steps, and defaults to 0.  Uses a MINRES algorithm with
-%		a tolerance of gep*norm(W), or a tolerance of tol if given.
+%		a tolerance of gep*norm(W), or a tolerance of tol if given,
 %		if tol is given.
 %	
 %	H = INVDGRAD_MINRES(Y,W,tol,dl)

@@ -1,6 +1,6 @@
 function N = nulbasis(A)
 
-% nulbasis  Basis for nullspace.
+% Compute nulbasis basis for nullspace.
 %
 % N = nulbasis(A) returns a basis for the nullspace of A
 % in the columns of N. The basis contains the n-r special 

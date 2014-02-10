@@ -1,6 +1,5 @@
 %% mfoldcv_penv
-% Select the dimension of the partial envelope subspace  
-% using m-fold cross validation.
+% Select the dimension of the partial envelope subspace using m-fold cross validation.
 
 %% Syntax
 %         u = mfoldcv_penv(X, Y, m)

@@ -1,5 +1,5 @@
 %% get_Init4henv
-% Starting value for the heteroscedastic envelope subspace.
+% Generate starting value for the heteroscedastic envelope subspace.
 
 %% Syntax
 %         WInit = get_Init4henv(F, u, DataParameter)
