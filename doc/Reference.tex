@@ -8215,6 +8215,7 @@ Fit multivariate linear regression.
    \item ModelOutput.betaOLS: An r by p matrix containing estimate of the regression coefficients $\beta$.
    \item ModelOutput.SigmaOLS: An r by r matrix containing estimate of the error covariance matrix.
    \item ModelOutput.alpha: An r by 1 vector containing estimate of the intercept.
+   \item ModelOutput.asySE: The asymptotic standard error for elements in $\beta$.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
    \item ModelOutput.n: The number of observations in the data.  A positive integer.
 \end{itemize}
 

@@ -20,6 +20,7 @@
 % * ModelOutput.betaOLS: An r by p matrix containing estimate of the regression coefficients $$\beta$.
 % * ModelOutput.SigmaOLS: An r by r matrix containing estimate of the error covariance matrix.
 % * ModelOutput.alpha: An r by 1 vector containing estimate of the intercept.
+% * ModelOutput.asySE: The asymptotic standard error for elements in $$\beta$.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1/sqrt(n).
 % * ModelOutput.n: The number of observations in the data.  A positive integer.
 
 %% Description
@@ -46,7 +47,11 @@ YC = center(Y);
 mY = mean(Y)';
 mX = mean(X)';
 PX = XC / (XC' * XC) * XC';
+sigRes = YC' * (eye(n) - PX) * YC / n;
+sigX = XC' * XC / n;
+covMatrix = kron(inv(sigX), sigRes);
 ModelOutput.betaOLS = YC' * XC / (XC' * XC);
-ModelOutput.SigmaOLS = YC' * (eye(n) - PX) * YC / n;
+ModelOutput.SigmaOLS = sigRes;
 ModelOutput.alpha = mY - ModelOutput.betaOLS * mX;
+ModelOutput.asySE = reshape(sqrt(diag(covMatrix)), r, p);
 ModelOutput.n = n;
