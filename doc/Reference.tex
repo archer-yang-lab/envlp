@@ -2454,7 +2454,7 @@ Provide envelope estimator for the multivariate mean.
    \item ModelOutput.mu: The envelope estimator of the multivariate mean $\mu$. A p dimensional column vector.
    \item ModelOutput.Sigma: The envelope estimator of the error covariance matrix.  A p by p matrix.
    \item ModelOutput.Gamma: The orthogonal basis of the envelope subspace. A p by u semi-orthogonal matrix.
-   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  An p by p-u semi-orthogonal matrix.
+   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  A p by p-u semi-orthogonal matrix.
    \item ModelOutput.eta: The coordinates of $\mu$ with respect to Gamma. A u dimensional column vector.
    \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. A u by u matrix.
    \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. A p-u by p-u matrix.
@@ -3107,8 +3107,8 @@ Fit the envelope model using a sequential algorithm.
    \item ModelOutput.Sigma: The envelope estimator of the error covariance matrix.  An r by r matrix.
    \item ModelOutput.Gamma: The orthogonal basis of the envelope subspace. An r by u semi-orthogonal matrix.
    \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  An r by r-u semi-orthogonal matrix.
-   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. An u by p matrix.
-   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u matrix.
+   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. A u by p matrix.
+   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. A u by u matrix.
    \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r-u by r-u matrix.
    \item ModelOutput.alpha: The estimated intercept in the envelope model.  An r by 1 vector.
    \item ModelOutput.paramNum: The number of parameters in the envelope model.  A positive integer.
@@ -3675,8 +3675,8 @@ Fit the heteroscedastic envelope model.
    \item ModelOutput.beta: The heteroscedastic envelope estimator of the group main effect. An r by p matrix, the ith column of the matrix contains the main effect for the ith group.
    \item ModelOutput.groupInd: A matrix containing the unique values of group indicators. The matrix has p rows.  The group mean of the ith row is stored in the ith column of ModelOutput.mug.
    \item ModelOutput.Sigma: The heteroscedastic envelope estimator of the error covariance matrix.  A three dimensional matrix with dimension r, r and p, ModelOutput.Sigma(:, :, i) contains the estimated covariance matrix for the ith group.
-   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. An u by p matrix, the ith column contains the coordinates of the main effect of the ith group with respect to Gamma.
-   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u by p matrix, ModelOutput.Omega(:, :, i) contains the coordinates of the covariance matrix of the ith group with respect to Gamma.
+   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. A u by p matrix, the ith column contains the coordinates of the main effect of the ith group with respect to Gamma.
+   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. A u by u by p matrix, ModelOutput.Omega(:, :, i) contains the coordinates of the covariance matrix of the ith group with respect to Gamma.
    \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r - u by r - u matrix.
    \item ModelOutput.l: The maximized log likelihood function.  A real number.
    \item ModelOutput.paramNum: The number of parameters in the heteroscedastic envelope model.  A positive integer.
@@ -4592,10 +4592,10 @@ Fit the inner envelope model.
    \item ModelOutput.Sigma: The envelope estimator of the error covariance matrix.  An r by r matrix.
    \item ModelOutput.Gamma1: The orthogonal basis of the inner envelope subspace. An r by u semi-orthogonal matrix.
    \item ModelOutput.Gamma0: The orthogonal basis of the complement of the inner envelope subspace.  An r by r-u semi-orthogonal matrix.
-   \item ModelOutput.eta1: The transpose of the coordinates of $\beta$ with respect to Gamma1. An p by u matrix.
+   \item ModelOutput.eta1: The transpose of the coordinates of $\beta$ with respect to Gamma1. A p by u matrix.
    \item ModelOutput.B: An (r - u) by (p - u) semi-orthogonal matrix, so that (Gamma, Gamma0 * B) spans $\beta$.
-   \item ModelOutput.eta2: The transpose of the coordinates of $\beta$ with respect to Gamma0. An p by (p-u) matrix.
-   \item ModelOutput.Omega1: The coordinates of Sigma with respect to Gamma1. An u by u matrix.
+   \item ModelOutput.eta2: The transpose of the coordinates of $\beta$ with respect to Gamma0. A p by (p-u) matrix.
+   \item ModelOutput.Omega1: The coordinates of Sigma with respect to Gamma1. A u by u matrix.
    \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r - u by r - u matrix.
    \item ModelOutput.alpha: The estimated intercept in the inner envelope model.  An r by 1 vector.
    \item ModelOutput.l: The maximized log likelihood function.  A real number.
@@ -5564,8 +5564,8 @@ Fit the partial envelope model.
    \item ModelOutput.Sigma: The partial envelope estimator of the error covariance matrix.  An r by r matrix.
    \item ModelOutput.Gamma: The orthogonal basis of the partial envelope subspace. An r by u semi-orthogonal matrix.
    \item ModelOutput.Gamma0: The orthogonal basis of the complement of the partial envelope subspace.  An r by r - u semi-orthogonal matrix.
-   \item ModelOutput.eta: The coordinates of $\beta_1$ with respect to Gamma. An u by p1 matrix.
-   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. An u by u matrix.
+   \item ModelOutput.eta: The coordinates of $\beta_1$ with respect to Gamma. A u by p1 matrix.
+   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. A u by u matrix.
    \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. An r - u by r - u matrix.
    \item ModelOutput.alpha: The estimated intercept in the partial envelope model.  An r by 1 vector.
    \item ModelOutput.l: The maximized log likelihood function.  A real number.
@@ -7030,7 +7030,7 @@ Compute bootstrap standard error of the envelope model for the reduction on X.
 \subsection*{Output}
 
 \begin{par}
-\textbf{bootse}: The standard error for elements in $\beta$ computed by bootstrap.  An p by r matrix.
+\textbf{bootse}: The standard error for elements in $\beta$ computed by bootstrap.  A p by r matrix.
 \end{par} \vspace{1em}
 
 
@@ -7110,7 +7110,7 @@ The first derivative of the objective function for computing the envelope subspa
 \subsection*{Output}
 
 \begin{par}
-\textbf{df}: An p by u matrix containing the value of the derivative function evaluated at R.
+\textbf{df}: A p by u matrix containing the value of the derivative function evaluated at R.
 \end{par} \vspace{1em}
 
 
@@ -7587,7 +7587,7 @@ Fit the envelope model for the reduction on X.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
    \item Opts.verbose: Flag for print out Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
-      \item Opts.init: The initial value for the envelope subspace. An p by u matrix. Default value is the one generated by function get\_Init.
+      \item Opts.init: The initial value for the envelope subspace. A p by u matrix. Default value is the one generated by function get\_Init.
 \end{itemize}
 
 
@@ -7598,19 +7598,19 @@ Fit the envelope model for the reduction on X.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item ModelOutput.beta: The envelope estimator of the regression coefficients $\beta$. An p by r matrix.
+   \item ModelOutput.beta: The envelope estimator of the regression coefficients $\beta$. A p by r matrix.
    \item ModelOutput.SigX: The envelope estimator of the covariance matrix of X, $\Sigma_X$.  A p by p matrix.
-   \item ModelOutput.Gamma: The orthogonal basis of the envelope subspace. An p by u semi-orthogonal matrix.
-   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  An p by p-u semi-orthogonal matrix.
-   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. An u by r matrix.
-   \item ModelOutput.Omega: The coordinates of $\Sigma_X$ with respect to Gamma. An u by u matrix.
+   \item ModelOutput.Gamma: The orthogonal basis of the envelope subspace. A p by u semi-orthogonal matrix.
+   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  A p by p-u semi-orthogonal matrix.
+   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. A u by r matrix.
+   \item ModelOutput.Omega: The coordinates of $\Sigma_X$ with respect to Gamma. A u by u matrix.
    \item ModelOutput.Omega0: The coordinates of $\Sigma_X$ with respect to Gamma0. An p - u by p - u matrix.
    \item ModelOutput.mu: The estimated intercept.  An r by 1 vector.
    \item ModelOutput.sigYcX: The estimated conditional covariance matrix of Y given X. An r by r matrix.
    \item ModelOutput.l: The maximized log likelihood function.  A real number.
    \item ModelOutput.covMatrix: The asymptotic covariance of vec($\beta$).  An pr by pr matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1 / n.
    \item ModelOutput.asySE: Asymptotic standard error for elements in $\beta$ under the envelope model.  An r by p matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
-   \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the envelope estimator, for each element in $\beta$.  An p by r matrix.
+   \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the envelope estimator, for each element in $\beta$.  A p by r matrix.
    \item ModelOutput.paramNum: The number of parameters in the envelope model.  A positive integer.
    \item ModelOutput.n: The number of observations in the data.  A positive integer.
 \end{itemize}
@@ -7960,12 +7960,12 @@ Fit the envelope model for the reduction on X using partial least squares algori
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item ModelOutput.beta: The envelope estimator of the regression coefficients $\beta$. An p by r matrix.
+   \item ModelOutput.beta: The envelope estimator of the regression coefficients $\beta$. A p by r matrix.
    \item ModelOutput.SigX: The envelope estimator of the covariance matrix of X, $\Sigma_X$.  A p by p matrix.
-   \item ModelOutput.Gamma: The orthogonal basis of the envelope subspace. An p by u semi-orthogonal matrix.
-   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  An p by p-u semi-orthogonal matrix.
-   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. An u by r matrix.
-   \item ModelOutput.Omega: The coordinates of $\Sigma_X$ with respect to Gamma. An u by u matrix.
+   \item ModelOutput.Gamma: The orthogonal basis of the envelope subspace. A p by u semi-orthogonal matrix.
+   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  A p by p-u semi-orthogonal matrix.
+   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. A u by r matrix.
+   \item ModelOutput.Omega: The coordinates of $\Sigma_X$ with respect to Gamma. A u by u matrix.
    \item ModelOutput.Omega0: The coordinates of $\Sigma_X$ with respect to Gamma0. An p - u by p - u matrix.
    \item ModelOutput.mu: The estimated intercept.  An r by 1 vector.
    \item ModelOutput.sigYcX: The estimated conditional covariance matrix of Y given X. An r by r matrix.
