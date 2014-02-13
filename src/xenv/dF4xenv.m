@@ -14,7 +14,7 @@
 %
 %% Output
 %
-% *df*: An p by u matrix containing the value of the derivative function
+% *df*: A p by u matrix containing the value of the derivative function
 % evaluated at R.
 
 %% Description
