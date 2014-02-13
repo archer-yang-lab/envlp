@@ -410,12 +410,12 @@ inner envelope model, partial envelope model, scaled envelope model and envelope
 
 \begin{description}
 \item[{env}] Implements the envelope model.  The envelope model is a general tool for efficient estimation in the context of MLR, and it has the potential to achieve substantial efficiency gains when part of the response variables or their linear combination is invariant to the changes of the predictors \citep{cook2010envelope}. 
-\item[{envseq}] Implements the envelope model using sequential algorithm.  This module also implements the envelope model, but uses a sequential computing algorithm.  This algorithm makes the envelope model applicable for small sample size cases \citep{cook2013envelopes}.
+\item[{envseq}] Implements the envelope model using sequential algorithm.  This module also implements the envelope model, but uses a sequential computing algorithm.  This algorithm makes the envelope model applicable for small sample size cases \citep{cook2012envelopes}.
 \item[{henv}] Implements the heteroscedastic envelope model. The heteroscedastic envelope model is used when the data has non constant error structure \citep{su2013estimation}.
 \item[{ienv}] Implements the inner envelope model. The inner envelope model is also a general tool for efficient estimation in the context of MLR, but has a different mechanism from the envelope model.  Therefore it may provide efficiency gains in the cases when the envelope models fail to offer any gains \citep{su2012inner}. 
 \item[{penv}] Implements the partial envelope model. The partial envelope model can be applied when part of the predictors are of main interest.  It often gives more efficiency gains than the envelope model in estimating the coefficients of the main predictors \citep{su2011partial}.
-\item[{senv}] Implements the scaled envelope model. The scaled envelope model is used when the user hopes to have a scale-invariant version of the envelope model [\citeauthor{cook2013scaled}, 2012].
-\item[{xenv}] Implements the envelope model in the predictor space. The envelope model in the predictor space is used when some of the predictors or their linear combinations do not contribute to the change of the responses.  It can potentially bring a better prediction performance than the standard model, or even partial least squares \citep{cook2013envelopes}.
+\item[{senv}] Implements the scaled envelope model. The scaled envelope model is used when the user hopes to have a scale-invariant version of the envelope model [\citeauthor{cook2012scaled}, 2012].
+\item[{xenv}] Implements the envelope model in the predictor space. The envelope model in the predictor space is used when some of the predictors or their linear combinations do not contribute to the change of the responses.  It can potentially bring a better prediction performance than the standard model, or even partial least squares \citep{cook2012envelopes}.
 \item[{xenvpls}] Implements the envelope model in the predictor space using partial least squares algorithm.  This module implements the envelope model in the predictor space, but uses the partial least squares algorithm.  This algorithm makes the envelope model in the predictor space applicable for small sample size cases \citep{cook2012lecture}.
 \item[{envmean}] Implements the envelope estimator of the multivariate mean.   The envelope estimator of the multivariate mean has smaller risk and asymptotic standard errors compared to the sample mean, and often has smaller risk compared to the James-Stein estimator \citep{james1961estimation}.
 \end{description}
@@ -431,52 +431,52 @@ The complete applicability of this toolbox is described in Table \ref{tab_app}.
  &  BIC &  Bootstrap for Estimating Standard Errors & \tabularnewline
  
  &  LRT &  Hypothesis Test on Coefficients & \tabularnewline
- & m-fold CV & & \tabularnewline
+ & $m$-fold CV & & \tabularnewline
 \midrule
-\textbf{envseq} & m-fold CV & Bootstrap for Estimating Standard Errors & \ref{sec_empls}\tabularnewline
+\textbf{envseq} & $m$-fold CV & Bootstrap for Estimating Standard Errors & \ref{sec_empls}\tabularnewline
 \midrule
-\multirow{3}{*}{\textbf{henv}} &  AIC &  Estimation and Prediction & \multirow{4}{*}{\ref{sec_hm}}\tabularnewline
+\multirow{4}{*}{\textbf{henv}} &  AIC &  Estimation and Prediction & \multirow{4}{*}{\ref{sec_hm}}\tabularnewline
  
  &  BIC &  Bootstrap for Estimating Standard Errors & \tabularnewline
  
  &  LRT &  Hypothesis Test on Coefficients & \tabularnewline
- & m-fold CV & & \tabularnewline
+ & $m$-fold CV & & \tabularnewline
 \midrule 
 \multirow{4}{*}{\textbf{ienv}} &  AIC &  Estimation and Prediction & \multirow{4}{*}{\ref{sec_im}}\tabularnewline
  
  &  BIC &  Bootstrap for Estimating Standard Errors  & \tabularnewline
  
  &  LRT &  Hypothesis Test on Coefficients  & \tabularnewline
- & m-fold CV & & \tabularnewline
+ & $m$-fold CV & & \tabularnewline
 \midrule 
 \multirow{4}{*}{\textbf{penv}} &  AIC &  Estimation and Prediction & \multirow{4}{*}{\ref{sec_pm}}\tabularnewline
  
  &  BIC &  Bootstrap for Estimating Standard Errors & \tabularnewline
  
  &  LRT &  Hypothesis Test on Coefficients & \tabularnewline
- & m-fold CV & & \tabularnewline
+ & $m$-fold CV & & \tabularnewline
 \midrule 
 \multirow{3}{*}{\textbf{senv}} &  AIC &  Estimation and Prediction & \multirow{3}{*}{\ref{sec_sem}}\tabularnewline
  
  &  BIC &  Bootstrap for Estimating Standard Errors & \tabularnewline
  
- & m-fold CV &  Hypothesis Test on Coefficients & \tabularnewline
+ & $m$-fold CV &  Hypothesis Test on Coefficients & \tabularnewline
 \midrule 
 \multirow{4}{*}{\textbf{xenv}} & AIC &  Estimation and Prediction & \multirow{4}{*}{\ref{sec_xm}}\tabularnewline
  
  &  BIC &  Bootstrap for Estimating Standard Errors & \tabularnewline
  
  &  LRT &  Hypothesis Test on Coefficients & \tabularnewline
- & m-fold CV & & \tabularnewline
+ & $m$-fold CV &  Hypothesis Test on Coefficients & \tabularnewline
 \midrule 
-\textbf{xenvpls} & m-fold CV & Bootstrap for Estimating Standard Errors & \ref{sec_xmpls}\tabularnewline
+\textbf{xenvpls} & $m$-fold CV & Bootstrap for Estimating Standard Errors & \ref{sec_xmpls}\tabularnewline
 \midrule 
 \multirow{4}{*} {\textbf{envmean}} &  AIC &  Estimation and Prediction & \multirow{4}{*}{\ref{sec_envmean}}\tabularnewline
  
  &  BIC &  Bootstrap for Estimating Standard Errors & \tabularnewline
  
  &  LRT &  Hypothesis Test & \tabularnewline
- & m-fold CV & & \tabularnewline
+ & $m$-fold CV &  Hypothesis Test on Coefficients & \tabularnewline
 \bottomrule 
 \end{tabular}
 \par\end{centering}
@@ -491,7 +491,7 @@ The complete applicability of this toolbox is described in Table \ref{tab_app}.
 We provide a support website, on which the users can download the
 toolbox, report bugs and check recent updates \url{http://code.google.com/p/envlp/}.
 For further help, the users can contact the authors of the toolbox:
-Dennis Cook (dennis@stat.umn.edu), Zhihua Su (suzhihua@stat.umn.edu), and Yi Yang (yiyang@umn.edu).
+Dennis Cook (dennis@stat.umn.edu), Zhihua Su (zhihuasu@stat.ufl.edu), and Yi Yang (yiyang@umn.edu).
 
 \section{Directory Structure}
 Toolbox folder contains following files and sub-folders:
@@ -554,7 +554,7 @@ We will present a tour of our toolbox through all three classes.
 
 The dimension selection tools available in this toolbox are Akaike information
 criterion (AIC), Bayesian information criterion (BIC), Likelihood
-ratio testing (LRT) and m-fold cross validation.  The m-fold cross validation can be applied to all methods, while AIC, BIC and LRT can be applied to \textquotesingle env\textquotesingle, \textquotesingle henv\textquotesingle, \textquotesingle ienv\textquotesingle, \textquotesingle penv\textquotesingle, \textquotesingle senv\textquotesingle~ and \textquotesingle xenv\textquotesingle, except that LRT cannot be applied to \textquotesingle senv\textquotesingle,
+ratio testing (LRT) and m-fold cross validation.  The m-fold cross validation can only be applied to \textquotesingle envseq\textquotesingle~ and \textquotesingle xenvpls\textquotesingle, while AIC, BIC and LRT can be applied to \textquotesingle env\textquotesingle, \textquotesingle henv\textquotesingle, \textquotesingle ienv\textquotesingle, \textquotesingle penv\textquotesingle, \textquotesingle senv\textquotesingle~ and \textquotesingle xenv\textquotesingle, except that LRT cannot be applied to \textquotesingle senv\textquotesingle,
 as indicated in Table \ref{tab_app}. AIC and BIC generally require
 longer computing time than LRT, because of the nature of the method.
 The syntaxes of AIC, BIC, LRT and m-fold cross validation are 
@@ -596,7 +596,7 @@ error ratios of elements in the regression coefficients for the standard
 model versus the envelope model, maximized value of the log likelihood,
 number of parameters, etc. \\
 \\
-\texttt{envseq} and \texttt{xenvpls} fit the same model as \texttt{env} and \texttt{xenv}, respectively, but use a different computing algorithm, making them capable to accommodate small sample size cases. With large sample size cases, \texttt{envseq} and \texttt{xenvpls} can also be applied, and usually give different results from \texttt{env} and \texttt{xenv}.  In this case, \cite{cook2013envelopes} indicates that \texttt{env} and \texttt{xenv} normally give better results, and therefore are recommended.
+\texttt{envseq} and \texttt{xenvpls} fit the same model as \texttt{env} and \texttt{xenv}, respectively, but use a different computing algorithm, making them capable to accommodate small sample size cases. With large sample size cases, \texttt{envseq} and \texttt{xenvpls} can also be applied, and usually give different results from \texttt{env} and \texttt{xenv}.  In this case, \cite{cook2012envelopes} indicates that \texttt{env} and \texttt{xenv} normally give better results, and therefore are recommended.
 
 \subsection*{Post-processing}
 
@@ -1267,7 +1267,7 @@ new value of $\X_{2}$.
 
 \section{Scaled Envelope Model\label{sec_sem}}
 
-Scaled envelope model \citep{cook2013scaled} is used when
+Scaled envelope model \citep{cook2012scaled} is used when
 the user hopes to have a scale-invariant version of the envelope model.
 The scaled envelope estimator is more efficient or at least as efficient as the standard estimator, and sometimes can be more efficient than the envelope estimator, especially when the envelope subspace has dimension $r$.  However, the scaled envelope estimator normally takes longer to compute because of the nature of its iterative computing algorithm. But users can print out and monitor the model fitting process, which will be discussed in Chapter
 \ref{chap_argument}.\\
@@ -1336,7 +1336,7 @@ version, its performance is normally superior to the partial
 least squares estimator. \\
 \\
 We slightly change the formulation of the standard model to $\Y=\mubf+\betabf^{T}\X+\varepsilonbf$,
-to be consistent with the notations in \citet{cook2013envelopes}.
+to be consistent with the notations in \citet{cook2012envelopes}.
 Then the coordinate form of the envelope model in the predictor space
 is as follows:
 \[
