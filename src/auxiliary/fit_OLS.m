@@ -41,7 +41,8 @@
 
 function ModelOutput = fit_OLS(X, Y)
 
-n = length(X);
+[n, p] = size(X);
+r = size(Y, 2);
 XC = center(X);
 YC = center(Y);
 mY = mean(Y)';
