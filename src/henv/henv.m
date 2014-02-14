@@ -234,7 +234,7 @@ elseif u == r
                 = fracN(j) * fracN(i) / fracN(p) * eye(r) / Sigma(:, :, p);
         end
         J((i - 1) * r + 1 : i * r, (i - 1) * r + 1 : i * r)...
-                = fracN(i) / Sigma(:, :, i) + fracN(i) ^ 2 / fracN(p) / Sigma(:, :, p);
+                = fracN(i) * eye(r) / Sigma(:, :, i) + fracN(i) ^ 2 / fracN(p) * eye(r) / Sigma(:, :, p);
     end
     for i = 1 : p
         J(r * (p - 1) + 1 + (i - 1) * r * (r + 1) / 2 : r * (p - 1) + i * r * (r + 1) / 2,  ...
@@ -246,7 +246,7 @@ elseif u == r
     J(1 : r, :) = 0;
     J(r + 1 : end, 1 : r) = 0;
     for i = 1 : p
-        J(1 : r, 1 : r) = J(1 : r, 1 : r) + fracN(i) / Sigma(:, :, i);
+        J(1 : r, 1 : r) = J(1 : r, 1 : r) + fracN(i) * eye(r) / Sigma(:, :, i);
     end
     for i = 1 : p - 1
         J(1 : r, i * r + 1 : (i + 1) * r) = fracN(i) * (inv(Sigma(:, :, p)) - inv(Sigma(:, :, i)));
