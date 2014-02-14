@@ -60,10 +60,30 @@
 
 \maketitle
 
-{\large \textbf{Introduction}} 
+{\Large \textbf{Introduction}} 
+\\
 
 The toolbox ``envlp'' provides MATLAB functions that fit a variety of envelope models for multivariate analysis, especially multivariate linear regression.  This document contains the complete description of this toolbox.  It includes information on syntax and semantics, description and example for the functions in the toolbox.  This manual is intended for users who need detailed information on the structure of the toolbox and its functions.  It is also helpful to advanced users who want to write extensions for the toolbox.  
+\\
 
+This document covers the following function groups:
+
+
+\begin{description}
+\item[{tools}]
+\item[{env}] Implements the envelope model.  The envelope model is a general tool for efficient estimation in the context of MLR. 
+\item[{envseq}] Implements the envelope model using sequential algorithm, which is applicable for small sample size cases.
+\item[{henv}] Implements the heteroscedastic envelope model. The heteroscedastic envelope model is used when the data has non constant error structure.
+\item[{ienv}] Implements the inner envelope model. The model may provide efficiency gains in the cases when the envelope models fail to offer any gains. 
+\item[{penv}] Implements the partial envelope model. The partial envelope model can be applied when part of the predictors are of main interest.  It often gives more efficiency gains than the envelope model in estimating the coefficients of the main predictors.
+\item[{senv}] Implements the scaled envelope model. The scaled envelope model is used when the user hopes to have a scale-invariant version of the envelope model.
+\item[{xenv}] Implements the envelope model in the predictor space. The model can potentially bring a better prediction performance than the standard model, or even partial least squares.
+\item[{xenvpls}] Implements the envelope model in the predictor space using partial least squares algorithm. This model makes the envelope model in the predictor space applicable for small sample size cases.
+\item[{envmean}] Implements the envelope estimator of the multivariate mean.   The envelope estimator of the multivariate mean has smaller risk and asymptotic standard errors compared to the sample mean, and often has smaller risk compared to the James-Stein estimator.
+\item[{auxiliary}]
+\end{description}
+
+\newpage
 \setcounter{tocdepth}{2}
 \tableofcontents
 
