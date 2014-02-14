@@ -417,7 +417,7 @@ inner envelope model, partial envelope model, scaled envelope model and envelope
 \item[{senv}] Implements the scaled envelope model. The scaled envelope model is used when the user hopes to have a scale-invariant version of the envelope model [\citeauthor{cook2013scaled}, 2012].
 \item[{xenv}] Implements the envelope model in the predictor space. The envelope model in the predictor space is used when some of the predictors or their linear combinations do not contribute to the change of the responses.  It can potentially bring a better prediction performance than the standard model, or even partial least squares \citep{cook2013envelopes}.
 \item[{xenvpls}] Implements the envelope model in the predictor space using partial least squares algorithm.  This module implements the envelope model in the predictor space, but uses the partial least squares algorithm.  This algorithm makes the envelope model in the predictor space applicable for small sample size cases \citep{cook2012lecture}.
-\item[{envmean}] Implements the envelope estimator of the multivariate mean.   The envelope estimator of the multivariate mean has smaller risk and asymptotic standard errors compared to the sample mean, and often has smaller risk compared to the James-Stein estimator \citep{james1961estimation}.
+\item[{envmean}] Implements the envelope estimator of the multivariate mean.   The envelope estimator of the multivariate mean has smaller mean squared error and asymptotic standard errors compared to the sample mean, and often has smaller mean squared error compared to the James-Stein estimator \citep{james1961estimation}.
 \end{description}
 The complete applicability of this toolbox is described in Table \ref{tab_app}.
 
@@ -1418,8 +1418,8 @@ bootse = bootstrapse(X, Y, u, B, 'xenvpls')
 
 \section{Envelope Estimator for Multivariate Mean\label{sec_envmean}}
 
-When estimating the multivariate mean from the data, the envelope estimator has a smaller risk than the sample mean, and often has a smaller risk than James-Stein estimator \citep{james1961estimation}.  More specifically, suppose $\Y_{1}, \cdots, \Y_{p}$ are independent and identically distributed with mean $\mubf\in\real{p}$ and covariance matrix $\Sigmabf\in\real{p\times p}$, for an estimator $\mubfhat$, the risk function is $R(\mubfhat, \mubf)=\E_{\mubfs}(L(\mubfhat, \mubf))$, and $L(\mubfhat, \mubf)=(\mubfhat-\mubf)^{T}\Sigmabf^{-1}(\mubfhat-\mubf)$ is the loss function.  Then $R(\mubfhat_{EM}, \mubf)\leq R(\Ybar, \mubf)$, where $\mubfhat_{EM}$ is the envelope estimator, and $\Ybar=\sum_{i=1}^{n}\Y_{i}/n$ is the sample mean.\\
-\\
+When estimating the multivariate mean from the data, the envelope estimator has a smaller mean squared error than the sample mean, and often has a smaller mean squared error than James-Stein estimator \citep{james1961estimation}.\\
+
 The coordinate form of the envelope model for estimating the multivariate mean is 
 \[
 \mubf=\Gammabf\etabf+\varepsilonbf,\quad\Sigmabf=\Gammabf\Omegabf\Gammabf^{T}+\Gammabf_{0}\Omegabf_{0}\Gammabf_{0}^{T},
