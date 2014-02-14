@@ -358,9 +358,11 @@ Format:
 
 Value:
 
-     Column 1: Binary indicator: 1 for L. esakii and 0 for other species.
+     Column 1: Group indicator: 1 for L. esakii, 0 for L. dissortis and 
+	  -1 for L. rufoscutellatus.
 
-     Column 2: Binary indicator: 1 for L. dissortis and 0 for other species.
+     Column 2: Binary indicator: 1 for L. dissortis, 0 for L. esakii,
+	  and -1 for L. rufoscutellatus.
 
      Column 3: Logarithm (natural base) of length of the first antennal
           segment.  Raw measurements are in millimeters.
