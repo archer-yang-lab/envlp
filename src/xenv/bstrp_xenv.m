@@ -36,7 +36,7 @@
 
 %% Description
 % This function computes the bootstrap standard errors for the regression
-% coefficients in the envelope model by bootstrapping the (X, Y) jointly. The
+% coefficients in the envelope model by bootstrapping the residuals. The
 % envelope model here is for the reduction on X.
 
 %% Example
@@ -81,9 +81,8 @@ for i = 1 : B
     end
     
     bootresi = resi(randsample(1 : n, n, true), :);
-    Xboot = X(randsample(1 : n, n, true), :);
-    Yboot = ones(n, 1) * ModelOutput.mu' + Xboot * ModelOutput.beta + bootresi;
-    temp = xenv(Xboot, Yboot, u, Opts);
+    Yboot = Yfit + bootresi;
+    temp = xenv(X, Yboot, u, Opts);
     bootBeta(i, :) = reshape(temp.beta, 1, p * r);
     
 end
