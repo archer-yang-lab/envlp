@@ -40,8 +40,11 @@
 % * Opts.maxIter: Maximum number of iterations.  Default value: 300.
 % * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
 % * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * Opts.verbose: Flag for print out dimension selection process, 
-% logical 0 or 1. Default value: 0.
+% * Opts.verbose: Flag to print out dimension selection process. 
+% Logical 0 or 1. Default value: 0.
+% * Opts.table: Flag to tabulate the results, which contains log 
+% likelihood, test statistic, degrees of freedom and p-value for each test. 
+% Logical 0 or 1. Default value: 0.
 %
 %% Output
 %

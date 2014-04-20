@@ -154,7 +154,7 @@ For model type 'penv', X is a list containing the value of X1 and X2.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  the number of bootstrap samples, logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -281,7 +281,7 @@ Compute bootstrap standard error for ordinary least squares.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  the number of bootstrap samples, logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -380,7 +380,8 @@ For model type 'penv', X is  A list containing the value of X1 and X2.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -473,7 +474,8 @@ For model type 'penv', X is  A list containing the value of X1 and X2.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains AIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -581,7 +583,8 @@ For model type 'penv', X is  A list containing the value of X1 and X2.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains BIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -695,7 +698,8 @@ For model type 'penv', X is  A list containing the value of X1 and X2.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains log likelihood, test statistic, degrees of freedom and p-value for each test. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -1059,7 +1063,8 @@ Select the dimension of the envelope subspace using Akaike information criterion
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains AIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -1139,7 +1144,8 @@ Select the dimension of the envelope subspace using Bayesian information criteri
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains BIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -1224,7 +1230,7 @@ Compute bootstrap standard error for the envelope model.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  the number of bootstrap samples, logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -1379,7 +1385,7 @@ Fit the envelope model.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
    \item Opts.init: The initial value for the envelope subspace. An r by u matrix. Default value is the one generated by function get\_Init.
 
 \end{itemize}
@@ -1609,7 +1615,8 @@ Select the dimension of the envelope subspace using likelihood ratio testing.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains log likelihood, test statistic, degrees of freedom and p-value for each test. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -1689,7 +1696,8 @@ Select the dimension of the envelope subspace using m-fold cross validation.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -2161,7 +2169,8 @@ Select the dimension of the envelope subspace using Akaike information criterion
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains AIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -2235,7 +2244,8 @@ Select the dimension of the envelope subspace using Bayesian information criteri
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains BIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -2314,7 +2324,7 @@ Compute bootstrap standard error for the envelope estimator of the multivariate 
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  the number of bootstrap samples, logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -2458,7 +2468,7 @@ Provide envelope estimator for the multivariate mean.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
    \item Opts.init: The initial value for the envelope subspace. A p by u matrix. Default value is the one generated by function get\_Init4envmean.
 \end{itemize}
 
@@ -2674,7 +2684,8 @@ Select the dimension of the envelope subspace using likelihood ratio testing.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains log likelihood, test statistic, degrees of freedom and p-value for each test. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -2708,7 +2719,7 @@ u =
 
 \newpage
 \rmfamily
-\color{black}\section{mfoldcv\_meanenv}
+\color{black}\section{mfoldcv\_envmean}
 
 \begin{par}
 Select the dimension of the envelope subspace using m-fold cross validation.
@@ -2729,8 +2740,8 @@ Select the dimension of the envelope subspace using m-fold cross validation.
 \subsection*{Syntax}
 
 
-\begin{verbatim}       u = mfoldcv_meanenv(Y, m)
-       u = mfoldcv_meanenv(Y, m, Opts)\end{verbatim}
+\begin{verbatim}       u = mfoldcv_envmean(Y, m)
+       u = mfoldcv_envmean(Y, m, Opts)\end{verbatim}
     
 
 \subsection*{Input}
@@ -2746,7 +2757,8 @@ Select the dimension of the envelope subspace using m-fold cross validation.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -3028,7 +3040,7 @@ Compute bootstrap standard errors of the envelope model using a sequential algor
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process, logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -3237,7 +3249,8 @@ Select the dimension of the envelope subspace using m-fold cross validation for 
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out dimension seletion process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -3263,7 +3276,7 @@ This function implements m-fold cross validation to select the dimension of the 
        X = Rohwer(:, 4 : 5);
        Y = Rohwer(:, 1 : 3);
        m = 5;
-       u = mfoldcv_envpls(X, Y, m)\end{verbatim}
+       u = mfoldcv_envseq(X, Y, m)\end{verbatim}
     
         \color{lightgray} \ttfamily\begin{verbatim}
 u =
@@ -3319,7 +3332,8 @@ Select the dimension of the envelope subspace using Akaike information criterion
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains AIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -3394,7 +3408,8 @@ Select the dimension of the envelope subspace using Bayesian information criteri
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains BIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -3476,7 +3491,7 @@ Compute bootstrap standard error for the heteroscedastic envelope model.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  the number of bootstrap samples, logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -3674,7 +3689,7 @@ Fit the heteroscedastic envelope model.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
    \item Opts.init: The initial value for the heteroscedastic envelope subspace. An r by u matrix. Default value is the one generated by function get\_Init4henv.
 \end{itemize}
 
@@ -3823,7 +3838,8 @@ Select the dimension of the envelope subspace using likelihood ratio testing for
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains log likelihood, test statistic, degrees of freedom and p-value for each test. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -3879,7 +3895,7 @@ Use m-fold cross validation to select the dimension of the envelope subspace for
 
 
 \begin{verbatim}       u = mfoldcv_henv(X, Y, m)
-       u = mfoldcv_Henv(X, Y, m, Opts)\end{verbatim}
+       u = mfoldcv_henv(X, Y, m, Opts)\end{verbatim}
     
 
 \subsection*{Input}
@@ -3898,7 +3914,8 @@ Use m-fold cross validation to select the dimension of the envelope subspace for
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -4242,7 +4259,8 @@ Select the dimension of the inner envelope subspace using Akaike information cri
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains AIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -4318,7 +4336,8 @@ Select the dimension of the inner envelope subspace using Bayesian information c
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains BIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -4400,7 +4419,7 @@ Compute bootstrap standard error for the inner envelope model.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  the number of bootstrap samples, logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -4595,7 +4614,7 @@ Fit the inner envelope model.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
    \item Opts.init: The initial value for the inner envelope subspace. An r by u matrix. Default value is the one generated by function get\_Init.
 \end{itemize}
 
@@ -4740,7 +4759,8 @@ Select the dimension of the inner envelope subspace using likelihood ratio testi
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains log likelihood, test statistic, degrees of freedom and p-value for each test. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -4818,7 +4838,8 @@ Select the dimension of the inner envelope subspace using m-fold cross validatio
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -5111,7 +5132,8 @@ Select the dimension of the partial envelope subspace using Akaike information c
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains AIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -5196,7 +5218,8 @@ Select the dimension of the partial envelope subspace using Bayesian information
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains BIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -5287,7 +5310,7 @@ Compute bootstrap standard error for the partial envelope model.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  the number of bootstrap samples, logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -5388,7 +5411,8 @@ Select the dimension of the partial envelope subspace using likelihood ratio tes
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains log likelihood, test statistic, degrees of freedom and p-value for each test. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -5474,7 +5498,8 @@ Select the dimension of the partial envelope subspace using m-fold cross validat
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -5566,7 +5591,7 @@ Fit the partial envelope model.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
    \item Opts.init: The initial value for the partial envelope subspace. An r by u matrix. Default value is the one generated by function get\_Init.
 \end{itemize}
 
@@ -5949,7 +5974,8 @@ Select the dimension of the scaled envelope subspace using Akaike information cr
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains AIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
    \item Opts.rep: Number of replicates for scales. This option imposes special structure on scaling parameters. For example, if Opts.rep = [3 4], this means that the first three responses have the same scale and the next four responses share a different scale. The elements of this vector should sum to r. If not specified, the default is [], then all responses will be scaled differently. If all responses have the same scale, input [r], then the regular envelope will be applied to the data. The input should be a row vector.
 \end{itemize}
 
@@ -6029,7 +6055,8 @@ Select the dimension of the scaled envelope subspace using Bayesian information 
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains BIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
    \item Opts.rep: Number of replicates for scales. This option imposes special structure on scaling parameters. For example, if Opts.rep = [3 4], this means that the first three responses have the same scale and the next four responses share a different scale. The elements of this vector should sum to r. If not specified, the default is [], then all responses will be scaled differently. If all responses have the same scale, input [r], then the regular envelope will be applied to the data. The input should be a row vector.
 \end{itemize}
 
@@ -6114,7 +6141,7 @@ Compute bootstrap standard error for the scaled envelope model.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  the number of bootstrap samples, logical 0 or 1. Default value: 0.
    \item Opts.rep: Number of replicates for scales. This option imposes special structure on scaling parameters. For example, if Opts.rep = [3 4], this means that the first three responses have the same scale and the next four responses share a different scale. The elements of this vector should sum to r. If not specified, the default is [], then all responses will be scaled differently. If all responses have the same scale, input [r], then the regular envelope will be applied to the data. The input should be a row vector.
 \end{itemize}
 
@@ -6306,7 +6333,8 @@ Select the dimension of the scaled envelope subspace using m-fold cross validati
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
    \item Opts.rep: Number of replicates for scales. This option imposes special structure on scaling parameters. For example, if Opts.rep = [3 4], this means that the first three responses have the same scale and the next four responses share a different scale. The elements of this vector should sum to r. If not specified, the default is [], then all responses will be scaled differently. If all responses have the same scale, input [r], then the regular envelope will be applied to the data. The input should be a row vector.
 \end{itemize}
 
@@ -6565,7 +6593,7 @@ Fit the scaled envelope model.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out number of iterations, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  number of iterations, logical 0 or 1. Default value: 0.
    \item Opts.rep: Number of replicates for scales. This option imposes special structure on scaling parameters. For example, if Opts.rep = [3 4], this means that the first three responses have the same scale and the next four responses share a different scale. The elements of this vector should sum to r. If not specified, the default is [], then all responses will be scaled differently. If all responses have the same scale, input [r], then the regular envelope will be applied to the data. The input should be a row vector.
 \end{itemize}
 
@@ -6880,7 +6908,8 @@ Use Akaike information criterion to select the dimension of the envelope subspac
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains AIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -6958,7 +6987,8 @@ Use Bayesian information criterion to select the dimension of the envelope subsp
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains BIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -7042,7 +7072,7 @@ Compute bootstrap standard error of the envelope model for the reduction on X.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  the number of bootstrap samples, logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -7236,7 +7266,8 @@ Use likelihood ratio testing to select the dimension of the envelope subspace fo
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out dimension selection process.  Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains log likelihood, test statistic, degrees of freedom and p-value for each test. Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -7315,7 +7346,8 @@ Use m-fold cross validation to select the dimension of the envelope subspace for
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -7605,7 +7637,7 @@ Fit the envelope model for the reduction on X.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  Grassmann manifold optimization process, logical 0 or 1. Default value: 0.
       \item Opts.init: The initial value for the envelope subspace. A p by u matrix. Default value is the one generated by function get\_Init.
 \end{itemize}
 
@@ -7810,7 +7842,7 @@ Compute bootstrap standard error of the envelope model for the reduction on X us
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  the number of bootstrap samples, logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -7897,7 +7929,8 @@ Select the dimension of the envelope subspace using m-fold cross validation for 
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
 \end{itemize}
 
 
@@ -8788,7 +8821,7 @@ Make optional input parameters for running the sg\_min package.
    \item Opts.maxIter: Maximum number of iterations.
    \item Opts.ftol: Tolerance parameter for F.
    \item Opts.gradtol: Tolerance parameter for dF.
-   \item Opts.verbose: Flag for print out output, logical 0 or 1.
+   \item Opts.verbose: Flag to print out  output, logical 0 or 1.
 \end{itemize}
 
 
@@ -8802,7 +8835,7 @@ Make optional input parameters for running the sg\_min package.
    \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
    \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
    \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-   \item Opts.verbose: Flag for print out output, logical 0 or 1. Default value: 0.
+   \item Opts.verbose: Flag to print out  output, logical 0 or 1. Default value: 0.
 \end{itemize}
 
 

@@ -20,8 +20,10 @@
 % *Opts*: A list containing the optional input parameters. If one or
 % several (even all) fields are not defined, the default settings are used.
 % 
-% * Opts.verbose: Flag for print out dimension seletion process, 
+% * Opts.verbose: Flag to print out dimension selection process, 
 % logical 0 or 1. Default value: 0.
+% * Opts.table: Flag to tabulate the results, which contains cross 
+% validation error for each u.  Logical 0 or 1. Default value: 0.
 
 %% Output
 % 
@@ -53,6 +55,16 @@ elseif nargin == 3
     Opts = [];
 end
 
+if isfield(Opts, 'table')
+    if (Opts.table ~= 1)
+        tableFlag = 0;
+    else
+        tableFlag = 1;
+    end
+else
+    tableFlag = 0;
+end
+
 X = double(X);
 Y = double(Y);
 
@@ -60,10 +72,10 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
-[n, r]=size(Y);
+[n, r] = size(Y);
 
 tempInd = min(floor((m - 1) * n / m) - 1, r);
-PreErr = zeros(m, tempInd + 1);
+PreErr = zeros(1, tempInd + 1);
 
 for j = 0 : tempInd
     
@@ -74,7 +86,7 @@ for j = 0 : tempInd
     for i = 1 : m
 
         index = true(n, 1);
-        index((floor((i - 1) * n / m) + 1) : ceil(i * n / m)) = 0;
+        index((floor((i - 1) * n / m) + 1) : floor(i * n / m)) = 0;
         tempX = X(index, :);
         tempY = Y(index, :);
         ModelTemp = envseq(tempX, tempY, j);
@@ -83,12 +95,23 @@ for j = 0 : tempInd
         testY = Y(logical(1 - index), :);
         testN = size(testX, 1);
         resi = testY - ones(testN, 1) * ModelTemp.alpha' - testX * ModelTemp.beta';
-        PreErr(i, j + 1) = sqrt(trace(resi * resi') / testN);
+        PreErr(j + 1) = PreErr(j + 1) + trace(resi * resi');
         
     end
+    
+    PreErr(j + 1) = sqrt(PreErr(j + 1) / n);
 end
 
-
-[~, ind] = min(mean(PreErr));
+[~, ind] = min(PreErr);
 u = ind - 1;
 
+if tableFlag == 1
+    
+    fprintf('\n u      CV error      \n');
+    fprintf('------------------------\n');
+    for i = 0 : tempInd
+        fprintf('%2d %12.3f\n', i, PreErr(i + 1));
+    end
+    fprintf('------------------------\n');
+    
+end
