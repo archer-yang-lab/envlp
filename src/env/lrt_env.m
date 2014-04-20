@@ -25,8 +25,11 @@
 % * Opts.maxIter: Maximum number of iterations.  Default value: 300.
 % * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
 % * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * Opts.verbose: Flag for print out dimension selection process, 
-% logical 0 or 1. Default value: 0.
+% * Opts.verbose: Flag to print out dimension selection process. 
+% Logical 0 or 1. Default value: 0.
+% * Opts.table: Flag to tabulate the results, which contains log 
+% likelihood, test statistic, degrees of freedom and p-value for each test. 
+% Logical 0 or 1. Default value: 0.
 %
 %% Output
 %
@@ -57,13 +60,28 @@ if (alpha < 0 || alpha > 1)
     error('alpha should be between [0, 1]!');
 end
 
+if isfield(Opts, 'table')
+    if (Opts.table ~= 1)
+        tableFlag = 0;
+    else
+        tableFlag = 1;
+    end
+else
+    tableFlag = 0;
+end
+
 Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
 r = size(Y, 2);
+llik = zeros(r + 1, 1);
+tstat = zeros(r + 1, 1);
+df = zeros(r + 1, 1);
+pv = zeros(r + 1, 1);
 
 ModelOutput0 = env(X, Y, r, Opts);
+llik(r + 1) = ModelOutput0.l;
 
 for i = 0 : r - 1
 
@@ -72,16 +90,29 @@ for i = 0 : r - 1
     end
     
 	ModelOutput = env(X, Y, i, Opts);
-	chisq = - 2 * (ModelOutput.l - ModelOutput0.l);
-	df = ModelOutput0.paramNum - ModelOutput.paramNum;
-	
-    if chi2cdf(chisq, df) < (1 - alpha)
+	llik(i + 1) = ModelOutput.l;
+    tstat(i + 1) = - 2 * (ModelOutput.l - ModelOutput0.l);
+	df(i + 1) = ModelOutput0.paramNum - ModelOutput.paramNum;
+	pv(i + 1) = 1 - chi2cdf(tstat(i + 1), df(i + 1));
+    if pv(i + 1) > alpha
 	    u = i;
 	    break;
     end
     
 end
 
-if i == r - 1 && chi2cdf(chisq, df) > (1 - alpha)
+if i == r - 1 && pv(i + 1) < alpha
     u = r;
+end
+
+if tableFlag == 1
+    
+    fprintf('\n u      log liklihood      test statistic     degrees of freedom    p-value\n');
+    fprintf('----------------------------------------------------------------------------------\n');
+    for i = 0 : u
+        fprintf('%2d %15.3f %18.3f %18d %18.3f\n', i, llik(i + 1), tstat(i + 1), df(i + 1), pv(i + 1));
+    end
+    fprintf('%2d %15.3f\n', r, llik(r + 1));    
+    fprintf('----------------------------------------------------------------------------------\n');
+    
 end

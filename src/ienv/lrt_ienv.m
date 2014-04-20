@@ -25,8 +25,11 @@
 % * Opts.maxIter: Maximum number of iterations.  Default value: 300.
 % * Opts.ftol: Tolerance parameter for F.  Default value: 1e-10. 
 % * Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
-% * Opts.verbose: Flag for print out dimension selection process, 
-% logical 0 or 1. Default value: 0.
+% * Opts.verbose: Flag to print out dimension selection process. 
+% Logical 0 or 1. Default value: 0.
+% * Opts.table: Flag to tabulate the results, which contains log 
+% likelihood, test statistic, degrees of freedom and p-value for each test. 
+% Logical 0 or 1. Default value: 0.
 %
 %% Output
 %
@@ -57,14 +60,28 @@ if (alpha < 0 || alpha > 1)
     error('alpha should be between [0, 1]!');
 end
 
+if isfield(Opts, 'table')
+    if (Opts.table ~= 1)
+        tableFlag = 0;
+    else
+        tableFlag = 1;
+    end
+else
+    tableFlag = 0;
+end
+
 Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
 p = size(X, 2);
+llik = zeros(p + 1, 1);
+tstat = zeros(p + 1, 1);
+df = zeros(p + 1, 1);
+pv = zeros(p + 1, 1);
 
 ModelOutput0 = ienv(X, Y, 0, Opts);
-
+llik(1) = ModelOutput0.l;
 
 for i = 1 : p
     
@@ -73,17 +90,30 @@ for i = 1 : p
     end
     
     ModelOutput = ienv(X, Y, p + 1 - i, Opts);
-    chisq = - 2 * (ModelOutput.l - ModelOutput0.l);
-    df = ModelOutput0.paramNum - ModelOutput.paramNum;
-    
-    if chi2cdf(chisq, df) < (1 - alpha)
-        u = p + 1 - i;
-        break;
+	llik(p + 1 - i) = ModelOutput.l;
+    tstat(p + 1 - i) = - 2 * (ModelOutput.l - ModelOutput0.l);
+	df(p + 1 - i) = ModelOutput0.paramNum - ModelOutput.paramNum;
+	pv(p + 1 - i) = 1 - chi2cdf(tstat(p + 1 - i), df(p + 1 - i));
+    if pv(p + 1 - i) > alpha
+	    u = p + 1 - i;
+	    break;
     end
     
 end
 
-if i == p && chi2cdf(chisq, df) > (1 - alpha)
+if i == p && pv(p + 1 - i) < alpha
     u = 0;
     fprintf('No inner envelope model is selected, fit with the standard multivariate linear model.');
+end
+
+if tableFlag == 1
+    
+    fprintf('\n u      log liklihood      test statistic     degrees of freedom    p-value\n');
+    fprintf('----------------------------------------------------------------------------------\n');
+    for i = 1 : p
+        fprintf('%2d %15.3f %18.3f %18d %18.3f\n', p + 1 - i, llik(p + 1 - i), tstat(p + 1 - i), df(p + 1 - i), pv(p + 1 - i));
+    end
+    fprintf('%2d %15.3f\n', 0, llik(1));    
+    fprintf('----------------------------------------------------------------------------------\n');
+    
 end

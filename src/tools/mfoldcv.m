@@ -35,8 +35,10 @@
 % *Opts*: A list containing the optional input parameters. If one or
 % several (even all) fields are not defined, the default settings are used.
 % 
-% * Opts.verbose: Flag for print out dimension selection process, 
+% * Opts.verbose: Flag to print out dimension selection process, 
 % logical 0 or 1. Default value: 0.
+% * Opts.table: Flag to tabulate the results, which contains cross 
+% validation error for each u.  Logical 0 or 1. Default value: 0.
 
 %% Output
 %
