@@ -3,8 +3,8 @@
 % validation.
 
 %% Syntax
-%         u = mfoldcv(X, Y, m, modelType)
-%         u = mfoldcv(X, Y, m, modelType, Opts)
+%         SelectOutput = mfoldcv(X, Y, m, modelType)
+%         SelectOutput = mfoldcv(X, Y, m, modelType, Opts)
 % 
 %% Input
 %
@@ -39,11 +39,22 @@
 % logical 0 or 1. Default value: 0.
 % * Opts.table: Flag to tabulate the results, which contains cross 
 % validation error for each u.  Logical 0 or 1. Default value: 0.
+% * Opts.perm: A positive integer indicating number permutations of the observations, 
+% m-fold cross validation is run on each permutation. If not specified, the
+% division is based on the sequential order of the observations.
+% * Opts.seed: A real number that set the seeds for permutations. Default
+% value is 1. 
 
 %% Output
 %
-%  *u*: The dimension of the envelope subspace selected by m-fold cross
-%  validation.
+% *SelectOutput*: A list containing the results of the selection.
+% 
+% * SelectOutput.u: The dimension of the envelope subspace selected by 
+% m-fold cross validation.  An integer between 0 and r.
+% * SelectOutput.PreErr: A vector containing prediction errors for each u 
+% if Opts.perm is not specified, or a matrix with the element in the ith 
+% row and jth column containing the prediction error for u=j-1 and ith 
+% permutation of the observations.
 
 %% Description
 % This function implements m-fold cross validation to select the dimension
@@ -60,10 +71,10 @@
 %         Y = wheatprotein(:, 1 : 6);
 %         m = 5;
 %         modelType = 'envseq';
-%         u = mfoldcv(X, Y, m, modelType)
+%         SelectOutput = mfoldcv(X, Y, m, modelType)
 
 
-function u = mfoldcv(X, Y, m, modelType, Opts)
+function SelectOutput = mfoldcv(X, Y, m, modelType, Opts)
 
 % Verify and initialize the parameters
 %
@@ -75,21 +86,21 @@ end
 
 switch(modelType)
     case 'env'
-        u = mfoldcv_env(X, Y, m, Opts);
+        SelectOutput = mfoldcv_env(X, Y, m, Opts);
     case 'envseq'
-        u = mfoldcv_envseq(X, Y, m, Opts);
+        SelectOutput = mfoldcv_envseq(X, Y, m, Opts);
     case 'henv'
-        u = mfoldcv_henv(X, Y, m, Opts);
+        SelectOutput = mfoldcv_henv(X, Y, m, Opts);
     case 'ienv'
-        u = mfoldcv_ienv(X, Y, m, Opts);
+        SelectOutput = mfoldcv_ienv(X, Y, m, Opts);
     case 'penv'
-        u = mfoldcv_penv(X, Y, m, Opts);
+        SelectOutput = mfoldcv_penv(X, Y, m, Opts);
     case 'senv'
-        u = mfoldcv_senv(X, Y, m, Opts);
+        SelectOutput = mfoldcv_senv(X, Y, m, Opts);
     case 'xenv'
-        u = mfoldcv_xenv(X, Y, m, Opts);
+        SelectOutput = mfoldcv_xenv(X, Y, m, Opts);
     case 'xenvpls'
-        u = mfoldcv_xenvpls(X, Y, m, Opts);
+        SelectOutput = mfoldcv_xenvpls(X, Y, m, Opts);
     otherwise
         fprintf('The value specified in modelType is not supported!');
 end

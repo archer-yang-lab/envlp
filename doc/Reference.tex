@@ -345,8 +345,8 @@ Select the dimension for the envelope family using m-fold cross validation.
 \subsection*{Syntax}
 
 
-\begin{verbatim}       u = mfoldcv(X, Y, m, modelType)
-       u = mfoldcv(X, Y, m, modelType, Opts)\end{verbatim}
+\begin{verbatim}       SelectOutput = mfoldcv(X, Y, m, modelType)
+       SelectOutput = mfoldcv(X, Y, m, modelType, Opts)\end{verbatim}
     
 
 \subsection*{Input}
@@ -382,14 +382,21 @@ For model type 'penv', X is  A list containing the value of X1 and X2.
 \setlength{\itemsep}{-1ex}
    \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
    \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
+   \item Opts.perm: A positive integer indicating number permutations of the observations, m-fold cross validation is run on each permutation. If not specified, the division is based on the sequential order of the observations.
+   \item Opts.seed: A real number that set the seeds for permutations. Default value is 1.
 \end{itemize}
 
 
 \subsection*{Output}
 
 \begin{par}
-\textbf{u}: The dimension of the envelope subspace selected by m-fold cross validation.
+\textbf{SelectOutput}: A list containing the results of the selection.
 \end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item SelectOutput.u: The dimension of the envelope subspace selected by m-fold cross validation.  An integer between 0 and r.
+   \item SelectOutput.PreErr: A vector containing prediction errors for each u if Opts.perm is not specified, or a matrix with the element in the ith row and jth column containing the prediction error for u=j-1 and ith permutation of the observations.
+\end{itemize}
     
 
 \subsection*{Description}
@@ -407,12 +414,13 @@ This function implements m-fold cross validation to select the dimension of the 
        Y = wheatprotein(:, 1 : 6);
        m = 5;
        modelType = 'envpls';
-       u = mfoldcv(X, Y, m, modelType)\end{verbatim}
+       SelectOutput = mfoldcv(X, Y, m, modelType)\end{verbatim}
     
         \color{lightgray} \ttfamily\begin{verbatim}
-u =
+SelectOutput = 
 
-     0
+         u: 0
+    PreErr: [88.3274 90.2842 90.4142 90.7036 90.7090 90.7103 90.2842]
 
 \end{verbatim}\rmfamily \color{black}
 
@@ -1676,8 +1684,9 @@ Select the dimension of the envelope subspace using m-fold cross validation.
 \subsection*{Syntax}
 
 
-\begin{verbatim}       u = mfoldcv_env(X, Y, m)
-       u = mfoldcv_env(X, Y, m, Opts)\end{verbatim}
+\begin{verbatim}       SelectOutput = mfoldcv_env(X, Y, m)
+       SelectOutput = mfoldcv_env(X, Y, m, Opts)\end{verbatim}
+
     
 
 \subsection*{Input}
@@ -1698,6 +1707,8 @@ Select the dimension of the envelope subspace using m-fold cross validation.
 \setlength{\itemsep}{-1ex}
    \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
    \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
+   \item Opts.perm: A positive integer indicating number permutations of the observations, m-fold cross validation is run on each permutation. If not specified, the division is based on the sequential order of the observations.
+   \item Opts.seed: A real number that set the seeds for permutations. Default value is 1.
 \end{itemize}
 
 
@@ -1705,8 +1716,13 @@ Select the dimension of the envelope subspace using m-fold cross validation.
 
 
 \begin{par}
-\textbf{u}: The dimension of the envelope subspace selected by m-fold cross validation.  An integer between 0 and r.
+\textbf{SelectOutput}: A list containing the results of the selection.
 \end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item SelectOutput.u: The dimension of the envelope subspace selected by m-fold cross validation.  An integer between 0 and r.
+   \item SelectOutput.PreErr: A vector containing prediction errors for each u if Opts.perm is not specified, or a matrix with the element in the ith row and jth column containing the prediction error for u=j-1 and ith permutation of the observations.
+\end{itemize}
     
 
 \subsection*{Description}
@@ -1722,14 +1738,98 @@ This function implements m-fold cross validation to select the dimension of the 
 \begin{verbatim}       load wheatprotein.txt
        X = wheatprotein(:, 8);
        Y = wheatprotein(:, 1 : 6);
-       u = mfoldcv_env(X, Y, 5)\end{verbatim}
+       Opts.table = 1;  % Print out the table of average prediction error for each u
+       SelectOutput = mfoldcv_env(X, Y, 5, Opts);
+       \end{verbatim}
     
-        \color{lightgray} \ttfamily\begin{verbatim}
-u =
+        \color{lightgray} \ttfamily 
+        \begin{verbatim}
+ u      CV error      
+------------------------
+ 0       88.327
+ 1       88.222
+ 2       88.229
+ 3       88.343
+ 4       90.176
+ 5       89.449
+ 6       90.284
+------------------------
 
-     1
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.u
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
 
-\end{verbatim} \rmfamily\color{black}
+    1
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       Opts.perm = 10; % Run 5-fold CV on 10 permutations
+       Opts.seed = 3; % Set seed for the permutations
+       Opts.table = 1;
+       SelectOutput = mfoldcv_env(X, Y, 5, Opts);
+       \end{verbatim}
+       \color{lightgray} \ttfamily
+       \begin{verbatim}
+ u      CV error      
+------------------------
+ 0       83.858
+ 1       83.754
+ 2       83.837
+ 3       84.847
+ 4       84.943
+ 5       84.451
+ 6       85.733
+------------------------
+
+The rows of PreErr corresponds to permutations, and the columns of PreErr corresponds to u.
+
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.PreErr
+\end{verbatim}
+\color{lightgray} \ttfamily
+\begin{verbatim}
+ans =
+
+   83.8414   83.7358   83.7703   84.4435   84.9735   84.3271   86.0893
+   85.1301   85.0230   85.0517   87.3159   86.8758   85.7392   87.3486
+   82.8522   82.7447   83.1461   85.1392   84.6682   84.2123   85.6514
+   84.0505   83.9447   83.9708   83.9715   83.9716   85.0202   85.0807
+   83.2022   83.0987   83.1268   83.1323   83.7480   84.1540   84.1109
+   83.4689   83.3656   83.4763   87.8617   87.8145   84.4186   90.1180
+   84.9664   84.8683   84.9066   84.9103   85.5000   84.9104   85.5247
+   85.2560   85.1521   85.2284   85.2295   86.0263   86.0263   86.7444
+   82.6187   82.5142   82.5512   83.2121   82.7440   82.5517   83.4039
+   83.1972   83.0933   83.1446   83.2518   83.1093   83.1452   83.2577
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+     mean(SelectOutput.PreErr) % Compute the average of prediction errors for each u
+\end{verbatim}
+\color{lightgray} \ttfamily
+\begin{verbatim}
+ans =
+
+   83.8583   83.7541   83.8373   84.8468   84.9431   84.4505   85.7330
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+        std(SelectOutput.PreErr) % Compute the standard deviations of the prediction errors for each u
+\end{verbatim}
+\color{lightgray} 
+\ttfamily
+\begin{verbatim}
+ans =
+
+    0.9663    0.9670    0.9323    1.6501    1.6368    1.0620    2.0453
+\end{verbatim} \rmfamily
+\color{black}
 
 
 \newpage
@@ -2740,8 +2840,8 @@ Select the dimension of the envelope subspace using m-fold cross validation.
 \subsection*{Syntax}
 
 
-\begin{verbatim}       u = mfoldcv_envmean(Y, m)
-       u = mfoldcv_envmean(Y, m, Opts)\end{verbatim}
+\begin{verbatim}       SelectOutput = mfoldcv_envmean(Y, m)
+       SelectOutput = mfoldcv_envmean(Y, m, Opts)\end{verbatim}
     
 
 \subsection*{Input}
@@ -2759,14 +2859,21 @@ Select the dimension of the envelope subspace using m-fold cross validation.
 \setlength{\itemsep}{-1ex}
    \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
    \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
+   \item Opts.perm: A positive integer indicating number permutations of the observations, m-fold cross validation is run on each permutation. If not specified, the division is based on the sequential order of the observations.
+   \item Opts.seed: A real number that set the seeds for permutations. Default value is 1.
 \end{itemize}
 
 
 \subsection*{Output}
 
 \begin{par}
-\textbf{u}: The dimension of the envelope subspace selected by m-fold cross validation.  An integer between 0 and p.
+\textbf{SelectOutput}: A list containing the results of the selection.
 \end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item SelectOutput.u: The dimension of the envelope subspace selected by m-fold cross validation.  An integer between 0 and r.
+   \item SelectOutput.PreErr: A vector containing prediction errors for each u if Opts.perm is not specified, or a matrix with the element in the ith row and jth column containing the prediction error for u=j-1 and ith permutation of the observations.
+\end{itemize}
     
 
 \subsection*{Description}
@@ -2781,14 +2888,100 @@ This function implements m-fold cross validation to select the dimension of the 
 
 \begin{verbatim}       load Adopted
        Y = Adopted(:, 1 : 6);
-       u = mfoldcv_envmean(Y, 5)\end{verbatim}
+       Opts.table = 1; % Print out the table of average prediction error for each u
+       SelectOutput = mfoldcv_envmean(Y, 5, Opts);
+       \end{verbatim}
     
-        \color{lightgray}\ttfamily \begin{verbatim}
-u =
+        \color{lightgray} \ttfamily 
+        \begin{verbatim}
+ u      CV error      
+------------------------
+ 0       68.402
+ 1        3.321
+ 2       31.070
+ 3       30.267
+ 4        3.324
+ 5        3.324
+ 6        3.323
+------------------------
 
-     1
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.u
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
 
-\end{verbatim}\rmfamily \color{black}
+    1
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       Opts.perm = 10; % Run 5-fold CV on 10 permutations
+       Opts.seed = 3; % Set seed for the permutations
+       Opts.table = 1;
+       SelectOutput = mfoldcv_envmean(Y, 5, Opts);
+       \end{verbatim}
+       \color{lightgray} \ttfamily
+       \begin{verbatim}
+ u      CV error      
+------------------------
+ 0       68.381
+ 1       23.071
+ 2       11.282
+ 3        5.411
+ 4        2.838
+ 5        2.838
+ 6        2.839
+------------------------
+
+The rows of PreErr corresponds to permutations, and the columns of PreErr corresponds to u.
+
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.PreErr
+\end{verbatim}
+\color{lightgray} \ttfamily
+\begin{verbatim}
+ans =
+
+   68.4179   30.0985   31.6848    3.2555    3.2601    3.2623    3.2629
+   68.3949    3.0342    3.0239    3.0259    3.0180    3.0145    3.0191
+   68.4065    2.6861    2.6749    2.6867    2.6826    2.6790    2.6823
+   68.3404    2.4518    2.4496    2.4490    2.4441    2.4512    2.4517
+   68.3574   31.4960    3.9833    3.9791    3.9775    3.9760    3.9768
+   68.3996   30.1065    2.5022    2.5058    2.4999    2.5039    2.5026
+   68.3919   41.4619    2.0079   27.7202    2.0073    2.0114    2.0116
+   68.3628   43.1511   29.2499    2.1869    2.1839    2.1772    2.1792
+   68.3371    3.5819   32.5092    3.5791    3.5785    3.5790    3.5792
+   68.4042   42.6414    2.7339    2.7257    2.7235    2.7233    2.7229
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+     mean(SelectOutput.PreErr) % Compute the average of prediction errors for each u
+\end{verbatim}
+\color{lightgray} \ttfamily
+\begin{verbatim}
+ans =
+
+   68.3813   23.0710   11.2819    5.4114    2.8375    2.8378    2.8388
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+        std(SelectOutput.PreErr) % Compute the standard deviations of the prediction errors for each u
+\end{verbatim}
+\color{lightgray} 
+\ttfamily
+\begin{verbatim}
+ans =
+
+    0.0292   18.0009   13.7414    7.8576    0.6220    0.6214    0.6214
+\end{verbatim} \rmfamily
+\color{black}
+
+
 
 
 
@@ -3229,8 +3422,9 @@ Select the dimension of the envelope subspace using m-fold cross validation for 
 \subsection*{Syntax}
 
 
-\begin{verbatim}       u = mfoldcv_envseq(X, Y, m)
-       u = mfoldcv_envseq(X, Y, m, Opts)\end{verbatim}
+\begin{verbatim}       SelectOutput = mfoldcv_envseq(X, Y, m)
+       SelectOutput = mfoldcv_envseq(X, Y, m, Opts)\end{verbatim}
+
     
 
 \subsection*{Input}
@@ -3251,14 +3445,22 @@ Select the dimension of the envelope subspace using m-fold cross validation for 
 \setlength{\itemsep}{-1ex}
    \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
    \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
+   \item Opts.perm: A positive integer indicating number permutations of the observations, m-fold cross validation is run on each permutation. If not specified, the division is based on the sequential order of the observations.
+   \item Opts.seed: A real number that set the seeds for permutations. Default value is 1.
 \end{itemize}
 
 
 \subsection*{Output}
 
 
-\begin{verbatim}*u*: The dimension of the envelope subspace selected by m-fold cross
-validation.\end{verbatim}
+\begin{par}
+\textbf{SelectOutput}: A list containing the results of the selection.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item SelectOutput.u: The dimension of the envelope subspace selected by m-fold cross validation.  An integer between 0 and r.
+   \item SelectOutput.PreErr: A vector containing prediction errors for each u if Opts.perm is not specified, or a matrix with the element in the ith row and jth column containing the prediction error for u=j-1 and ith permutation of the observations.
+\end{itemize}
    
     
 
@@ -3275,16 +3477,96 @@ This function implements m-fold cross validation to select the dimension of the 
 \begin{verbatim}       load Rohwer
        X = Rohwer(:, 4 : 5);
        Y = Rohwer(:, 1 : 3);
-       m = 5;
-       u = mfoldcv_envseq(X, Y, m)\end{verbatim}
+       Opts.table = 1; % Print out the table of average prediction error for each u
+       SelectOutput = mfoldcv_envseq(X, Y, 5, Opts);
+       \end{verbatim}
     
-        \color{lightgray} \ttfamily\begin{verbatim}
-u =
-
-     1
+        \color{lightgray} \ttfamily 
+        \begin{verbatim}
+ u      CV error      
+------------------------
+ 0       35.575
+ 1       33.713
+ 2       34.352
+ 3       33.823
+------------------------
 
 \end{verbatim} \rmfamily
 \color{black}
+\begin{verbatim}
+       SelectOutput.u
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+    1
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       Opts.perm = 10; % Run 5-fold CV on 10 permutations
+       Opts.seed = 3; % Set seed for the permutations
+       Opts.table = 1;
+       SelectOutput = mfoldcv_envseq(X, Y, 5, Opts);
+       \end{verbatim}
+       \color{lightgray} \ttfamily
+       \begin{verbatim}
+ u      CV error      
+------------------------
+ 0       34.721
+ 1       33.190
+ 2       33.764
+ 3       33.314
+------------------------
+
+The rows of PreErr corresponds to permutations, and the columns of PreErr corresponds to u.
+
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.PreErr
+\end{verbatim}
+\color{lightgray} \ttfamily
+\begin{verbatim}
+ans =
+
+   34.3525   32.8549   33.3868   32.9159
+   34.8898   33.2683   34.4169   33.3090
+   34.5545   33.5600   34.1334   33.7670
+   34.8090   33.2963   33.9307   33.3307
+   34.6288   33.3523   33.6383   33.4140
+   34.8314   32.9893   33.5988   33.0860
+   34.8499   33.0738   33.5392   33.2285
+   34.9425   33.4004   33.7077   33.4434
+   34.6249   32.9303   33.4134   33.3155
+   34.7250   33.1717   33.8734   33.3336
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+     mean(SelectOutput.PreErr) % Compute the average of prediction errors for each u
+\end{verbatim}
+\color{lightgray} \ttfamily
+\begin{verbatim}
+ans =
+
+   34.7208   33.1897   33.7638   33.3144
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+        std(SelectOutput.PreErr) % Compute the standard deviations of the prediction errors for each u
+\end{verbatim}
+\color{lightgray} 
+\ttfamily
+\begin{verbatim}
+ans =
+
+    0.1812    0.2258    0.3274    0.2237
+\end{verbatim} \rmfamily
+\color{black}
+
+
+
+
 
 \newpage
 
@@ -3894,8 +4176,8 @@ Use m-fold cross validation to select the dimension of the envelope subspace for
 \subsection*{Syntax}
 
 
-\begin{verbatim}       u = mfoldcv_henv(X, Y, m)
-       u = mfoldcv_henv(X, Y, m, Opts)\end{verbatim}
+\begin{verbatim}       SelectOutput = mfoldcv_henv(X, Y, m)
+       SelectOutput = mfoldcv_henv(X, Y, m, Opts)\end{verbatim}
     
 
 \subsection*{Input}
@@ -3916,6 +4198,8 @@ Use m-fold cross validation to select the dimension of the envelope subspace for
 \setlength{\itemsep}{-1ex}
    \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
    \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
+   \item Opts.perm: A positive integer indicating number permutations of the observations, m-fold cross validation is run on each permutation. If not specified, the division is based on the sequential order of the observations.
+   \item Opts.seed: A real number that set the seeds for permutations. Default value is 1.
 \end{itemize}
 
 
@@ -3923,8 +4207,13 @@ Use m-fold cross validation to select the dimension of the envelope subspace for
 
 
 \begin{par}
-\textbf{u}: Dimension of the envelope. An integer between 0 and r.
+\textbf{SelectOutput}: A list containing the results of the selection.
 \end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item SelectOutput.u: The dimension of the envelope subspace selected by m-fold cross validation.  An integer between 0 and r.
+   \item SelectOutput.PreErr: A vector containing prediction errors for each u if Opts.perm is not specified, or a matrix with the element in the ith row and jth column containing the prediction error for u=j-1 and ith permutation of the observations.
+\end{itemize}
     
 
 \subsection*{Description}
@@ -3937,15 +4226,89 @@ This function implements m-fold cross validation to select the dimension of the 
 \subsection*{Example}
 
 
-\begin{verbatim}       load waterstrider.mat
-       u = mfoldcv_henv(X, Y, 5)\end{verbatim}
+\begin{verbatim}       load wheatprotein.txt
+       Opts.table = 1; % Print out the table of average prediction error for each u
+       SelectOutput = mfoldcv_henv(X, Y, 5, Opts);\end{verbatim}
     
         \color{lightgray}\ttfamily \begin{verbatim}
-u =
 
-     2
+ u      CV error      
+------------------------
+ 0        1.177
+ 1        1.173
+ 2        1.171
+------------------------
 
-\end{verbatim} \rmfamily\color{black}
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.u
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+    2
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}       Opts.perm = 10; % Run 5-fold CV on 10 permutations
+       Opts.seed = 3; % Set seed for the permutations
+       Opts.table = 1;
+       SelectOutput = mfoldcv_henv(X, Y, 5, Opts);
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ u      CV error      
+------------------------
+ 0        1.088
+ 1        1.083
+ 2        1.081
+------------------------
+
+The rows of PreErr corresponds to permutations, and the columns of PreErr corresponds to u.
+
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.PreErr
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+    1.0746    1.0704    1.0681
+    1.0921    1.0881    1.0852
+    1.0849    1.0803    1.0789
+    1.1077    1.1037    1.1015
+    1.0795    1.0756    1.0732
+    1.0908    1.0861    1.0843
+    1.0921    1.0880    1.0865
+    1.0845    1.0809    1.0776
+    1.0815    1.0769    1.0756
+    1.0878    1.0838    1.0815
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+     mean(SelectOutput.PreErr) % Compute the average of prediction errors for each u
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+    1.0876    1.0834    1.0812
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       std(SelectOutput.PreErr) % Compute the standard deviations of the prediction errors for each u
+\end{verbatim}
+ \color{lightgray}\ttfamily 
+        \begin{verbatim}        
+ans =
+
+    0.0091    0.0091    0.0091
+\end{verbatim} \rmfamily       
+\color{black}
+
  
 
 
@@ -4406,7 +4769,7 @@ Compute bootstrap standard error for the inner envelope model.
 \textbf{Y}: Multivariate responses, an n by r matrix, r is the number of responses and n is number of observations.  The responses must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{u}: Dimension of the inner envelope. An integer between 0 and p or equal to r.
+\textbf{u}: Dimension of the inner envelope. An integer between 0 and p.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{B}: Number of bootstrap samples.  A positive integer.
@@ -4604,7 +4967,7 @@ Fit the inner envelope model.
 \textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{u}: Dimension of the inner envelope. An integer between 0 and p or equal to r.
+\textbf{u}: Dimension of the inner envelope. An integer between 0 and p.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
@@ -4767,7 +5130,7 @@ Select the dimension of the inner envelope subspace using likelihood ratio testi
 \subsection*{Output}
 
 \begin{par}
-\textbf{u}: Dimension of the inner envelope. An integer between 0 and p or equal to r.
+\textbf{u}: Dimension of the inner envelope. An integer between 0 and p.
 \end{par} \vspace{1em}
 
 
@@ -4818,8 +5181,8 @@ Select the dimension of the inner envelope subspace using m-fold cross validatio
 \subsection*{Syntax}
 
 
-\begin{verbatim}       u = mfoldcv_ienv(X, Y, m)
-       u = mfoldcv_ienv(X, Y, m, Opts)\end{verbatim}
+\begin{verbatim}       SelectOutput = mfoldcv_ienv(X, Y, m)
+       SelectOutput = mfoldcv_ienv(X, Y, m, Opts)\end{verbatim}
     
 
 \subsection*{Input}
@@ -4840,6 +5203,8 @@ Select the dimension of the inner envelope subspace using m-fold cross validatio
 \setlength{\itemsep}{-1ex}
    \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
    \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
+   \item Opts.perm: A positive integer indicating number permutations of the observations, m-fold cross validation is run on each permutation. If not specified, the division is based on the sequential order of the observations.
+   \item Opts.seed: A real number that set the seeds for permutations. Default value is 1.
 \end{itemize}
 
 
@@ -4847,8 +5212,13 @@ Select the dimension of the inner envelope subspace using m-fold cross validatio
 
 
 \begin{par}
-\textbf{u}: The dimension of the inner envelope subspace selected by m-fold cross validation.  An integer between 0 and p or equal to r.
+\textbf{SelectOutput}: A list containing the results of the selection.
 \end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item SelectOutput.u: The dimension of the inner envelope subspace selected by m-fold cross validation. An integer between 0 and p.
+   \item SelectOutput.PreErr: A vector containing prediction errors for each u if Opts.perm is not specified, or a matrix with the element in the ith row and jth column containing the prediction error for u=j-1 and ith permutation of the observations.
+\end{itemize}
     
 
 \subsection*{Description}
@@ -4862,15 +5232,88 @@ This function implements m-fold cross validation to select the dimension of the 
 
 
 \begin{verbatim}       load irisf.mat
-       u = mfoldcv_ienv(X, Y, 5)\end{verbatim}
+       Opts.table = 1; % Print out the table of average prediction error for each u
+       SelectOutput = mfoldcv_ienv(X, Y, 5, Opts);\end{verbatim}
     
-        \color{lightgray} \ttfamily\begin{verbatim}
+        \color{lightgray}\ttfamily \begin{verbatim}
 
-u =
+ u      CV error      
+------------------------
+ 0        7.869
+ 1       12.865
+ 2       13.068
+------------------------
 
-     0
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.u
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
 
-\end{verbatim} \rmfamily\color{black}
+    0
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}       Opts.perm = 10; % Run 5-fold CV on 10 permutations
+       Opts.seed = 3; % Set seed for the permutations
+       Opts.table = 1;
+       SelectOutput = mfoldcv_ienv(X, Y, 5, Opts);
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ u      CV error      
+------------------------
+ 0        7.871
+ 1       13.987
+ 2        8.660
+------------------------
+
+The rows of PreErr corresponds to permutations, and the columns of PreErr corresponds to u.
+
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.PreErr
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+    7.8658    8.0292   10.2529
+    7.8439   15.3317    9.1913
+    7.8063   14.3470    7.9989
+    7.8566   16.2194    8.0552
+    7.8660   14.7267    8.0347
+    7.8460   17.5724    9.5129
+    7.8152   14.2335    8.0367
+    7.9323    8.2747    8.1148
+    7.8682   14.9348    8.0369
+    8.0062   16.1967    9.3622
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+     mean(SelectOutput.PreErr) % Compute the average of prediction errors for each u
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+    7.8707   13.9866    8.6596
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       std(SelectOutput.PreErr) % Compute the standard deviations of the prediction errors for each u
+\end{verbatim}
+ \color{lightgray}\ttfamily 
+        \begin{verbatim}        
+ans =
+
+    0.0587    3.2368    0.8372
+\end{verbatim} \rmfamily       
+\color{black}
+
 
 
 \newpage
@@ -5473,8 +5916,9 @@ Select the dimension of the partial envelope subspace using m-fold cross validat
 \subsection*{Syntax}
 
 
-\begin{verbatim}       u = mfoldcv_penv(X, Y, m)
-       u = mfoldcv_penv(X, Y, m, Opts)\end{verbatim}
+\begin{verbatim}       SelectOutput = mfoldcv_penv(X, Y, m)
+       SelectOutput = mfoldcv_penv(X, Y, m, Opts)\end{verbatim}
+
     
 
 \subsection*{Input}
@@ -5500,6 +5944,8 @@ Select the dimension of the partial envelope subspace using m-fold cross validat
 \setlength{\itemsep}{-1ex}
    \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
    \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
+   \item Opts.perm: A positive integer indicating number permutations of the observations, m-fold cross validation is run on each permutation. If not specified, the division is based on the sequential order of the observations.
+   \item Opts.seed: A real number that set the seeds for permutations. Default value is 1.
 \end{itemize}
 
 
@@ -5507,8 +5953,13 @@ Select the dimension of the partial envelope subspace using m-fold cross validat
 
 
 \begin{par}
-\textbf{u}: The dimension of the partial envelope subspace selected by m-fold cross validation. An integer between 0 and r.    
+\textbf{SelectOutput}: A list containing the results of the selection.
 \end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item SelectOutput.u: The dimension of the partial envelope subspace selected by m-fold cross validation.  An integer between 0 and r.
+   \item SelectOutput.PreErr: A vector containing prediction errors for each u if Opts.perm is not specified, or a matrix with the element in the ith row and jth column containing the prediction error for u=j-1 and ith permutation of the observations.
+\end{itemize}
 
 \subsection*{Description}
 
@@ -5524,15 +5975,91 @@ This function implements m-fold cross validation to select the dimension of the 
        Y = fiberpaper(:, 1 : 4);
        X.X1 = fiberpaper(:, 7);
        X.X2 = fiberpaper(:, 5 : 6);
-       u = mfoldcv_penv(X, Y, 5)\end{verbatim}
+       Opts.table = 1; % Print out the table of average prediction error for each u
+       SelectOutput = mfoldcv_penv(X, Y, 5, Opts);\end{verbatim}
     
-        \color{lightgray} \ttfamily\begin{verbatim}
-u =
+        \color{lightgray}\ttfamily \begin{verbatim}
 
-     0
+ u      CV error      
+------------------------
+ 0        3.384
+ 1        4.423
+ 2        4.485
+ 3        3.471
+ 4        4.486
+------------------------
 
-\end{verbatim} \rmfamily\color{black}
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.u
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
 
+    0
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}       Opts.perm = 10; % Run 5-fold CV on 10 permutations
+       Opts.seed = 3; % Set seed for the permutations
+       Opts.table = 1;
+       SelectOutput = mfoldcv_penv(X, Y, 5, Opts);
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ u      CV error      
+------------------------
+ 0        2.416
+ 1        2.460
+ 2        2.502
+ 3        2.493
+ 4        2.513
+------------------------
+
+The rows of PreErr corresponds to permutations, and the columns of PreErr corresponds to u.
+
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.PreErr
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+    2.3928    2.3917    2.4230    2.4304    2.4584
+    2.4007    2.4007    2.4873    2.4312    2.4871
+    2.3040    2.3031    2.3598    2.3176    2.3747
+    2.3118    2.3103    2.3880    2.3786    2.3875
+    2.4937    2.4927    2.5157    2.5055    2.5149
+    2.3756    2.3756    2.3892    2.3851    2.3883
+    2.4432    2.6921    2.6902    2.7041    2.7020
+    2.5305    2.5286    2.5467    2.5416    2.5595
+    2.4482    2.6476    2.6520    2.6662    2.6648
+    2.4580    2.4568    2.5684    2.5677    2.5933
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+     mean(SelectOutput.PreErr) % Compute the average of prediction errors for each u
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+    2.4159    2.4599    2.5020    2.4928    2.5130
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       std(SelectOutput.PreErr) % Compute the standard deviations of the prediction errors for each u
+\end{verbatim}
+ \color{lightgray}\ttfamily 
+        \begin{verbatim}        
+ans =
+
+    0.0734    0.1322    0.1140    0.1273    0.1162
+\end{verbatim} \rmfamily       
+\color{black}
 
 
 
@@ -6313,8 +6840,8 @@ Select the dimension of the scaled envelope subspace using m-fold cross validati
 \subsection*{Syntax}
 
 
-\begin{verbatim}       u = mfoldcv_senv(X, Y, m)
-       u = mfoldcv_senv(X, Y, m, Opts)\end{verbatim}
+\begin{verbatim}       SelectOutput = mfoldcv_senv(X, Y, m)
+       SelectOutput = mfoldcv_senv(X, Y, m, Opts)\end{verbatim}
     
 
 \subsection*{Input}
@@ -6336,14 +6863,21 @@ Select the dimension of the scaled envelope subspace using m-fold cross validati
    \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
    \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
    \item Opts.rep: Number of replicates for scales. This option imposes special structure on scaling parameters. For example, if Opts.rep = [3 4], this means that the first three responses have the same scale and the next four responses share a different scale. The elements of this vector should sum to r. If not specified, the default is [], then all responses will be scaled differently. If all responses have the same scale, input [r], then the regular envelope will be applied to the data. The input should be a row vector.
+   \item Opts.perm: A positive integer indicating number permutations of the observations, m-fold cross validation is run on each permutation. If not specified, the division is based on the sequential order of the observations.
+   \item Opts.seed: A real number that set the seeds for permutations. Default value is 1.
 \end{itemize}
 
 
 \subsection*{Output}
 
 \begin{par}
-\textbf{u}: The dimension of the scaled envelope subspace selected by m-fold cross validation. An integer between 0 and r.
+\textbf{SelectOutput}: A list containing the results of the selection.
 \end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item SelectOutput.u: The dimension of the scaled envelope subspace selected by m-fold cross validation.  An integer between 0 and r.
+   \item SelectOutput.PreErr: A vector containing prediction errors for each u if Opts.perm is not specified, or a matrix with the element in the ith row and jth column containing the prediction error for u=j-1 and ith permutation of the observations.
+\end{itemize}
     
 
 \subsection*{Description}
@@ -6359,15 +6893,91 @@ This function implements m-fold cross validation to select the dimension of the 
 \begin{verbatim}       load('sales.txt')
        Y = sales(:, 4 : 7);
        X = sales(:, 1 : 3);
-       u = mfoldcv_senv(X, Y, 5)\end{verbatim}
+       Opts.table = 1; % Print out the table of average prediction error for each u
+       SelectOutput = mfoldcv_senv(X, Y, 5, Opts);\end{verbatim}
     
-        \color{lightgray} \ttfamily\begin{verbatim}
-u =
+        \color{lightgray}\ttfamily \begin{verbatim}
 
-     2
+ u      CV error      
+------------------------
+ 0       11.969
+ 1        5.750
+ 2        5.266
+ 3        5.410
+ 4        5.343
+------------------------
 
-\end{verbatim}\rmfamily \color{black}
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.u
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
 
+    2
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}       Opts.perm = 10; % Run 5-fold CV on 10 permutations
+       Opts.seed = 3; % Set seed for the permutations
+       Opts.table = 1;
+       SelectOutput = mfoldcv_senv(X, Y, 5, Opts);
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ u      CV error      
+------------------------
+ 0       11.977
+ 1        5.754
+ 2        5.305
+ 3        5.465
+ 4        5.437
+------------------------
+
+The rows of PreErr corresponds to permutations, and the columns of PreErr corresponds to u.
+
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.PreErr
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+   11.9619    5.7170    5.2153    5.4024    5.3363
+   12.1588    5.6580    5.1543    5.2932    5.3016
+   11.9315    5.8612    5.3559    5.5420    5.5057
+   11.9389    5.7846    5.3054    5.5447    5.4539
+   11.9335    5.8343    5.3847    5.9421    5.9300
+   11.8577    5.6179    5.2153    5.3673    5.3689
+   11.9126    5.7536    5.2937    5.2898    5.3091
+   12.2099    5.7924    5.3580    5.3046    5.2770
+   11.9684    5.8209    5.4442    5.4736    5.4700
+   11.9016    5.6978    5.3260    5.4891    5.4158
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+     mean(SelectOutput.PreErr) % Compute the average of prediction errors for each u
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+   11.9775    5.7538    5.3053    5.4649    5.4368
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       std(SelectOutput.PreErr) % Compute the standard deviations of the prediction errors for each u
+\end{verbatim}
+ \color{lightgray}\ttfamily 
+        \begin{verbatim}        
+ans =
+
+    0.1141    0.0796    0.0885    0.1944    0.1899
+\end{verbatim} \rmfamily       
+\color{black}
 
 
 \newpage
@@ -7326,9 +7936,9 @@ Use m-fold cross validation to select the dimension of the envelope subspace for
 \subsection*{Syntax}
 
 
-\begin{verbatim}       u = mfoldcv_xenv(X, Y, m)
-       u = mfoldcv_xenv(X, Y, m, Opts)\end{verbatim}
-    
+\begin{verbatim}       SelectOutput = mfoldcv_xenv(X, Y, m)
+       SelectOutput = mfoldcv_xenv(X, Y, m, Opts)\end{verbatim}
+       
 
 \subsection*{Input}
 
@@ -7348,14 +7958,21 @@ Use m-fold cross validation to select the dimension of the envelope subspace for
 \setlength{\itemsep}{-1ex}
    \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
    \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
+   \item Opts.perm: A positive integer indicating number permutations of the observations, m-fold cross validation is run on each permutation. If not specified, the division is based on the sequential order of the observations.
+   \item Opts.seed: A real number that set the seeds for permutations. Default value is 1.
 \end{itemize}
 
 
 \subsection*{Output}
 
 \begin{par}
-\textbf{u}: The dimension of the envelope subspace selected by m-fold cross validation.   An integer between 0 and p.
+\textbf{SelectOutput}: A list containing the results of the selection.
 \end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item SelectOutput.u: The dimension of the envelope subspace selected by m-fold cross validation.  An integer between 0 and p.
+   \item SelectOutput.PreErr: A vector containing prediction errors for each u if Opts.perm is not specified, or a matrix with the element in the ith row and jth column containing the prediction error for u=j-1 and ith permutation of the observations.
+\end{itemize} \vspace{1em}
     
 
 \subsection*{Description}
@@ -7371,14 +7988,95 @@ This function implements m-fold cross validation to select the dimension of the 
 \begin{verbatim}       load wheatprotein.txt
        X = wheatprotein(:, 1 : 6);
        Y = wheatprotein(:, 7);
-       u = mfoldcv_xenv(X, Y, 5)\end{verbatim}
+       Opts.table = 1; % Print out the table of average prediction error for each u
+       SelectOutput = mfoldcv_xenv(X, Y, 5, Opts);\end{verbatim}
     
         \color{lightgray}\ttfamily \begin{verbatim}
-u =
 
-     4
+ u      CV error      
+------------------------
+ 0        1.474
+ 1        0.281
+ 2        0.271
+ 3        0.288
+ 4        0.219
+ 5        0.221
+ 6        0.221
+------------------------
 
-\end{verbatim} \rmfamily\color{black}
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.u
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+    4
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}       Opts.perm = 10; % Run 5-fold CV on 10 permutations
+       Opts.seed = 3; % Set seed for the permutations
+       Opts.table = 1;
+       SelectOutput = mfoldcv_xenv(X, Y, 5, Opts);
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ u      CV error      
+------------------------
+ 0        1.473
+ 1        0.274
+ 2        0.273
+ 3        0.283
+ 4        0.234
+ 5        0.214
+ 6        0.214
+------------------------
+
+The rows of PreErr corresponds to permutations, and the columns of PreErr corresponds to u.
+
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.PreErr
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+    1.4825    0.2751    0.2748    0.2933    0.2273    0.2265    0.2265
+    1.4807    0.3163    0.3178    0.3178    0.2394    0.2398    0.2391
+    1.4686    0.2592    0.2585    0.2574    0.2207    0.2005    0.2006
+    1.4705    0.2530    0.2523    0.2699    0.1984    0.1972    0.1972
+    1.4658    0.3015    0.2941    0.3082    0.2232    0.2226    0.2221
+    1.4698    0.2525    0.2528    0.2511    0.2536    0.2237    0.2241
+    1.4656    0.2589    0.2589    0.2813    0.2648    0.2077    0.2077
+    1.4730    0.2833    0.2829    0.2988    0.2252    0.2174    0.2166
+    1.4896    0.2842    0.2845    0.3074    0.2825    0.1993    0.1993
+    1.4609    0.2548    0.2545    0.2474    0.2032    0.2028    0.2027
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+     mean(SelectOutput.PreErr) % Compute the average of prediction errors for each u
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+    1.4727    0.2739    0.2731    0.2833    0.2338    0.2138    0.2136
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       std(SelectOutput.PreErr) % Compute the standard deviations of the prediction errors for each u
+\end{verbatim}
+ \color{lightgray}\ttfamily 
+        \begin{verbatim}        
+ans =
+
+    0.0089    0.0223    0.0218    0.0256    0.0265    0.0143    0.0142
+\end{verbatim} \rmfamily       
+\color{black}
 
 \newpage
 
@@ -7909,9 +8607,8 @@ Select the dimension of the envelope subspace using m-fold cross validation for 
 \subsection*{Syntax}
 
 
-\begin{verbatim}       u = mfoldcv_xenvpls(X, Y, m)
-       u = mfoldcv_xenvpls(X, Y, m, Opts)\end{verbatim}
-    
+\begin{verbatim}       SelectOutput = mfoldcv_xenvpls(X, Y, m)
+       SelectOutput = mfoldcv_xenvpls(X, Y, m, Opts)\end{verbatim}    
 
 \subsection*{Input}
 
@@ -7931,14 +8628,22 @@ Select the dimension of the envelope subspace using m-fold cross validation for 
 \setlength{\itemsep}{-1ex}
    \item Opts.verbose: Flag to print out  dimension selection process, logical 0 or 1. Default value: 0.
    \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
+   \item Opts.perm: A positive integer indicating number permutations of the observations, m-fold cross validation is run on each permutation. If not specified, the division is based on the sequential order of the observations.
+   \item Opts.seed: A real number that set the seeds for permutations. Default value is 1.
 \end{itemize}
 
 
 \subsection*{Output}
 
 \begin{par}
-\textbf{u}: The dimension of the envelope subspace selected by m-fold cross validation.
+\textbf{SelectOutput}: A list containing the results of the selection.
 \end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item SelectOutput.u: The dimension of the envelope subspace selected by m-fold cross validation.  An integer between 0 and p.
+   \item SelectOutput.PreErr: A vector containing prediction errors for each u if Opts.perm is not specified, or a matrix with the element in the ith row and jth column containing the prediction error for u=j-1 and ith permutation of the observations.
+\end{itemize}
+
     
 
 \subsection*{Description}
@@ -7954,15 +8659,90 @@ This function implements m-fold cross validation to select the dimension of the 
 \begin{verbatim}       load VocabGrowth
        X = VocabGrowth(:, 1 : 3);
        Y = VocabGrowth(:, 4);
-       m = 5;
-       u = mfoldcv_xenvpls(X, Y, m)\end{verbatim}
-           
-        \color{lightgray} \ttfamily\begin{verbatim}
-u =
+       Opts.table = 1; % Print out the table of average prediction error for each u
+       SelectOutput = mfoldcv_xenvpls(X, Y, 5, Opts);\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}
 
-     1
+ u      CV error      
+------------------------
+ 0        1.959
+ 1        1.091
+ 2        1.127
+ 3        1.130
+------------------------
 
-\end{verbatim} \rmfamily\color{black}
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.u
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+    1
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}       Opts.perm = 10; % Run 5-fold CV on 10 permutations
+       Opts.seed = 3; % Set seed for the permutations
+       Opts.table = 1;
+       SelectOutput = mfoldcv_xenvpls(X, Y, 5, Opts);
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ u      CV error      
+------------------------
+ 0        1.942
+ 1        1.087
+ 2        1.108
+ 3        1.110
+------------------------
+
+The rows of PreErr corresponds to permutations, and the columns of PreErr corresponds to u.
+
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       SelectOutput.PreErr
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+    1.9576    1.1076    1.1272    1.1265
+    1.9500    1.0664    1.0834    1.0856
+    1.9347    1.0878    1.0938    1.0947
+    1.9298    1.0747    1.1080    1.1122
+    1.9309    1.0956    1.1130    1.1187
+    1.9659    1.0995    1.1180    1.1163
+    1.9312    1.0920    1.1019    1.1023
+    1.9188    1.0582    1.0836    1.0850
+    1.9303    1.0798    1.1009    1.1007
+    1.9676    1.1114    1.1494    1.1558
+    \end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+     mean(SelectOutput.PreErr) % Compute the average of prediction errors for each u
+\end{verbatim}
+        \color{lightgray}\ttfamily 
+        \begin{verbatim}
+ans =
+
+    1.9417    1.0873    1.1079    1.1098
+\end{verbatim} \rmfamily
+\color{black}
+\begin{verbatim}
+       std(SelectOutput.PreErr) % Compute the standard deviations of the prediction errors for each u
+\end{verbatim}
+ \color{lightgray}\ttfamily 
+        \begin{verbatim}        
+ans =
+
+    0.0171    0.0174    0.0203    0.0213
+\end{verbatim} \rmfamily       
+\color{black}
+
 
 \newpage
 
