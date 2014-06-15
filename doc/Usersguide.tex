@@ -562,13 +562,13 @@ The syntaxes of AIC, BIC, LRT and m-fold cross validation are
 u = modelselectaic(X, Y, modelType)
 u = modelselectbic(X, Y, modelType)
 u = modelselectlrt(X, Y, alpha, modelType)
-u = mfoldcv(X, Y, m, modelType)
+SelectOutput = mfoldcv(X, Y, m, modelType)
 \end{Verbatim}
 For the inputs: X is a matrix containing the predictors, except that
 with \texttt{penv}, it is a list having X.X1 and X.X2; Y is a matrix containing
 the response; 'alpha' is the significance level; 'm' is an integer indicating m-fold cross validation and 'modelType' is
 a string indicting the model. The choices for 'modelType' in \texttt{modelselectaic}, \texttt{modelselectbic} and \texttt{modelselectlrt} can be \textquotesingle env\textquotesingle, \textquotesingle henv\textquotesingle, \textquotesingle ienv\textquotesingle, \textquotesingle penv\textquotesingle, \textquotesingle senv\textquotesingle and \textquotesingle xenv\textquotesingle, and the choices for 'modelType' in \texttt{mfoldcv} are \textquotesingle envseq\textquotesingle and \textquotesingle xenvpls\textquotesingle.  The output is the dimension
-of the envelope subspace selected by the tool. Examples will be provided
+of the envelope subspace selected by the tool for \texttt{modelselectaic}, \texttt{modelselectbic} and \texttt{modelselectlrt}, and a list containing dimension of the envelope subspace as well as the prediction error for each dimension for \texttt{mfoldcv}.  Examples will be provided
 in Section \ref{sec_example}.
 
 
@@ -1014,7 +1014,7 @@ To select the dimension of the envelope subspace $u$, we can use
 the m-fold cross validation. Common choices are $5$ or $10$.
 \begin{Verbatim}[commandchars=\\\{\}]
 m = 5; 
-u = mfoldcv(X, Y, m, 'envseq')
+SelectOutput = mfoldcv(X, Y, m, 'envseq')
 \end{Verbatim}
 The possible values of $u$ can be any integer from $0$ to the minimum of the floor of $(m-1)n/m-1$.  When $u=0$, it means that $\betabf=0$, and the changes in $\Y$ do not depend on the changes in $\X$.  If the sample size is large, we can also use the tools for \textquotesingle env\textquotesingle~  to select $u$, as \texttt{env} and \texttt{envseq} implement the same model.
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -1389,7 +1389,7 @@ The envelope model in the predictor space using the partial least squares algori
 \\
 To select $u$, the dimension of $\espc_{\Sigmabfs_{\X}}(\bspc)$, we can use m-fold cross validation, for example, 5-fold cross validation:
 \begin{Verbatim}[commandchars=\\\{\}]
-u = mfoldcv(X, Y, m, 'xenvpls')
+SelectOutput = mfoldcv(X, Y, m, 'xenvpls')
 \end{Verbatim}
 The possible values of $u$ can be any integer from $0$ to the minimum of $(m-1)n/m -1$.  When $u=p$, the envelope model degenerates to the standard model, and when $u=0$, $\betabf=0$, and the changes in $Y$ do not depend the changes in $\X$.  If the sample size is large, we can also use the dimension selection tools for \textquotesingle xenv\textquotesingle, as \texttt{xenv} and \texttt{xenvpls} implement the same model. 
 \begin{Verbatim}[commandchars=\\\{\}]

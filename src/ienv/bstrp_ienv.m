@@ -12,8 +12,7 @@
 % *Y*: Multivariate responses, an n by r matrix, r is the number of
 % responses and n is number of observations.  The responses must be continuous variables.
 % 
-% *u*: Dimension of the inner envelope. An integer between 0 and p or equal
-% to r.
+% *u*: Dimension of the inner envelope. An integer between 0 and p.
 % 
 % *B*: Number of bootstrap samples.  A positive integer.
 %

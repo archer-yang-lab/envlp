@@ -3,8 +3,8 @@
 % for heteroscedastic envelope model.
 
 %% Syntax
-%         u = mfoldcv_henv(X, Y, m)
-%         u = mfoldcv_henv(X, Y, m, Opts)
+%         SelectOutput = mfoldcv_henv(X, Y, m)
+%         SelectOutput = mfoldcv_henv(X, Y, m, Opts)
 
 %% Input
 %
@@ -27,11 +27,22 @@
 % logical 0 or 1. Default value: 0.
 % * Opts.table: Flag to tabulate the results, which contains cross 
 % validation error for each u.  Logical 0 or 1. Default value: 0.
+% * Opts.perm: A positive integer indicating number permutations of the observations, 
+% m-fold cross validation is run on each permutation. If not specified, the
+% division is based on the sequential order of the observations.
+% * Opts.seed: A real number that set the seeds for permutations. Default
+% value is 1. 
 
 %% Output
 % 
-%  *u*: The dimension of the envelope subspace selected by m-fold cross
-%  validation.  An integer between 0 and r.
+% *SelectOutput*: A list containing the results of the selection.
+% 
+% * SelectOutput.u: The dimension of the envelope subspace selected by 
+% m-fold cross validation.  An integer between 0 and r.
+% * SelectOutput.PreErr: A vector containing prediction errors for each u 
+% if Opts.perm is not specified, or a matrix with the element in the ith 
+% row and jth column containing the prediction error for u=j-1 and ith 
+% permutation of the observations.
 
 %% Description
 % This function implements m-fold cross validation to select the dimension
@@ -45,9 +56,20 @@
 %% Example
 % 
 %         load waterstrider.mat
-%         u = mfoldcv_henv(X, Y, 5)
+%         Opts.table = 1; % Print out the table of average prediction error for each u
+%         SelectOutput = mfoldcv_henv(X, Y, 5, Opts);
+%         SelectOutput.u
+% 
+%         Opts.perm = 10; % Run 5-fold CV on 10 permutations
+%         Opts.seed = 3; % Set seed for the permutations
+%         Opts.table = 1;
+%         SelectOutput = mfoldcv_henv(X, Y, 5, Opts);
+%         SelectOutput.PreErr
+%         mean(SelectOutput.PreErr) % Compute the average of prediction errors for each u
+%         std(SelectOutput.PreErr) % Compute the standard deviations of the prediction errors for each u
 
-function u = mfoldcv_henv(X, Y, m, Opts)
+
+function SelectOutput = mfoldcv_henv(X, Y, m, Opts)
 
 if nargin < 3
     error('Inputs: X, Y, and m should be specified!');
@@ -75,48 +97,135 @@ Opts.verbose = 0;
 [n, p] = size(X);
 
 tempInd = min(floor((m - 1) * n / m) - 1, p);
-PreErr = zeros(1, tempInd + 1);
 
-for j = 0 : tempInd
-    
-    if printFlag == 1
-        fprintf(['Current dimension ' int2str(j + 1) '\n']);
+if isfield(Opts, 'perm')
+
+    if Opts.perm <= 0
+        error('Number of permutations should be a positive integer!');
     end
     
-    for i = 1 : m
-
-        index = true(n, 1);
-        index((floor((i - 1) * n / m) + 1) : floor(i * n / m)) = 0;
-        tempX = X(index, :);
-        tempY = Y(index, :);
-        ModelTemp = henv(tempX, tempY, j);
+    if isfield(Opts, 'seed')
+        seed = ceil(Opts.seed);
+    else
+        seed = 1;
+    end
+    
+    perm = ceil(Opts.perm);
+    PreErr = zeros(perm, tempInd + 1);
+    pe = zeros(perm,1);
+    
+    
+    for w = 1 : perm
         
-        testX = X(logical(1 - index), :);
-        testY = Y(logical(1 - index), :);
-        testN = size(testX, 1);
-        sqe = 0;
-        for k = 1 : testN
-            pred = predict_henv(ModelTemp, testX(k, :)', 'estimation');
-            sqe = sqe + (testY(k, :) - pred.value') * (testY(k, :)' - pred.value);
+        rand('state', seed + w)
+        ind = randsample(1 : n, n);
+        X = X(ind, :);
+        Y = Y(ind, :); 
+        
+        for j = 0 : tempInd
+
+            if printFlag == 1
+                fprintf(['Current dimension ' int2str(j + 1) '\n']);
+            end
+
+            for i = 1 : m
+
+                index = true(n, 1);
+                index((floor((i - 1) * n / m) + 1) : floor(i * n / m)) = 0;
+                tempX = X(index, :);
+                tempY = Y(index, :);
+                ModelTemp = henv(tempX, tempY, j);
+
+                testX = X(logical(1 - index), :);
+                testY = Y(logical(1 - index), :);
+                testN = size(testX, 1);
+                sqe = 0;
+                for k = 1 : testN
+                    pred = predict_henv(ModelTemp, testX(k, :)', 'estimation');
+                    sqe = sqe + (testY(k, :) - pred.value') * (testY(k, :)' - pred.value);
+                end
+                
+                PreErr(w, j + 1) = PreErr(w, j + 1) + sqe;
+
+            end
+
+        end        
+        
+    end
+    
+    PreErr = sqrt(PreErr / n);
+    
+    pe = mean(PreErr);
+    [~, ind] = min(pe);
+    u = ind - 1;
+
+    SelectOutput.u = u;
+    SelectOutput.PreErr = PreErr;
+    
+    if tableFlag == 1
+
+        fprintf('\n u      CV error      \n');
+        fprintf('------------------------\n');
+        for i = 0 : tempInd
+            fprintf('%2d %12.3f\n', i, pe(i + 1));
         end
-        PreErr(j + 1) = PreErr(j + 1) + sqe;
-        
+        fprintf('------------------------\n');
+
     end
     
-    PreErr(j + 1) = sqrt(PreErr(j + 1) / n);
-end
+    fprintf('\n');
+    disp('The rows of PreErr corresponds to permutations, and the columns of PreErr corresponds to u.');
+    fprintf('\n');
 
+else
 
-[~, ind] = min(PreErr);
-u = ind - 1;
+    PreErr = zeros(1, tempInd + 1);
 
-if tableFlag == 1
-    
-    fprintf('\n u      CV error      \n');
-    fprintf('------------------------\n');
-    for i = 0 : tempInd
-        fprintf('%2d %12.3f\n', i, PreErr(i + 1));
+    for j = 0 : tempInd
+
+        if printFlag == 1
+            fprintf(['Current dimension ' int2str(j + 1) '\n']);
+        end
+
+        for i = 1 : m
+
+            index = true(n, 1);
+            index((floor((i - 1) * n / m) + 1) : floor(i * n / m)) = 0;
+            tempX = X(index, :);
+            tempY = Y(index, :);
+            ModelTemp = henv(tempX, tempY, j);
+
+            testX = X(logical(1 - index), :);
+            testY = Y(logical(1 - index), :);
+            testN = size(testX, 1);
+            sqe = 0;
+            for k = 1 : testN
+                pred = predict_henv(ModelTemp, testX(k, :)', 'estimation');
+                sqe = sqe + (testY(k, :) - pred.value') * (testY(k, :)' - pred.value);
+            end
+            PreErr(j + 1) = PreErr(j + 1) + sqe;
+
+        end
+
+        PreErr(j + 1) = sqrt(PreErr(j + 1) / n);
     end
-    fprintf('------------------------\n');
+
+
+    [~, ind] = min(PreErr);
+    u = ind - 1;
+
+    SelectOutput.u = u;
+    SelectOutput.PreErr = PreErr;
+    
+    if tableFlag == 1
+
+        fprintf('\n u      CV error      \n');
+        fprintf('------------------------\n');
+        for i = 0 : tempInd
+            fprintf('%2d %12.3f\n', i, PreErr(i + 1));
+        end
+        fprintf('------------------------\n');
+
+    end
     
 end
