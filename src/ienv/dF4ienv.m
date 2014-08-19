@@ -46,7 +46,8 @@ dg0dg1 = - kron(R0', R) * Kpd(r, u);
 [V0, D0] = eig(temp1);
 MultiPlier = V0 * diag(sqrt(diag(D0))) * V0';
 [Vtmp, Dtmp] = eig(MultiPlier * temp2 * MultiPlier);
-[Ds, ~] = sort(diag(Dtmp), 'descend');
+[Ds, ind] = sort(diag(Dtmp), 'descend');
+Vtmp = Vtmp(:, ind);
 b = zeros(1, (r - u) ^ 2);
 
 
