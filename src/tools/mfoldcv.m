@@ -11,8 +11,8 @@
 % *X*: Predictors.   The predictors can be univariate or multivariate, 
 % discrete or continuous.  
 % 
-% For model type 'env', 'envseq', 'henv', 'ienv',
-% ' senv', 'xenv' and 'xenvpls', X is an n by p matrix, p is the number of
+% For model type 'env', 'envseq', 'henv', 'ienv', 'senv', 'spls', 'sxenv', 
+% 'xenv' and 'xenvpls', X is an n by p matrix, p is the number of
 % predictors. 
 % 
 % For model type 'penv', X is  A list containing the value of X1 and X2.
@@ -29,8 +29,8 @@
 % 
 % *m*: A positive integer that is used to indicate m-fold cross validation.
 % 
-% *modelType*: A string of characters indicting the model, choices can be
-% 'env', 'envseq', 'henv', 'ienv', 'penv', 'senv', 'xenv' or 'xenvpls'.
+% *modelType*: A string of characters indicating the model, choices can be
+% 'env', 'envseq', 'henv', 'ienv', 'penv', 'senv', 'spls', 'sxenv', 'xenv' or 'xenvpls'.
 % 
 % *Opts*: A list containing the optional input parameters. If one or
 % several (even all) fields are not defined, the default settings are used.
@@ -97,6 +97,10 @@ switch(modelType)
         SelectOutput = mfoldcv_penv(X, Y, m, Opts);
     case 'senv'
         SelectOutput = mfoldcv_senv(X, Y, m, Opts);
+    case 'spls'
+        SelectOutput = mfoldcv_spls(X, Y, m, Opts);
+    case 'sxenv'
+        SelectOutput = mfoldcv_sxenv(X, Y, m, Opts);
     case 'xenv'
         SelectOutput = mfoldcv_xenv(X, Y, m, Opts);
     case 'xenvpls'

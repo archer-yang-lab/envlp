@@ -179,8 +179,12 @@ if u > 0 && u < r
     end
 
     %---Compute \Gamma using sg_min---
-    [l, Gamma] = sg_min(F, dF, init, maxIter, 'prcg', verbose, ftol, gradtol);
-
+    if maxIter > 0
+        [l, Gamma] = sg_min(F, dF, init, maxIter, 'prcg', verbose, ftol, gradtol);
+    else
+        Gamma = init;
+        l = F(init);
+    end
     %---Compute the rest of the parameters based on \Gamma---
     Gamma0 = grams(nulbasis(Gamma'));
     beta = Gamma * Gamma' * betaOLS;
@@ -246,7 +250,7 @@ elseif u == r
     ModelOutput.Omega0 = [];
     ModelOutput.alpha = mY - betaOLS * mX;
     eigtem = eig(sigRes);
-    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
+    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * sum(log(eigtem(eigtem > 0)));
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asySE = asyFm;
     ModelOutput.ratio = ones(r, p);

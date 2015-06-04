@@ -105,7 +105,7 @@
 %         ModelOutput.Lambda
 %         1 - 1 ./ ModelOutput.ratio
 % 
-% This example demonstrates the use of opts.rep.  In this example, the 
+% This example demonstrates the use of Opts.rep.  In this example, the 
 % first six responses are measured in mg/ml, and the next responses are 
 % measured in ug / ml.
 % 
@@ -217,7 +217,7 @@ elseif u == r || u >= (q * r - r + 1) / q
     ModelOutput.Omega = sigRes;
     ModelOutput.Omega0 = [];
     ModelOutput.alpha = mY - betaOLS * mX;
-    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
+    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * sum(log(eigtem(eigtem > 0)));
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asySE = asyFm;
     ModelOutput.ratio = ones(r, p);

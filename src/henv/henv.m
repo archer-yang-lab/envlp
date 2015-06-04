@@ -214,7 +214,7 @@ elseif u == r
     l = - n * r / 2 * (1 + log(2 * pi));
     for i = 1 : p
         eigtem = eig(sigRes(:, :, i));
-        l = l - ng(i) / 2 * log(prod(eigtem(eigtem > 0)));
+        l = l - ng(i) / 2 * sum(log(eigtem(eigtem > 0)));
     end
     Yfit = zeros(n, r);
     for i = 1 : p

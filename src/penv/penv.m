@@ -260,7 +260,7 @@ elseif u==0
     ModelOutput.Omega = [];
     ModelOutput.Omega0 = Sigma;
     ModelOutput.alpha = mean(Y)' - beta2 * mean(X2)';
-    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
+    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * sum(log(eigtem(eigtem > 0)));
     ModelOutput.covMatrix = tempasy;
     ModelOutput.asySE = [];
     ModelOutput.ratio = ones(r, p1);
@@ -294,7 +294,7 @@ elseif u == r
     ModelOutput.Omega = Sigma;
     ModelOutput.Omega0 = [];
     ModelOutput.alpha = mean(Y)' - beta * mean(X)';
-    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * log(prod(eigtem(eigtem > 0)));
+    ModelOutput.l = - n * r / 2 * (1 + log(2 * pi)) - n / 2 * sum(log(eigtem(eigtem > 0)));
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asySE = asyFm;
     ModelOutput.ratio = ones(r, p1);

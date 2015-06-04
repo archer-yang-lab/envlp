@@ -567,7 +567,7 @@ SelectOutput = mfoldcv(X, Y, m, modelType)
 For the inputs: X is a matrix containing the predictors, except that
 with \texttt{penv}, it is a list having X.X1 and X.X2; Y is a matrix containing
 the response; 'alpha' is the significance level; 'm' is an integer indicating m-fold cross validation and 'modelType' is
-a string indicting the model. The choices for 'modelType' in \texttt{modelselectaic}, \texttt{modelselectbic} and \texttt{modelselectlrt} can be \textquotesingle env\textquotesingle, \textquotesingle henv\textquotesingle, \textquotesingle ienv\textquotesingle, \textquotesingle penv\textquotesingle, \textquotesingle senv\textquotesingle and \textquotesingle xenv\textquotesingle, and the choices for 'modelType' in \texttt{mfoldcv} are \textquotesingle envseq\textquotesingle and \textquotesingle xenvpls\textquotesingle.  The output is the dimension
+a string indicating the model. The choices for 'modelType' in \texttt{modelselectaic}, \texttt{modelselectbic} and \texttt{modelselectlrt} can be \textquotesingle env\textquotesingle, \textquotesingle henv\textquotesingle, \textquotesingle ienv\textquotesingle, \textquotesingle penv\textquotesingle, \textquotesingle senv\textquotesingle and \textquotesingle xenv\textquotesingle, and the choices for 'modelType' in \texttt{mfoldcv} are \textquotesingle envseq\textquotesingle and \textquotesingle xenvpls\textquotesingle.  The output is the dimension
 of the envelope subspace selected by the tool for \texttt{modelselectaic}, \texttt{modelselectbic} and \texttt{modelselectlrt}, and a list containing dimension of the envelope subspace as well as the prediction error for each dimension for \texttt{mfoldcv}.  Examples will be provided
 in Section \ref{sec_example}.
 
@@ -625,7 +625,7 @@ and \texttt{testcoefficient} is a list returned from the functions
 for model fitting; X, Y, and u are discussed in the dimension selection
 part; B is the number of bootstrap sample; Xnew is a value of X with
 which to estimate or predict Y; infType is a string of characters
-indicting the inference type, the choices are ``estimation'' and
+indicating the inference type, the choices are ``estimation'' and
 ``prediction''; and TestInput is a list that specifies the null hypothesis quantities $\Lbf$, $\R$, and $\A$. TestInput is an option input
 argument; if missing, \texttt{testcoefficient} will perform the usual
 F test, i.e. testing if $\betabf=0$. The output of \texttt{bootstrapse}

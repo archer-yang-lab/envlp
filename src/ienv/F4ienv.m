@@ -35,10 +35,10 @@ logDetSigRes = DataParameter.logDetSigRes;
 invsigRes = DataParameter.invsigRes;
 
 eigtem = eig(R' * sigRes * R);
-a = log(prod(eigtem(eigtem > 0)));
+a = sum(log(eigtem(eigtem > 0)));
 
 eigtem0 = eig(R' * invsigRes * R);
-b = log(prod(eigtem0(eigtem0 > 0)));
+b = sum(log(eigtem0(eigtem0 > 0)));
 
 R0 = grams(nulbasis(R'));
 [~, D] = eig(eye(r - u) / (R0' * sigRes * R0) * R0' * sigFit * R0);

@@ -11,18 +11,18 @@
 % *Xnew*: The value of X with which to estimate or predict Y.  
 % 
 % For 'env',
-% 'henv', 'ienv', 'senv' and 'xenv', it is a p by 1 vector.  
+% 'henv', 'ienv', 'senv', 'sxenv' and 'xenv', it is a p by 1 vector.  
 % 
 % For 'penv', it is a list containing the value of X1 and X2.
 % 
 %  * Xnew.X1 (only for 'penv'): A p1 by 1 vector containing the value of X1.
 %  * Xnew.X2 (only for 'penv'): A p2 by 1 vector containing the value of X2.
 % 
-% *infType*: A string of characters indicting the inference type,
+% *infType*: A string of characters indicating the inference type,
 % the choices can be 'estimation' or 'prediction'.
 % 
-% *modelType*: A string of characters indicting the model, choices can be 'env',
-% 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
+% *modelType*: A string of characters indicating the model, choices can be 'env',
+% 'henv', 'ienv', 'penv', 'senv', 'sxenv' and 'xenv'.
 %
 %% Output
 %
@@ -37,7 +37,7 @@
 
 %% Description
 % This function evaluates the user-specified model, could be 'env', 'henv', 'ienv', 'penv', 
-% 'senv' or 'xenv', at new value Xnew.  It can
+% 'senv', 'sxenv' or 'xenv', at new value Xnew.  It can
 % perform estimation: find the fitted value when X = Xnew, or prediction:
 % predict Y when X = Xnew.  The covariance matrix and the standard errors are
 % also provided.
@@ -85,6 +85,8 @@ switch(modelType)
         PredictOutput = predict_penv(ModelOutput, Xnew, infType);
     case 'senv'
         PredictOutput = predict_senv(ModelOutput, Xnew, infType);
+    case 'sxenv'
+        PredictOutput = predict_sxenv(ModelOutput, Xnew, infType);
     case 'xenv'
         PredictOutput = predict_xenv(ModelOutput, Xnew, infType);
     otherwise

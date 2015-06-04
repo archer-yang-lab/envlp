@@ -11,7 +11,7 @@
 % *X*: Predictors.  The predictors can be univariate or multivariate, 
 % discrete or continuous.  
 % 
-% For model type 'env', 'henv', 'ienv', 
+% For model type 'env', 'henv', 'ienv', 'senv', 'sxenv'
 % and 'xenv', X is an n by p matrix, p is the number of
 % predictors.
 % 
@@ -27,8 +27,8 @@
 % responses and n is number of observations. The responses must be 
 % continuous variables.
 % 
-% *modelType*: A string of characters indicting the model, choices can be 'env',
-% 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
+% *modelType*: A string of characters indicating the model, choices can be 'env',
+% 'henv', 'ienv', 'penv', 'senv', 'sxenv' and 'xenv'.
 % 
 % *Opts*: A list containing the optional input parameters, to control the
 % iterations in sg_min. If one or several (even all) fields are not
@@ -47,7 +47,7 @@
 %% Description
 % This function implements the Bayesian information criteria (BIC) to select
 % the dimension of the envelope subspace for method 'env', 'henv', 'ienv', 'penv',
-% ' senv', and 'xenv'.
+% 'senv', 'sxenv' and 'xenv'.
 
 %% Example
 %         load wheatprotein.txt
@@ -84,6 +84,8 @@ switch(modelType)
         u = bic_penv(X, Y, Opts);
     case 'senv'
         u = bic_senv(X, Y, Opts);
+    case 'sxenv'
+        u = bic_sxenv(X, Y, Opts);
     case 'xenv'
         u = bic_xenv(X, Y, Opts);
     otherwise

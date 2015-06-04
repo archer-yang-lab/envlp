@@ -87,7 +87,7 @@ u = u - 1;
 
 if tableFlag == 1
     
-    fprintf('\n u      log liklihood      AIC\n');
+    fprintf('\n u      log likelihood      AIC\n');
     fprintf('--------------------------------------------\n');
     for i = 0 : p
         fprintf('%2d %15.3f   %12.3f\n', i, llik(i + 1), ic(i + 1));

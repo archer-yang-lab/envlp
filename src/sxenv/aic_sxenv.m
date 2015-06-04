@@ -1,19 +1,19 @@
-%% bic_senv
-% Select the dimension of the scaled envelope subspace using Bayesian
-% information criterion.
+%% aic_sxenv
+% Select the dimension of the scaled predictor envelope subspace using
+% Akaike information criterion.
 
 %% Syntax
-%         u = bic_senv(X, Y)
-%         u = bic_senv(X, Y, Opts)
+%         u = aic_sxenv(X, Y)
+%         u = aic_sxenv(X, Y, Opts)
 %
 %% Input
 %
-% *X*: Predictors. An n by p matrix, p is the number of predictors and n 
-% is the number of observations. The predictors can be univariate or 
-% multivariate, discrete or continuous.
+% *X*: Predictors. An n by p matrix, p is the number of predictors and n is
+% number of observations.  The predictors must be continuous variables.
 % 
-% *Y*: Multivariate responses. An n by r matrix, r is the number of
-% responses. The responses must be continuous variables.
+% *Y*: Responses. An n by r matrix, r is the number of
+% responses. The response can be univariate or multivariate and must be
+% continuous variable.
 %
 % *Opts*: A list containing the optional input parameters, to control the
 % iterations in sg_min. If one or several (even all) fields are not
@@ -37,20 +37,21 @@
 %
 %% Output
 %
-% *u*: Dimension of the scaled envelope. An integer between 0 and r.
+% *u*: Dimension of the scaled envelope. An integer between 0 and p.
 % 
 %% Description
-% This function implements the Bayesian information criteria (BIC) to select
-% the dimension of the scaled envelope subspace. 
+% This function implements the Akaike information criteria (AIC) to select
+% the dimension of the scaled predictor envelope subspace. 
 
 %% Example
 %
-%         load('sales.txt')
-%         Y = sales(:, 4 : 7);
-%         X = sales(:, 1 : 3);
-%         u = bic_senv(X, Y)
+%         load('chemo.mat')
+%         X = X(:, [6 11 21 22]);
+%         Opts.verbose = 1;
+%         Opts.table = 1;        
+%         u = aic_sxenv(X, Y, Opts)
 
-function u = bic_senv(X, Y, Opts)
+function u = aic_sxenv(X, Y, Opts)
 
 if nargin < 2
     error('Inputs: X and Y should be specified!');
@@ -72,23 +73,23 @@ Opts = make_opts(Opts);
 printFlag = Opts.verbose;
 Opts.verbose = 0;
 
-[n, r] = size(Y);
-ic = zeros(r + 1, 1);
-llik = zeros(r + 1, 1);
+[~, p] = size(X);
+ic = zeros(p + 1, 1);
+llik = zeros(p + 1, 1);
 
-ModelOutput = senv(X, Y, r, Opts);
-llik(r + 1) = ModelOutput.l;
-ic(r + 1) = - 2 * ModelOutput.l + log(n) * ModelOutput.paramNum;
+ModelOutput = sxenv(X, Y, p, Opts);
+llik(p + 1) = ModelOutput.l;
+ic(p + 1) = - 2 * ModelOutput.l + 2 * ModelOutput.paramNum;
 
-for i = 0 : r - 1
+for i = 0 : p - 1
     
     if printFlag == 1
         fprintf(['Current dimension ' int2str(i) '\n']);
     end
     
-    ModelOutput = senv(X, Y, i, Opts);
+    ModelOutput = sxenv(X, Y, i, Opts);
     llik(i + 1) = ModelOutput.l;
-    ic(i + 1) = - 2 * ModelOutput.l + log(n) * ModelOutput.paramNum;
+    ic(i + 1) = - 2 * ModelOutput.l + 2 * ModelOutput.paramNum;
     
 end
 
@@ -97,9 +98,9 @@ u = u - 1;
 
 if tableFlag == 1
     
-    fprintf('\n u      log likelihood      BIC\n');
+    fprintf('\n u      log likelihood      AIC\n');
     fprintf('--------------------------------------------\n');
-    for i = 0 : r
+    for i = 0 : p
         fprintf('%2d %15.3f   %12.3f\n', i, llik(i + 1), ic(i + 1));
     end
     fprintf('--------------------------------------------\n');

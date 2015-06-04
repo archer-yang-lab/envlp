@@ -12,8 +12,8 @@
 % 
 % *ModelOutput*: A list containing the model outputs from fitting the models.
 % 
-% *modelType*: A string of characters indicting the model, choices can be 'env',
-% 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
+% *modelType*: A string of characters indicating the model, choices can be 'env',
+% 'henv', 'ienv', 'penv', 'senv', 'sxenv' and 'xenv'.
 % 
 % *TestInput*: A list that specifies the null hypothesis, including L, R, and
 % A.  If not provided by the user, default values will be used.
@@ -47,7 +47,7 @@
 % L\beta R\neq A$.  The $$\beta$ is estimated by a model in the envelope model.  If
 % the user does not specify the values for L, R and A, then the test is
 % equivalent to the standard F test on if $$\beta = 0$ (for 'env', 'ienv', 
-%  'penv', 'senv' and 'xenv'), or if the group main effects are all zeros 
+%  'penv', 'senv', 'sxenv' and 'xenv'), or if the group main effects are all zeros 
 % (for 'henv').  The test statistics used is vec $$(L\beta R - A)$
 % $$\hat{\Sigma}^{-1}$ vec $$(L\beta R - A)^{T}$, and the reference
 % distribution is chi-squared distribution with degrees of freedom the same
@@ -99,6 +99,8 @@ elseif nargin == 2
             TestOutput = testcoefficient_penv(ModelOutput);
         case 'senv'
             TestOutput = testcoefficient_senv(ModelOutput);
+        case 'sxenv'
+            TestOutput = testcoefficient_sxenv(ModelOutput);
         case 'xenv'
             TestOutput = testcoefficient_xenv(ModelOutput);
         otherwise
@@ -118,6 +120,8 @@ elseif nargin == 3
             TestOutput = testcoefficient_penv(ModelOutput, TestInput);
         case 'senv'
             TestOutput = testcoefficient_senv(ModelOutput, TestInput);
+        case 'sxenv'
+            TestOutput = testcoefficient_sxenv(ModelOutput, TestInput);
         case 'xenv'
             TestOutput = testcoefficient_xenv(ModelOutput, TestInput);
         otherwise

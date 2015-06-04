@@ -36,8 +36,8 @@ invsigY = DataParameter.invsigY;
     Lambda = diag(Ld);
     invLambda = diag(1./Ld);
     eigtem = eig(Gamma' * Lambda * invsigY * Lambda * Gamma);
-    a = log(prod(eigtem(eigtem > 0))); 
+    a = sum(log(eigtem(eigtem > 0))); 
     eigtem2 = eig(Gamma' * invLambda * sigRes * invLambda * Gamma);
-    b = log(prod(eigtem2(eigtem2 > 0)));
+    b = sum(log(eigtem2(eigtem2 > 0)));
     
     f = n * a / 2 + n * b / 2;

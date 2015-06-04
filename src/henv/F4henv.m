@@ -37,11 +37,11 @@ logDetSigY = DataParameter.logDetSigY;
 f = 0;
 for i = 1 : p
     eigtem = eig(R' * sigRes(:, :, i) * R);
-    a = log(prod(eigtem(eigtem > 0)));
+    a = sum(log(eigtem(eigtem > 0)));
     f = f + ng(i) / n * a;  
 end
 
 eigtem0 = eig(R' / sigY * R);
-b = log(prod(eigtem0(eigtem0 > 0)));
+b = sum(log(eigtem0(eigtem0 > 0)));
 
 f = n * r * (1 + log(2 * pi)) + n * (f + b + logDetSigY);

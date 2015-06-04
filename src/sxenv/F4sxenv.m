@@ -1,9 +1,9 @@
-%% F4xenv
-% Objective function for computing the envelope subspace for the reduction
-% on X.
+%% F4sxenv
+% Objective function for computing the envelope subspace for the scaled 
+% predictor envelope model.
 
 %% Syntax
-%         f = F4xenv(R, DataParameter)
+%         f = F4sxenv(R, DataParameter)
 % 
 %% Input
 %
@@ -18,24 +18,22 @@
 
 %% Description
 %
-% The objective function is derived in Section 4.5.1 of Cook et al. (2013)
+% The objective function is derived in Section 2.2 of Cook and Su (2015)
 %  using maximum likelihood estimation. The columns of the semi-orthogonal 
 % matrix that minimizes this function span the estimated envelope subspace.
 
-function f = F4xenv(R, DataParameter)
+function f = F4sxenv(R, DataParameter)
 
 n = DataParameter.n;
-p = DataParameter.p;
-r = DataParameter.r;
 sigXcY = DataParameter.sigXcY;
 invSigX = DataParameter.invSigX;
-logDetSigX = DataParameter.logDetSigX;
-logDetSigY = DataParameter.logDetSigY;
+Lambda = DataParameter.Lambda;
 
-eigtem = eig(R' * sigXcY * R);
-a = sum(log(eigtem(eigtem>0)));
 
-eigtem0 = eig(R' * invSigX * R);
+eigtem = eig(R' / Lambda * sigXcY / Lambda * R);
+a = sum(log(eigtem(eigtem > 0)));
+
+eigtem0 = eig(R' * Lambda * invSigX * Lambda * R);
 b = sum(log(eigtem0(eigtem0 > 0)));
 
-f = n * (p + r) * (1 + log(2 * pi)) + n * (a + b + logDetSigX + logDetSigY);
+f = n * (a + b);

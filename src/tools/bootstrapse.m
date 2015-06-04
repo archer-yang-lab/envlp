@@ -10,8 +10,8 @@
 % *X*: Predictors.   The predictors can be univariate or multivariate, 
 % discrete or continuous.  
 % 
-% For model type for methods 'env', 'envseq', 'henv', 'ienv', ' senv',
-% 'xenv' and 'xenvpls'. X is an n by p matrix, p is the number of 
+% For model type for methods 'env', 'envseq', 'henv', 'ienv', 'senv',
+% 'spls', 'sxenv', 'xenv' and 'xenvpls'. X is an n by p matrix, p is the number of 
 % predictors. 
 % 
 % For model type 'penv', X is a list containing the value of X1 and X2.
@@ -31,8 +31,8 @@
 % 
 % *B*: Number of bootstrap samples.  A positive integer.
 % 
-% *modelType*: A string of characters indicting the model, choices can be
-% 'env', 'envseq', 'henv', 'ienv', 'penv', 'senv', 'xenv' and 'xenvpls'.
+% *modelType*: A string of characters indicating the model, choices can be
+% 'env', 'envseq', 'henv', 'ienv', 'penv', 'senv', 'spls', 'sxenv', 'xenv' and 'xenvpls'.
 %
 % *Opts*: A list containing the optional input parameters, to control the
 % iterations in sg_min. If one or several (even all) fields are not
@@ -47,9 +47,9 @@
 %% Output
 %
 % bootse: For 'env', 'envseq', 'henv', 'ienv', and 'senv', an r by p matrix 
-% containing the standard errors for elements in $$\beta$ computed by
+% containing the standard errors for elements in $\beta$ computed by
 % bootstrap.  For 'penv', an r by p1 matrix containing the standard errors 
-% for $$\beta_1$ computed by bootstrap.  For 'xenv' and 'xenvpls', a p by r
+% for $\beta_1$ computed by bootstrap.  For 'spls', 'sxenv', 'xenv' and 'xenvpls', a p by r
 % matrix containing the standard errors for elements in $$\beta$ computed 
 % by bootstrap.
 
@@ -104,6 +104,10 @@ switch(modelType)
         bootse = bstrp_penv(X, Y, u, B, Opts);
     case 'senv'
         bootse = bstrp_senv(X, Y, u, B, Opts);
+    case 'spls'
+        bootse = bstrp_spls(X, Y, u, B, Opts);
+    case 'sxenv'
+        bootse = bstrp_sxenv(X, Y, u, B, Opts);
     case 'xenv'
         bootse = bstrp_xenv(X, Y, u, B, Opts);
     case 'xenvpls'

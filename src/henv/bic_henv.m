@@ -90,7 +90,7 @@ u = u - 1;
 
 if tableFlag == 1
     
-    fprintf('\n u      log liklihood      BIC\n');
+    fprintf('\n u      log likelihood      BIC\n');
     fprintf('--------------------------------------------\n');
     for i = 0 : r
         fprintf('%2d %15.3f   %12.3f\n', i, llik(i + 1), ic(i + 1));

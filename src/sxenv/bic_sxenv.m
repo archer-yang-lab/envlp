@@ -1,20 +1,20 @@
-%% bic_ienv
-% Select the dimension of the inner envelope subspace using Bayesian
+%% bic_sxenv
+% Select the dimension of the scaled predictor envelope subspace using Bayesian
 % information criterion.
 
 %% Syntax
-%         u = bic_ienv(X, Y)
-%         u = bic_ienv(X, Y, Opts)
+%         u = bic_sxenv(X, Y)
+%         u = bic_sxenv(X, Y, Opts)
 %
 %% Input
 %
-% *X*: Predictors. An n by p matrix, p is the number of predictors and n 
-% is the number of observations. The predictors can be univariate or 
-% multivariate, discrete or continuous.
+% *X*: Predictors. An n by p matrix, p is the number of predictors and n is
+% number of observations.  The predictors must be continuous variables.
 % 
-% *Y*: Multivariate responses. An n by r matrix, r is the number of
-% responses. The responses must be continuous variables.
-% 
+% *Y*: Responses. An n by r matrix, r is the number of
+% responses. The response can be univariate or multivariate and must be
+% continuous variable.
+%
 % *Opts*: A list containing the optional input parameters, to control the
 % iterations in sg_min. If one or several (even all) fields are not
 % defined, the default settings are used.
@@ -26,24 +26,35 @@
 % Logical 0 or 1. Default value: 0.
 % * Opts.table: Flag to tabulate the results, which contains BIC and log
 % likelihood for each u. Logical 0 or 1. Default value: 0.
+% * Opts.rep: Number of replicates for scales. This option imposes special 
+% structure on scaling parameters. For example, if Opts.rep = [3 4], this 
+% means that the first three responses have the same scale and the next 
+% four responses share a different scale. The elements of this vector should 
+% sum to r. If not specified, the default is [], then all responses will be
+% scaled differently. If all responses have the same scale, input [r], then 
+% the regular envelope will be applied to the data.
+% The input should be a row vector.
 %
 %% Output
 %
-% *u*: Dimension of the inner envelope. An integer between 0 and p.
-
+% *u*: Dimension of the scaled envelope. An integer between 0 and p.
+% 
 %% Description
 % This function implements the Bayesian information criteria (BIC) to select
-% the dimension of the inner envelope subspace. 
+% the dimension of the scaled predictor envelope subspace. 
 
 %% Example
 %
-%         load irisf.mat
-%         u = bic_ienv(X, Y)
+%         load('chemo.mat')
+%         X = X(:, [6 11 21 22]);
+%         Opts.verbose = 1;
+%         Opts.table = 1;        
+%         u = bic_sxenv(X, Y, Opts)
 
-function u = bic_ienv(X, Y, Opts)
+function u = bic_sxenv(X, Y, Opts)
 
 if nargin < 2
-    error('Inputs: X, Y should be specified!');
+    error('Inputs: X and Y should be specified!');
 elseif nargin == 2
     Opts = [];
 end
@@ -63,18 +74,20 @@ printFlag = Opts.verbose;
 Opts.verbose = 0;
 
 [n, p] = size(X);
-    
-ModelOutput = ienv(X, Y, 0, Opts);
-llik(1) = ModelOutput.l;
-ic(1) = - 2 * ModelOutput.l + log(n) * ModelOutput.paramNum;
+ic = zeros(p + 1, 1);
+llik = zeros(p + 1, 1);
 
-for i = 1 : p
+ModelOutput = sxenv(X, Y, p, Opts);
+llik(p + 1) = ModelOutput.l;
+ic(p + 1) = - 2 * ModelOutput.l + log(n) * ModelOutput.paramNum;
+
+for i = 0 : p - 1
     
     if printFlag == 1
         fprintf(['Current dimension ' int2str(i) '\n']);
     end
     
-    ModelOutput = ienv(X, Y, i, Opts);
+    ModelOutput = sxenv(X, Y, i, Opts);
     llik(i + 1) = ModelOutput.l;
     ic(i + 1) = - 2 * ModelOutput.l + log(n) * ModelOutput.paramNum;
     

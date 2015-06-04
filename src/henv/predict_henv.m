@@ -12,7 +12,7 @@
 % *Xnew*: A group indicator.  It must be a column vector, whose transpose is
 % the same as one of the group indictors from the original data. 
 % 
-% *infType*: A string of characters indicting the inference type,
+% *infType*: A string of characters indicating the inference type,
 % the choices can be 'estimation' or 'prediction'.
 %
  

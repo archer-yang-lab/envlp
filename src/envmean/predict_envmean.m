@@ -9,7 +9,7 @@
 % *ModelOutput*: A list containing the maximum likelihood estimators and other
 % statistics inherited from envmean.
 % 
-% *infType*: A string of characters indicting the inference type,
+% *infType*: A string of characters indicating the inference type,
 % the choices can be 'estimation' or 'prediction'.
 % 
 %% Output

@@ -270,7 +270,7 @@ elseif u == p
     ModelOutput.Omega0 = [];
     ModelOutput.mu = mu;
     ModelOutput.sigYcX = sigYcX;
-    ModelOutput.l = - n * (p + r) * (1 + log(2 * pi)) / 2 - n / 2 * (logDetSigY + log(prod(eigtem3(eigtem3 > 0))));
+    ModelOutput.l = - n * (p + r) * (1 + log(2 * pi)) / 2 - n / 2 * (logDetSigY + sum(log(eigtem3(eigtem3 > 0))));
     ModelOutput.covMatrix = covMatrix;
     ModelOutput.asySE = asyFm;
     ModelOutput.ratio = ones(p,r);

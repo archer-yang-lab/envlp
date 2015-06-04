@@ -108,7 +108,7 @@ end
 
 if tableFlag == 1
     
-    fprintf('\n u      log liklihood      test statistic     degrees of freedom    p-value\n');
+    fprintf('\n u      log likelihood      test statistic     degrees of freedom    p-value\n');
     fprintf('----------------------------------------------------------------------------------\n');
     for i = 1 : p
         fprintf('%2d %15.3f %18.3f %18d %18.3f\n', p + 1 - i, llik(p + 1 - i), tstat(p + 1 - i), df(p + 1 - i), pv(p + 1 - i));

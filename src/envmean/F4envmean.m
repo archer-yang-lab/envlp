@@ -31,9 +31,9 @@ logDetSY = DataParameter.logDetSY;
 invsY = DataParameter.invsY;
 
 eigtem = eig(R' * sigY * R);
-a = log(prod(eigtem(eigtem > 0)));
+a = sum(log(eigtem(eigtem > 0)));
 
 eigtem0 = eig(R' * invsY * R);
-b = log(prod(eigtem0(eigtem0 > 0)));
+b = sum(log(eigtem0(eigtem0 > 0)));
 
 f = n * p * (1 + log(2 * pi)) + n * (a + b + logDetSY);

@@ -15,7 +15,7 @@
 %  * Xnew.X1: A p1 by 1 vector containing the value of X1.
 %  * Xnew.X2: A p2 by 1 vector containing the value of X2.
 % 
-% *infType*: A string of characters indicting the inference type,
+% *infType*: A string of characters indicating the inference type,
 % the choices can be 'estimation' or 'prediction'.
 % 
 

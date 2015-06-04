@@ -15,7 +15,7 @@
 % 
 % *method*: A string of characters indicating which member of the envelope
 % family to be used, the choices can be 'env', 'ienv', 'henv', 'senv', 
-% 'xenv' or 'xenvpls'.
+% 'sxenv', 'xenv' or 'xenvpls'.
 %
 %% Output
 % 
@@ -84,7 +84,7 @@ if (strcmp(method, 'env'))
     sigY = cov(Y, 1);
     invsigY = inv(sigY);
     eigtemY = eig(sigY);
-    logDetSigY = log(prod(eigtemY(eigtemY > 0)));
+    logDetSigY = sum(log(eigtemY(eigtemY > 0)));
 
     DataParameter.n = n;
     DataParameter.p = p;
@@ -110,7 +110,7 @@ elseif (strcmp(method, 'senv'))
     sigY = cov(Y, 1);
     invsigY = inv(sigY);
     eigtemY = eig(sigY);
-    logDetSigY = log(prod(eigtemY(eigtemY > 0)));
+    logDetSigY = sum(log(eigtemY(eigtemY > 0)));
     
     DataParameter.n = n;
     DataParameter.p = p;
@@ -138,7 +138,7 @@ elseif (strcmp(method, 'ienv'))
     sigRes = ModelOutput.SigmaOLS;
     sigFit = sigY - sigRes;
     eigtem = eig(sigRes);
-    logDetSigRes = log(prod(eigtem(eigtem > 0)));
+    logDetSigRes = sum(log(eigtem(eigtem > 0)));
     invsigRes = inv(sigRes);
 
     DataParameter.n = n;
@@ -194,7 +194,7 @@ elseif (strcmp(method, 'henv'))
 
     sigY = cov(Y, 1);
     eigtemY = eig(sigY);
-    logDetSigY = log(prod(eigtemY(eigtemY > 0)));
+    logDetSigY = sum(log(eigtemY(eigtemY > 0)));
     invsigY = inv(sigY);
 
     DataParameter.n = n;
@@ -210,6 +210,29 @@ elseif (strcmp(method, 'henv'))
     DataParameter.logDetSigY = logDetSigY;
     DataParameter.invsigY = invsigY;
     
+elseif (strcmp(method, 'sxenv'))
+
+    [n, p] = size(X);
+    r = size(Y, 2);
+    XC = center(X);
+    YC = center(Y);
+    sigX = cov(X, 1);
+    sigXY = XC' * YC / n;
+    sigY = cov(Y, 1);
+    
+    DataParameter.n = n;
+    DataParameter.p = p;
+    DataParameter.r = r;
+    DataParameter.XC = XC;
+    DataParameter.YC = YC;
+    DataParameter.mX = mean(X)';
+    DataParameter.mY = mean(Y)';
+    DataParameter.sigX = sigX;
+    DataParameter.sigY = sigY;
+    DataParameter.sigXY = sigXY;
+    DataParameter.sigXcY = sigX - sigXY / sigY * sigXY';
+    DataParameter.invSigX = inv(sigX);
+
 elseif (strcmp(method, 'xenv'))
     
     [n, p] = size(X);
@@ -220,9 +243,9 @@ elseif (strcmp(method, 'xenv'))
     sigXY = XC' * YC / n;
     sigY = cov(Y, 1);
     eigtemY = eig(sigY);
-    logDetSigY = log(prod(eigtemY(eigtemY > 0)));
+    logDetSigY = sum(log(eigtemY(eigtemY > 0)));
     eigtemX = eig(sigX);
-    logDetSigX = log(prod(eigtemX(eigtemX > 0)));
+    logDetSigX = sum(log(eigtemX(eigtemX > 0)));
     
     DataParameter.n = n;
     DataParameter.p = p;

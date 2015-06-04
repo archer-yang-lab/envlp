@@ -114,7 +114,7 @@ sY = Y' * Y / n;
 mY = mean(Y)';
 sigY = cov(Y, 1);
 eigtemY = eig(sY);
-logDetSY = log(prod(eigtemY(eigtemY > 0)));
+logDetSY = sum(log(eigtemY(eigtemY > 0)));
 invsY = inv(sY);
 
 if u > 0 && u < p
@@ -195,7 +195,7 @@ elseif u == 0
 elseif u == p
     
     eigtem = eig(sigY);
-    logDetSigY = log(prod(eigtem(eigtem > 0)));
+    logDetSigY = sum(log(eigtem(eigtem > 0)));
     
     ModelOutput.mu = mY;
     ModelOutput.Sigma = sigY;

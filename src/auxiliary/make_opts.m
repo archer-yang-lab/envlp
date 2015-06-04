@@ -37,7 +37,7 @@ function Opts = make_opts(Opts)
 
 
 if isfield(Opts, 'maxIter')
-    if (Opts.maxIter < 1)
+    if (Opts.maxIter < 0)
         Opts.maxIter = 300;
     end
 else

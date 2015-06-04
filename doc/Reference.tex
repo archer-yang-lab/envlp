@@ -124,7 +124,7 @@ Perform bootstrap to estimate actual standard errors for models in the envelope 
 \textbf{X}: Predictors.   The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-For model type for methods 'env', 'envpls', 'henv', 'ienv', ' senv', 'xenv' and 'xenvpls'. X is an n by p matrix, p is the number of predictors.
+For model type for methods 'env', 'envpls', 'henv', 'ienv', ' senv', 'spls', ' sxenv', 'xenv' and 'xenvpls'. X is an n by p matrix, p is the number of predictors.
 \end{par} \vspace{1em}
 \begin{par}
 For model type 'penv', X is a list containing the value of X1 and X2.
@@ -144,7 +144,7 @@ For model type 'penv', X is a list containing the value of X1 and X2.
 \textbf{B}: Number of bootstrap samples.  A positive integer.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{modelType}: A string of characters indicting the model, choices can be 'env', 'envpls', 'henv', 'ienv', 'penv', 'senv', 'xenv' and 'xenvpls'.
+\textbf{modelType}: A string of characters indicating the model, choices can be 'env', 'envpls', 'henv', 'ienv', 'penv', 'senv', 'spls', 'sxenv', 'xenv' and 'xenvpls'.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
@@ -161,7 +161,7 @@ For model type 'penv', X is a list containing the value of X1 and X2.
 \subsection*{Output}
 
 \begin{par}
-bootse: For 'env', 'envpls', 'henv', 'ienv', and 'senv', an r by p matrix containing the standard errors for elements in $\beta$ computed by bootstrap.  For 'penv', an r by p1 matrix containing the standard errors for $\beta_1$ computed by bootstrap.  For 'xenv' and 'xenvpls', a p by r matrix containing the standard errors for elements in $\beta$ computed by bootstrap.
+bootse: For 'env', 'envpls', 'henv', 'ienv', and 'senv', an r by p matrix containing the standard errors for elements in $\beta$ computed by bootstrap.  For 'penv', an r by p1 matrix containing the standard errors for $\beta_1$ computed by bootstrap.  For 'spls', 'sxenv', 'xenv' and 'xenvpls', a p by r matrix containing the standard errors for elements in $\beta$ computed by bootstrap.
 \end{par} \vspace{1em}
 
 
@@ -355,7 +355,7 @@ Select the dimension for the envelope family using m-fold cross validation.
 \textbf{X}: Predictors.   The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-For model type 'env', 'envseq', 'henv', 'ienv', ' senv', 'xenv' and 'xenvpls', X is an n by p matrix, p is the number of predictors.
+For model type 'env', 'envseq', 'henv', 'ienv', 'senv', 'spls', 'sxenv', 'xenv' and 'xenvpls', X is an n by p matrix, p is the number of predictors.
 \end{par} \vspace{1em}
 \begin{par}
 For model type 'penv', X is  A list containing the value of X1 and X2.
@@ -373,7 +373,7 @@ For model type 'penv', X is  A list containing the value of X1 and X2.
 \textbf{m}: A positive integer that is used to indicate m-fold cross validation.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{modelType}: A string of characters indicting the model, choices can be 'env', 'envseq', 'henv', 'ienv', 'penv', 'senv', 'xenv' or 'xenvpls'.
+\textbf{modelType}: A string of characters indicating the model, choices can be 'env', 'envseq', 'henv', 'ienv', 'penv', 'senv', 'spls', 'sxenv', 'xenv' or 'xenvpls'.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
@@ -458,7 +458,7 @@ Select the dimension for the envelope family using Akaike information criteria.
 \textbf{X}: Predictors.   The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-For model type 'env', 'henv', 'ienv', ' senv', and 'xenv', X is an n by p matrix, p is the number of predictors.
+For model type 'env', 'henv', 'ienv', ' senv', 'sxenv' and 'xenv', X is an n by p matrix, p is the number of predictors.
 \end{par} \vspace{1em}
 \begin{par}
 For model type 'penv', X is  A list containing the value of X1 and X2.
@@ -472,7 +472,7 @@ For model type 'penv', X is  A list containing the value of X1 and X2.
 \textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{modelType}: A string of characters indicting the model, choices can be 'env', 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
+\textbf{modelType}: A string of characters indicating the model, choices can be 'env', 'henv', 'ienv', 'penv', 'senv', 'sxenv' and 'xenv'.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
@@ -497,7 +497,7 @@ For model type 'penv', X is  A list containing the value of X1 and X2.
 \subsection*{Description}
 
 \begin{par}
-This function implements the Akaike information criteria (AIC) to select the dimension of the envelope subspace for method 'env', 'henv', 'ienv', 'penv', ' senv', and 'xenv'.
+This function implements the Akaike information criteria (AIC) to select the dimension of the envelope subspace for method 'env', 'henv', 'ienv', 'penv', ' senv', 'sxenv' and 'xenv'.
 \end{par} \vspace{1em}
 
 
@@ -567,7 +567,7 @@ Select the dimension for the envelope family using Bayesian information criteria
 \textbf{X}: Predictors.  The predictors can be univariate or multivariate, discrete or continuous.
 \end{par} \vspace{1em}
 \begin{par}
-For model type 'env', 'henv', 'ienv', ' senv', and 'xenv', X is an n by p matrix, p is the number of predictors.
+For model type 'env', 'henv', 'ienv', ' senv', 'sxenv' and 'xenv', X is an n by p matrix, p is the number of predictors.
 \end{par} \vspace{1em}
 \begin{par}
 For model type 'penv', X is  A list containing the value of X1 and X2.
@@ -581,7 +581,7 @@ For model type 'penv', X is  A list containing the value of X1 and X2.
 \textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{modelType}: A string of characters indicting the model, choices can be 'env', 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
+\textbf{modelType}: A string of characters indicating the model, choices can be 'env', 'henv', 'ienv', 'penv', 'senv', 'sxenv' and 'xenv'.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
@@ -606,7 +606,7 @@ For model type 'penv', X is  A list containing the value of X1 and X2.
 \subsection*{Description}
 
 \begin{par}
-This function implements the Bayesian information criteria (BIC) to select the dimension of the envelope subspace for method 'env', 'henv', 'ienv', 'penv', ' senv', and 'xenv'.
+This function implements the Bayesian information criteria (BIC) to select the dimension of the envelope subspace for method 'env', 'henv', 'ienv', 'penv', 'senv', 'sxenv' and 'xenv'.
 \end{par} \vspace{1em}
 
 
@@ -696,7 +696,7 @@ For model type 'penv', X is  A list containing the value of X1 and X2.
 \textbf{alpha}: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{modelType}: A string of characters indicting the model, choices can be 'env', 'henv', 'ienv', 'penv' and 'xenv'.
+\textbf{modelType}: A string of characters indicating the model, choices can be 'env', 'henv', 'ienv', 'penv' and 'xenv'.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
@@ -800,7 +800,7 @@ Perform estimation or prediction for models in the envelope family.
 \textbf{Xnew}: The value of X with which to estimate or predict Y.
 \end{par} \vspace{1em}
 \begin{par}
-For 'env', 'henv', 'ienv', 'senv' and 'xenv', it is a p by 1 vector.
+For 'env', 'henv', 'ienv', 'senv', 'sxenv' and 'xenv', it is a p by 1 vector.
 \end{par} \vspace{1em}
 \begin{par}
 For 'penv', it is a list containing the value of X1 and X2.
@@ -809,10 +809,10 @@ For 'penv', it is a list containing the value of X1 and X2.
 \begin{verbatim}* Xnew.X1 (only for 'penv'): A p1 by 1 vector containing the value of X1.
 * Xnew.X2 (only for 'penv'): A p2 by 1 vector containing the value of X2.\end{verbatim}
     \begin{par}
-\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\textbf{infType}: A string of characters indicating the inference type, the choices can be 'estimation' or 'prediction'.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{modelType}: A string of characters indicting the model, choices can be 'env', 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
+\textbf{modelType}: A string of characters indicating the model, choices can be 'env', 'henv', 'ienv', 'penv', 'senv', 'sxenv' and 'xenv'.
 \end{par} \vspace{1em}
 
 
@@ -832,7 +832,7 @@ For 'penv', it is a list containing the value of X1 and X2.
 \subsection*{Description}
 
 \begin{par}
-This function evaluates the user-specified model, could be 'env', 'henv', 'ienv', 'penv', 'senv' or 'xenv', at new value Xnew.  It can perform estimation: find the fitted value when X = Xnew, or prediction: predict Y when X = Xnew.  The covariance matrix and the standard errors are also provided.
+This function evaluates the user-specified model, could be 'env', 'henv', 'ienv', 'penv', 'senv', 'sxenv' or 'xenv', at new value Xnew.  It can perform estimation: find the fitted value when X = Xnew, or prediction: predict Y when X = Xnew.  The covariance matrix and the standard errors are also provided.
 \end{par} \vspace{1em}
 
 
@@ -940,7 +940,7 @@ the model in the envelope family.
 \textbf{ModelOutput}: A list containing the model outputs from fitting the models.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{modelType}: A string of characters indicting the model, choices can be 'env', 'henv', 'ienv', 'penv', 'senv' and 'xenv'.
+\textbf{modelType}: A string of characters indicating the model, choices can be 'env', 'henv', 'ienv', 'penv', 'senv', 'sxenv' and 'xenv'.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{TestInput}: A list that specifies the null hypothesis, including L, R, and A.  If not provided by the user, default values will be used.
@@ -962,7 +962,7 @@ the model in the envelope family.
 \subsection*{Output}
 
 \begin{par}
-\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of vec($L\beta R$).  At the same time, a table is printed out.
+\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of vec($L\hat{\beta} R$).  At the same time, a table is printed out.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
@@ -976,7 +976,7 @@ the model in the envelope family.
 \subsection*{Description}
 
 \begin{par}
-This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by a model in the envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$ (for 'env', 'ienv', 'penv', 'senv' and 'xenv'), or if the group main effects are all zeros (for 'henv').  The test statistics used is vec $(L\beta R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\beta R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom the same as the length of vec(A).
+This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by a model in the envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$ (for 'env', 'ienv', 'penv', 'senv', 'sxenv' and 'xenv'), or if the group main effects are all zeros (for 'henv').  The test statistics used is vec $(L\hat{\beta} R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\hat{\beta} R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom the same as the length of vec(A).
 \end{par} \vspace{1em}
 
 
@@ -1869,7 +1869,7 @@ Perform estimation or prediction under the envelope model.
 \textbf{Xnew}: The value of X with which to estimate or predict Y.  A p by 1 vector.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\textbf{infType}: A string of characters indicating the inference type, the choices can be 'estimation' or 'prediction'.
 \end{par} \vspace{1em}
 
 
@@ -2007,7 +2007,7 @@ Perform estimation or prediction under the envelope model through partial envelo
 \textbf{Xnew}: The value of X with which to estimate or predict Y.  A p by 1 vector.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\textbf{infType}: A string of characters indicating the inference type, the choices can be 'estimation' or 'prediction'.
 \end{par} \vspace{1em}
 
 
@@ -2174,7 +2174,7 @@ the envelope model.
 \subsection*{Output}
 
 \begin{par}
-\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of vec($L\beta R$).  At the same time, a table is printed out.
+\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of vec($L\hat{\beta} R$).  At the same time, a table is printed out.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
@@ -2187,7 +2187,7 @@ the envelope model.
 \subsection*{Description}
 
 \begin{par}
-This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$.  The test statistics used is vec $(L\beta R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\beta R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
+This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$.  The test statistics used is vec $(L\hat{\beta} R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\hat{\beta} R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
 \end{par} \vspace{1em}
 
 
@@ -3018,7 +3018,7 @@ Perform estimation of the multivariate mean or prediction for a new observation.
 \textbf{ModelOutput}: A list containing the maximum likelihood estimators and other statistics inherited from envmean.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\textbf{infType}: A string of characters indicating the inference type, the choices can be 'estimation' or 'prediction'.
 \end{par} \vspace{1em}
 
 
@@ -3150,7 +3150,7 @@ multivariate mean.
 \subsection*{Description}
 
 \begin{par}
-This function tests for hypothesis $H_0: L\mu = A$, versus $H_\alpha: L\mu\neq A$.  The $\mu$ is estimated by the envelope model.  If the user does not specify the values for L and A, then the test is equivalent to the standard F test on if $\mu = 0$.  The test statistics used is $(L\mu - A)$ $\hat{\Sigma}^{-1}$ $(L\mu - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1.
+This function tests for hypothesis $H_0: L\mu = A$, versus $H_\alpha: L\mu\neq A$.  The $\mu$ is estimated by the envelope model.  If the user does not specify the values for L and A, then the test is equivalent to the standard F test on if $\mu = 0$.  The test statistics used is $(L\hat{\mu} - A)$ $\hat{\Sigma}^{-1}$ $(L\hat{\mu} - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1.
 \end{par} \vspace{1em}
 
 
@@ -4350,7 +4350,7 @@ Perform estimation or prediction under the heteroscedastic envelope model.
 \textbf{Xnew}: A group indicator.  It must be a column vector, whose transpose is the same as one of the group indictors from the original data.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\textbf{infType}: A string of characters indicating the inference type, the choices can be 'estimation' or 'prediction'.
 \end{par} \vspace{1em}
 
 
@@ -4525,7 +4525,7 @@ the heteroscedastic envelope model.
 \subsection*{Output}
 
 \begin{par}
-\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of vec($L\beta R$).  At the same time, a table is printed out.
+\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of vec($L\hat{\beta} R$).  At the same time, a table is printed out.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
@@ -4539,7 +4539,7 @@ the heteroscedastic envelope model.
 \subsection*{Description}
 
 \begin{par}
-This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the heteroscedastic envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if all the main group effects are 0.  The test statistics used is vec $(L\beta R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\beta R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
+This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the heteroscedastic envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if all the main group effects are 0.  The test statistics used is vec $(L\hat{\beta} R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\hat{\beta} R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
 \end{par} \vspace{1em}
 
 
@@ -5352,7 +5352,7 @@ Perform estimation or prediction under the inner envelope model.
 \textbf{Xnew}: The value of X with which to estimate or predict Y.  A p by 1 vector.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\textbf{infType}: A string of characters indicating the inference type, the choices can be 'estimation' or 'prediction'.
 \end{par} \vspace{1em}
 
 
@@ -5479,7 +5479,7 @@ the inner envelope model.
 \subsection*{Output}
 
 \begin{par}
-\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of vec($L\beta R$).  At the same time, a table is printed out.
+\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of vec($L\hat{\beta} R$).  At the same time, a table is printed out.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
@@ -5492,7 +5492,7 @@ the inner envelope model.
 \subsection*{Description}
 
 \begin{par}
-This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the inner envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$.  The test statistics used is vec $(L\beta R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\beta R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
+This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the inner envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$.  The test statistics used is vec $(L\hat{\beta} R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\hat{\beta} R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
 \end{par} \vspace{1em}
 
 
@@ -6269,7 +6269,7 @@ PredictOutput = predict\_penv(ModelOutput, Xnew, infType)
 \begin{verbatim}* Xnew.X1: A p1 by 1 vector containing the value of X1.
 * Xnew.X2: A p2 by 1 vector containing the value of X2.\end{verbatim}
     \begin{par}
-\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\textbf{infType}: A string of characters indicating the inference type, the choices can be 'estimation' or 'prediction'.
 \end{par} \vspace{1em}
 
 
@@ -6403,20 +6403,20 @@ the envelope model.
 \subsection*{Output}
 
 \begin{par}
-\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of vec($L\beta R$).  At the same time, a table is printed out.
+\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of vec($L\hat{\beta}_{1} R$).  At the same time, a table is printed out.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
    \item TestOutput.chisqStatistic: The test statistics. A real number.
    \item TestOutput.df: The degrees of freedom of the reference chi-squared distribution.  A positive integer.
    \item TestOutput.pValue: p-value of the test.  A real number in [0, 1].
-   \item TestOutput.covMatrix: The covariance matrix of vec($L\beta_1 R$). A d1 * d2 by d1 * d2 matrix.
+   \item TestOutput.covMatrix: The covariance matrix of vec($L\hat{\beta}_{1} R$). A d1 * d2 by d1 * d2 matrix.
 \end{itemize}
 
 \subsection*{Description}
 
 \begin{par}
-This function tests for hypothesis $H_0: L\beta_1 R = A$, versus $H_\alpha: L\beta_1 R\neq A$.  The $\beta_1$ is estimated by the partial envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta_1 = 0$.  The test statistics used is vec $(L\beta_1 R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\beta_1 R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
+This function tests for hypothesis $H_0: L\beta_1 R = A$, versus $H_\alpha: L\beta_1 R\neq A$.  The $\beta_1$ is estimated by the partial envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta_1 = 0$.  The test statistics used is vec$(L\hat{\beta}_{1} R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\hat{\beta}_{1} R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
 \end{par} \vspace{1em}
 
 
@@ -7071,7 +7071,7 @@ Perform estimation or prediction under the scaled envelope model.
 \textbf{Xnew}: The value of X with which to estimate or predict Y.  A p by 1 vector.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\textbf{infType}: A string of characters indicating the inference type, the choices can be 'estimation' or 'prediction'.
 \end{par} \vspace{1em}
 
 
@@ -7318,7 +7318,7 @@ ans =
 \color{black}
 
 \begin{par}
-This example demonstrates the use of opts.rep.  In this example, the first six responses are measured in mg/ml, and the next responses are measured in ug / ml.
+This example demonstrates the use of Opts.rep.  In this example, the first six responses are measured in mg/ml, and the next responses are measured in ug / ml.
 \end{par} \vspace{1em}
 
 \begin{verbatim}       load('Urine.txt')
@@ -7421,7 +7421,7 @@ the scaled envelope model.
 \subsection*{Output}
 
 \begin{par}
-\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of vec($L\beta R$).  At the same time, a table is printed out.
+\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of vec($L\hat{\beta} R$).  At the same time, a table is printed out.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
@@ -7435,7 +7435,7 @@ the scaled envelope model.
 \subsection*{Description}
 
 \begin{par}
-This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the scaled envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$.  The test statistics used is vec $(L\beta R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\beta R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
+This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the scaled envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$.  The test statistics used is vec $(L\hat{\beta} R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\hat{\beta} R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
 \end{par} \vspace{1em}
 
 
@@ -7474,7 +7474,1342 @@ L * beta * R = A        1025.948        2       0.0000
     
 \newpage
 
+\chapter{sxenv}
+
+\rmfamily
+\color{black}\section{aic\_sxenv}
+
+\begin{par}
+Select the dimension of the scaled predictor envelope subspace using Akaike information criterion.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = aic_sxenv(X, Y)
+       u = aic_sxenv(X, Y, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations.  The predictors must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag to print out dimension selection process. Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains BIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
+   \item Opts.rep: Number of replicates for scales. This option imposes special structure on scaling parameters. For example, if Opts.rep = [3 4], this means that the first three responses have the same scale and the next four responses share a different scale. The elements of this vector should sum to r. If not specified, the default is [], then all responses will be scaled differently. If all responses have the same scale, input [r], then the regular envelope will be applied to the data. The input should be a row vector.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: Dimension of the scaled envelope. An integer between 0 and p.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements the Akaike information criteria (AIC) to select the dimension of the scaled predictor envelope subspace.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load('chemo.mat')
+       X = X(:, [6 11 21 22]);
+       Opts.verbose = 1;
+       Opts.table = 1;
+       u = aic_sxenv(X, Y, Opts)\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}Current dimension 0
+Current dimension 1
+Current dimension 2
+Current dimension 3
+
+ u      log likelihood      AIC
+--------------------------------------------
+ 0         348.898       -615.795
+ 1         503.949       -907.898
+ 2         550.180       -988.361
+ 3         591.501      -1059.002
+ 4         596.093      -1062.186
+--------------------------------------------
+
+u =
+
+     4
+
+\end{verbatim} \rmfamily\color{black}
+
+
+\newpage
+
+\rmfamily
+\color{black}\section{bic\_sxenv}
+
+\begin{par}
+Select the dimension of the scaled predictor envelope subspace using Bayesian information criterion.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = bic_sxenv(X, Y)
+       u = bic_sxenv(X, Y, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations.  The predictors must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag to print out dimension selection process. Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains BIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
+   \item Opts.rep: Number of replicates for scales. This option imposes special structure on scaling parameters. For example, if Opts.rep = [3 4], this means that the first three responses have the same scale and the next four responses share a different scale. The elements of this vector should sum to r. If not specified, the default is [], then all responses will be scaled differently. If all responses have the same scale, input [r], then the regular envelope will be applied to the data. The input should be a row vector.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: Dimension of the scaled envelope. An integer between 0 and p.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements the Bayesian information criteria (BIC) to select the dimension of the scaled predictor envelope subspace.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load('chemo.mat')
+       X = X(:, [6 11 21 22]);
+       Opts.verbose = 1;
+       Opts.table = 1;
+       u = bic_sxenv(X, Y, Opts)\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}Current dimension 0
+Current dimension 1
+Current dimension 2
+Current dimension 3
+
+ u      log likelihood      BIC
+--------------------------------------------
+ 0         348.898       -532.756
+ 1         503.949       -806.630
+ 2         550.180       -874.941
+ 3         591.501       -933.430
+ 4         596.093       -930.539
+--------------------------------------------
+
+u =
+
+     3
+
+\end{verbatim} \rmfamily
+\color{black}
+
+
+\newpage
+\rmfamily
+\color{black}\section{bstrp\_spls}
+
+\begin{par}
+Compute bootstrap standard error for the scaled SIMPLS algorithm.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       bootse = bstrp_spls(X, Y, u, B)
+       bootse = bstrp_spls(X, Y, u, B, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations.  The predictors must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope subspace.  A positive integer between 0 and r.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{B}: Number of bootstrap samples.  A positive integer.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.rep: Number of replicates for scales. This option imposes special structure on scaling parameters. For example, if Opts.rep = [3 4], this means that the first three responses have the same scale and the next four responses share a different scale. The elements of this vector should sum to r. If not specified, the default is [], then all responses will be scaled differently. If all responses have the same scale, input [r], then the regular envelope will be applied to the data. The input should be a row vector.
+   \item Opts.Gamma: The initial value for the envelope subspace. A p by u matrix. Default value is the one obtained from xenv, with $\Lambda^{-1}X$ being the predictor and Y being the response.
+   \item Opts.Lambda: The initial value for the scales. A p by p diagonal matrix. Default value is the identity matrix.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{bootse}: The standard error for elements in $\beta$ computed by bootstrap.  A p by r matrix.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function computes the bootstrap standard errors for the regression coefficients in the scaled SIMPLS algorithm by bootstrapping the residuals.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load('chemo.mat')
+       X = X(:, [6 11 21 22]);
+       ModelOutput = spls(X, Y, 3);\end{verbatim}
+    
+\begin{verbatim}       Opts.Gamma = ModelOutput.Gamma;
+       Opts.verbose = 1;
+       B = 10;
+       bootse = bstrp_spls(X, Y, 3, B, Opts)\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}Current number of bootstrap sample 1
+Current number of bootstrap sample 2
+Current number of bootstrap sample 3
+Current number of bootstrap sample 4
+Current number of bootstrap sample 5
+Current number of bootstrap sample 6
+Current number of bootstrap sample 7
+Current number of bootstrap sample 8
+Current number of bootstrap sample 9
+Current number of bootstrap sample 10
+
+If convergence is not reached for a bootstrap sample, 
+it is still used in computing bootse.
+
+bootse =
+
+    0.1841    0.4632    0.0080    0.8161    0.0003    0.0034
+    0.3393    0.8850    0.0041    1.2737    0.0005    0.0048
+    0.0050    0.0132    0.0002    0.0243    0.0000    0.0001
+    0.0895    0.2325    0.0077    0.2336    0.0001    0.0010
+
+\end{verbatim} 
+\rmfamily\color{black}
+    
+
+
+\newpage    
+    
+\rmfamily
+\color{black}\section{bstrp\_sxenv}
+
+\begin{par}
+Compute bootstrap standard error for the scaled predictor envelope model.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       bootse = bstrp_sxenv(X, Y, u, B)
+       bootse = bstrp_sxenv(X, Y, u, B, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations.  The predictors must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope subspace.  A positive integer between 0 and r.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{B}: Number of bootstrap samples.  A positive integer.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out the number of bootstrap samples, logical 0 or 1. Default value: 0.
+   \item Opts.rep: Number of replicates for scales. This option imposes special structure on scaling parameters. For example, if Opts.rep = [3 4], this means that the first three responses have the same scale and the next four responses share a different scale. The elements of this vector should sum to r. If not specified, the default is [], then all responses will be scaled differently. If all responses have the same scale, input [r], then the regular envelope will be applied to the data. The input should be a row vector.
+   \item Opts.Gamma: The initial value for the envelope subspace. A p by u matrix. Default value is the one obtained from xenv, with $\Lambda^{-1}X$ being the predictor and Y being the response.
+   \item Opts.Lambda: The initial value for the scales. A p by p diagonal matrix. Default value is the identity matrix.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{bootse}: The standard error for elements in $\beta$ computed by bootstrap.  A p by r matrix.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function computes the bootstrap standard errors for the regression coefficients in the scaled predictor envelope model by bootstrapping the residuals.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load('chemo.mat')
+       X = X(:, [6 11 21 22]);
+       ModelOutput = sxenv(X, Y, 3);
+       ModelOutput.asySE / sqrt(ModelOutput.n)\end{verbatim}
+       
+        \color{lightgray}\ttfamily \begin{verbatim}
+ans =
+
+    0.1639    0.5200    0.0051    0.6208    0.0002    0.0024
+    0.3105    0.8149    0.0109    1.1854    0.0005    0.0047
+    0.0053    0.0140    0.0002    0.0203    0.0000    0.0001
+    0.1408    0.3474    0.0051    0.5388    0.0002    0.0022
+       
+\end{verbatim} 
+\rmfamily\color{black}
+       
+    
+\begin{verbatim}       Opts.Gamma = ModelOutput.Gamma;
+       Opts.verbose = 1;
+       B = 10;
+       bootse = bstrp_sxenv(X, Y, 3, B, Opts)\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}
+Current number of bootstrap sample 1
+Current number of bootstrap sample 2
+Current number of bootstrap sample 3
+Current number of bootstrap sample 4
+Current number of bootstrap sample 5
+Current number of bootstrap sample 6
+Current number of bootstrap sample 7
+Current number of bootstrap sample 8
+Current number of bootstrap sample 9
+Current number of bootstrap sample 10
+
+If convergence is not reached for a bootstrap sample, 
+it is still used in computing bootse.
+
+bootse =
+
+    0.1641    0.5550    0.0060    0.4402    0.0002    0.0018
+    0.3548    1.1077    0.0098    1.0674    0.0005    0.0038
+    0.0041    0.0083    0.0001    0.0104    0.0000    0.0000
+    0.1593    0.4480    0.0052    0.4429    0.0002    0.0019
+
+\end{verbatim} \rmfamily\color{black}
+    
+
+
+\newpage
+
+\rmfamily
+\color{black}\section{dF4sxenv}
+
+\begin{par}
+The first derivative of the objective function for computing the envelope subspace for the scaled predictor envelope model.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       df = dF4sxenv(R, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{R}: A p by u semi orthogonal matrix, 0 \ensuremath{<} u \ensuremath{<}= p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{DataParameter}: A structure that contains the statistics calculated from the data.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{df}: An p by u matrix containing the value of the derivative function evaluated at R.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+The objective function is derived in Section 2.2 of Cook and Su (2015) by  using maximum likelihood estimation. This function is the derivative of  the objective function.
+\end{par} \vspace{1em}
+
+\newpage
+
+\rmfamily
+\color{black}\section{F4sxenv}
+
+\begin{par}
+Objective function for computing the envelope subspace for the scaled predictor envelope model.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       f = F4sxenv(R, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{R}: A p by u semi orthogonal matrix, 0 \ensuremath{<} u \ensuremath{<}= p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{DataParameter}: A structure that contains the statistics calculated from the data.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{f}: A scalar containing the value of the objective function evaluated at R.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+The objective function is derived in Section 2.2 of Cook and Su (2015)  using maximum likelihood estimation. The columns of the semi-orthogonal matrix that minimizes this function span the estimated envelope subspace.
+\end{par} \vspace{1em}
+
+\newpage
+
+\rmfamily
+\color{black}\section{mfoldcv\_spls}
+
+\begin{par}
+Select the dimension in the scaled SIMPLS algorithm using m-fold cross validation.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       SelectOutput = mfoldcv_spls(X, Y, m)
+       SelectOutput = mfoldcv_spls(X, Y, m, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations.  The predictors must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{m}: A positive integer that is used to indicate m-fold cross validation.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag to print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
+   \item Opts.rep: Number of replicates for scales. This option imposes special structure on scaling parameters. For example, if Opts.rep = [3 4], this means that the first three responses have the same scale and the next four responses share a different scale. The elements of this vector should sum to r. If not specified, the default is [], then all responses will be scaled differently. If all responses have the same scale, input [r], then the regular envelope will be applied to the data. The input should be a row vector.
+   \item Opts.perm: A positive integer indicating number permutations of the observations, m-fold cross validation is run on each permutation. If not specified, the division is based on the sequential order of the observations.
+   \item Opts.seed: A real number that set the seeds for permutations. Default value is 1.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{SelectOutput}: A list containing the results of the selection.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item SelectOutput.u: The dimension of the scaled predictor envelope subspace selected by m-fold cross validation.  An integer between 0 and p.
+   \item SelectOutput.PreErr: A vector containing prediction errors for each u if Opts.perm is not specified, or a matrix with the element in the ith row and jth column containing the prediction error for u=j-1 and ith permutation of the observations.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements m-fold cross validation to select the dimension in the scaled SIMPLS algorithm, based on prediction performance.  For each u, the data is partitioned into m parts, each part is in turn used for testing for the prediction performance while the rest m-1 parts are used for training.  The dimension is selected as the one that minimizes the average prediction errors. As Y is multivariate, the identity inner product is used for computing the prediction errors.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load('chemo.mat')
+       X = X(:, [6 11 21 22]);
+       Opts.table = 1; % Print out the table of average prediction error for each u
+       SelectOutput = mfoldcv_spls(X, Y, 2, Opts);
+       SelectOutput.u\end{verbatim}
+    
+        \color{lightgray} \ttfamily\begin{verbatim}
+ u      CV error      
+------------------------
+ 0       10.999
+ 1        7.668
+ 2        3.296
+ 3        2.037
+ 4        2.134
+------------------------
+
+ans =
+
+     3
+
+\end{verbatim}
+\rmfamily \color{black}
+
+\newpage
+\rmfamily
+\color{black}\section{mfoldcv\_sxenv}
+
+\begin{par}
+Select the dimension of the scaled predictor envelope subspace using m-fold cross validation.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       SelectOutput = mfoldcv_sxenv(X, Y, m)
+       SelectOutput = mfoldcv_sxenv(X, Y, m, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations.  The predictors must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{m}: A positive integer that is used to indicate m-fold cross validation.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag to print out dimension selection process, logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains cross validation error for each u.  Logical 0 or 1. Default value: 0.
+   \item Opts.rep: Number of replicates for scales. This option imposes special structure on scaling parameters. For example, if Opts.rep = [3 4], this means that the first three responses have the same scale and the next four responses share a different scale. The elements of this vector should sum to r. If not specified, the default is [], then all responses will be scaled differently. If all responses have the same scale, input [r], then the regular envelope will be applied to the data. The input should be a row vector.
+   \item Opts.perm: A positive integer indicating number permutations of the observations, m-fold cross validation is run on each permutation. If not specified, the division is based on the sequential order of the observations.
+   \item Opts.seed: A real number that set the seeds for permutations. Default value is 1.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{SelectOutput}: A list containing the results of the selection.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item SelectOutput.u: The dimension of the scaled predictor envelope subspace selected by m-fold cross validation.  An integer between 0 and p.
+   \item SelectOutput.PreErr: A vector containing prediction errors for each u if Opts.perm is not specified, or a matrix with the element in the ith row and jth column containing the prediction error for u=j-1 and ith permutation of the observations.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements m-fold cross validation to select the dimension of the scaled predictor envelope space, based on prediction performance.  For each u, the data is partitioned into m parts, each part is in turn used for testing for the prediction performance while the rest m-1 parts are used for training.  The dimension is selected as the one that minimizes the average prediction errors. As Y is multivariate, the identity inner product is used for computing the prediction errors.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load('chemo.mat')
+       X = X(:, [6 11 21 22]);
+       Opts.table = 1; % Print out the table of average prediction error for each u
+       SelectOutput = mfoldcv_sxenv(X, Y, 2, Opts);
+       SelectOutput.u\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}Current dimension 1
+Current dimension 2
+Current dimension 3
+Current dimension 4
+Current dimension 5
+
+ u      CV error      
+------------------------
+ 0       10.999
+ 1        5.189
+ 2        2.554
+ 3        2.236
+ 4        2.134
+------------------------
+
+ans =
+
+     4
+
+\end{verbatim} 
+\rmfamily\color{black}
+ 
+\newpage
+
+\rmfamily
+\color{black}\section{objfun\_spls}
+
+\begin{par}
+Objective function for computing a-star in the scaled SIMPLS algorithm.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       f = objfun_spls(a, Gamma1, Gamma2, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{a}: A scalar between 0 and 1 containing the initial value of a.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Gamma1}: A p by u matrix containing an orthogonal basis of the envelope subspace in the last iteration.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Gamma2}: A p by u matrix containing an orthogonal basis of the envelope subspace in the current iteration.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{DataParameter}: A structure that contains the statistics calculated from the data.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{f}: A scalar containing the value of the objective function evaluated at a.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+The objective function is introduced in Section 3 of Cook and Su (2015) under the context of scaled SIMPLS algorithm (SPLS algorithm).
+\end{par} \vspace{1em}
+
+
+\newpage
+\rmfamily
+\color{black}\section{objfun\_sxenv}
+
+\begin{par}
+Objective function for computing the scales for the scaled predictor envelope model.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       f = objfun_sxenv(d, Gamma, DataParameter)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{d}: A (p - 1) by 1 vector containing the value of the scales (the second to the last diagonal element in $\Lambda$.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Gamma}: A p by u matrix containing an orthogonal basis of the envelope subspace.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{DataParameter}: A structure that contains the statistics calculated from the data.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{f}: A scalar containing the value of the objective function evaluated at d.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+The objective function is derived in Section 2.2 of Cook and Su (2015) by  using maximum likelihood estimation. This function is the derivative of  the objective function.
+\end{par} \vspace{1em}
+
+\newpage
+
+
+\rmfamily
+\color{black}\section{predict\_sxenv}
+
+\begin{par}
+Perform estimation or prediction under the scaled predictor envelope model.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       PredictOutput = predict_sxenv(ModelOutput, Xnew, infType)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{ModelOutput}: A list containing the maximum likelihood estimators and other statistics inherited from sxenv.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Xnew}: The value of X with which to estimate or predict Y.  A p by 1 vector.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{infType}: A string of characters indicating the inference type, the choices can be 'estimation' or 'prediction'.
+\end{par} \vspace{1em}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{PredictOutput}: A list containing the results of the inference.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item PredictOutput.value: The fitted value or the prediction value evaluated at Xnew. An r by 1 vector.
+   \item PredictOutput.covMatrix: The covariance matrix of PredictOutput.value. An r by r matrix.
+   \item PredictOutput.SE: The standard error of elements in PredictOutput.value. An r by 1 vector.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function evaluates the scaled predictor envelope model at new value Xnew.  It can perform estimation: find the fitted value when X = Xnew, or prediction: predict Y when X = Xnew.  The covariance matrix and the standard errors are also provided.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load('chemo.mat')
+       X = X(:, [6 11 21 22]);
+       ModelOutput = sxenv(X, Y, 3);
+       Xnew = X(1, :)';
+       PredictOutput = predict_sxenv(ModelOutput, Xnew, 'estimation')
+       [PredictOutput.value, Y(1, :)']  % Compare the fitted value with the data
+       PredictOutput.SE      
+       \end{verbatim}
+               \color{lightgray} \ttfamily\begin{verbatim}
+PredictOutput = 
+
+        value: [6x1 double]
+    covMatrix: [6x6 double]
+           SE: [6x1 double]
+
+
+ans =
+
+    2.5127    2.7986
+    3.6497    4.8150
+    0.2168    0.2148
+   29.6482   30.0626
+    0.0165    0.0170
+    0.1441    0.1473
+
+
+ans =
+
+    0.1073
+    0.2652
+    0.0039
+    0.4103
+    0.0002
+    0.0016
+\end{verbatim}
+\rmfamily \color{black}
+       
+       
+       \begin{verbatim}
+       PredictOutput = predict_sxenv(ModelOutput, Xnew, 'prediction')
+       PredictOutput.SE\end{verbatim}
+               \color{lightgray} \ttfamily\begin{verbatim}
+PredictOutput = 
+
+        value: [6x1 double]
+    covMatrix: [6x6 double]
+           SE: [6x1 double]
+
+
+ans =
+
+    0.3405
+    0.8402
+    0.0122
+    1.3028
+    0.0005
+    0.0052
+
+\end{verbatim}
+\rmfamily \color{black}
+    
+
+\newpage
+
+    
+    
+\rmfamily
+\color{black}\section{spls}
+
+\begin{par}
+Implement the scaled SIMPLS algorithm.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item References
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       ModelOutput = spls(X, Y, u)
+       ModelOutput = spls(X, Y, u, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations.  The predictors must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.verbose: Flag for print out number of iterations, logical 0 or 1. Default value: 0.
+   \item Opts.Lambda: The initial value for the scales. A p by p diagonal matrix. Default value is the identity matrix.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{ModelOutput}: A list that contains the maximum likelihood estimators and some statistics.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item ModelOutput.beta: The scaled predictor envelope estimator of the regression coefficients $\beta$. An p by r matrix.
+   \item ModelOutput.SigmaX: The scaled envelope estimator of the covariance matrix of X, $\Sigma_X$.  A p by p matrix.
+   \item ModelOutput.Lambda: The matrix of estimated scales. An p by p diagonal matrix with the first diagonal element equal to 1 and other diagonal elements being positive.
+   \item ModelOutput.Gamma: The orthogonal basis of the envelope subspace. A p by u semi-orthogonal matrix.
+   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  A p by p - u semi-orthogonal matrix.
+   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. A u by r matrix.
+   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. A u by u matrix.
+   \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. A p - u by p - u matrix.
+   \item ModelOutput.muX: The estimated mean of the predictors in the scaled predictor envelope model.  A p by 1 vector.
+   \item ModelOutput.muY: The estimated mean of the responses in the scaled predictor envelope model.  An r by 1 vector.
+   \item ModelOutput.sigYcX: The estimated conditional covariance matrix of Y given X. An r by r matrix.
+   \item ModelOutput.paramNum: The number of parameters in the scaled predictor envelope model.  A positive integer.
+   \item ModelOutput.n: The number of observations in the data.  A positive integer.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function fits the scaled predictor envelope model to the responses and predictors, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and p - 1, we implemented the algorithm in Cook and Su (2015).  When the dimension is p, then the scaled predictor envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
+\end{par} \vspace{1em}
+
+
+\subsection*{References}
+
+The codes are implemented based on the algorithm in Section 3 of Cook and Su (2015).
+
+
+\subsection*{Example}
+
+\begin{par}
+The following codes uses a subset of the chemometrics example in Cook and Su (2015) to demonstrate the use of 'spls'.
+\end{par} \vspace{1em}
+
+\begin{verbatim}       load('chemo.mat')
+       X = X(:, [6 11 21 22]);
+       ModelOutput = spls(X, Y, 3);
+       ModelOutput.Lambda\end{verbatim}
+
+    
+        \color{lightgray} \ttfamily\begin{verbatim}
+ans =
+
+    1.0000         0         0         0
+         0    0.7100         0         0
+         0         0    2.4526         0
+         0         0         0    0.4401
+\end{verbatim} 
+\rmfamily\color{black}
+
+     \begin{par}
+This example demonstrates the use of Opts.rep.  In this example, the first two predictors are temperatures measured at equal distances along the reactor, and the other two predictors are wall temperature of the reactor and the solvent feed rate.
+\end{par} \vspace{1em}
+
+\begin{verbatim}       load('chemo.mat')
+       X = X(:, [6 11 21 22]);
+       Opts.rep = [2 1 1];
+       ModelOutput = spls(X, Y, 3, Opts);
+       ModelOutput.Lambda\end{verbatim}
+       
+        \color{lightgray} \ttfamily\begin{verbatim}
+ans =
+
+    1.0000         0         0         0
+         0    1.0000         0         0
+         0         0    1.0539         0
+         0         0         0    0.7522
+
+\end{verbatim} 
+\rmfamily\color{black}
+    
+
+
+
+\newpage
+
+\rmfamily
+\color{black}\section{sxenv}
+
+\begin{par}
+Fit the scaled predictor envelope model.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item References
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       ModelOutput = sxenv(X, Y, u)
+       ModelOutput = sxenv(X, Y, u, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors and n is number of observations.  The predictors must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Responses. An n by r matrix, r is the number of responses. The response can be univariate or multivariate and must be continuous variable.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: Dimension of the envelope. An integer between 0 and p.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag for print out number of iterations, logical 0 or 1. Default value: 0.
+   \item Opts.rep: Number of replicates for scales. This option imposes special structure on scaling parameters. For example, if Opts.rep = [3 4], this means that the first three responses have the same scale and the next four responses share a different scale. The elements of this vector should sum to r. If not specified, the default is [], then all responses will be scaled differently. If all responses have the same scale, input [r], then the regular envelope will be applied to the data. The input should be a row vector.
+   \item Opts.Gamma: The initial value for the envelope subspace. A p by u matrix. Default value is the one obtained from xenv, with $\Lambda^{-1}X$ being the predictor and Y being the response.
+   \item Opts.Lambda: The initial value for the scales. A p by p diagonal matrix. Default value is the identity matrix.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{ModelOutput}: A list that contains the maximum likelihood estimators and some statistics.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item ModelOutput.beta: The scaled predictor envelope estimator of the regression coefficients $\beta$. An p by r matrix.
+   \item ModelOutput.SigmaX: The scaled envelope estimator of the covariance matrix of X, $\Sigma_X$.  A p by p matrix.
+   \item ModelOutput.Lambda: The matrix of estimated scales. An p by p diagonal matrix with the first diagonal element equal to 1 and other diagonal elements being positive.
+   \item ModelOutput.Gamma: The orthogonal basis of the envelope subspace. A p by u semi-orthogonal matrix.
+   \item ModelOutput.Gamma0: The orthogonal basis of the complement of the envelope subspace.  A p by p - u semi-orthogonal matrix.
+   \item ModelOutput.eta: The coordinates of $\beta$ with respect to Gamma. A u by r matrix.
+   \item ModelOutput.Omega: The coordinates of Sigma with respect to Gamma. A u by u matrix.
+   \item ModelOutput.Omega0: The coordinates of Sigma with respect to Gamma0. A p - u by p - u matrix.
+   \item ModelOutput.muX: The estimated mean of the predictors in the scaled predictor envelope model.  A p by 1 vector.
+   \item ModelOutput.muY: The estimated mean of the responses in the scaled predictor envelope model.  An r by 1 vector.
+   \item ModelOutput.sigYcX: The estimated conditional covariance matrix of Y given X. An r by r matrix.
+   \item ModelOutput.covMatrix: The asymptotic covariance of vec($\beta$).  A pr by pr matrix.  The covariance matrix returned are asymptotic.  For the actual standard errors, multiply by 1 / n.
+   \item ModelOutput.asySE: Asymptotic standard error for elements in $\beta$ under the scaled predictor envelope model.  A p by r matrix.  The standard errors returned are asymptotic, for actual standard errors, multiply by 1 / sqrt(n).
+   \item ModelOutput.ratio: The asymptotic standard error ratio of the standard multivariate linear regression estimator over the scaled predictor envelope estimator, for each element in $\beta$.  A p by r matrix.
+   \item ModelOutput.paramNum: The number of parameters in the scaled predictor envelope model.  A positive integer.
+   \item ModelOutput.l: The maximized log likelihood function.  A real number.
+   \item ModelOutput.n: The number of observations in the data.  A positive integer.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function fits the scaled predictor envelope model to the responses and predictors, using the maximum likelihood estimation.  When the dimension of the envelope is between 1 and p - 1, we implemented the algorithm in Cook and Su (2015).  When the dimension is p, then the scaled predictor envelope model degenerates to the standard multivariate linear regression.  When the dimension is 0, it means that X and Y are uncorrelated, and the fitting is different.
+\end{par} \vspace{1em}
+
+
+\subsection*{References}
+
+\begin{enumerate}
+\setlength{\itemsep}{-1ex}
+   \item The codes are implemented based on the algorithm in Section 2.2 of Cook and Su (2015).
+   \item The Grassmann manifold optimization step calls the package sg\_min 2.4.3 by Ross Lippert (http://web.mit.edu/$\sim$ripper/www/sgmin.html).
+\end{enumerate}
+
+
+\subsection*{Example}
+
+\begin{par}
+The following codes uses a subset of the chemometrics example in Cook and Su (2015) to demonstrate the use of 'sxenv'.
+\end{par} \vspace{1em}
+
+\begin{verbatim}       load('chemo.mat')
+       X = X(:, [6 11 21 22]);
+       ModelOutput = sxenv(X, Y, 2);
+       ModelOutput.Lambda
+       ModelOutput.ratio\end{verbatim}
+
+    
+        \color{lightgray} \ttfamily \begin{verbatim}
+
+ans =
+
+    1.0000         0         0         0
+         0    0.9410         0         0
+         0         0    1.0351         0
+         0         0         0    0.4929
+
+
+ans =
+
+    4.1540    2.2048  581.7418  566.3622  375.6180  620.0116
+    3.3337    1.7682  245.5331  257.5329  207.5385  268.6982
+    1.4706    1.3487    1.5283    1.5283    1.5282    1.5283
+    1.0013    1.0010    1.0015    1.0015    1.0015    1.0015
+    
+   \end{verbatim} \rmfamily
+\color{black}
+   
+       \begin{par}
+This example demonstrates the use of Opts.rep.  In this example, the first two predictors are temperatures measured at equal distances along the reactor, and the other two predictors are wall temperature of the reactor and the solvent feed rate.
+\end{par} \vspace{1em}
+
+\begin{verbatim}       load('chemo.mat')
+       X = X(:, [6 11 21 22]);
+       Opts.rep = [2 1 1];
+       ModelOutput = sxenv(X, Y, 2, Opts);
+       ModelOutput.Lambda
+       ModelOutput.ratio\end{verbatim}
+        \color{lightgray} \ttfamily \begin{verbatim}
+
+ans =
+
+    1.0000         0         0         0
+         0    1.0000         0         0
+         0         0    1.0026         0
+         0         0         0    0.5246
+
+
+ans =
+
+    3.9752    2.1102  561.4176  545.4485  360.7323  597.6076
+    3.3356    1.7697  259.5508  268.1817  215.3125  279.6718
+    1.4661    1.3368    1.5281    1.5281    1.5281    1.5281
+    1.0013    1.0010    1.0015    1.0015    1.0015    1.0015
+
+\end{verbatim} 
+\rmfamily\color{black}
+
+
+\newpage
+
+
+
+    
+\rmfamily
+\color{black}\section{testcoefficient\_sxenv}
+
+
+\begin{verbatim}This function tests the null hypothesis L * beta * R = A versus the
+alternative hypothesis L * beta * R ~= A, where beta is estimated under
+the scaled predictor envelope model.\end{verbatim}
+    
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       TestOutput = testcoefficient_sxenv(ModelOutput)
+       TestOutput = testcoefficient_sxenv(ModelOutput, TestInput)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{ModelOutput}: A list containing the maximum likelihood estimators and other statistics inherited from sxenv.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{TestInput}: A list that specifies the null hypothesis, including L, R, and A.  If not provided by the user, default values will be used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestInput.L: The matrix multiplied to $\beta$ on the left.  It is a d1 by p matrix, while d1 is less than or equal to p.  Default value: identity matrix $I_p$.
+   \item TestInput.R: The matrix multiplied to $\beta$ on the right.  It is an r by d2 matrix, while d2 is less than or equal to r.  Default value: identity matrix $I_r$.
+   \item TestInput.A: The matrix on the right hand side of the equation.  It is a d1 by d2 matrix.  Default value: d1 by d2 zero matrix.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of vec(L\$\ensuremath{\backslash}beta\$R).  At the same time, a table is printed out.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item TestOutput.chisqStatistic: The test statistics. A real number.
+   \item TestOutput.df: The degrees of freedom of the reference chi-squared distribution.  A positive integer.
+   \item TestOutput.pValue: p-value of the test.  A real number in [0, 1].
+   \item TestOutput.covMatrix: The covariance matrix of vec(L$\hat{\beta}$R). A d1 * d2 by d1 * d2 matrix.
+\end{itemize}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the scaled predictor envelope model.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$.  The test statistics used is vec $(L\hat{\beta} R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\hat{\beta} R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
+\end{par} \vspace{1em}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load('chemo.mat')
+       X = X(:, [6 11 21 22]);
+       ModelOutput = sxenv(X, Y, 3);
+       r = size(Y, 2);
+       p = size(X, 2);
+       TestInput.L = rand(2, p);
+       TestInput.R = rand(r, 1);
+       TestInput.A = zeros(2, 1);
+       TestOutout = testcoefficient_sxenv(ModelOutput, TestInput);\end{verbatim}
+    
+        \color{lightgray} \ttfamily\begin{verbatim}
+ Test Hypothesis     Chisq Statistic    DF     P-value
+------------------------------------------------------------------------
+L * beta * R = A         180.876        2      0.0000
+------------------------------------------------------------------------
+\end{verbatim} 
+\rmfamily\color{black}
+ 
+
+
+
 \chapter{xenv}
+
+
 
 \rmfamily
 \color{black}\section{aic\_xenv}
@@ -8114,7 +9449,7 @@ Perform estimation or prediction under the envelope model for the reduction on X
 \textbf{Xnew}: The value of X with which to estimate or predict Y.  A p by 1 vector.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{infType}: A string of characters indicting the inference type, the choices can be 'estimation' or 'prediction'.
+\textbf{infType}: A string of characters indicating the inference type, the choices can be 'estimation' or 'prediction'.
 \end{par} \vspace{1em}
 
 
@@ -8236,7 +9571,7 @@ the envelope model for the reduction on X.
 \subsection*{Output}
 
 \begin{par}
-\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of vec($L\beta R$).  At the same time, a table is printed out.
+\textbf{TestOutput}: A list containing test statistics, degrees of freedom for the reference chi-squared distribution, the p-value, and the covariance matrix of vec($L\hat{\beta} R$).  At the same time, a table is printed out.
 \end{par} \vspace{1em}
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
@@ -8250,7 +9585,7 @@ the envelope model for the reduction on X.
 \subsection*{Description}
 
 \begin{par}
-This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the envelope model for the reduction on X.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$.  The test statistics used is vec $(L\beta R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\beta R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
+This function tests for hypothesis $H_0: L\beta R = A$, versus $H_\alpha: L\beta R\neq A$.  The $\beta$ is estimated by the envelope model for the reduction on X.  If the user does not specify the values for L, R and A, then the test is equivalent to the standard F test on if $\beta = 0$.  The test statistics used is vec $(L\hat{\beta} R - A)$ $\hat{\Sigma}^{-1}$ vec $(L\hat{\beta} R - A)^{T}$, and the reference distribution is chi-squared distribution with degrees of freedom d1 * d2.
 \end{par} \vspace{1em}
 
 
@@ -9660,7 +10995,7 @@ Compute summary statistics from the data.
 \textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables, and r should be strictly greater than p.
 \end{par} \vspace{1em}
 \begin{par}
-\textbf{method}: A string of characters indicating which member of the envelope family to be used, the choices can be 'env', 'ienv', 'henv', 'senv' or 'xenv'.
+\textbf{method}: A string of characters indicating which member of the envelope family to be used, the choices can be 'env', 'ienv', 'henv', 'senv', 'sxenv', 'xenv' or 'xenvpls'.
 \end{par} \vspace{1em}
 
 

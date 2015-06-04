@@ -13,7 +13,7 @@
 % *Xnew*: The value of X with which to estimate or predict Y.  A p by 1
 % vector.
 % 
-% *infType*: A string of characters indicting the inference type,
+% *infType*: A string of characters indicating the inference type,
 % the choices can be 'estimation' or 'prediction'.
 %
 % 

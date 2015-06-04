@@ -53,9 +53,13 @@ betaOLS = DataParameter.betaOLS;
 [V2, ~] = eig(sigY);
 V = [V1 V2];
 
-crit = nchoosek(2 * r, u);
+if r <= 10
+    crit = nchoosek(2 * r, u);
+else
+    crit = 2 * r;
+end
 
-if crit <= 50
+if u == 1 || (r <= 10 && crit <= 50)
 %if u==1
 %     setaux(Y,X,0,r,V,D);
 %     Ys=zeros(crit+5,r,u);
@@ -84,54 +88,29 @@ if crit <= 50
     bini = Wguess1 * pinv(Wguess1' * Wguess1) * Wguess1' * betaOLS;
     sigini = (YC - XC * bini')' * (YC - XC * bini') / n;
         
+    Wguess1 = get_envelope(bini, sigini, u);
+
+
+    [V, ~] = eig(sigRes);
+    tmp = V' * betaOLS;
+
+    [~, ind] = sort(diag(tmp * tmp'), 'descend');
+    Wguess2 = V(:, ind(1:u));
+    
+
+    if (F(Wguess1) < F(Wguess2))
+        WInit = Wguess1;
+    else
+        WInit = Wguess2;
+    end
 
 else
     
-    initset = zeros(1, u + 1);
-    initset(1 : u) = 1 : u;
-    initset(u + 1) = 1;
-    iniValue = F(V(:, initset(1 : u)));
-    
-    for rep = 1 : 5
-        for i = 1 : u + 3
-            for j = 1 : 2 * r
-                if sum(j == initset(2 : u)) == 0
-                    initset(1) = j;
-                    temp = F(V(:, initset(1 : u)));
-                    if (temp < iniValue)
-                        initset(u + 1) = j;
-                        iniValue = temp;
-                    end
-                end
-            end %for j=1:2*r
-            initset(1 : u) = initset(2 : (u + 1));
-            initset(u + 1) = initset(1);
-        end % end for i=1:u
-    end % end for rep=1:3
+    [V, ~] = eig(sigRes);
+    tmp = V' * betaOLS;
 
-    Wguess1 = V(:, initset(1 : u));
-    bini = Wguess1 * pinv(Wguess1' * Wguess1) * Wguess1' * betaOLS;
-    sigini = (YC - XC * bini')' * (YC - XC * bini') / n;
+    [~, ind] = sort(diag(tmp * tmp'), 'descend');
+    WInit = V(:, ind(1:u));
     
 end
 
-m = 1;
-while (m * p < u)
-    m = m + 1;
-end
-m = m + 2;
-spini = zeros(r, m * p);
-for i = 1 : m
-    spini(:, (i - 1) * p + 1 : i * p) = sigini ^ (i - 1) * bini;
-end
-rk = min(m * p, r);
-
-[Ul, S, ~] = svd(spini);
-[~, In] = sort(diag(S(1 : rk, 1 : rk)), 'descend');
-Wguess2 = Ul(:, In(1 : u));
-
-if (F(Wguess1) < F(Wguess2))
-    WInit = Wguess1;
-else
-    WInit = Wguess2;
-end
