@@ -109,14 +109,14 @@ if u == 1 || (r <= 10 && crit <= 50)
     if (initflag == 1)
         tmp2 = inv(sqrt(D1));
         [~, ind] = sort(diag(tmp2 * V' * tmp1 * V * tmp2), 'descend');
-        init1 = V(:, ind(1:u))
+        init1 = V(:, ind(1:u));
         if (F(init1) < F(Wguess2))
             Wguess2 = init1;
         end
         
         tmp2 = inv(sqrt(D2));
         [~, ind] = sort(diag(tmp2 * V2' * tmp1 * V2 * tmp2), 'descend');
-        init1 = V2(:, ind(1:u)) 
+        init1 = V2(:, ind(1:u)); 
         if (F(init1) < F(Wguess2))
             Wguess2 = init1;
         end
