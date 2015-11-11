@@ -189,6 +189,11 @@ if u > 0 && u < p
         verbose = 'verbose';
     end
     if ~isfield(Opts, 'init') 
+        if ~isfield(Opts, 'initscale') 
+            tempParameter.initflag = 1;
+        else 
+            tempParameter.initflag = Opts.initscale;
+        end
         init = get_Init(tempF, u, tempParameter);
     else
         init = Opts.init;
