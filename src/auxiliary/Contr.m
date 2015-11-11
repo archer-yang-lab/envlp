@@ -38,9 +38,9 @@ function C = Contr(r)
             if (j == i)
                 C((2 * r - i) / 2 * (i - 1) + j, r * (i - 1) + j) = 1;
             elseif (j > i)
-                C((2 * r - i) / 2 * (i - 1) + j,r * (i - 1) + j) = 1 / 2;
+                C((2 * r - i) / 2 * (i - 1) + j, r * (i - 1) + j) = 1 / 2;
             else
-                C((2 * r - j) / 2 * (j - 1) + i,r * (i - 1) + j) = 1 / 2;
+                C((2 * r - j) / 2 * (j - 1) + i, r * (i - 1) + j) = 1 / 2;
             end
         end
     end

@@ -216,14 +216,14 @@ if u > 0 && u < r
     sep4 = r * p2 + u * p1 + u * (r - u);
     sep5 = r * p2 + u * p1 + u * (r - u) + u * (u + 1) / 2;
     
-    H = zeros(r * p + r * (r + 1)/2, r * p2 + u * p1 + r * (r + 1)/2);
+    H = zeros(r * p + r * (r + 1) / 2, r * p2 + u * p1 + r * (r + 1) / 2);
     H(1 : sep1, 1 : sep1) = eye(r * p2);
     H(sep1 + 1 : sep2, sep1 + 1 : sep3) = kron(eye(p1), Gamma);
     H(sep1 + 1 : sep2, sep3 + 1 : sep4) = kron(eta', Gamma0);
     H(sep2 + 1 : end, sep3 + 1 : sep4) = 2 * Contr(r) * (kron(Gamma * Omega, Gamma0) ...
         - kron(Gamma, Gamma0 * Omega0));
-    H(sep2 + 1 : end, sep4 + 1 : sep5) = Contr(r)*kron(Gamma, Gamma) * Expan(u);
-    H(sep2 + 1 : end, sep5 + 1 : end) = Contr(r)*kron(Gamma0, Gamma0) * Expan(r - u);
+    H(sep2 + 1 : end, sep4 + 1 : sep5) = Contr(r) * kron(Gamma, Gamma) * Expan(u);
+    H(sep2 + 1 : end, sep5 + 1 : end) = Contr(r) * kron(Gamma0, Gamma0) * Expan(r - u);
     
     covMatrix = H / (H' * J * H) * H';
     covMatrix = covMatrix(1 : r * p, 1 : r * p);
