@@ -2,7 +2,7 @@
 % Perform estimation or prediction under the envelope model through partial envelope model.
 
 %% Syntax
-%         PredictOutput = predict2_env(X, Y, Xnew, infType)
+%         PredictOutput = predict2_env(X, Y, u, Xnew, infType)
 %
 %% Input
 %
@@ -12,6 +12,9 @@
 % *Y*: Multivariate responses. An n by r matrix, r is the number of
 % responses and n is number of observations. The responses must be 
 % continuous variables.
+%
+% *u*: The dimension of the constructed partial envelope model.  An integer
+% between from 0 to r.
 % 
 % *Xnew*: The value of X with which to estimate or predict Y.  A p by 1
 % vector.
@@ -50,7 +53,7 @@
 %
 %         load fiberpaper.dat
 %         Y = fiberpaper(:, 1 : 4);
-%         X = fiberpaper(:, [7 5 6]);
+%         X = fiberpaper(:, [5 6 7]);
 %         alpha = 0.01;
 %         u = lrt_env(X, Y, alpha);
 %         ModelOutput = env(X, Y, u);
@@ -58,15 +61,16 @@
 %         p1 = predict_env(ModelOutput, Xnew, 'estimation')
 %         p1.value
 %         p1.SE
-%         p2 = predict2_env(X, Y, Xnew, 'estimation')
+%         u = lrt_predict2_env(X, Y, 0.01, Xnew)
+%         p2 = predict2_env(X, Y, 1, Xnew, 'estimation')
 %         p2.value
 %         p2.SE
 %         p1.SE./p2.SE
 
-function PredictOutput = predict2_env(X, Y, Xnew, infType)
+function PredictOutput = predict2_env(X, Y, u, Xnew, infType)
 
-if nargin < 4
-    error('Inputs: X, Y, Xnew and infType should be specified!');
+if nargin < 5
+    error('Inputs: X, Y, u, Xnew and infType should be specified!');
 end
 
 if ~strcmp(infType, 'estimation') && ~strcmp(infType, 'prediction')
@@ -97,7 +101,6 @@ Z = X * (Ainv)';
 Xtemp.X1 = Z(:, 1);
 Xtemp.X2 = Z(:, 2 : end);
 
-u = bic_penv(Xtemp, Y);
 mtemp = penv(Xtemp, Y, u);
 Ntemp.X1 = Ainv(1, :) * Xnew;
 Ntemp.X2 = Ainv(2 : end, :) * Xnew;

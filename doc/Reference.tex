@@ -1107,6 +1107,107 @@ u =
 \color{black}
     
  
+ \newpage
+ 
+\rmfamily
+\color{black} \section{aic\_predict2\_env}
+
+\begin{par}
+Select the dimension of the constructed partial envelope subspace using Akaike information criterion.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item References
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = aic_predict2_env(X, Y, Xnew)
+       u = aic_predict2_env(X, Y, Xnew, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Xnew}: The value of X with which to estimate or predict Y.  A p by 1 vector.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag to print out dimension selection process. Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains AIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: Dimension of the constructed partial envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements the Akaike information criteria (AIC) to select the dimension of the partial envelope model, which is constructed for prediction based on envelope model.
+\end{par} \vspace{1em}
+
+
+\subsection*{References}
+
+\begin{enumerate}
+\setlength{\itemsep}{-1ex}
+   \item The codes are implemented based on the following reference: R.D. Cook (2013) ``Lecture Notes on Envelope Models and Methods.'' School of Statistics, University of Minnesota, Minneapolis.
+\end{enumerate}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       X = fiberpaper(:, [7 5 6]);
+       Xnew = X(10, :)';
+       Opts.table = 1;
+       u = aic_predict2_env(X, Y, Xnew, Opts)\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}
+ u      log likelihood      AIC
+--------------------------------------------
+ 0         -45.108        134.215
+ 1         -37.984        121.967
+ 2         -35.174        118.348
+ 3         -33.826        117.652
+ 4         -32.674        117.348
+--------------------------------------------
+
+u =
+
+     4
+
+\end{verbatim} \rmfamily
+\color{black}
 
 \newpage
 
@@ -1187,6 +1288,109 @@ u =
 \end{verbatim} \rmfamily
 \color{black}
  
+ \newpage
+ 
+ \rmfamily
+\color{black}
+
+\section{bic\_predict2\_env}
+
+\begin{par}
+Select the dimension of the constructed partial envelope subspace using Bayesian information criterion.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item References
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = bic_predict2_env(X, Y, Xnew)
+       u = bic_predict2_env(X, Y, Xnew, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Xnew}: The value of X with which to estimate or predict Y.  A p by 1 vector.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag to print out dimension selection process. Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains AIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: Dimension of the constructed partial envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements the Bayesian information criteria (BIC) to select the dimension of the partial envelope model, which is constructed for prediction based on envelope model.
+\end{par} \vspace{1em}
+
+
+\subsection*{References}
+
+\begin{enumerate}
+\setlength{\itemsep}{-1ex}
+   \item The codes are implemented based on the following reference: R.D. Cook (2013) ``Lecture Notes on Envelope Models and Methods.'' School of Statistics, University of Minnesota, Minneapolis.
+\end{enumerate}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       X = fiberpaper(:, [7 5 6]);
+       Xnew = X(10, :)';
+       Opts.table = 1;
+       u = bic_predict2_env(X, Y, Xnew, Opts)\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}
+ u      log likelihood      BIC
+--------------------------------------------
+ 0         -45.108        181.012
+ 1         -37.984        170.891
+ 2         -35.174        169.399
+ 3         -33.826        170.830
+ 4         -32.674        172.654
+--------------------------------------------
+
+u =
+
+     2
+
+\end{verbatim} \rmfamily
+\color{black}
  
  \newpage
 
@@ -1660,6 +1864,110 @@ u =
 \color{black}
     
 \newpage
+\rmfamily
+\color{black}
+\section{lrt\_predict2\_env}
+
+\begin{par}
+Select the dimension of the constructed partial envelope subspace using likelihood ratio testing.
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Syntax
+   \item Input
+   \item Output
+   \item Description
+   \item References
+   \item Example
+\end{itemize}
+
+
+\subsection*{Syntax}
+
+
+\begin{verbatim}       u = lrt_predict2_env(X, Y, alpha, Xnew)
+       u = lrt_predict2_env(X, Y, alpha, Xnew, Opts)\end{verbatim}
+    
+
+\subsection*{Input}
+
+\begin{par}
+\textbf{X}: Predictors. An n by p matrix, p is the number of predictors. The predictors can be univariate or multivariate, discrete or continuous.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{alpha}: Significance level for testing.  A real number between 0 and 1, often taken at 0.05 or 0.01.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Xnew}: The value of X with which to estimate or predict Y.  A p by 1 vector.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{Opts}: A list containing the optional input parameters, to control the iterations in sg\_min. If one or several (even all) fields are not defined, the default settings are used.
+\end{par} \vspace{1em}
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Opts.maxIter: Maximum number of iterations.  Default value: 300.
+   \item Opts.ftol: Tolerance parameter for F.  Default value: 1e-10.
+   \item Opts.gradtol: Tolerance parameter for dF.  Default value: 1e-7.
+   \item Opts.verbose: Flag to print out dimension selection process. Logical 0 or 1. Default value: 0.
+   \item Opts.table: Flag to tabulate the results, which contains AIC and log likelihood for each u. Logical 0 or 1. Default value: 0.
+\end{itemize}
+
+
+\subsection*{Output}
+
+\begin{par}
+\textbf{u}: Dimension of the constructed partial envelope. An integer between 0 and r.
+\end{par} \vspace{1em}
+
+
+\subsection*{Description}
+
+\begin{par}
+This function implements the likelihood ratio testing procedure to select the dimension of the partial envelope model, which is constructed for prediction based on envelope model.
+\end{par} \vspace{1em}
+
+
+\subsection*{References}
+
+\begin{enumerate}
+\setlength{\itemsep}{-1ex}
+   \item The codes are implemented based on the following reference: R.D. Cook (2013) ``Lecture Notes on Envelope Models and Methods.'' School of Statistics, University of Minnesota, Minneapolis.
+\end{enumerate}
+
+
+\subsection*{Example}
+
+
+\begin{verbatim}       load fiberpaper.dat
+       Y = fiberpaper(:, 1 : 4);
+       X = fiberpaper(:, [7 5 6]);
+       Xnew = X(10, :)';
+       alpha = 0.01;
+       Opts.table = 1;
+       u = lrt_predict2_env(X, Y, alpha, Xnew, Opts)\end{verbatim}
+    
+        \color{lightgray}\ttfamily \begin{verbatim}
+ u      log likelihood      test statistic     degrees of freedom    p-value
+----------------------------------------------------------------------------------
+ 0         -45.108             24.867                  4              0.000
+ 1         -37.984             10.619                  3              0.014
+ 4         -32.674
+----------------------------------------------------------------------------------
+
+u =
+
+     1
+
+\end{verbatim} \rmfamily
+\color{black}
+
+\newpage
 
 \rmfamily
 \color{black}
@@ -1985,6 +2293,7 @@ Perform estimation or prediction under the envelope model through partial envelo
    \item Input
    \item Output
    \item Description
+   \item References
    \item Example
 \end{itemize}
 
@@ -1992,7 +2301,7 @@ Perform estimation or prediction under the envelope model through partial envelo
 \subsection*{Syntax}
 
 
-\begin{verbatim}       PredictOutput = predict2_env(X, Y, Xnew, infType)\end{verbatim}
+\begin{verbatim}       PredictOutput = predict2_env(X, Y, u, Xnew, infType)\end{verbatim}
     
 
 \subsection*{Input}
@@ -2002,6 +2311,9 @@ Perform estimation or prediction under the envelope model through partial envelo
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Y}: Multivariate responses. An n by r matrix, r is the number of responses and n is number of observations. The responses must be continuous variables.
+\end{par} \vspace{1em}
+\begin{par}
+\textbf{u}: The dimension of the constructed partial envelope model.  An integer between from 0 to r.
 \end{par} \vspace{1em}
 \begin{par}
 \textbf{Xnew}: The value of X with which to estimate or predict Y.  A p by 1 vector.
@@ -2082,7 +2394,15 @@ ans =
     0.3846
 \end{verbatim}\rmfamily
 \color{black}       \begin{verbatim}                       
-       p2 = predict2_env(X, Y, Xnew, 'estimation')
+       u = lrt_predict2_env(X, Y, 0.01, Xnew)
+\end{verbatim}
+\color{lightgray}\ttfamily\begin{verbatim} 
+u = 
+
+        1
+\end{verbatim}\rmfamily
+\color{black}       \begin{verbatim}                       
+       p2 = predict2_env(X, Y, 1, Xnew, 'estimation')
 \end{verbatim}
 \color{lightgray}\ttfamily\begin{verbatim} 
 p2 = 
