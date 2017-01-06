@@ -202,7 +202,17 @@ else
     else
         verbose = 'verbose';
     end
+%     if ~isfield(Opts, 'init') 
+%         init = get_Init(F, u, DataParameter);
+%     else
+%         init = Opts.init;
+%     end
     if ~isfield(Opts, 'init') 
+        if ~isfield(Opts, 'initscale') 
+            DataParameter.initflag = 1;
+        else 
+            DataParameter.initflag = Opts.initscale;
+        end
         init = get_Init(F, u, DataParameter);
     else
         init = Opts.init;
